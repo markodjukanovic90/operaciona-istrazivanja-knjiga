@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.11.4)  7 AUG 2021 15:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.11.4)  7 AUG 2021 15:22
 entering extended mode
 **./main.tex
 (main.tex
@@ -331,7 +331,7 @@ Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))
 \verbatim@out=\write3
-runsystem(echo 'write18-test-202187900'>"main.w18")...disabled (restricted).
+runsystem(echo 'write18-test-202187922'>"main.w18")...disabled (restricted).
 
 
 
@@ -1253,7 +1253,7 @@ LaTeX Warning: There were multiply-defined labels.
  ) 
 Here is how much of TeX's memory you used:
  27271 strings out of 479799
- 696189 string characters out of 2871148
+ 696274 string characters out of 2871148
  1079046 words of memory out of 3000000
  43794 multiletter control sequences out of 15000+200000
  552684 words of font info for 73 fonts, out of 3000000 for 9000
