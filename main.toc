@@ -1,0 +1,41 @@
+\babel@toc {serbian}{}
+\contentsline {section}{\numberline {1}Uvod}{4}{}%
+\contentsline {section}{\numberline {2}Principi Modelovanja u Operacionim Istraživanjima}{8}{}%
+\contentsline {subsection}{\numberline {2.1}Definisanje problema i skupljanje relevantnih podataka}{8}{}%
+\contentsline {subsection}{\numberline {2.2}Proces Formulisanja Matematičkog Modela}{10}{}%
+\contentsline {subsection}{\numberline {2.3}Izvođenje Rješenja iz Modela}{12}{}%
+\contentsline {subsection}{\numberline {2.4}Testiranje Modela}{14}{}%
+\contentsline {subsection}{\numberline {2.5}Priprema za Primjenu Modela}{15}{}%
+\contentsline {subsection}{\numberline {2.6}Implementacija}{16}{}%
+\contentsline {section}{\numberline {3}Linearno Programiranje}{18}{}%
+\contentsline {subsection}{\numberline {3.1}Rješenje grafičkom metodom}{20}{}%
+\contentsline {subsection}{\numberline {3.2}Standardna Forma Linearnog Programiranja}{20}{}%
+\contentsline {subsection}{\numberline {3.3}Problemi Modelovani preko Linearnog Programiranja}{24}{}%
+\contentsline {subsection}{\numberline {3.4}Osnovne teoreme o Linearnom Programiranju}{29}{}%
+\contentsline {section}{\numberline {4}Simpleks Metod}{37}{}%
+\contentsline {subsection}{\numberline {4.1}Konstrukcija simpleks metode}{37}{}%
+\contentsline {subsection}{\numberline {4.2}Tabelarni prikaz Simpleks Metode}{39}{}%
+\contentsline {subsection}{\numberline {4.3}Primjer rješavanja problema LP-a pomoću Simpleks Metoda}{40}{}%
+\contentsline {subsection}{\numberline {4.4}Dvofazni simpleks algoritam}{43}{}%
+\contentsline {subsection}{\numberline {4.5}Primjer rješavanja problema LP-a pomoću dvofaznog simpleks metoda}{44}{}%
+\contentsline {subsection}{\numberline {4.6}Metod Unutrašnje Tačke}{46}{}%
+\contentsline {section}{\numberline {5}Dualnost}{50}{}%
+\contentsline {section}{\numberline {6}Cjelobrojno Programiranje}{55}{}%
+\contentsline {subsection}{\numberline {6.1}Neki problemi modelovani pomoću ILP-a}{55}{}%
+\contentsline {subsection}{\numberline {6.2}Neke tehnike konstrukcije modela Cjelobrojnog Programiranja}{57}{}%
+\contentsline {section}{\numberline {7}Tehnike rješavanja problema Cjelobrojnog programiranja}{64}{}%
+\contentsline {subsection}{\numberline {7.1}Metoda grananja i ograničavanja (B\&B)}{64}{}%
+\contentsline {subsubsection}{\numberline {7.1.1}Bazni B\&B za rješavanje problema ILP-a}{64}{}%
+\contentsline {subsection}{\numberline {7.2}Implicitna Enumeracija}{65}{}%
+\contentsline {subsection}{\numberline {7.3}Metoda Odsjecajućih Ravni}{70}{}%
+\contentsline {subsection}{\numberline {7.4}B\&C algoritam za rješavanje ILP-a}{76}{}%
+\contentsline {subsection}{\numberline {7.5}Lagranžova relaksacija}{78}{}%
+\contentsline {subsection}{\numberline {7.6}Metod Generisanja Kolona}{81}{}%
+\contentsline {section}{\numberline {8}Dekompozicioni Metodi}{85}{}%
+\contentsline {subsection}{\numberline {8.1}Benderova Dekompozicija}{85}{}%
+\contentsline {subsection}{\numberline {8.2}Lagranžova Dekompozicija}{85}{}%
+\contentsline {section}{\numberline {9}Metodi za Nalaženje Dopustivih Rješenja}{85}{}%
+\contentsline {subsection}{\numberline {9.1}Pohlepni Algoritmi}{85}{}%
+\contentsline {subsection}{\numberline {9.2}Aproksimativni Algoritmi}{85}{}%
+\contentsline {subsection}{\numberline {9.3}Heuristički Metodi}{85}{}%
+\contentsline {section}{\numberline {10}Optimizacioni rješavač Cplex}{85}{}%
