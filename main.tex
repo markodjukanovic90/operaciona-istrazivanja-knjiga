@@ -1281,212 +1281,6 @@ $$
 $$
 Kako su svi koeficijenti doprinosa ($\overline{c}$ varijable) manje od 0, simpleks metod staje nalazeći optimum koji se dostiže u tački $x = (24, 3, 0)$, i jednak je vrijednosti  $f = 72$.
 
-\subsection{Metod Unutrašnje Tačke}
- 
- Simpleks metod ne garantuje   izvršavanje u polinomijalnom broju koraka u odnosu na veličinu ulaza. % V. Klee and G. Minty constructed an example LP: simplex method needs 2^n iterations to solve it 
- Dakle, iz njega se ne može zaključiti da je problem rješavanja generalnog LP problema   polinomijalno rješiv. \emph{Metod unutrašnje tačke} će nam dati metod koji rješava ovu dilemu jer bilo koji LP problem može riješiti u polinomijanom vremenu, tj. pokazuje da je rješavanje problema LP-a pripada klasi $\mathcal{P}$. Iako u praksi često ne postiže dobre  performanse kao i simpleks metod, te se uvijek prvo preporučuje korištenje simpleks metoda u rješavanju LP-a, sa teoretskog stanovišta je veoma važan.  \emph{Metod unutrašnje tačke} (eng. Interior point metod) je dizajniran 50-ih godina XX vijeka i sve do 80-ih godina nije bio smatran za algoritam koji se efikasno može primijeniti na probleme velikih dimenzija. Tek 1984.godine (N. Karmakar, inžinjer u IBM-u) je formalno dokazao da se ovaj algoritam izvršava u polinomijalnom broju koraka za probleme linearnog programiranja. U današnje vrijeme, usljed ekstremnog poboljšanja performansi mašina, pokazao se da je \emph{metod unutrašnje tačke} kompetentan sa simpleks metodom kada je riječ o LP-u velikih dimenzija (sa matricom $A$ čiji je broj elemenata $10^9$ i više).
- 
- Za razliku od simpleks metoda, koji ``hoda'' po ivicama poliedra (dopustivog regiona), \emph{metod unutrašnje tačke}, kako i samo ime kaže, se kreće po unutrašnjim tačkama poliedra linearnog programiranja dok ne naiđe na optimalno rješenje problema. 
- 
- Postoji nekoliko metoda ove vrste, kao što su: metod centralne putanje, redukcija potencijala, afino skaliranje, itd. Mi ćemo u ovoj sekciji obratiti pažnju na metod centralne putanje. Da ponovimo, ova sekcija se bavi rješavanjem LP-a (\ref{eq:lp_equality_constraint}). 
- 
- \begin{definition}
-       Barijerni program LP-a (\ref{eq:lp_equality_constraint}) je dat u obliku 
-       \begin{align*}
-           &\min c^T x + \mu \sum_{j=1}^n ln(x_j) \\
-           &\mbox{s.t. } A x = 0
-       \end{align*}
- \end{definition}
-za neki $\mu >0$.
-Sljedeću teoremu iz teorije optimizacije  za skalarne funkcije sa uslovnim ekstremima, koja je od bitne važnosti, navodimo je bez dokaza. 
-\begin{thm}
-    Neka skalarna funkcija  $f:\mathbb{R}^n \mapsto \mathbb{R}$ na skupu $g_1(x)=g_2(x)= \cdots = g_m(x) =0$ ima minimum u $x^*$. Onda vrijedi 
-    $$ \triangledown f (x^*) = \sum_{i=1}^m y_i \triangledown g_i(x^*),$$
-    gdje se $y_i$ nazivaju Lagranžovi množitelji. 
-\end{thm}
-
-Primijetimo da u problemu LP-a imamo sljedeće:
-\begin{itemize}
-    \item $f(x) = \min c^T x + \mu \sum_{j=1}^n ln(x_j) $;
-    \item $g_i(x) = a_i x - b_i$.
-\end{itemize}
-Izračunajmo Lagranžove množitelje ovih funkcija. Vrijedi:
-
-$$c + \mu (\frac{1}{x_1}, \frac{1}{x_2}, \ldots, \frac{1}{x_n}) = \Delta f (x) =\sum_{i=1}^m y_i \Delta g_i(x) = \sum_{i} y_i a_i = A^T y.$$ 
-
-Uvedimo nenegativni vektor $s =\mu \cdot (\frac{1}{x_1}, \frac{1}{x_2}, \ldots, \frac{1}{x_n})$, pa imamo da bilo koje optimalno rješenje početnog problema treba da zadovoljava:
-\begin{align}
-    &A x = b \nonumber \\
-    &A^T y + s = c  \nonumber \\
-    & (s_1 x_1, \ldots, s_m x_m) = (\mu, \ldots, \mu) \label{eq:primal-dual-central-path-problem} \\
-    & x, s \geq 0. \nonumber
-\end{align}
-Ovo nije linearni program, jer ograničenje 3 nije linearno.
-
-\begin{definition}
-      Primal-dual centralni put $\{(x(\mu), y(\mu), s(\mu)) \in \mathbb{R}^{2n + m} \mid \mu > 0 \}$ je rješenje koje zadovoljava uslove (\ref{eq:primal-dual-central-path-problem}) parametrizovano sa $\mu$. 
-\end{definition}
-
-Primijetimo sljedeće, ako se u problemu (\ref{eq:primal-dual-central-path-problem}) stavi $\mu = 0$, onda imamo 
-\begin{align*}
-    &(s_1 x_1, \ldots, s_m x_m) = (0, \ldots, 0) \\
-    &\Longleftrightarrow s^T x = 0  \Longleftrightarrow (A^T y - c)^T x = 0 \\
-    &\Longleftrightarrow y^T A x - c^T x = 0 \Longleftrightarrow y^T b = c^Tx
-\end{align*}
-jer je $Ax = b$. Primijetimo da   vrijednost (optimalnih) dualnih promjenjivih $y$ upravo odgovara vrijednosti Lagranžovih množitelja. Takođe, kako $\mu$ teži ka nuli, model (\ref{eq:primal-dual-central-path-problem}) sve preciznije aproksimira početni problem. 
-
-Da bi došli do koraka samog algoritma, uvedimo notaciju 
-$$ F(x, y, s) = \left (\begin{array}{c}
-   Ax - b           \\
-   A^T y + s - c     \\
-   X S \textbf{1}                   
-\end{array} \right ),$$
-gdje je  $X = diag (x_1, \ldots, x_n ), S = diag(s_1,\ldots, s_n)$ i 
-$\textbf{1} = diag (1,\ldots, 1)$. Primijetimo da je $X S \textbf{1}=\sum_{i} s_i x_i$. 
-Potrebno je riješiti $F(x, y, s ) = 0, x,s \geq 0$. Korijen ove (nelinearne) jednačine ćemo naći uz pomoć \emph{Njutnovog metoda}. U nastavku u sažetom obliku izlažemo ideju Njutnovog metoda, jednog od najefikasnijih metoda za rješavanje ovakvih jednačina. Neka je data diferencijalna funkcija $f: \mathbb{R}^n \mapsto \mathbb{R}$.   Tangentna linija 
-$$z - f(x^k) = \triangledown f(x^k) (x - x^k) $$
-je lokalna aproksimacija grafa funkcije $f(x)$. Mijenjajući $z=0$, definiše se nova tačka 
-\begin{equation} \label{eq:newton-step}
-     x^{k+1} = x^k - (\triangledown f(x^k))^{-1} f(x^k).
-\end{equation}
-Pokazuje se da niz $\{x^k\}_{k \in \mathbb{N}}$ definisan uz pomoć (\ref{eq:newton-step}) konvergira ka stacionarnoj tački funkcije $f(x)$. Simulacija koraka njutnovog metoda je data na Slici~\ref{fig:newton}. 
-
-\begin{figure}[!ht]
-%    \centering
-\begin{tikzpicture}[thick,yscale=0.6,xscale=0.8]
-
-% Axes
-\draw[-latex,name path=xaxis] (-1,0) -- (12,0) node[above]{\large $x$};
-\draw[-latex] (0,-2) -- (0,8)node[right]{\large $y$};;
-
-% Function plot
-\draw[ultra thick, orange,name path=function]  plot[smooth,domain=1:9.5] (\x, {0.1*\x^2-1.5}) node[left]{$f(x)$};
-
-% plot tangent line
-\node[violet,right=0.2cm] at (8,4.9) { tangenta};
-
-\draw[gray,thin,dotted] (8,0) -- (8,4.9) node[circle,fill,inner sep=2pt]{};
-\draw[dashed, violet,name path=Tfunction]  plot[smooth,domain=4.25:9.5] (\x, {1.6*\x-7.9});
-
-% x-axis labels
-\draw (8,0.1) -- (8,-0.1) node[below] {$x^{k}$};
-\draw [name intersections={of=Tfunction and xaxis}] ($(intersection-1)+(0,0.1)$) -- ++(0,-0.2) node[below,fill=white] {$x^{k+1}$} ;
-\end{tikzpicture}
-\caption{Njutnova metoda u ravni.}
-   \label{fig:newton}
-\end{figure}
-%\begin{figure}[!ht]
-%    \centering
-%    \includegraphics[width=170pt,height=170pt]{newton.jpg}
-%    \caption{Demonstracija njutnovog metoda u ravni.}
-%    \label{fig:newton}
-%\end{figure}
-
-Primijenimo ovu metodu na nalaženje nule funkcije $F(x,y,s)$. Tada imamo
-$$ \triangledown F =\left ( \begin{array}{ccc}
-      A   & 0      &  0      \\
-      0   & A^T    &  I      \\
-      S   & 0      & X       \\
-\end{array} \right ) 
-$$
-Prema tome, u tački $(x,y,s)$, Njutnov pravac
-$
-\begin{pmatrix}
-    \bigtriangleup  x  \\
-    \bigtriangleup  y  \\
-    \bigtriangleup  s  \\
-\end{pmatrix}
-$
-%$\bigtriangleup x = x^{k+1} - x^{k}, \bigtriangleup y = y^{k+1} - y^{k}, \bigtriangleup s = s^{k+1} - s^{k}$
-se izračunava rješavajući sistem linearnih jednačina:
-
-\begin{equation}
- \begin{pmatrix}
-      A   & 0      &  0      \\
-      0   & A^T    &  I      \\
-      S   & 0      & X       \\
-\end{pmatrix}  
- \begin{pmatrix} 
-     \bigtriangleup  x  \\
-     \bigtriangleup  y  \\
-     \bigtriangleup  s  \\
-\end{pmatrix} 
- = 
-\begin{pmatrix} 
-   b - Ax             \\
-   c - A^T y - s      \\
-   - X S \textbf{1}  \\                   
-\end{pmatrix} 
-\end{equation}
-
-Njutnov metod pod punim brojem iteracija obično narušava uslove $x,s \geq 0$, ali to se može izbjeći (biće prikazano u nastavku).  
-Prethodno izloženo se može lako proširiti i na slučaj kada ne vrijedi $s_ix_i = 0$, tj. kada je $\frac{1}{n}s_ix_i = \mu, \mu > 0$, $i=1,\ldots,n$. Na sličan način računamo Njutnov pravac u smijeru $s_i x_i \approx \mu \theta$, za  $\theta >0$, iz sistema 
-
-\begin{equation} \label{eq:newton-interior-system-k}    
- \begin{pmatrix}
-      A   & 0      &  0      \\
-      0   & A^T    &  I      \\
-      S   & 0      & X       \\
-\end{pmatrix} 
-  \cdot 
- \begin{pmatrix}
-     \bigtriangleup  x  \\
-     \bigtriangleup  y  \\
-     \bigtriangleup  s  \\
-\end{pmatrix} 
-=
-\begin{pmatrix}
-    b - Ax           \\
-    c - A^T y - s      \\
-    \theta \mu \mathbf{1} - X S \textbf{1}                      
-\end{pmatrix}
-\end{equation}
-
-%https://www.youtube.com/watch?v=Zf_bn3jJFKY&list=WL&index=9&t=647s
-\emph{Algoritam unutrašnje tačke} se sastoji od sljedećih koraka:
-\begin{enumerate}
-    \item Inicijalizujemo $k=0$, te proizvoljno  $(x^k, y^k, s^k), x^k, s^k \geq 0$, $x^k,s^k \in \mathbb{R}^n, y^k \in \mathbb{R}^m$.
-    \item Izaberimo $ \theta^k \in [0, 1]$ te riješimo sistem (\ref{eq:newton-interior-system-k}) za $(x^k,y^k,s^k)$ i odabran $\theta_k$ te $\mu^k = (y^k)^T s^k $, za neko odakle   dobijamo
-    $  
-      \begin{pmatrix}
-                       \bigtriangleup x^k      \\
-                       \bigtriangleup y^k       \\
-                       \bigtriangleup s^k       \\
-      \end{pmatrix}    
-    $
-    
-    \item $ 
-    \begin{pmatrix}
-         x^{k+1}  \\
-         y^{k+1}   \\
-         s^{k+1}   \\
-    \end{pmatrix} \approx
-         \begin{pmatrix}
-              x^k  \\
-              y^k  \\
-              s^k  \\
-         \end{pmatrix} +   
-           \alpha_k 
-           \begin{pmatrix}
-                       \bigtriangleup x^k       \\
-                       \bigtriangleup y^k       \\
-                       \bigtriangleup s^k       \\
-           \end{pmatrix}  
-          $, gdje je $\alpha_k$ izabran na taj način da $(x^{k+1}, s^{k+1}) > 0$, tj. da bi se očuvala dopustivost rješenja. 
-    \item Ažurirajmo $k = k + 1$, te se vratimo na korak 2.
-\end{enumerate}
-Primijetimo da $\mu \rightarrow 0$, kako $k \rightarrow \infty$. U praksi se često stavlja $\theta^k = 1 - \frac{\beta}{n}$, za $\beta \in (0,1)$, a najčešće $\beta= 0.1$.  Parametar $\beta$ upravlja brzinom progresa prema optimalnom rješenju.  
-
-
-Može se pokazati sljedeća teorema koja karakteriše \emph{metod unutrašnje tačke}.
-
-\begin{thm}
-      \begin{itemize}
-          \item Algoritam unutrašnje tačke konvergira ka optimalnom rješenju problema (\ref{eq:lp_equality_constraint}). %Dualna granica se smanjuje $1 - \frac{\beta}{n}$ pri svakom koraku.
-          \item U svim iteracijama, algoritam generiše dopustive tačke.
-          \item Kompleksnost algoritma je $O(\sqrt{n})$. Dakle,  broj iteracija koji je proporcionalan $\sqrt{n}$ će biti potreban da algoritam riješi problem. 
-       \end{itemize}
-\end{thm}
   \newpage
  \section{Dualnost}
  
@@ -1530,6 +1324,8 @@ Generalno posmatrajući, za problem LP-a~(\ref{eq:LP-o1})--(\ref{eq:LP-c2}) njeg
      & A^T y \geq c \\
      & y \geq 0.
 \end{align}
+
+\subsection{Teoreme dualnosti}
 
 \begin{thm}[Teorema o slaboj dualnosti.]
   Ako je x dopustivo rješenje za problem ($P$) i y dopustivo rješenje za problem  ($D$) , onda je 
@@ -1601,7 +1397,7 @@ $$\begin{array}{cc}
 i pokažite da je to slučaj.
 
 Pozabavimo se sada pojmom \emph{komplementarnosti} (eng. complementary slackness). 
-\begin{thm}[Teorema komplementarosti]
+\begin{thm}[Teorema komplementarnosti]
       Neka su x i y dopustiva rješenja problema ($P$) i  ($D$) , redom. Vektori x i y su optimalna rješenja akko vrijedi 
       \begin{equation}\label{eq:slackness-1}
            (A^Ty - c)_j x_j = 0, j=1,\ldots,m
@@ -1695,6 +1491,246 @@ odakle dobijamo rješenje $x_1 = 10, x_3 = 15$, pa je optimalno rješenje $x = (
     \caption{Dopustiv region duala.}
     \label{fig:fig6-dual-region}
 \end{figure}
+
+
+\subsection{Metod Unutrašnje Tačke}
+
+Simpleks metod ne garantuje   izvršavanje u polinomijalnom broju koraka u odnosu na veličinu ulaza. % V. Klee and G. Minty constructed an example LP: simplex method needs 2^n iterations to solve it 
+Dakle, iz njega se ne može zaključiti da je problem rješavanja generalnog LP problema   polinomijalno rješiv. \emph{Metod unutrašnje tačke} će nam dati metod koji rješava ovu dilemu jer bilo koji LP problem može riješiti u polinomijanom vremenu, tj. pokazuje da je rješavanje problema LP-a pripada klasi $\mathcal{P}$. Iako u praksi često ne postiže dobre  performanse kao i simpleks metod, te se uvijek prvo preporučuje korištenje simpleks metoda u rješavanju LP-a, sa teoretskog stanovišta je veoma važan.  \emph{Metod unutrašnje tačke} (eng. Interior point metod) je dizajniran 50-ih godina XX vijeka i sve do 80-ih godina nije bio smatran za algoritam koji se efikasno može primijeniti na probleme velikih dimenzija. Tek 1984.godine (N. Karmakar, inžinjer u IBM-u) je formalno dokazao da se ovaj algoritam izvršava u polinomijalnom broju koraka za probleme linearnog programiranja. U današnje vrijeme, usljed ekstremnog poboljšanja performansi mašina, pokazao se da je \emph{metod unutrašnje tačke} kompetentan sa simpleks metodom kada je riječ o LP-u velikih dimenzija (sa matricom $A$ čiji je broj elemenata $10^9$ i više).
+
+Za razliku od simpleks metoda, koji ``hoda'' po ivicama poliedra (dopustivog regiona), \emph{metod unutrašnje tačke}, kako i samo ime kaže, se kreće po unutrašnjim tačkama poliedra linearnog programiranja dok ne naiđe na optimalno rješenje problema. 
+
+Postoji nekoliko metoda ove vrste, kao što su: metod centralne putanje, redukcija potencijala, afino skaliranje, itd. Mi ćemo u ovoj sekciji obratiti pažnju na metod centralne putanje. Da ponovimo, ova sekcija se bavi rješavanjem LP-a (\ref{eq:lp_equality_constraint}). 
+
+Neka je dat par Primal-dual linearnih programa \\
+
+$$ \begin{array}{lcc}
+	&\mbox{Primal}            & \mbox{Dual}     \\
+	&\min  c^T x       & \max  b^T y \\
+	& \mbox{s.t.} Ax = b &   \mbox{s.t.} A^Ty + s = c \\
+	& x \geq 0   &   s \geq 0
+\end{array}
+$$
+Lagranžijan ovog para linearnih programa je dat sa 
+\begin{equation}
+	L(x,y) = c^Tx - y^T(Ax - b) - s^T x.
+\end{equation}
+Uslovi za nalazak stacionarne tačku Lagranžijana $L$ su dati sa:
+\begin{align}
+	&\triangledown_x L(x,y) = 0\\
+	&\triangledown_y L(x,y) = 0
+\end{align} 
+što nas (uz uslov dualnosti) dovodi do uslova optimalnosti prvog reda za primal-dual par:
+\begin{align}
+	&Ax = b \\
+	&A^T y + s = c \\
+	&XS\mathbf{1} = 0 (x_j \cdot s_j =0 , \forall j) \\
+	&  (x, s ) \geq 0,
+\end{align}
+gdje je $X = diag (x_1, \ldots, x_n)$, $S= diag(s_1,\ldots s_m)$, $\mathbf{1}=(1,\ldots, 1)$.
+
+U nastavku navodimo problem preko koga razvijamo metod unutrašnje tačke. Ograničenja nenegativnosti u primalnom problemu ćemo zamijeniti sa $-ln x_j$. 
+Primijetite da vrijedi 
+$$\min e^{-\sum_{j=1}^n ln x_j} \Leftrightarrow \max \prod_{j} x_j $$
+Dakle, minimizacija izraza $-\sum_{j=1}^n x_j$ je ekvivalentna maksimizaciji svih hiperravni koje definišu prvi ortant. Dakle, ovakav optimizacioni problem (na prvom ortantu) nas sprečava da se vrijednost neke od varijabli $x_j$ približi nuli (uprkos nenegativnim ograničenjima).  Na osnovu ovih činjenica, definišimo slejdeći optimizacioni problem. 
+
+\begin{definition}
+	Barijerni program LP-a (\ref{eq:lp_equality_constraint}) je dat u obliku 
+	\begin{align*}
+		&\min c^T x + \mu \sum_{j=1}^n ln(x_j) \\
+		&\mbox{s.t. } A x = 0
+	\end{align*}
+\end{definition}
+za neki $\mu >0$.
+Sljedeću teoremu iz teorije optimizacije  za skalarne funkcije sa uslovnim ekstremima, koja je od bitne važnosti, navodimo je bez dokaza. 
+\begin{thm}
+	Neka skalarna funkcija  $f:\mathbb{R}^n \mapsto \mathbb{R}$ na skupu $g_1(x)=g_2(x)= \cdots = g_m(x) =0$ ima minimum u $x^*$. Onda vrijedi 
+	$$ \triangledown f (x^*) = \sum_{i=1}^m y_i \triangledown g_i(x^*),$$
+	gdje se $y_i$ nazivaju Lagranžovi množitelji. 
+\end{thm}
+
+Primijetimo da u problemu LP-a imamo sljedeće:
+\begin{itemize}
+	\item $f(x) = \min c^T x + \mu \sum_{j=1}^n ln(x_j) $;
+	\item $g_i(x) = a_i x - b_i$.
+\end{itemize}
+Izračunajmo Lagranžove množitelje ovih funkcija. Vrijedi:
+
+$$c + \mu (\frac{1}{x_1}, \frac{1}{x_2}, \ldots, \frac{1}{x_n}) = \Delta f (x) =\sum_{i=1}^m y_i \Delta g_i(x) = \sum_{i} y_i a_i = A^T y.$$ 
+
+Uvedimo nenegativni vektor $s =\mu \cdot (\frac{1}{x_1}, \frac{1}{x_2}, \ldots, \frac{1}{x_n})$, pa imamo da bilo koje optimalno rješenje početnog problema treba da zadovoljava:
+\begin{align}
+	&A x = b \nonumber \\
+	&A^T y + s = c  \nonumber \\
+	& (s_1 x_1, \ldots, s_m x_m) = (\mu, \ldots, \mu) \label{eq:primal-dual-central-path-problem} \\
+	& x, s \geq 0. \nonumber
+\end{align}
+Ovo nije linearni program, jer ograničenje 3 nije linearno.
+
+\begin{definition}
+	Primal-dual centralni put $\{(x(\mu), y(\mu), s(\mu)) \in \mathbb{R}^{2n + m} \mid \mu > 0 \}$ je rješenje koje zadovoljava uslove (\ref{eq:primal-dual-central-path-problem}) parametrizovano sa $\mu$. 
+\end{definition}
+
+Primijetimo sljedeće, ako se u problemu (\ref{eq:primal-dual-central-path-problem}) stavi $\mu = 0$, onda imamo 
+\begin{align*}
+	&(s_1 x_1, \ldots, s_m x_m) = (0, \ldots, 0) \\
+	&\Longleftrightarrow s^T x = 0  \Longleftrightarrow (A^T y - c)^T x = 0 \\
+	&\Longleftrightarrow y^T A x - c^T x = 0 \Longleftrightarrow y^T b = c^Tx
+\end{align*}
+jer je $Ax = b$. Primijetimo da   vrijednost (optimalnih) dualnih promjenjivih $y$ upravo odgovara vrijednosti Lagranžovih množitelja. Takođe, kako $\mu$ teži ka nuli, model (\ref{eq:primal-dual-central-path-problem}) sve preciznije aproksimira početni problem. 
+
+Da bi došli do koraka samog algoritma, uvedimo notaciju 
+$$ F(x, y, s) = \left (\begin{array}{c}
+	Ax - b           \\
+	A^T y + s - c     \\
+	X S \textbf{1}                   
+\end{array} \right ),$$
+gdje je  $X = diag (x_1, \ldots, x_n ), S = diag(s_1,\ldots, s_n)$ i 
+$\textbf{1} = diag (1,\ldots, 1)$. Primijetimo da je $X S \textbf{1}=\sum_{i} s_i x_i$. 
+Potrebno je riješiti $F(x, y, s ) = 0, x,s \geq 0$. Korijen ove (nelinearne) jednačine ćemo naći uz pomoć \emph{Njutnovog metoda}. U nastavku u sažetom obliku izlažemo ideju Njutnovog metoda, jednog od najefikasnijih metoda za rješavanje ovakvih jednačina. Neka je data diferencijalna funkcija $f: \mathbb{R}^n \mapsto \mathbb{R}$.   Tangentna linija 
+$$z - f(x^k) = \triangledown f(x^k) (x - x^k) $$
+je lokalna aproksimacija grafa funkcije $f(x)$. Mijenjajući $z=0$, definiše se nova tačka 
+\begin{equation} \label{eq:newton-step}
+	x^{k+1} = x^k - (\triangledown f(x^k))^{-1} f(x^k).
+\end{equation}
+Pokazuje se da niz $\{x^k\}_{k \in \mathbb{N}}$ definisan uz pomoć (\ref{eq:newton-step}) konvergira ka stacionarnoj tački funkcije $f(x)$. Simulacija koraka njutnovog metoda je data na Slici~\ref{fig:newton}. 
+
+\begin{figure}[!ht]
+	%    \centering
+	\begin{tikzpicture}[thick,yscale=0.6,xscale=0.8]
+		
+		% Axes
+		\draw[-latex,name path=xaxis] (-1,0) -- (12,0) node[above]{\large $x$};
+		\draw[-latex] (0,-2) -- (0,8)node[right]{\large $y$};;
+		
+		% Function plot
+		\draw[ultra thick, orange,name path=function]  plot[smooth,domain=1:9.5] (\x, {0.1*\x^2-1.5}) node[left]{$f(x)$};
+		
+		% plot tangent line
+		\node[violet,right=0.2cm] at (8,4.9) { tangenta};
+		
+		\draw[gray,thin,dotted] (8,0) -- (8,4.9) node[circle,fill,inner sep=2pt]{};
+		\draw[dashed, violet,name path=Tfunction]  plot[smooth,domain=4.25:9.5] (\x, {1.6*\x-7.9});
+		
+		% x-axis labels
+		\draw (8,0.1) -- (8,-0.1) node[below] {$x^{k}$};
+		\draw [name intersections={of=Tfunction and xaxis}] ($(intersection-1)+(0,0.1)$) -- ++(0,-0.2) node[below,fill=white] {$x^{k+1}$} ;
+	\end{tikzpicture}
+	\caption{Njutnova metoda u ravni.}
+	\label{fig:newton}
+\end{figure}
+%\begin{figure}[!ht]
+%    \centering
+%    \includegraphics[width=170pt,height=170pt]{newton.jpg}
+%    \caption{Demonstracija njutnovog metoda u ravni.}
+%    \label{fig:newton}
+%\end{figure}
+
+Primijenimo ovu metodu na nalaženje nule funkcije $F(x,y,s)$. Tada imamo
+$$ \triangledown F =\left ( \begin{array}{ccc}
+	A   & 0      &  0      \\
+	0   & A^T    &  I      \\
+	S   & 0      & X       \\
+\end{array} \right ) 
+$$
+Prema tome, u tački $(x,y,s)$, Njutnov pravac
+$
+\begin{pmatrix}
+	\bigtriangleup  x  \\
+	\bigtriangleup  y  \\
+	\bigtriangleup  s  \\
+\end{pmatrix}
+$
+%$\bigtriangleup x = x^{k+1} - x^{k}, \bigtriangleup y = y^{k+1} - y^{k}, \bigtriangleup s = s^{k+1} - s^{k}$
+se izračunava rješavajući sistem linearnih jednačina:
+
+\begin{equation}
+	\begin{pmatrix}
+		A   & 0      &  0      \\
+		0   & A^T    &  I      \\
+		S   & 0      & X       \\
+	\end{pmatrix}  
+	\begin{pmatrix} 
+		\bigtriangleup  x  \\
+		\bigtriangleup  y  \\
+		\bigtriangleup  s  \\
+	\end{pmatrix} 
+	= 
+	\begin{pmatrix} 
+		b - Ax             \\
+		c - A^T y - s      \\
+		- X S \textbf{1}  \\                   
+	\end{pmatrix} 
+\end{equation}
+
+Njutnov metod pod punim brojem iteracija obično narušava uslove $x,s \geq 0$, ali to se može izbjeći (biće prikazano u nastavku).  
+Prethodno izloženo se može lako proširiti i na slučaj kada ne vrijedi $s_ix_i = 0$, tj. kada je $\frac{1}{n}s_ix_i = \mu, \mu > 0$, $i=1,\ldots,n$. Na sličan način računamo Njutnov pravac u smijeru $s_i x_i \approx \mu \theta$, za  $\theta >0$, iz sistema 
+
+\begin{equation} \label{eq:newton-interior-system-k}    
+	\begin{pmatrix}
+		A   & 0      &  0      \\
+		0   & A^T    &  I      \\
+		S   & 0      & X       \\
+	\end{pmatrix} 
+	\cdot 
+	\begin{pmatrix}
+		\bigtriangleup  x  \\
+		\bigtriangleup  y  \\
+		\bigtriangleup  s  \\
+	\end{pmatrix} 
+	=
+	\begin{pmatrix}
+		b - Ax           \\
+		c - A^T y - s      \\
+		\theta \mu \mathbf{1} - X S \textbf{1}                      
+	\end{pmatrix}
+\end{equation}
+
+%https://www.youtube.com/watch?v=Zf_bn3jJFKY&list=WL&index=9&t=647s
+\emph{Algoritam unutrašnje tačke} se sastoji od sljedećih koraka:
+\begin{enumerate}
+	\item Inicijalizujemo $k=0$, te proizvoljno  $(x^k, y^k, s^k), x^k, s^k \geq 0$, $x^k,s^k \in \mathbb{R}^n, y^k \in \mathbb{R}^m$.
+	\item Izaberimo $ \theta^k \in [0, 1]$ te riješimo sistem (\ref{eq:newton-interior-system-k}) za $(x^k,y^k,s^k)$ i odabran $\theta_k$ te $\mu^k = (y^k)^T s^k $, za neko odakle   dobijamo
+	$  
+	\begin{pmatrix}
+		\bigtriangleup x^k      \\
+		\bigtriangleup y^k       \\
+		\bigtriangleup s^k       \\
+	\end{pmatrix}    
+	$
+	
+	\item $ 
+	\begin{pmatrix}
+		x^{k+1}  \\
+		y^{k+1}   \\
+		s^{k+1}   \\
+	\end{pmatrix} \approx
+	\begin{pmatrix}
+		x^k  \\
+		y^k  \\
+		s^k  \\
+	\end{pmatrix} +   
+	\alpha_k 
+	\begin{pmatrix}
+		\bigtriangleup x^k       \\
+		\bigtriangleup y^k       \\
+		\bigtriangleup s^k       \\
+	\end{pmatrix}  
+	$, gdje je $\alpha_k$ izabran na taj način da $(x^{k+1}, s^{k+1}) > 0$, tj. da bi se očuvala dopustivost rješenja. 
+	\item Ažurirajmo $k = k + 1$, te se vratimo na korak 2.
+\end{enumerate}
+Primijetimo da $\mu \rightarrow 0$, kako $k \rightarrow \infty$. U praksi se često stavlja $\theta^k = 1 - \frac{\beta}{n}$, za $\beta \in (0,1)$, a najčešće $\beta= 0.1$.  Parametar $\beta$ upravlja brzinom progresa prema optimalnom rješenju.  
+
+
+Može se pokazati sljedeća teorema koja karakteriše \emph{metod unutrašnje tačke}.
+
+\begin{thm}
+	\begin{itemize}
+		\item Algoritam unutrašnje tačke konvergira ka optimalnom rješenju problema (\ref{eq:lp_equality_constraint}). %Dualna granica se smanjuje $1 - \frac{\beta}{n}$ pri svakom koraku.
+		\item U svim iteracijama, algoritam generiše dopustive tačke.
+		\item Kompleksnost algoritma je $O(\sqrt{n})$. Dakle,  broj iteracija koji je proporcionalan $\sqrt{n}$ će biti potreban da algoritam riješi problem. 
+	\end{itemize}
+\end{thm}
 
 % dualni simpleks metod ==> 4.7 PRIMAL-DUAL ALGORITHMS
  
