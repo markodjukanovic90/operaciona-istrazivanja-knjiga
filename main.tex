@@ -1577,7 +1577,7 @@ Primijetimo sljedeće, ako se u problemu (\ref{eq:primal-dual-central-path-probl
 	&\Longleftrightarrow s^T x = 0  \Longleftrightarrow (A^T y - c)^T x = 0 \\
 	&\Longleftrightarrow y^T A x - c^T x = 0 \Longleftrightarrow y^T b = c^Tx
 \end{align*}
-jer je $Ax = b$. Primijetimo da   vrijednost (optimalnih) dualnih promjenjivih $y$ upravo odgovara vrijednosti Lagranžovih množitelja. Takođe, kako $\mu$ teži ka nuli, model (\ref{eq:primal-dual-central-path-problem}) sve preciznije aproksimira početni problem. 
+jer je $Ax = b$. Primijetimo da   vrijednost (optimalnih) dualnih promjenjivih $y$ upravo odgovara vrijednosti Lagranžovih množitelja. Takođe, kako $\mu$ teži ka nuli,   (\ref{eq:primal-dual-central-path-problem}) sve preciznije aproksimira rješenja početnog problema (\ref{eq:lp_equality_constraint}). 
 
 Da bi došli do koraka samog algoritma, uvedimo notaciju 
 $$ F(x, y, s) = \left (\begin{array}{c}
@@ -1740,14 +1740,14 @@ Može se pokazati sljedeća teorema koja karakteriše \emph{metod unutrašnje ta
 
 %https://www.google.com/url?sa=t&source=web&rct=j&url=https://web.mit.edu/15.053/www/AMP-Chapter-09.pdf&ved=2ahUKEwiN0cef_f7xAhU0CRAIHWLqCw0QFjAfegQILBAC&usg=AOvVaw1cQCbZJQbc55Z0VLPue2ul
 Ponekad nije realno očekivati da varijable odluke dobijaju neprekidne vrijednosti. Recimo, ako se zahtjeva u rasporedu u smjenama da dovoljan broj ljudi bude u svakoj od smjena. Ovaj broj je cjelobrojan, preciznije prirodan broj. U slučaju da su sve varijable odluke u modelu problema cjelobrojne, riječ je o problemu cjelobrojnog programirnja (eng. \emph{Integer programming}). 
-U ovom odjeljku ćemo se pozabaviti linearnim cjelobrojnim programiranjem (ILP) gdje se zahtjeva da funkcija cilja kao i ograničenja u modelu budu linearni u varijablama. Prema tome ILP ima opšti oblik:
+U ovom odjeljku ćemo se pozabaviti   cjelobrojnim linearnim programiranjem (ILP) gdje se zahtjeva da funkcija cilja kao i ograničenja u modelu budu linearni u svojim varijablama. Prema tome, ILP ima opšti oblik:
 \begin{align}
     & \max c^T x \nonumber\\
     & A x \leq b \nonumber \\
     & x \geq 0 \nonumber\\
     & x_i \in \mathbb{Z}, \mbox{ za sve } i \label{ilp-formulation}
 \end{align}
-U nastavku modelujmo još nekoliko problema pomoću paradigme ILP-a.
+U nastavku modelujmo nekoliko poznatih problema pomoću paradigme ILP-a.
 
 \subsection{Neki problemi modelovani pomoću ILP-a}
 
@@ -1760,25 +1760,26 @@ za $j$-to predavanje tokom $n$-tog vremenskog perioda (recimo vrijeme je diskret
 
 Posmatrajmo ipak malo specifičniji problem u odnosu na ovaj generalni (koji je dosta težak i za modeovanje, a kamoli za rješavanje). 
 Razmotrimo raspoređivanje osoblja zaduženog za upravljanje letom aviona. 
-Avionska kompanija mora rasporediti svoje osoblje na rutama koje pokrivaju sve letove. Treba paziti, na primjer, da jedna posada treba da upravlja letom iz  Beograda u Zagreb (u 10:00), a takođe letom iz Zagreba u Cirih (u 14:00). Dakle, jedna posada treba da je uključena u rutu na kojoj upravlja različitim letovima. Prema tome, raspoređujemo posadu na rutu $j$, modelovana uz pomoć binarne varijable 
+Avionska kompanija mora rasporediti svoje osoblje na rutama koje pokrivaju sve letove. Treba paziti, na primjer, da jedna posada treba da upravlja letom iz  Beograda u Zagreb (u 10:00), a takođe letom iz Zagreba u Cirih (u 14:00). Dakle, jedna posada bi trebalo da je uključena u rutu na kojoj upravlja različitim letovima. Prema tome, raspoređujemo posadu na rutu $j$, modelovana uz pomoć binarne varijable 
 $$x_j = \begin{cases}
-    &1, \mbox{ ako je barem jedna osoba prodružena ruti} j \\
-    &0, \mbox{inače}. 
+    &1, \mbox{ ako je barem jedna posada prodružena ruti } j \\
+    &0, \mbox{ inače}. 
 \end{cases}
 $$
 Dalje, definišimo 
 $$a_{ij}= \begin{cases}
-             &1, \mbox{ ako je let } i \mbox{ pridružen ruti } j \\
-             & 0, \mbox{ inače}.
+             1,& \mbox{ ako je let } i \mbox{ pridružen ruti } j \\
+             0,& \mbox{ inače}.
         \end{cases}
 $$
-Neka je $c_j$ cijena dodjeljivanja neke posade ruti $j$. Ovdje $a_{ij}$ definišu prihvatljive kombinacije letova sa rutama, uzimajući u obzir  karakteristike kao što su redoslijed krakova za uspostavljanje veza između letova i za uključivanje u rute osnovno vrijeme  održavanja leta (iskrcavanje, istovaranje kofera, utovaranje novih kofera, ukrcavanje itd.).  
+Neka je $c_j$ cijena dodjeljivanja neke posade ruti $j$. Ovdje $a_{ij}$ definišu prihvatljive kombinacije letova sa rutama, uzimajući u obzir  karakteristike kao što su redoslijed krakova za uspostavljanje veza između letova sa uključenim vremenom  održavanja letova (iskrcavanje, istovaranje kofera, utovaranje novih kofera, ukrcavanje itd.) na istoj ruti leta posade.   
 
 Model postaje 
 \begin{align}
     &\min \sum_{i=1}^n c_j x_j \nonumber\\
-    & \sum_{j=1}^n a_{ij} x_j \geq 1, \forall i \in \{1,\ldots, m\} \label{ineq:set_cover} \\
-    & x_i \in \{0, 1 \},, \forall i \in \{1, \ldots, n\} \nonumber
+    & \sum_{j=1}^n a_{ij} x_j \geq 1, \forall i \in \{1,\ldots, n\} \label{ineq:set_cover} \\
+    & x_i \in \{0, 1 \}, \forall i \in \{1, \ldots, n\} \\
+    & a_{ij} \in \{0, 1\}, \forall i \in \{1, \ldots, n\}, j \in\{1,\ldots, m\} \nonumber
 \end{align}
 Ograničenje (\ref{ineq:set_cover}) je poznato ograničenje koje se javlja u pokrivanju problema skupa (eng. \emph{set-covering problem}).
 
@@ -1806,12 +1807,12 @@ $$  \sum_{j=1}^n x_{ij} = 1, \forall i =1,\ldots, n$$
 
 Pretpostavimo da proizvođač lijekova mora da odluči hoće li koristiti spremnik za fermentaciju. Ako koristi spremnik, tehnologija obrade zahtijeva da se napravi $X$ jedinica ljekova. Dakle, proizvodnja $y$ mora biti 0 ili $K$, a problem se može modelirati binarnom varijablom $x_j \in \{ 0, 1\}$ zamjenom $Kx_j$ za $y_i$. 
 
-\emph{Logička ograničenja}. Jedno od najprostijih logičkih pitanja u matematičkom programiranju je da li dati izbor varijabli odluka zadovoljava ograničenje, ili da li je generalno ograničenje
+\emph{Logička ograničenja}. Jedno od najprostijih logičkih pitanja u matematičkom programiranju je da li dati izbor varijabli odluka zadovoljava ograničenje
 
 \begin{equation}\label{eq:constr-ex-1-ilp}
    f(x_1,\ldots, x_n )\leq b
 \end{equation}
- zadovoljeno?
+ ili   ograničenje vrijedi u generalnom slučaju.
  
  Uvedimo binarnu varijablu $y$ na sljedeći način:
  
@@ -1825,7 +1826,7 @@ te napišimo
 \end{equation}
 
 gdje je $M$ konstanta tako da je 
-ograničenje zadovoljeno za sve $x$ ako je $y =1$. Kad god je $y=0$ i ako je uslov (\ref{eq:constr-ex-1-ilp}) zadovoljen, onda je i ograničenje (\ref{eq:constr-ex-1-ilp-big-B}) zadovoljeno. U praksi je određivanje konstante $B$ često vrlo jasno iz samog problema. Inače, veoma je bitno da uzmemo što manju vrijednost za $M$ da bismo izbjegli potencijalne numeričke probleme prilikom računanja. 
+ograničenje zadovoljeno za sve $x$ ako je $y =1$. Kad god je $y=0$ i ako je uslov (\ref{eq:constr-ex-1-ilp}) zadovoljen, onda je i ograničenje (\ref{eq:constr-ex-1-ilp-big-B}) zadovoljeno. U praksi je određivanje konstante $M$ često vrlo jasno iz samog problema. Inače, veoma je bitno da uzmemo što manju vrijednost za $M$ da bismo izbjegli potencijalne numeričke probleme prilikom računanja. 
 
 \emph{Alternativna ograničenja}. Pogledajmo sljedeću situaciju sa alternativnim ograničenjima:
 \begin{align}
@@ -1844,7 +1845,7 @@ Konstante $M_1$ i $M_2$ se odabiru da oba ograničenja u (\ref{ineq:f_leq_b2})  
 
 Ograničenje $y_1 + y_2 \leq 1$ implicira da barem jedna od $y$--varijabli mora da bude 0, tj. barem jedno ograničenje mora da bude zadovoljeno. 
 
-Primijetimo da možemo  pojednostaviti ovu formulaciju koristeći $y_1 - y_2 = 1$ (jer ovo povlači da ili $y_1$ ili $y_2$ su 0), tj. uvrštanjem $y_2 =  1-y_1$, odakle dobijamo 
+Primijetimo da možemo  pojednostaviti ovu formulaciju koristeći $y_1 + y_2 = 1$ (jer ovo povlači da ili $y_1$ ili $y_2$ su 0), tj. uvrštanjem $y_2 =  1-y_1$, odakle dobijamo 
 \begin{align*}
       & f_1(x) - M_1 y_1       \leq b_1 \\
       & f_2(x) - M_2 (1-y_1)   \leq b_2  \\
@@ -1859,10 +1860,10 @@ Kako je implikacija $p \Rightarrow q$ ekvivalentna sa $\neg p \wedge q$, pa prem
 \begin{align*}
     f(x) \leq b_1 \vee f(x) \leq b_2 
 \end{align*}
-odakle sijedi da koristeći alternativna ograničenja možemo da modelujemo uslovna ograničenja.
+odakle sijedi da koristeći alternativna ograničenja možemo da modelujemo ovakav tip ograničenja.
 
 \emph{K-alternative}. Pokušajmo da modelujemo scenario da od $m$ ograničenja
-$$f_j(x) \leq nb_j, j=1,\ldots,m,$$
+$$f_j(x) \leq  b_j, j=1,\ldots,m,$$
 barem $k$ od njih treba da budu zadovoljena. Modelovanje ovakvog scenarija vršimo na način da prvo odredimo konstante koje će ignorisati ograničenja, nazovimo ih $M_1, \ldots, M_m$, redom. generalni problem u tom slučaju može biti definisan na sljedeći način:
 \begin{align}
      &f_j(x) + (1-y_j) M_j \leq b_j, j=1,\ldots,m\\
@@ -1871,7 +1872,7 @@ barem $k$ od njih treba da budu zadovoljena. Modelovanje ovakvog scenarija vrši
 \end{align}
 Primijetimo da ako je $y_j = 1$, tada je $j$-to ograničenje zadovoljeno (za dato $x$). Dakle, barem $k$ ograničenja treba da budu zadovoljena da bi $x$ bilo dopustivo rješenje. 
 
-\emph{Složene alternative}. Pretpostavimo da se region sastoji od tri disjunktna regiona kao na Slici~\ref{fig:compound_regions}. Ovakav scenario se može modelovati uz pomoć konstante veliko $M$, te  ograničenjem sa višestrukim izborom dobijamo:
+\emph{Složene alternative}. Pretpostavimo da se region sastoji od tri disjunktna regiona kao na Slici~\ref{fig:compound_regions}. Ovakav scenario se može modelovati uz pomoć konstante veliko $M$, te  ograničenjem sa višestrukim izborom, odakle dobijamo:
 \begin{align*}
     &f_1(x) - M_1 y_1 \leq b_1 \\
     &f_2(x) - M_2 y_2 \leq b_2 (\mbox{region 1}) \\ \hline
@@ -1933,12 +1934,12 @@ $$ \omega_2 = \begin{cases}
 pa se ograničenja u (\ref{eq: piecewise-constraints}) mogu napisati u obliku
 
 \begin{align}
-     & b_1 \omega_1 \leq \beta_1 \leq  \leq b_1   \nonumber \\
+     & b_1 \omega_1 \leq \beta_1 \leq b_1   \nonumber \\
      & b_2 \omega_2 \leq \beta_2 \leq \omega_1 b_2 \nonumber \\
      & 0 \leq \beta_3 \leq b_3 \omega_2 \nonumber \\
      & \omega_1, \omega_2 \geq 0. \label{eq: piecewise-constraints-equivalent}
 \end{align}
-      Primijetimo da ako $\omega_1 = 0$, onda je $\omega_2= 0$ kako bi se održala dopustivost za ograničenja nametnutog od strane $\beta_2$, pri čemu se uslovi u (\ref{eq: piecewise-constraints-equivalent}) prevode u
+      Primijetimo da ako $\omega_1 = 0$, onda je $\omega_2= 0$ kako bi se održala dopustivost za ograničenja nametnuta  od strane $\beta_2$, pri čemu se uslovi u (\ref{eq: piecewise-constraints-equivalent}) prevode u
       $$ 0 \leq \beta_1 \leq b_1, \beta_2 =0, \beta_3 =0.$$
       Ako je $\omega_1 = 1, \omega_2 = 0$, onda se uslovi u (\ref{eq: piecewise-constraints-equivalent}) prevode u
             $$   \beta_1 = b_1, 0 \leq \beta_2 \leq b_2, \beta_3 =0.$$
