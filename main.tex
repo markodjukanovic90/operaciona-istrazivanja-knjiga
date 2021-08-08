@@ -1745,27 +1745,28 @@ Može se pokazati sljedeća teorema koja karakteriše \emph{metod unutrašnje ta
 \begin{align*}
 	&\max 3 x_1 + 3 x_2 \\
 	&\mbox{s.t.} \\
-	& x_1 + x_2 = 4 \\
+	& x_1 + x_2 \leq 4 \\
 	& x_1, x_2 \geq 0.
 \end{align*}
 
 \emph{Rješenje.}  Formirajmo Lagranžovu funkciju početnog problema koristeći ciljnu funkciju barijernog problema sa:  
 \begin{align*}
-   L(x, y, \mu) = 	  3 x_1 + 3 x_2 -\mu ln x_1 - \mu ln x_2 + y_1(4- x_1 - x_2).  
+   L(x, y, \mu) = 	  3 x_1 + 3 x_2 -\mu ln x_1 - \mu ln x_2 + y_1(4- x_1 - x_2 - s_1).  
 \end{align*}
 Barijerna funkcija je uvijek konkavna, a kako maksimizujemo,  tako da posjeduje tačno rješenje.  Sada nađimo maksimum date funkcije što radimo derivirajući funkciju $L$ (nalaženje parcijalnih derivacija):
 \begin{align*}
 	 &\triangledown_{x_1} L   =  3 - \frac{\mu}{x_1}  - y_1 = 0 \\
 	 &\triangledown_{x_2} L   =  3 - \frac{\mu}{x_2} - y_1 = 0 \\
-	 	 &\triangledown_{y} L   = {4-x_1-x_2} = 0 
+	 &\triangledown_{y} L   = {4-x_1-x_2 - s_1} = 0 \\
+	 &\triangledown_{s} L   = { y_1} = 0 
 \end{align*}
-Odakle imamo zbog simetrije prve i druge jednakosti, da je  $x_1 = x_2$, pa prema tome je 
+Odakle imamo zbog simetrije prve i druge jednakosti, da je  $x_1 = x_2$, dok je $y(\mu) = 0$. pa prema tome je 
 %$$  3 - \frac{\mu}{x_1}  = 0$$
 %što je ekvivalentno   sa:
 %\begin{align} \label{eq:example-interior-point}
 %   3x_1 - \mu = 0 \Rightarrow x_1 = x_2 = \frac{\mu}{3}.
 %\end{align} 
-Iz trečeg uslova   $x_1=x_2=2$, što je i optimum. Primijetimo da ovdje nije bilo potrebe za iterativnim postupkom i računanja Njutnovog koraka (koji je konstantan u svim iteracijama). 
+Iz trečeg uslova   $x_1(\mu)=x_2(\mu)=2$, što je i optimum. Primijetimo da ovdje nije bilo potrebe za iterativnim postupkom i računanja Njutnovog koraka (koji je konstantan u svim iteracijama). 
 %Kako je ovo kvadratna jednačina, koja je može eksplicitno riješiti, ne treba primjenjivati Njutnov iteracioni postupak (iako bi rješavanje ovakve jednačine takođe bilo moguće pomoću takvog metoda). Dakle, rješenje jednačine (\ref{eq:example-interior-point}) je:
 %\begin{align}
 %	x_1 = \frac{3(4-\mu) \pm \sqrt{9(4-\mu)^2 - 96 \mu}} { 12} = x_2
