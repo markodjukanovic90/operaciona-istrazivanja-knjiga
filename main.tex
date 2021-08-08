@@ -1957,17 +1957,17 @@ pa se ograničenja u (\ref{eq: piecewise-constraints}) mogu napisati u obliku
 Da bi objedinili većinu gore navedenih transformacija ograničenja, posmatrajmo sljedeći primjer. 
 
 
-\emph{Primjer}. Pretpostavimo da je stanovništvo koncentrirano u $I$ okruga  unutar grada i da u okrugu $i\in [I]$ ima $p_i$ ljudi. Preliminarna analiza (premjeri zemljišta, politika, socijalna situacija, itd.) ograničila je potencijalnu lokacije vatrogasnih domova na $J$ mjesta. Neka je $d_{ij} \geq 0$ udaljenost od središta okruga $i$ do mjesta $j$. Zadatak je da se nađe najbolji odabir mijesta gdje će se dodijeliti vatrogasni domovi u okruzima. 
+\emph{Primjer}. Pretpostavimo da je stanovništvo koncentrirano u $I$ okruga  unutar grada i da u okrugu $i\in [I]$ ima $p_i$ ljudi. Preliminarna analiza (premjeri zemljišta, politika, socijalna situacija, itd.) ograničila je potencijalne lokacije vatrogasnih domova na $J$ mjesta. Neka $d_{ij} \geq 0$ predstavlja udaljenost od središta okruga $i$ (dijela grada) do mjesta $j$. Zadatak je da se nađe najbolji odabir mijesta gdje će se dodijeliti vatrogasni domovi u svakom od okruga.  
 
 Definišimo binarne varijable 
 $$y_i = \begin{cases}
-              1, \mbox{ ako je mjesto } i \mbox{ odabrano} \\
+              1, \mbox{ ako je lokacija } i \mbox{ odabrano} \\
               0, \mbox{ inače}
         \end{cases}$$
 i 
 $$
 x_{ij}= \begin{cases}
-             1, \mbox{ ako je okrug } i \mbox{ pridružen mjestu } j \\
+             1, \mbox{ ako je lokacija } i \mbox{ pridružena mjestu } j \\
              0, \mbox{ inače}. 
         \end{cases}
 $$
@@ -1975,13 +1975,13 @@ Svaki okrug treba da bude pridružen tačno jednom vatrogasnom domu, pa je to og
 \begin{equation}\label{eq:ex-constr-1}
       \sum_{j \in J} x_{ij} = 1, \forall i \in I
 \end{equation}
-Takođe, ne postoji okrug koji je pridružen nekorištenom mjestu (za vatrogasni dom) $j$, tj. ako je $y_j = 0$, onda $ \sum_{i \in I} x_{ij} = 0$. Ovo je uslovno ograničenje, koje se modeluje sa
+Takođe, ne postoji okrug koji je pridružen nekorištenoj lokaciji (za vatrogasni dom) $j$, tj. ako je $y_j = 0$, onda $ \sum_{i \in I} x_{ij} = 0$. Ovo je uslovno ograničenje, koje se modeluje sa
 \begin{equation}\label{eq:ex-constr-2}
     \sum_{i \in I} x_{ij} \leq y_j |I|,
  \end{equation}
 gdje je $|I|$ broj mijesta. 
 
-Dalje, udaljenost od okruga $i$ ka njegovom pridruženom vatrogasnom domu je jednaka $d_i = \sum_{j} d_{ij}x_{ij} $. Dalje, populacija koja će biti servisirana od strane mjesta $j$ je jednaka 
+Dalje, udaljenost od okruga $i$ ka njegovom pridruženom vatrogasnom domu je jednaka $d_i = \sum_{j} d_{ij}x_{ij} $. Dalje, veličina populacija koja će biti opskrbljivana od strane mjesta $j$ je jednaka 
 \begin{equation}\label{eq:ex-constr-3}
     s_j = \sum_{i} p_i x_{ij}. 
 \end{equation}
@@ -1995,7 +1995,7 @@ Pretpostavimo da je središnji okrug posebno osjetljiv na požar i da ili mjesta
     &y_1 + y_2 \geq 2 (1-y) \nonumber \\
     & y \in \{0, 1 \}.\label{eq:ex-constr-4}
 \end{align}
-Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može servisirati $s_j$ ljudi košta $f_j(s_j)$. Pretpostavimo takođe da je budžet kojim raspolažemo jednak $B$. Prema tome, vrijedi ograničenje
+Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može voditi brigu o $s_j$ ljudi košta $f_j(s_j)$. Pretpostavimo takođe da je budžet kojim raspolažemo jednak $B$. Prema tome, vrijedi ograničenje
 \begin{equation}\label{eq:ex-constr-5}
      \sum_{j \in J} f_j(s_j) \leq B.
 \end{equation}
@@ -2006,30 +2006,32 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može serv
  \begin{align*}
       &\min D \\
       & D \geq d_i,  \forall i \in I
-      & \mbox{s.t. } (\ref{eq:ex-constr-1})--(\ref{eq:ex-constr-5}).
+      & \mbox{s.t. } \\ &(\ref{eq:ex-constr-1})-(\ref{eq:ex-constr-5}).
  \end{align*}
- Još je ostalo zamijeniti svaku funkciju $f_j (s_j)$ aproksimacijom cjelobrojnog programiranja kako bismo dzavršili modeliranje. Detalje ostavljamo kao zadatak. Ako bi funkcija $f_j (s_j)$ sadržala fiksne troškove, tada se ne bi trebale uvoditi nove varijable fiksnih troškova -- u tu svrhu služi već uvedena varijabla $y_j$. 
+ Još je ostalo zamijeniti svaku funkciju $f_j (s_j)$ aproksimacijom cjelobrojnog programiranja kako bismo izvršili cjelokupno modeliranje. Detalje ostavljamo kao zadatak. Ako bi funkcija $f_j (s_j)$ sadržala fiksne troškove, tada se ne bi trebale uvoditi nove varijable fiksnih troškova -- u tu svrhu služi već uvedena varijabla $y_j$. 
  
  \newpage 
  \section{Tehnike rješavanja problema Cjelobrojnog programiranja}
  
- Dok je simpleks metoda učinkovita za rješavanje  problema LP-a, ne postoji jedinstvena tehnika za rješavanje problema Cjelobrojnog programiranja. Umjesto toga, razvijeni su mnogi postupci i njihova efikasnost
- uvelike zavisi od samog problema. Dosadašnje metode se generalno mogu klasifikovati na sljedeći način:
+ Dok je simpleks metoda učinkovita za rješavanje  problema LP-a, ne postoji jedinstvena tehnika za rješavanje problema Cjelobrojnog programiranja. Umjesto toga, razvijeni su mnogi metodi i njihova efikasnost
+ uvelike zavisi od karakteristika samog problema. Dosadašnje metode se generalno mogu klasifikovati na sljedeći način:
  \begin{enumerate}
      \item Enumerativne tehnike -- Dinamičko programiranje, metoda otkidanja i ograničavanja (eng. \emph{branch-and-bound}), koju ćemo kratko zvati B\&B;
-     \item Tehnike otkidajućih ravni;
-     \item Grupne-teoretske tehnike. 
+     \item Tehnike otkidajućih ravni.
+     %\item Grupne-teoretske tehnike. 
  \end{enumerate}
 
-U osnovi, mi ćemo se baviti sa prve dvije vrste metoda. Za model ILP-a (\ref{ilp-formulation}), zanemarujući uslov da varijable treba da budu cjelobrojne (već da uzimaju realne, pozitivne vrijednosti), dobijamo tzv. odgovarajucu LP \emph{relaksaciju} ILP-a (\ref{ilp-formulation}). LP relaksacija se može vrlo lako riješiti uz pomoć simpleks metoda pri čemu dobijemo rješenje $x^*$. Posmatrajući vektor $\overline{x}$ koje se dobijaju zaokružujući svaku od vrijednosti koordinata vektora $x^*$ na njenu najbližu cjelobrojnu, dobijamo cjelobrojni vektor iz LP-a. Međutim, iako je uslov o cjelobrojnosti (kakav je u odgovarajućem ILP-u potreban) ispunjen, može se desiti da ovakvo rješenje izvedeno iz LP relaksacije problema (\ref{ilp-formulation}) ne mora da bude dopustivo. Ali, u osnovi, skaliranjem desnih strana ILP-a kao i koeficijenata funkcije cilja na odgovarajući način, moguće je konstruisati probem čije je optimalno cjelobrojno rješenje udaljeno koliko želimo od zaokruženog rješenja LP relaksacije. Ovim ćemo se baviti u nastavku. 
+U osnovi, mi ćemo se baviti sa obje vrste metoda. Za model ILP-a (\ref{ilp-formulation}), zanemarujući uslov da varijable treba da budu cjelobrojne (već da uzimaju realne, pozitivne vrijednosti), dobijamo tzv. odgovarajuć
+
+u LP \emph{relaksaciju} ILP-a (\ref{ilp-formulation}). LP relaksacija se može vrlo lako riješiti uz pomoć simpleks metoda pri čemu dobijemo rješenje $x^*$. Posmatrajući vektor $\overline{x}$ koje se dobijaju zaokružujući svaku od vrijednosti koordinata vektora $x^*$ na njenu najbližu cjelobrojnu, dobijamo cjelobrojni vektor iz LP-a. Međutim, iako je uslov o cjelobrojnosti (kakav je u odgovarajućem ILP-u potreban) ispunjen, može se desiti da ovakvo rješenje izvedeno iz LP relaksacije problema (\ref{ilp-formulation}) ne mora da bude dopustivo. U osnovi, skaliranjem desnih strana ILP-a kao i koeficijenata funkcije cilja na odgovarajući način, moguće je konstruisati probem čije je optimalno cjelobrojno rješenje proizvoljno udaljeno od zaokruženog rješenja LP relaksacije. Ovim postupcima ćemo se baviti u nastavku. 
 
 \subsection{Metoda grananja i ograničavanja (B\&B)}
 B\&B tehnika programiranja je zasnovana na principu ``zavadi pa vladaj'' gdje se problem rastavlja na manje dijelove, i tako rekurzivno (ako je potrebno). Kasnije se (optimalna rješenja) manjih problema kombinuju za dobijanje optimalnog rješenja početnog problema.  U B\&B strategiji dodatak je da se 
-problem ne rastavlja na manje podprobleme ako se uspostavi da je rješenje podoptimalno (lošije od trenutno najboljeg dopustivog rješenja). U rješavanju ILP-a, dopustiv skup se dijeli na manje skupove, i tako rekurzivno (ako je potrebno) dok se ne dobiju podproblemi koji su trivijalo rješivi. Svi ovakvi B\&B pristupi se razlikuju u načinu podjele dopustivog skupa i zbog toga ih postoji nekoliko različitih u literaturi. 
+problem ne rastavlja na manje podprobleme ako se uspostavi da je rješenje podoptimalno (lošije od trenutno najboljeg dopustivog rješenja). U rješavanju ILP-a, dopustiv skup se dijeli na manje skupove, i tako rekurzivno (ako je potrebno) dok se ne dobiju potproblemi koji su trivijalo rješivi. Svi ovakvi B\&B pristupi se razlikuju u načinu podjele dopustivog skupa i zbog toga ih postoji nekoliko različitih u literaturi. 
 
 \subsubsection{Bazni B\&B za rješavanje problema ILP-a}
 
-Navedimo sljedeće bitne stavke koje vrijede:
+Navedimo sljedeće bitne činjenice u rješavanju problema  ILP-a:
 \begin{itemize}
     \item  U LP relaksaciji u problemu 
            maksimizacije, optimalna vrijednost funkcije cilja 
@@ -2100,7 +2102,7 @@ Fiksiramo $i=1$ i $LB=-\infty$.
     \item U početnom problemu  $x_j=0$ za sve $j$ (kažemo da je svaka varijabla \emph{slobodna}). Ako je dobijeno rješenje dopustivo, ažuriramo vrijednost u LB.
     \item Fiksiramo $x_i=0$  i $x_i=1$, te dobijamo dva podproblema koja treba riješiti.
     \item  Provjerimo u oba podproblema da li tako fiksirano rješenje dopustivo. U slučaju da jeste, na osnovu koeficijenata u ciljnoj funkciji (pozitivni ili negativni) ako su sve ostali koeficijenti nefiksirani (neslobodnih) varijabli negativni, zaključujemo da je to rješenje najbolje za fiksirane varijable u podproblemu i dalje ne dijelimo više ovaj protproblem. Ako svi takvi koeficijenti nisu negativni, idemo na korak 3. Primijetimo da   podproblem sa fiksnim $x_i=0$ ne mora da provjeravamo, jer je on isti kao i početni (korjeni) problem.
-    \item Azuriramo $i = i+1$ i idemo na korak 3 sa podproblemima koji mogu dalje da se dijele, dok god je $i \leq n$. Inače, izlazimo iz petlje sa optimalnim rješenjem (LB). 
+    \item Azuriramo $i = i+1$ i idemo na korak 3 sa potproblemima koji mogu dalje da se dijele, dok god je $i \leq n$. Inače, izlazimo iz petlje sa optimalnim rješenjem (LB). 
 \end{enumerate}
  Primijetimo da i u ovom slučaju dobijamo drvo odluke (binarno drvo) gdje su na granama koje spajaju čvor na dubini $i$ sa čvorom na dubini $i+1$  ugrađene odluke da li je varijabla $x_i$ fiksirana na 0 ili 1.
 
