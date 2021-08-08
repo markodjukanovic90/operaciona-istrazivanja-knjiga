@@ -13,7 +13,7 @@
 \usepackage{algorithmic}
 \usepackage{dot2texi}
 %\usetikzlibrary{arrows,shapes}
-
+%\usepackage{epstopdf}
 \newenvironment{proof}{{Dokaz:}}{\hfill$\square$}
 
 % redefinicija nekih konstanti: 
@@ -1032,6 +1032,13 @@ Navedimo sada osnovne korake jedne iteracije simpleks metoda:
     $y = x + \lambda^*d $ je dato: $y_j = \lambda$, $y_{p_i} = x_{p_i} + \lambda^* d_{p_i}$, za $i$ koji je bazni indeks, te $y_i = 0$, za $i \in N \setminus \{j\}$. 
 \end{enumerate}
 
+\begin{figure}[!ht]
+	\centering
+   \includegraphics[scale=0.25]{moving_simplex.png}
+    \caption{Iteracije simpleks metode (vizuelizacija).}
+    \label{fig:simpleks-visuelisation}
+\end{figure}
+
 \subsection{Tabelarni prikaz Simpleks Metode}
 
 U osnovi, simpleks algoritam se sastoji od stalne izmjene jedne kolone baznih vektora u $B$ sa najboljim nebaznim vektorom i tako iterativno u cilju smanjivanja trenutne vrijednosti cilje funkcije, dok god je to moguće. 
@@ -1511,7 +1518,7 @@ $$ \begin{array}{lcc}
 	& x \geq 0   &   s \geq 0
 \end{array}
 $$
-Lagranžijan ovog para linearnih programa je dat sa 
+Lagranžijan primal-dual linearnih programa je dat sa 
 \begin{equation}
 	L(x,y) = c^Tx - y^T(Ax - b) - s^T x.
 \end{equation}
@@ -1520,7 +1527,7 @@ Uslovi za nalazak stacionarne tačku Lagranžijana $L$ su dati sa:
 	&\triangledown_x L(x,y) = 0\\
 	&\triangledown_y L(x,y) = 0
 \end{align} 
-što nas (uz uslov dualnosti) dovodi do uslova optimalnosti prvog reda za primal-dual par:
+što nas (uz uslov komplementarnosti) dovodi do uslova optimalnosti prvog reda za primal-dual par:
 \begin{align}
 	&Ax = b \\
 	&A^T y + s = c \\
@@ -1538,11 +1545,13 @@ Dakle, minimizacija izraza $-\sum_{j=1}^n x_j$ je ekvivalentna maksimizaciji svi
 	Barijerni program LP-a (\ref{eq:lp_equality_constraint}) je dat u obliku 
 	\begin{align*}
 		&\min c^T x + \mu \sum_{j=1}^n ln(x_j) \\
-		&\mbox{s.t. } A x = 0
+		&\mbox{s.t. } A x = b \\
+		& x > 0
 	\end{align*}
 \end{definition}
-za neki $\mu >0$.
-Sljedeću teoremu iz teorije optimizacije  za skalarne funkcije sa uslovnim ekstremima, koja je od bitne važnosti, navodimo je bez dokaza. 
+za neki $\mu >0$. Lagranžijan barijernog problema je dat sa 
+$$  L(x, y, \mu) = c^T x - \mu \sum_{j=1}^n ln(x_j)  - y^T(Ax - b) $$
+Sljedeću teoremu iz teorije optimizacije  za skalarne funkcije sa uslovnim ekstremima, koja je od bitne važnosti, navodimo   bez dokaza. 
 \begin{thm}
 	Neka skalarna funkcija  $f:\mathbb{R}^n \mapsto \mathbb{R}$ na skupu $g_1(x)=g_2(x)= \cdots = g_m(x) =0$ ima minimum u $x^*$. Onda vrijedi 
 	$$ \triangledown f (x^*) = \sum_{i=1}^m y_i \triangledown g_i(x^*),$$
@@ -1568,7 +1577,7 @@ Uvedimo nenegativni vektor $s =\mu \cdot (\frac{1}{x_1}, \frac{1}{x_2}, \ldots, 
 Ovo nije linearni program, jer ograničenje 3 nije linearno.
 
 \begin{definition}
-	Primal-dual centralni put $\{(x(\mu), y(\mu), s(\mu)) \in \mathbb{R}^{2n + m} \mid \mu > 0 \}$ je rješenje koje zadovoljava uslove (\ref{eq:primal-dual-central-path-problem}) parametrizovano sa $\mu$. 
+	Primal-dual centralni put $\{(x(\mu), y(\mu), s(\mu)) \in \mathbb{R}^{2n + m} \mid \mu > 0, x(\mu) >0, s(\mu)>0 \}$ je (jedinstveno) rješenje koje zadovoljava uslove (\ref{eq:primal-dual-central-path-problem}) parametrizovano sa $\mu$. 
 \end{definition}
 
 Primijetimo sljedeće, ako se u problemu (\ref{eq:primal-dual-central-path-problem}) stavi $\mu = 0$, onda imamo 
@@ -1731,9 +1740,38 @@ Može se pokazati sljedeća teorema koja karakteriše \emph{metod unutrašnje ta
 		\item Kompleksnost algoritma je $O(\sqrt{n})$. Dakle,  broj iteracija koji je proporcionalan $\sqrt{n}$ će biti potreban da algoritam riješi problem. 
 	\end{itemize}
 \end{thm}
+%https://optimization.cbe.cornell.edu/index.php?title=Interior-point_method_for_LP
+\emph{Primjer.} Riješimo sljedeći primjer LP-a pomoću metoda unutrašnje tačke:
+\begin{align*}
+	&\max 3 x_1 + 3 x_2 \\
+	&\mbox{s.t.} \\
+	& x_1 + x_2 = 4 \\
+	& x_1, x_2 \geq 0.
+\end{align*}
 
+\emph{Rješenje.}  Formirajmo Lagranžovu funkciju početnog problema koristeći ciljnu funkciju barijernog problema sa:  
+\begin{align*}
+   L(x, y, \mu) = 	  3 x_1 + 3 x_2 -\mu ln x_1 - \mu ln x_2 + y_1(4- x_1 - x_2).  
+\end{align*}
+Barijerna funkcija je uvijek konkavna, a kako maksimizujemo,  tako da posjeduje tačno rješenje.  Sada nađimo maksimum date funkcije što radimo derivirajući funkciju $L$ (nalaženje parcijalnih derivacija):
+\begin{align*}
+	 &\triangledown_{x_1} L   =  3 - \frac{\mu}{x_1}  - y_1 = 0 \\
+	 &\triangledown_{x_2} L   =  3 - \frac{\mu}{x_2} - y_1 = 0 \\
+	 	 &\triangledown_{y} L   = {4-x_1-x_2} = 0 
+\end{align*}
+Odakle imamo zbog simetrije prve i druge jednakosti, da je  $x_1 = x_2$, pa prema tome je 
+%$$  3 - \frac{\mu}{x_1}  = 0$$
+%što je ekvivalentno   sa:
+%\begin{align} \label{eq:example-interior-point}
+%   3x_1 - \mu = 0 \Rightarrow x_1 = x_2 = \frac{\mu}{3}.
+%\end{align} 
+Iz trečeg uslova   $x_1=x_2=2$, što je i optimum. Primijetimo da ovdje nije bilo potrebe za iterativnim postupkom i računanja Njutnovog koraka (koji je konstantan u svim iteracijama). 
+%Kako je ovo kvadratna jednačina, koja je može eksplicitno riješiti, ne treba primjenjivati Njutnov iteracioni postupak (iako bi rješavanje ovakve jednačine takođe bilo moguće pomoću takvog metoda). Dakle, rješenje jednačine (\ref{eq:example-interior-point}) je:
+%\begin{align}
+%	x_1 = \frac{3(4-\mu) \pm \sqrt{9(4-\mu)^2 - 96 \mu}} { 12} = x_2
+%\end{align}
 % dualni simpleks metod ==> 4.7 PRIMAL-DUAL ALGORITHMS
- 
+% Ako bi uzeli $\mu = 1$, rješenje koje se dobije je 
 \newpage
 
 \section{Cjelobrojno Programiranje}
