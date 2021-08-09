@@ -467,7 +467,7 @@ gdje je $A \in \mathbb{R}^{m \times n}$, $x \in \mathbb{R}^n$ i $b \in \mathbb{R
     \item neke od varijabli $x_i=0$.
 \end{itemize}
 Bilo koji problem koji koristi neke od prethodna tri ograničenja predstavlja i dalje problem linearnog programiranja. Dodavajući tzv. izravnavajuće varijabe $s \in \mathbb{R}^m$ u linearni program sa ograničenjima $Ax \leq b$, dobijamo linearni program sa ograničenjia $Ax + s = b, s \geq 0$. Isto tako, linearan program sa ograničenja $Ax \leq b$ se može izmijeniti u ograničenja sa jednakostima dodavanjem izravnavajućih varijabli kao $Ax - s = b, s\geq 0$. Forma linearnog programa sa ograničenjima $Ax = b$ se naziva \emph{kanonska} forma linearnog programiranja.   Takođe, ako u linearnom
-programu postoji varijabla koja nema uslov nenegativnosti, ona se može zameniti razlikom dve nove nenegativne promenljive.  %, jer je svaki broj razlika dva nenegativna broja.
+programu postoji varijabla koja nema uslov nenegativnosti, ona se može zameniti razlikom dve nove nenegativne promenljive. Kanonski oblik linearnog programiranja je pogodan za izvođenje Gausovih transformacija efikasno nad matricom problema, što će biti od koristi u konstrukciji simpleks metoda.   %, jer je svaki broj razlika dva nenegativna broja.
 
  U nastavku pratimo sljedeću terminologiju u vezi linearnog programiranja (LP):
 \begin{itemize}
