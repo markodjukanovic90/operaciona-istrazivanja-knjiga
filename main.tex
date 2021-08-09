@@ -693,7 +693,7 @@ Prije nego ovo formalno pokažemo, uvedimo nekoliko definicija.
    $$ f( \lambda x + (1-\lambda) y) \leq \lambda f(x) + (1 -\lambda) f(y),$$
    za svaki $x,y \in \mathbb{R}^n$ i svaki $\lambda \in [0,1].$
 \end{definition}
-Primijetimo da je svaka funkcija data u obliki $f(x_1, \ldots, x_n) = \sum_{i=1}^n c_i x_i$ za neke $c_i \in \mathbb{R}$, konveksna, što se direktno provjerava na osnovu definicije konveksnosti funkcije. Dakle, LP u svom opštem obliku u opštem ima ciljnu funkciju koja je uvijek konveksna. Geometrijska interpretacija konveksnosti funkcije je prikazana na slici~\ref{fig:convex_function}.
+Primijetimo da je svaka funkcija data u obliki $f(x_1, \ldots, x_n) = \sum_{i=1}^n c_i x_i$ za neke $c_i \in \mathbb{R}$, konveksna, što se direktno provjerava na osnovu definicije konveksnosti funkcije. Dakle, LP u svom opštem obliku  ima ciljnu funkciju koja je uvijek konveksna. Geometrijska interpretacija konveksnosti funkcije je prikazana na slici~\ref{fig:convex_function}.
 
 %\begin{figure}
 %    \centering
@@ -742,12 +742,15 @@ Primijetimo da je svaka funkcija data u obliki $f(x_1, \ldots, x_n) = \sum_{i=1}
    Neka su dati vektori $z^i \in \mathbb{R}^n$,  te $\lambda_i \in [0,1]$ $i=1,\ldots,m$ tako da je $\sum_{i=1}^m \lambda_i = 1.$ Vektor $x =  \sum_{i=1}^m \lambda_i z^i$ je  konveksna kombinacija vektora $z^i$.
 \end{definition}
 
-Konveksne funkcije imaju dosta poželjna svojstva sa teoretskog stanovišta i u kombinaciji sa konveksnim skupovima čine osnov u teoriji optimalnosti. 
+Konveksne funkcije imaju dosta poželjna svojstva sa teoretskog stanovišta i u kombinaciji sa konveksnim skupovima čine osnov   teorije optimalnosti. 
 
+Inače, vrijedi sljedeće:
 \begin{thm}
   Neka je $f : S \mapsto \mathbb{R}$ konveksna funkcija definisana na konveksnom skupu $S \subseteq \mathbb{R}^n$. Ako funkcija $f$ u tački $x^* \in S$
  postiže lokalni minimum, onda je ta tačka i tačka globalnog minimuma.
 \end{thm}
+
+\begin{comment}
 \begin{proof}  
  Neka je $x^* \in S$ tačka lokalnog minimuma funkcije $f$. Prema tome, postoji $r >0$ za što vrijedi $f(x^*) \leq f(x)$, za sve $x \in S \cap K(x^*, r)$. Odaberimo vektor $x \neq x^* \in S$ i definišimo vektor 
  $z(\lambda) = \lambda x + (1 - \lambda) x^*$ za neki $\lambda \in [0, 1]$. Kako je $S$ konveksan, slijedi da je $z \in S$.  Definišimo $\lambda_0 <  \min\{1, r ||x - x^*||^{-1}\}$, $\lambda_0 \in (0, 1]$. Tada za svaki $\lambda \in (0, \lambda_0)$ vrijedi 
@@ -768,7 +771,7 @@ Konveksne funkcije imaju dosta poželjna svojstva sa teoretskog stanovišta i u 
 % (Assumptions of Linear Programming)
 \\
 U sljedeće dvije definicije definišimo pojmove poliedra, hiperravni i poluprostora. 
-
+\end{comment}
 \begin{definition}
    Neka je $A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m$. Skup $P=\{x \in \mathbb{R}^n \mid Ax \geq b\}$ se naziva poliedar u $\mathbb{R}^n$. 
 \end{definition}
@@ -967,7 +970,7 @@ da bi našao optimalno rješenje problema LP-a. Metodu opisujemo u narednoj glav
 Simpleks metoda je najpoznatija metoda za rješavanje problema linearnog programiranja. Simpleks metoda traži rješenje LP-a posjećujući vrhove poliedra krećući se po njegovim granicama  uvijek u smijeru smanjenja vrijednosti
 funkcije cilja (ako je dat zadatak minimizacije). Razvio ju je George Dantzig 1947. godine i spada među najznačajnije algoritme XX vijeka.
 
-Neka je dat problem LP-a u obliku:
+Neka je dat problem LP-a u kanonskom obliku:
 
 \begin{align}
     &c^Tx \rightarrow \min \nonumber \\ 
@@ -976,9 +979,9 @@ Neka je dat problem LP-a u obliku:
 \end{align}
 gdje je $A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m, c \in \mathbb{R}^n, x\in \mathbb{R}^n$ uz pretpostavku da je poliedar $P=\{ x \in \mathbb{R}^n \mid A x = b , x \geq 0 \}$ datog problema LP-a dopustiv.  U ovom poglavlju, osim ako drugačije nije naznačeno, strogo ćemo poštovati ovu notaciju. 
 
-\begin{definition}
-      Za matricu A kažemo da je regularna akko postoji matrica B td. AB = BA = I. 
-\end{definition}
+%\begin{definition}
+%      Za matricu A kažemo da je regularna akko postoji matrica B td. AB = BA = I. 
+%\end{definition}
 
 \begin{definition}
       Za pravac $d\in \mathbb{R}^n$ kažemo da je dopustiv u tački $x \in P$ akko postoji $\lambda > 0$ tako da $x + \lambda d \in P$.
@@ -1047,7 +1050,7 @@ Navedimo sada osnovne korake jedne iteracije simpleks metoda:
 
 \subsection{Tabelarni prikaz Simpleks Metode}
 
-U osnovi, simpleks algoritam se sastoji od stalne izmjene jedne kolone baznih vektora u $B$ sa najboljim nebaznim vektorom i tako iterativno u cilju smanjivanja trenutne vrijednosti cilje funkcije, dok god je to moguće. 
+U osnovi, simpleks algoritam se sastoji od stalne izmjene jedne kolone baznih vektora u $B$ sa nekim nebaznim vektorom i tako iterativno u cilju smanjivanja trenutne vrijednosti cilje funkcije, dok god je to moguće. 
 U praktičnom računanju, baratanje sa tabelarnim prikazom koraka simpleks metoda je u mnogome lakše (kompaktnije) nego koristiti standardan oblik LP-a. 
 Simpleks tabela ima oblik kao u Tabeli~\ref{tab:simplex_tabelau}. 
 
