@@ -1120,7 +1120,7 @@ na oblik pogodan simpleks metodi $(A {x} = b)$ dodavanjem ``labavih'' varijabli 
 
 U primjeru kojeg rješavamo, neka je dat problem LP-a:
 \begin{align*}
-    & x_1 + x_2 \rightarrow \max \nonumber \\
+    &f= x_1 + x_2 \rightarrow \max \nonumber \\
     & x_1 + 3 x_2 \leq 9 \nonumber \\
     & 2x_1 + x_2 \leq 8  \nonumber \\
     & x_1, x_2 \geq 0. \nonumber \\
@@ -1134,7 +1134,7 @@ U primjeru kojeg rješavamo, neka je dat problem LP-a:
     & x_1   &   + x_2  &\  & &= f - 0 \\
 \end{align*}
  Ovaj problem odgovara simpleks tabeli \\
- \begin{table}[]
+ \begin{table}[!ht]
      \centering
      \begin{tabular}{c c c c | c}
      	 $x_1$ & $x_2$ &  $x_3$ & $x_4$ & \\ \hline
@@ -1309,6 +1309,9 @@ $$ \begin{array}{cccc|c}
  $$
  iz koje vidimo pošto su doprinosi svi veći od 0, da smo našli optimalnu simpleks tabelu.  Optimalna rješenja su 
  $x_1=2, x_3=5$, pa je prema tome optimum jednak -3.
+ 
+ Primjer. geometrijska predstava simpleks metode (dodati) %pratiti https://faculty.math.illinois.edu/~mlavrov/docs/482-fall-2019/lecture5.pdf (strana 2 i 3) 
+ 
 \begin{comment}
 $$\begin{array}{ccccc}
      \max                & 3x_1     &          &   + x_3  &       \\           
