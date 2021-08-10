@@ -337,21 +337,21 @@ Nakon što se razvije sistem za primjenu modela, posljednja faza OR studije je p
 biti dio profesionalnog etičkog kodeksa projektovanja (informacionih) sistema. %Ovo je stanje osobito važno kada se proučavaju kontroverzna pitanja javne politike. 
 
 \textbf{Primjer.} Vratimo se na   IBM projekat pomenut u prethodnim sekcijama.  Tri su se glavna faktora pokazala posebno važnim za uspješan završetak projekta. Kao što je raspravljano u prethodnim poglavljima, 
-prvo je   uključivanje korisničkog tima i (operativnog rukovodstva) kao savjetnika OR tima tokom trajanja cijelog projekta. U vrijeme faze implementacije, operativno rukovodstvo imalo je snažan  uticaj te pobornici instaliranja \emph{Optimizer}-a u  funkcionalna područja poslovanja IBM-a. Drugi faktor uspjeha bio je vrlo široka povratna informacija korisnika sistema gdje su identifikovane problematične tačke u sistemu koje su  trebale biti ispravljene prije potpune implementacije. 
+prvo je   uključivanje korisničkog tima i (operativnog rukovodstva) koji je savjetovao tim tokom trajanja   projekta. U vrijeme faze implementacije, operativno rukovodstvo imalo je snažan  uticaj te pobornici instaliranja \emph{Optimizer}-a u  funkcionalna područja poslovanja IBM-a. Drugi faktor uspjeha bio je vrlo široka povratna informacija korisnika sistema gdje su identifikovane problematične tačke u sistemu koje su  trebale biti ispravljene prije potpune implementacije. 
 Treći faktor je bio taj da je novi sustav postupno uvođen fazu po fazu, uz pažljivo testiranje u svakoj fazi, kako bi se veće pogreške mogle ukloniti prije nego što je sistem   pušten na  nacionalnoj (i operativnoj) razini.  
 \vspace{0.5cm}
 
-Ostatak ove knjige je fokusiran prvenstveno na konstruisanje i rješavanje matematičkih modela. Sa ovim poglavljem  smo  pokušali objasniti da konstrukcija modela složenih problema ne sadrži samo ova dva koraka, već su oni samo dio cjelokupnog OR procesa. Treba imati na umu da su druge faze vrlo važne za provođenje uspješnog OR istraživanja. Predlažemo da se nakon izučavanja načina rješavanja modela, čitalac vrati na ovo poglavlje u cilju što jasnije slike razvoja potpunog OR istraživanja zasnovano na kompleksnim procesima u praksi.  OR zahtijeva značajnu količinu domišljatosti i inovativnosti, pa ne postoji standardni postupak kojeg bi se trebali pridržavati OR timovi koji razvijaju sisteme zasnovane na OR. %Prethodni opis može da se promatra kao model koji otprilike pokazuje koliko je uspješan ILI se provode studije. 
+Ostatak ove knjige je fokusiran prvenstveno na konstruisanje metoda za rješavanje matematičkih modela. Sa ovim poglavljem  smo  pokušali objasniti da konstrukcija modela složenih problema ne sadrži samo ova dva koraka, već su oni samo dio cjelokupnog OR procesa. Treba imati na umu da su druge faze vrlo važne za provođenje uspješnog OR istraživanja. Predlažemo da se nakon izučavanja algoritama za rješavanja modela, čitalac vrati na ovo poglavlje u cilju što jasnije slike razvoja potpunog OR istraživanja zasnovano na kompleksnim procesima u praksi.  OR zahtijeva značajnu količinu domišljatosti i inovativnosti, pa ne postoji standardni postupak kojeg bi se timovi trebali pridržavati pri razvijaju sistema zasnovanih na operacionim istraživanjima. %Prethodni opis može da se promatra kao model koji otprilike pokazuje koliko je uspješan ILI se provode studije. 
 \newpage
 
 \section{Linearno Programiranje} 
    
 Razvoj linearnog programiranja se smatra među najvažnijim naučnim dostignu\-ćima XX vijeka. Njegov uticaj od 1950. je ogroman u nauci i industriji. Danas je to standardni alat koji je uštedio milione dolara ogromnom broju firmi u raznim zemljama svijeta  Napisani su deseci udžbenika
 o linearnom programiranju i objavljeno stotine radova koji opisuju važne primjene ove paradigme.  Linearno programiranje koristi matematički model za opisivanje problema. 
-Pridjev linearni znači da su   sve matematičke funkcije u ovom modelu linearne funkcije. Riječ programiranje se ne odnosi na računarsko programiranje; nego je to sinonim za planiranje i optimizaciju. Dakle, linearno programiranje uključuje planiranje aktivnosti u cilju postizanja optimalnog rezultata, tj. rezultata koji najbolje postiže navedeni cilj (prema matematičkom modelu) među svim izvedivim alternativama.  Za rješavanje problema linearnog programiranja dostupan je izuzetno efikasan metod rješavanja, nazvan \emph{simpleks metod}. On rješava probleme ogromnih veličina te je on jedan od razloga ogromnog utjecaja linearnog programiranja posljednjih nekoliko decenija.
+Pridjev linearni znači da su   sve matematičke funkcije u ovom modelu linearne funkcije. Riječ programiranje se ne odnosi na računarsko programiranje; to sinonim za planiranje i optimizaciju. Dakle, linearno programiranje uključuje planiranje aktivnosti u cilju postizanja optimalnog rezultata, tj. rezultata koji najbolje postiže navedeni cilj (prema matematičkom modelu) među svim izvedivim alternativama.  Za rješavanje problema linearnog programiranja dostupan je izuzetno efikasan metod rješavanja, nazvan \emph{simpleks metod}. On rješava probleme ogromnih veličina te je on jedan od razloga ogromnog uticaja linearnog  programiranja posljednjih nekoliko decenija u nauci i u privredi.
 
 \textbf{Primjer}. WYNDOR--GLASS CO projekat: Proizvodi visokokvalitetne staklene proizvode, uključujući prozore i staklena vrata. Postoje tri pogona. Aluminijski okviri i okovi izrađuju se u pogonu 1, drveni okviri izrađuju se u pogonu 2, a pogon 3 proizvodi staklo i sastavlja proizvode.
-Zbog pada zarade, rukovodstvo firme je odlučio je obnoviti liniju proizvoda tvrtke. Neprofitabilni proizvodi se ukidaju, oslobađajući proizvodne kapacitete za lansiranje dva nova proizvoda sa velikim prodajnim potencijalom:
+Zbog pada zarade, rukovodstvo firme je odlučio je obnoviti liniju proizvoda. Neprofitabilni proizvodi se ukidaju, oslobađajući proizvodne kapacitete za lansiranje dva nova proizvoda sa velikim prodajnim potencijalom:
 \begin{itemize}
     \item Proizvod 1: Staklena vrata od 8 $m$ sa aluminijskim okvirom.
     \item Proizvod 2: Dvostruko obješen drveni okvir s okvirom visine 4 $m$.
@@ -361,22 +361,22 @@ Uslovi i zahtjevi proizvodnje su sljedeći:
     \item Proizvod 1 zahtijeva   korištenje proizvodnih kapaciteta u postrojenjima 1 i 3, ali nijedan u pogonu 2. 
     \item Proizvod 2 treba   postrojenja 2 i 3. 
 \end{itemize}
-    Rukovodstvo je zaključio da bi kompanija mogla prodati sve proizvode koje bi mogla proizvesti u postrojenjima. Međutim, budući da se oba proizvoda koriste proizvodni kapacitet u pogonu 3, nije jasno koja bi kombinacija dva proizvoda bila najisplativija. Stoga je formiran OR tim za proučavanje ovog pitanja, te davanja adekvatnog odgovora.
+    Rukovodstvo je zaključio da bi kompanija mogla prodati sve proizvode koje bi mogla proizvesti u postrojenjima. Međutim, budući da se oba proizvoda koriste proizvodni kapacitet u pogonu 3, nije jasno koja bi kombinacija dva proizvoda bila najisplativija. Stoga je formiran tim za proučavanje ovog pitanja, te davanja adekvatnog odgovora.
 
-OR tim započinje razgovor sa rukovodstvom kako bi se utvrdili ciljevi ovog istraživanja. Te su rasprave dovele do   sljedeće definicije (idealizovanog) problema:
+Tim prvo razgovora sa rukovodstvom kako bi se utvrdili ciljevi ovog istraživanja. Te su rasprave dovele do sljedeće definicije (idealizovanog) problema:
 \begin{itemize}
     \item Utvrditi  stope proizvodnje  ova dva proizvoda kako bi se maksimalizirala ukupna dobit, podložno ograničenjima koja nameću   proizvodni kapaciteti dostupni u tri pogona. Svaki će se proizvod proizvoditi u serijama od po 20, tako da se stopa proizvodnje definiše kao broj serija proizvedenih na nivou jedne sedmice. Dopuštena je bilo koja kombinacija stope proizvodnje koja zadovoljava   ograničenja, uključujući proizvodnju 0 komada prvog proizvoda i što  više   drugog. 
 \end{itemize}
 
- OR tim je identifikovao podatke koje je trebalo prikupiti: 
+Identifikovani su podaci koje treba prikupiti: 
 ($i$) Broj radnih sati u sedmici dostupan u svakom pogonu za nove proizvode.  
 ($ii$) Broj radnih sati korištenih u svakom pogonu za svaku proizvedenu seriju svakog novog proizvoda.
-($iii$) Dobit po proizvedenoj seriji svakog novog proizvoda. Dobit po proizvedenoj seriji odabrana je kao odgovarajuća mjera nakon što je tim zaključio da će inkrementalna dobit   svake dodatne proizvedene serije   približno konstantna bez obzira na ukupan broj proizvedenih serija.
+($iii$) Dobit po proizvedenoj seriji svakog novog proizvoda. Dobit po proizvedenoj seriji odabrana je kao odgovarajuća mjera nakon što je tim zaključio da je inkrementalna dobit svake dodatne proizvedene serije   približno konstantna bez obzira na ukupan broj proizvedenih serija.
 
 Budući da značajniji troškovi za pokretanje
  proizvodnje i promovisanju novih proizvoda neće postojati, ukupna dobit je približno jednaka dobiti po proizvedenoj seriji puta broj serija.  
 
-Nakon ovoga, trebalo je procijeniti konstante u modelu. Ovaj proces je tekao u komunikaciji između organizacije i OR tima. 
+Nakon ovoga, trebalo je procijeniti konstante u modelu. Ovaj proces je tekao u komunikaciji između organizacije i tima. 
 Za dobivanje razumnih procjena, pomoć ključnog osoblja u raznim jedinicama firme je bila važna. Osoblje u proizvodnom odjelu dalo je podatke za ($i$). Razvoj procjena za ($ii$) zahtijeva analizu proizvodnih inženjera uključenih u dizajniranje proizvodnih procesa novih proizvoda. Analizirajući podatke o resursima inženjera i marketinškog odjela,  razvijena procjena za treću kategoriju. Tabela~\ref{tab:procjene-1} daje te procjene. 
 
 \begin{table}[!ht]
@@ -438,7 +438,7 @@ U nastavku navodimo notaciju koja se najčešće koriste u formiranju generalnog
     \item $x_j$: količina aktivnosti $j$ ($j = 1,\ldots,n$);
     \item $c_j$: povećanje u profitu ako se količna aktivnosti $j$ podigne za jediničnu vrijednost;
     \item $b_i$: ukupna količina resursa $i$ ($i=1,\ldots,m$) koja je dozvoljena za lociranje aktivnosti;
-    \item $a_{ij}$: količina resursa $i$ koja se konzumira od strane jedinične vrijednosti aktivnosti $j$.
+    \item $a_{ij}$: količina resursa $i$ koja se uzima od strane jedinične vrijednosti aktivnosti $j$.
 \end{itemize}
 Prema tome, matematički modeli problema linearnog programiranja ima sljedeću postavku:
 
@@ -471,13 +471,13 @@ programu postoji varijabla koja nema uslov nenegativnosti, ona se može zameniti
 
  U nastavku pratimo sljedeću terminologiju u vezi linearnog programiranja (LP):
 \begin{itemize}
-    \item \emph{Rješenje} u standardnom matematičkom značenju najčešće označava krajnje rješenje   (u LP-u bi to bilo najbolje rješenje). Međutim, u rješavanju problema LP-a to  nije slučaj. Bilo koja specifikacija vrijednosti varijabli  $(x_1,\ldots, x_n)$ se smatra rješenjem bez obzira da li je riječ o željenom rješenju ili čak onom rješenju koje ne zadovoljava kriterijume. U zavisnosti od toga, rješenja u  možemo podijeliti na:
+    \item \emph{Rješenje} u standardnom matematičkom značenju najčešće označava krajnje rješenje   (u LP-u bi to bilo najbolje rješenje). Međutim, u rješavanju problema LP-a to  nije slučaj. Bilo koja specifikacija vrijednosti varijabli  $(x_1,\ldots, x_n)$ se smatra rješenjem bez obzira da li je riječ o željenom rješenju ili čak onom rješenju koje ne zadovoljava kriterijume. U zavisnosti od toga, rješenja  možemo podijeliti na:
     \begin{itemize}
         \item \emph{dopustiva rješenja} (eng. \emph{feasible solution}) -- podrazumijevanju ona rješenja koja zadovoljavaju sva ograničenja u modelu;
-        \item \emph{nedopustiva rješenja} (eng. \emph{infreasible solution}) -- ona rješenja koja ne zadovoljavaju barem jedno od ograničenja u model. 
+        \item \emph{nedopustiva rješenja} (eng. \emph{infreasible solution}) -- ona rješenja koja ne zadovoljavaju barem jedno od ograničenja u modelu. 
     \end{itemize}
-  \item \emph{Dopustivi region}: označava skup svih rješenja koja su dopustiva. Ovo je prostor koji pretražujemo u svrhu pronalaska najboljeg rješenja modela. Takođe, može se desiti da problem nema niti jedno dopustivo rješenje. Kažemo da je tah problem \emph{nedopustiv}. 
-  \item \emph{Optimalno rješenje} je ono rješenje iz dopustivog skupa za koje je funkcija cilja najveća (pod pretpostavkom da maksimizujemo). Ova vrijednost ne mora biti jedinstvena, pogledati sliku~\ref{fig:multi_solution} gdje je dopustiv region isti kao u primjeru sa slike~\ref{fig:fig1}, dok je funkcija cilja data sa $f = 3x_1 + 2 x_2$.  
+  \item \emph{Dopustivi region}: označava skup svih rješenja koja su dopustiva. Ovo je prostor koji pretražujemo u svrhu pronalaska najboljeg rješenja modela. Takođe, može se desiti da problem nema niti jedno dopustivo rješenje. Kažemo da je taj problem \emph{nedopustiv}. 
+  \item \emph{Optimalno rješenje} je ono rješenje iz dopustivog skupa za koje je funkcija cilja najveća (pod pretpostavkom da maksimizujemo). Ova vrijednost ne mora biti jedinstvena, pogledati Sliku~\ref{fig:multi_solution} gdje je dopustiv region isti kao u primjeru sa Slike~\ref{fig:fig1}, dok je funkcija cilja data sa $f = 3x_1 + 2 x_2$.  
  \end{itemize}
  
  \begin{figure}
@@ -487,7 +487,7 @@ programu postoji varijabla koja nema uslov nenegativnosti, ona se može zameniti
      \label{fig:multi_solution}
  \end{figure}
  
- Za razliku od nedopustivog problema, može se desiti i druga situacija, da je problem neograničen. U tom slučaju vrijednosti (jedne od) varijabli se mogu povećavati tako da funkcija cilja teži ka beskonačno, tj. nije ograničena odozgo nekom vrijednošći. Za taj problem kažemo da je \emph{neograničen} problem. Primjer takvog problema možemo vidjeti na slici~\ref{fig:unbounded_solution}, gdje je potrebno maksimizovati funkciju $f = 3 x_1 + x_2$, pod uslovima $0\leq x_1 \leq 4$, te $x_2 \geq 0$. Kao što se može vidjeti, što se više povećava vrijednost varijable $x_2$ to funkcija $f$ više raste. Ako bi $x_2$ bilo $\infty$, to bi i funkcija $f$ bila neograničena ($f = \infty$).
+ Za razliku od nedopustivog problema, može se desiti i druga situacija, da je problem neograničen. U tom slučaju vrijednosti (jedne od) varijabli se mogu povećavati tako da funkcija cilja teži ka beskonačno, tj. nije ograničena odozgo nekom vrijednošći. Za taj problem kažemo da je \emph{neograničen} problem. Primjer takvog problema možemo vidjeti na Slici~\ref{fig:unbounded_solution}, gdje je potrebno maksimizovati funkciju $f = 3 x_1 + x_2$, pod uslovima $0\leq x_1 \leq 4$, te $x_2 \geq 0$. Kao što se može vidjeti, što se više povećava vrijednost varijable $x_2$, to funkcija $f$ više raste. Ako bi $x_2$ bilo $\infty$, to bi i funkcija $f$ bila neograničena ($f = \infty$).
  
   \begin{figure}
      \centering
@@ -505,9 +505,7 @@ Ako su sve varijable u problemu LP-a cjelobrojne, riječ je o problemima \emph{C
 
 \subsection{Problemi Modelovani preko Linearnog Programiranja}
 
-\emph{Problem optimalne prehrane.} 
-
-Pretpostavimo da su nam na raspolaganju namirnice $N_1, \ldots, N_n$. Cijena namirnice $N_j$ po jedinici je $c_j, j = 1, \ldots, n$. U namirnicama su prisutni nutritivni elementi $e_j,j=1,\ldots,m$ pri čemu
+\emph{Problem optimalne prehrane.} Pretpostavimo da su nam na raspolaganju namirnice $N_1, \ldots, N_n$. Cijena namirnice $N_j$ po jedinici je $c_j, j = 1, \ldots, n$. U namirnicama su prisutni nutritivni elementi $e_j,j=1,\ldots,m$ pri čemu
 u namirnici $N_j$ ima $a_{ij}$ nutritivnog elementa $e_i$, $i = 1, \ldots, n$, $j = 1, \ldots, m$. Svaka osoba u toku dana mora unijeti barem $b_i$
 jedinica nutritivnog elementa $e_i$. Potrebno je formulisati
 sljedeći problem: 
@@ -539,7 +537,7 @@ $c_i = 1, i=1,\ldots,n$, i $c_{n+1} = 0, c_{n+2} = 0$.
 \emph{Problem rasporeda}. Bolnica želi napraviti raspored dežurstva po sedmičnim noćnim smjenama za svoje medicinske sestre. Potrebno je da broj medicinskih sestara za noćnu smjenu na $j$--ti dan bude barem (cio broj) $d_j, j = 1,\ldots 7$. Svaka
 medicinska sestra radi pet dana zaredom u noćnoj smjeni. 
 
-\emph{Zadatak:Pronaći minimalan broj medicinskih sestara koje bolnica treba zaposliti da bi se mogle napraviti takve smjene.}
+\emph{Zadatak: Pronaći minimalan broj medicinskih sestara koje bolnica treba zaposliti da bi se mogle napraviti takve smjene.}
 
 \emph{Rješenje}. Označimo sa $x_i$ broj medicinskih sestara koje radnu smjenu započinju na $i$-ti dan. Potrebno je minimizovati funkciju 
 $f = \sum_{i=1}^7 x_i$ pod uslovima da su ispunjeni zahtjevi za brojem medicinskih sestara, koja je modelovana sa:
@@ -601,7 +599,8 @@ $f(x) = 10 x_1 + 4 x_2 + 1.8 x_3.$ Uslovi pod kojima tražimo rješenja su model
     \label{tab:tb-3}
 \end{table}
 
-Prijemnici prepoznaju samo signale čija je udaljenost najmanje   $d$. Nadalje, nije moguće imati više od jednog signala koji doseže udaljenost $d$ u istoj oblasti, inače bi to moglo uzrokovati smetnje. Na kraju, antena se može postaviti na mjesto $E$ samo ako je antena instalirana i na mjestu $D$ (ova antena bi služila kao most). Kompanija želi odrediti gdje treba postaviti antene kako bi se pokrio maksimalanan broj oblasti sa signalom. 
+Prijemnici prepoznaju samo signale čija je udaljenost najmanje   $d$. Nadalje, nije moguće imati više od jednog signala koji doseže udaljenost $d$ u istoj oblasti, inače bi to moglo uzrokovati smetnje. %Na kraju, antena se može postaviti na mjesto $E$ samo ako je antena instalirana i na mjestu $D$ (ova antena bi služila kao most). 
+Kompanija želi odrediti gdje treba postaviti antene kako bi se pokrio maksimalanan broj oblasti sa signalom. 
 
 %https://www.math.unipd.it/~luigi/courses/metmodoc1920/m01.modelli.00.en.beamer.pdf
 \emph{Rješenje}. Posmatrajmo ovaj problem malo generalnije i definišimo: 
