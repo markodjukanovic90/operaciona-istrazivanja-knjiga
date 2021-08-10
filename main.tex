@@ -1310,8 +1310,39 @@ $$ \begin{array}{cccc|c}
  iz koje vidimo pošto su doprinosi svi veći od 0, da smo našli optimalnu simpleks tabelu.  Optimalna rješenja su 
  $x_1=2, x_3=5$, pa je prema tome optimum jednak -3.
  
- Primjer. geometrijska predstava simpleks metode (dodati) %pratiti https://faculty.math.illinois.edu/~mlavrov/docs/482-fall-2019/lecture5.pdf (strana 2 i 3) 
- 
+ Primjer. Ovaj primjer demonstrira odgovarajuće geometrijske korake po dopustivom regionu kada se koraci simpleks metode izvršavaju.   %pratiti https://faculty.math.illinois.edu/~mlavrov/docs/482-fall-2019/lecture5.pdf (strana 2 i 3) 
+ Neka je dat problem:
+ \begin{align*}
+ 	&\max 2x + 3y \\
+ 	& -x + y \leq 3 \\
+ 	& x - 2y \leq 2 \\
+ 	& 3x + 4y \leq 26 \\
+ 	& x, y \geq 0.
+ \end{align*}
+ Dodajmo izravnavajuće varijable u početni LP, odakle dobijamo 
+  \begin{align*}
+ 	&\max 2x + 3y \\
+ 	& -x + y + s_1 = 3 \\
+ 	& x - 2y + s_2 = 2 \\
+ 	& 3x + 4y + s_3 =  26 \\
+ 	& x, y, s_1, s_2, s_3 \geq 0.
+ \end{align*}
+Kao što smo pomenuli kod simpleks metode, 
+izravnavajuće varijable čine pogodne bazne varijable od kojih krećemo 
+sa simpleks metodom (jedinična podmatrica u gornjoj blok matrici 
+simpleks tabele). Bazno rješenje, prema tome, ima oblik 
+$(x, y, s_1, s_2, s_3) = (0, 0, 3, 2, 26)$, koje je i dopustivo. Inicijalna simpleks 
+tabela je data sa
+
+$$\begin{array}{cccccc| c}
+        & x & y & s_1 & s_2 & s_3 & \\ \hline
+   s_1  & -1 & 1 & 1 & 0 & 0 & 3 \\
+   s_2  & 1 & -2 & 0 & 1 & 0 & 2 \\\hline
+   s_3  & 3 & 4 & 0 & 0 & 1 & 26 \\ 
+\end{array}
+$$ 
+
+
 \begin{comment}
 $$\begin{array}{ccccc}
      \max                & 3x_1     &          &   + x_3  &       \\           
