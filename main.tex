@@ -1220,6 +1220,96 @@ Postoje dva moguća slučaja:
  Ovaj korak nas vodi ka dvofaznom simpleks metodu. U nastavku dajemo primjer rješavanja jednog problema LP-a pomoću ove metode.      
       
  \subsection{Primjer rješavanja problema LP-a pomoću dvofaznog simpleks metoda}     
+ 
+ 
+ 
+Riješimo sljedeći problem LP-a:
+
+\begin{align}
+	 &\min x_1 + x_2 - x_3 - x_4 \\
+	 &\mbox{s.t.   } x_1 + 2x_2 + x_3 + x_4 = 7 \\
+	 &\mbox{\ \ \ \ \ \ \ } 2x_1 - x_2 - x_3 - 3x_4 = -1 \\
+	 &\mbox{\ \ \ \ \ \ \ }  x_1,x_2,x_3,x_4 \geq 0.
+\end{align}
+
+Dodajmo umjetne varijable na početni problem (uz prethodno množenje uslova 2 sa (-1)), odakle dobijamo:
+
+\begin{align}
+	&\min x_1 + x_2 - x_3 - x_4 \\
+	&\mbox{s.t.   } x_1 + 2x_2 + x_3 + x_4 + \omega_1 = 7 \\
+	&\mbox{\ \ \ \ \ \ \ } -2x_1 + x_2 + x_3 + 3x_4 + \omega_2 = -1 \\
+	&\mbox{\ \ \ \ \ \ \ }  x_1,x_2,x_3,x_4, \omega_1, \omega_2\geq 0.
+\end{align}
+Prva faza metoda je formirati metod 
+\begin{align}
+	&\min \omega_1 + \omega_2 \\
+		&\mbox{s.t.   } x_1 + 2x_2 + x_3 + x_4 + \omega_1 = 7 \\
+	&\mbox{\ \ \ \ \ \ \ } -2x_1 + x_2 + x_3 + 3x_4 + \omega_2 = -1 \\
+	&\mbox{\ \ \ \ \ \ \ }  x_1,x_2,x_3,x_4, \omega_1, \omega_2\geq 0.
+\end{align}
+
+
+Formirajmo početnu simpleks tabelu:\\
+$$\begin{array}{cccccc|c}
+	1 & 2 & 1 & 1 & 1 &  0 & 7  \\
+   -2 & 1 & 1 & 3 & 0 &  1 & 1  \\ \hline
+    0 & 0 & 0 & 0 & 1 & 1 &  0  \\
+\end{array}
+$$
+$$\begin{array}{cccccc|c}
+	1 & 2 & 1 & 1 & 1 & 0 & 7 \\
+	-2&1  & 1 & 3 & 0 & 1 & 1 \\ \hline
+	1 & -3 & -2 & -4 & 0 & 0 & -8 \\ 
+\end{array}
+ $$
+ Iz prethodne tabele, kako minimizujemo, tražimo varijablu 
+ sa negativnim koeficijentom doprinosa, a prva takva je varijabla u koloni 2 u kojoj 
+ i tražimo pivota.  Kako je $\frac{7}{2} > \frac{1}{1}$, slijedi da je 
+ pivot $\overline{a}_{2,2} = 1$. Izvršimo transformacije, tako što napravimo sve nule u datoj koloni, odakle dobijamo tabelu:
+ 
+$$ \begin{array}{cccccc|c}
+ 	 5 & 0 & -1 & -5 & 1 & -2 & 5 \\
+	-2&1  & 1 & 3 & 0 & 1 & 1 \\ \hline
+	 -5 & 0 & 1 & 5 & 0 & 3 & -5 \\
+ \end{array}
+ $$
+ Jedini vektor sa negativnim doprinosom u prethodnoj simpleks tabeli je 
+ onaj koji odgovara prboj koloni, pa tražimo pivota u njoj. 
+ Jedino u prvoj vrsti imamo pozitivan element, koji odgovara vrijednosti pravca $\frac{5}{5}$, dakle pivot je $\overline{a}_{1,1}=5$. Izvršavajući opet elementarne transformacije, dobijamo tabelu 
+ $$ \begin{array}{cccccc|c}
+        1 & 0 & -\frac{1}{5}  & -1   &  \frac{1}{5}     & -\frac{2}{5}  & 1                    \\
+        0 & 1 & \frac{3}{5}   &  1   &   \frac{2}{5}  & \frac{1}{5}      & 3                   \\ \hline
+        0 & 0 & 0            &  0   &   1        & 1                     & 0                                 \\
+    \end{array}
+$$
+Kako su koeficijenti doprinosa svi veći ili jednaki 0, našli smo minimum. 
+Prema tome, bazno dopustivo rješenje je jednako $(x, \omega)= (1,3, 0, 0)$. Prema tome, nastavljamo dalje sa algoritmom, tj. drugom fazom metoda.  Posljednja simpleks tabela prve faze dvofaznog simpleks metoda se lako transformiše za početni problem: 
+\begin{itemize}
+	\item posljednja vrsta dobija koeficijente originalne funkcije cilja razmatranog LP-a:
+	\item kolone koje odgovaraju varijablama $\omega$ izbrišemo iz simpleks tabele;
+	\item ostale elemente tabele ostavimo kakvi jesu.
+\end{itemize}
+Iz ovih koraka, dobijamo simpleks tabelu 
+
+ $$ \begin{array}{cccc|c}
+ 	   1 & 0 & -\frac{1}{5}     & -1   & 1 \\
+ 	   0 & 1 & \frac{3}{5}      & 1    & 3 \\ \hline
+       1 & 1 & -1               & -1   & 0 \\
+    \end{array}
+$$
+Radimo sada elementarne transformacije na ovoj tabeli, kandidata za pivota nađimo u 
+koloni 3. Jedini sa pozitivnom vrijednošću je element $\overline{a}_{2,3} = \frac{3}{5}$, koji je i pivot. 
+Vršeći opet elementarne transformacije oko pivota, dobijamo tabelu 
+
+$$ \begin{array}{cccc|c}
+       1   & \frac{1}{3}       & 0             &   -\frac{4}{3}             &   2  \\
+       0   & \frac{5}{3}       & 1	           & \frac{5}{3}                 &   5 \\ \hline
+       1   & \frac{8}{3}       & 0             &  \frac{2}{3}               &   3  
+   \end{array}
+ $$
+ iz koje vidimo pošto su doprinosi svi veći od 0, da smo našli optimalnu simpleks tabelu.  Optimalna rješenja su 
+ $x_1=2, x_3=5$, pa je prema tome optimum jednak -3.
+\begin{comment}
 $$\begin{array}{ccccc}
      \max                & 3x_1     &          &   + x_3  &       \\           
      \mbox{s.t. }   & x_1      &+ 2x_2    &   + x_3  & = 30  \\
@@ -1242,7 +1332,7 @@ $$\begin{array}{ccccc | c}
     1 & -2  & 2 & 0 & 1   & 18 \\ \hline
     0 & 0   & 0 & -1 & -1 & 0 \\
 \end{array}$$
-Prvo što trebamo da izrazimo funkciju cilja preko nebaznih varijabli tako da ulazi ispod jedninčne matice budu svi 0. To dobijamo elementarnim transformacijama na simpleks tabeli (matrici): vrsti 3 dodamo vrstu 1 i 2, te dobijamo tabelu 
+Prvo što trebamo da izrazimo funkciju cilja preko nebaznih varijabli tako da ulazi ispod jedinične matice budu svi 0. To dobijamo elementarnim transformacijama na simpleks tabeli (matrici): vrsti 3 dodamo vrstu 1 i 2, te dobijamo tabelu 
 
 $$\begin{array}{ccccc | c}
     1 & 2   & 1 & 1 & 0   & 30 \\
@@ -1299,7 +1389,7 @@ $$
    \end{array}
 $$
 Kako su svi koeficijenti doprinosa ($\overline{c}$ varijable) manje od 0, simpleks metod staje nalazeći optimum koji se dostiže u tački $x = (24, 3, 0)$, i jednak je vrijednosti  $f = 72$.
-
+\end{comment}
   \newpage
  \section{Dualnost}
  
