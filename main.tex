@@ -1371,18 +1371,16 @@ Dakle, ova tablea odgovara Slici~\ref{fig:step-2}, tj. šetnji do baznog rješen
 	\caption{Korak 2}
 	\label{fig:step-2}
 \end{figure}
-Dalje, narednog pivota nalazimo u koloni 2 (koja odgovara varijabli $y$). Jedini kaddidat za pivota je element $\overline{a}_{3, 2}= 10$, pa nakon pivotiranja dobijamo tabelu 
+Dalje, narednog pivota nalazimo u koloni 2 (koja odgovara varijabli $y$). Jedini kandidat za pivota je element $\overline{a}_{3, 2}= 10$, pa nakon pivotiranja dobijamo tabelu 
 
 $$\begin{array}{cccccc| c}
 	& s_2  & s_3   & s_1  & s_2 & s_3 &     \\ \hline
-s_1 & 0    &  0    & 1    &  -\frac{7}{10}  & \frac{1}{10} &   7  \\  
-x   & 1    &  0    & 0    &  -\frac{2}{5}   & \frac{1}{5}  &   6  \\
+s_1 & 0    &  0    & 1    &  \frac{7}{10}  & \frac{1}{10} &   7  \\  
+x   & 1    &  0    & 0    &  \frac{2}{5}   & \frac{1}{5}  &   6  \\
 y   & 0    &  1    & 0    & - \frac{3}{10}  & \frac{1}{10} &   2  \\ \hline
--z  & 0    &  0    & 0    &   -\frac{21}{10} &-\frac{7}{10}  &  -18 \\ 
+-z  & 0    &  0    & 0    &   \frac{1}{10} &-\frac{7}{10}  &  -18 \\ 
 \end{array}
 $$ 
-kako ne postoje koordinate čiji su doprinosi pozitivni, našli smo optimum i on je jednak 
-$(x,y)=(6,2)$. Ova tabela odgovara hodu od tačke $E=(2,0)$ do tačke $D=(6,2)$, kao na Slici~\ref{fig:step-3}.
 
 \begin{figure}[H]
 	\centering
@@ -1390,6 +1388,32 @@ $(x,y)=(6,2)$. Ova tabela odgovara hodu od tačke $E=(2,0)$ do tačke $D=(6,2)$,
 	\caption{Korak 3}
 	\label{fig:step-3}
 \end{figure}
+
+Ova tabela odgovara hodu od tačke $E=(2,0)$ do tačke $D=(6,2)$, kao što vidimo na Slici~\ref{fig:step-3}.
+Zaljučujemo da je jedina koordinata koja odgovara pozitivnom doprinosu ona koja odgovara koloni 
+4 simpleks tabele. Pivotiranje radimo oko elementa $\overline{a}_{1,4} = \frac{7}{10}$, pa dobijamo simpleks tabelu 
+
+$$\begin{array}{cccccc| c}
+	& s_2  & s_3   & s_1  & s_2 & s_3 &     \\ \hline
+s_2 &  0   &  0    & \frac{10}{7}    &  1   & \frac{1}{7}   & 10 \\
+x   &  1   &  0    &  \frac{4}{7}    &  0   & \frac{1}{7}  & 2 \\
+y   &  0   &  1    &  \frac{3}{7}    &  0   & \frac{1}{7}   & 5  \\ \hline
+-z  &  0   &  0   &   -\frac{1}{10}  & 0    &  -\frac{5}{7} & -19 \\
+\end{array}
+$$ 
+
+Kako ne postoje koordinate čiji su doprinosi pozitivni, našli smo optimum i on je jednak 
+$C=(2,5)$. Prethodna simpleks tabela odgovara Slici~\ref{fig:step-4}.  
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=170pt, height=170pt]{simpleks-primjer-2-sl4.eps}
+	\caption{Korak 4}
+	\label{fig:step-4}
+\end{figure}
+
+
+Primijetimo da ako bi u prvom koraku birali da mjesto varijable $x$ ubacujemo varijablu $y$ u bazu, došli bi do optimuma tako što bi se pomjerili simpleks metodom prvo u tačku $B$, pa potom u $C$, koja je optimum. Takođe, u ovom slučaju je potrebno geenrisati samo dvije simpleks tabele (a ne tri, kao što smo mi generisali).
 
 \begin{comment}
 $$\begin{array}{ccccc}
