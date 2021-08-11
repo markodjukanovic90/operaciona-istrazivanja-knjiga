@@ -2345,8 +2345,16 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
  Još je ostalo zamijeniti svaku funkciju $f_j (s_j)$ aproksimacijom cjelobrojnog programiranja kako bismo izvršili cjelokupno modeliranje. Detalje ostavljamo kao zadatak. Ako bi funkcija $f_j (s_j)$ sadržala fiksne troškove, tada se ne bi trebale uvoditi nove varijable fiksnih troškova -- u tu svrhu služi već uvedena varijabla $y_j$. 
  
  \subsection{Kompleksnost Cjelobrojnog Programiranja}
-   Što se tiče rješivosti cjelobrojnog programiranja, ona spada u NP--teške probleme, za razliku od LP-a. U nastavku ove sekcije dajemo dokaz ove činjenice. Uz pretpostavku da je  $ P \neq NP$ pokazaćemo ne-polinomijalnu donju granicu za rješavanje ILP-a. Ovo ćemo pokazati tako što ćemo svesti problem 3--SAT na ILP.\\ 
-   TODO...
+   Što se tiče rješivosti cjelobrojnog programiranja, ona spada u NP--teške probleme, za razliku od LP-a. U nastavku ove sekcije dajemo dokaz ove činjenice. Uz pretpostavku da je  $ P \neq NP$ pokazaćemo ne-polinomijalnu donju granicu za rješavanje ILP-a. Svešćemo problem 3--SAT na ILP.\\ 
+     %https://mediaspace.msu.edu/media/Proving+that+Integer+Programming+is+NP-Complete/1_0j1vkmvw
+   Uvedimo problem 3--SAT. Neka su dati literali $x_1, \ldots, x_n$. Svaki literal može da bide pozitivan $x_1$ ili negativan, u oznaci $\neg x_1$. Kažemo da je formula u konjunktivnoj normalnoj formi (CNF) akko je napisana kao konjunkcija klauzula (ili prostih klauzula). Npr. formula $\phi(x_1, x_2, x_3)= (x_1 \vee  \neg x_2) \wedge (x_1 \vee x_3)$ je CNF. CNF formula $\phi(x)$ je zadovoljiva akko postoji dodjela $\overline{x}$ literalima ($x_i \in \{TRUE, FALSE\}$) tako da je $\phi(\overline{x})$ jednako TRUE (prema zakonima bulove algebre).  
+   
+   Kažemo da je $C$ konjunktivna formula u 3--CNF  akko se u svakoj klauzuali nalazi najviše 3 različita literala. Napomenimo da se bilo koja formula može transformisati u 3--CNF. Dakle, svaka klauzula 
+   $l_1 \vee l_2 \vee \cdots l_n$ se prevodi u 3--SAT kao:
+   $$(l_1 \vee l_2 \vee x_2) \wedge ( \neg x_2 \vee l_3 \vee x_3) \wedge ( \neg x_3 \vee l_4 \vee x_4 ) \wedge \cdots \wedge (\neg x_{n-3} \vee l_{n-3} \vee x_{n-2} ) \wedge ( \neg x_{n-2} \vee l_{n-1} \vee l_n ).  $$ Imajte na umu da ove formule nisu logički ekvivalentne ali su ekvivalentne u smislu zadovoljenja. 
+    Pokazano je da je problem 3--SAT, gdje je ulaz 3--CNF formula, a izlaz dodjela tako da je formula zadovoljiva, u opštem slučaju NP-kompletan.  
+   
+ 
  \newpage 
  \section{Tehnike rješavanja problema Cjelobrojnog programiranja}
  
