@@ -1187,10 +1187,92 @@ Bazne varijable prepoznjemo jer odgovarajući vektori (kolone) zajedno čine jed
  \emph{Komentari na simpleks tabelu}:
  \begin{itemize}
      \item Jedinična matrica $m \times m$   ugrađena u gornju lijevu podmatricu simpleks tabele (blok sa elementima $\overline{a}_{i,j}$) sadrži kolone koji čine vektore baznih varijabli.
-     \item U ovim kolonama u posljednjoj vrsti (ciljna vrsta) se nalaze nule.
+     \item U odgovarajućim kolonama u posljednjoj vrsti (ciljna vrsta) se nalaze nule.
  \end{itemize}
  Prema tome, vektori $x_i$, koji su bazni vektori (kolone baze $B$), su napisani preko nebaznih vektora $x_i \in N$. Kako se stavljaju $x_i  = 0$, za sve $i \in N$, onda je trivijano dobiti vrijednosti baznih vektora $x_i$, tj. kolona baze $B$. 
- 
+ \vspace{1cm}\\
+ \emph{Primjer.} Navedimo primjer jednog linearnog programa koji je neograničen, te ga riješimo simpleks metodom. 
+  Neka je dat LP:
+  \begin{align*}
+  	  &\max -x + 3y \\
+  	  & -x + y \leq 3 \\
+  	  & x - 2y \leq 2 
+  \end{align*}
+ Prevedimo problem na kanonski oblik, dodavanjem izjednačavajućih varijabli, pa imamo 
+ \begin{align*}
+      &\max -x + 3y \\
+     & -x + y + s_1 = 3 \\
+     & x - 2y + s_2 = 2  
+ \end{align*}
+Ovom programu odgovara simpleks tabela:
+$$\begin{array}{cccc| c} 
+	   -1 & 1  & 1 & 0 & 3 \\
+	    1 & -2 & 0 & 1 & 2 \\ \hline
+	   -1 & 3  & 0 & 0 & 0  
+\end{array}$$
+Kako minimizujemo,  kolona 2 je ona u kojoj tražimo pivota. Pivot je element 
+$\overline{a}_{1, 2} = 1$, odakle pivotiranjem oko tog elementa dobijamo novu simpleks tabelu 
+
+$$\begin{array}{cccc| c} 
+		   -1 & 1  & 1  &  0 & 3 \\
+		   -1 & 0  & 2  &  1 & 8 \\ \hline
+		   2  & 0  & -3 &  0 & -9 \\
+\end{array}$$
+Kandidata za pivota tražimo u prvoj koloni, ali kako su svi negativni, to znači da se 
+vrijednost  varijable $x$  može povećavati do te mjere da funkcija cilja nikad ne bude ograničena. 
+Ovo se može vidjeti i na osnovu grafičke reprezentacije dopustivog regiona na Slici~\ref{fig:unbounded-example-solve} (koji je neograničen). 
+
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=170pt,height=170pt]{unbounded-example-solve.eps}
+    \caption{Neograničen region.}
+    \label{fig:unbounded-example-solve}
+\end{figure}
+
+\emph{Primjer.} U nastavku dajemo još jedan primjer kada pivotiranje u simpleks metodi generiše degenerativno rješenje. 
+Posmatrajmo sljedeći linearni program:
+\begin{align*}
+    &\max 2x + 3y \\
+	& -x + y \leq 3 \\
+	& x - 2y \leq 2 \\
+	& x + 6y \leq 18
+\end{align*}
+Slično kao i u prethodnom primjeru, dodavanjem izjednačavajućih varijabli, dobijamo simpleks 
+tabelu 
+$$\begin{array}{ccccc|c}
+     -1 & 1 & 1 & 0 & 0 & 3 \\
+      1 &-2 & 0 & 1 & 0 & 2 \\
+      1 & 6 & 0 & 0 & 1 & 18 \\ \hline
+      2 & 3 & 0 & 0 & 0 & 0 \\
+\end{array}$$
+Recimo da iz nekog razloga biramo varijablu $y$ za baznu, tj. pivotiramo oko nekog od elemenata u koloni 2. za pivota odaberemo $\overline{a}_{1,2}=1$ element, te nakon pivotiranja dobijamo novu simpleks tabelu:
+$$\begin{array}{ccccc|c}
+	-1 & 1 & 1 & 0 & 0 & 3 \\
+    -1 & 0 & 2 & 1 & 0 & 8 \\
+    7 & 0 & -6 & 0 & 1 & 0 \\ \hline
+    5 & 0 & -3 & 0 & 0 & -9 \\
+\end{array}$$
+Ovdje počinju problemi. Pivotiranje bi trebalo da ide sa elementima u koloni 1, ali tamo nema niti jedan element strogo veći od 0 (samo jedan koji je 0, a to je $\overline{a}_{3,1}$) i trebalo bi oko njega da pivotiramo. Kada se izvrši pivotiranje, varijable $\overline{b}$ ne mijenjaju svoje vrijednosti:
+$$\begin{array}{ccccc|c}
+     0 & 1 & \frac{1}{7}  & 0 & \frac{1}{7} & 3 \\
+     0 & 0 & \frac{8}{7}  & 1 & \frac{1}{7} & 8 \\
+     1 & 0 & -\frac{6}{7} & 0 & \frac{1}{7} & 0 \\ \hline
+     0 & 0 & \frac{9}{7}  & 0 & -\frac{5}{7} & -9 \\
+\end{array}$$
+Razlog za to je jer tri linije $x=0$, $-x+y=3$ i $x+6y=18$ se susreću u tački $(0,3)$ (Slika~\ref{fig:deg-sol}). U prošlom koraku, kada su $x$ i $s_1$ bile nebazne varijable, tačka (0,3) je posmatrana kao presjek $x=0$ i $-x +y =3$. Nakon sljedećeg koraka $s_1$ i $s_3$ postaju nebazne, pa se pomjeramo u presjeku 
+$-x+y=3$ i $x+6y=18$, što je opet ista tačka (i nema napretka vrijednosti funkcije cilja). 
+ Ovo pivotiranje se naziva \emph{degenerativno pivotiranje}. u ovom primjeru, napustićemo vrh $(0,3)$ nakon sljedećeg pivotiranja. U komplikovanijim primjerima, kada se mnoga ograničenja mogu sresti u jednom vrhu, ostajanje u tom vrhu je velika opasnost. Ovo se može izbjeći poštovanjem 
+ Bladovog pravila. Primijetimo da koristeći Bladovo pravilo u prvom koraku simpleks metode (uzimajući za pivota elemente iz kolone 1, a ne kolone 2), degenerativno pivotiranje se ne bi pojavilo.  
+
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=170pt,height=170pt]{deg-sol.eps}
+	\caption{Tačka presjeka $(0,3)$ gdje se javlja degenerativno pivotiranje.}
+	\label{fig:deg-sol}
+\end{figure}
+
  \subsection{Dvofazni simpleks algoritam}
  Postoje dva pitanja koja se nameću u primjeni simpleks algoritma:
  \begin{itemize}
@@ -1390,7 +1472,7 @@ $$
 \end{figure}
 
 Ova tabela odgovara hodu od tačke $E=(2,0)$ do tačke $D=(6,2)$, kao što vidimo na Slici~\ref{fig:step-3}.
-Zaljučujemo da je jedina koordinata koja odgovara pozitivnom doprinosu ona koja odgovara koloni 
+Zaljučujemo da je jedina koordinata koja odgovara pozitivnom doprinosu kolona 
 4 simpleks tabele. Pivotiranje radimo oko elementa $\overline{a}_{1,4} = \frac{7}{10}$, pa dobijamo simpleks tabelu 
 
 $$\begin{array}{cccccc| c}
@@ -1403,7 +1485,8 @@ y   &  0   &  1    &  \frac{3}{7}    &  0   & \frac{1}{7}   & 5  \\ \hline
 $$ 
 
 Kako ne postoje koordinate čiji su doprinosi pozitivni, našli smo optimum i on je jednak 
-$C=(2,5)$. Prethodna simpleks tabela odgovara Slici~\ref{fig:step-4}.  
+$C=(2,5)$. Prethodna simpleks tabela odgovara Slici~\ref{fig:step-4}, dok svi koraci u simpleks metodi odgovaraju 
+hodu $A \rightarrow E \rightarrow D \rightarrow C$. 
 
 \begin{figure}[H]
 	\centering
@@ -1413,7 +1496,11 @@ $C=(2,5)$. Prethodna simpleks tabela odgovara Slici~\ref{fig:step-4}.
 \end{figure}
 
 
-Primijetimo da ako bi u prvom koraku birali da mjesto varijable $x$ ubacujemo varijablu $y$ u bazu, došli bi do optimuma tako što bi se pomjerili simpleks metodom prvo u tačku $B$, pa potom u $C$, koja je optimum. Takođe, u ovom slučaju je potrebno geenrisati samo dvije simpleks tabele (a ne tri, kao što smo mi generisali).
+Primijetimo da ako bi u prvom koraku birali da mjesto varijable $x$ ubacujemo varijablu $y$ u bazu, došli bi do optimuma tako što bi se pomjerili simpleks metodom prvo u tačku $B$, pa potom u $C$, koja je optimum. Takođe, u ovom slučaju je potrebno generisati samo dvije simpleks tabele (a ne tri, kao što smo mi generisali).
+
+
+
+
 
 \begin{comment}
 $$\begin{array}{ccccc}
