@@ -1069,7 +1069,7 @@ Simpleks tabela ima oblik kao u Tabeli~\ref{tab:simplex_tabelau}.
     \label{tab:simplex_tabelau}
 \end{table}
 
-Na osnovu ovakve tabele, te koraka simpleks metode opisanih u prethodnoj sekciji, pratimo sljedeće korake u tabelarnom rješavanju:
+Na osnovu ovakve tabele, te koraka simpleks metode opisanih u prethodnoj sekciji, radimo sljedeće koraku tabelarnomg rješavanja:
 \begin{itemize}
     \item Konstruisati inicijalnu simpleks tabelu sa početnom bazom $B$ i odgovarajućim baznim dopustivim rješenjem $x$.
     \item Pogledati koeficijente doprinosa $\overline{c_j}$. Ako su svi $\overline{c_j} \geq 0$, rješenje se ne može dalje popraviti, pa smo našli optimalno rješenje, inače odabrati neki $j$ sa $\overline{c_j}<0$.
@@ -1614,13 +1614,13 @@ Sabirajući ove dvije nejednakosti i grupišući sabirke dobijamo
      x_1 ( 4 y_1 + y_2 ) + x_2 ( 3 y_1 + y_2 ) \leq 9 y_1 + 8 y_2 
 \end{equation}
 Gledajući funkciju cilja i koeficijente uz varijable u (\ref{eq:dual-1}), jasno je da treba vrijediti 
-$4 y_1 + y_2 \geq 1$ i $3 y_1 + y_2 \geq 1$. Da bi ocjena gornje granice bila što bolja u (\ref{eq:dual-1}), dakle koeficijent na desnoj strani što veći, pa je potrebno maksimizovati izraz $9y_1 + 8 y_2$, pod gore navedenim uslovima. Prema tome, početnom problemu, kojeg označavamo sa (P), odgovara dualni problem 
+$4 y_1 + y_2 \geq 1$ i $3 y_1 + y_2 \geq 1$. Da bi ocjena gornje granice bila što bolja u (\ref{eq:dual-1}), dakle koeficijent na desnoj strani što veći, pa je potrebno maksimizovati izraz $9y_1 + 8 y_2$, pod gore navedenim uslovima. Prema tome, početnom problemu, kojeg označavamo sa ($P$), odgovara dualni problem 
 $$\begin{array}{cccc}
      \min                    &  9 y_1 &+& 8 y_2        \\
      \mbox{s.t. }     &  4 y_1 &+& y_2 \geq 1   \\
                              &  3 y_1 &+& y_2 \geq 1
 \end{array}$$
-Generalno posmatrajući, za problem LP-a~(\ref{eq:LP-o1})--(\ref{eq:LP-c2}) njegov dualni problem, označen sa (D), je dat sa 
+Generalno posmatrajući, za problem LP-a~(\ref{eq:LP-o1})--(\ref{eq:LP-c2}) njegov dualni problem, označen sa ($D$), je dat sa 
 \begin{align}
      & b^T y \rightarrow \max \\
      & A^T y \geq c \\
@@ -1684,10 +1684,10 @@ Generalno posmatrajući, za problem LP-a~(\ref{eq:LP-o1})--(\ref{eq:LP-c2}) njeg
     \end{equation}
      (posljedica kad uvrstimo $x = 0$) odakle posljedično slijedi 
     $ c = A^T y^* + c^*$. 
-    Kako je $c^* \leq 0$, imamo  $A^T y^* \geq c$. Kako je $y^* \leq 0$ pa je $y^*$ dopustivo rješenje za  ($D$).  Iz (\ref{eq:f_y_star}) je pokazano da je vriejdnost ciljne funkcije u $y^*$ upravo $f^*$. Iz teoreme o slaboj dualnosti slijedi da je $y^*$ optimalno rješenje problema  ($D$). 
+    Kako je $c^* \leq 0$, imamo  $A^T y^* \geq c$. Kako je $y^* \leq 0$ pa je $y^*$ dopustivo rješenje za  ($D$).  Iz (\ref{eq:f_y_star}) je pokazano da je vrijednost ciljne funkcije u $y^*$ upravo $f^*$. Iz teoreme o slaboj dualnosti slijedi da je $y^*$ optimalno rješenje problema  ($D$). 
     
 \end{proof} \\
-Primijetimo da koeficijenti $y^*$ posljednje vrste završne simpleks tabele odgovaraju  ``labavim'' varijablama i one nam daju rješenje problema  ($D$).  
+Primijetimo da koeficijenti $y^*$ posljednje vrste završne simpleks tabele odgovaraju  ``labavim''   varijablama i one nam daju rješenje problema  ($D$).  
 
 \emph{Primjer.} Potpuno je moguće da problem ($P$) i odgovarajući dual ($D$) nemaju dopustivo rješenje. Pogledajte sljedeći primjer:
 $$\begin{array}{cc}
@@ -1752,7 +1752,7 @@ $$x_3 \geq 0 \Rightarrow  (A^T y)_3  = c_3, \mbox{ tj. } 0 \cdot y_1 + y_2 = 3$$
     \caption{Dualni problem: dopustiv region}
     \label{fig:fig5}
 \end{figure}
-Optimalno rješenje je u presjeku $y_2 = 3$ i $4y_1 - y_2 = 1$, i ono odgovara $y = (1, 3)$. Ispitajmo na osnovu komplementarnosti šta je optimalno rješenje problema (P). Imamo 
+Optimalno rješenje je u presjeku $y_2 = 3$ i $4y_1 - y_2 = 1$, i ono odgovara $y = (1, 3)$. Ispitajmo na osnovu komplementarnosti šta je optimalno rješenje problema ($P$). Imamo 
 $$y_1 > 0 \Rightarrow (Ax - b)_1 y_1 = 0 \Rightarrow x_1 + 4 x_2 = 4 $$
 $$y_2 > 0 \Rightarrow (Ax - b)_2 y_2 = 0 \Rightarrow 3x_1 - x_2 + x_2 = 3 $$
 i kako je $y_1 + 3 y_2 > 4$, onda $(A^Ty)_1 > c_1$ i prema tome $x_1 =0$, 
@@ -1766,7 +1766,7 @@ $$\begin{array}{cccc}
      &                       & x_1,\ldots, x_4 \geq 0.                                 &
 \end{array}
 $$
-Ovaj problem ima 4 varijable i 2 ograničenja. Prema tome, ima smisla razmatrati dualni problem  ($D$)  datog primala  ($P$)  jer u tom slučaju dobijamo linearno program od samo dvije varijable koji se može riješiti grafički.  ($D$)  problem je dat sa:
+Ovaj problem ima 4 varijable i 2 ograničenja. Prema tome, ima smisla razmatrati dualni problem  ($D$)  datog primala  ($P$)  jer u tom slučaju dobijamo linearno program od samo dvije varijable koji se može riješiti grafički.  Odgovarajući problem ($D$) je dat sa:
 
 $$\begin{array}{ccc}
     &\min                    &  210 y_1 + 210 y_2      \\
@@ -1798,26 +1798,26 @@ odakle dobijamo rješenje $x_1 = 10, x_3 = 15$, pa je optimalno rješenje $x = (
 \subsection{Metod Unutrašnje Tačke}
 
 Simpleks metod ne garantuje   izvršavanje u polinomijalnom broju koraka u odnosu na veličinu ulaza. % V. Klee and G. Minty constructed an example LP: simplex method needs 2^n iterations to solve it 
-Dakle, iz njega se ne može zaključiti da je problem rješavanja generalnog LP problema   polinomijalno rješiv. \emph{Metod unutrašnje tačke} će nam dati metod koji rješava ovu dilemu jer bilo koji LP problem može riješiti u polinomijanom vremenu, tj. pokazuje da je rješavanje problema LP-a pripada klasi $\mathcal{P}$. Iako u praksi često ne postiže dobre  performanse kao i simpleks metod, te se uvijek prvo preporučuje korištenje simpleks metoda u rješavanju LP-a, sa teoretskog stanovišta je veoma važan.  \emph{Metod unutrašnje tačke} (eng. Interior point metod) je dizajniran 50-ih godina XX vijeka i sve do 80-ih godina nije bio smatran za algoritam koji se efikasno može primijeniti na probleme velikih dimenzija. Tek 1984.godine (N. Karmakar, inžinjer u IBM-u) je formalno dokazao da se ovaj algoritam izvršava u polinomijalnom broju koraka za probleme linearnog programiranja. U današnje vrijeme, usljed ekstremnog poboljšanja performansi mašina, pokazao se da je \emph{metod unutrašnje tačke} kompetentan sa simpleks metodom kada je riječ o LP-u velikih dimenzija (sa matricom $A$ čiji je broj elemenata $10^9$ i više).
+Dakle, iz njega se ne može zaključiti da je problem rješavanja generalnog LP problema   polinomijalno rješiv. \emph{Metod unutrašnje tačke} će nam  rješiti ovu dilemu jer bilo koji LP problem se može riješiti u polinomijanom vremenu uz pomoć ovog metoda, tj. pokazuje da je rješavanje problema LP-a pripada klasi $\mathcal{P}$. Iako u praksi često ne postiže dobre  performanse kao i simpleks metod, te se uvijek prvo preporučuje korištenje simpleks metoda u rješavanju LP-a, sa teoretskog stanovišta je veoma važan.  \emph{Metod unutrašnje tačke} (eng. Interior point metod) je dizajniran 50-ih godina XX vijeka i sve do 80-ih godina nije bio smatran za algoritam koji se efikasno može primijeniti na probleme velikih dimenzija. Tek 1984.godine (N. Karmakar, inžinjer u IBM-u) je formalno dokazao da se ovaj algoritam izvršava u polinomijalnom broju koraka za probleme linearnog programiranja. U današnje vrijeme, usljed ekstremnog poboljšanja performansi mašina, pokazao se da je \emph{metod unutrašnje tačke} kompetentan sa simpleks metodom kada je riječ o LP-u velikih dimenzija (sa matricom $A$ čiji je broj elemenata $10^9$ i više).
 
-Za razliku od simpleks metoda, koji ``hoda'' po ivicama poliedra (dopustivog regiona), \emph{metod unutrašnje tačke}, kako i samo ime kaže, se kreće po unutrašnjim tačkama poliedra linearnog programiranja dok ne naiđe na optimalno rješenje problema. 
+Za razliku od simpleks metoda, koji ``hoda'' po ivicama poliedra (dopustivog regiona), \emph{metod unutrašnje tačke}, kako i samo ime kaže, se kreće po unutrašnjim tačkama poliedra problema dok ne naiđe na optimalno rješenje problema. 
 
 Postoji nekoliko metoda ove vrste, kao što su: metod centralne putanje, redukcija potencijala, afino skaliranje, itd. Mi ćemo u ovoj sekciji obratiti pažnju na metod centralne putanje. Da ponovimo, ova sekcija se bavi rješavanjem LP-a (\ref{eq:lp_equality_constraint}). 
 
-Neka je dat par Primal-dual linearnih programa \\
+Neka je dat par Primal-dual linearnih programa dat sa \\
 
-$$ \begin{array}{lcc}
+$$ \begin{array}{lll}
 	&\mbox{Primal}            & \mbox{Dual}     \\
-	&\min  c^T x       & \max  b^T y \\
-	& \mbox{s.t.} Ax = b &   \mbox{s.t.} A^Ty + s = c \\
-	& x \geq 0   &   s \geq 0
+	&\min  c^T x              & \max  b^T y \\
+	& \mbox{s.t.} Ax = b      &   \mbox{s.t.} A^Ty + s = c \\
+	& x \geq 0                &   s \geq 0
 \end{array}
 $$
 Lagranžijan primal-dual linearnih programa je dat sa 
 \begin{equation}
 	L(x,y) = c^Tx - y^T(Ax - b) - s^T x.
 \end{equation}
-Uslovi za nalazak stacionarne tačku Lagranžijana $L$ su dati sa:
+Trebali bi naći tačku za koju je $L = 0$. Uslovi za nalazak stacionarne tačku Lagranžijana $L$ su dati sa:
 \begin{align}
 	&\triangledown_x L(x,y) = 0\\
 	&\triangledown_y L(x,y) = 0
@@ -1831,10 +1831,10 @@ Uslovi za nalazak stacionarne tačku Lagranžijana $L$ su dati sa:
 \end{align}
 gdje je $X = diag (x_1, \ldots, x_n)$, $S= diag(s_1,\ldots s_m)$, $\mathbf{1}=(1,\ldots, 1)$.
 
-U nastavku navodimo problem preko koga razvijamo metod unutrašnje tačke. Ograničenja nenegativnosti u primalnom problemu ćemo zamijeniti sa $-ln x_j$. 
+U nastavku navodimo problem preko koga razvijamo metod unutrašnje tačke. Ograničenja nenegativnosti u primalnom problemu ćemo zamijeniti sa $-ln x_j$, $j=1,\ldots,n$.   
 Primijetite da vrijedi 
 $$\min e^{-\sum_{j=1}^n ln x_j} \Leftrightarrow \max \prod_{j} x_j $$
-Dakle, minimizacija izraza $-\sum_{j=1}^n x_j$ je ekvivalentna maksimizaciji svih hiperravni koje definišu prvi ortant. Dakle, ovakav optimizacioni problem (na prvom ortantu) nas sprečava da se vrijednost neke od varijabli $x_j$ približi nuli (uprkos nenegativnim ograničenjima).  Na osnovu ovih činjenica, definišimo slejdeći optimizacioni problem. 
+Dakle, minimizacija izraza $-\sum_{j=1}^n x_j$ je ekvivalentna maksimizaciji svih hiperravni koje definišu prvi ortant. Dakle, ovakav optimizacioni problem (na prvom ortantu) nas sprečava da se vrijednost neke od varijabli $x_j$ približi nuli (uprkos nenegativnim ograničenjima).  Na osnovu ovih činjenica, definišimo sljedeći optimizacioni problem. 
 
 \begin{definition}
 	Barijerni program LP-a (\ref{eq:lp_equality_constraint}) je dat u obliku 
@@ -1860,7 +1860,7 @@ Primijetimo da u problemu LP-a imamo sljedeće:
 \end{itemize}
 Izračunajmo Lagranžove množitelje ovih funkcija. Vrijedi:
 
-$$c + \mu (\frac{1}{x_1}, \frac{1}{x_2}, \ldots, \frac{1}{x_n}) = \Delta f (x) =\sum_{i=1}^m y_i \Delta g_i(x) = \sum_{i} y_i a_i = A^T y.$$ 
+$$c + \mu (\frac{1}{x_1}, \frac{1}{x_2}, \ldots, \frac{1}{x_n}) = \triangledown f (x) =\sum_{i=1}^m y_i \triangledown g_i(x) = \sum_{i} y_i a_i = A^T y.$$ 
 
 Uvedimo nenegativni vektor $s =\mu \cdot (\frac{1}{x_1}, \frac{1}{x_2}, \ldots, \frac{1}{x_n})$, pa imamo da bilo koje optimalno rješenje početnog problema treba da zadovoljava:
 \begin{align}
@@ -2344,6 +2344,9 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
  \end{align*}
  Još je ostalo zamijeniti svaku funkciju $f_j (s_j)$ aproksimacijom cjelobrojnog programiranja kako bismo izvršili cjelokupno modeliranje. Detalje ostavljamo kao zadatak. Ako bi funkcija $f_j (s_j)$ sadržala fiksne troškove, tada se ne bi trebale uvoditi nove varijable fiksnih troškova -- u tu svrhu služi već uvedena varijabla $y_j$. 
  
+ \subsection{Kompleksnost Cjelobrojnog Programiranja}
+   Što se tiče rješivosti cjelobrojnog programiranja, ona spada u NP--teške probleme, za razliku od LP-a. U nastavku ove sekcije dajemo dokaz ove činjenice. Uz pretpostavku da je  $ P \neq NP$ pokazaćemo ne-polinomijalnu donju granicu za rješavanje ILP-a. Ovo ćemo pokazati tako što ćemo svesti problem 3--SAT na ILP.\\ 
+   TODO...
  \newpage 
  \section{Tehnike rješavanja problema Cjelobrojnog programiranja}
  
