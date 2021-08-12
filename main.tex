@@ -2345,16 +2345,43 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
  Još je ostalo zamijeniti svaku funkciju $f_j (s_j)$ aproksimacijom cjelobrojnog programiranja kako bismo izvršili cjelokupno modeliranje. Detalje ostavljamo kao zadatak. Ako bi funkcija $f_j (s_j)$ sadržala fiksne troškove, tada se ne bi trebale uvoditi nove varijable fiksnih troškova -- u tu svrhu služi već uvedena varijabla $y_j$. 
  
  \subsection{Kompleksnost Cjelobrojnog Programiranja}
-   Što se tiče rješivosti cjelobrojnog programiranja, ona spada u NP--teške probleme, za razliku od LP-a. U nastavku ove sekcije dajemo dokaz ove činjenice. Uz pretpostavku da je  $ P \neq NP$ pokazaćemo ne-polinomijalnu donju granicu za rješavanje ILP-a. Svešćemo problem 3--SAT na ILP.\\ 
+   Što se tiče rješivosti cjelobrojnog programiranja, ona spada u NP--teške probleme, za razliku od LP-a koji je polinomijalan. U nastavku ove sekcije dajemo dokaz da je rješivost ILP-a NP--težak problem.  Ideja je da  svedemo problem 3--SAT na ILP.\\ 
      %https://mediaspace.msu.edu/media/Proving+that+Integer+Programming+is+NP-Complete/1_0j1vkmvw
-   Uvedimo problem 3--SAT. Neka su dati literali $x_1, \ldots, x_n$. Svaki literal može da bide pozitivan $x_1$ ili negativan, u oznaci $\neg x_1$. Kažemo da je formula u konjunktivnoj normalnoj formi (CNF) akko je napisana kao konjunkcija klauzula (ili prostih klauzula). Npr. formula $\phi(x_1, x_2, x_3)= (x_1 \vee  \neg x_2) \wedge (x_1 \vee x_3)$ je CNF. CNF formula $\phi(x)$ je zadovoljiva akko postoji dodjela $\overline{x}$ literalima ($x_i \in \{TRUE, FALSE\}$) tako da je $\phi(\overline{x})$ jednako TRUE (prema zakonima bulove algebre).  
+   Uvedimo prvo problem 3--SAT-a. Neka su dati literali $x_1, \ldots, x_n$. Svaki literal može da bide pozitivan ($x_1$) ili negativan  ($\neg x_1$). Kažemo da je formula u konjunktivnoj normalnoj formi (CNF) akko je napisana kao konjunkcija klauzula (ili literala). Npr. formula $\phi(x_1, x_2, x_3)= (x_1 \vee  \neg x_2) \wedge (x_1 \vee x_3)$ je CNF. CNF formula $\phi(x)$ je zadovoljiva akko postoji dodjeljivanje $\overline{x}$ literalima ($x_i \in \{TRUE, FALSE\}$) tako da je $\phi(\overline{x})$ tačna (prema zakonima bulove algebre).  
    
-   Kažemo da je $C$ konjunktivna formula u 3--CNF  akko se u svakoj klauzuali nalazi najviše 3 različita literala. Napomenimo da se bilo koja formula može transformisati u 3--CNF. Dakle, svaka klauzula 
-   $l_1 \vee l_2 \vee \cdots l_n$ se prevodi u 3--SAT kao:
-   $$(l_1 \vee l_2 \vee x_2) \wedge ( \neg x_2 \vee l_3 \vee x_3) \wedge ( \neg x_3 \vee l_4 \vee x_4 ) \wedge \cdots \wedge (\neg x_{n-3} \vee l_{n-3} \vee x_{n-2} ) \wedge ( \neg x_{n-2} \vee l_{n-1} \vee l_n ).  $$ Imajte na umu da ove formule nisu logički ekvivalentne ali su ekvivalentne u smislu zadovoljenja. 
-    Pokazano je da je problem 3--SAT, gdje je ulaz 3--CNF formula, a izlaz dodjela tako da je formula zadovoljiva, u opštem slučaju NP-kompletan.  
-   
- 
+   Kažemo da je konjunktivna formula $\phi(x)$  napisana u 3--CNF  akko se u svakoj klauzuali nalazi najviše 3 različita literala. Napomenimo da se bilo koja formula može redukovati u 3--CNF, u smislu rješivosti. Dakle, svaka klauzula 
+   $l_1 \vee l_2 \vee \cdots \vee l_n$ se prevodi u 3--CNF kao:
+   \begin{align*}
+       &(l_1 \vee l_2 \vee x_2) \wedge ( \neg x_2 \vee l_3 \vee x_3) \wedge ( \neg x_3 \vee l_4 \vee x_4 ) \wedge \cdots \wedge (\neg x_{n-3} \vee l_{n-3} \\
+       &\vee x_{n-2} ) \wedge ( \neg x_{n-2} \vee l_{n-1} \vee l_n ).  
+    \end{align*}    
+      Imajte na umu da ove formule nisu logički ekvivalentne ali su ekvivalentne u smislu zadovoljenja. 
+    Pokazano je da je problem 3--SAT, gdje je ulaz 3--CNF formula, a izlaz dodjela tako da je formula zadovoljiva, u opštem slučaju NP-težak.  
+    
+   \begin{thm}
+   	  Rješivost ILP-a je NP-težak problem.
+   \end{thm}
+   \begin{proof}
+   	   Izvedimo redukciju sa 3-SAT problema. Neka je dat 3--SAT izraz sa varijablama 
+   	   $x_1,\ldots, x_n$.  Konstruišimo ILP instancu sa varijablama $z_1, \ldots, z_n$ gdje imamo:
+   	   \begin{itemize}
+   	   	   \item Svaka klauzula $\phi_i(x)$ je konvertovana na nejednakost gdje
+   	   	      $z_i = x_i$, ako je $x_i$ pozitivan literal u klauzuli $\phi$, odnosno $z_i = 1 - x_i$ ako je $x_i$ negativan literal u klauzuli $\phi$ (negacija ispred). Primjera radi, ako je data instanca problema 3-SAT sa 
+   	   	      $\phi(x) = (x_1 \vee \neg x_2 \vee \neg x_3) \wedge ( x_2 \vee \neg x_4 \vee x_5 )$, dobijamo instancu ILP-a
+   	   	      \begin{align*}
+   	   	         	 &z_1 + (1- z_2) + (1 - z_3 ) \geq 1 \\
+   	   	         	 &z_2 + (1-z_4)  + z_5 \geq 1 \\
+   	   	         	 & z_i \in \{0,1\}, i=1,\ldots,5.
+   	   	      \end{align*} 
+   	   \end{itemize}
+   	   Dakle, iz gornje redukcije, nalazak rješenja ILP instance odgovara nalasku dodjele $\overline{x}$ varijabli tako da je formula $\phi$ zadovoljena. Takođe, lako je vidjeti da je ova redukcija polinomna. Prema tome, ILP je NP-težak, s obzirom da je 3--SAT problem NP-kompletan. 
+   \end{proof} \\
+ Može se pokazati i sljedeća teorema.
+ \begin{thm} Neka je $k\in \mathbb{Z}$.
+ 	 Problem odlučivanja da li postoji cjelobrojno rješenje u ILP-u, pod uslovom da minimizujemo, koje je manje od $k$ je NP--kompletno. 
+ \end{thm}
+
+
  \newpage 
  \section{Tehnike rješavanja problema Cjelobrojnog programiranja}
  
