@@ -1799,7 +1799,7 @@ odakle dobijamo rješenje $x_1 = 10, x_3 = 15$, pa je optimalno rješenje $x = (
     \label{fig:fig6-dual-region}
 \end{figure}
 
-Najlakše je opisati odnos dualnosti kao odnos između problem maksimizacije i problem minimizacije, bez obzira 
+Najlakše je opisati odnos dualnosti kao odnos između problema maksimizacije i problem minimizacije, bez obzira 
 koji je od njih bio problem ($P$) a koji od njih  dual ($D$). 
 U nastavku, kompletna lista mogućih odnosa između ograničenja
 jedanog problema i varijabli u drugom problemu je data preko sljedeće tabele
@@ -2090,8 +2090,81 @@ Iz trečeg uslova   $x_1(\mu)=x_2(\mu)=2$, što je i optimum. Primijetimo da ovd
 %\end{align}
 % dualni simpleks metod ==> 4.7 PRIMAL-DUAL ALGORITHMS
 % Ako bi uzeli $\mu = 1$, rješenje koje se dobije je 
-\newpage
 
+
+%Fourier–Motzkin elimination ==> Problem dopustivosti...
+\subsection{Fourier–Motzkin-ova Eliminacija}
+TODO...%https://faculty.math.illinois.edu/~mlavrov/docs/482-fall-2019/lecture19.pdf
+Vezano pitanje za problem  LP-a kojeg rješavamo je sljedeće pitanje:
+\emph{Neka su date matrica $A$ i vektor $b$, da li je skup $P = \{x: A x \leq b\}$ neprazan?} Dakle, da li postoji dopustivo rješenje linearnog programa? 
+
+Problem dopustivosti može da služi i da odgovorimo sljedeće pitanje: 
+\emph{Da li je optimalna vrijednost funkcije cilja problema LP-a veća od neke vrijednosti k?}.
+ Na ovo pitanje odgovaramo uz pomoć Fourier–Motzkin-ove eliminacije, koja je potpuno drugačija od simpleks metode.  Ideja algoritma se sastoji od sljedećeg: naći proceduru koja će redukovati problem sa $n$ varijabli na ekvivalentan problem sa $n-1$ varijabli. Ekvivalentnost se podrazumijeva u pogledu da početi problem ima riješenje akko ima i redukovani problem. Ova procedura se iterativno izvršava, smanjujući broj varijabli u problemu. Na kraju ćemo eventualno ostati sa sitemom od jedne varijable za koji se lako može provjeriti da li postoji barem jedna tačka između najveće gornje granice i najmanje donje granice koja zadovoljava uslov. 
+ 
+ Glavni korak ovog metoda je redukcija problema na ekvivalentan problem sa manjim brojem varijabli. Pretpostavimo da imamo varijable $x_1,\ldots, x_n$ i da želimo da eliminišemo varijablu $x_n$. za svaku od ograničenja
+ \begin{equation}\label{eq:inequality_i}
+      a_{i,1} x_1 + \cdots + a_{i,n} x_n \leq b_i
+ \end{equation}
+ vrijedi jedna od sljedećih alternativa 
+ \begin{itemize}
+ 	 \item  $x_n \geq \frac{b_i - a_{i,1}x_1- \cdots - a_{i, n-1} x_{n-1} }{a_{i,n}}=U_i$ ili 
+ 	 \item   $x_n \leq \frac{b_i - a_{i,1}x_1- \cdots - a_{i, n-1} x_{n-1} }{a_{i,n}}=L_i$
+ \end{itemize}
+ $i=1,\ldots, m$, zavisno od toga da li je $a_{i,n} >0$ ili $a_{i,n} <0$. U slučaju da je $a_{i,n} = 0$,  ostavljamo  ogranjičenje (\ref{eq:inequality_i}) kakvo i jeste (jer $x_n$ ne učestvuje u datoj nejednakosti). Na ovaj način ćemo dobiti $m$ gornjih i donjih granica za $x_n$ koje se dobijaju preko $n-1$ varijabli, tj. 
+ $$  x_n \geq L_1, \ldots, x_n\geq L_k \mbox{ te }  x_n \leq U_1, \ldots, x_n \leq U_l.$$
+  
+ Moguće je izabrati $x_n$ koje zadovoljava ovih $k \cdot l$ ograničenja akko 
+ \begin{equation}\label{eq:min_max_xi}
+     \max\{L_1,\ldots, L_k \} \leq x_n \leq \min \{ U_1, \ldots, U_l \},
+   \end{equation}
+za neke 
+ jer bi moralo da postoji nešto između najveće donje granice za vrijednost varaijble $x_n$ te njegove najmanje gornje granice. Međutim, kako su sve donje i gornje granice izražene preko nepoznatih $x_1, \ldots, x_{n-1}$,  u (\ref{eq:min_max_xi}) jednakost se ne može samo tako napisati, pa napišemo sljedeće nejednakosti 
+ $$\begin{array}{cccc}
+       L_1 \leq U_1 & L_1 \leq U_2   &  \cdots   & L_1 \leq U_l \\
+       L_2 \leq U_1 & L_2  \leq U_2  &  \cdots   & L_2 \leq U_l \\
+       \vdots       &     \vdots     &   \ddots  & \vdots       \\
+       L_k \leq U_m &  L_k \leq U_2  &   \cdots  & L_k \leq U_l \\
+ \end{array}$$ 
+Ako postoji neka vrijednost  $x_n$ koja zadovoljava sva ograničenja, onda je za sve $i,j$, 
+$L_i \leq x_n \leq U_j$. Obrnuto, ako svi ovih $k \cdot l$ nejednakosti vrijede, onda vrijedi i (\ref{eq:min_max_xi}), pa se može izabrati neki $x_n$ između ove dvije ($\max$ i $\min$) vrijednosti. 
+
+Prema tome, dobili smo sistem od $n-1$ varijabli koji se sastoji od  $k \cdot l$ nejednakosti gore opisanih te originalnih ograničenja koja ne uključuju $x_n$ u sebi. ovaj proces nastavimo iterativno dok ne dobijemo samo jednu promjenjivu. 
+
+\emph{Primjer.} Pretpostavimo da nam je dat sistem nejednačina:
+\begin{align*}
+	 &x - y \geq 1 \\
+	 &-x + 2y \geq 1 \\
+	 & 3x + 5y \geq 1 \\
+	 & x,y \geq 0.
+\end{align*}
+Eliminišimo varijablu $y$ iz sistema. Kako je $x-y \leq 1 \Rightarrow y \leq x -1 $, 
+$-x + 2y \geq 1 \Rightarrow y \geq \frac{x+1}{2}$, te $ 3x - 5y \geq 1 \Rightarrow y \leq \frac{3x-1}{5}$, uparimo gornje i donje granice te dobijamo 
+ $$
+ \begin{cases}
+ 	&\frac{x+1}{2} \leq x-1 \\
+ 	& 0 \leq x-1 \\
+ 	& \frac{x+1}{2} \leq \frac{3x-1}{5} \\
+ 	& 0 \leq \frac{3x-1}{5} \\
+ 	& x \geq 0, y \geq 0.  	
+ \end{cases}
+ $$
+Ove nejednakosti se mogu pojednostaviti u donje i gornje granice, 
+za $x$, dato sa:
+$$
+\begin{cases}
+    &x \geq 3 \\
+    & x \geq 1 \\
+    & x \geq 7 \\
+    & x \geq \frac{1}{3} \\
+    & x \geq 0.	
+\end{cases}
+$$
+Sve ove nejednakosti su donje granice. Prema tome, ako $x=7$, vidimo da će proći. 
+Tada, donje i gornje granice za $y$ postaju uslovi (pogledati gore): $y \leq 6, y \geq 4, y \leq 4$ te $y \geq 0$. Prema tome, možemo staviti $y=4$ i naći dopustivo rješenje. 
+
+%kompleksnost i Farkasova lema...
+\newpage
 \section{Cjelobrojno Programiranje}
 
 %https://www.google.com/url?sa=t&source=web&rct=j&url=https://web.mit.edu/15.053/www/AMP-Chapter-09.pdf&ved=2ahUKEwiN0cef_f7xAhU0CRAIHWLqCw0QFjAfegQILBAC&usg=AOvVaw1cQCbZJQbc55Z0VLPue2ul
@@ -2103,7 +2176,7 @@ U ovom odjeljku ćemo se pozabaviti   cjelobrojnim linearnim programiranjem (ILP
     & x \geq 0 \nonumber\\
     & x_i \in \mathbb{Z}, \mbox{ za sve } i \label{ilp-formulation}
 \end{align}
-U nastavku modelujmo nekoliko poznatih problema pomoću paradigme ILP-a.
+U nastavku modelujmo nekoliko poznatih problema pomoću paradigme ILP-a. 
 
 \subsection{Neki problemi modelovani pomoću ILP-a}
 
