@@ -3713,20 +3713,50 @@ Eksportovanje modela za moguće ponovno korištenje se može uraditi pozivom met
  % https://coin-or.github.io/pulp/main/the_optimisation_process.html
  PuLP je biblioteka visokog nivoa za modelovanje izgrađena u programskom jeziku Python.  
  Ona omogućava korisniku da kreira programe koristeći izraze prirodne za ovaj programski jezik 
- pri tome izbjegavajući pojavljivanje specijalne sintakse gdje god je to moguće. PuLP je fokusirana na podršći modelovanju i rješavanju LP i MILP modelima. Interesantno je da PuLP 
+ pri tome izbjegavajući pojavljivanje specijalne sintakse gdje god je to moguće. PuLP je fokusirana na podršći modelovanju i rješavanju LP i MILP modela. Interesantno je da PuLP 
  ne zavisi od nekih drugih softverskih paketa.   Podržava mnogo komercijalnih i nekomercijalnih rješavače, te može biti proširena za podržavanje dodatnih rješavača. 
  
- PuLP radi na principu modularnog pristupa prevođenja modela napisanog prema pravilima ovog modula na vektorsku prezentaciju modela internim postupkom te prosljeđivanju ovako konvertovanog modela u interfejs klase nekod od rješavača. Kako je interfejs mnogih rješavača sličan, ili se sa njima rukuje pisanjem modela u standardne .lp ili .mps  formate datoteka, osnovne generičke klase rješavača uključene su sa PuLP-om pored specifičnih interfejsa popularnih rješavača. Ove generičke klase rješavača se i mogu proširiti od strane korisnika novih rješavača uz minimalan trud.   
+ PuLP radi na principu modularnog pristupa prevođenja modela napisanog prema definisanim pravilima na vektorsku prezentaciju modela (koristeči vekrore, rijetke matrice itd.), nako čega je takav konvertovani model proslijeđen u interfejs klase nekod od rješavača. Kako je interfejs mnogih rješavača sličan, ili se sa njima rukuje pisanjem modela u standardne .lp ili .mps  formate datoteka, osnovne generičke klase rješavača uključene su sa PuLP-om pored specifičnih interfejsa popularnih rješavača. Ove generičke klase rješavača se mogu proširiti od strane korisnika novih rješavača uz minimalan trud.   
  
  Da bismo koristili PuLp modul, prvo importujemo:
  \begin{verbatim}
  	  from pulp import *
  \end{verbatim}
- Konkretno, ovaj paket se (u Linuxu) može instalirati pozivom: \emph{sudo pip install pulp} ili \emph{sudo apt-get install glpk-utils}. 
+ Konkretno, ovaj paket se (u Linux-u) može instalirati pozivom: \emph{sudo pip install pulp} ili \emph{sudo apt-get install glpk-utils}. 
  % https://www.coin-or.org/PuLP/CaseStudies/index.html (za primjere) 
- Kreiranje instance problem je dato sa sljedećim kodom:
+ Kreiranje instance problem je dato sljedećim kodom:
  \begin{verbatim}
  	prob = LpProblem("Naziv problema", LpMinimize)
  \end{verbatim}
+Ovdje je   riječ o problemu minimizacije. Ako bi bilo potrebno da maksimizujemo, drugi argument bi bio 
+LpMaximize. 
+
+\textbf{\emph{Deklarisanje varijabli}}.  Za deklarisanje varijabli se koristi klasa \emph{LpVariable}. Ona ima četiri atributa: prvi je naziv varijable, drugi donja granica vrijednosti varijable, treći gornju granicu za vrijednost varijable, dok četvrti označava tip varijable. Tip varijable koji je moguć LpContinuous ili LpInteger, označavajući neprekidnu (realnu) i diskretnu varijablu, redom.  
+Ako želimo deklarisati varijablu $x_1\leq 0$, koja je neprekidna, imali bismo sljedeću liniju koda:
+\begin{verbatim}
+	 x1 = LpVariable( "x1", 0, None, LpContinuous)
+\end{verbatim}
+\textbf{\emph{Deklarisanje funkcije cilja}}. Uz pomoć definisanih varijabli koristeći operatore iz skupa $\{+,-, \cdot \}$, dodajemo takvu funkciju na instancu problema (koristeći operator +=). Primjera radi, ako želimo da modelujemo funkciju cilja $x_1 + x_2$ (neprekidnih, pozitivnih varijabili), to bi uradili na sljedeći način:
+\begin{verbatim}
+	 x1 = LpVariable("x1", 0, None)
+	 x2 = LpVariable("x2", 0, None) 
+	 prob += (x1 + x2) # dodavanje funkcije cilja u model prob
+\end{verbatim}  
+\textbf{\emph{Deklarisanje ograničenja u modelu}}.  Na sličan način kao i za funkciju cilja, ograničenja se dodaju u model pomoću operatora +=. Implementacija ograničenja je bliska ograničenjima u modelu, dakle prvo se konstruišu izrazi koji su vezani nekim operatorom poređenja. Primjera radi, ako b željeli dodati ograničenje $x_1 + 2 x_2 \leq 2$ u prethodni model, imali bi 
+\begin{verbatim}
+	 prob+= ( x1 + 2 * x2) 
+\end{verbatim}
+Upisivanje modela u .lp format se vrši pozivom funkcije \emph{writeLP}, čiji je argument naziv fajla. 
+
+ \noindent \textbf{\emph{Metode za eksport rješenja (statistike) iz modela}}. Rješavanje modela se inicira pozivom funkcije \emph{solve} na instancu modela. Čitanje svih varijabli iz modela ide pomoću funkcije $variables()$. Svaka varijabla kao atribute ima svoj naziv (atribut name), te vrijednost koju je dobila pri rješavanju modela (atribut varValue). Atribut objective instance modela nosi (najbolju) vrijednost funkcije cilja dobijene rješavanjem modela. Status rješavanja se dobija iz atributa status instance modela. 
+ 
+ \begin{verbatim}
+ 	print "Status:", LpStatus[prob.status]
+ 	for v in prob.variables():
+ 	print(v.name, "=", v.varValue)
+ 	print("Vrijednost funkcije cilja: ", value(prob.objective))
+ \end{verbatim}
+ \subsection{Primjeri modelovani preko rješavača}
+ 
 \end{document}
 
