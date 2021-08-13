@@ -3872,11 +3872,12 @@ Ako želimo deklarisati varijablu $x_1\leq 0$, koja je neprekidna, imali bismo s
 	 x2 = LpVariable("x2", 0, None) 
 	 prob += (x1 + x2) # dodavanje funkcije cilja u model prob
 \end{verbatim}  
-\textbf{\emph{Deklarisanje ograničenja u modelu}}.  Na sličan način kao i za funkciju cilja, ograničenja se dodaju u model pomoću operatora +=. Implementacija ograničenja je bliska ograničenjima u modelu, dakle prvo se konstruišu izrazi koji su vezani nekim operatorom poređenja. Primjera radi, ako b željeli dodati ograničenje $x_1 + 2 x_2 \leq 2$ u prethodni model, imali bi 
+\textbf{\emph{Deklarisanje ograničenja u modelu}}.  Na sličan način kao i za funkciju cilja, ograničenja se dodaju u model pomoću operatora +=. Implementacija ograničenja je bliska ograničenjima u modelu, dakle prvo se konstruišu izrazi koji su vezani nekim operatorom poređenja. Primjera radi, ako bi željeli dodati ograničenja $x_1 + 2 x_2 \leq 2$ i $x_1-x_2 \geq 0$,  u prethodni model, imali bi 
 \begin{verbatim}
-	 prob+= ( x1 + 2 * x2) 
+	 prob+=  x1 + 2 * x2 <=2, "Ogranicenje 1"
+	 prob+=  x1 - x2 >= 0, "Ogranicenje 2" 
 \end{verbatim}
-Upisivanje modela u .lp format se vrši pozivom funkcije \emph{writeLP}, čiji je argument naziv fajla. 
+Upisivanje modela u .lp format se vrši pozivom funkcije \emph{writeLP()}, čiji je argument naziv fajla. 
 
  \noindent \textbf{\emph{Metode za eksport rješenja (statistike) iz modela}}. Rješavanje modela se inicira pozivom funkcije \emph{solve} na instancu modela. Čitanje svih varijabli iz modela ide pomoću funkcije $variables()$. Svaka varijabla kao atribute ima svoj naziv (atribut name), te vrijednost koju je dobila pri rješavanju modela (atribut varValue). Atribut objective instance modela nosi (najbolju) vrijednost funkcije cilja dobijene rješavanjem modela. Status rješavanja se dobija iz atributa status instance modela. 
  
@@ -3886,7 +3887,7 @@ Upisivanje modela u .lp format se vrši pozivom funkcije \emph{writeLP}, čiji j
  	print(v.name, "=", v.varValue)
  	print("Vrijednost funkcije cilja: ", value(prob.objective))
  \end{verbatim}
- \subsection{Primjeri modelovani preko rješavača}
+ \subsection{Primjena rješavača}
  
 \end{document}
 
