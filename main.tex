@@ -3152,6 +3152,136 @@ $$ \begin{array}{lll}
  \section{Metodi za Nalaženje Dopustivih Rješenja}
 
 \subsection{Pohlepni Algoritmi}
+ 
+Pohlepni algoritmi su programska paradigma koja gradi riješenje dio po dio tako da 
+uvijek izabere naredni dio (komponentu rješenja) koja naizgled donosi veće benefite nego odabir drugih komponenti. Ovi algoritmi se često koriste za rješavanje teških optimizacionih problema i najčešće su prva strategija koja se primjenjuje prije 
+upotrebe složenijih paradigmi. Optimizacioni problem se rijetko može riješiti pomoću pohlepnih algoritma ali on mogu ponuditi dobra aproksimaciona rješenja i kratkom vremenu i često su osnov za konstrukciju složenijih algoritama pomoću kojih se generišu  rješenja boljeg kvaliteta. Napomenimo da pohlepni algoritmi ne mogu uvijek biti iskorišteni za rješavanje problema; recimo Frakcijski Knapsak problem se rješava ali ne i 0-1 Knapsack problem. 
+
+U ovoj glavi razmatramo nekoliko najpoznatijih pohlepnih algoritama koji se nalaze u literaturi, kao što su:
+\begin{itemize}
+	\item  Kruskalov algoritam za minimalno pokrivajuće stablo (MST);
+	\item  Primov algoritam za minimalno pokrivajuće stablo;
+	\item  Dajkstra algoritam za nalaženje najkraćih puteva;
+	\item  Gridi algoritam za problem najdužeg zajedničkog podniza za skup stringova.
+\end{itemize}
+
+Svaku težinu grane $uv$ u grafu $G$, označimo sa $w(uv)$. 
+Krenimo prvo sa definicijom pokrivajućeg stabla, pa pritom i minimalnog pokrivajućeg stabla. Stablo $T =(V_1, E_1)$ je pokrivajuće za graf $G=(V,E)$ akko
+$V_1 = V$ i $E_1 \subseteq E$. Pokirvajuće stablo $T$ grapfa $G$ sa minimalnom težinom 
+$\sum_{e \in E(T)=E_1} w(e)$ se naziva minimalno pokrivajuće stablo (MST) grafa $G$. 
+Postoji nekoliko efikasnih algoritama za pronalazak MST, koje u nastavku i opisujemo u detalje. 
+
+
+\subsubsection{Primov algoritam za nalaženje minimalnog pokrivajućeg stabla.}
+
+
+Algoritam izvršava sljedeće korake:
+
+\begin{itemize}
+	\item kreirati skup mstSkup da bi se pratili svi čvorovi koji su već uključeni u MST
+	\item dodijeliti vrijednost svakom čvoru u ulaznom grafu. Prvo se te vrijednosti inicijalizuju na +$\infty$. Dodijeli vrijednosti 0 za čvor koji je izabran prvi u MST
+	\item Dok god mstSkup ne uključi sve čvorove, raditi sljedeće:
+	\begin{itemize}
+		\item izabrati čvor $u$ koji nije u mstSkup sa minimalnom vrijednošću;
+		\item mstSkup = mstSkup $\cup \{u\}$;
+		\item Update vrijednosti svih susjeda od $u$ na sljedeći način. 
+		Za svaki susjed od $v$, ako je težina grane $uv$ manja od
+		nego prijašnja vrijednost od $v$, update vrijednost na $w(uv)$. 
+	\end{itemize}
+\end{itemize}
+
+Ideja dodjele vrijednosti čvorovima koji još nisu prisutni u MST je u tome da se izabere grana minimalne težine koja treba da se doda u trenutno MST. Dakle, ove vrijednosti ukazuju na grane minimalne težine povezujući ih sa skupom čvorova koji su već uključeni u MST.
+
+Kompleksnost algoritma. Lista susjedstva i pretraga: $O(|V|^2)$. Ako  koristimo prioritetni red za nalaženje grane minimalne težine, onda se postiže kompleksnost
+od $O( |E| \log(|V|))$. 
+
+MST ima aplikacije u (1) dizajniranju mreža kao što je telefonska, gdje je potrebno u svaku kuću (koja predstavlja čvor) postaviti linije tako da se povežu sve kuće a da se potroši što manje materijala; (2) aproksimaciji drugih teških optimizacionih problema kao što je problem trgovačkog putnika (TSP). To je problem u kojem je potrebno naći najkraći put koji posjećuje svaki čvor u (težinskom) grafu najviše jednom. Primijetimo da su takvi putevi takođe MST. Ali MST ne mora biti stablo, jer mogu postojati čvorovi koji su posjećeni više puta. U to slučaju izbacimo takve grane i dobijemo put.  Prema tome, težina MST je manja nego težina TSP, jer minimizujemo nad većim skupom rješenja; 
+(3) Klaster analiza.
+$k$-klaster problem  se može posmatrati kao problem nalaženja MST a potom brisanja $k-1$ najskupljih grana iz MST. 
+
+\subsubsection{Kruskalov algoritam za nalaženje minimalnog pokrivajućeg stabla.}
+
+Ovo je još jedan pohlepni algoritam za nalaženje MST. Radi na principu sortiranja 
+grana na osnovu njihove težine. Preciznije, sljedeći koraci se izvršavaju:
+
+\begin{enumerate}
+	\item Sortiranje svih grana u neopadajućem poretku;
+	\item Odabir najlakše grane i provjera da li se formira ciklus ako se ova 
+	grana doda u skup grana koje su do sada ubačene u MST; Ako to nije slučaj, ubaciti granu u trenutni MST. Inače, izbaciti grani iz daljeg razmatranja;
+	\item Ponoviti korak 2, dok se ne doda tačno $|V|-1$ grana u MST.
+\end{enumerate} 
+
+\noindent Vremenska kompleksnost algoritma je $O(|E|\log |E|)$ ili $O(|E|\log |V|)$. Sortiranje grana uzima $O(|E| \log|E|)$ vremena. Potom, za svaku granu 
+se primjenjuje operacija nalaženja i dodavanja grane u skup. Ove dvije operacije se izvršavaju u $O(\log |V|)$ vremenu. Dakle, algoritam treba vrijeme od $O(|E|\log |E| + |E|\log |V|)$ za izvršavanje. Kako je $|E|=O(|V|^2)$, dobijamo traženu kompleksnost. 
+
+\subsubsection{Dajkstrin algoritam za nalaženje najkraćih puteva.}
+
+Ovaj algoritam je dosta sličan Primovom algoritmu. Ovaj algoritam generiše tzv. SPT (shortest path tree) sa datim korjenim čvorom tako da se formiraju dva skupa čvorova, jedan koji sadrži čvorove uključene u SPT, a na drugoj strani su ostali čvorovi. 
+U svakom koraku, nalazimo čvor koji je u drugom skupu sa minimalnom udaljenšću od korjenog čvora. Zatim se posmatraju njegovi susjedi te težine datih grana. U slučaju da je zbirna vrijednost manja od trenutne najbolje težine susjeda, ta težina se ažurira.
+Koraci algoritma su dati u Pseudokodu~\ref{alg:dijkstra-algorithm}.
+
+
+\begin{algorithm} 
+	\begin{algorithmic}[1]
+		\FOR{ svaki cvor $v \in V$:} 	%// Inicijalizacija  
+	      	\STATE   $dist[v] \gets +\infty$ 	%// Inicijalne udaljenosti od korjenog cvora $s$
+		    \STATE $previous[v] \gets null$ 	%// čvor prije u optimalnoj stazi
+		\ENDFOR
+		\STATE	$dist[s] \gets 0$ 	 
+		\STATE	$Q \gets V(G)=V$
+		\WHILE{$Q \neq \emptyset$} 	 
+		\STATE $u \gets$ cvor iz $Q$ sa najmanjom vrijednošću $dist$
+		\STATE $Q \gets Q \setminus \{u\}$
+		\FOR{ sve susjede $v$ od $u$}  
+		\STATE $temp \gets dist[u] + w(u, v)$
+		\IF{$temp < dist[v]$}
+		\STATE  $dist[v] \gets temp$
+		\STATE $previous[v] \gets u$ 
+		\ENDIF
+		\ENDFOR
+		\ENDWHILE
+		\STATE	\textbf{return} $previous$ 
+	\end{algorithmic}
+    		\caption{Dijkstra($G,s $)}\label{alg:dijkstra-algorithm}
+\end{algorithm}
+
+Vremenska kompleksnost gornje implementacije algoritma je $O(|V|^2)$. 
+
+Ako je graf predstavljem listom susjedstva, i $Q$ je implementiran kao binarni hip, 
+kompleksnost se redukuje na $O(|E| \cdot \log |V|)$.
+
+Napomenimo da Dijkstrin algoritam ne radi sa grafovima koji imaju negativne težine (pogledati inicijane uslove u prethonom pseudokodu, te liniju 12).  Za ovakve grafove,  primjenjuje se Bellman–Ford algoritam, algoritam baziran na dinamičkom programiranju. Njega ne pominjemo ovdje.  %, o kojem ćemo nešto više reći u narednim sekcijama.
+
+\subsubsection{Frakcioni Problem Ruksaka}
+
+Problem je definisan na sljedeći način. Neka je dato $n$ proizvoda sa svojim težinama, 
+te ruksak kapaciteta $W$. Zadatak je da se među svim proizvodima odaberu oni proizvodi i stave u ruksak tako da težina ruksaka bude što veća ali da se pri tom ne naruši kapacitet ruksaka.
+
+U 0-1 Knapsack problemu, ne dopušta se dijeljenje proizvoda, ili se uzima cijeli (1) ili se uopšte ne uzima (0). U frakcionalnom Knapsack problemu svaki proizvod posjeduje težinu i količinu, te se kao takav može podijeliti na dijelove (recimo uzme se pola od ukupne količine proizvoda). Efektno rijesenje se dobije primjenom pohlepnog algoritma, na sljedeći način. Računajmo podjele količina/vrijednost, te se proizvodi  sortiraju na osnovu tih vrijednosti (količnik).  Zatim uzmemo proizvod sa najvećim količnikom i dodamo ga u ruksak. Nastavljamo proces dodavanja sa sljedećim proizvodom dok ga ne budemo mogli dodati u ruksak cijelog. Potom dodamo dio njega (onoliko koliko se može a da se kapacitet ruksaka ne naruši). 
+
+\subsubsection{Pohlepni pristup za rješavanje LCS problema}
+
+LCS problem kao ulaz uzima $n$ stringova (označimo ovaj skup sa $S$) proizvoljne dužine. Zadatak je da se nađe podniz makimalne dužine tako da je on zajednički podniz za sve stringove. Ovaj problem se može riješiti u $O(n^m)$ vremenu uz pomoć dinamičkog programiranja (biće riječi o tome u narednim sekcijama), gdje je $n$ dužina najdužeg stringa u ulazu, a $m$ broj stringova u ulazu.
+
+Jedan od najjednostavnijih pristupa u rješavanu ovog problema je svakako \emph{pohlepni pristup}, tzv. \emph{Best-Next} (BN) heuristika. Prije nego navedemo detalje algoritma, uvedimo nekoliko definicija i oznaka. Za cjelobrojni vektor $\textrm{pL} = (\textrm{pL}_1,\ldots, \textrm{pL}_m)$, definišemo sa
+$S[\textrm{pL}] = \{s_i[\textrm{pL}_i, |s_i| \mid i=1,\ldots,m\}$, gdje $|s|$ označava dužinu stringa $s$, a $s[x,y]$ podstring stringa $s$ koji počinje od karaktera na poziciji $x$, a završava sa karakterom na poziciji $y$. Dalje, sa $\textrm{pL}_{i,a}$ definišemo poziciju prvog pojavljivanja karaktera \texttt{a} koja je  $\textrm{pL}_{i,a} \geq \textrm{pL}_i$ (ukoliko karakter ne postoji, vracamo $n+1$). Skup karaktera $\Sigma_{\textrm{pL}}$ koji se pojavljuju u svakom od stringova u $S[\textrm{pL}]$ se nazivaju dopustive ekstenzije u odnosu na $\textrm{pL}$.
+
+\noindent Pohlepni (BN) pristup izvršava sljedeće korake:
+\begin{itemize}
+	\item Kreće se od (parcijalnog) rješenja koje je prazna niska, $s=\varepsilon$;
+	\item Pozicioniramo pointere $\textrm{pL} \gets (1,\ldots, 1) $ na karaktere sa samog početka riječi;
+	\item Dok god jedan od $\textrm{pL}_i$ nije jednak $n+1$: 
+	\item $\Sigma_{\textrm{pL}} \gets$ Naći dopustive ekstenzije u $S[\textrm{pL}]$
+	\item Od svih karaktera u $\Sigma_{\textrm{pL}}$, odaberemo jedan koji minimizuje vrijednost funkcije 
+	$$g(\textrm{pL},a) = \sum_{i=1}^m\frac{\textrm{pL}_{i,a} - \textrm{pL}_i + 1 }{|s_i| - \textrm{pL}_i + 1 }, a \in \Sigma_{\textrm{pL}}.$$
+	Neka je taj karakter označen sa $a^*$. 
+	\item Ažuriramo: $s \gets  s \cdot a^*$, $\textrm{pL}_i \gets \textrm{pL}_{i, a^*} +1, i = 1,\ldots,m.$
+\end{itemize}
+Algoritam vraća vrijednost $s$. 
+
+Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje. 
+
+\noindent Primjer.  Neka su data dva stringa: $s_1 = \texttt{acb}, s_2 = \texttt{bac}$. Ako uzmemo  $ b$ kao prvi karakter, rješenje koje dobijamo je \texttt{b}. Medjutim, optimalno rješenje je string $s=\texttt{ac}$. 
 
 \subsection{Aproksimativni Algoritmi}
   %https://home.cs.colorado.edu/~srirams/courses/csci5654-fall13/ilpLectures.pdf
@@ -3201,13 +3331,13 @@ $$ \begin{array}{lll}
   \begin{algorithm}[!t] 
   	\caption{Gridi algoritam za Problem Pokrivanja Cvorova}\label{alg:gridi-vc}
   	\begin{algorithmic}[1]
-  		\State $C \gets \emptyset$
+  		\STATE $C \gets \emptyset$
   		\While{$E \neq \emptyset$}
-  		\State $(u,v) \gets$ bilo koja grana iz $E$
-  		\State $C \gets C \cup \{u,v\}$
-  		\State ukloniti sve grane incidentne sa  $u$ ili $v$ iz grafa $G$
+  		\STATE $(u,v) \gets$ bilo koja grana iz $E$
+  		\STATE $C \gets C \cup \{u,v\}$
+  		\STATE ukloniti sve grane incidentne sa  $u$ ili $v$ iz grafa $G$
   		\EndWhile
-  		\State \textbf{return} $C$
+  		\STATE \textbf{return} $C$
   	\end{algorithmic}
   \end{algorithm}
   
@@ -3222,13 +3352,13 @@ $$ \begin{array}{lll}
   \begin{algorithm}[!t] 
   	\caption{Gridi algoritam2 za Problem Pokrivanja Cvorova}\label{alg:gridi-vc-2}
   	\begin{algorithmic}[1]
-  		\State $C \gets \emptyset$
+  		\STATE $C \gets \emptyset$
   		\While{$E \neq \emptyset$}
-  		\State  $u \gets \textrm{argmin}_{u \in V(G)} deg(u)$
-  		\State  $C \gets C \cup \{u\}$
-  		\State $G \gets$ ukloniti sve grane incidentne sa $u$ iz $G$  
+  		\STATE  $u \gets \textrm{argmin}_{u \in V(G)} deg(u)$
+  		\STATE  $C \gets C \cup \{u\}$
+  		\STATE $G \gets$ ukloniti sve grane incidentne sa $u$ iz $G$  
   		\EndWhile
-  		\State \textbf{return} $C$
+  		\STATE \textbf{return} $C$
   	\end{algorithmic}
   \end{algorithm}
   
@@ -3268,18 +3398,18 @@ $$ \begin{array}{lll}
   \begin{algorithm}[!t] 
   	\caption{Gridi algoritam za TSP.}\label{alg:tsp-a1}
   	\begin{algorithmic}[1]
-  		\State \textbf{Ulaz}: kompletan graf $G$
-  		\State \textbf{Izlaz}: Hamiltonova kontura $T$ sa najmanjom tezinom
-  		\State $u,v \gets \mbox{argmin}_{uv \in E} w(u,v)$
-  		\State $S \gets \{u,v\}$
-  		\State $T \gets uv$
+  		\STATE \textbf{Ulaz}: kompletan graf $G$
+  		\STATE \textbf{Izlaz}: Hamiltonova kontura $T$ sa najmanjom tezinom
+  		\STATE $u,v \gets \mbox{argmin}_{uv \in E} w(u,v)$
+  		\STATE $S \gets \{u,v\}$
+  		\STATE $T \gets uv$
   		\While{$|S| == n$}
-  		\State $u,t \gets$ $\mbox{argmin}_{(u,t) \in V\setminus T \times T} \{w(u, t)\}$
-  		\State $ S \gets S \cup \{u\}$
-  		\State Neka cvor $q$ slijedi $u$ u  $T$
-  		\State Update $T$: $uq$ se izbacuje iz $T$, ubacuje se $utq$  
+  		\STATE $u,t \gets$ $\mbox{argmin}_{(u,t) \in V\setminus T \times T} \{w(u, t)\}$
+  		\STATE $ S \gets S \cup \{u\}$
+  		\STATE Neka cvor $q$ slijedi $u$ u  $T$
+  		\STATE Update $T$: $uq$ se izbacuje iz $T$, ubacuje se $utq$  
   		\EndWhile
-  		\State \textbf{return} $T$
+  		\STATE \textbf{return} $T$
   	\end{algorithmic}
   \end{algorithm}
   
@@ -3296,13 +3426,13 @@ $$ \begin{array}{lll}
   \begin{algorithm}[!t] 
   	\caption{Aproksimacioni algoritam 2 za TSP.}\label{alg:tsp-a2}
   	\begin{algorithmic}[1]
-  		\State \textbf{Ulaz}: kompletan graf $G$
-  		\State \textbf{Izlaz}: Hamiltonova kontura $T$ sa najmanjom tezinom
-  		\State Izracunati MST
-  		\State Zamijeniti svaku granu od MST sa dvije kopije istog
-  		\State Naci Ojlerovu turu $T$
-  		\State Skratiti turu $T$ da bi dobila Hamiltonov ciklus (konturu) $T$ (izbaciti duple cvorove na turi $T$) 
-  		\State \textbf{return} $T$ 
+  		\STATE \textbf{Ulaz}: kompletan graf $G$
+  		\STATE \textbf{Izlaz}: Hamiltonova kontura $T$ sa najmanjom tezinom
+  		\STATE Izracunati MST
+  		\STATE Zamijeniti svaku granu od MST sa dvije kopije istog
+  		\STATE Naci Ojlerovu turu $T$
+  		\STATE Skratiti turu $T$ da bi dobila Hamiltonov ciklus (konturu) $T$ (izbaciti duple cvorove na turi $T$) 
+  		\STATE \textbf{return} $T$ 
   	\end{algorithmic}
   \end{algorithm}
   Ovaj algoritam osigurava 2--faktor aproksimaciju. 
@@ -3351,14 +3481,14 @@ $$ \begin{array}{lll}
   \begin{algorithm}[!t] 
   	\caption{Kristofidesov algoritam.}\label{alg:tsp-a3}
   	\begin{algorithmic}[1]
-  		\State \textbf{Ulaz}: kompletan graf $G$
-  		\State \textbf{Izlaz}: Hamiltonova kontura $T$ sa najmanjom tezinom
-  		\State $T \gets$ Naci MST grafa $G$
-  		\State $M \gets$ naci minimalan mecing svih cvorova u $T$ neparnog stepena
-  		\State Dodamo grane $M$ u MST $T$
-  		\State Nadjimo Ojlerovu konturu $T^o$
-  		\State $T \gets$ Skratimo $T^o$ (duplikati cvorova se izbace)
-  		\State \textbf{return} $T$
+  		\STATE \textbf{Ulaz}: kompletan graf $G$
+  		\STATE \textbf{Izlaz}: Hamiltonova kontura $T$ sa najmanjom tezinom
+  		\STATE $T \gets$ Naci MST grafa $G$
+  		\STATE $M \gets$ naci minimalan mecing svih cvorova u $T$ neparnog stepena
+  		\STATE Dodamo grane $M$ u MST $T$
+  		\STATE Nadjimo Ojlerovu konturu $T^o$
+  		\STATE $T \gets$ Skratimo $T^o$ (duplikati cvorova se izbace)
+  		\STATE \textbf{return} $T$
   	\end{algorithmic}
   \end{algorithm}
   
@@ -3417,14 +3547,14 @@ $$ \begin{array}{lll}
   \begin{algorithm}[!t] 
   	\caption{GREEDY-SET-COVER metod za Problem Pokrivanja Skupa.}\label{alg:set-cover-gridi}
   	\begin{algorithmic}[1]
-  		\State \textbf{Ulaz}: $X$ i familija podskupova $\mathcal{F}$ od $X$
-  		\State \textbf{Izlaz}: pokrivac skupa $X$
-  		\State $U \gets X$
-  		\State $C \gets \emptyset$
+  		\STATE \textbf{Ulaz}: $X$ i familija podskupova $\mathcal{F}$ od $X$
+  		\STATE \textbf{Izlaz}: pokrivac skupa $X$
+  		\STATE $U \gets X$
+  		\STATE $C \gets \emptyset$
   		\While{$U \neq \emptyset$}
-  		\State $f \gets \mbox{argmax}_{f \in \mathcal{F}} |\{ f' \mid f' \in U  \wedge\ |f \cap f'| \geq 1\}| $
-  		\State $U \gets U \setminus \{f\}$
-  		\State $C \gets C \cup \{f\}$
+  		\STATE $f \gets \mbox{argmax}_{f \in \mathcal{F}} |\{ f' \mid f' \in U  \wedge\ |f \cap f'| \geq 1\}| $
+  		\STATE $U \gets U \setminus \{f\}$
+  		\STATE $C \gets C \cup \{f\}$
   		\EndWhile
   	\end{algorithmic}
   \end{algorithm}
@@ -3526,11 +3656,11 @@ $$ \begin{array}{lll}
   \begin{algorithm}[!t] 
   	\caption{Gridi heuristika za Problem Najkraceg Nadstringa.}\label{alg:ss}
   	\begin{algorithmic}[1]
-  		\State \textbf{Ulaz}: skup $S=\{s_1,...,s_n\}$
-  		\State \textbf{Izlaz}: aproksimacioni nadstring $s$
-  		\State Izracunati instancu $(X,\mathcal{F})$ problema najkraceg nadstringa
-  		\State  $\mathcal{C}=\{set(\theta_1), set(\theta_2),...,set(\theta_p)\}\gets$ Primijeniti GREEDY-SET-COVER$(X,\mathcal{F})$
-  		\State  $s \gets \theta_1 \cdots \theta_p$
+  		\STATE \textbf{Ulaz}: skup $S=\{s_1,...,s_n\}$
+  		\STATE \textbf{Izlaz}: aproksimacioni nadstring $s$
+  		\STATE Izracunati instancu $(X,\mathcal{F})$ problema najkraceg nadstringa
+  		\STATE  $\mathcal{C}=\{set(\theta_1), set(\theta_2),...,set(\theta_p)\}\gets$ Primijeniti GREEDY-SET-COVER$(X,\mathcal{F})$
+  		\STATE  $s \gets \theta_1 \cdots \theta_p$
   	\end{algorithmic}
   \end{algorithm}
   
