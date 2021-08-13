@@ -3593,7 +3593,7 @@ $$ \begin{array}{lll}
  
  \noindent Sljedeći korak je implementacija varijabli, funkcije cilja i ograničenja u modelu. 
  
- \noindent \textbf{Deklarisanje varijabli}. Ako zelimo da deklarisemo (realnu) varijablu $x$ gdje je $0 \leq x \leq 40$, koristimo klasu \emph{IloNumVar}, što odgovara sljedećoj liniji koda:
+ \noindent \textbf{\emph{Deklarisanje varijabli}}. Ako zelimo da deklarisemo (realnu) varijablu $x$ gdje je $0 \leq x \leq 40$, koristimo klasu \emph{IloNumVar}, što odgovara sljedećoj liniji koda:
  \begin{verbatim}
  	IloNumVar x = IloNumVar(env,0.0,40.0);
  \end{verbatim}
@@ -3616,7 +3616,7 @@ Ako je potrebno implementirati varijablu za koju je $x \geq 0$ to radimo kao u p
  \noindent Ako želimo da deklarišemo visedimenzionalne promjenjive kao što je $x_{i,j}, i=1,...,n$ i $j=1,...,m$, onda pozivamo templejt klasu $\textbf{IloArray}<>$.
  
  \begin{verbatim}
- 	typedef IloArray<IloNumArray> FloatMatrix; // x_ij 
+ 	typedef IloArray<IloNumVarArray> FloatMatrix; // x_ij 
  	typedef IloArray<FloatMatrix> Float3Matrix; // 3D niz var: x_ijk
  	
  	FloatMatrix x(env, n);
@@ -3628,7 +3628,7 @@ Ako je potrebno implementirati varijablu za koju je $x \geq 0$ to radimo kao u p
  	}
  \end{verbatim}
  
- \noindent \textbf{Funkcija cilja}. 
+ \noindent \textbf{\emph{Funkcija cilja}}. 
  Postoje dvije klase koje služe za deklarisanje funkcija cilja: \emph{IloMaximize}, \emph{IloMinimize}, zavisno od toga da li makimizujemo ili minimizujemo. \emph{IloMaximize} se prosljeđuju dva parametra: objekat IloEnv okruzenja, te objekat klase \emph{IloExpr} gdje se definiše  izraz koji odgovara funkciji cilja. 
  
  \begin{verbatim}
@@ -3652,7 +3652,7 @@ Ako je potrebno implementirati varijablu za koju je $x \geq 0$ to radimo kao u p
  	model.add(obj); // dodavanje funkcije cilja u model
  \end{verbatim}
  
- \noindent \textbf{Dodavanje ograničenja u model}. Ograničenja se direktno mogu dodati  u model sa funkcijom \emph{add}, dakle kao 
+ \noindent \textbf{\emph{Dodavanje ograničenja u model}}. Ograničenja se direktno mogu dodati  u model sa funkcijom \emph{add}, dakle kao 
  model.add($expr1 <= expr2$), gdje mjesto ``$<=$'' mogu biti ``=='' ili ``$>=$''. Umjesto izraza $expr1$ ili $expr2$ može da stoji i skalar. Recimo da treba da modelujemo sljedeće ograničenje:
  $$s_j = \sum_{t=1}^n t \cdot x_{jt}, \forall j.$$ 
  Sljedeća implementacija odgovara ovom ograničenju: 
@@ -3678,7 +3678,7 @@ Ako je potrebno implementirati varijablu za koju je $x \geq 0$ to radimo kao u p
       	 model.add(c); //dodavanje ograničenja u model
  \end{verbatim}
  
- \noindent \textbf{Metode za eksport rješenja (statistike) iz modela}. Metod \emph{getStatus} (koji se poziva na instancu klase \emph{IloCplex})  pokazuje da li je rješenje koje je nađeno dopustivo, ograničeno ili optimalno ili je CPLEX pokazao da je model nedopustiv ili neogranicen.
+ \noindent \textbf{\emph{Metode za eksport rješenja (statistike) iz modela}}. Metod \emph{getStatus} (koji se poziva na instancu klase \emph{IloCplex})  pokazuje da li je rješenje koje je nađeno dopustivo, ograničeno ili optimalno ili je CPLEX pokazao da je model nedopustiv ili neogranicen.
  
  \begin{verbatim}
  	// kreiranje modela 
@@ -3707,8 +3707,23 @@ Ako je potrebno implementirati varijablu za koju je $x \geq 0$ to radimo kao u p
      	\item \emph{con} -- ograničenja u modelu (instanca klase \emph{IloRangeArray}) za koje se računaju koeficijenti koji odgovaraju dualu. 
      \end{itemize}
 \end{itemize}
-
- \subsection{Rješavač SciPy.PuLP u Python-u}
+Eksportovanje modela za moguće ponovno korištenje se može uraditi pozivom metoda \emph{exportModel}, čiji je argument naziv fajla (.lp ekstenzija).  
+ \subsection{Rješavač PuLP u Python-u}
+ % http://www.optimization-online.org/DB_FILE/2011/09/3178.pdf
+ % https://coin-or.github.io/pulp/main/the_optimisation_process.html
+ PuLP je biblioteka visokog nivoa za modelovanje izgrađena u programskom jeziku Python.  
+ Ona omogućava korisniku da kreira programe koristeći izraze prirodne za ovaj programski jezik 
+ pri tome izbjegavajući pojavljivanje specijalne sintakse gdje god je to moguće. PuLP je fokusirana na podršći modelovanju i rješavanju LP i MILP modelima. Interesantno je da PuLP 
+ ne zavisi od nekih drugih softverskih paketa.   Podržava mnogo komercijalnih i nekomercijalnih rješavače, te može biti proširena za podržavanje dodatnih rješavača. 
+ 
+ PuLP radi na principu modularnog pristupa prevođenja modela napisanog prema pravilima ovog modula na vektorsku prezentaciju modela internim postupkom te prosljeđivanju ovako konvertovanog modela u interfejs klase nekod od rješavača. Kako je interfejs mnogih rješavača sličan, ili se sa njima rukuje pisanjem modela u standardne .lp ili .mps  formate datoteka, osnovne generičke klase rješavača uključene su sa PuLP-om pored specifičnih interfejsa popularnih rješavača. Ove generičke klase rješavača se i mogu proširiti od strane korisnika novih rješavača uz minimalan trud.   
+ 
+ Da bismo koristili PuLp modul, prvo importujemo:
+ \begin{verbatim}
+ 	  from pulp import *
+ \end{verbatim}
+ Konkretno, ovaj paket se (u Linuxu) može instalirati pozivom: \emph{sudo pip install pulp} ili \emph{sudo apt-get install glpk-utils}. 
+ % https://www.coin-or.org/PuLP/CaseStudies/index.html (za primjere) 
  
 \end{document}
 
