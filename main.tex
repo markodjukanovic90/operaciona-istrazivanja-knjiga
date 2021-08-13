@@ -3724,6 +3724,9 @@ Eksportovanje modela za moguće ponovno korištenje se može uraditi pozivom met
  \end{verbatim}
  Konkretno, ovaj paket se (u Linuxu) može instalirati pozivom: \emph{sudo pip install pulp} ili \emph{sudo apt-get install glpk-utils}. 
  % https://www.coin-or.org/PuLP/CaseStudies/index.html (za primjere) 
- 
+ Kreiranje instance problem je dato sa sljedećim kodom:
+ \begin{verbatim}
+ 	prob = LpProblem("Naziv problema", LpMinimize)
+ \end{verbatim}
 \end{document}
 
