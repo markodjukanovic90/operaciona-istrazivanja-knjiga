@@ -3149,79 +3149,80 @@ $$ \begin{array}{lll}
  
   \subsection{Lagranžova Dekompozicija}
  
- \section{Metodi za Nalaženje Dopustivih Rješenja}
+ \section{Metode za Nalaženje Dopustivih Rješenja}
 
 \subsection{Pohlepni Algoritmi}
  
 Pohlepni algoritmi su programska paradigma koja gradi riješenje dio po dio tako da 
-uvijek izabere naredni dio (komponentu rješenja) koja naizgled donosi veće benefite nego odabir drugih komponenti. Ovi algoritmi se često koriste za rješavanje teških optimizacionih problema i najčešće su prva strategija koja se primjenjuje prije 
-upotrebe složenijih paradigmi. Optimizacioni problem se rijetko može riješiti pomoću pohlepnih algoritma ali on mogu ponuditi dobra aproksimaciona rješenja i kratkom vremenu i često su osnov za konstrukciju složenijih algoritama pomoću kojih se generišu  rješenja boljeg kvaliteta. Napomenimo da pohlepni algoritmi ne mogu uvijek biti iskorišteni za rješavanje problema; recimo Frakcijski Knapsak problem se rješava ali ne i 0-1 Knapsack problem. 
+uvijek izabere naredni dio (komponentu rješenja) koja naizgled donosi veće benefite u odnosu na sve ostale komponente. Dakle, u svakom trenutku bira se komponenta koja je lokalno najbolja.  Ovi algoritmi se često koriste u rješavanju teških optimizacionih problema i najčešće su prva strategija koja se primjenjuje prije 
+upotrebe neke složenije paradigme. Optimizacioni problem se rijetko može riješiti do optimalnost pomoću pohlepnih algoritma ali se sa njim mogu ponuditi dobra aproksimaciona rješenja u kratkom vremenskom periodu koja često služe kao osnov za konstrukciju naprednijih algoritama pomoću koja nalaze  rješenja boljeg kvaliteta. Pohlepni algoritmi nekad mogu riješiti problem, kao što je, recimo, Frakcijski problem ruksaka ali ne i 0-1 Knapsack problem. 
 
-U ovoj glavi razmatramo nekoliko najpoznatijih pohlepnih algoritama koji se nalaze u literaturi, kao što su:
+U ovoj sekciji razmatramo nekoliko poznatih pohlepnih algoritama koji se mogu naći u literaturi, kao što su:
 \begin{itemize}
-	\item  Kruskalov algoritam za minimalno pokrivajuće stablo (MST);
-	\item  Primov algoritam za minimalno pokrivajuće stablo;
-	\item  Dajkstra algoritam za nalaženje najkraćih puteva;
-	\item  Gridi algoritam za problem najdužeg zajedničkog podniza za skup stringova.
+	\item  \emph{Kruskalov algoritam} za minimalno pokrivajuće stablo (MST);
+	\item  \emph{Primov algoritam} za minimalno pokrivajuće stablo;
+	\item  \emph{Dajkstrin algoritam} za nalaženje najkraćih puteva;
+	\item  Pohlepni algoritam za problem \emph{najdužeg zajedničkog podniza} za proizvoljan skup stringova.
 \end{itemize}
 
-Svaku težinu grane $uv$ u grafu $G$, označimo sa $w(uv)$. 
-Krenimo prvo sa definicijom pokrivajućeg stabla, pa pritom i minimalnog pokrivajućeg stabla. Stablo $T =(V_1, E_1)$ je pokrivajuće za graf $G=(V,E)$ akko
-$V_1 = V$ i $E_1 \subseteq E$. Pokirvajuće stablo $T$ grapfa $G$ sa minimalnom težinom 
-$\sum_{e \in E(T)=E_1} w(e)$ se naziva minimalno pokrivajuće stablo (MST) grafa $G$. 
-Postoji nekoliko efikasnih algoritama za pronalazak MST, koje u nastavku i opisujemo u detalje. 
+Neka je dat težinski graf $G=(V,E)$. Svaku težinu grane $uv \in E $ u grafu $G$, označimo sa $w(uv)$. 
+Krenimo prvo sa definicijom pokrivajućeg stabla, pa potom i minimalnog pokrivajućeg stabla. 
+\begin{definition}
+  Stablo $T =(V_1, E_1)$ je pokrivajuće za graf $G=(V,E)$ akko
+  $V_1 = V$ i $E_1 \subseteq E$. Pokrivajuće stablo $T$ grafa $G$ sa minimalnom težinom 
+  $\sum_{e \in E(T)=E_1} w(e)$ se naziva minimalno pokrivajuće stablo (MST) grafa $G$. 
+\end{definition}
+Postoji nekoliko efikasnih algoritama za pronalazak MST, koje u nastavku i opisujemo. 
 
 
-\subsubsection{Primov algoritam za nalaženje minimalnog pokrivajućeg stabla.}
-
+\subsubsection{Primov algoritam.}
 
 Algoritam izvršava sljedeće korake:
 
 \begin{itemize}
-	\item kreirati skup mstSkup da bi se pratili svi čvorovi koji su već uključeni u MST
-	\item dodijeliti vrijednost svakom čvoru u ulaznom grafu. Prvo se te vrijednosti inicijalizuju na +$\infty$. Dodijeli vrijednosti 0 za čvor koji je izabran prvi u MST
-	\item Dok god mstSkup ne uključi sve čvorove, raditi sljedeće:
+	\item Kreirati skup \emph{mstSkup} da bi se pratili svi čvorovi koji su već uključeni u MST.
+	\item Dodijeliti vrijednost svakom čvoru u ulaznom grafu. Vrijednosti inicijalizovati na +$\infty$. 
+	      Dodijeli vrijednosti 0 za čvor koji je izabran prvi u MST;
+	\item Dok god \emph{mstSkup} ne uključi sve čvorove, radimo sljedeće korake:
 	\begin{itemize}
-		\item izabrati čvor $u$ koji nije u mstSkup sa minimalnom vrijednošću;
-		\item mstSkup = mstSkup $\cup \{u\}$;
-		\item Update vrijednosti svih susjeda od $u$ na sljedeći način. 
-		Za svaki susjed od $v$, ako je težina grane $uv$ manja od
-		nego prijašnja vrijednost od $v$, update vrijednost na $w(uv)$. 
+		\item Izabrati čvor $u$ koji nije u \emph{mstSkup} sa minimalnom vrijednošću (pohlepni korak);
+		\item \emph{mstSkup} = \emph{mstSkup}$\cup \{u\}$;
+		\item Ažurirati vrijednosti svih susjeda čvora $u$ na sljedeći način. 
+		      Za svaki susjed $v$, ako je težina grane $uv$ manja od
+		      ranije vrijednosti od $v$, dodijeliti vrijednost čvoru $v$ na $w(uv)$. 
 	\end{itemize}
 \end{itemize}
 
-Ideja dodjele vrijednosti čvorovima koji još nisu prisutni u MST je u tome da se izabere grana minimalne težine koja treba da se doda u trenutno MST. Dakle, ove vrijednosti ukazuju na grane minimalne težine povezujući ih sa skupom čvorova koji su već uključeni u MST.
+Ideja dodjele vrijednosti čvorovima koji još nisu prisutni u MST je u tome da se efikasno izabere grana minimalne težine koja treba da se doda u trenutno MST. Dakle, ove vrijednosti ukazuju na grane minimalne težine povezujući ih sa skupom čvorova koji su već uključeni u MST.
 
-Kompleksnost algoritma. Lista susjedstva i pretraga: $O(|V|^2)$. Ako  koristimo prioritetni red za nalaženje grane minimalne težine, onda se postiže kompleksnost
-od $O( |E| \log(|V|))$. 
+Kompleksnost algoritma. Lista susjedstva i pretraga: $O(|V|^2)$. Ako  koristimo prioritetni red za nalaženje grane minimalne težine, postiže se kompleksnost od $O( |E| \log(|V|))$. 
 
-MST ima aplikacije u (1) dizajniranju mreža kao što je telefonska, gdje je potrebno u svaku kuću (koja predstavlja čvor) postaviti linije tako da se povežu sve kuće a da se potroši što manje materijala; (2) aproksimaciji drugih teških optimizacionih problema kao što je problem trgovačkog putnika (TSP). To je problem u kojem je potrebno naći najkraći put koji posjećuje svaki čvor u (težinskom) grafu najviše jednom. Primijetimo da su takvi putevi takođe MST. Ali MST ne mora biti stablo, jer mogu postojati čvorovi koji su posjećeni više puta. U to slučaju izbacimo takve grane i dobijemo put.  Prema tome, težina MST je manja nego težina TSP, jer minimizujemo nad većim skupom rješenja; 
-(3) Klaster analiza.
-$k$-klaster problem  se može posmatrati kao problem nalaženja MST a potom brisanja $k-1$ najskupljih grana iz MST. 
+MST ima aplikacije u ($i$) dizajniranju mreža kao što je telefonska, gdje je potrebno u svako domaćinstvo (koje je predstavljeno jednim čvorom) postaviti linije tako da se povežu sva domaćinstva u mrežu a da se potroši što manje materijala na infrastrukturu mreže; ($ii$) aproksimaciji drugih teških optimizacionih problema kao što je problem trgovačkog putnika (TSP). Ponovimo, u TSP-u je potrebno naći najkraću konturu koji posjećuje u (težinskom) grafu. Primijetimo da su takvi putevi takođe MST. Težina MST je manja nego težina TSP, jer minimizujemo nad većim skupom rješenja, tako da se može pokazati da je nalazak MST-a u težinskom grafu aproksimira nalazak TSP-a (nad euklidskim težinskim grafovima).  
+($iii$) Klaster analiza. $k$-klaster problem  se može posmatrati kao problem nalaženja MST-a, a potom brisanja $k-1$ najskupljih grana iz MST. 
 
-\subsubsection{Kruskalov algoritam za nalaženje minimalnog pokrivajućeg stabla.}
+\subsubsection{Kruskalov algoritam.}
 
 Ovo je još jedan pohlepni algoritam za nalaženje MST. Radi na principu sortiranja 
-grana na osnovu njihove težine. Preciznije, sljedeći koraci se izvršavaju:
+grana na osnovu njihove težine. Neka je $\emph{mst} = \emptyset$. Preciznije, sljedeći koraci se izvršavaju:
 
 \begin{enumerate}
 	\item Sortiranje svih grana u neopadajućem poretku;
 	\item Odabir najlakše grane i provjera da li se formira ciklus ako se ova 
-	grana doda u skup grana koje su do sada ubačene u MST; Ako to nije slučaj, ubaciti granu u trenutni MST. Inače, izbaciti grani iz daljeg razmatranja;
-	\item Ponoviti korak 2, dok se ne doda tačno $|V|-1$ grana u MST.
+	grana doda u skup grana koje su do sada ubačene u skup \emph{mst}; Ako to nije slučaj, ubaciti granu u trenutni skup \emph{mst}. Inače, uzeti granu koja je sljedeća u sortiranom nizu (pohlepni korak);
+	\item Ponoviti korak 2, dok se ne doda tačno $|V|-1$ grana u \emph{mst}.
 \end{enumerate} 
 
 \noindent Vremenska kompleksnost algoritma je $O(|E|\log |E|)$ ili $O(|E|\log |V|)$. Sortiranje grana uzima $O(|E| \log|E|)$ vremena. Potom, za svaku granu 
-se primjenjuje operacija nalaženja i dodavanja grane u skup. Ove dvije operacije se izvršavaju u $O(\log |V|)$ vremenu. Dakle, algoritam treba vrijeme od $O(|E|\log |E| + |E|\log |V|)$ za izvršavanje. Kako je $|E|=O(|V|^2)$, dobijamo traženu kompleksnost. 
+se primjenjuje operacija nalaženja i dodavanja grane u skup \emph{mst}. Ove dvije operacije se izvršavaju u $O(\log |V|)$ vremenu. Dakle, algoritam treba vrijeme od $O(|E|\log |E| + |E|\log |V|)$ za svoje izvršavanje. Kako je $|E|=O(|V|^2)$, dobijamo kompleksnost $O(|E|\mathrm{log}(|V|))$. 
 
-\subsubsection{Dajkstrin algoritam za nalaženje najkraćih puteva.}
+\subsubsection{Dajkstrin algoritam}
 
-Ovaj algoritam je dosta sličan Primovom algoritmu. Ovaj algoritam generiše tzv. SPT (shortest path tree) sa datim korjenim čvorom tako da se formiraju dva skupa čvorova, jedan koji sadrži čvorove uključene u SPT, a na drugoj strani su ostali čvorovi. 
-U svakom koraku, nalazimo čvor koji je u drugom skupu sa minimalnom udaljenšću od korjenog čvora. Zatim se posmatraju njegovi susjedi te težine datih grana. U slučaju da je zbirna vrijednost manja od trenutne najbolje težine susjeda, ta težina se ažurira.
-Koraci algoritma su dati u Pseudokodu~\ref{alg:dijkstra-algorithm}.
+Ovaj algoritam je dosta sličan Primovom algoritmu koji služi za nalaženje najkraćih puteva. Ovaj algoritam generiše tzv. SPT (eng. \emph{shortest path tree}) sa datim korjenim čvorom $s$ tako  što se formiraju dva disjunktna skupa čvorova, jedan koji sadrži čvorove uključene u SPT, a na drugoj strani svi ostali čvorovi. Inicijalno, svim čvorovima je dodjeljena vrijednost, tj. $dist[u]=\ +\infty, \forall u \in V\setminus \{s\}$, $dist[s]=0$. Neka je $Q = V$. 
+U svakom koraku algoritma nalazimo čvor $u$ koji je u skupu $Q$ sa minimalnom udaljenšću \emph{dist} od korjenog čvora $s$. Zatim se posmatraju njegovi susjedi $v$ te težine grana od čvora $u$. U slučaju da je zbirna vrijednost $dist[u]$  i težine grane $w(uv)$ manja od trenutne $dist[v]$, vrijednost $dist[v]$ se ažurira jer je nađen novi najkraći put od $s$ od $v$.  Čvor $u$ se zatim izbacuje iz skupa $Q$. Algoritam nastavlja sa istim koracima dok god $Q \neq \emptyset$. 
+Svi koraci algoritma su dati u Algoritmu~\ref{alg:dijkstra-algorithm}. Nakon završetka algoritma, vrijednost \emph{dist[u]} odgovara težini najkraćeg puta od korjenog čvora $s$ do čvora $u$. 
 
 
-\begin{algorithm} 
+\begin{algorithm}[!ht]
 	\begin{algorithmic}[1]
 		\FOR{ svaki cvor $v \in V$:} 	%// Inicijalizacija  
 	      	\STATE   $dist[v] \gets +\infty$ 	%// Inicijalne udaljenosti od korjenog cvora $s$
@@ -3245,20 +3246,26 @@ Koraci algoritma su dati u Pseudokodu~\ref{alg:dijkstra-algorithm}.
     		\caption{Dijkstra($G,s $)}\label{alg:dijkstra-algorithm}
 \end{algorithm}
 
-Vremenska kompleksnost gornje implementacije algoritma je $O(|V|^2)$. 
-
-Ako je graf predstavljem listom susjedstva, i $Q$ je implementiran kao binarni hip, 
+Vremenska kompleksnost gornje implementacije algoritma je $O(|V|^2)$. Ako je graf predstavljem listom susjedstva, i skup $Q$ (linija 6, Algoritam \ref{alg:dijkstra-algorithm}) je implementiran kao binarni hip, 
 kompleksnost se redukuje na $O(|E| \cdot \log |V|)$.
 
-Napomenimo da Dijkstrin algoritam ne radi sa grafovima koji imaju negativne težine (pogledati inicijane uslove u prethonom pseudokodu, te liniju 12).  Za ovakve grafove,  primjenjuje se Bellman–Ford algoritam, algoritam baziran na dinamičkom programiranju. Njega ne pominjemo ovdje.  %, o kojem ćemo nešto više reći u narednim sekcijama.
+Napomenimo da Dijkstrin algoritam ne radi sa grafovima koji imaju negativne težine (pogledati inicijane uslove u  pseudokodu, te liniju 12).  Za ovakve grafove,  primjenjuje se Bellman–Ford algoritam koji je baziran na dinamičkom programiranju. Njega ne pominjemo u detaljima u ovoj knjizi.  %, o kojem ćemo nešto više reći u narednim sekcijama.
 
 \subsubsection{Frakcioni Problem Ruksaka}
 
-Problem je definisan na sljedeći način. Neka je dato $n$ proizvoda sa svojim težinama, 
-te ruksak kapaciteta $W$. Zadatak je da se među svim proizvodima odaberu oni proizvodi i stave u ruksak tako da težina ruksaka bude što veća ali da se pri tom ne naruši kapacitet ruksaka.
+Ovaj problem je definisan na sljedeći način. Neka je dato $n$ proizvoda sa svojim  težinom i vrijednošću, 
+te ruksak čiji je kapacitet $W$. Zadatak je da se među svim proizvodima odaberu neki proizvodi i stave u ruksak tako da vrijednost u ruksaku bude što veća ali da se pri tom ne naruši kapacitet ruksaka.
 
-U 0-1 Knapsack problemu, ne dopušta se dijeljenje proizvoda, ili se uzima cijeli (1) ili se uopšte ne uzima (0). U frakcionalnom Knapsack problemu svaki proizvod posjeduje težinu i količinu, te se kao takav može podijeliti na dijelove (recimo uzme se pola od ukupne količine proizvoda). Efektno rijesenje se dobije primjenom pohlepnog algoritma, na sljedeći način. Računajmo podjele količina/vrijednost, te se proizvodi  sortiraju na osnovu tih vrijednosti (količnik).  Zatim uzmemo proizvod sa najvećim količnikom i dodamo ga u ruksak. Nastavljamo proces dodavanja sa sljedećim proizvodom dok ga ne budemo mogli dodati u ruksak cijelog. Potom dodamo dio njega (onoliko koliko se može a da se kapacitet ruksaka ne naruši). 
+U 0-1 problemu ruksaka se ne dopušta dijeljenje proizvoda, ili se uzima cijeli (1) ili se uopšte ne uzima (0). U frakcionalnom problemu ruksaka, svaki proizvod posjeduje težinu i vrijednost, te se kao takav može podijeliti na dijelove (recimo uzme se pola od ukupne količine proizvoda). Efikasno riješavanje ovog problema se izvodi primjenom pohlepnog algoritma na sljedeći način. 
+\begin{itemize}
+	\item Računajmo podjele količina/vrijednost za svaki proizvod, te se proizvodi  sortiraju na osnovu tih vrijednosti (količnik).   \item Uzmemo proizvod sa najvećom količničkom vrijednošću te ga dodamo u ruksak. 
+	\item Nastavljamo proces dodavanja sa sljedećim proizvodom dok ga ne budemo mogli da ga  dodamo cijelog u ruksak.    Ako je to slučaj, dodamo dio njega (onoliko koliko god je moguće, a da se kapacitet ruksaka ne naruši). 
+\end{itemize}
+Može se pokazati sljedeća teorema. 
 
+\begin{thm}
+      Pohlepni algoritam opisan prethodno za problem Frakcionog ruksaka nalazi optimalno rješenje.
+\end{thm}
 \subsubsection{Pohlepni pristup za rješavanje LCS problema}
 
 LCS problem kao ulaz uzima $n$ stringova (označimo ovaj skup sa $S$) proizvoljne dužine. Zadatak je da se nađe podniz makimalne dužine tako da je on zajednički podniz za sve stringove. Ovaj problem se može riješiti u $O(n^m)$ vremenu uz pomoć dinamičkog programiranja (biće riječi o tome u narednim sekcijama), gdje je $n$ dužina najdužeg stringa u ulazu, a $m$ broj stringova u ulazu.
@@ -3285,6 +3292,99 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje.
 
 \subsection{Aproksimativni Algoritmi}
   %https://home.cs.colorado.edu/~srirams/courses/csci5654-fall13/ilpLectures.pdf
+  
+    Veliki broj optimizacionih problema u praksi jednostavno ne postoje efikasni algoritam, te je za  njihovo rjesavanje potrebano izdvojiti ogromne vremenske resurse. U osnovi, literatura ne poznaje algoritam koji rjesava ovakve problem a da se izvrsava u polinomijalnom vremenu $O(|P|)$, gdje je $P \in {Poly}$ neki polinom iz vektorskg prostora polinoma \emph{Poly}. U tu svrhu, \emph{aproksimacioni algoritmi} su razvijeni. 
+  
+  \noindent Algoritam pripada klasi \emph{aproksimacionih algoritma} ako:
+  \begin{enumerate}
+  	\item izvrsava u polinomijalnom vremenu;
+  	\item garantuje rjesenje koje je blizu optimalnog rjesenja;
+  	\item moze da se utvrdi koliko daleko smo od optimuma, bez ikakvog prethodnog znanja o optimumu.
+  \end{enumerate}
+  Neka je dat algoritam $\mathcal{A}$, problem $P$ i instanca problema $I$. Sa $\mathcal{A}(I)$ oznacimo (dopustivo) rjesenje koje se dobija kao izlaz algoritma $\mathcal{A}$, dok sa $\mathcal{A}^*(I)$ oznacimo optimalno rjesenje za ulaz $I$. Pretpostavimo da maksimizujemo. 
+  
+  $\mathcal{A}$ se naziva aproksimacioni algoritam problema $P$ ako 
+  za bilo koji ulaz (instancu) $I$, $\mathcal{A}$ vraca aproksimaciono rjesenje $\mathcal{A}(I)$ u polinomijalnom vremenu. 
+  
+  Postoji dvije vrste aproksimacionih algoritma:
+  \begin{itemize}
+  	\item \emph{apsolutni apriksimacioni algoritam} ako je za svaku instancu problema $P$ ispunjeno
+  	$$ |\mathcal{A}(I) - \mathcal{A}^*(I)| \geq c,$$ za neko $c\in \mathbb{R}^+$;
+  	\item \emph{relativni aproksimacioni algoritam} ako je  je za svaku instancu problema $P$ ispunjeno
+  	$$\frac{\mathcal{A}(I)}{\mathcal{A}^*(I)} \geq c,$$ za neko $c\in \mathbb{R}^+$.
+  \end{itemize}
+  
+  \noindent U tom slucaju kazemo da je $\mathcal{A}$ $c$-- faktor aproksimacioni algoritam.
+  Primjer problema za koji se nalazi apsolutni apriksimacioni algoritam je bojenje planarnog grafa (eng. \emph{Planar Graph Coloring}). Primjer problema za koji se nalazi relativni apriksimacioni algoritam je pokrivanje covorova. 
+  
+  \subsubsection{Problem Pokrivanja Cvorova: aproksimacioni algoritmi}
+  
+  Neka je dat graf $G=(V,E)$. Potrebno je naci podskup $C\subseteq V$ najmanje kardinalnosti td. je barem jedan cvor svake grane pripada skupu $C$. 
+  
+  Dopustivo rjesenje je svaki podskup $C$ koji zadovoljava uslov problema. Takav skup se naziva \emph{pokrivac} cvorova grafa $G$. Promjer pokrivaca je dat na Slici~\ref{vertex-cover}. Pokrivac ukljucuje sve cvrorove crvene boje. 
+  
+ % \begin{figure}
+ % 	\centering
+ % 	\includegraphics[width=60mm]{vertex-cover}
+ % 	\caption{Primjer Pokrivaca cvora.} \label{vertex-cover}
+ % 	\label{fig:case1}
+ % \end{figure}
+  
+  Posmatrajmo (gridi) algoritam dat Pseudokodom~\ref{greedy-vc}. 
+  
+  %pseudokod algoritma 
+  \begin{algorithm}[!t] 
+  	\caption{Gridi algoritam za Problem Pokrivanja Cvorova}\label{alg:gridi-vc}
+  	\begin{algorithmic}[1]
+  		\STATE $C \gets \emptyset$
+  		\WHILE{$E \neq \emptyset$}
+  		\STATE $(u,v) \gets$ bilo koja grana iz $E$
+  		\STATE $C \gets C \cup \{u,v\}$
+  		\STATE ukloniti sve grane incidentne sa  $u$ ili $v$ iz grafa $G$
+  		\ENDWHILE
+  		\STATE \textbf{return} $C$
+  	\end{algorithmic}
+  \end{algorithm}
+  
+  \noindent Postavlja se pitanje koliki je koeficijent $c$ Algoritma~\label{alg:gridi-vc}.
+  Grane koje se biraju o ovom algoritmu su grane maksimalnog mecinga ($M$), pa je, prema tome, skup $C$ uistinu pokrivac cvorova.
+  Dalje, jasno je da se algoritam izvodi u polinomijalnom vremenu. Neka je $C*$ pokrivac koji je rjesenje problema (optimalno rjesenje). Tada, $C^*$ sadrzi barem jedan kraj svake grane iz $M$, ondakle slijedi $|C^*|\geq |M|$. Dalje, $|C|= 2 \cdot |M| \geq 2 \cdot |C^*|$. Prema tome, algoritam je $2$--faktor aproksimacioni algoritam za problem pokrivanaj cvorova grafa.
+  Jednakost u prethodnoj aprokismaciji se postize, recimo, za bipartitne grafove $K_{n,n}$. 
+  
+  Posmatrajmo sljedeci, takodje gridi, algoritam. 
+  
+  %pseudokod algoritma 
+  \begin{algorithm}[!t] 
+  	\caption{Gridi algoritam2 za Problem Pokrivanja Cvorova}\label{alg:gridi-vc-2}
+  	\begin{algorithmic}[1]
+  		\STATE $C \gets \emptyset$
+  		\WHILE{$E \neq \emptyset$}
+  		\STATE  $u \gets \textrm{argmin}_{u \in V(G)} deg(u)$
+  		\STATE  $C \gets C \cup \{u\}$
+  		\STATE $G \gets$ ukloniti sve grane incidentne sa $u$ iz $G$  
+  		\ENDWHILE
+  		\STATE \textbf{return} $C$
+  	\end{algorithmic}
+  \end{algorithm}
+  
+  \noindent Izracunajmo aprokismacioni faktor Algoritma~\ref{alg:gridi-vc-2} posmatrajuci jedan generalizovani problem pokrivanja cvorova. Posmatrajmo graf sa Slike~\ref{alg:gridi-vc-2}. 
+  
+  
+%  \begin{figure}
+%  	\centering
+%  	\includegraphics[width=120mm]{vc-2-example}
+%  	\caption{Graf.} \label{vertex-cover}
+%  	\label{fig:case1}
+%  \end{figure}
+  
+  Optimalno rjesenje je podskup C$^*$ koji se sastoji od svih cvorova sa vrha grafa sa slike; dakle, ukupno ih je $k!$. Medjutim, ako pratimo korake algoritma, dobijemo 
+  da je $$|C| = k!\cdot( 1/k + 1/k-1 + \cdots + 1/2 + 1) \approx k! \cdot \log k$$
+  Dakle, dobijamo da je 
+  $$   |C| \approx \log k |C^*|.$$ Prema tome, ovaj agoritam je $\log k$--faktor aproksimacioni algoritam, za $k \in \mathbb{N}$. 
+  
+  \noindent U literaturi, najbolji faktor za koji se zna je $2 - \frac{1}{\sqrt{\log n}}$ (Karakostas, 2009).
+  Ono sto se takodje zna (Hastad, 2001) je da ne postoji aproksimacioni faktor 
+  koji garantuje faktor $c < \frac{7}{6}$ (osim ako $P \neq NP$, vise o ovom cemo govoriti u narednim sekcijama). 
   
   %\section{Aproksimacioni Algoritmi}
   \begin{comment}
@@ -3887,7 +3987,7 @@ Upisivanje modela u .lp format se vrši pozivom funkcije \emph{writeLP()}, čiji
  	print(v.name, "=", v.varValue)
  	print("Vrijednost funkcije cilja: ", value(prob.objective))
  \end{verbatim}
- \subsection{Primjena rješavača}
+ \subsection{Primjena rješavača}%Capacitated Facility Location
  
 \end{document}
 
