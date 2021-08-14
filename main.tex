@@ -3399,101 +3399,20 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje.
   Ono sto se takođe zna (Hastad, 2001) je da ne postoji aproksimacioni faktor 
   koji garantuje faktor $c < \frac{7}{6}$ (osim ako $P \neq NP$). 
   
+  \subsubsection{Problem Trgovackog Putnika: aproksimacioni algoritmi}
+  
+  Ovaj problem je jako težak za konstrukciju aproksimacionog algoritma. Tome svjedoči sljedeća teorema.
+ \begin{thm}
+    Ne postoji polinomijalan algoritam koji može aproksimirati TSP sa faktorom $c > 1$, osim ako je $P = NP$. 
+\end{thm}
+  Ako pretpostavimo da grane grafa zadovoljavaju nejednakost trougla, tj. za sve razlicite čvorove $u,v, r$ grafa $G$ vrijedi
+  $$ w(u,v) + w(v,r) \geq w(u,r),$$
+  gdje su $w(\cdot, \cdot)$ težine grane koja spaja dva čvora. Ovaj problem je poznat 
+  pod nazivom \emph{Metrički} TSP. On je i dalje NP težak, ali se aproksimacioni algoritam može konstruisati.   Posmatrajmo \emph{algoritam najbližeg dodavanja} koji aproksimira TSP, dat Algoritmom~\ref{alg:tsp-a1}. 
+  
   %\section{Aproksimacioni Algoritmi}
   \begin{comment}
-  Veliki broj optimizacionih problema u praksi jednostavno ne postoje efikasni algoritam, te je za  njihovo rjesavanje potrebano izdvojiti ogromne vremenske resurse. U osnovi, literatura ne poznaje algoritam koji rjesava ovakve problem a da se izvrsava u polinomijalnom vremenu $O(|P|)$, gdje je $P \in {Poly}$ neki polinom iz vektorskg prostora polinoma \emph{Poly}. U tu svrhu, \emph{aproksimacioni algoritmi} su razvijeni. 
-  
-  \noindent Algoritam pripada klasi \emph{aproksimacionih algoritma} ako:
-  \begin{enumerate}
-  	\item izvrsava u polinomijalnom vremenu;
-  	\item garantuje rjesenje koje je blizu optimalnog rjesenja;
-  	\item moze da se utvrdi koliko daleko smo od optimuma, bez ikakvog prethodnog znanja o optimumu.
-  \end{enumerate}
-  Neka je dat algoritam $\mathcal{A}$, problem $P$ i instanca problema $I$. Sa $\mathcal{A}(I)$ oznacimo (dopustivo) rjesenje koje se dobija kao izlaz algoritma $\mathcal{A}$, dok sa $\mathcal{A}^*(I)$ oznacimo optimalno rjesenje za ulaz $I$. Pretpostavimo da maksimizujemo. 
-  
-  $\mathcal{A}$ se naziva aproksimacioni algoritam problema $P$ ako 
-  za bilo koji ulaz (instancu) $I$, $\mathcal{A}$ vraca aproksimaciono rjesenje $\mathcal{A}(I)$ u polinomijalnom vremenu. 
-  
-  Postoji dvije vrste aproksimacionih algoritma:
-  \begin{itemize}
-  	\item \emph{apsolutni apriksimacioni algoritam} ako je za svaku instancu problema $P$ ispunjeno
-  	$$ |\mathcal{A}(I) - \mathcal{A}^*(I)| \geq c,$$ za neko $c\in \mathbb{R}^+$;
-  	\item \emph{relativni aproksimacioni algoritam} ako je  je za svaku instancu problema $P$ ispunjeno
-  	$$\frac{\mathcal{A}(I)}{\mathcal{A}^*(I)} \geq c,$$ za neko $c\in \mathbb{R}^+$.
-  \end{itemize}
-  
-  \noindent U tom slucaju kazemo da je $\mathcal{A}$ $c$-- faktor aproksimacioni algoritam.
-  Primjer problema za koji se nalazi apsolutni apriksimacioni algoritam je bojenje planarnog grafa (eng. \emph{Planar Graph Coloring}). Primjer problema za koji se nalazi relativni apriksimacioni algoritam je pokrivanje covorova. 
-  
-  \subsection{Problem Pokrivanja Cvorova: aproksimacioni algoritmi}
-  
-  Neka je dat graf $G=(V,E)$. Potrebno je naci podskup $C\subseteq V$ najmanje kardinalnosti td. je barem jedan cvor svake grane pripada skupu $C$. 
-  
-  Dopustivo rjesenje je svaki podskup $C$ koji zadovoljava uslov problema. Takav skup se naziva \emph{pokrivac} cvorova grafa $G$. Promjer pokrivaca je dat na Slici~\ref{vertex-cover}. Pokrivac ukljucuje sve cvrorove crvene boje. 
-  
-  \begin{figure}
-  	\centering
-  	\includegraphics[width=60mm]{vertex-cover}
-  	\caption{Primjer Pokrivaca cvora.} \label{vertex-cover}
-  	\label{fig:case1}
-  \end{figure}
-  
-  Posmatrajmo (gridi) algoritam dat Pseudokodom~\ref{greedy-vc}. 
-  
-  %pseudokod algoritma 
-  \begin{algorithm}[!t] 
-  	\caption{Gridi algoritam za Problem Pokrivanja Cvorova}\label{alg:gridi-vc}
-  	\begin{algorithmic}[1]
-  		\STATE $C \gets \emptyset$
-  		\While{$E \neq \emptyset$}
-  		\STATE $(u,v) \gets$ bilo koja grana iz $E$
-  		\STATE $C \gets C \cup \{u,v\}$
-  		\STATE ukloniti sve grane incidentne sa  $u$ ili $v$ iz grafa $G$
-  		\EndWhile
-  		\STATE \textbf{return} $C$
-  	\end{algorithmic}
-  \end{algorithm}
-  
-  \noindent Postavlja se pitanje koliki je koeficijent $c$ Algoritma~\label{alg:gridi-vc}.
-  Grane koje se biraju o ovom algoritmu su grane maksimalnog mecinga ($M$), pa je, prema tome, skup $C$ uistinu pokrivac cvorova.
-  Dalje, jasno je da se algoritam izvodi u polinomijalnom vremenu. Neka je $C*$ pokrivac koji je rjesenje problema (optimalno rjesenje). Tada, $C^*$ sadrzi barem jedan kraj svake grane iz $M$, ondakle slijedi $|C^*|\geq |M|$. Dalje, $|C|= 2 \cdot |M| \geq 2 \cdot |C^*|$. Prema tome, algoritam je $2$--faktor aproksimacioni algoritam za problem pokrivanaj cvorova grafa.
-  Jednakost u prethodnoj aprokismaciji se postize, recimo, za bipartitne grafove $K_{n,n}$. 
-  
-  Posmatrajmo sljedeci, takodje gridi, algoritam. 
-  
-  %pseudokod algoritma 
-  \begin{algorithm}[!t] 
-  	\caption{Gridi algoritam2 za Problem Pokrivanja Cvorova}\label{alg:gridi-vc-2}
-  	\begin{algorithmic}[1]
-  		\STATE $C \gets \emptyset$
-  		\While{$E \neq \emptyset$}
-  		\STATE  $u \gets \textrm{argmin}_{u \in V(G)} deg(u)$
-  		\STATE  $C \gets C \cup \{u\}$
-  		\STATE $G \gets$ ukloniti sve grane incidentne sa $u$ iz $G$  
-  		\EndWhile
-  		\STATE \textbf{return} $C$
-  	\end{algorithmic}
-  \end{algorithm}
-  
-  \noindent Izracunajmo aprokismacioni faktor Algoritma~\ref{alg:gridi-vc-2} posmatrajuci jedan generalizovani problem pokrivanja cvorova. Posmatrajmo graf sa Slike~\ref{alg:gridi-vc-2}. 
-  
-  
-  \begin{figure}
-  	\centering
-  	\includegraphics[width=120mm]{vc-2-example}
-  	\caption{Graf.} \label{vertex-cover}
-  	\label{fig:case1}
-  \end{figure}
-  
-  Optimalno rjesenje je podskup C$^*$ koji se sastoji od svih cvorova sa vrha grafa sa slike; dakle, ukupno ih je $k!$. Medjutim, ako pratimo korake algoritma, dobijemo 
-  da je $$|C| = k!\cdot( 1/k + 1/k-1 + \cdots + 1/2 + 1) \approx k! \cdot \log k$$
-  Dakle, dobijamo da je 
-  $$   |C| \approx \log k |C^*|.$$ Prema tome, ovaj agoritam je $\log k$--faktor aproksimacioni algoritam, za $k \in \mathbb{N}$. 
-  
-  \noindent U literaturi, najbolji faktor za koji se zna je $2 - \frac{1}{\sqrt{\log n}}$ (Karakostas, 2009).
-  Ono sto se takodje zna (Hastad, 2001) je da ne postoji aproksimacioni faktor 
-  koji garantuje faktor $c < \frac{7}{6}$ (osim ako $P \neq NP$, vise o ovom cemo govoriti u narednim sekcijama). 
-  
+ 
   \subsection{Problem Trgovackog Putnika: aproksimacioni algoritmi}
   
   Ovaj problem je tezak za aproksiaciju. Tome svjedoci sljedeca teorema.
@@ -3992,7 +3911,7 @@ Ako želimo deklarisati varijablu $x_1\leq 0$, koja je neprekidna, imali bismo s
 \end{verbatim}
 Upisivanje modela u .lp format se vrši pozivom funkcije \emph{writeLP()}, čiji je argument naziv fajla. 
 
- \noindent \textbf{\emph{Metode za eksport rješenja (statistike) iz modela}}. Rješavanje modela se inicira pozivom funkcije \emph{solve} na instancu modela. Čitanje svih varijabli iz modela ide pomoću funkcije $variables()$. Svaka varijabla kao atribute ima svoj naziv (atribut name), te vrijednost koju je dobila pri rješavanju modela (atribut varValue). Atribut objective instance modela nosi (najbolju) vrijednost funkcije cilja dobijene rješavanjem modela. Status rješavanja se dobija iz atributa status instance modela. 
+ \noindent \textbf{\emph{Metode za eksport rješenja (statistike) iz modela}}. Rješavanje modela se inicira pozivom funkcije \emph{solve}() na instancu modela. Čitanje svih varijabli iz modela ide pomoću funkcije $variables()$. Svaka varijabla kao atribute ima svoj naziv (atribut name), te vrijednost koju je dobila pri rješavanju modela (atribut varValue). Atribut objective instance modela nosi (najbolju) vrijednost funkcije cilja dobijene rješavanjem modela. Status rješavanja se dobija iz atributa status instance modela. 
  
  \begin{verbatim}
  	print "Status:", LpStatus[prob.status]
