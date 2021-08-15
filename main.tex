@@ -3527,7 +3527,7 @@ Posmatrajmo sljedeći (aproksimativni) algoritam koji umanjuje aproksimativni fa
  \subsubsection{Problem Binarnog Pakovanja: aproksimativni algoritmi}
 
 \begin{definition}
-    Neka je dato $n$ proizvoda velicine $a_1,a_2,\ldots,a_n$ ($0<a_i<1$). Potrebno je spakovati sve proizvode u jedinična pakovanja, tako da je broj korištenih pakovanja minimalan.  
+    Neka je dato $n$ proizvoda veličine $a_1,a_2,\ldots,a_n$ ($0<a_i<1$). Potrebno je spakovati sve proizvode u jedinična pakovanja, tako da je broj korištenih pakovanja minimalan.  
 \end{definition} 
 
   Primjer takvog pakovanja je dat na Slici~\ref{fig:bin-packing}.
@@ -3538,33 +3538,21 @@ Posmatrajmo sljedeći (aproksimativni) algoritam koji umanjuje aproksimativni fa
 	\caption{Primjer Binarnog Pakovanja.}
     \label{fig:bin-packing}
 \end{figure}
+ \emph{First-fit} algoritam. Ovo je pohlepni algoritam, koji se sastoji do sljedećih koraka:
+\begin{itemize}
+	\item Stavljamo proizvode u redu u kojem su poredani za pakovanje, tj. $a_i$ se pakuje prije $a_j$ akko $i < j$;
+	\item Stavljamo sljedeći proizvod u pakovanje sa najmanjim indeksom u koji može da stane. \item Ako ne odgovara niti jednom od otvorenih pakovanja, otvoriti novo pakovanje i smjestiti taj proizvod u novo pakovanje.
+\end{itemize}
 
 
+\noindent Analiza algoritma. Ovo je polinomijalan algoritam koji vraća dopustivo rješenje.  Neka je $C^*$ optimalan broj pakovanja koji se otvara da bi se spakovalo svih $n$ stavki. Pretpostavimo da algoritam vraća rješenje $C$ (pakovanja). Iz toga je barem $C-1$ pakovanja puno više od polovine. Odatle je
+$$C^* \geq \sum_{i=1}^n a_i > \frac{C-1}{2}\ \Rightarrow\  2 \cdot C^* > C-1 \Rightarrow 2 \cdot C^* \geq C,$$
+pa slijedi da je algoritam 2--aproksimacioni. 
   \begin{comment}
  
   \subsection{Problem Trgovackog Putnika: aproksimacioni algoritmi}
  
-  
-  U literaturi je pokazano da ne postoji  aproksimacioni algoritam sa faktorom  $c< \frac{220}{219} \approx 1.0045$ (osim ako je P=NP). 
-  
-  \subsection{Problem Binarnog Pakovanja: aproksimacioni algoritmi}
-  
-  Definicija. Neka je dato $n$ proizvoda velicine $a_1,a_2,\ldots,a_n$ ($0<a_i<1$). Potrebno je spakovati sve proizvode u jediinicna pakovanja, tako da je broj pakovanja minimalan.  
-  
-  Primjer takvog pakovanja je dat na Slici~\ref{fig:bin-packing}.
-  
-  \begin{figure}
-  	\centering
-  	\includegraphics[width=120mm]{bin-packing}
-  	\caption{Primjer Binarnog Pakovanja.} \label{fig:bin-packing}
-  	\label{fig:case1}
-  \end{figure}
-  
-  \emph{First-fit} algoritam. Ovo je gridi algoritam, koji se sastoji do sljedecih koraka:
-  \begin{itemize}
-  	\item stavljamo proizvode u redu u kojem su poredani za pakovanje, tj. $a_i$ se pakuje prije $a_j$ akko $i < j$;
-  	\item stavljamo sljedeci proizvod u pakovanje sa najmanjim indeksom u koji moze da stane. \item ako ne odgovara niti jednom od otvorenih pakovanja, otvoriti novo pakovanje i smjestiti taj proizvod u to pakovanje.
-  \end{itemize}
+   
   
   \noindent Analiza algoritma. Ovo je polinomijalan algoritam koji vraca dopustivo rjesenje.  Neka je $C^*$ optimalan broj pakovanja koji se otvara da bi se spakovalo svih $n$ stavki. Pretpostavimo da algoritam vraca rjesenje $C$ (pakovanja). Iz toga je barem $C-1$ pakovanja puno vise od polovine. Odatle je
   $$C^* \geq \sum_{i=1}^n a_i > \frac{C-1}{2}\ \Rightarrow\  2 \cdot C^* > C-1 \Rightarrow 2 \cdot C^* \geq C,$$
