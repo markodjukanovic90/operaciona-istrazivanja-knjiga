@@ -13,7 +13,7 @@
 \usepackage{algorithm}
 \usepackage{algorithmic}
 \usepackage{dot2texi}
-
+\usepackage{subcaption}
 %\usetikzlibrary{arrows,shapes}
 %\usepackage{epstopdf}
 \newenvironment{proof}{{Dokaz:}}{\hfill$\square$}
@@ -3304,35 +3304,33 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje.
 \subsection{Aproksimativni Algoritmi}
   %https://home.cs.colorado.edu/~srirams/courses/csci5654-fall13/ilpLectures.pdf
   
-   Za veliki broj optimizacionih problema u praksi jednostavno ne postoje efikasni algoritam, te je za  njihovo rješavanje potrebano izdvojiti ogromne vremenske resurse; dakle, za  ovakve probleme ne postoji algoritam koji se izvršava u polinomijalnom vremenu $O(|P|)$, gdje je $P \in {Poly}$ neki polinom iz vektorskg prostora polinoma \emph{Poly}. Sa druge strane, većina pohlepnih algoritama, te heuristika, ne daje nikakvu garanciju na nađeno rješenje iako su ta rješenja u velikom vroju slučajeva visokog kvaliteta. Negdje između egzaktnih i heurističkih algoritama se smještaju \emph{aproksimacioni algoritmi} koji su polinomijalni, daju dopustiva rješenja uz garanciju o njihovom kvalitetu. 
+   Za veliki broj optimizacionih problema sa velikom kompleksnošću u praksi jednostavno ne postoje efikasni egzaktni algoritmi, te je za  njihovo rješavanje potrebano izdvojiti ogromne vremenske/memorijske resurse; dakle, za  ovakve probleme ne postoji algoritam koji se izvršava u polinomijalnom vremenu $O(|P|)$, gdje je $P \in {Poly}$ neki polinom iz vektorskog prostora polinoma \emph{Poly}. Sa druge strane, većina pohlepnih algoritama i naprednijih heuristika ne daje nikakvu garanciju na nađeno rješenje iako su ta rješenja u velikom broju slučajeva visokog kvaliteta. Negdje između egzaktnih i heurističkih algoritama se smiještaju \emph{aproksimativni algoritmi} koji su polinomijalni, daju dopustiva rješenja uz garanciju o njihovom kvalitetu. 
   
-  \noindent Algoritam pripada klasi \emph{aproksimacionih algoritma} ako:
+  \noindent Algoritam pripada klasi \emph{aproksimativnih algoritma} ako:
   \begin{enumerate}
   	\item se izvršava u polinomijalnom vremenu;
   	%\item garantuje rješenje koje je blizu optimalnog rjesenja;
   	\item posjeduje garanciju da je nađeno rješenje uvijek unutar nekog faktora ($c$) kvaliteta optimalnog rješenja, bez ikakvog prethodnog znanja o optimumu.
   \end{enumerate}
-  Neka je dat algoritam $\mathcal{A}$, problem $P$ i instanca problema $I$. Sa $\mathcal{A}(I)$ oznacimo (dopustivo) rjesenje koje se dobija kao izlaz algoritma $\mathcal{A}$, dok sa $\mathcal{A}^*(I)$ oznacimo optimalno rjesenje za ulaz $I$. Pretpostavimo da je riječ o problemu maksimizacije. 
+  Neka je dat algoritam $\mathcal{A}$, problem $P$ i instanca problema $I$. Sa $\mathcal{A}(I)$ označimo (dopustivo) rješenje koje se dobija kao izlaz algoritma $\mathcal{A}$, dok sa $\mathcal{A}^*(I)$ oznacimo optimalno rješenje za ulaz $I$. Pretpostavimo da je riječ o problemu maksimizacije. 
   
-  $\mathcal{A}$ se naziva aproksimacioni algoritam problema $P$ ako 
-  za bilo koji ulaz (instancu) $I$, $\mathcal{A}$ vraca aproksimaciono rjesenje $\mathcal{A}(I)$ u polinomijalnom vremenu. 
+  $\mathcal{A}$ se naziva aproksimativni algoritam problema $P$ ako 
+  za bilo koji ulaz (instancu) $I$, $\mathcal{A}$ vraća aproksimativno rjesenje $\mathcal{A}(I)$ u polinomijalnom vremenu. 
   
-  Postoji dvije vrste aproksimacionih algoritma:
+  Postoji dvije vrste aproksimativnih algoritama:
   \begin{itemize}
-  	\item \emph{apsolutni apriksimacioni algoritam} ako je za svaku instancu problema $P$ ispunjeno
+  	\item \emph{apsolutni apriksimativni algoritam} -- ako je za svaku instancu problema $P$ ispunjeno
   	$$ |\mathcal{A}(I) - \mathcal{A}^*(I)| \geq c,$$ za neko $c\in \mathbb{R}^+$;
-  	\item \emph{relativni aproksimacioni algoritam} ako je   za svaku instancu problema $P$ ispunjeno
+  	\item \emph{relativni aproksimativni algoritam} -- ako je   za svaku instancu problema $P$ ispunjeno
   	$$\frac{\mathcal{A}(I)}{\mathcal{A}^*(I)} \geq c,$$ za neko $c\in \mathbb{R}^+$.
   \end{itemize}
   
-  \noindent U tom slučaju kažemo da je $\mathcal{A}$ $c$-- faktor aproksimacioni algoritam.
-  Primjer problema za koji postoji apsolutni apriksimacioni algoritam je bojenje planarnog grafa (eng. \emph{Planar Graph Coloring}). Primjer problema za koji postoji relativni apriksimacioni algoritam je pokrivanje čvorova. 
+  \noindent U tom slučaju kažemo da je algoritma $\mathcal{A}$ $c$ aproksimativni algoritam.
+  Primjer problema za koji postoji apsolutni apriksimativni algoritam je bojenje planarnog grafa (eng. \emph{Planar Graph Coloring}). Primjer problema za koji postoji relativni apriksimativni algoritam je pokrivanje čvorova. 
   
-  \subsubsection{Problem Pokrivanja Cvorova: aproksimacioni algoritmi}
+  \subsubsection{Problem Pokrivanja Čvorova: aproksimativni algoritmi}
   
-  Neka je dat graf $G=(V,E)$. Potrebno je naći podskup $C\subseteq V$ najmanje kardinalnosti td. barem jedan čvor svake grane pripada skupu $C$. 
-  
-  Dopustivo rješenje je svaki podskup $C$ koji zadovoljava uslov problema. Takav skup se naziva \emph{pokrivač} čvorova grafa $G$. Primjer pokrivača je dat na Slici~\ref{vertex-cover}. Pokrivač uključuje sve čvorove crvene boje. 
+  Neka je dat graf $G=(V,E)$. Potrebno je naći podskup $C\subseteq V$ najmanje kardinalnosti td. barem jedan čvor svake grane pripada skupu $C$.  Dopustivo rješenje je svaki podskup $C$ koji zadovoljava uslov problema. Takav skup se naziva \emph{pokrivač} čvorova grafa $G$. Primjer pokrivača je dat na Slici~\ref{vertex-cover} gdje pokrivač uključuje sve čvorove crvene boje. 
   
   \begin{figure}
   	\centering
@@ -3341,7 +3339,7 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje.
   	\label{vertex-cover}
   \end{figure}
   
-  Posmatrajmo (pohlepni) algoritam dat Algoritmom~\ref{greedy-vc}. 
+  Posmatrajmo (pohlepni) algoritam za ovaj problem dat Algoritmom~\ref{greedy-vc}. 
   
   %pseudokod algoritma 
   \begin{algorithm}[H] 
@@ -3354,15 +3352,14 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje.
   		\ENDWHILE
   		\STATE \textbf{return} $C$
   	\end{algorithmic}
-     \caption{Gridi algoritam za Problem pokrivanja čvorova}
+     \caption{Pohlepni algoritam za Problem pokrivanja čvorova}
      \label{alg:gridi-vc}
   \end{algorithm}
   
-  \noindent Pokazaćemo da je ovo aproksimativni algoritam. Izračunajmo sada koeficijent aproksimacije $c$  Algoritma~\label{alg:gridi-vc}.
-  Grane koje se biraju u ovom algoritmu su grane maksimalnog mečinga ($M$), pa je prema tome, skup $C$ uistinu pokrivač čvorova prema definiciji mečinga. Dalje, jasno je da se algoritam izvodi u polinomijalnom vremenu. Neka je $C^*$ pokrivač koji je rješenje problema. Tada $C^*$ sadrži barem jedan kraj svake grane iz $M$, ondakle slijedi $|C^*|\geq |M|$. Dalje, $|C|= 2 \cdot |M| \geq 2 \cdot |C^*|$. Prema tome, ovo je $2$--faktor aproksimacioni algoritam za problem pokrivanja čvorova grafa.
-  Jednakost u prethodnoj aproksimaciji se postiže, recimo, za bipartitne grafove $K_{n,n}$. 
+  \noindent Pokazaćemo da je ovo aproksimativni algoritam. Izračunajmo koeficijent aproksimacije $c$  Algoritma~\label{alg:gridi-vc}.
+  Grane koje se biraju u ovom algoritmu su grane maksimalnog mečinga ($M$), pa je prema tome, skup $C$ uistinu pokrivač čvorova, prema definiciji mečinga. Dalje, jasno je da se algoritam izvodi u polinomijalnom vremenu. Neka je $C^*$ pokrivač koji je rješenje problema. Tada $C^*$ sadrži barem jedan kraj svake grane iz $M$, odakle slijedi $|C^*|\geq |M|$. Dalje, $|C|= 2 \cdot |M| \geq 2 \cdot |C^*|$. Prema tome, ovo je $2$--faktor aproksimativni algoritam za problem pokrivanja čvorova grafa. Jednakost u prethodnoj aproksimaciji se postiže, recimo, za bipartitne grafove $K_{n,n}$. 
   
-  Posmatrajmo sljedeći, takodje pohlepni Algoritam  \ref{alg:gridi-vc-2}. 
+  Posmatrajmo sljedeći pohlepni Algoritam ~\ref{alg:gridi-vc-2} za problem pokrivanja čvorova.  
   
   %pseudokod algoritma 
   \begin{algorithm}[H] 
@@ -3371,15 +3368,15 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje.
   		\WHILE{$E \neq \emptyset$}
   		\STATE  $u \gets \textrm{argmin}_{u \in V(G)} deg(u)$
   		\STATE  $C \gets C \cup \{u\}$
-  		\STATE $G \gets$ ukloniti sve grane incidentne sa $u$ iz $G$  
+  		\STATE $G \gets$ ukloniti sve grane incidentne sa $u$ u $G$  
   		\ENDWHILE
   		\STATE \textbf{return} $C$
   	\end{algorithmic}
-     	\caption{Gridi algoritam 2 za Problem pokrivanja čvorova}
+     	\caption{Pohlepni algoritam 2 za Problem pokrivanja čvorova}
         \label{alg:gridi-vc-2}
   \end{algorithm}
   
-  \noindent Izračunajmo aprokismacioni faktor Algoritma~\ref{alg:gridi-vc-2} posmatrajući jedan generalniji problem pokrivanja čvorova. Posmatrajmo graf sa Slike~\ref{vertex-cover}. 
+  \noindent Izračunajmo aproksimativni faktor Algoritma~\ref{alg:gridi-vc-2} posmatrajući jedan specijalni graf sa Slike~\ref{vertex-cover}. 
   
   
   \begin{figure}
@@ -3390,122 +3387,142 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje.
  
   \end{figure}
   
-  Optimalno rješenje je podskup C$^*$ koji se sastoji od svih čvorova sa vrha grafa sa slike; dakle, ukupno ih je $k!$. Međutim, ako pratimo korake algoritma, dobijemo 
-  da je $$|C| = k!\cdot( 1/k + 1/k-1 + \cdots + 1/2 + 1) \approx k! \cdot \log k$$
+  Optimalno rješenje je podskup čvorova $C^*$ koji se sastoji od svih čvorova sa vrha grafa (obojeni crnom bojom); dakle, ukupno ih je $k!$. Međutim, ako pratimo korake Algoritma~\ref{alg:gridi-vc-2}, dobijemo 
+  da je $$|C| = k!\cdot( 1/k + 1/k-1 + \cdots + 1/2 + 1) \approx k! \cdot \log k$$. 
   Dakle, imamo da je
-  $$   |C| \approx \log k |C^*|.$$ Prema tome, ovaj algoritam je $\log k$--faktor aproksimacioni algoritam, za $k \in \mathbb{N}$. 
+  $$   |C| \approx \log k \cdot |C^*|.$$ Prema tome, ovaj algoritam je $\log k$--faktor aproksimativni algoritam, za $k \in \mathbb{N}$. 
   
-  \noindent U literaturi, najbolji poznati faktor je $2 - \frac{1}{\sqrt{\log n}}$ (Karakostas, 2009).
-  Ono sto se takođe zna (Hastad, 2001) je da ne postoji aproksimacioni faktor 
-  koji garantuje faktor $c < \frac{7}{6}$ (osim ako $P \neq NP$). 
+  \noindent U literaturi, najbolji faktor je $2 - \frac{1}{\sqrt{\log n}}$ (Karakostas, 2009).
+  Ono sto se takođe zna (Hastad, 2001) je da ne postoji aproksimativni faktor 
+  koji garantuje da je $c < \frac{7}{6}$ (osim ako $P \neq NP$). 
   
-  \subsubsection{Problem Trgovackog Putnika: aproksimacioni algoritmi}
+  \subsubsection{Problem Trgovačkog Putnika: aproksimativni algoritmi}
   
-  Ovaj problem je jako težak za konstrukciju aproksimacionog algoritma. Tome svjedoči sljedeća teorema.
+  Ovaj problem je jako težak kada je u pitanju konstrukcija aproksimativnog algoritma. Tome svjedoči sljedeća teorema.
  \begin{thm}
     Ne postoji polinomijalan algoritam koji može aproksimirati TSP sa faktorom $c > 1$, osim ako je $P = NP$. 
 \end{thm}
-  Ako pretpostavimo da grane grafa zadovoljavaju nejednakost trougla, tj. za sve razlicite čvorove $u,v, r$ grafa $G$ vrijedi
+  Kažemo da grane grafa zadovoljavaju nejednakost trougla akko za sve različite čvorove $u,v, r$ grafa $G$ vrijedi
   $$ w(u,v) + w(v,r) \geq w(u,r),$$
   gdje su $w(\cdot, \cdot)$ težine grane koja spaja dva čvora. Ovaj problem je poznat 
-  pod nazivom \emph{Metrički} TSP. On je i dalje NP težak, ali se aproksimacioni algoritam može konstruisati.   Posmatrajmo \emph{algoritam najbližeg dodavanja} koji aproksimira TSP, dat Algoritmom~\ref{alg:tsp-a1}. 
+  pod nazivom \emph{Metrički} TSP. On je i dalje NP--težak, ali se aproksimativni algoritam može konstruisati.  U nastavku algoritme izvodimo nad metričkim TSP-om. Posmatrajmo \emph{algoritam najbližeg dodavanja} koji aproksimira TSP, dat u Algoritmu~\ref{alg:tsp-a1}. 
   
-  %\section{Aproksimacioni Algoritmi}
+   \begin{algorithm}[!t] 
+  
+  	\begin{algorithmic}[1]
+  		\STATE \textbf{Ulaz}: Kompletan težinski graf $G$
+  		\STATE \textbf{Izlaz}: Hamiltonova kontura $T$  
+  		\STATE $u,v \gets \mbox{argmin}_{uv \in E} w(u,v)$
+  		\STATE $S \gets \{u,v\}$
+  		\STATE $T \gets uv$
+  		\WHILE{$|S| \neq n$}
+  		\STATE $u,t \gets$ $\mbox{argmin}_{(u,t) \in (V(G)\setminus V(T)) \times V(T)} \{w(u, t)\}$
+  		\STATE $ S \gets S \cup \{u\}$ 
+  		\STATE $(u, q)\gets$ čvor $q$ slijedi $u$ u  $T$
+  		\STATE  $uq$ se izbacuje iz $T$, ubacuje se $utq$  // Ažururanje $T$ (rekonstrukcija preko konturi)
+  		\ENDWHILE
+  		\STATE \textbf{return} $T$
+  	\end{algorithmic}
+   	\caption{Gridi algoritam za TSP.}
+   	\label{alg:tsp-a1}
+  \end{algorithm}
+
+ Ovo je očigledno polinomijalan algoritam. Ispitajmo koji aproksimacioni faktor se 
+postiže ovim algoritmom. Primijetimo da algoritam podsjeća na Primov algoritam. Grane koje se identifikuju algoritmom 
+konstruišu MST. Zaključujemo da je cijena konture $T$ barem jednaka koliko i cijena MST u odnosu na iste ulazne podatke. Cijena konture za dva čvora $v_i$ i $v_j$ je $2 \cdot w({v_i,v_j})$ (jer računamo i povratnu granu). Posmatrajmo jednu iteraciju Algoritma~\ref{alg:tsp-a1}, gdje se $T$
+proširuje za čvor $t$ koji se ubacuje između čvorova  $u$ i $q$. Povećanje cijene (trenutne) konture $T$ u svakoj iteraciji je $$w({u,t}) + w({t,q})-w({u,q}).$$
+Na osnovu nejednakosti trougla imamo $ w({t,q}) \leq w({t,u}) + w({u,q})$. Prema tome, porast cijene konture $T$ u svakoj iteraciji je najviše $ w({t, u}) + w({u,t}) = 2\cdot w({u,t})$. 
+Prema tome, završna kontura ima cijenu koja dostiže cijenu koja je barem dva puta veća od cijene MST. Prema tome, ovo je 2-aproksimativni algoritam. 
+
+ \noindent Pokusajmo poboljšati 2--aproksimativni algoritam~\ref{alg:tsp-a1} uz pomoć \emph{Double tree algoritma}. 
+ \begin{definition}
+ 	  Neka je dat graf $G=(V,E)$. Ojlerova konturu $T^o$ grafa $G$ je kontura $e_1e_2...,e_me_1$ koja obilazi sve grane grafa $G$. 
+ \end{definition}
+Vrijedi sljedeća karaketrizacija grafova koji imaju Ojlerovu konturu. 
+\begin{thm}
+	 Graf $G$ sadrži Ojlerovu konturu akko je povezan i svaki njegov čvor je paran. Takva klasa grafova se naziva Ojlerova klasa grafova.
+\end{thm}
+
+ %pseudokod algoritma 
+\begin{algorithm}[H] 
+	\begin{algorithmic}[1]
+		\STATE \textbf{Ulaz}: Kompletan graf $G$
+		\STATE \textbf{Izlaz}: Hamiltonova kontura $T$   
+		\STATE $mst \gets$  Izračunati MST grafa $G$
+		\STATE $mst^{copy} \gets$ Zamijeniti svaku granu u $mst$ sa dvije kopije istog
+		\STATE $T^o \gets$ Naći Ojlerovu konturu $T$ u $mst^{copy}$
+		\STATE Kontura $T$ grafa $G$ $\gets$ Izbaciti duple čvorove na $T^o$   
+		\STATE \textbf{return} $T$ 
+	\end{algorithmic}
+   	\caption{Aproksimativni algoritam 2 za TSP.}
+   	\label{alg:tsp-a2}
+\end{algorithm}
+  Pokazimo da ovim algoritmom dobijamo 2--aproksimaciju. Jasno je da je aloritam polinomijalan i da je dobijeno rješenje dopustivo. Pokažimo sada da ovim ostvarujemo faktor $2$.  
+  Neka je $C^*$ cijena optimalne Hamiltonove konture. Tada je MST $\leq C^*$. 
+  Lako se vidi da je cijena Ojlerove konture  $\leq 2 \cdot C^*$. Na osnovu nejednakosti trougla skraćivanje Ojlerove konture (linija 6 u algoritmu) da bi se dobila Hamiltonova kontura $T$ ne moze da bude veća od 2 $C^*$. Dakle, slijedi da je cijena Hamiltonove konture $\leq 2 C^*$, pa je ovaj algoritam 2--aprokimativni.
+  
+ 
+   \begin{figure}[!ht]
+ 	\begin{subfigure}{.45\textwidth}
+ 		\centering
+ 		% include first image
+ 		\includegraphics[width=.7\linewidth]{tsp-1}  
+ 		\caption{Graf $G$.}
+ 		\label{fig:tsp-1}
+ 	\end{subfigure}
+ 	\begin{subfigure}{.45\textwidth}
+ 		\centering
+ 		% include second image
+ 		\includegraphics[width=.7\linewidth]{tsp-1a}  
+ 		\caption{MST grafa $G$}
+ 		\label{fig:tsp-1a}
+ 	\end{subfigure}
+ \end{figure}
+ 
+ \begin{figure}[!ht]
+ 	\begin{subfigure}{.45\textwidth}
+ 		\centering
+ 		% include first image
+ 		\includegraphics[width=.7\linewidth]{tsp-2a}  
+ 		\caption{Ojlerova kontura: $C_1 C_3 C_4 C_3 C_5 C_3 C_2 C_3 C_1$.}  
+ 		\label{fig:tsp-1}
+ 	\end{subfigure}
+ 	\begin{subfigure}{.45\textwidth}
+ 		\centering
+ 		% include second image
+ 		\includegraphics[width=.7\linewidth]{tsp-3a}  
+ 		\caption{Hamiltonova kontura (ciklus): $C_1C_3C_4C_5C_2C_1$.} 
+ 		\label{fig:tsp-1a}
+ 	\end{subfigure}
+ \end{figure}
+
+
+
+Posmatrajmo sljedeći (aproksimativni) algoritam koji umanjuje aproksimativni faktor TSP sa $2$ na 1.5. Algoritam je poznat pod nazivom \emph{Kristofidesov} algoritam~\ref{alg:tsp-a3}.
+
+%pseudokod algoritma 
+\begin{algorithm}[!t] 
+
+	\begin{algorithmic}[1]
+		\STATE \textbf{Ulaz}: Kompletan graf $G$
+		\STATE \textbf{Izlaz}: Hamiltonova kontura $T$ sa najmanjom tezinom
+		\STATE $T \gets$ Naci MST grafa $G$
+		\STATE $M \gets$ naci minimalan mecing svih cvorova u $T$ neparnog stepena
+		\STATE Dodamo grane $M$ u MST $T$
+		\STATE Nadjimo Ojlerovu konturu $T^o$
+		\STATE $T \gets$ Skratimo $T^o$ (duplikati cvorova se izbace)
+		\STATE \textbf{return} $T$
+	\end{algorithmic}	
+    \caption{Kristofidesov algoritam.}
+    \label{alg:tsp-a3}
+\end{algorithm}
+ 
   \begin{comment}
  
   \subsection{Problem Trgovackog Putnika: aproksimacioni algoritmi}
   
-  Ovaj problem je tezak za aproksiaciju. Tome svjedoci sljedeca teorema.
   
-  Ne postoji polinomijalan algoritam koji moze aproksimirati TSP sa faktorom $c > 1$, osim ako je $P = NP$. 
-  
-  Ako pretpostavimo da grane grafa zadovoljavaju nejednakost trougla, tj. za sve razlicite cvorove $u,v, r$ grafa vrijedi
-  $$ w(u,v) + w(v,r) \geq w(u,r),$$
-  gdje je $w(\cdot, \cdot)$ tezina grane koja spaja dva cvora. Ovaj problem je poznat 
-  kao \emph{Metricki} TSP. On je i dalje NP tezak, ali se moze aproksimirati.  
-  
-  Posmatrajmo prvo \emph{algoritam najblizeg dodavanja} koji aproksimira TSP, dat Pseudokodom~\ref{alg:tsp-a1}. 
-  
-  %pseudokod algoritma 
-  \begin{algorithm}[!t] 
-  	\caption{Gridi algoritam za TSP.}\label{alg:tsp-a1}
-  	\begin{algorithmic}[1]
-  		\STATE \textbf{Ulaz}: kompletan graf $G$
-  		\STATE \textbf{Izlaz}: Hamiltonova kontura $T$ sa najmanjom tezinom
-  		\STATE $u,v \gets \mbox{argmin}_{uv \in E} w(u,v)$
-  		\STATE $S \gets \{u,v\}$
-  		\STATE $T \gets uv$
-  		\While{$|S| == n$}
-  		\STATE $u,t \gets$ $\mbox{argmin}_{(u,t) \in V\setminus T \times T} \{w(u, t)\}$
-  		\STATE $ S \gets S \cup \{u\}$
-  		\STATE Neka cvor $q$ slijedi $u$ u  $T$
-  		\STATE Update $T$: $uq$ se izbacuje iz $T$, ubacuje se $utq$  
-  		\EndWhile
-  		\STATE \textbf{return} $T$
-  	\end{algorithmic}
-  \end{algorithm}
-  
-  Ovo je ocigledno polinomijalan algoritam. Ispitajmo koji aproksimacioni faktor 
-  postize. Algoritam podsjeca na Primov algoritam. Grane koje se identifikuju algoritmom 
-  tvore MST. Zakljucujemo da je cijena konture $T$ barem jednaka cijeni MST za iste ulazne parametre. Cijena konture za dva cvora $v_i$ i $v_j$ je $2 \cdot c_{v_i,v_j}$ (jer racunamo i povratnu granu). Posmatrajmo jednu iteraciju u Algoritmu~\ref{alg:tsp-a1}, gdje se $T$
-  prosiruje za cvor $t$ koji se ubacuje izmedju $u$ i $q$. Povecanje cijene konture u tom slucaju je $$c_{u,t} + c_{t,q}-c_{u,q}.$$
-  Na osnovu nejednakosti trougla imamo $ c_{t,q} \leq c_{t,u} + c_{u,q}$. Prema tome, porast cijene konture $T$ u svakoj iteraciji je najvise $ c_{t, u} + c_{u,t} = 2\cdot c_{u,t}$. 
-  Prema tome, zavrsna tura ima cijenu koja dostize cijenu koja je barem dva puta veca od cijene MST. Prema tome, ovo je 2-faktor aproksimacioni algoritam. 
-  
-  \noindent Pokusajmo poboljsati faktor 2 aproksimacionog algoritma uz pomoc \emph{Double tree algoritma}. U tu svrhu, definisimo Ojlerovu konturu $T^o$ grafa $G$. To je kontura koja $e_1e_2...,e_me_1$ koja obilazi sve grane grafa $G$. Interesantno je da se takva kontura moze naci akko je $G$ je povezan te je svaki njegov cvor paran (takva klasa grafova se naziva Ojlerovi grafovi).
-  
-  %pseudokod algoritma 
-  \begin{algorithm}[!t] 
-  	\caption{Aproksimacioni algoritam 2 za TSP.}\label{alg:tsp-a2}
-  	\begin{algorithmic}[1]
-  		\STATE \textbf{Ulaz}: kompletan graf $G$
-  		\STATE \textbf{Izlaz}: Hamiltonova kontura $T$ sa najmanjom tezinom
-  		\STATE Izracunati MST
-  		\STATE Zamijeniti svaku granu od MST sa dvije kopije istog
-  		\STATE Naci Ojlerovu turu $T$
-  		\STATE Skratiti turu $T$ da bi dobila Hamiltonov ciklus (konturu) $T$ (izbaciti duple cvorove na turi $T$) 
-  		\STATE \textbf{return} $T$ 
-  	\end{algorithmic}
-  \end{algorithm}
-  Ovaj algoritam osigurava 2--faktor aproksimaciju. 
-  
-  \begin{figure}[!ht]
-  	\begin{subfigure}{.45\textwidth}
-  		\centering
-  		% include first image
-  		\includegraphics[width=.7\linewidth]{tsp-1}  
-  		\caption{Graf $G$.}
-  		\label{fig:tsp-1}
-  	\end{subfigure}
-  	\begin{subfigure}{.45\textwidth}
-  		\centering
-  		% include second image
-  		\includegraphics[width=.7\linewidth]{tsp-1a}  
-  		\caption{MST grafa $G$}
-  		\label{fig:tsp-1a}
-  	\end{subfigure}
-  \end{figure}
-  
-  \begin{figure}[!ht]
-  	\begin{subfigure}{.45\textwidth}
-  		\centering
-  		% include first image
-  		\includegraphics[width=.7\linewidth]{tsp-2a}  
-  		\caption{Ojlerova kontura: $C_1 C_3 C_4 C_3 C_5 C_3 C_2 C_3 C_1$.}  
-  		\label{fig:tsp-1}
-  	\end{subfigure}
-  	\begin{subfigure}{.45\textwidth}
-  		\centering
-  		% include second image
-  		\includegraphics[width=.7\linewidth]{tsp-3a}  
-  		\caption{Hamiltonova kontura (ciklus): $C_1C_3C_4C_5C_2C_1$.} 
-  		\label{fig:tsp-1a}
-  	\end{subfigure}
-  \end{figure}
-  
-  Pokazio da ovim algoritmom dobijamo 2-faktor aproksimaciju. Jasno je da je aloritam polinomijalan i da je dobijeno rjesenje dopustivo. Poksazimo sada da ostvarujemo faktor $2$. 
-  Neka je $C^*$ cijena optimalne Hamiltonove konture. Tada je MST $\leq C^*$. 
-  Lako se vidi da je cijena Ojlerove konture  $\leq 2 \cdot C^*$. Na osnovu nejednakosti trougla skracivanje Ojlerove konture da bi se dobila Hamiltonova kontura ne moze da uveca  cijenu dobijene Hamiltonove konture. Dakle, slijedi da je cijena Hamiltonove konture $\leq 2 C^*$, pa je ovaj algoritam 2--faktor aprokimacioni.
+ 
   
   Posmatrajmo sljedeci (aproksimacioni) algoritam koji umanjuje aproksimacioni faktor TSP sa $2$ na 1.5. Algoritam je poznat pod nazivom Kristofidesov algoritam~\ref{alg:tsp-a3}.
   
