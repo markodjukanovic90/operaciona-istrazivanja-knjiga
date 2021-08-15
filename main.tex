@@ -3548,27 +3548,58 @@ Posmatrajmo sljedeći (aproksimativni) algoritam koji umanjuje aproksimativni fa
 \noindent Analiza algoritma. Ovo je polinomijalan algoritam koji vraća dopustivo rješenje.  Neka je $C^*$ optimalan broj pakovanja koji se otvara da bi se spakovalo svih $n$ stavki. Pretpostavimo da algoritam vraća rješenje $C$ (pakovanja). Iz toga je barem $C-1$ pakovanja puno više od polovine. Odatle je
 $$C^* \geq \sum_{i=1}^n a_i > \frac{C-1}{2}\ \Rightarrow\  2 \cdot C^* > C-1 \Rightarrow 2 \cdot C^* \geq C,$$
 pa slijedi da je algoritam 2--aproksimacioni. 
+
+ Još jedan pohlepni algiritma za ovaj problem je \emph{Best fit}. Sljedeći proizvod se stavlja u pakovanje koje ostavlja najmanju prazninu od svih pakovanja kada se taj prizvod smjesti u odgovarajuće pakovanje. Ako takvo pakovanje ne postoji, otvoriti novo pakovanje. 
+Ovaj algoritam je takodje 2--aproksimacioni. Interesantno je napomenuti da za Problem binarnog pakovanja ne postoji aproksimacioni algoritam čiji je faktor $c <\frac{3}{2}$ (osim ako je $P=NP$), kako je pokazano u literaturi. 
+
+ \subsubsection{Problem Pokrivanja Skupa: aproksimativni algoritmi}
+Ovaj problem je uopstenje Problema pokrivanja čvorova, i definisan je na sljedeci naćin.
+\begin{definition}
+	    Neka je dat skup elemenata $X$ te familija podskupova $\mathcal{F}$ skupa $X$ tako da je za svaki $f\in \mathcal{F}$, $|f \cap X| \geq 1$ i $\bigcup_{f \in \mathcal{F}} f = X$. 
+	    Potrebno je naći pokrivač $C \subseteq \mathcal{F}$ minimalne kardinalnosti tako da je 
+	    $$ \bigcup_{f \in C} f = X.$$
+\end{definition}
+ U nastavku izlažemo pohlepnu heuristiku koja predstavlja aproksimativni algoritam sa logaritamskim faktorom. To znači, kako je veličina ulaza veća, kvalitet rješenja aproksimativnog algoritma opada relativno u odnosu na veličinu optimalnog rješenja. Kako logaritam kao funkcija raste sporo, ovaj aproksimacioni algoritam ipak daje korisne rezultate.
+
+%\begin{figure}
+%	\centering
+%	\includegraphics[width=70mm]{set-cover-1}
+%	\caption{Primjer Pokrivanja Skupa ($\mathcal{F}=\{T_1,T_2,...,T_4\}$, rješenje je skup $\mathcal{C}=\{T_3, T_4, T_1\}$}
+%	 \label{fig:set-cover-1}
+%\end{figure}
+
+Što se tice motivacije za ovaj problem, pretpostavimo da imamo skup karakteristika, te skup ljudi koji posjeduju pojedine karakeristike. Potrebno je odrediti komisiju sa što manjim brojem osoba tako da se za svaku karakteristiku može naći osoba iz komisije da je stručna u tome. Pohlepni algoritam za ovaj problem je dat u Algoritmu~\ref{alg:set-cover-gridi}.  %objasnjenje algoritma.
+$U$ predstavlja skup preostalih nepokrivenih elemenata. Skup $\mathcal{C}$ pedstavlja pokrivač koji se konstruiše kroz iteracije algoritma. U svakom koraku, algoritam nastoji da proširi pokrivač $\mathcal{C}$ na račun smanjenja skupa $U$. Kandidata za proširivanje pokrivača biramo na osnovu pohlepne funkcije datoj u liniji 6. U osnovi, biram onaj $f' \in \mathcal{F}$ koji ima najviše  elementima iz $U$ sa kojim ima neprazan presjek. Algoritam se izvodi u $O(|\mathcal{F}| \cdot |X|)$ vremenu, dakle  polinomijalnom. Takođe, jasno je da je rješenje koje se vraća dopustivo. Izračunajmo jos aproksimativni faktor algoritma. Prije toga, označimo $d$-ti harmonijski broj $=H_d = \sum_{i=1}^d 1/i$ sa $H(d)$. 
+Vrijedi sljedeća teorema.
+
+%pseudokod algoritma 
+\begin{algorithm}[!t] 
+	\begin{algorithmic}[1]
+		\STATE \textbf{Ulaz}: $X$ i familija podskupova $\mathcal{F}$ od $X$
+		\STATE \textbf{Izlaz}: pokrivac skupa $X$
+		\STATE $U \gets X$
+		\STATE $C \gets \emptyset$
+		\WHILE{$U \neq \emptyset$}
+		\STATE $f \gets \mbox{argmax}_{f \in \mathcal{F}} |\{ f' \mid f' \in U  \wedge\ |f \cap f'| \geq 1\}| $
+		\STATE $U \gets U \setminus f$
+		\STATE $C \gets C \cup \{f\}$
+		\ENDWHILE
+	\end{algorithmic}
+	\caption{GREEDY-SET-COVER metod za Problem Pokrivanja Skupa.}
+    \label{alg:set-cover-gridi}
+\end{algorithm}
+
+\begin{thm}
+	  GREEDY-SET-COVER algoritam ima aproksimacioni faktor 
+	$$ H(\max\{|f| \mid f \in \mathcal{F}\}).$$
+	
+\end{thm}
+
   \begin{comment}
+  
+  
+  \subsection{Problem Pokrivanja Skupa: aproksimacioni algoritmi} 
  
-  \subsection{Problem Trgovackog Putnika: aproksimacioni algoritmi}
- 
-   
-  
-  \noindent Analiza algoritma. Ovo je polinomijalan algoritam koji vraca dopustivo rjesenje.  Neka je $C^*$ optimalan broj pakovanja koji se otvara da bi se spakovalo svih $n$ stavki. Pretpostavimo da algoritam vraca rjesenje $C$ (pakovanja). Iz toga je barem $C-1$ pakovanja puno vise od polovine. Odatle je
-  $$C^* \geq \sum_{i=1}^n a_i > \frac{C-1}{2}\ \Rightarrow\  2 \cdot C^* > C-1 \Rightarrow 2 \cdot C^* \geq C,$$
-  odakle slijedi da je algoritam 2--faktor aproksimacioni. 
-  
-  \emph{Best fit} algoritam. Sljedeci proizvod se stavlja u pakovanje koje ostavlja najmanju prazninu kada se prizvod smjesti u dato pakovanje. 
-  Ako takvo pakovanje ne postoji, otvoriti novo pakovanje. 
-  Ovaj algoritam je takodje 2--faktor aproksimacioni. Interesantno je napomenuti da za Problem Binarnog Pakovanja ne postoji aproksimacioni algoritam ciji je faktor $c <\frac{3}{2}$ (osim ako je P=NP). 
-  
-  \subsection{Problem Pokrivanja Skupa: aproksimacioni algoritmi}
-  Ovaj problem je uopstenje Problema Pokrivanja Cvorova, i definisan je na sljedeci nacin.
-  Ulaz problema je skup elemenata $X$ te familija podskupova $\mathcal{F}$ skupa $X$ tako da je za svaki $f\in \mathcal{F}$, $|f \cap X| \geq 1$ (tj. $\bigcup_{f \in \mathcal{F}} f = X$). 
-  Potrebno je naci pokrivac $C \subseteq \mathcal{F}$ minimalne kardinalnosti tako da je 
-  $$ \bigcup_{f \in C} f = X.$$
-  
-  U nastavku izlazemo gridi heuristiku koja predstavlja aproksimacioni algoritam sa logaritamskim faktorom. To znaci, kako velicina ulaza postaje veca, velicina aproksimacionog rjesenja raste relativno u odnosu na velicinu optimalnog rjesenja. Kako logaritam kao funkcija raste sporo, ovaj aproksimacioni algoritam daje korisne rezultate.
   
   %motivacija
   \begin{figure}
