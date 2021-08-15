@@ -3505,46 +3505,43 @@ Posmatrajmo sljedeći (aproksimativni) algoritam koji umanjuje aproksimativni fa
 
 	\begin{algorithmic}[1]
 		\STATE \textbf{Ulaz}: Kompletan graf $G$
-		\STATE \textbf{Izlaz}: Hamiltonova kontura $T$ sa najmanjom tezinom
-		\STATE $T \gets$ Naci MST grafa $G$
-		\STATE $M \gets$ naci minimalan mecing svih cvorova u $T$ neparnog stepena
-		\STATE Dodamo grane $M$ u MST $T$
-		\STATE Nadjimo Ojlerovu konturu $T^o$
-		\STATE $T \gets$ Skratimo $T^o$ (duplikati cvorova se izbace)
+		\STATE \textbf{Izlaz}: Hamiltonova kontura $T$ 
+		\STATE $T \gets$ Naći MST grafa $G$
+		\STATE $M \gets$ Naći minimalan mečing svih čvorova u $T$ neparnog stepena
+		\STATE $T' \gets$ Dodamo grane od $M$ u $T$
+		\STATE $T^o\gets$ nađimo Ojlerovu konturu u $T'$
+		\STATE $T \gets$ Izbaciti duple čvorove iz $T^o$
 		\STATE \textbf{return} $T$
 	\end{algorithmic}	
     \caption{Kristofidesov algoritam.}
     \label{alg:tsp-a3}
 \end{algorithm}
+  Lako je vidjeti da je ovaj algoritam polinomijalan i da je dobijeno rješenje dopustivo.
+ Pokažimo da algoritam ima faktor aproksimacije $c=1.5$.  Cijena TSP $C^*$ dostiže najviše cijenu Ojlerove konture, tj.  $C^*\leq cost(T^o) = cost(T) + cost(M)$.  Takođe vrijedi $cost(T) \leq C^*$. Pokažimo da je $cost(M) \leq  \frac{C^*}{2}$, odakle bi slijedila tvrdnja. Primijetimo da u optimalnoj konturi $T$ postoje dva mečinga: prvi sa čvorovima iz $M$, a drugi za ostale čvorove kojeg označavamo sa $M'$. 
+ Kako je $C^* \geq cost(M) \leq cost(M')$ i $cost(M) + cost(M') = cost(T)$, slijedi 
+ $2 cost(M) \leq cost(T) \leq C^*$, odakle dobijamo tvrđenje.  U literaturi je pokazano da ne postoji  aproksimacioni algoritam sa faktorom  $c < \frac{220}{219} \approx 1.0045$ (osim ako je P=NP). 
  
+ 
+ \subsubsection{Problem Binarnog Pakovanja: aproksimativni algoritmi}
+
+\begin{definition}
+    Neka je dato $n$ proizvoda velicine $a_1,a_2,\ldots,a_n$ ($0<a_i<1$). Potrebno je spakovati sve proizvode u jedinična pakovanja, tako da je broj korištenih pakovanja minimalan.  
+\end{definition} 
+
+  Primjer takvog pakovanja je dat na Slici~\ref{fig:bin-packing}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=100mm]{bin-packing}
+	\caption{Primjer Binarnog Pakovanja.}
+    \label{fig:bin-packing}
+\end{figure}
+
+
   \begin{comment}
  
   \subsection{Problem Trgovackog Putnika: aproksimacioni algoritmi}
-  
-  
  
-  
-  Posmatrajmo sljedeci (aproksimacioni) algoritam koji umanjuje aproksimacioni faktor TSP sa $2$ na 1.5. Algoritam je poznat pod nazivom Kristofidesov algoritam~\ref{alg:tsp-a3}.
-  
-  %pseudokod algoritma 
-  \begin{algorithm}[!t] 
-  	\caption{Kristofidesov algoritam.}\label{alg:tsp-a3}
-  	\begin{algorithmic}[1]
-  		\STATE \textbf{Ulaz}: kompletan graf $G$
-  		\STATE \textbf{Izlaz}: Hamiltonova kontura $T$ sa najmanjom tezinom
-  		\STATE $T \gets$ Naci MST grafa $G$
-  		\STATE $M \gets$ naci minimalan mecing svih cvorova u $T$ neparnog stepena
-  		\STATE Dodamo grane $M$ u MST $T$
-  		\STATE Nadjimo Ojlerovu konturu $T^o$
-  		\STATE $T \gets$ Skratimo $T^o$ (duplikati cvorova se izbace)
-  		\STATE \textbf{return} $T$
-  	\end{algorithmic}
-  \end{algorithm}
-  
-  Ovaj algoritam je polinomijalan i dobijeno rjesenje je dopustivo.
-  Pokazimo da algoritam ima faktor 1.5.  Cijena TSP $C^*$ dostize najvise cijenu Ojlerove konture, tj.  $C^*\leq cost(T^o) = cost(T) + cost(M)$.  Znamo da je $cost(T) \leq C^*$. Pokazimo da je $cost(M) \leq  \frac{C^*}{2}$. Primijetimo da u optimalnoj turi $T$ postoje dva mecinga: prvi sa cvorovima iz $M$, a drugi za ostale cvorove (sa granam), oznacimo ga $M'$. 
-  Kako je $C^* \geq cost(M) \leq cost(M') i cost(M) + cost(M') = cost(T)$, slijedi 
-  $2 cost(M) \leq cost(T)$, odakle dobijamo tvrdjenje.
   
   U literaturi je pokazano da ne postoji  aproksimacioni algoritam sa faktorom  $c< \frac{220}{219} \approx 1.0045$ (osim ako je P=NP). 
   
