@@ -24,7 +24,7 @@
 \renewcommand{\tablename}{Tabela}
 \usepackage{url}
 
-
+\usepackage{fixme}
 
 \usepackage{tikz}
 \usetikzlibrary{intersections,calc}
@@ -3738,8 +3738,60 @@ Iz prethodnog bi slijedilo da Algoritam~\ref{alg:ss} daje $2H_n$--aproksimaciju.
   
  \end{comment} 
   
-\section{Heuristički Metodi}
+\section{Heurističke Metode}
+ U prethodnom odjeljku smo vidjeli da za aproksimativne algoritme važe važna osobina da se rješavanjem problema ne garantuje pronalazak optimalnog rješenja, ali postoji garancija da se rješenje nalazi unutar nekog faktora kvaliteta (c), u odnosu na optimalno rješenje. \fxnote{nije dobar izraz unutar faktora - ispraviti i gore}
+ Drugim riječima, za rješenja dobijena aproksimativnim algoritmima se zna koliko maksimalno mogu da odstupaju od optimalnog rješenja, a to odstupanje je određeno faktorom kvaliteta.
  
+ Posebna vrsta približnih metoda (metoda koje ne daju i/ili ne garantuju pronalazak optimalnog rješenja) su tzv. heurističke metode. 
+ 
+ Za razliku od aproksimativnih algoritama, kod heurističkih metoda, u opštem slučaju, ne propisuje se faktor kvaliteta rješenja, već je primarni cilj razviti i primijeniti tehniku pomoću koje se u razumnom vremenu može doći do dovoljno dobrog (zadovoljavajućeg) rješenja. Heurističke metode mogu biti izvedene iz teorijskih razmatranja, ali i iz eksperimentalnih rezultata (na primjer, na osnovu rješavanja problema manjih dimenzija ili uopštavanjem tehnika uspješno primijenjenih na uzorcima). 
+ 
+ 
+ Snaga heurističkih algoritama leži u smanjenju prostora pretraživanja i usmjeravanju procesa pretraživanja u one regione koji sadrže bolje rješenja, čime se značajno ubrzava proces pronalaženja rješenja. Naravno, ne postoji univerzalna strategija koja garantuje uspjeh heurističkog algoritma, tj. ne postoji garancija da će heuristički algoritam (uvijek) pronaći dovoljno dobro rješenje u razumnom vremenu. Ipak, višedecinijski razvoj i upotreba različitih heurističkih algoritama ukazuju na činjenicu da ove metode zauzimaju veoma važno mjesto u oblasti kombinatorne optimizacije, a njihova uspješna primjena u širokom spektru različitih problema dokazuje njihovu stvarnu upotrebnu vrijednost.
+ 
+ 
+ Svaka heuristička metoda mora da zadovolji dva pravila: da je rešenje ``dovoljno
+ dobro'' i da se algoritam pokrenut na ulazni problem završava u realnom vremenu. Treba napomenuti da se pod  ``dovoljno
+ dobrim'' rješenjem podrazumijevaju različite procjene, koje mogu biti subjektivne (npr. zasnovane na ličnoj ili profesionalnoj procjeni stručnjaka koji razvija ili koristi metodu), objektivne (npr.  rješenje je dobro ako od optimalnog rješenja odstupa u dozvoljenim granicama) ili zavisne od drugih uslova (na primjer, traži se rješenje problema takvo da je ono ekonomski prihvatljivo, bez obzira na to da li je blizu optimalnog rješenja ili ne). 
+ Za neke metode, kvalitet dobijenog rješenja je moguće utvrditi samo eksperimentalno, na primjer, poređenjem sa rješenjima dobijenim uz pomoć drugih metoda. Nekada je cilj heurističke metode samo da se pronađe jedno dopustivo rješenje, dok se u kvalitet samog rješenja uopšte i ne ulazi.
+ 
+ Važna osobina dobro konstruisanih heurističkih metoda je mogućnost prevazilaženja lokalnog ekstrema (što nije slučaj sa pohlepnim algoritmima), u cilju dostizanja globalnog optimalnog rješenja. 
+ 
+ Takođe, heurističke metode se često uspešno mogu integrisati i u egzaktne metode, čime se kombinuje brzina dobijanja rješenja i potvrđivanje optimalnosti.
+ 
+ \section{Metaheurističke metode}
+ 
+ Široku klasu heurističkih metoda čine tzv. ``univerzalne'' heurističke metode, koje se, uz blage modifikacije i prilagođavanje, mogu koristiti za rješavanje više različitih problema. Takve metode nazivamo metaheurističkim metodama, ili metaheuristikama.  
+ 
+ Metaheuristika se formalno definiše kao iterativni proces koji koristi približne metode, kombinujući na inteligentan način različite koncepte za pretraživanje i iskorištenje čitavog prostora rješenja, da bi se u razumnom vremenu, na efikasan način, odredilo rješenje što bliže optimalnom.
+ 
+ Sa praktičnog, upotrebnog aspekta, cilj metaheuristika je pretraživanje skupa dopustivih rješenja, pri čemu je (ukoliko je potrebno) dozvoljeno i proširenje tog skupa i elementima koji nisu dopustivi, prelazak u rješenja slabijeg kvali\-teta kako bi se izbjegli lokalni optimumi koji nisu i globalni, kombinovanje sa drugim heuristikama itd.
+ \subsection{Podjela metaheuristika}
+ \subsection{Klasifikacija metaheuristika}
+ S obzirom na veliki broj raznih metaheuristika koje se razvijaju u posljednje vrijeme, prirodno je očekivati da se za  njihov razvoj koriste vrlo različiti pristupi, počev od polazne motivacije, preko strategije pretraživanja, različitih namjena i klasa problema na kojima se primjenjuju.
+ U savremenoj literaturi, sreće se nekoliko kriterijuma za klasifikaciju metaheuristika.
+ 
+ Klasifikacija metaheuristika prema polaznoj motivaciji identifikuje tzv. metaheuristike zasnovane na simulaciji prirodnih pojava (eng. nature based metaheuristics), kao što su na primjer genetski algoritmi, mravlje ili pčelinje kolonije ili elektromagnetizam. Nasuprot njima, veliki broj metaheuristika nije motivisan prirodnim procesima (na primjer, tabu pretraživanje, iterativna lokalna pretraga itd.)
+ 
+ Prema broju tačaka kojima se raspolaže unutar jedne iteracije, metaheuristike se dijele na dvije klase: metaheuristike zasnovane na populaciji (eng. population based) i metaheuristike koje rade sa jednom tačkom unutar jedne iteracije (eng. single point search). U prvoj klasi, u istom trenutku algoritam raspolaže sa više tačaka -- različitih rješenja problema. Pretraživanje prostora je zasnovano na primjeni različitih operatora rekombinovanja, pomjeranja, izmjena i odabira pojedinih tačaka, kako bi se u svakoj novoj iteraciji formirala nova populacija, sa potencijalno boljim jedinkama. Takve metaheuristike su: genetski algoritmi, mravlje kolonije, elektromagnetizam, jata ptica itd.
+ U metaheuristikama koje raspolažu jednom tačkom, primjenjuje se strategija zasnovana na praćenju trajektorije (eng. trajectory methods), koji podrazumijeva da se kroz iteracije formira niz rješenja, od kojih je svako naredno (po pravilu, ali ne i obavezno) bolje od prethodnog. Ovi algoritmi najčešće, (ali opet ne i obavezno) koriste i neke metode lokalnog pretraživanja, gdje se novo, potencijalno bolje rješenje bira unutar neke okoline trenutnog rješenja. Neke od metoda koje pripadaju ovoj klasi su metoda promjenljivih okolina, tabu pretraživanje, simulirano kaljenje itd.
+ 
+ Prema tipu funkcije cilja, može se napraviti klasifikacija na one metaheuristike koje koriste statičku, te one koje koriste dinamičku funkciju cilja.
+ 
+ Neke od najčešće korištenih metaheuristika su:
+ \begin{itemize}
+ 	\item pohlepni algoritam sa prilagođenom slučajnom pretragom (eng. Greedy randomized adaptive search procedure - GRASP);
+ 	\item tabu pretraživanje (eng. Tabu search - TS);
+ 	\item genetski algoritam (eng. Genetic algorithm - GA);
+ 	\item metod promjenljivih okolina (eng. Variable neighborhood search – VNS);
+ 	\item Lagranžova relaksacija (eng. Lagrangian relaxation - LR);
+ 	\item neuronske mreže (eng. Neural network algorithm - NNA);
+ 	\item simulirano kaljenje (eng. Simulated annealing - SA);
+ 	\item mravlje kolonije (eng. Ant colony optimization - ACO);
+ 	\item pčelinje kolonije (eng. Artificial Bee Colony - ABC);
+ 	\item elektromagnetizam (eng. Electromagnetism - EM);
+ 	\item upravljano lokalno pretraživanje (eng. Guided Local Search - GLS).
+ \end{itemize}
 
  \chapter{Optimizacioni rješavači}
  
