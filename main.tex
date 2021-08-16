@@ -373,7 +373,7 @@ Uslovi i zahtjevi proizvodnje su sljedeći:
 
 Tim prvo razgovora sa rukovodstvom kako bi se utvrdili ciljevi ovog istraživanja. Te su rasprave dovele do sljedeće definicije (idealizovanog) problema:
 \begin{itemize}
-    \item Utvrditi  stope proizvodnje  ova dva proizvoda kako bi se maksimalizirala ukupna dobit, podložno ograničenjima koja nameću   proizvodni kapaciteti dostupni u tri pogona. Svaki će se proizvod proizvoditi u serijama od po 20, tako da se stopa proizvodnje definiše kao broj serija proizvedenih na nivou jedne sedmice. Dopuštena je bilo koja kombinacija stope proizvodnje koja zadovoljava   ograničenja, uključujući proizvodnju 0 komada prvog proizvoda i što  više   drugog. 
+    \item Utvrditi  stope proizvodnje  ova dva proizvoda kako bi se maksimalizirala ukupna dobit, podložno ograničenjima koja nameću   proizvodni kapaciteti dostupni u tri pogona. Svaki će se proizvod proizvoditi u serijama od po 20, tako da se stopa proizvodnje definiše kao broj serija proizvedenih na nivou jedne sedmice. Dopuštena je bilo koja kombinacija stope proizvodnje koja zadovoljava   ograničenja, uključujući i slučaj proizvodnje niti jednog komada prvog proizvoda i što  više   drugog. 
 \end{itemize}
 
 Identifikovani su podaci koje treba prikupiti: 
@@ -702,7 +702,7 @@ Prije nego ovo formalno pokažemo, uvedimo nekoliko definicija.
    $$ f( \lambda x + (1-\lambda) y) \leq \lambda f(x) + (1 -\lambda) f(y),$$
    za svaki $x,y \in \mathbb{R}^n$ i svaki $\lambda \in [0,1].$
 \end{definition}
-Primijetimo da je svaka funkcija data u obliki $f(x_1, \ldots, x_n) = \sum_{i=1}^n c_i x_i$ za neke $c_i \in \mathbb{R}$, konveksna, što se direktno provjerava na osnovu definicije konveksnosti funkcije. Dakle, LP u svom opštem obliku  ima ciljnu funkciju koja je uvijek konveksna. Geometrijska interpretacija konveksnosti funkcije je prikazana na Slici~\ref{fig:convex_function}.
+Primijetimo da je svaka funkcija data u obliki $f(x_1, \ldots, x_n) = \sum_{i=1}^n c_i x_i$ za neke $c_i \in \mathbb{R}$, konveksna, što se direktno provjerava na osnovu definicije konveksnosti funkcije. Dakle, LP u svom opštem obliku  ima ciljnu funkciju koja je konveksna. Geometrijska interpretacija konveksnosti funkcije je prikazana na Slici~\ref{fig:convex_function}.
 
 %\begin{figure}
 %    \centering
@@ -748,15 +748,15 @@ Primijetimo da je svaka funkcija data u obliki $f(x_1, \ldots, x_n) = \sum_{i=1}
 \end{figure}
 
 \begin{definition}
-   Neka su dati vektori $z^i \in \mathbb{R}^n$,  te $\lambda_i \in [0,1]$ $i=1,\ldots,m$ tako da je $\sum_{i=1}^m \lambda_i = 1.$ Vektor $x =  \sum_{i=1}^m \lambda_i z^i$ je  konveksna kombinacija vektora $z^i$.
+   Neka su dati vektori $z^i \in \mathbb{R}^n$,  te $\lambda_i \in [0,1]$ $i=1,\ldots,m$ tako da je $\sum_{i=1}^m \lambda_i = 1.$ Vektor $x =  \sum_{i=1}^m \lambda_i z^i$ se naziva konveksna kombinacija vektora $z^i$.
 \end{definition}
 
-Konveksne funkcije imaju dosta poželjna svojstva sa teoretskog stanovišta i u kombinaciji sa konveksnim skupovima čine osnov   teorije optimalnosti. 
+Konveksne funkcije imaju lijepa svojstva sa stanovišta teorije i u kombinaciji sa konveksnim skupovima čine osnov   teorije optimalnosti. 
 
 Inače, vrijedi sljedeće:
 \begin{thm}
   Neka je $f : S \mapsto \mathbb{R}$ konveksna funkcija definisana na konveksnom skupu $S \subseteq \mathbb{R}^n$. Ako funkcija $f$ u tački $x^* \in S$
- postiže lokalni minimum, onda je ta tačka i tačka globalnog minimuma.
+ postiže lokalni minimum, onda je ta tačka predstavlja i tačku globalnog minimuma.
 \end{thm}
 
 \begin{comment}
@@ -785,9 +785,9 @@ U sljedeće dvije definicije definišimo pojmove poliedra, hiperravni i polupros
    Neka je $A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m$. Skup $P=\{x \in \mathbb{R}^n \mid Ax \geq b\}$ se naziva poliedar u $\mathbb{R}^n$. 
 \end{definition}
 \begin{definition}
-   Neka je $a\in \mathbb{R}^n $ i $b \in \mathbb{R}$. Skup $\{ x \in \mathbb{R}^n \mid a^T x = b \}$ se naziva hiperravan u $\mathbb{R}^n$ (sa vektorom normale $a$), dok se $\{ x \in \mathbb{R}^n \mid a^T x \geq b \}$ naziva poluprostor. 
+   Neka je $a\in \mathbb{R}^n $ i $b \in \mathbb{R}$. Skup $\{ x \in \mathbb{R}^n \mid a^T x = b \}$ se naziva hiperravan u $\mathbb{R}^n$ čiji je vektorom normale $a$, dok se $\{ x \in \mathbb{R}^n \mid a^T x \geq b \}$ naziva poluprostor. 
 \end{definition}
-Pokažimo sada da je poliedar konveksan skup. To je veoma bitno, jer, kako znamo, uslovi  problema LP-a se mogu zapisati kao poliedar, a ako je on konveksan skup, prethodna teorema nam kaže da se onda može naći globalni minimum (maksimum), tj. optimalno rješenje zadanog problema LP-a (ako je nađen lokalni).
+Pokažimo sada da je poliedar konveksan skup. To je bitna karakteristika, jer, kako znamo, uslovi  problema LP-a se mogu zapisati kao poliedar, a ako je on konveksan skup, prethodna teorema nam kaže da se onda može naći globalni minimum (maksimum), tj. optimalno rješenje zadanog problema LP-a (ako postoji lokalni minimum).
 \begin{prop}
   ($i$) Poluprostor u $\mathbb{R}^n$ je konveksan skup.  \\
   ($ii$) Presjek konačno mnogo skupova je konačan skup. \\
@@ -841,13 +841,13 @@ Geometrijski bi to značilo da je vrh poliedra $P$ ona tačka poliedra  kroz koj
 
 \begin{definition}
       Neka je zadan poliedar iz Definicije~\ref{dfn:lp_aktivan}. Neka je 
-      $I = \{ i \in M_1 \cup M_2 \cup M_3 \mid a_i^T x^* = b_i \}$  skup indeksa aktivnih u $x^*\in \mathbb{R}^n$.  Ako je skup $\{ a_i \mid i \in I \}$ linearno nezavisan onda je $x^*$ bazno rješenje. 
+      $I = \{ i \in M_1 \cup M_2 \cup M_3 \mid a_i^T x^* = b_i \}$  skup indeksa aktivnih u $x^*\in \mathbb{R}^n$.  Ako je skup $\{ a_i \mid i \in I \}$ linearno nezavisan onda se $x^*$  naziva bazno rješenje. 
 \end{definition}
 % https://faculty.math.illinois.edu/~mlavrov/docs/482-fall-2019/lecture8.pdf
 \begin{definition}
 	 Bazno dopustivo rješenje $x^*$ je bazno rješenje koje zadovoljava  uslove linearnog programa. 
 \end{definition}
-Pokažimo sada da su vrhovi, ekstremen tačke poiiedra i bazna dopustiva rješenja jedno te isto kada je riječ o LP-u.
+Pokažimo sada da su vrhovi, ekstremen tačke poiedra i bazna dopustiva rješenja jedno te isto kada je riječ o LP-u.
 \begin{thm}
    Neka je $P$ poliedar i neka je $x^* \in P$. Sljedeće tri tvrdnje su ekvivalentne:
    \begin{enumerate}
