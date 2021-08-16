@@ -3655,7 +3655,47 @@ Vrijedi sljedeća teorema.
  
 \end{proof}
 
+Napomenimo da postoji i težinska verzija Problema pokrivanja skupa. U ovoj verziji je svakom skupu iz $f \in\mathcal{F}$ data tezina $w_f$. Zadatak je naci pokrivač $C \subseteq \mathcal{F}$ skupa $X$ sa najmanjom težinom. Ovaj problem na sličan način kao i ne-težinska varijanta može biti aproksimirana do na faktor $H_d= \log d+O(1)$, gdje je $d= \max\{|f|:f \in \mathcal{F}\}$ uz pomoć sličnog pohlepnog algoritma. U tom slučaju, pohlepni kriterij je određen funkcijom 
+\begin{align}
+	g(f) = \frac{w_f}{|f \cap U|}, f \in \mathcal{F}\setminus C,
+\end{align}
+gdje se u svakom koraku algoritma određuje skup $f^* \in \mathcal{F}$ koji minimizuje vrijednost funkcije $g$, a zatim se dodaje u trenutni (parcijalni) pokrivač $C$.
 
+\subsubsection{Problem Najkraćeg Nadstringa}
+
+
+\begin{definition}
+   Neka je dat skup stringova $S=\{s_1,...,s_n\}$. Problem najkraćeg nadstringa se pita za pronalazak stringa $s$ minimalne dužine koji sadrži sve stringove iz $S$ kao njegove podstrigove. 
+  \end{definition}
+Bez gubljenja opštosti, mozemo pretpostaviti da niti jedan string $s_i$ nije podstring stringa $s_j, i\neq j$.
+Ovaj problem je NP--težak. Ideja je riješiti ga uz pomoć Problema pokrivanja skupa i 
+njegovih algoritama. Pokazaćemo da postoji $2\cdot H_n$--aproksimacija za problem najkraćeg nadstringa. 
+
+ Svakom stringu $\theta$ dodijelimo skup $set(\theta)$ tako da skup $set(\theta)$ pokriva string $s\in S$ akko 
+je $s$ podstring od $\theta$. Prema tome 
+$$set(\theta) = \{ s \in S \mid s \mbox{  podstring od }\theta \}.$$
+
+ Odatle bi pokrivač skupa bila familija takvih skupova $set(\theta)$, iz kojih se konstruiše nadstring skupa $S$ spajajući sve $\theta$ stringove u jedan string. U svakom slucaju familija  $\mathcal{F}$ se ne može definisanti kao skup skupova $set(\theta)$ jer bi u suprotnom $\mathcal{F}$ bio beskonačan. Sa druge strane, ne možemo ograničiti sve stringove $\theta$ samo na $S$, jer bi u suprotnom dobili rješenje koje je jednako konkatenaciji svih stringova iz $S$, što je svakako nekorisno rješenje. Za uspostavljanje balansa, neka iz skupa $S=\{s_1,...,s_n\}$ uzmemo par stringova $s_i$ i $s_j$, nađemo $k>0$  tako da je posljednjih $k$ karaktera stringa $s_i$ jednaka prvih $k$ karakera stringa $s_j$ (poklapanje). Označimo sa $\theta_{ijk}$ string koji se 
+dobije preklapanjem stringova $s_i$ i $s_j$ na $k$ karaktera. Oznacimo sa $I$ skup strinova $\theta_{ijk}$  za validne izbore $i,j$ i $k$. Zatim definišemo $\mathcal{F}=\{set(\theta) \mid  \theta \in S \cup I\}$. Dodijeljena cijena svakog skupa $set(\theta))$ je jednaka $|\theta|$. Na osnovu prethodnog, dobijamo algoritam za rjesavanje problema Najkraćeg nadstriga Algoritmom~\ref{alg:ss}. 
+
+  \begin{algorithm}[!t] 
+	\begin{algorithmic}[1]
+		\STATE \textbf{Ulaz}: skup $S=\{s_1,...,s_n\}$
+		\STATE \textbf{Izlaz}: aproksimacioni nadstring $s$
+		\STATE Izračunati instancu $(X,\mathcal{F})$ problema najkraćeg nadstringa
+		\STATE  $\mathcal{C}=\{set(\theta_1), set(\theta_2),...,set(\theta_p)\}\gets$ Primijeniti GREEDY-SET-COVER$(X,\mathcal{F})$
+		\STATE  $s \gets \theta_1 \cdots \theta_p$
+	\end{algorithmic}
+	\caption{Gridi heuristika za Problem Najkraćeg Nadstringa.}
+	\label{alg:ss}
+\end{algorithm}
+
+\emph{Analiza algoritma}. 
+
+Ako je $\mathrm{OPT}_{ns}$ vrijednost optimalnog rješenja problema  nad instancom $(X,\mathcal{F})$ za problem  najkraćeg nadstringa, a $\mathrm{OPT}_{ss}$ dužina najkraćeg nadstringa, može se pokazati da vrijedi 
+$$\mathrm{OPT}_{ns} \leq 2 \cdot \mathrm{OPT}_{ss}.$$
+
+Iz prethodnog bi slijedilo da Algoritam~\ref{alg:ss} daje $2H_n$--aproksimaciju. 
 
 \begin{comment}
   
@@ -3663,113 +3703,11 @@ Vrijedi sljedeća teorema.
   \subsection{Problem Pokrivanja Skupa: aproksimacioni algoritmi} 
  
   
-  %motivacija
-  \begin{figure}
-  	\centering
-  	\includegraphics[width=70mm]{set-cover-1}
-  	\caption{Primjer Pokrivanja Skupa ($\mathcal{F}=\{T_1,T_2,...,T_4\}$, rjesenje je skup $\mathcal{C}=\{T_3, T_4, T_1\}$} \label{fig:set-cover-1}
-  	\label{fig:case1}
-  \end{figure}
-  
-  Sto se tice motivacije za ovaj problem, pretpostavimo da imamo skup karakteristika, te skup ljudi koji posjeduju pojedine karakeristike. Potrebno je odrediti komisiju sa sto manjim brojem osoba tako da se za svaku karakteristiku moze naci osoba iz komisije da je posjeduje. Gridi algoritam za ovaj problem je dat Algoritmom~\ref{alg:set-cover-gridi}. 
-  %pseudokod algoritma 
-  \begin{algorithm}[!t] 
-  	\caption{GREEDY-SET-COVER metod za Problem Pokrivanja Skupa.}\label{alg:set-cover-gridi}
-  	\begin{algorithmic}[1]
-  		\STATE \textbf{Ulaz}: $X$ i familija podskupova $\mathcal{F}$ od $X$
-  		\STATE \textbf{Izlaz}: pokrivac skupa $X$
-  		\STATE $U \gets X$
-  		\STATE $C \gets \emptyset$
-  		\While{$U \neq \emptyset$}
-  		\STATE $f \gets \mbox{argmax}_{f \in \mathcal{F}} |\{ f' \mid f' \in U  \wedge\ |f \cap f'| \geq 1\}| $
-  		\STATE $U \gets U \setminus \{f\}$
-  		\STATE $C \gets C \cup \{f\}$
-  		\EndWhile
-  	\end{algorithmic}
-  \end{algorithm}
-  
-  %objasnjenje algoritma.
-  $U$ predstavlja skup preostalih nepokrivenih elemenata. Skup $\mathcal{C}$ pedstavlja pokrivac koji se konstruise kroz iteracije algoritma. U svakom koraku, algoritam nastoji da prosiri pokrivac $\mathcal{C}$ na racun smanjenja skupa $U$. Kandidata za prosirivanje pokrivaca biramo na osnovu gridi funkcije datoj na liniji 6. U osnovi, biram onaj $f' \in \mathcal{F}$ koji ima najvise  elementima iz $U$ sa kojim ima neprazan presjek. Algoritam se izvodi u $O(|\mathcal{F}| \cdot |X|)$ vremenu, dakle koje je polinomijalno. Takodje, rjesenje koje se vraca algoritmom je dopustivo. Izracunajmo jos aproksimacioni faktor algoritma. Prije toga, oznacimo $d$-ti harmonijski broj $=H_d = \sum_{i=1}^d 1/i$ sa $H(d)$. 
-  Vrijedi sljedeca teorema.
-  
-  \noindent \textbf{Teorema. } GREEDY-SET-COVER algoritam ima aproksimacioni faktor 
-  $$ H(\max\{|f| \mid f \in \mathcal{F}\}).$$
-  
-  \noindent \textbf{Dokaz.} Oznacimo sa $f_i$ i-ti podskup koji je selektovan od strane algoritma: algoritam dodjeljuje cijenu $1$ kad se $ S_i$ doda u $\mathcal{C}$. 
-  Cijenu selektovanja $f_i$ distribuiramo podjednakom vjerovatnocom na sve elemente koji su po prvi put pokriveni sa $f_i$. Posmatrajmo primjer dat na Slici~\ref{fig:set-cover-1}). U prvoj iteraciji gridi algoritma 
-  6 elemenata je pokriveno sa $T_1$; prema tome, cijena svakog od ovih elemenata je $c_x = \frac{1}{|T_1\setminus \emptyset|}= \frac{1}{6}$. Dalje, u drugij iteraciji algoritam odabira skup $T_3$, koji pokriva 2 nova elementa; njihova cijena je $c_x=\frac{1}{|T_3 \setminus T_1|} = \frac{1}{2}$. U iteraciji broj 3, odabere se skup $T_2$, te se jedan novi element pokrije; njegova cijena je jednaka $c_x = \frac{1}{T_2 \setminus ( T_1 \cup T_3)}$. 
-  
-  Neka $ c_x$ oznacava cijenu za element $x\in X$.  Svakom elementu se cijena dodijeli najvise jednom, onog puta kada se pokrije po prvi put. Ako se $x$ pokriva prvi put sa $f_i$, tada imamo:
-  $$c_x = \frac{1}{f_i \setminus (f_1 \cup ...\cup f_{i-1})}.$$
-  
-  Algoritam generise rjesenje $\mathcal{C}$, koje je cijene $|\mathcal{C}|$ i ova cijena se rasporedjuje preko elemenata iz $X$. Kako je i optimalni pokrivac $C^*$ takodje pokriva skup $X$, slijedi:
-  \begin{align}\label{eq:f1}
-  	|C| = \sum_{x \in X} c_x \leq \sum_{f \in C^*}\sum_{x \in f} c_x.
-  \end{align}
-  
-  Pokazimo sljedecu kljucnu nejednakost koja sluzi u dokazu ove teoreme. Za svaku $f \in \mathcal{F}$, vrijedi  
-  \begin{equation}\label{eq:f2}
-  	\sum_{x \in f} c_x \leq H(|f|).
-  \end{equation}
-  
-  Iz formula~(\ref{eq:f1}) i (\ref{eq:f2}) bi dobili da je 
-  \begin{equation}
-  	|C| \leq \sum_{f \in C^*}\sum_{x \in f} c_x \leq \sum_{f \in C^*} H(|f|),
-  \end{equation}
-  odakle bi slijedila tvrdnja o vrijednosti aproksimacionog faktora algoritma.
-  Ostaje nam jos da pokazemo formulu~(\ref{eq:f2}). 
-  
-  Neka je $f\in \mathcal{F}$ tako da je $i=1,\ldots,|C|$, 
-  $$u_i(f) = |f \setminus (f_1 \cup \cdots \cup f_{i} )|$$
-  
-  budu ostali elementi u $f$ koji su jos uvijek nepokriveni nakon sto je algoiritam odabarao skupove $f_1,\ldots, f_i$
-  za pokrivac $C$ do $i$-te iteracije. Definisimo $u_0(f)=|f|$ ko broj elemenata skupa $f$ koji je inicijalno nepokriven. 
-  Oznacimo sa $k$ kao posljednji indeks tako da je $u_k(f)=0$  --  to znaci da su svi elementi skupa $f$ u $k$-toj iteraciji
-  pokriveni prvi put skupovima $S_1,\ldots,S_i$ koji su odabranu u algoritmu. Primijetimo da vrijedi
-  $$ u_o(f) \geq u_1(f) \geq \ldots u_{k-1}(f) \geq u_k(f).$$
-  Prema tome, $u_{i-1}(f) - u_{i}(f)$ predstavlja broj elemenata u supu $f$ koji su pokriveni 
-  po prvi put sa $S_i$ u $i$-toj iteraciji za $i=1,\ldots,k$. Prema tome,
-  
-  \begin{align}\label{eq:q1}
-  	\sum_{x \in f} c_x = \sum_{i=1}^k( u_{i-1}(f) - u_{i}(f)) \cdot \frac{1}{ f \setminus ( f_1 \cup \cdots \cup f_{i-1})},
-  \end{align}
-  
-  \noindent sto je jednako sumi brojeva elemenata skupa $f$ pokriven sa $f_i$ pomnozeno sa cijenom koja je dodjeljena svakom elementu u $i$-toj iteraciji. Primijetimo da vrijedi:
-  \begin{align}\label{eq:q2}
-  	|f_i \setminus (f_1 \cup \cdots \cup f_{i-1})| \geq | f   \setminus (f_1 \cup \cdots \cup f_{i-1}) | = u_{i-1},
-  \end{align}
-  jer je $S_i$ gridi izbor u $i$-toj iteraciji i svaki drugi izbor ne moze pokriti vise novih (nepokrivenih do elemenata) od ovog skupa.
-  
-  Prema tome, iz jednakosti~(\ref{eq:f1}), te nejednakosti~(\ref{eq:f2}), slijedi 
-  \begin{align*}
-  	\sum_{x \in f} c_x \leq \sum_{i=1}^k ( u_{i-1} - u_{i}) \cdot \frac{1}{u_{i-1}}
-  \end{align*}
-  
-  Izraz sa desne strane nejednakosti se moze ograniciti na sljedeci nacin:
-  
-  \begin{align}
-  	\sum_{i=1}^k ( u_{i-1} - u_{i}) \cdot \frac{1}{u_{i-1}} &= \sum_{i=1}^k \sum_{j=u_i + 1}^{u_{i-1}} \frac{1}{u_{i-1}} \leq \sum_{i=1}^k \sum_{j=u_i + 1}^{u_{i-1}}\frac{1}{j} \\
-  	&= \sum_{i=1}^k \left( \sum_{j=1}^{u_{i-1}}\frac{1}{j} - \sum_{j=1}^{u_{i}}\frac{1}{j} \right) \\
-  	&= \sum_{i=1}^k (H(u_{i-1}) - H(u_i)) = H(u_0)  H(u_k) = H(u_0) = H(|f|),
-  \end{align}
-  
-  odakle slijedi tvrdjenje. 
-  
-  napomenimo da postoji i tezinska verzija Problema Pokrivanja Skupova. U ovoj verziji je svakom skupu iz $f \in\mathcal{F}$ data tezina $w_f$. Zadatak je naci pokrivac $C \subseteq \mathcal{F}$ skupa $X$ sa najmanjom tezinom. Ovaj problem na slican nacin kao i ne-tezinska varijanta moze biti aproksimirana do na faktor $H_d= \log d+O(1)$, gdje je $d= \max\{|f|:f \in \mathcal{F}\}$ uz pomoc slicnog gridi algoritma. U tom slucaju, gridi kriterij je odredjen funkcijom 
-  \begin{align}
-  	g(f) = \frac{w_f}{|f \cap U|}, f \in \mathcal{F}\setminus C,
-  \end{align}
-  gdje se u svakom koraku algoritma odredjuje skup $f^*$ koji minimizuje vrijednost funkcije $g$, koji se 
-  zatim dodaje u trenutni pokrivac $C$.
-  
+ 
+   
   
   \subsection{Problem Najkraceg Nadstringa}
-  Neka je dat skup stringova $S=\{s_1,...,s_n\}$. Zadatak ovog problema je da se 
-  nadje string $s$ minimalne duzine koji sadrzi sve stringove iz $S$ kao njegove podstrigove. 
-  
-  Bez gubljenja opstosti, mozemo pretpostaviti da niti jedan string $s_i$ nije podstring stringa $s_j, i\neq j$.
-  Ovaj prolem je NP--tezak. Ideja je rijesiti ovaj problem uz pomoc Problema Pokrivanja Skupa i 
-  njegovih algoritama. Pokazacemo da postoji $2\cdot H_n$--faktor aproksimacija za problem najkraceg nadstringa. 
+   
   
   Ideja za algoritam je svesti problem na problem pokrivanja skupa tako da je neophodno pokriti sve stringove iz $S$ da bi se ispunio uslov problema. 
   
