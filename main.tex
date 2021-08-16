@@ -1,10 +1,11 @@
-\documentclass[a4paper, utf8, 11pt, colorlinks]{article} 
+\documentclass[a4paper, utf8, 11pt, colorlinks]{book} 
 \bibliography{localbibliography}
 \usepackage{verbatim}
 \usepackage{amsmath}
 \usepackage[serbian]{babel}
  
 \usepackage[OT2,T1]{fontenc}
+\usepackage[latin1,utf8]{inputenc}
 \usepackage{amssymb}
 \newtheorem{definition}{Definicija}
 \newtheorem{thm}{Teorema}
@@ -124,7 +125,7 @@
 
 \newpage
 
-\section{Uvod}
+\chapter{Uvod}
 
 Operaciona istraživanja su oblast koja pripada matematičkim disciplinama. Ona predstavlja osnovnu disciplinu u menadžmentu, a naziv joj potiče iz njene osnovne uloge, a to je istraživanje  operacija u organizacionim sistemima (logistika, problem raspoređivanja, itd.) gdje je svrha optimizacija (troškova, vremena, $\ldots$). Operaciona istraživanja u osnovi predstavljaju analitički metod rješavanja problema i donošenja odluka koje se primjenjuju u organizaciji raznih sistema. Metodologija ovih istraživanja  najčešće obuhvata razbijanje problema na bazne komponente a potom njihovo rješavanje u definisanim koracima uz pomoć matematičkog aparata. 
 
@@ -188,7 +189,7 @@ U nastavku knjige ćemo objasniti u detalje svaki od nivoa apstrakcije u operaci
  \newpage
  
  
-\section{Principi Modelovanja u Operacionim Istraživanjima}
+\chapter{Principi Modelovanja u Operacionim Istraživanjima}
 Prije svega, kada govorimo o pojmu Operaciona istraživanja, uvijek ćemo od sada koristiti skraćenicu OR (eng. \emph{operational research}). 
 U ovoj glavi ćemo objasniti   glavne faze tipičnog OR istraživanja koje se tiče komercijalne svrhe. Faze OR možemo sumirati u sljedeće (preklapajuće) faze: 
 \begin{itemize}
@@ -201,7 +202,7 @@ U ovoj glavi ćemo objasniti   glavne faze tipičnog OR istraživanja koje se ti
 \end{itemize}
  Svaka od ovih faza će biti opisana u nastavku.
  
- \subsection{Definisanje problema i skupljanje relevantnih podataka}
+ \section{Definisanje problema i skupljanje relevantnih podataka}
  
 Većina praktičnih problema sa kojima se susreću OR timovi su u početku opisani na jako neprecizan način. Prema tome, prvi zadatak podrazumijeva dobro definisati  cilj problema (engl. objectives), uslovi pod kojim je rješenje validno,  vremenski limit za donošenje odluka, moguće alternativne akcije, itd. Proces definisanja problema na dobar načij je krucijalan jer uveliko utiče na relevantnost zaključaka istraživanja. Izvlačenje pravog odgovora iz pogrešne postavke problema je praksa koja nikada ne vodi ispravnom rješenju.  
 
@@ -231,7 +232,7 @@ na razvoj kompjuterizovanog sistema za optimalno raspoređivanje i postavljanje 
 \end{enumerate}
 Da bi se postigao prvi cilj, policijska uprava i gradska vlada zajednički su radili u uspostavljanju željenog nivoa zaštite.  Matematički model koji je razvijen je nametnuo uslov da će se postići potreban nivo zaštite preko funkcije cilja. U samom modelu je nametnut uslov o ravnopravno uravnotežnim radnim satima među policajcima u cilju postizanja drugog cilja. Treći cilj je ugrađen usvajanjem dugoročnog cilja smanjenja broja policajaca potrebnih za postizanje prva dva cilja. 
 
-\subsection{Proces Formulisanja Matematičkog Modela}
+\section{Proces Formulisanja Matematičkog Modela}
 
 Nakon što se definiše problem odlučivanja, sljedeća faza je preformulisati takav problema u oblik prikladan za analizu. Konvencionalni OR pristup se sastoji u konstrukciju matematičkog modela koji pokriva suštinu problema. Prije nego objasnimo kako konstruisati takav model, recimo nešto o modelima u opštem slučaju, a posebno o matematičkim modelima.
 
@@ -279,7 +280,7 @@ Varijable odluke: $x_1$ i $x_2$ koje označavaju koliko litara soka Limuna i kol
 \item Ograničenja: $0 \leq x_1 \leq 5, 0 \leq x_2 \leq 4$,   $3 x_1 + 6 x_2 \leq 30$, $8 x_1 + 4 x_2 \leq 44.$
 \end{itemize}
 
-\subsection{Izvođenje Rješenja iz Modela}
+\section{Izvođenje Rješenja iz Modela}
 
 Nakon formulacije matematičkog modela za problem, sljedeća faza u OR studiji je razvoj postupka (algoritma) za
 izvođenje rješenja na osnovu konstruisanog modela. To je ponekad relativno jednostavan korak u kojem jedan od standardnih algoritama biva pušten na računaru pomoću jednog od   dostupnih softverskih paketa (Cplex, Gurobi, itd.). Međutim, pravi posao dolazi u sljedećim koracima, koji uključuje postoptimalnu
@@ -301,7 +302,7 @@ Da napomenemo, vrijednost koja se parametru obično dodjeljuje samo je procjena 
 %\textbf{Primjer.}  Posmatrajmo OR studiju o nacionalnom upravljanja vodama.
 
 
-\subsection{Testiranje Modela}
+\section{Testiranje Modela}
 Razvoj velikih matematičkih modela je analogan razvoju velikih softvera. Kad se dovrši prva verzija softvera, ona neizbježno sadrži mnogo bugova. Stoga, pristupa se testiranju kako bi se pokušalo pronaći i
 ispraviti što više bugova. Na kraju, nakon niza iteracija poboljšanja programa, programeri zaključuju da trenutni program sada
 daje generalno valjane rezultate. Obično, neke manje pogreške nesumnjivo ostaju skrivene u programu, a možda nikada neće biti otkrivene. Glavne pogreške su manje-više uklonjene da se program sada može pouzdano koristiti.  Slično tome, prva verzija matematičkog modela neizbježno sadrži mnoge
@@ -328,7 +329,7 @@ S druge strane, nedostatak retrospektivnog ispitivanja je taj što koristi iste 
 Ovom studijom je dobijen  novi inventarni sistem koji je poboljšao korisničku uslugu kroz koju se uštedilo dodatnih 20 milijuna USD po godini kroz poboljšanu operativnu efikasnost. Posebno zanimljiv aspekt faze provjere validnosti modela ove studije bio je način na koji su  budući korisnici inventarnog sistema ugrađeni u postupak ispitivanja. Prvo su odabrani predstavnici koji su činili korisnički tim čija je uloga bila  savjetovati OR tim. Nakon što je razvijena preliminarna verzija novog sistema izvršeno je njgovo testiranje. Opsežne povratne informacije korisničkog tima dovele su do glavnih poboljšanja u predloženom sistemu.  
 \end{comment}
 
- \subsection{Priprema za Primjenu Modela}
+ \section{Priprema za Primjenu Modela}
  Ako želimo da model bude iskorišten više puta, sljedeći  korak je instaliranje dobro dokumentovanog sistema za primjenu modela po propisima naručioca (uprave). Ovaj sistem uključuje inplementaciju samog modela, postupak dobijanja rješenja (uključujući analizu postoptimalnosti) operativne postupke za izvođenje, itd. %Tada, čak i kad se osoblje mijenja, sistem se može pozvati na regularnoj bazi da se ponudi određeno numeričko rješenje
  Baze podataka i informacioni sistem za upravljanje treba da omoguće ažuran unos za model svaki put pri korištenju sistema; u tom je slučaju potrebno obezbijediti interfejs. Nakon što se na model primijeni postupak rješavanja (drugi program), dodatni  programi mogu automatski pokrenuti implementaciju rezultata da bi to korisnici mogli odmah da primijene u realnoj situaciji. U drugim se slučajevima instalira interaktivni računarski sistem,  nazvan sistemi za podršku odlučivanju, koji pomaže upravi da koriste podatke i modele kako bi podržali (a ne zamijenili) njihovo donošenje odluka po potrebi. Drugi program može generirati menadžerske izvještaje (na jeziku upravljanja) koja tumače izlazne podatke modela i njegove implikacije na primjenu, koji se indirektno koristi u implementiraciji rješenja.  U velikim OR studijama potrebno je nekoliko mjeseci (ili duže) za razvoj, testiranje i instaliranje ovakvog računarskog sistema. Dio ovog napora uključuje razvoj i izvođenje postupka održavanja sistema  tokom njegove buduće upotrebe. Kao se uslovi mijenjaju tokom vremena, potrebno je  modifikovati sistem, uključujući i sam model, u skladu sa tim uslovima.  
 
@@ -339,7 +340,7 @@ Sljedeći primjer nam opisuje sistem u IBM-u za kontrolu usluga i zaliha rezervi
  Sistem nazvan \emph{Optimizer} pruža optimalnu kontrolu usluga i zaliha rezervnih dijelova u cijeloj IBM-ovoj mreži za distribuciju dijelova u SAD-u, koja uključuje dva središnja
 automatizovana skladišta, deseci terenskih distribucijskih centara i postaja za dijelove te nekoliko hiljada vanjskih (povezanih) lokacija. Inventar dijelova koji se održava u ovoj mreži se procijenjuje u milijardama dolara. \emph{Optimizer} se sastoji od četiri glavna modula. Modul sistema predviđanja sadrži nekoliko programa za procjenu stope kvara pojedinih vrsta dijelova. Modul sistema za dostavljanje podataka sastoji se od otprilike 100 programa koji    obrađuju
 preko 15 Gb podataka kako bi se osigurali ulazni podaci za model. Sistem odlučivanja potom rješava model koji traje i  sedmicu dana kako bi se optimizovala kontrola zaliha. Četvrti modul uključuje šest programa koji integriraju \emph{Optimizer} u IBM-ov sistem upravljanja zalihama dijelova. %PIMS je sofisticirani informacijski i kontrolni sustav koji sadrži milijune redaka koda 
-\subsection{Implementacija}
+\section{Implementacija}
 Nakon što se razvije sistem za primjenu modela, posljednja faza OR studije je primjena ovog sistema kako ga je uprava (koja naručuje razvoj sistema) propisala. Ova je faza ključna jer se ovdje ``ubiru plodovi rada''. Stoga je važno da OR tim  sudjeluje u  lanisiranju ove faze, kako bi se osiguralo da se rješenja modela precizno prevedu u operativni postupak i kako bi se ispravili svi nedostaci u rješenjima koja se otkriju. Uspjeh faze implementacije uvelike ovisi o podršci vrha uprave. Mnogo je vjerojatnije da će OR tim dobiti potporu ako je dobro informisao upravu i poticao  njeno vođstvo tijekom studija na aktivno učešće. Dobra komunikacija pomaže da studija postignu ono što je uprava željela te takođe potiče njihovu potporu u izvršenje čitavog projekta.  Faza provođenja uključuje nekoliko koraka. Prvo, OR tim daje operativnom rukovodstvu opis novog sistema koji treba da bude usvojen. Dalje, ove dvije strane dijele odgovornost za razvijanje koraka potrebnih za pokretanje ovog sistema. Operativno rukovodstvo zatim posmatra uključeno osoblje kojima daje detaljna uputstva za korištenje sistema, čime počinje proces primjene. Ako se sistem uspješno uvede, novi sistem se može koristiti u godinama koje dolaze. Imajući to na umu, OR tim nadgleda iskustva korisnika sistem i nastoji utvrditi koje izmjene bi trebalo da se urade na sistemu u budućnosti u cilju lakšeg korištenja.  Tokom vremena u kojem se koristi novi sistem, važno je i dalje dobijati povratne informacije o funkcionisanju sistema te da li su pretpostavke o modelu i dalje zadovoljene. Kada se pojave značajna odstupanja od originalnih pretpostavki modela, model treba ponovno pogledati radi utvrđivanja treba li se u sistemu izvršiti bilo kakve korekcije. Nakon završetka projekta, potrebno je da OR tim dokumentuje svoju metodologiju dovoljno jasno i precizno kako bi se čitav posao mogao ponoviti. Repliciranje bi trebalo
 biti dio profesionalnog etičkog kodeksa projektovanja (informacionih) sistema. %Ovo je stanje osobito važno kada se proučavaju kontroverzna pitanja javne politike. 
 
@@ -351,7 +352,7 @@ Treći faktor je bio taj da je novi sustav postupno uvođen fazu po fazu, uz pa�
 Ostatak ove knjige je fokusiran prvenstveno na konstruisanje metoda za rješavanje matematičkih modela. Sa ovim poglavljem  smo  pokušali objasniti da konstrukcija modela složenih problema ne sadrži samo ova dva koraka, već su oni samo dio cjelokupnog OR procesa. Treba imati na umu da su druge faze vrlo važne za provođenje uspješnog OR istraživanja. Predlažemo da se nakon izučavanja algoritama za rješavanja modela, čitalac vrati na ovo poglavlje u cilju što jasnije slike razvoja potpunog OR istraživanja zasnovano na kompleksnim procesima u praksi.  OR zahtijeva značajnu količinu domišljatosti i inovativnosti, pa ne postoji standardni postupak kojeg bi se timovi trebali pridržavati pri razvijaju sistema zasnovanih na operacionim istraživanjima. %Prethodni opis može da se promatra kao model koji otprilike pokazuje koliko je uspješan ILI se provode studije. 
 \newpage
 
-\section{Linearno Programiranje} 
+\chapter{Linearno Programiranje} 
    
 Razvoj linearnog programiranja se smatra među najvažnijim naučnim dostignu\-ćima XX vijeka. Njegov uticaj od 1950. je ogroman u nauci i industriji. Danas je to standardni alat koji je uštedio milione dolara ogromnom broju firmi u raznim zemljama svijeta  Napisani su deseci udžbenika
 o linearnom programiranju i objavljeno stotine radova koji opisuju važne primjene ove paradigme.  Linearno programiranje koristi matematički model za opisivanje problema. 
@@ -411,7 +412,7 @@ Konstruišimo sada model. Uvedimo varijablu $x_1$ za broj serija proizvoda 1 pro
     \item $3 x_1 + 2 x_2 \leq 18$
 \end{itemize}
 %https://www.desmos.com/calculator
-\subsection{Rješenje grafičkom metodom}
+\section{Rješenje grafičkom metodom}
  Problem iz prethodne sekcije se veoma malen jer sadrži samo dvije varijable odluke i samim tim sve alternative mogu biti predstavljene u dvije dimenzije. U tom slučaju, pri njegovom rješavanju može se koristiti grafička metoda. Ovaj postupak uključuje konstrukciju dvodimenzionalnog osnog sistema sa osama $x_1$ i $x_2$.  Prvi korak je identifikovati vrijednosti ($x_1$, $x_2$) koje su dopuštene ograničenjima. Njih drugačije zovemo dopustivim rješenjima. To se radi crtanjem svake od 
 linija koja se graniči sa rasponom dopuštenih vrijednosti ograničenja. Ograničimo prostor sastavljen od svih 6 uslova, što rezultira slikom~\ref{fig:fig1}.  Rezultujući region dopustivih rješenja $(x_1, x_2)$ se naziva dopustivi region. Posljednji je korak odabrati tačku u ovom regionu  koja maksimizira vrijednost $f = 3x_1 + 5x_2$. 
 
@@ -426,7 +427,7 @@ Pogledajmo sada grafike $3x_1 + 5 x_2 = c$, za $c \in \{10,20, 36\}$, kao na Sli
 
 Ovaj se postupak često naziva \emph{grafičkom metodom za linearno programiranje}. Ona se može koristiti za rješavanje bilo kojeg problema linearnog programiranja s dvije varijable. Uz znatan trud, moguće je proširiti ovu metodu na problem sa tri varijable, što je krajnji domet grafičke metode. Za uopšten slučaj se koristi  simpleks metoda o kojoj će biti riječi u narednim sekcijama.
 
-\subsection{Standardna Forma Linearnog Programiranja}
+\section{Standardna Forma Linearnog Programiranja}
 
 \begin{figure}[!ht]
     \centering
@@ -512,7 +513,7 @@ Razmotrimo bilo koji problem LP-a sa dopustivim rješenjima i ograničenom dopus
 
 Ako su sve varijable u problemu LP-a cjelobrojne, riječ je o problemima \emph{Cjelobrojnog programiranja}. Ako pored cjelobrojnih, postoje i neke neprekidne varijable, riječ je o problemima \emph{Mješovitog-cjelobrojnog programiranja}. 
 
-\subsection{Problemi Modelovani preko Linearnog Programiranja}\label{sec:modeli_lp}
+\section{Problemi Modelovani preko Linearnog Programiranja}\label{sec:modeli_lp}
 
 \emph{Problem optimalne prehrane.} Pretpostavimo da su nam na raspolaganju namirnice $N_1, \ldots, N_n$. Cijena namirnice $N_j$ po jedinici je $c_j, j = 1, \ldots, n$. U namirnicama su prisutni nutritivni elementi $e_j,j=1,\ldots,m$ pri čemu
 u namirnici $N_j$ ima $a_{ij}$ nutritivnog elementa $e_i$, $i = 1, \ldots, n$, $j = 1, \ldots, m$. Svaka osoba u toku dana mora unijeti barem $b_i$
@@ -687,7 +688,7 @@ Kada je riječ o linearnom programiranju,  postoji nekoliko osnovnih pretpostavk
 \end{enumerate}
 %Ako model zadovoljava prethodne 4 pretpostavke, onda je riješ o modelu linearnog programiranja. 
 
-\subsection{Osnovne teoreme o Linearnom Programiranju}
+\section{Osnovne teoreme o Linearnom Programiranju}
 U ovom poglavlju ćemo formalno pokazati način rješavanja linearnog problema. U osnovi, pokazaćemo da ako je problem
 linearnog programiranja dopustiv i ograničen i postoje vrhovi, onda postoji i optimalno rješenje tog LP problema. Kako smo ranije neformalno pomenuli,  to rješenje je upravo jedan od vrhova. 
 
@@ -979,7 +980,7 @@ To nam daje opravdanost ideje simpleks metode koja posjećuje vrhove poliedra
 da bi našao optimalno rješenje problema LP-a. Metodu opisujemo u narednoj glavi.
 
 \newpage 
-\section{Simpleks Metod}
+\chapter{Simpleks Metod}
 
 Simpleks metoda je najpoznatija metoda za rješavanje problema linearnog programiranja. Simpleks metoda traži rješenje LP-a posjećujući vrhove poliedra krećući se po njegovim granicama  uvijek u smijeru smanjenja vrijednosti
 funkcije cilja (ako je dat zadatak minimizacije). Razvio ju je George Dantzig 1947. godine i spada među najznačajnije algoritme XX vijeka.
@@ -1001,7 +1002,7 @@ gdje je $A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m, c \in \mathbb{R}^n, 
       Za pravac $d\in \mathbb{R}^n$ kažemo da je dopustiv u tački $x \in P$ akko postoji $\lambda > 0$ tako da $x + \lambda d \in P$.
 \end{definition}
 
-\subsection{Konstrukcija simpleks metode}
+\section{Konstrukcija simpleks metode}
 
  Neka je $x = [x_1,\ldots, x_n]^T$ bazno dopustivo rješenje poliedra $P$, gdje je $B$ matrica baze, $x_B$ bazni dio vektora $x$, a gdje su na mjesto nebaznih indeksa $N$ postavljene 0.  Sobzirom da je $x$ BDR, a kako je ideja metode ``šetanje'' po ivici poliedra  do drugog dok ne nađemo optimalno rješenje, krenimo pravcem $d$ u  tački $x$ (koju  treba da konstruišemo) pri čemu moramo paziti na to da
 \begin{itemize}
@@ -1062,7 +1063,7 @@ Navedimo sada osnovne korake jedne iteracije simpleks metoda:
     \label{fig:simpleks-visuelisation}
 \end{figure}
 
-\subsection{Tabelarni prikaz Simpleks Metode}
+\section{Tabelarni prikaz Simpleks Metode}
 
 U osnovi, simpleks algoritam se sastoji od stalne izmjene jedne kolone baznih vektora u $B$ sa nekim nebaznim vektorom i tako iterativno u cilju smanjivanja trenutne vrijednosti cilje funkcije, dok god je to moguće. 
 U praktičnom računanju, baratanje sa tabelarnim prikazom koraka simpleks metoda je u mnogome lakše (kompaktnije) nego koristiti standardan oblik LP-a. 
@@ -1103,7 +1104,7 @@ Obratimo pažnju da se problem minimiziacije vrlo lako prevodi u problem maksimi
 $$ \min_{ x \in P} f(x) = - \max_{x \in P}(-f(x)).$$ 
 Prema tome, ako imamo problem LP-a gdje treba da maksimizujemo vrijednost funkcije cilja, pa onda primijenimo simpleks metod, koraci metoda ostaju isti, uz malu izmijenu u koraku 2, gdje se mijenja znak nejednakosti (radi toga što se mijenja znak koeficijenata u funckciji cilja). Dakle, za popravak rješenja bi u tom slučaju gledaji one doprinose za koje je $\overline{c_j} > 0$.
 
-\subsection{Primjer rješavanja problema LP-a pomoću Simpleks Metode}
+\section{Primjer rješavanja problema LP-a pomoću Simpleks Metode}
 Kako je standardni politop LP-a dat sa svim onim $x \in \mathbb{R}^n$ tako da $Ax \leq (\geq) b$, transformišimo problem LP-a
  
   \begin{align}
@@ -1285,7 +1286,7 @@ $-x+y=3$ i $x+6y=18$, što je opet ista tačka (i nema napretka vrijednosti funk
 	\label{fig:deg-sol}
 \end{figure}
 
- \subsection{Dvofazni simpleks algoritam}
+ \section{Dvofazni simpleks algoritam}
  Postoje dva pitanja koja se nameću u primjeni simpleks algoritma:
  \begin{itemize}
      \item Da li se uvijek može naći bazno dopustivo rješenje za početno rješenje 
@@ -1313,7 +1314,7 @@ Postoje dva moguća slučaja:
  \end{itemize} 
  Ovaj korak nas vodi ka dvofaznom simpleks metodu. U nastavku dajemo primjer rješavanja jednog problema LP-a pomoću ove metode.      
       
- \subsection{Primjer rješavanja problema LP-a pomoću dvofaznog simpleks metoda}     
+ \section{Primjer rješavanja problema LP-a pomoću dvofaznog simpleks metoda}     
  
  
  
@@ -1404,7 +1405,7 @@ $$ \begin{array}{cccc|c}
  iz koje vidimo pošto su doprinosi svi veći od 0, da smo našli optimalnu simpleks tabelu.  Optimalna rješenja su 
  $x_1=2, x_3=5$, pa je prema tome optimum jednak -3.
  
- \subsection{Geometrija i simpleks metod}
+ \section{Geometrija i simpleks metod}
  
 Sljedeći primjer demonstrira odgovarajuće geometrijske korake (``šetanje'') po dopustivom regionu kada se koraci simpleks metode izvršavaju.   %pratiti https://faculty.math.illinois.edu/~mlavrov/docs/482-fall-2019/lecture5.pdf (strana 2 i 3) 
  Neka je dat problem:
@@ -1596,7 +1597,7 @@ $$
 Kako su svi koeficijenti doprinosa ($\overline{c}$ varijable) manje od 0, simpleks metod staje nalazeći optimum koji se dostiže u tački $x = (24, 3, 0)$, i jednak je vrijednosti  $f = 72$.
 \end{comment}
   \newpage
- \section{Dualnost}
+ \chapter{Dualnost}
  
  Dualnost je pojam koji je vezan za dobijanje uskih gornjih granica optimalne vrijednosti funckije cilja. Teorija dualnosti povezuje dva vezana problema linearnog programiranja -- jedan od njih je problem linearnog programiranja koji maksimizuje funkciju cilja, dok je drugi problem linearnog programiranja koji minimizuje (ne obavezno istu) funkciju cilja.  Dualnost implicira da svaki problem linearnog programiranja možemo analizirati na dva potpuno različita načina, ali sa ekvivalentnim rješenjima.   
   Prema tome, svaki problem LP-a se može navesti u drugom ekvivalentnom obliku na osnovu istih podataka. Ponekad rješavanje LP-a na jedan način biva puno lakše nego na drugi.
@@ -1639,7 +1640,7 @@ Generalno posmatrajući, za problem LP-a~(\ref{eq:LP-o1})--(\ref{eq:LP-c2}) njeg
      & y \geq 0.
 \end{align}
 
-\subsection{Teoreme dualnosti}
+\section{Teoreme dualnosti}
 
 \begin{thm}[Teorema o slaboj dualnosti.]
   Ako je x dopustivo rješenje za problem ($P$) i y dopustivo rješenje za problem  ($D$) , onda je 
@@ -1824,7 +1825,7 @@ jedanog problema i varijabli u drugom problemu je data preko sljedeće tabele
 \end{table}
 
 
-\subsection{Metod Unutrašnje Tačke}
+\section{Metod Unutrašnje Tačke}
 
 Simpleks metod ne garantuje   izvršavanje u polinomijalnom broju koraka u odnosu na veličinu ulaza. % V. Klee and G. Minty constructed an example LP: simplex method needs 2^n iterations to solve it 
 Dakle, iz njega se ne može zaključiti da je problem rješavanja generalnog LP problema   polinomijalno rješiv. \emph{Metod unutrašnje tačke} će nam  rješiti ovu dilemu jer bilo koji LP problem se može riješiti u polinomijanom vremenu uz pomoć ovog metoda, tj. pokazuje da je rješavanje problema LP-a pripada klasi $\mathcal{P}$. Iako u praksi često ne postiže dobre  performanse kao i simpleks metod, te se uvijek prvo preporučuje korištenje simpleks metoda u rješavanju LP-a, sa teoretskog stanovišta je veoma važan.  \emph{Metod unutrašnje tačke} (eng. Interior point metod) je dizajniran 50-ih godina XX vijeka i sve do 80-ih godina nije bio smatran za algoritam koji se efikasno može primijeniti na probleme velikih dimenzija. Tek 1984.godine (N. Karmakar, inžinjer u IBM-u) je formalno dokazao da se ovaj algoritam izvršava u polinomijalnom broju koraka za probleme linearnog programiranja. U današnje vrijeme, usljed ekstremnog poboljšanja performansi mašina, pokazao se da je \emph{metod unutrašnje tačke} kompetentan sa simpleks metodom kada je riječ o LP-u velikih dimenzija (sa matricom $A$ čiji je broj elemenata $10^9$ i više).
@@ -2100,7 +2101,7 @@ Iz trečeg uslova   $x_1(\mu)=x_2(\mu)=2$, što je i optimum. Primijetimo da ovd
 
 
 %Fourier–Motzkin elimination ==> Problem dopustivosti...
-\subsection{Fourier–Motzkin-ova Eliminacija}
+\section{Fourier–Motzkin-ova Eliminacija}
 TODO...%https://faculty.math.illinois.edu/~mlavrov/docs/482-fall-2019/lecture19.pdf
 Vezano pitanje za problem  LP-a kojeg rješavamo je sljedeće pitanje:
 \emph{Neka su date matrica $A$ i vektor $b$, da li je skup $P = \{x: A x \leq b\}$ neprazan?} Dakle, da li postoji dopustivo rješenje linearnog programa? 
@@ -2173,7 +2174,7 @@ Tada, donje i gornje granice za $y$ postaju uslovi (pogledati gore): $y \leq 6, 
 %kompleksnost i Farkasova lema...
 %  dualna simpleks metoda ? 
 \newpage
-\section{Cjelobrojno Programiranje}
+\chapter{Cjelobrojno Programiranje}
 
 %https://www.google.com/url?sa=t&source=web&rct=j&url=https://web.mit.edu/15.053/www/AMP-Chapter-09.pdf&ved=2ahUKEwiN0cef_f7xAhU0CRAIHWLqCw0QFjAfegQILBAC&usg=AOvVaw1cQCbZJQbc55Z0VLPue2ul
 Ponekad nije realno očekivati da varijable odluke dobijaju neprekidne vrijednosti. Recimo, ako se zahtjeva u rasporedu u smjenama da dovoljan broj ljudi bude u svakoj od smjena. Ovaj broj je cjelobrojan, preciznije prirodan broj. U slučaju da su sve varijable odluke u modelu problema cjelobrojne, riječ je o problemu cjelobrojnog programirnja (eng. \emph{Integer programming}). 
@@ -2186,7 +2187,7 @@ U ovom odjeljku ćemo se pozabaviti   cjelobrojnim linearnim programiranjem (ILP
 \end{align}
 U nastavku modelujmo nekoliko poznatih problema pomoću paradigme ILP-a. 
 
-\subsection{Neki problemi modelovani pomoću ILP-a}
+\section{Neki problemi modelovani pomoću ILP-a}
 
 \emph{Problem ruksaka.} Neka je dato $n$ proizvoda i neka je težina $i$-tog proizvoda jednaka $w_i$, dok je vrijednost $c_i$, $i=1,\ldots,n$. Koje proizvode treba da stavimo u ruksak kapaciteta $C$ tako da je vrijednost proizvoda u ruksaku maksimalna. \\
 \emph{Rješenje}. Definišimo varijable $x_i$ koje dobijaju vrijednost 1 ako odaberemo $i$-ti proizvod, u protivnom je 0, $i=1,\ldots,n$. Ograničenje kapaciteta ruksaka se modeluje ograničenjem $\sum_{i=1}^n w_i x_i \leq C$, dok je funkcija cilja ta koja maksimizujem profit odabranih proizvoda, dakle modeluje se uz pomoć linearne kombinacije $f(x) = \sum_{i=1}^n c_i x_i$. Time smo modelovali ovaj problem.
@@ -2236,7 +2237,7 @@ $$  \sum_{j=1}^n x_{ij} = 1, \forall i =1,\ldots, n$$
  $$ \sum_{l=1}^{1_k}\sum_{t=1}^{2_k} x_{1_l, 2_t} \geq 1.$$
  U najgorem slučaju, potrebno je dodati $2^n-1$ ovakvih ograničenja. 
  
- \subsection{Neke tehnike konstrukcije modela Cjelobrojnog Programiranja}
+ \section{Neke tehnike konstrukcije modela Cjelobrojnog Programiranja}
  
  \emph{Binarne varijable.} Pretpostavimo da trebamo odrediti da li uključiti sljedeće aktivnosti: ($i$) izgraditi novo postrojenje,
 ($ii$) poduzeti reklamnu kampanju ili ($iii$) razviti novi proizvod. Jasno je da su ove odluke korespondiraju ka logičkim odlukama da ili ne, prema tome modelujemo ih sa  $x_i \in \{0, 1 \}$, i=1,2,3. Često se nameće uslov da se najviše jedna od odluka izvrši, što se modeluje sa $\sum_{i=1}^3 x_1 \leq 1$. Ovo ograničenje se obično naziva \emph{ograničenjem sa višestrukim izborom} (eng. multiple--choice constraint), jer se njime ograničava izbor odluka na najviše jednu od, u ovom slučaju, tri dostupne alternative. 
@@ -2447,7 +2448,7 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
  \end{align*}
  Još je ostalo zamijeniti svaku funkciju $f_j (s_j)$ aproksimacijom cjelobrojnog programiranja kako bismo izvršili cjelokupno modeliranje. Detalje ostavljamo kao zadatak. Ako bi funkcija $f_j (s_j)$ sadržala fiksne troškove, tada se ne bi trebale uvoditi nove varijable fiksnih troškova -- u tu svrhu služi već uvedena varijabla $y_j$. 
  
- \subsection{Kompleksnost Cjelobrojnog Programiranja}
+ \section{Kompleksnost Cjelobrojnog Programiranja}
    Što se tiče rješivosti cjelobrojnog programiranja, ona spada u NP--teške probleme, za razliku od LP-a koji je polinomijalan. U nastavku ove sekcije dajemo dokaz da je rješivost ILP-a NP--težak problem.  Ideja je da  svedemo problem 3--SAT na ILP.\\ 
      %https://mediaspace.msu.edu/media/Proving+that+Integer+Programming+is+NP-Complete/1_0j1vkmvw
    Uvedimo prvo problem 3--SAT-a. Neka su dati literali $x_1, \ldots, x_n$. Svaki literal može da bide pozitivan ($x_1$) ili negativan  ($\neg x_1$). Kažemo da je formula u konjunktivnoj normalnoj formi (CNF) akko je napisana kao konjunkcija klauzula (ili literala). Npr. formula $\phi(x_1, x_2, x_3)= (x_1 \vee  \neg x_2) \wedge (x_1 \vee x_3)$ je CNF. CNF formula $\phi(x)$ je zadovoljiva akko postoji dodjeljivanje $\overline{x}$ literalima ($x_i \in \{TRUE, FALSE\}$) tako da je $\phi(\overline{x})$ tačna (prema zakonima bulove algebre).  
@@ -2485,8 +2486,7 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
  \end{thm}
 
 
- \newpage 
- \section{Tehnike rješavanja problema Cjelobrojnog programiranja}
+ \chapter{Tehnike rješavanja problema Cjelobrojnog programiranja}
  
  Dok je simpleks metoda učinkovita za rješavanje  problema LP-a, ne postoji jedinstvena tehnika za rješavanje problema Cjelobrojnog programiranja. Umjesto toga, razvijeni su mnogi metodi i njihova efikasnost
  uvelike zavisi od karakteristika samog problema. Dosadašnje metode se generalno mogu klasifikovati na sljedeći način:
@@ -2498,11 +2498,11 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
 
 U osnovi, mi ćemo se baviti sa obje vrste metoda. Za model ILP-a (\ref{ilp-formulation}), zanemarujući uslov da varijable treba da budu cjelobrojne (već da uzimaju realne, pozitivne vrijednosti), dobijamo tzv. odgovarajuću LP \emph{relaksaciju} ILP-a (\ref{ilp-formulation}). LP relaksacija se može vrlo lako riješiti uz pomoć simpleks metoda pri čemu dobijemo rješenje $x^*$. Posmatrajući vektor $\overline{x}$ koje se dobijaju zaokružujući svaku od vrijednosti koordinata vektora $x^*$ na njenu najbližu cjelobrojnu, dobijamo cjelobrojni vektor. Međutim, iako je uslov o cjelobrojnosti (kakav je u odgovarajućem ILP-u potreban) ispunjen, može se desiti da ovakvo rješenje izvedeno iz LP relaksacije problema (\ref{ilp-formulation}) ne mora da bude dopustivo. U osnovi, skaliranjem desnih strana ILP-a kao i koeficijenata funkcije cilja na odgovarajući način, moguće je konstruisati probem čije je optimalno cjelobrojno rješenje proizvoljno udaljeno od zaokruženog rješenja LP relaksacije. Ovim postupcima ćemo se baviti u nastavku. 
 
-\subsection{Metoda grananja i ograničavanja (B\&B)}
+\section{Metoda grananja i ograničavanja (B\&B)}
 B\&B tehnika programiranja je zasnovana na principu ``zavadi pa vladaj'' gdje se problem rastavlja na manje dijelove, i tako rekurzivno po potrebi. Kasnije se (optimalna rješenja) manjih problema kombinuju za dobijanje optimalnog rješenja početnog problema.  U B\&B strategiji dodatak je da se 
 problem ne rastavlja na manje potprobleme ako se uspostavi da je rješenje podoptimalno (lošije od trenutno najboljeg dopustivog rješenja). U rješavanju ILP-a, dopustiv skup se dijeli na manje skupove, i tako rekurzivno (ako je potrebno) dok se ne dobiju potproblemi čije relaksacije obezbjeđuju cjelobrojno rješenje ili se zaključi da nisu dopustivi. Svi ovakvi B\&B pristupi se razlikuju u načinu podjele dopustivog skupa i zbog toga ih postoji nekoliko različitih u literaturi. 
 
-\subsubsection{Bazni B\&B za rješavanje problema ILP-a}
+\subsection{Bazni B\&B za rješavanje problema ILP-a}
 
 Navedimo sljedeće bitne činjenice u rješavanju problema  ILP-a:
 \begin{itemize}
@@ -2608,7 +2608,7 @@ Na Slici~\ref{fig:bnb_ilp} je prikazano B\&B drvo sljedećeg ILP-a:
 
 
 
-\subsection{Implicitna Enumeracija}
+\section{Implicitna Enumeracija}
 Posmatrajmo sada specijalnu B\&B proceduru koja se može primijeniti na problem Binarnog cjelobrojnog programiranja, gdje su sve diskretne varijable u suštini binarne. Ovaj algoritam ne zahtjeva da se izvedu rješenja LP-relaksacija, već rad sa kompletnom enumeracijom. Dakle, izlistaju se sve binarne kombinacije za varijable i izabere se ona koja je dopustiva i daje najveću vrijednost ciljnoj funkciji. Ovaj pristup radi dobro na problemima malih dimenzija gdje postoji svega nekoliko binarnih varijabli u modelu. Primijetimo da u problemu sa $n$ binarnih varijabli imamo da je broj kombinacija za varijable odluke jednak $2^n$ (dakle, raste eksponencijalnom brzinom s obzirom na veličinu ulaza). Ideja ove B\&B procedure je u svakom koraku ovog metoda fiksirati neku od varijabli na 0 ili 1, dobijajući dva nova potproblema koja treba da budu riješena. 
 
 Fiksiramo $i=1$ i $LB=-\infty$. 
@@ -2693,7 +2693,7 @@ Prodiskutujmo ovo rješenje po čvorovima dobijenog stabla:
   \end{itemize}
   Potpuna enumeracija bi generisala 32 čvora za gornji problem. Implicitna enumeracija generiše svega 10 čvorova. 
  
-\subsection{Metoda Odsjecajućih Ravni}
+\section{Metoda Odsjecajućih Ravni}
   
 \emph{Metoda Odsjecajućih Ravni} rješava cjelobrojne programe mijenjanjem rješenja linearnog programiranja sve dok se ne dobije cjelobrojno rješenje. Metoda ne radi  na principu dijeljenja dopustivog regiona problema na podregione, kao u B\&B metodama, već radi sa jednim linearnim programom, koji poboljšava dodavanjem novih ograničenja. Nova ograničenja sukcesivno smanjuju dopustiv region dok se ne pronađe cjelobrojno optimalno rješenje.   
  Istorijski gledano, to je prvi algoritam razvijen za probleme cjelobrojno programiranja za koji se dokazalo da konvergira u konačnom broju
@@ -2929,7 +2929,7 @@ $$ \begin{array}{ccccccc| c}
 $$
 gdje je lako uočiti da je optimalno bazno dopustivo rješenje $x=(5, 4, 1, 7, 0, 0, 0 )$, tj. rješenje početnog problema je $x^*=(5, 4)$.
 
-\subsection{B\&C algoritam za rješavanje ILP-a}
+\section{B\&C algoritam za rješavanje ILP-a}
 %https://homepages.rpi.edu/~mitchj/handouts/bc_algo/
 % http://www.mi.fu-berlin.de/wiki/pub/Main/GunnarKlauP1winter0708/discMath_klau_ILP_I.pdf
 Za razliku od B\&B procedure koja rješava ILP, ovdje dodajemo i metod odsjecajućih ravni u rješavanju relaksacija potproblema koji odgovaraju čvorovima (drveta). Dakle, ako  uzimamo trenutno aktivni čvor i rješavamo njegov potproblem, dijelimo ga na nekoliko potproblema (podjelom dopustivog regiona na više disjunktnih -- dodavanjem ograničenja) ili ga rješavamo rekurzivnim dodavanjem (gomorijevih) odsjecajućih ravni. Primijenimo ovu ideju na rješavanje jednog ILP-a.
@@ -2981,7 +2981,7 @@ Relaksacija problem ($P1$) daje riješenje $x^*=(3,2)$, koje je cjelobrojno, pa 
 
 Rješavajući LP relaksaciju problema ($P3$), dobijamo rješenje $x^*=(\frac{9}{5}, \frac{17}{5})$, tj.  optimalna vrijednost je $27.8$. Kako je $LB \geq 28.8$, niti jedno cjelobrojno rješenje problema ($P3$) ne može biti bolje od trenutno najbolje donje granice ($LB=28$), pa zaključujemo da je optimalo rješenje početnog problema $x^*=(3,2)$. 
 
-\subsection{Lagranžova relaksacija}
+\section{Lagranžova relaksacija}
 U rješavanju problema optimizacije, nalazak optimalnog rješenja je jedan od glavnih ciljeva. Međutim, za mnoge probleme nije realno očekivati da se garantuje optimalnost, već najbolje što se može učiniti za data ograničenja u resursima je da se ponudi dobra dolja granica za optimalnu vrijednost. Ako je ta ganica blizu optimuma, u mnogo slučajeva ona može da zamijeni optimum, štedeći resurse kojima raspolažemo. 
 
 Ideja \emph{Lagranžove relaksacije} je da u modelu ILP-a   koji ima  ograničenja koja čine problem teškim (ova procjena je najčešće stvar praktičnog iskustva),  posmatramo kao dio ciljne funkcije i da je penalizujemo.  %parametrom $\lambda>0$. 
@@ -3060,7 +3060,7 @@ Lagranživa relaksacija prethodnog ILP-a ima oblik
 gdje je $\lambda=(\lambda_1, \ldots, \lambda_n)$ i $c^\lambda_{i,j} = c_{i,j} + \lambda_i + \lambda_j$. 
 
 % interior point method (dodati)...
-\subsection{Metod Generisanja Kolona}% ovo je za LP probleme sa velikim brojem kolona, pogledati u https://coral.ise.lehigh.edu/~ted/files/ie418/lectures/Lecture18.pdf file:///C:/Users/PC/Downloads/ColumnGenerationTutorial.pdf
+\section{Metod Generisanja Kolona}% ovo je za LP probleme sa velikim brojem kolona, pogledati u https://coral.ise.lehigh.edu/~ted/files/ie418/lectures/Lecture18.pdf file:///C:/Users/PC/Downloads/ColumnGenerationTutorial.pdf
 Često se u praksi sreće da je u LP-u (ili ILP-u) broj varijabli puno veći (eksponencijalno) u odnosu na broj ograničenja. U osnovi, riječ je o ekstremno velikim modelima gdje je matrica $A$ velikih dimenzija. Kada je riječ o rješavanju ovakvih problema, veliki dio matrice (tj. njene kolone) nam nikada i neće biti relevantan u rješavanju. Da bi se riješila specifična instanca problema, ono što nam je potrebno su:
 \begin{itemize}
     \item Ograničenja koja se vežu uz optimalnost.
@@ -3143,17 +3143,17 @@ $$ \begin{array}{lll}
  
  \newpage
  
- \section{Dekompozicioni Metodi}
+ \chapter{Dekompozicioni Metodi}
  
  
  
- \subsection{Benderova Dekompozicija}
+ \section{Benderova Dekompozicija}
  
-  \subsection{Lagranžova Dekompozicija}
+  \section{Lagranžova Dekompozicija}
  
- \section{Metode za Nalaženje Dopustivih Rješenja}
+ \chapter{Metode za Nalaženje Dopustivih Rješenja}
 
-\subsection{Pohlepni Algoritmi}
+\section{Pohlepni Algoritmi}
  
 Pohlepni algoritmi su programska paradigma koja gradi riješenje dio po dio tako da 
 uvijek izabere naredni dio (komponentu rješenja) koja naizgled donosi veće benefite u odnosu na sve ostale komponente. Dakle, u svakom trenutku bira se komponenta koja je lokalno najbolja.  Ovi algoritmi se često koriste u rješavanju teških optimizacionih problema i najčešće su prva strategija koja se primjenjuje prije 
@@ -3177,7 +3177,7 @@ Krenimo prvo sa definicijom pokrivajućeg stabla, pa potom i minimalnog pokrivaj
 Postoji nekoliko efikasnih algoritama za pronalazak MST, koje u nastavku i opisujemo. 
 
 
-\subsubsection{Primov algoritam.}
+\subsection{Primov algoritam.}
 
 Algoritam izvršava sljedeće korake:
 
@@ -3202,7 +3202,7 @@ Kompleksnost algoritma. Lista susjedstva i pretraga: $O(|V|^2)$. Ako  koristimo 
 MST ima aplikacije u ($i$) dizajniranju mreža kao što je telefonska, gdje je potrebno u svako domaćinstvo (koje je predstavljeno jednim čvorom) postaviti linije tako da se povežu sva domaćinstva u mrežu a da se potroši što manje materijala na infrastrukturu mreže; ($ii$) aproksimaciji drugih teških optimizacionih problema kao što je problem trgovačkog putnika (TSP). Ponovimo, u TSP-u je potrebno naći najkraću konturu koji posjećuje u (težinskom) grafu. Primijetimo da su takvi putevi takođe MST. Težina MST je manja nego težina TSP, jer minimizujemo nad većim skupom rješenja, tako da se može pokazati da je nalazak MST-a u težinskom grafu aproksimira nalazak TSP-a (nad euklidskim težinskim grafovima).  
 ($iii$) Klaster analiza. $k$-klaster problem  se može posmatrati kao problem nalaženja MST-a, a potom brisanja $k-1$ najskupljih grana iz MST. 
 
-\subsubsection{Kruskalov algoritam.}
+\subsection{Kruskalov algoritam.}
 
 Ovo je još jedan pohlepni algoritam za nalaženje MST. Radi na principu sortiranja 
 grana na osnovu njihove težine. Neka je $\emph{mst} = \emptyset$. Preciznije, sljedeći koraci se izvršavaju:
@@ -3217,7 +3217,7 @@ grana na osnovu njihove težine. Neka je $\emph{mst} = \emptyset$. Preciznije, s
 \noindent Vremenska kompleksnost algoritma je $O(|E|\log |E|)$ ili $O(|E|\log |V|)$. Sortiranje grana uzima $O(|E| \log|E|)$ vremena. Potom, za svaku granu 
 se primjenjuje operacija nalaženja i dodavanja grane u skup \emph{mst}. Ove dvije operacije se izvršavaju u $O(\log |V|)$ vremenu. Dakle, algoritam treba vrijeme od $O(|E|\log |E| + |E|\log |V|)$ za svoje izvršavanje. Kako je $|E|=O(|V|^2)$, dobijamo kompleksnost $O(|E|\mathrm{log}(|V|))$. 
 
-\subsubsection{Dajkstrin algoritam}
+\subsection{Dajkstrin algoritam}
 
 Ovaj algoritam je dosta sličan Primovom algoritmu koji služi za nalaženje najkraćih puteva. Ovaj algoritam generiše tzv. SPT (eng. \emph{shortest path tree}) sa datim korjenim čvorom $s$ tako  što se formiraju dva disjunktna skupa čvorova, jedan koji sadrži čvorove uključene u SPT, a na drugoj strani svi ostali čvorovi. Inicijalno, svim čvorovima je dodjeljena vrijednost, tj. $dist[u]=\ +\infty, \forall u \in V\setminus \{s\}$, $dist[s]=0$. Neka je $Q = V$. 
 U svakom koraku algoritma nalazimo čvor $u$ koji je u skupu $Q$ sa minimalnom udaljenšću \emph{dist} od korjenog čvora $s$. Zatim se posmatraju njegovi susjedi $v$ te težine grana od čvora $u$. U slučaju da je zbirna vrijednost $dist[u]$  i težine grane $w(uv)$ manja od trenutne $dist[v]$, vrijednost $dist[v]$ se ažurira jer je nađen novi najkraći put od $s$ od $v$.  Čvor $u$ se zatim izbacuje iz skupa $Q$. Algoritam nastavlja sa istim koracima dok god $Q \neq \emptyset$. 
@@ -3253,7 +3253,7 @@ kompleksnost se redukuje na $O(|E| \cdot \log |V|)$.
 
 Napomenimo da Dijkstrin algoritam ne radi sa grafovima koji imaju negativne težine (pogledati inicijane uslove u  pseudokodu, te liniju 12).  Za ovakve grafove,  primjenjuje se Bellman–Ford algoritam koji je baziran na dinamičkom programiranju. Njega ne pominjemo u detaljima u ovoj knjizi.  %, o kojem ćemo nešto više reći u narednim sekcijama.
 
-\subsubsection{Frakcioni Problem Ruksaka}
+\subsection{Frakcioni Problem Ruksaka}
 
 Ovaj problem je definisan na sljedeći način. Neka je dato $n$ proizvoda sa svojim  težinom i vrijednošću, 
 te ruksak čiji je kapacitet $W$. Zadatak je da se među svim proizvodima odaberu neki proizvodi i stave u ruksak tako da vrijednost u ruksaku bude što veća ali da se pri tom ne naruši kapacitet ruksaka.
@@ -3268,7 +3268,7 @@ Može se pokazati sljedeća teorema.
 \begin{thm}
       Pohlepni algoritam opisan prethodno za problem Frakcionog ruksaka nalazi optimalno rješenje.
 \end{thm}
-\subsubsection{Pohlepni pristup za rješavanje LCS problema}
+\subsection{Pohlepni pristup za rješavanje LCS problema}
 
 String definišemo kao niz karaktera nad (konačnom) azbukom $\Sigma$. 
 Problem najdužeg podniza (eng. \emph{Longest common subsequence}), ili skraćeno LCS, je problem koji uzima u ulazu  $n$ stringova (označimo ovaj skup sa $S$) proizvoljne dužine. Njegov zadatak je da se nađe string makimalne dužine tako da je  zajednički podniz za sve stringove iz skupa $S$.  Neka su u ulazu data tri stringa dužine šest: $S = \{  \texttt{abbccb}, \texttt{abccab}, \texttt{abbbcb}   \}$. Rješenje problema je $s=\texttt{abcb}$. Primijetimo da je $s$ podniz za sva tri stringa iz $S$, a može se (direktno) provjeriti da je to najduži takav string. 
@@ -3303,7 +3303,7 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje.
 
 \noindent \emph{Primjer}.  Neka su data dva stringa: $s_1 = \texttt{acb}, s_2 = \texttt{bac}$. Ako uzmemo  $ b$ kao prvi karakter, rješenje koje dobijamo je \texttt{b}. Medjutim, optimalno rješenje je string $s=\texttt{ac}$. 
 
-\subsection{Aproksimativni Algoritmi}
+\section{Aproksimativni Algoritmi}
   %https://home.cs.colorado.edu/~srirams/courses/csci5654-fall13/ilpLectures.pdf
   
    Za veliki broj optimizacionih problema sa velikom kompleksnošću u praksi jednostavno ne postoje efikasni egzaktni algoritmi, te je za  njihovo rješavanje potrebano izdvojiti ogromne vremenske/memorijske resurse; dakle, za  ovakve probleme ne postoji algoritam koji se izvršava u polinomijalnom vremenu $O(|P|)$, gdje je $P \in {Poly}$ neki polinom iz vektorskog prostora polinoma \emph{Poly}. Sa druge strane, većina pohlepnih algoritama i naprednijih heuristika ne daje nikakvu garanciju na nađeno rješenje iako su ta rješenja u velikom broju slučajeva visokog kvaliteta. Negdje između egzaktnih i heurističkih algoritama se smiještaju \emph{aproksimativni algoritmi} koji su polinomijalni, daju dopustiva rješenja uz garanciju o njihovom kvalitetu. 
@@ -3330,7 +3330,7 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje.
   \noindent U tom slučaju kažemo da je algoritma $\mathcal{A}$ $c$ aproksimativni algoritam.
   Primjer problema za koji postoji apsolutni apriksimativni algoritam je bojenje planarnog grafa (eng. \emph{Planar Graph Coloring}). Primjer problema za koji postoji relativni apriksimativni algoritam je pokrivanje čvorova. 
   
-  \subsubsection{Problem Pokrivanja Čvorova: aproksimativni algoritmi}
+  \subsection{Problem Pokrivanja Čvorova: aproksimativni algoritmi}
   
   Neka je dat graf $G=(V,E)$. Potrebno je naći podskup $C\subseteq V$ najmanje kardinalnosti td. barem jedan čvor svake grane pripada skupu $C$.  Dopustivo rješenje je svaki podskup $C$ koji zadovoljava uslov problema. Takav skup se naziva \emph{pokrivač} čvorova grafa $G$. Primjer pokrivača je dat na Slici~\ref{vertex-cover} gdje pokrivač uključuje sve čvorove crvene boje. 
   
@@ -3398,7 +3398,7 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje.
   Ono sto se takođe zna (Hastad, 2001) je da ne postoji aproksimativni faktor 
   koji garantuje da je $c < \frac{7}{6}$ (osim ako $P \neq NP$). 
   
-  \subsubsection{Problem Trgovačkog Putnika: aproksimativni algoritmi}
+  \subsection{Problem Trgovačkog Putnika: aproksimativni algoritmi}
   
   Ovaj problem je jako težak kada je u pitanju konstrukcija aproksimativnog algoritma. Tome svjedoči sljedeća teorema.
  \begin{thm}
@@ -3524,7 +3524,7 @@ Posmatrajmo sljedeći (aproksimativni) algoritam koji umanjuje aproksimativni fa
  $2 cost(M) \leq cost(T) \leq C^*$, odakle dobijamo tvrđenje.  U literaturi je pokazano da ne postoji  aproksimacioni algoritam sa faktorom  $c < \frac{220}{219} \approx 1.0045$ (osim ako je P=NP). 
  
  
- \subsubsection{Problem Binarnog Pakovanja: aproksimativni algoritmi}
+ \subsection{Problem Binarnog Pakovanja: aproksimativni algoritmi}
 
 \begin{definition}
     Neka je dato $n$ proizvoda veličine $a_1,a_2,\ldots,a_n$ ($0<a_i<1$). Potrebno je spakovati sve proizvode u jedinična pakovanja, tako da je broj korištenih pakovanja minimalan.  
@@ -3552,7 +3552,7 @@ pa slijedi da je algoritam 2--aproksimacioni.
  Još jedan pohlepni algiritma za ovaj problem je \emph{Best fit}. Sljedeći proizvod se stavlja u pakovanje koje ostavlja najmanju prazninu od svih pakovanja kada se taj prizvod smjesti u odgovarajuće pakovanje. Ako takvo pakovanje ne postoji, otvoriti novo pakovanje. 
 Ovaj algoritam je takodje 2--aproksimacioni. Interesantno je napomenuti da za Problem binarnog pakovanja ne postoji aproksimacioni algoritam čiji je faktor $c <\frac{3}{2}$ (osim ako je $P=NP$), kako je pokazano u literaturi. 
 
- \subsubsection{Problem Pokrivanja Skupa: aproksimativni algoritmi}
+ \subsection{Problem Pokrivanja Skupa: aproksimativni algoritmi}
 Ovaj problem je uopstenje Problema pokrivanja čvorova, i definisan je na sljedeci naćin.
 \begin{definition}
 	    Neka je dat skup elemenata $X$ te familija podskupova $\mathcal{F}$ skupa $X$ tako da je za svaki $f\in \mathcal{F}$, $|f \cap X| \geq 1$ i $\bigcup_{f \in \mathcal{F}} f = X$. 
@@ -3661,7 +3661,7 @@ Napomenimo da postoji i težinska verzija Problema pokrivanja skupa. U ovoj verz
 \end{align}
 gdje se u svakom koraku algoritma određuje skup $f^* \in \mathcal{F}$ koji minimizuje vrijednost funkcije $g$, a zatim se dodaje u trenutni (parcijalni) pokrivač $C$.
 
-\subsubsection{Problem Najkraćeg Nadstringa}
+\subsection{Problem Najkraćeg Nadstringa}
 
 
 \begin{definition}
@@ -3700,13 +3700,13 @@ Iz prethodnog bi slijedilo da Algoritam~\ref{alg:ss} daje $2H_n$--aproksimaciju.
 \begin{comment}
   
   
-  \subsection{Problem Pokrivanja Skupa: aproksimacioni algoritmi} 
+  \section{Problem Pokrivanja Skupa: aproksimacioni algoritmi} 
  
   
  
    
   
-  \subsection{Problem Najkraceg Nadstringa}
+  \section{Problem Najkraceg Nadstringa}
    
   
   Ideja za algoritam je svesti problem na problem pokrivanja skupa tako da je neophodno pokriti sve stringove iz $S$ da bi se ispunio uslov problema. 
@@ -3738,10 +3738,10 @@ Iz prethodnog bi slijedilo da Algoritam~\ref{alg:ss} daje $2H_n$--aproksimaciju.
   
  \end{comment} 
   
-\subsection{Heuristički Metodi}
+\section{Heuristički Metodi}
  
- \newpage 
- \section{Optimizacioni rješavači}
+
+ \chapter{Optimizacioni rješavači}
  
  Kao što smo i pomenuli u uvodnoj sekciji, modelovanje problema koji odgovara rješenju problema je 
  posao koji uzima najveći dio vremena. Kada dođemo do modela koji približno odgovara potrebama uprave 
@@ -3753,7 +3753,7 @@ Iz prethodnog bi slijedilo da Algoritam~\ref{alg:ss} daje $2H_n$--aproksimaciju.
  %https://www.ibm.com/products/ilog-cplex-optimization-studio
  %https://www.youtube.com/watch?v=J7tNzCsYgy8
  
- \subsection{Optimizacioni rješavač Cplex}
+ \section{Optimizacioni rješavač Cplex}
  CPLEX alat je generalni rješavač za rjesavanje optimizacionih problema, a među njima  LP, ILP i MILP. Konstruisan je od strane IBM-a, i moze da se preuzme sa linka \url{https://www.ibm.com/products/ilog-cplex-optimization-studio}. On je dio \emph{IBM ILOG CPLEX Optimization Studio}-a koji ukljucuje i druge opcije poput \emph{Constraint Programming} (CP) solvera itd.
  
  U nastavku opisujemo proces same implementacije modela u CPLEX-u, preko programskog jezika $C$++.
@@ -3905,7 +3905,7 @@ Ako je potrebno implementirati varijablu za koju je $x \geq 0$ to radimo kao u p
      \end{itemize}
 \end{itemize}
 Eksportovanje modela za moguće ponovno korištenje se može uraditi pozivom metoda \emph{exportModel}, čiji je argument naziv fajla (.lp ekstenzija).  
- \subsection{Rješavač PuLP u Python-u}
+ \section{Rješavač PuLP u Python-u}
  % http://www.optimization-online.org/DB_FILE/2011/09/3178.pdf
  % https://coin-or.github.io/pulp/main/the_optimisation_process.html
  PuLP je biblioteka visokog nivoa za modelovanje izgrađena u programskom jeziku Python.  
@@ -3954,7 +3954,7 @@ Upisivanje modela u .lp format se vrši pozivom funkcije \emph{writeLP()}, čiji
  	print(v.name, "=", v.varValue)
  	print("Vrijednost funkcije cilja: ", value(prob.objective))
  \end{verbatim}
- \subsection{Primjena rješavača}%Capacitated Facility Location
+ \section{Primjena rješavača}%Capacitated Facility Location
  Posmatrajmo već modelovan problem lokacija iz Sekcije~\ref{sec:modeli_lp} uz pomoć PuLP rješavača. Model ovog problema je dat sa:
  \begin{align*}
  	   & \min \sum_{i=1}^n f_i x_i  + \sum_{i,j} c_{ij} y_{ij} d_j  \\
