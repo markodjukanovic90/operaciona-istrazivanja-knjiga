@@ -512,7 +512,7 @@ Razmotrimo bilo koji problem LP-a sa dopustivim rješenjima i ograničenom dopus
 
 Ako su sve varijable u problemu LP-a cjelobrojne, riječ je o problemima \emph{Cjelobrojnog programiranja}. Ako pored cjelobrojnih, postoje i neke neprekidne varijable, riječ je o problemima \emph{Mješovitog-cjelobrojnog programiranja}. 
 
-\subsection{Problemi Modelovani preko Linearnog Programiranja}
+\subsection{Problemi Modelovani preko Linearnog Programiranja}\label{sec:modeli_lp}
 
 \emph{Problem optimalne prehrane.} Pretpostavimo da su nam na raspolaganju namirnice $N_1, \ldots, N_n$. Cijena namirnice $N_j$ po jedinici je $c_j, j = 1, \ldots, n$. U namirnicama su prisutni nutritivni elementi $e_j,j=1,\ldots,m$ pri čemu
 u namirnici $N_j$ ima $a_{ij}$ nutritivnog elementa $e_i$, $i = 1, \ldots, n$, $j = 1, \ldots, m$. Svaka osoba u toku dana mora unijeti barem $b_i$
@@ -642,7 +642,7 @@ pod sljedećim uslovima
 Uvedimo sljedeću notaciju.
 \begin{itemize}
     \item  $f_{i}$: označava (fiksni) trošak otvaranja postrojenja $i$, za  $ i = 1,  \ldots, n$. 
-    \item $c_{ij}$: označava troškove isporuke proizvoda iz postrojenja $i$ kupcu $j$ za $i = 1, \ldots, n$, $j = 1,  \ldots, m$
+    \item $c_{ij}$: označava troškove zadovoljenja potražnje  kupca $j$ od strane postrojenja $j$ (cijena dostave, cijena proizvoda itd.), $i = 1, \ldots, n$, $j = 1,  \ldots, m$
     \item $d_{j}$: označava potražnju kupca $j$ za $j = 1, \ldots, m$
     \item $u_{i}$: označava maksimalnu količinu proizvoda koji se mogu proizvesti u postrojenju $i$, tj. $u_{i}$ označava kapacitet objekta $i$.
 \end{itemize}
@@ -657,7 +657,7 @@ gdje je
 Ograničenja ovog modela su sljedeća:
 \begin{itemize}
     \item $\sum_{i} y_{ij} = 1, \forall j\in\{1,\ldots,m\}$ (zahtjevi kupaca treba da budu ispunjeni)
-    \item $\sum_{i,j} d_j y_{ij} \leq u_i x_i, \forall i \in \{1,\ldots,n\}$
+    \item $\sum_{j} d_j y_{ij} \leq u_i x_i, \forall i \in \{1,\ldots,n\}$
 \end{itemize}
 Ovaj model pripada modelu \emph{mješovitnog linearnog programiranja}, gdje postoje varijable koje su cjelobrojne i neprekidne za isti model.
 
@@ -3955,6 +3955,71 @@ Upisivanje modela u .lp format se vrši pozivom funkcije \emph{writeLP()}, čiji
  	print("Vrijednost funkcije cilja: ", value(prob.objective))
  \end{verbatim}
  \subsection{Primjena rješavača}%Capacitated Facility Location
+ Posmatrajmo već modelovan problem lokacija iz Sekcije~\ref{sec:modeli_lp} uz pomoć PuLP rješavača. Model ovog problema je dat sa:
+ \begin{align*}
+ 	   & \min \sum_{i=1}^n f_i x_i  + \sum_{i,j} c_{ij} y_{ij} d_j  \\
+ 	   & \sum_{i} y_{ij} = 1, \forall j\in\{1,\ldots,m\} \\
+ 	   & \sum_{j} d_j y_{ij} \leq u_i x_i, \forall i \in \{1,\ldots,n\} \\
+ 	   & x_i \in \{0, 1\}, \forall i \in \{1, \ldots, n\} \\
+ 	   & y_{ij} \geq 0, \forall i \in \{1,\ldots,n \}, j \in \{1, \ldots, m\}.
+ \end{align*}
+ Ulazni parametri problema su konstante $m, n$, vektor $f$ koji odgovara cijeni otvaranja postrojenja, vektor $d$ koji odgovara potražnji svakog od kupaca, vektor $u$ koji odgovara kapacitetu postrojenja, te matrica $c_{ij}$ koja 
+ odgovara cijeni zadovoljenja potreba kupca $j$ od strane postrojenja $i$ (kao što je cijena isporuke).  Definišimo kroz program jednu instancu (obično se ona čita iz fajla). 
+ \begin{verbatim}
+   from pulp import *
+ 	  locations = [1, 2, 3]
+ 	  customers = [1, 2, 3]
+ 	  f = { 1 :  50,
+ 	        2 :  32,
+ 	        3 :  40 
+ 	  }
+    u = {
+            1 : 220,
+            2 : 100,
+            3 : 150
+    }
+     d = {
+          1 : 25,
+          2 : 44,
+          3 : 48
+     }
+     c = {
+       1 : { 1 : 2.0, 2 : 1.5, 3 : 0.75 },
+       2 : { 1 : 1.75, 2 : 1.5, 3 :  2.2 },  
+       3 : { 1 : 1.1, 2 : 2.2, 3 : 2.1  }
+    }
+    # modelovanje:
+    model = LpProblem("Lokacijski problem", LpMinimize) 
+    # varijable:
+    x = LpVariable.dicts("x_vars", locations, 0, 1, LpBinary)
+    y = LpVariable.dicts("y_vars", [ (i, j) for i in locations \ 
+                                            for j in customers ],\  
+                                            0, None, LpContinous)
+    #funkcija cilja: 
+    model += lpSum( f[i] * x[i] for i in locations )\ 
+          + lpSum(  y[ (i, j) ] * c[ i ][ j ] * d[ j ] \ 
+            for i in locations for j in customers )
+   
+    #ograničenja:
+    for j in customers:
+        model += lpSum( y[ (i, j) ] for i in locations ) == 1
+    for i in locations: 
+        model += lpSum( y[ (i, j) ] * d[ j ] for j in customers ) \ 
+                 <= u[ i ] * x[ i ]
+    # solve:
+    model.solve()
+    # rješenja:
+    print("Otvorene lokacije su \n:")
+    for i in locations:
+        if  x[ i ].varValue > 0:
+            print(str(i) + "\t")
+    print("y =>\n")
+    for i in locations:
+         for j in customers:
+             print(y[ (i, j) ].varValue)
+    print("Vrijednost: ", value(model.objective))    
+ \end{verbatim}
+ Optimalna vrijednost ove instance je 202.0 a dostiže se za vrijednost varijabli $x = (1, 0, 0)$, te $y_{11}= y_{12}= y_{13} = 1$, dok su ostale vrijenodsti 0.
  
 \end{document}
 
