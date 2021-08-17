@@ -3479,9 +3479,7 @@ Vrijedi sljedeća karaketrizacija grafova koji imaju Ojlerovu konturu.
  		\caption{MST grafa $G$}
  		\label{fig:tsp-1a}
  	\end{subfigure}
- \end{figure}
  
- \begin{figure}[!ht]
  	\begin{subfigure}{.45\textwidth}
  		\centering
  		% include first image
@@ -3496,14 +3494,16 @@ Vrijedi sljedeća karaketrizacija grafova koji imaju Ojlerovu konturu.
  		\caption{Hamiltonova kontura (ciklus): $C_1C_3C_4C_5C_2C_1$.} 
  		\label{fig:tsp-1a}
  	\end{subfigure}
+    \label{fig:tsp-1a1}
+    \caption{Koraci u konstrukciji Kristofidjesovog algoritma.}
  \end{figure}
 
 
 
-Posmatrajmo sljedeći (aproksimativni) algoritam koji umanjuje aproksimativni faktor TSP sa $2$ na 1.5. Algoritam je poznat pod nazivom \emph{Kristofidesov} algoritam~\ref{alg:tsp-a3}.
+Posmatrajmo sljedeći (aproksimativni) algoritam koji umanjuje aproksimativni faktor TSP sa $2$ na 1.5. Algoritam je poznat pod nazivom \emph{Kristofidesov} algoritam i dat je u Algoritmu~\ref{alg:tsp-a3}.
 
 %pseudokod algoritma 
-\begin{algorithm}[!t] 
+\begin{algorithm}[H] 
 
 	\begin{algorithmic}[1]
 		\STATE \textbf{Ulaz}: Kompletan graf $G$
@@ -3521,7 +3521,7 @@ Posmatrajmo sljedeći (aproksimativni) algoritam koji umanjuje aproksimativni fa
   Lako je vidjeti da je ovaj algoritam polinomijalan i da je dobijeno rješenje dopustivo.
  Pokažimo da algoritam ima faktor aproksimacije $c=1.5$.  Cijena TSP $C^*$ dostiže najviše cijenu Ojlerove konture, tj.  $C^*\leq cost(T^o) = cost(T) + cost(M)$.  Takođe vrijedi $cost(T) \leq C^*$. Pokažimo da je $cost(M) \leq  \frac{C^*}{2}$, odakle bi slijedila tvrdnja. Primijetimo da u optimalnoj konturi $T$ postoje dva mečinga: prvi sa čvorovima iz $M$, a drugi za ostale čvorove kojeg označavamo sa $M'$. 
  Kako je $C^* \geq cost(M) \leq cost(M')$ i $cost(M) + cost(M') = cost(T)$, slijedi 
- $2 cost(M) \leq cost(T) \leq C^*$, odakle dobijamo tvrđenje.  U literaturi je pokazano da ne postoji  aproksimacioni algoritam sa faktorom  $c < \frac{220}{219} \approx 1.0045$ (osim ako je P=NP). 
+ $2 cost(M) \leq cost(T) \leq C^*$, odakle dobijamo tvrđenje.  U literaturi je pokazano da ne postoji  aproksimacioni algoritam sa faktorom  $c < \frac{220}{219} \approx 1.0045$ (osim ako je $P=NP$). 
  
  
  \subsection{Problem Binarnog Pakovanja: aproksimativni algoritmi}
