@@ -3402,12 +3402,12 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje.
   
   Ovaj problem je jako težak kada je u pitanju konstrukcija aproksimativnog algoritma. Tome svjedoči sljedeća teorema.
  \begin{thm}
-    Ne postoji polinomijalan algoritam koji može aproksimirati TSP sa faktorom $c > 1$, osim ako je $P = NP$. 
+    Ne postoji polinomijalan algoritam koji može aproksimirati TSP sa  faktorom $c > 1$, osim ako je $P = NP$. 
 \end{thm}
   Kažemo da grane grafa zadovoljavaju nejednakost trougla akko za sve različite čvorove $u,v, r$ grafa $G$ vrijedi
   $$ w(u,v) + w(v,r) \geq w(u,r),$$
   gdje su $w(\cdot, \cdot)$ težine grane koja spaja dva čvora. Ovaj problem je poznat 
-  pod nazivom \emph{Metrički} TSP. On je i dalje NP--težak, ali se aproksimativni algoritam može konstruisati.  U nastavku algoritme izvodimo nad metričkim TSP-om. Posmatrajmo \emph{algoritam najbližeg dodavanja} koji aproksimira TSP, dat u Algoritmu~\ref{alg:tsp-a1}. 
+  pod nazivom \emph{Metrički} TSP. On je i dalje NP--težak, ali se aproksimativni algoritam ipak može konstruisati.  U nastavku algoritme izvodimo za metrički  TSP. Posmatrajmo \emph{algoritam najbližeg dodavanja} koji aproksimira TSP, dat u Algoritmu~\ref{alg:tsp-a1}. 
   
    \begin{algorithm}[!t] 
   
@@ -3421,22 +3421,22 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje.
   		\STATE $u,t \gets$ $\mbox{argmin}_{(u,t) \in (V(G)\setminus V(T)) \times V(T)} \{w(u, t)\}$
   		\STATE $ S \gets S \cup \{u\}$ 
   		\STATE $(u, q)\gets$ čvor $q$ slijedi $u$ u  $T$
-  		\STATE  $uq$ se izbacuje iz $T$, ubacuje se $utq$  // Ažururanje $T$ (rekonstrukcija preko konturi)
+  		\STATE  $uq$ se izbacuje iz $T$, ubacuje se $utq$  // Ažururanje $T$ (rekonstrukcija)
   		\ENDWHILE
   		\STATE \textbf{return} $T$
   	\end{algorithmic}
-   	\caption{Gridi algoritam za TSP.}
+   	\caption{Aproksimativni algoritam 1 za TSP.}
    	\label{alg:tsp-a1}
   \end{algorithm}
 
  Ovo je očigledno polinomijalan algoritam. Ispitajmo koji aproksimacioni faktor se 
-postiže ovim algoritmom. Primijetimo da algoritam podsjeća na Primov algoritam. Grane koje se identifikuju algoritmom 
+njime postiže. Primijetimo da algoritam podsjeća na Primov algoritam. Grane koje se identifikuju algoritmom 
 konstruišu MST. Zaključujemo da je cijena konture $T$ barem jednaka koliko i cijena MST u odnosu na iste ulazne podatke. Cijena konture za dva čvora $v_i$ i $v_j$ je $2 \cdot w({v_i,v_j})$ (jer računamo i povratnu granu). Posmatrajmo jednu iteraciju Algoritma~\ref{alg:tsp-a1}, gdje se $T$
 proširuje za čvor $t$ koji se ubacuje između čvorova  $u$ i $q$. Povećanje cijene (trenutne) konture $T$ u svakoj iteraciji je $$w({u,t}) + w({t,q})-w({u,q}).$$
 Na osnovu nejednakosti trougla imamo $ w({t,q}) \leq w({t,u}) + w({u,q})$. Prema tome, porast cijene konture $T$ u svakoj iteraciji je najviše $ w({t, u}) + w({u,t}) = 2\cdot w({u,t})$. 
-Prema tome, završna kontura ima cijenu koja dostiže cijenu koja je barem dva puta veća od cijene MST. Prema tome, ovo je 2-aproksimativni algoritam. 
+Dakle, završna kontura ima cijenu koja dostiže cijenu koja je barem dva puta veća od cijene MST. Prema tome, ovo je 2-aproksimativni algoritam. 
 
- \noindent Pokusajmo poboljšati 2--aproksimativni algoritam~\ref{alg:tsp-a1} uz pomoć \emph{Double tree algoritma}. 
+ \noindent Pokusajmo poboljšati 2--aproksimativni algoritam~\ref{alg:tsp-a1} uz pomoć \emph{Double tree algoritma}, kojeg objašnjavamo u nastavku. Prije toga uvodimo nekoliko definicija i teorema od bitnog uticaja u formiranju algoritma. 
  \begin{definition}
  	  Neka je dat graf $G=(V,E)$. Ojlerova konturu $T^o$ grafa $G$ je kontura $e_1e_2...,e_me_1$ koja obilazi sve grane grafa $G$. 
  \end{definition}
@@ -3453,15 +3453,15 @@ Vrijedi sljedeća karaketrizacija grafova koji imaju Ojlerovu konturu.
 		\STATE $mst \gets$  Izračunati MST grafa $G$
 		\STATE $mst^{copy} \gets$ Zamijeniti svaku granu u $mst$ sa dvije kopije istog
 		\STATE $T^o \gets$ Naći Ojlerovu konturu $T$ u $mst^{copy}$
-		\STATE Kontura $T$ grafa $G$ $\gets$ Izbaciti duple čvorove na $T^o$   
+		\STATE   $T$ $\gets$ Izbaciti duple čvorove iz $T^o$   
 		\STATE \textbf{return} $T$ 
 	\end{algorithmic}
    	\caption{Aproksimativni algoritam 2 za TSP.}
    	\label{alg:tsp-a2}
 \end{algorithm}
-  Pokazimo da ovim algoritmom dobijamo 2--aproksimaciju. Jasno je da je aloritam polinomijalan i da je dobijeno rješenje dopustivo. Pokažimo sada da ovim ostvarujemo faktor $2$.  
+  Pokažimo da ovim algoritmom dobijamo 2--aproksimaciju. Jasno je da je algoritam polinomijalan i da je dobijeno rješenje dopustivo. Pokažimo sada da ovim ostvarujemo faktor $2$.  
   Neka je $C^*$ cijena optimalne Hamiltonove konture. Tada je MST $\leq C^*$. 
-  Lako se vidi da je cijena Ojlerove konture  $\leq 2 \cdot C^*$. Na osnovu nejednakosti trougla skraćivanje Ojlerove konture (linija 6 u algoritmu) da bi se dobila Hamiltonova kontura $T$ ne moze da bude veća od 2 $C^*$. Dakle, slijedi da je cijena Hamiltonove konture $\leq 2 C^*$, pa je ovaj algoritam 2--aprokimativni.
+  Lako se vidi da je cijena Ojlerove konture  $\leq 2 \cdot C^*$. Na osnovu nejednakosti trougla skraćivanje Ojlerove konture (linija 6 u algoritmu) da bi se dobila Hamiltonova kontura $T$ ne može da bude veća od 2$C^*$. Dakle, slijedi da je cijena Hamiltonove konture $\leq 2 C^*$, pa je ovaj algoritam 2--aprokimativni.
   
  
    \begin{figure}[!ht]
@@ -3511,7 +3511,7 @@ Posmatrajmo sljedeći (aproksimativni) algoritam koji umanjuje aproksimativni fa
 		\STATE $T \gets$ Naći MST grafa $G$
 		\STATE $M \gets$ Naći minimalan mečing svih čvorova u $T$ neparnog stepena
 		\STATE $T' \gets$ Dodamo grane od $M$ u $T$
-		\STATE $T^o\gets$ nađimo Ojlerovu konturu u $T'$
+		\STATE $T^o\gets$ Nađimo Ojlerovu konturu u $T'$
 		\STATE $T \gets$ Izbaciti duple čvorove iz $T^o$
 		\STATE \textbf{return} $T$
 	\end{algorithmic}	
