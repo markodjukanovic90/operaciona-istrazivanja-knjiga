@@ -2486,17 +2486,17 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
  \end{thm}
 
 
- \chapter{Tehnike rješavanja problema Cjelobrojnog programiranja}
+ \chapter{Tehnike rješavanja Cjelobrojnog programiranja}
  
  Dok je simpleks metoda učinkovita za rješavanje  problema LP-a, ne postoji jedinstvena tehnika za rješavanje problema Cjelobrojnog programiranja. Umjesto toga, razvijeni su mnogi metodi i njihova efikasnost
  uvelike zavisi od karakteristika samog problema. Dosadašnje metode se generalno mogu klasifikovati na sljedeći način:
  \begin{enumerate}
-     \item Enumerativne tehnike -- Dinamičko programiranje, metoda otkidanja i ograničavanja (eng. \emph{branch-and-bound}), koju ćemo kratko zvati B\&B;
+     \item Enumerativne tehnike -- Dinamičko programiranje, metoda otkidanja i ograničavanja (eng. \emph{branch-and-bound}), koju ćemo kratko nazvati B\&B;
      \item Tehnike otkidajućih ravni.
      %\item Grupne-teoretske tehnike. 
  \end{enumerate}
 
-U osnovi, mi ćemo se baviti sa obje vrste metoda. Za model ILP-a (\ref{ilp-formulation}), zanemarujući uslov da varijable treba da budu cjelobrojne (već da uzimaju realne, pozitivne vrijednosti), dobijamo tzv. odgovarajuću LP \emph{relaksaciju} ILP-a (\ref{ilp-formulation}). LP relaksacija se može vrlo lako riješiti uz pomoć simpleks metoda pri čemu dobijemo rješenje $x^*$. Posmatrajući vektor $\overline{x}$ koje se dobijaju zaokružujući svaku od vrijednosti koordinata vektora $x^*$ na njenu najbližu cjelobrojnu, dobijamo cjelobrojni vektor. Međutim, iako je uslov o cjelobrojnosti (kakav je u odgovarajućem ILP-u potreban) ispunjen, može se desiti da ovakvo rješenje izvedeno iz LP relaksacije problema (\ref{ilp-formulation}) ne mora da bude dopustivo. U osnovi, skaliranjem desnih strana ILP-a kao i koeficijenata funkcije cilja na odgovarajući način, moguće je konstruisati probem čije je optimalno cjelobrojno rješenje proizvoljno udaljeno od zaokruženog rješenja LP relaksacije. Ovim postupcima ćemo se baviti u nastavku. 
+U osnovi, mi ćemo izložiti   obje vrste metoda. Za model ILP-a (\ref{ilp-formulation}), zanemarujući uslov da varijable treba da budu cjelobrojne (već da uzimaju realne, pozitivne vrijednosti), dobijamo tzv. odgovarajuću LP \emph{relaksaciju} ILP-a (\ref{ilp-formulation}). LP relaksacija se može vrlo lako riješiti uz pomoć simpleks metoda pri čemu dobijemo rješenje $x^*$. Posmatrajući vektor $\overline{x}$ koje se dobije zaokružujući svaku od vrijednosti koordinata vektora $x^*$ na njenu najbližu cjelobrojnu, dobijamo cjelobrojni vektor. Međutim, iako je uslov o cjelobrojnosti (kakav je u odgovarajućem ILP-u potreban) ispunjen, može se desiti da ovakvo rješenje izvedeno iz LP relaksacije problema (\ref{ilp-formulation}) ne mora da bude dopustivo. U osnovi, skaliranjem desnih strana ILP-a kao i koeficijenata funkcije cilja na odgovarajući način, moguće je konstruisati probem čije je optimalno cjelobrojno rješenje proizvoljno udaljeno od zaokruženog rješenja LP relaksacije. Ovim postupcima ćemo se baviti u nastavku. 
 
 \section{Metoda grananja i ograničavanja (B\&B)}
 B\&B tehnika programiranja je zasnovana na principu ``zavadi pa vladaj'' gdje se problem rastavlja na manje dijelove, i tako rekurzivno po potrebi. Kasnije se (optimalna rješenja) manjih problema kombinuju za dobijanje optimalnog rješenja početnog problema.  U B\&B strategiji dodatak je da se 
@@ -2576,8 +2576,8 @@ Na Slici~\ref{fig:bnb_ilp} je prikazano B\&B drvo sljedećeg ILP-a:
 	\begin{algorithmic}
 		\STATE $LB \gets$ $-\infty$
 		\WHILE{postoji neki aktivni čvor}
-		\STATE  $v_j \gets$ neka od aktivnih čvorova;
-		\STATE  Označiti $v_j$ kao neaktivnu;
+		\STATE  $v_j \gets$ Neki od aktivnih čvorova;
+		\STATE  Označiti $v_j$ kao neaktivan;
 		\STATE  $x^j \gets$ Riješiti potproblem koji odgovara čvoru $v_j$
 		\STATE $z^*_j \gets f(x^j)$;
 		\IF{ $z^*_j  \leq LB$} 
@@ -2591,7 +2591,7 @@ Na Slici~\ref{fig:bnb_ilp} je prikazano B\&B drvo sljedećeg ILP-a:
 		\ENDIF
 		\IF{$z^*_j  > LB$}
 		\IF{$x^j$ nije dopustivo}
-		\STATE $v_j^{'}, v_j^{''},\ldots, v_j^{(')^k}  \gets$ Generisati potprobleme (čvorove) problema koji odgovara problemu čvora $j$ (branch procedura);
+		\STATE $v_j^{'}, v_j^{''},\ldots, v_j^{(')^k}  \gets$ Generisati potprobleme (čvorove) problema koji odgovara problemu čvora $v_j$ (branch procedura);
 		\STATE Označi aktivnim nove čvorove; 
 		\ENDIF
 		\ENDIF
