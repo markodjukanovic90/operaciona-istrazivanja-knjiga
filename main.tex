@@ -4006,7 +4006,7 @@ Upisivanje modela u .lp format se vrši pozivom funkcije \emph{writeLP()}, čiji
  	print(v.name, "=", v.varValue)
  	print("Vrijednost funkcije cilja: ", value(prob.objective))
  \end{verbatim}
- \section{Primjena rješavača}%Capacitated Facility Location
+ \section{Primjena rješavača PuLP na rješavanje Problema Lokacija}%Capacitated Facility Location
  Posmatrajmo već modelovan problem lokacija iz Sekcije~\ref{sec:modeli_lp} uz pomoć PuLP rješavača. Model ovog problema je dat sa:
  \begin{align*}
  	   & \min \sum_{i=1}^n f_i x_i  + \sum_{i,j} c_{ij} y_{ij} d_j  \\
@@ -4072,6 +4072,186 @@ Upisivanje modela u .lp format se vrši pozivom funkcije \emph{writeLP()}, čiji
     print("Vrijednost: ", value(model.objective))    
  \end{verbatim}
  Optimalna vrijednost ove instance je 202.0 a dostiže se za vrijednost varijabli $x = (1, 0, 0)$, te $y_{11}= y_{12}= y_{13} = 1$, dok su ostale vrijednosti 0.
+ \subsection{Primjena Cplex-a na jedan String Problem}
  
+ % opisati RFLCS problem, modelovati ga:
+ U ovoj sekciji modelujemo problem najdužeg podniza bez ponavljanja. Ovaj problem kao ulaz prihvata dva (proizvoljna) stringa $s_1$ i $s_2$ nad nekom abecedom, a kao izlaz vraća string $s$ maksimalne dužine sa sljedećim karakteristikama:  
+ \begin{itemize}
+ 	\item $s$ je zajednički podniz oba stringa; 
+ 	\item $s$ ne sadrži karakter koji se u njemu pojavljuje dva ili više puta.
+ \end{itemize}
+Ovaj problem je NP-težak. 
+
+Za primjer, neka su data dva stringa $s_1 = \texttt{abdcccab}$ i $s_2=\texttt{abccacd}$, rješenje ovog problema je $s=\texttt{abc}$. Primijetimo da je $s$ zajednički podniz za oba ulazna stringa te da ispunjava uslov o ``neponavljajućim'' karakterima. Takođe, može se provjeriti da ne postoji duži zajednički podniz sa takvim svojstvom za ove ulazne stringove, što znači da je rješenje optimalno. Konstruišimo sada jedan Binarni cjelobrojni model za ovaj problem. Nazovimo par $(a, b), 1 \leq i \leq |s_1|, 1 \leq j \leq |s_2|$ \emph{mečing} akko je $s_1[a]=s_2[b], a < b$. Dalje, sa $\mathcal{M}$ označimo skup svih mečinga za dati ulaz $S=\{s_1, s_2\}$. Takođe, označimo sa  $\mathcal{M}_a$, skup svih mečinga koji pokrivaju isto slovo, tj. 
+$\mathcal{M}_{\texttt{a}} = \{ (i, j) \mid s_1[i]=s_2[j]=\texttt{a}\}$, $\texttt{a} \in \Sigma$. Za svaki mečing $p=(p(a),p(b))$, pridružimo jednu binarnu varijablu $z_{p} \in \{0, 1\}$. Označimo $l(z_p)= s_1[ p(a) ], Z_{\texttt{a}} = \{ z \mid l(z) = \texttt{a}\}, \texttt{a}\in \Sigma$, te skup svih vaarijabli sa $Z = \cup_{\texttt{a} \in \Sigma} Z_{\texttt{a}}$. 
+
+Za svake dvije binarne varijable $z_{p_1}$ i $z_{p_2}$ kažemo da su u \emph{konflitu} akko vrijedi $$ p_1(a) \geq p_1(a) \mbox{ i } p_1(b) \leq p_2(b)     $$ 
+ili 
+ $$ p_1(a) \leq p_1(a) \mbox{ i } p_1(b) \geq p_2(b).$$ 
+ili 
+$$ l(z_{p_1}) = l(z_{p_2}).$$
+
+Sada možemo formirati ograničenja u modelu. Uslov da je svaki karakter prisutan najviše jednom u rješenju problema se modeluje sa 
+\begin{equation}\label{eq:rflcs-max-1}
+	 \sum_{z \in  Z_a } z \leq 1, \forall a \in \Sigma 
+\end{equation}
+Takođe, s obzirom da rješenje problema odgovara nalasku skupa (međusobno) nekonfliktnih mečinga (odgovarajućih $z$-varijabli) maksimalne kardinalnosti, dodajemo model
+\begin{equation}\label{eq:rflce-non-conflict}
+	 z_{p} + z_q \leq 1, \forall p,q \in Z, p\neq q, p\mbox{ je u konfliktu sa } q.
+\end{equation}
+Kako tražimo skup maksimalne kardinalnosti, imamo funkciju cilja 
+\begin{equation}\label{eq:rflcs-objective}
+	 \max \sum_{z \in Z } z 
+\end{equation}
+Dakle, uz funkciju cilja (\ref{eq:rflcs-objective}), ograničenja (\ref{eq:rflcs-max-1})--(\ref{eq:rflce-non-conflict}) sa uslovom $z \in \{0, 1\}, z \in Z$, dobili smo model problema najdužeg stringa bez ponavljanja. 
+
+ Implementirajmo ovaj model, uz pretpostavku da je svaki string u ulazu narednog programa dat svojom numeričkom prezentacijom. To znači da je svakom karakteru stringa pridružen jedinstven broj i kao takav se importuje u program. Primjera rad, za string $s_1=\texttt{abbcba}$, pridružen je numerički niz (vektor) 011210. Model je implementiran u programskom jeziku C++, a riješen uz pomoć Cplex rješavača. 
+ 
+\begin{verbatim}
+#include <string>
+#include <stdio.h>
+#include <stdlib.h>
+#include <iostream>
+#include <limits>
+#include <unordered_map>
+#include <map>
+
+#include "path-to-ilocplex.h"
+
+ILOSTLBEGIN	
+struct Point2d // point for structure in 2D-LCPS
+{
+	
+   	public:
+   	int a,b;
+   	Point2d(): a(0), b(0){}; // default constructor...
+   	Point2d(int _a,int _b): a(_a), b(_b){};
+   	
+   	bool operator == (const Point2d & p2) const
+   	{
+   		   return (a == p2.a and b == p2.b);
+   	}
+   	friend std::ostream&  operator << (std::ostream & os, const Point2d&  p)
+   	{
+     	    	os<< "(" << p.a << ", " << p.b << ") " << endl;
+    		return os;
+   	
+    	
+};	
+	
+class Hash2d  //hashing the point
+{
+	   // works if the length of strings <= 5000
+	   public:
+	   std::size_t operator()(const Point2d & pl ) const
+	   {
+	    	   return 5000*pl.a + + pl.b;   
+	   }
+};
+
+bool conflict(const Point2d& p1, const Point2d& p2)
+{
+    	if( ( p1.a > p2.a and  p1.b > p2.b ) or 
+    	    ( p1.a < p2.a and  p1.b < p2.b ) ) 
+         	return false;
+    	return true;
+}
+
+int main( int argc, char **argv ) 
+{ 
+   vector<int> s1;
+   vector<int> s2
+   // import stringova u s1 i s2 (numericka prezentacija)
+   IloEnv env;
+   env.setOut(env.getNullStream());
+   try
+   {  
+ 	    cout << "model creation..." << endl;
+ 	    IloModel model(env);
+ 	    int vars_num = 0;
+ 	    IloObjective obj = IloMaximize(env);
+ 	    // defining the set of binary variables Z
+      unordered_map<Point2d, IloNumVar, Hash2d> Z;
+ 	    for (int i = 0; i < s1.size(); ++i){
+ 		    for (int j = 0; j < s2.size(); ++j)
+ 		    {
+ 		  	   if( s1[i] == s2[j] )
+ 		  	   {   
+ 		  	      Point2d p(i, j);
+ 		  	      IloNumVar myIntVar(env, 0, 1, ILOINT);
+ 		  	      Z[p] = myIntVar;
+ 		  	      obj.setLinearCoef(Z[p], 1.0); // define objective function
+ 		  	      ++vars_num;
+ 		    } 
+ 	    }
+     }
+     map<int, IloExpr> cs;   
+     // repetition-free constraints: 
+     for(unordered_map<Point2d, IloNumVar, Hash2d >::iterator itx 
+      = Z.begin(); itx != Z.end(); ++itx)
+     {	
+	         if(cs.find(s1[(*itx).first.a]) == cs.end() ){
+	    	        IloExpr xpr(env);
+	    	        cs.insert({s1[(*itx).first.a], xpr });
+	         }
+	         cs[s1[(*itx).first.a]] += (*itx).second;
+     }
+       for(int i = 0; i < alphabet_size; i++)
+           if(cs.find(i) != cs.end())
+              model.add(cs[i] <= 1); 
+            
+       // define a set of constraints:
+       for(unordered_map<Point2d, IloNumVar, Hash2d >::iterator it1 
+       = Z.begin(); it1 != Z.end(); ++it1)
+       {
+	         for(unordered_map<Point2d, IloNumVar, Hash2d >::iterator it2 
+	         = Z.begin(); it2 != Z.end(); ++it2)
+	         {
+		           if(conflict( (*it1).first, (*it2).first ) and  
+		             ! ((*it1).first == (*it2).first) ){   // conflict constraints
+			             model.add( (*it1).second + (*it2).second <= 1);
+		           }
+	         }
+       }
+      model.add(obj);
+      IloCplex cplex(model);
+      int time_limit = 900;
+      //pass the time limit to CPLEX
+      cplex.setParam(IloCplex::TiLim, time_limit); 
+      IloNum lastObjVal = std::numeric_limits<double>::max();
+      cplex.solve();  
+      // rjesenja:
+      if (cplex.getStatus() == IloAlgorithm::Optimal 
+          or cplex.getStatus() == IloAlgorithm::Feasible)
+      {
+    	   if(cplex.getStatus() == IloAlgorithm::Optimal)
+    	        cout << "CPLEX finds optimal" << endl;
+    	   else
+    	        cout << "CPLEX finds feasible solution" << endl;
+    	      
+    	  double lastVal = double(cplex.getObjValue());
+    	   // print the objective point
+    	   cout << "components in the solution: {" <<endl;
+    	   bool first = true;
+    	  for(unordered_map<Point2d, IloNumVar, Hash2d >::iterator it = Z.begin();
+    	       it != (Z.end()); ++it)
+    	  {
+               IloNum xval = cplex.getValue((*it).second);
+    	       if (xval > 0.9) {
+                   cout << (*it).first;
+    	       }
+         }
+         cout << " } \n";  
+     }
+     cout << "value: " << lastVal << endl;
+     cout << "dual bound: " << double(cplex.getBestObjValue()) << endl;
+   catch(IloException& e) {
+     	cerr  << " ERROR: " << e << endl;
+   }
+   env.end();
+ }
+ 
+} 
+\end{verbatim}
 \end{document}
 
