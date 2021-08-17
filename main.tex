@@ -3787,14 +3787,67 @@ Iz prethodnog bi slijedilo da Algoritam~\ref{alg:ss} daje $2H_n$--aproksimaciju.
  	\item tabu pretraživanje (eng. Tabu search - TS);
  	\item genetski algoritam (eng. Genetic algorithm - GA);
  	\item metod promjenljivih okolina (eng. Variable neighborhood search – VNS);
- 	\item Lagranžova relaksacija (eng. Lagrangian relaxation - LR);
- 	\item neuronske mreže (eng. Neural network algorithm - NNA);
  	\item simulirano kaljenje (eng. Simulated annealing - SA);
  	\item mravlje kolonije (eng. Ant colony optimization - ACO);
  	\item pčelinje kolonije (eng. Artificial Bee Colony - ABC);
  	\item elektromagnetizam (eng. Electromagnetism - EM);
  	\item upravljano lokalno pretraživanje (eng. Guided Local Search - GLS).
  \end{itemize}
+
+
+\subsection{Genetski algoritmi}\label{intro:ga}
+
+
+Genetski algoritmi spadaju u klasu populacionih i evolucijskih algoritama, čije je ponašanje inspirisano procesom evolucije koji se odvija u prirodi.
+Kao što je već rečeno, u osnovi se podrazumijeva rad sa populacijom jedinki, gdje svaka jedinka predstavlja potencijalno rješenje polaznog problema, dok je populacija  podskup ukupnog prostora pretraživanja. Populacija se u iterativnom postupku mijenja tako što se stare jedinke mijenjaju novim, potencijalno boljim jedinkama.
+
+Osnovni okvir za funkcionisanje geneskih algoritama je dat od strane Džona Holanda, u radu``Adaptation in natural and artificial system''.
+
+Svakoj jedinki se dodjeljuje brojevna vrijednost, tzv. prilagođenost (engl.  fitness), koja ocjenjuje kvalitet posmatrane jedinke. Cilj genetskog algoritma je da se iz iteracije u iteraciju pronalaze jedinke sa sve boljom prilagođenošću, pod čime se smatra i pojedinačno poboljšanje svake jedinke, ali i prosječna prilagođenost kompletne populacije, što se postiže standardnim genetskim operatorima: selekcijom, ukrštanjem i mutacijom.
+
+Populacija je centralna struktura kod genetskog algoritma i ona  obično broji od nekoliko, pa do nekoliko stotina jedinki (u rijetkim situacijama i do hiljadu). Svaka jedinka se predstavlja genetskim kodom, koji se zapisuje u nekoj konačnoj azbuci (najčešće binarnoj ili pak cjelobrojnoj).
+
+
+Početna populacija se obično kreira na slučajan način, čime se omogućava kreiranje raznovrsnog genetskog materijala, korisnog za kasnije faze algoritma i raznovrsnost samih jedinki. U nekim slučajevima se za generisanje polaznih jedinki koristi i neka druga heuristika, čime se pretraga od početka usmjerava ka onim oblastima pretraživanja za koje se pretpostavlja da sadrže kvalitetnija rješenja.
+
+Tokom rada algoritma, na populaciju se primjenjuju genetski operatori selekcije, mutacije i ukrštanja. Pored ovih osnovnih operatora, na neke jedinke se mogu primijeniti i drugi operatori, čijom se primjenom teži ka poboljšanju rješenja (na primjer, na jedinke sa boljom prilagođenošću se mogu primijeniti i tehnike lokalnogp pretraživanja).
+
+Operator selekcije bira jedinke koje preživljavaju u procesu evolucije. Po pravilu, boljim jedinkama (jedinkama sa boljom prilagođenošću) se operatorom selekcije daje veća vjerovatnoća da će preživjeti u narednu generaciju, dok  slabije jedinke selekcijom dobijaju manju šansu da prežive, te se tako izbacuju iz populacije. Postoji veći broj tehnika selekcije, a najpoznatije su: jednostavna (ili rulet) selekcija, turnirska, eliminacijska selekcija i elitizam. Rulet selekcija diktira da je vjerovatnoća da će jedinka preživjeti u narednu generaciju proporcionalna prilagođenosti. Kod turnirske selekcije se formiraju skupovi jedinki, od kojih samo ona sa najboljom prilagođenošću preživljava u sljedeću generaciju. Eliminacijska selekcija je primarno zasnovana na izbacivanju loših jedinki, prije nego na odabiru boljih za narednu generaciju. Elitizam podrazumijeva da će nekoliko najboljih (elitnih) jedinki direktno preći u narednu generaciju, čime se daje pouzdana pretpostavka da  algoritam teži globalnom optimumu.
+
+Ukrštanjem se rekombinuju geni jedinki. Rezultat ukrštanja jedinki su nove jedinke, koje potencijalno sadrže ``dobre'' gene  roditelja od kojih su nastale. Ovim mehanizmom  i jedinke slabije prilagođenosti, ali koje sadrže dobre gene, dobijaju šansu da učestvuju u reprodukciji i prenesu ``dobar'' genetski materijal na sljedeću generaciju. Najčešće korišteni operatori ukrštanja su tzv. jednopoziciono, odnosno dvopoziciono ukrštanje, kod kojih se određuje jedna, odnosno dvije tačke prekida na kojima se odvija razmjena genetskih kodova roditelja, respektivno.
+
+Mutacijom se vrši slučajna promjena određenog gena (sa nekom malom vjerovatnoćom da će se mutacija desiti), čime se postiže mogućnost vraćanja dobrog genetskog materijala, ukoliko je on izgubljen primjenom operatora selekcije i ukrštanja. Time se proces pretrage izvlači iz preuranjene konvergencije i usmjerava ka onim oblastima pretraživanja koje sadrže potencijalno bolje jedinke.
+
+
+Nakon primjene genetskih operatora, formira se naredna generacija. Populacija se tako sastoji od potomaka i nekih starijih jedinki koje su preživjele s obzirom na njihov kvalitet (elitne jedinke). Produkcija novih generacija se nastavlja sve dok ne budu ispunjeni uslovi za završetak algoritma. Najčešći kriterijumi za završetak algoritma su dostignuto maksimalno vrijeme izvršenja, dostignut  maksimalan ukupan broj iteracija, ili dostignut maksimalan broj iteracija bez poboljšanja najboljeg rješenja.
+
+Osnovna šema funkcionisanja genetskog algoritma je prikazana na Slici \ref{fig:gascheme}.
+
+$N_{pop}$ označava ukupan broj jedinki u populaciji.  $N_{elite}$ je broj elitnih jedinki, dok sy promjenljivima  $i$ i $obj_{i}$ predstavljene jedinke i odgovarajuća vrijednost funkcije cilja.
+\begin{figure}[htp]
+	\centering
+	\includegraphics[width= 0.8\textwidth]{gasrp2.eps} \caption {Osnovna šema GA algoritma}\label{fig:gascheme}
+\end{figure}
+
+
+Višedecenijska primjera genetskih algoritama u rješavanju velikog broja problema kombinatorne optimizacije dovela je do pojave velikog broja različitih varijanti algoritma, koje se, između ostalog, razlikuju po operatorima koji se primjenjuju, načinu formiranja početne populacije, primjenama različitih strategija lokalnog pretraživanja itd. 
+
+Jedan od korisnih aspekata koji u značajnoj mjeri može da ubrza rad (osnovnog) genetskog algoritma je koncept keširanja. 
+
+Kao što je poznato, keširanje se koristi u situacijama kada se dio podataka koji se obrađuju smješta u zaseban memorijski prostor, uz pretpostavku da će se ti podaci ponovo koristiti u kasnijim fazama izvršenja programa. Na taj način se budući zahtjevi za tim podacima opslužuju brže, u odnosu na vrijeme njihovog ponovnog izračunavanja. 
+
+Koncept keširanja se u genetskim algoritmima može iskoristiti u situacijama kada je, u različitim iteracijama, moguća pojava  identičnih jedinki. S obzirom da je računanje funkcije cilja vremenski često zahtjevna operacija, poželjno je primijeniti tehniku kojom se pamte genetski kodovi i njihove vrijednosti, pa ih kasnije koristiti, nego ih uvijek iznova računati.  Keš se može implementirati na različite načine, od kojih je najprirodnija implementacija preko heš-reda (engl. hash-queue) strukture podataka, unaprijed zadanog kapaciteta. Kada treba da se računa vrijednost funkcije cilja za datu jedinku, prvo se provjerava da li je ta vrijednost već izračunata i pohranjena u kešu. U slučaju da vrijednost ne postoji u keš strukturi, ona se tada po prvi put računa i pohranjuje u keš. U slučaju da je vrijednost pronađena, ona se ne računa, već se samo pročita iz keša. U slučaju da se keš napuni, brišu se one vrijednosti koje najduže nisu korištene (engl. least recently used - LRU). Treba istaći da keširanje ni u kom slučaju ne utiče na kvalitet rješenja, već samo služi za ubrzanje izvršenja genetskog algoritma.
+
+
+
+Naprednija šema  genetskog algoritma, koja sadrži i koncept keširanja je prikazana na Slici \ref{fig:gascheme1}.
+
+
+\begin{figure}[htp]
+	\centering
+	\includegraphics[width= 0.8\textwidth]{gasrp.eps} \caption {Šema GA algoritma sa uključenom tehnikom keširanja}\label{fig:gascheme1}
+\end{figure}
+
 
  \chapter{Optimizacioni rješavači}
  
