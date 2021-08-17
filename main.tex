@@ -3530,7 +3530,7 @@ Posmatrajmo sljedeći (aproksimativni) algoritam koji umanjuje aproksimativni fa
     Neka je dato $n$ proizvoda veličine $a_1,a_2,\ldots,a_n$ ($0<a_i<1$). Potrebno je spakovati sve proizvode u jedinična pakovanja, tako da je broj korištenih pakovanja minimalan.  
 \end{definition} 
 
-  Primjer takvog pakovanja je dat na Slici~\ref{fig:bin-packing}.
+  Primjer jedne instance problema pakovanja je dat na Slici~\ref{fig:bin-packing}.
 
 \begin{figure}
 	\centering
@@ -3545,31 +3545,31 @@ Posmatrajmo sljedeći (aproksimativni) algoritam koji umanjuje aproksimativni fa
 \end{itemize}
 
 
-\noindent Analiza algoritma. Ovo je polinomijalan algoritam koji vraća dopustivo rješenje.  Neka je $C^*$ optimalan broj pakovanja koji se otvara da bi se spakovalo svih $n$ stavki. Pretpostavimo da algoritam vraća rješenje $C$ (pakovanja). Iz toga je barem $C-1$ pakovanja puno više od polovine. Odatle je
+\noindent Analiza algoritma. Ovo je polinomijalan algoritam koji vraća dopustivo rješenje.  Neka je $C^*$ optimalan broj pakovanja koji se otvara da bi se spakovalo svih $n$ stavki. Pretpostavimo da algoritam vraća rješenje $C$ (pakovanja). Iz toga je barem $C-1$ pakovanja više od polovine mjesta je iskorišteno. Odatle je
 $$C^* \geq \sum_{i=1}^n a_i > \frac{C-1}{2}\ \Rightarrow\  2 \cdot C^* > C-1 \Rightarrow 2 \cdot C^* \geq C,$$
 pa slijedi da je algoritam 2--aproksimacioni. 
 
  Još jedan pohlepni algiritma za ovaj problem je \emph{Best fit}. Sljedeći proizvod se stavlja u pakovanje koje ostavlja najmanju prazninu od svih pakovanja kada se taj prizvod smjesti u odgovarajuće pakovanje. Ako takvo pakovanje ne postoji, otvoriti novo pakovanje. 
-Ovaj algoritam je takodje 2--aproksimacioni. Interesantno je napomenuti da za Problem binarnog pakovanja ne postoji aproksimacioni algoritam čiji je faktor $c <\frac{3}{2}$ (osim ako je $P=NP$), kako je pokazano u literaturi. 
+Ovaj algoritam je takodje 2--aproksimacioni. Interesantno je napomenuti da za Problem binarnog pakovanja ne postoji aproksimativni algoritam čiji je faktor $c <\frac{3}{2}$ (osim ako je $P=NP$), kako je pokazano u literaturi. 
 
  \subsection{Problem Pokrivanja Skupa: aproksimativni algoritmi}
-Ovaj problem je uopstenje Problema pokrivanja čvorova, i definisan je na sljedeci naćin.
+Ovaj problem predstavlja uopštenje Problema pokrivanja čvorova, i definisan je na sljedeci naćin.
 \begin{definition}
 	    Neka je dat skup elemenata $X$ te familija podskupova $\mathcal{F}$ skupa $X$ tako da je za svaki $f\in \mathcal{F}$, $|f \cap X| \geq 1$ i $\bigcup_{f \in \mathcal{F}} f = X$. 
 	    Potrebno je naći pokrivač $C \subseteq \mathcal{F}$ minimalne kardinalnosti tako da je 
 	    $$ \bigcup_{f \in C} f = X.$$
 \end{definition}
- U nastavku izlažemo pohlepnu heuristiku koja predstavlja aproksimativni algoritam sa logaritamskim faktorom. To znači, kako je veličina ulaza veća, kvalitet rješenja aproksimativnog algoritma opada relativno u odnosu na veličinu optimalnog rješenja. Kako logaritam kao funkcija raste sporo, ovaj aproksimacioni algoritam ipak daje korisne rezultate.
+ U nastavku izlažemo pohlepnu heuristiku koja predstavlja aproksimativni algoritam sa logaritamskim faktorom. To znači, kako je veličina ulaza veća, kvalitet rješenja aproksimativnog algoritma opada relativno u odnosu na veličinu optimalnog rješenja. Kako logaritam kao funkcija raste sporim intenzitetom, ovaj aproksimacioni algoritam ipak daje korisne rezultate.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=70mm]{set-cover-1.eps}
-	\caption{Primjer Pokrivanja Skupa ($\mathcal{F}=\{T_1,T_2,...,T_4\}$, rješenje je skup $\mathcal{C}=\{T_3, T_2\}$}
+	\caption{Primjer Pokrivanja Skupa ($\mathcal{F}=\{T_1,T_2,...,T_4\}$, optimalno rješenje je skup $\mathcal{C}=\{T_3, T_2\}$}
 	 \label{fig:set-cover-1}
 \end{figure}
 
-Što se tice motivacije za ovaj problem, pretpostavimo da imamo skup karakteristika, te skup ljudi koji posjeduju pojedine karakeristike. Potrebno je odrediti komisiju sa što manjim brojem osoba tako da se za svaku karakteristiku može naći osoba iz komisije da je stručna u tome. Pohlepni algoritam za ovaj problem je dat u Algoritmu~\ref{alg:set-cover-gridi}.  %objasnjenje algoritma.
-$U$ predstavlja skup preostalih nepokrivenih elemenata. Skup $\mathcal{C}$ pedstavlja pokrivač koji se konstruiše kroz iteracije algoritma. U svakom koraku, algoritam nastoji da proširi pokrivač $\mathcal{C}$ na račun smanjenja skupa $U$. Kandidata za proširivanje pokrivača biramo na osnovu pohlepne funkcije datoj u liniji 6. U osnovi, biramo onaj $f' \in \mathcal{F}$ koji ima najviše  elementima iz $U$ sa kojim ima neprazan presjek. Algoritam se izvodi u $O(|\mathcal{F}| \cdot |X|)$ vremenu, dakle  polinomijalnom. Takođe, jasno je da je rješenje koje se vraća dopustivo. Izračunajmo još aproksimativni faktor algoritma. Prije toga, označimo $d$-ti harmonijski broj $=H_d = \sum_{i=1}^d 1/i$ sa $H(d)$. 
+Što se tice motivacije za ovaj problem, pretpostavimo da imamo skup karakteristika, te skup ljudi koji posjeduju pojedine karakeristike. Potrebno je formirati komisiju sa što manjim brojem osoba tako da se za svaku karakteristiku može naći osoba iz komisije da je stručna u tome. Pohlepni algoritam za ovaj problem je dat u Algoritmu~\ref{alg:set-cover-gridi}.  %objasnjenje algoritma.
+Skup $U$ predstavlja skup preostalih nepokrivenih elemenata dok skup $\mathcal{C}$ pedstavlja pokrivač koji se konstruiše kroz iteracije algoritma. U svakom koraku, algoritam nastoji da proširi pokrivač $\mathcal{C}$ na račun smanjenja skupa $U$. Kandidata za proširivanje pokrivača biramo na osnovu pohlepne funkcije datoj u liniji 6. U osnovi, biramo onaj $f' \in \mathcal{F}$ koji ima najviše  elementima iz $U$ sa kojim ima neprazan presjek sve dok je $U \neq \emptyset$. Algoritam se izvodi u $O(|\mathcal{F}| \cdot |X|)$ vremenu, dakle  polinomijalnom. Takođe, jasno je da je rješenje koje se vraća dopustivo. Izračunajmo još aproksimativni faktor algoritma. Prije toga, označimo $d$-ti harmonijski broj $=H_d = \sum_{i=1}^d 1/i$ sa $H(d)$. 
 Vrijedi sljedeća teorema.
 
 %pseudokod algoritma 
@@ -3596,17 +3596,17 @@ Vrijedi sljedeća teorema.
 \end{thm}
 \begin{proof}
 	  Označimo sa $f_i$, $i$-ti podskup koji je selektovan od strane algoritma: algoritam dodjeljuje cijenu $1$ kad se $f_i$ doda u $\mathcal{C}$. 
-	  Cijenu selektovanja $f_i$ distribuiramo podjednakom vjerovatnocom na sve elemente koji su po prvi put pokriveni sa $f_i$. Posmatrajmo primjer dat na Slici~\ref{fig:set-cover-1}. U prvoj iteraciji pohlepnog algoritma,  
+	  Cijenu selektovanja $f_i$ distribuiramo podjednakom vjerovatnoćom na sve elemente koji su po prvi put pokriveni sa $f_i$. Posmatrajmo primjer dat na Slici~\ref{fig:set-cover-1}. U prvoj iteraciji pohlepnog algoritma,  
 	  6 elemenata je pokriveno sa $T_1$; prema tome, cijena svakog od ovih elemenata je $c_x = \frac{1}{|T_1\setminus \emptyset|}= \frac{1}{6}$. Dalje, u drugoj iteraciji algoritam odabire skup $T_3$, koji pokriva 2 nova elementa; njihova cijena je $c_x=\frac{1}{|T_3 \setminus T_1|} = \frac{1}{2}$. U iteraciji broj 3, odabere se skup $T_2$, te se jedan novi element pokrije; njegova cijena je jednaka $c_x = \frac{1}{T_2 \setminus ( T_1 \cup T_3)}$. 
 	 
-	 Neka $ c_x$ oznacava cijenu za element $x\in X$.  Svakom elementu se cijena dodijeli najviše jednom, onog puta kada se pokrije po prvi put. Ako se $x$ pokriva prvi put sa $f_i$, tada imamo:
+	 Neka $ c_x$ označava cijenu za pokrivanje elementa $x\in X$.  Svakom elementu se cijena dodijeli najviše jednom, onog puta kada se pokrije po prvi put. Ako se $x$ pokriva prvi put sa $f_i$, tada imamo:
 	 $$c_x = \frac{1}{f_i \setminus (f_1 \cup ...\cup f_{i-1})}.$$
 	 
 	 Algoritam generiše rješenje $\mathcal{C}$, koje je cijene $|\mathcal{C}|$ i ova cijena se raspoređuje elemenatima iz $X$. Kako optimalni pokrivač $C^*$ takođe pokriva skup $X$, dobijamo
 	 \begin{align}\label{eq:f1x}
 	 	|C| = \sum_{x \in X} c_x \leq \sum_{f \in C^*}\sum_{x \in f} c_x.
 	 \end{align}
-	  Pokazimo sljedeću kljucnu nejednakost koja služi u dokazu ove teoreme. Za svaku $f \in \mathcal{F}$, vrijedi  
+	  Pokazimo sljedeću ključnu nejednakost koja služi u dokazu ove teoreme. Za svaku $f \in \mathcal{F}$, vrijedi  
 	 \begin{equation}\label{eq:f2x}
 	 	\sum_{x \in f} c_x \leq H(|f|).
 	 \end{equation}
@@ -3616,27 +3616,27 @@ Vrijedi sljedeća teorema.
 	 	|C| \leq \sum_{f \in C^*}\sum_{x \in f} c_x \leq \sum_{f \in C^*} H(|f|),
 	 \end{equation}
 	 odakle bi slijedila tvrdnja o vrijednosti aproksimacionog faktora algoritma.
-	 Ostaje nam jos da pokazemo formulu~(\ref{eq:f2x}). 
+	 Ostaje nam još da pokažemo formulu~(\ref{eq:f2x}). 
 	 
 	 Neka je $f\in \mathcal{F}$ tako da za $i=1,\ldots,|C|$
 	 $$u_i(f) = |f \setminus (f_1 \cup \cdots \cup f_{i} )|$$
 	 
-	 označava ostale elemente u $f \in \mathcal{F}$ koji su jos uvijek nepokriveni nakon sto je algoritam odabarao skupove $f_1,\ldots, f_i$ u pokrivaču $C$ sve do $i$-te iteracije. Definišimo $u_0(f)=|f|$ ko broj elemenata skupa $f$ koji je inicijalno nepokriven. 
+	 označava ostale elemente u $f \in \mathcal{F}$ koji su još uvijek nepokriveni nakon što je algoritam dodao skupove $f_1,\ldots, f_i$ u pokrivač $C$ do $i$-te iteracije. Definišimo $u_0(f)=|f|$ za broj elemenata skupa $f$ koji je inicijalno nepokriven. 
 	 Označimo sa $k$ prvi indeks tako da je $u_k(f)=0$  -- što znači da su svi elementi skupa $f$ u $k$-toj iteraciji
-	 pokriveni prvi put nekim skupovima $S_1,\ldots,S_i$ koji su odabranu u ranijim koracima algoritma. Primijetimo da vrijedi
+	 pokriveni prvi put nekim skupovima %$S_1,\ldots,S_i$
+	 koji su odabranu u ranijim koracima algoritma. Primijetimo da vrijedi
 	 $$ u_o(f) \geq u_1(f) \geq \ldots \geq u_{k-1}(f) \geq u_k(f).$$
 	 Prema tome, $u_{i-1}(f) - u_{i}(f)$ predstavlja broj elemenata u skupu $f$ koji su pokriveni 
-	 po prvi put sa $f_i$ u $i$-toj iteraciji za $i=1,\ldots,k$. Prema tome, vrijedi
-	 
+	 po prvi put sa $f_i$ u $i$-toj iteraciji za $i=1,\ldots,k$. Dakle, vrijedi
 	 \begin{align}\label{eq:q1}
 	 	\sum_{x \in f} c_x = \sum_{i=1}^k( u_{i-1}(f) - u_{i}(f)) \cdot \frac{1}{ f \setminus ( f_1 \cup \cdots \cup f_{i-1})},
 	 \end{align}
  
    \noindent što je jednako sumi brojeva elemenata skupa $f$ pokriven sa $f_i$ pomnožen sa cijenom koja je dodjeljena svakom elementu u $i$-toj iteraciji. Primijetimo da vrijedi:
  \begin{align}\label{eq:q2x}
- 	|f_i \setminus (f_1 \cup \cdots \cup f_{i-1})| \geq | f   \setminus (f_1 \cup \cdots \cup f_{i-1}) | = u_{i-1},
+ 	|f_i \setminus (f_1 \cup \cdots \cup f_{i-1})| \geq | f   \setminus (f_1 \cup \cdots \cup f_{i-1}) | := u_{i-1},
  \end{align}
- jer je $S_i$ gridi izbor u $i$-toj iteraciji i svaki drugi izbor ne može pokriti više novih (nepokrivenih elemenata) od ovog skupa.
+ jer je $f_i$ pohlepni izbor (njegovim izborom pokrićemo čitav (nepokriveni dio) skupa $f_i$) u $i$-toj iteraciji i svaki drugi izbor ne može pokriti više novih (nepokrivenih elemenata). 
  
  Prema tome, iz jednakosti~(\ref{eq:f1x}), te nejednakosti~(\ref{eq:f2x}), slijedi 
  \begin{align*}
@@ -3655,11 +3655,11 @@ Vrijedi sljedeća teorema.
  
 \end{proof}
 
-Napomenimo da postoji i težinska verzija Problema pokrivanja skupa. U ovoj verziji je svakom skupu iz $f \in\mathcal{F}$ data tezina $w_f$. Zadatak je naci pokrivač $C \subseteq \mathcal{F}$ skupa $X$ sa najmanjom težinom. Ovaj problem na sličan način kao i ne-težinska varijanta može biti aproksimirana do na faktor $H_d= \log d+O(1)$, gdje je $d= \max\{|f|:f \in \mathcal{F}\}$ uz pomoć sličnog pohlepnog algoritma. U tom slučaju, pohlepni kriterij je određen funkcijom 
+Napomenimo da postoji i težinska verzija Problema pokrivanja skupa. U ovoj verziji je svakom skupu iz $f \in\mathcal{F}$ data težina $w_f$. Zadatak je naći pokrivač $C \subseteq \mathcal{F}$ skupa $X$ sa najmanjom težinom. Ovaj problem na sličan način kao i ne-težinska varijanta može biti aproksimirana do na faktor $H_d= \log d+O(1)$, gdje je $d= \max\{|f|:f \in \mathcal{F}\}$ uz pomoć sličnog pohlepnog algoritma. U tom slučaju, pohlepni kriterij je određen funkcijom 
 \begin{align}
 	g(f) = \frac{w_f}{|f \cap U|}, f \in \mathcal{F}\setminus C,
 \end{align}
-gdje se u svakom koraku algoritma određuje skup $f^* \in \mathcal{F}$ koji minimizuje vrijednost funkcije $g$, a zatim se dodaje u trenutni (parcijalni) pokrivač $C$.
+gdje je $w_f$ težina skupa. U svakom koraku algoritma određuje skup $f^* \in \mathcal{F}$ koji minimizuje vrijednost funkcije $g$, koji se zatim dodaje u trenutni (parcijalni) pokrivač $C$.
 
 \subsection{Problem Najkraćeg Nadstringa}
 
@@ -3668,14 +3668,14 @@ gdje se u svakom koraku algoritma određuje skup $f^* \in \mathcal{F}$ koji mini
    Neka je dat skup stringova $S=\{s_1,...,s_n\}$. Problem najkraćeg nadstringa se pita za pronalazak stringa $s$ minimalne dužine koji sadrži sve stringove iz $S$ kao njegove podstrigove. 
   \end{definition}
 Bez gubljenja opštosti, mozemo pretpostaviti da niti jedan string $s_i$ nije podstring stringa $s_j, i\neq j$.
-Ovaj problem je NP--težak. Ideja je riješiti ga uz pomoć Problema pokrivanja skupa i 
-njegovih algoritama. Pokazaćemo da postoji $2\cdot H_n$--aproksimacija za problem najkraćeg nadstringa. 
+Ovaj problem je NP--težak. Ideja je riješiti ga koristeći Problem pokrivanja skupa i 
+njegove algoritame iz prethodne sekcije. Pokazaćemo da postoji $2\cdot H_n$--aproksimacija za problem najkraćeg nadstringa. 
 
- Svakom stringu $\theta$ dodijelimo skup $set(\theta)$ tako da skup $set(\theta)$ pokriva string $s\in S$ akko 
+ Svakom stringu $\theta$ dodijelimo skup $set(\theta)$ tako da   $set(\theta)$ pokriva string $s\in S$ akko 
 je $s$ podstring od $\theta$. Prema tome 
 $$set(\theta) = \{ s \in S \mid s \mbox{  podstring od }\theta \}.$$
 
- Odatle bi pokrivač skupa bila familija takvih skupova $set(\theta)$, iz kojih se konstruiše nadstring skupa $S$ spajajući sve $\theta$ stringove u jedan string. U svakom slučaju familija  $\mathcal{F}$ se ne može definisanti kao skup skupova $set(\theta)$ jer bi u suprotnom $\mathcal{F}$ bio beskonačan. Sa druge strane, ne možemo ograničiti sve stringove $\theta$ samo na $S$, jer bi u suprotnom dobili rješenje koje je jednako konkatenaciji svih stringova iz $S$, što je svakako nekorisno rješenje. Za uspostavljanje balansa, neka iz skupa $S=\{s_1,...,s_n\}$ uzmemo par stringova $s_i$ i $s_j$, nađemo $k>0$  tako da je posljednjih $k$ karaktera stringa $s_i$ jednaka prvih $k$ karakera stringa $s_j$ (poklapanje). Označimo sa $\theta_{ijk}$ string koji se 
+ Odatle bi pokrivač skupa bila familija takvih skupova $set(\theta)$, iz kojih se konstruiše nadstring skupa $S$ spajajući sve $\theta$ stringove u jedan string. U svakom slučaju familija  $\mathcal{F}$ se ne može definisanti kao skup skupova $set(\theta)$ jer bi u suprotnom $\mathcal{F}$ bio beskonačan. Sa druge strane, ne možemo ograničiti sve stringove $\theta$ samo na one iz $S$, jer bi u suprotnom dobili rješenje koje je jednako konkatenaciji svih stringova iz $S$, što je svakako nekorisno rješenje. Za uspostavljanje balansa, neka iz skupa $S=\{s_1,...,s_n\}$ uzmemo par stringova $s_i$ i $s_j$, nađemo $k>0$  tako da je posljednjih $k$ karaktera stringa $s_i$ jednaka prvih $k$ karakera stringa $s_j$ (poklapanje). Označimo sa $\theta_{ijk}$ string koji se 
 dobije preklapanjem stringova $s_i$ i $s_j$ na $k$ karaktera. Oznacimo sa $I$ skup strinova $\theta_{ijk}$  za validne izbore $i,j$ i $k$. Zatim definišemo $\mathcal{F}=\{set(\theta) \mid  \theta \in S \cup I\}$. Dodijeljena cijena svakog skupa $set(\theta))$ je jednaka $|\theta|$. Na osnovu prethodnog, dobijamo algoritam za rješavanje problema Najkraćeg nadstriga Algoritmom~\ref{alg:ss}. 
 
   \begin{algorithm}[!t] 
@@ -4075,15 +4075,15 @@ Upisivanje modela u .lp format se vrši pozivom funkcije \emph{writeLP()}, čiji
  \subsection{Primjena Cplex-a na jedan String Problem}
  
  % opisati RFLCS problem, modelovati ga:
- U ovoj sekciji modelujemo problem najdužeg podniza bez ponavljanja. Ovaj problem kao ulaz prihvata dva (proizvoljna) stringa $s_1$ i $s_2$ nad nekom abecedom, a kao izlaz vraća string $s$ maksimalne dužine sa sljedećim karakteristikama:  
+ U ovoj sekciji modelujemo problem \emph{najdužeg podniza bez ponavljanja}. Ovaj problem kao ulaz prihvata dva (proizvoljna) stringa $s_1$ i $s_2$ nad proizvoljnom abecedom, a kao izlaz vraća string $s$ maksimalne dužine sa sljedećim karakteristikama:  
  \begin{itemize}
  	\item $s$ je zajednički podniz oba stringa; 
  	\item $s$ ne sadrži karakter koji se u njemu pojavljuje dva ili više puta.
  \end{itemize}
-Ovaj problem je NP-težak. 
+Za ovaj problem je poznato da je NP-težak. 
 
-Za primjer, neka su data dva stringa $s_1 = \texttt{abdcccab}$ i $s_2=\texttt{abccacd}$, rješenje ovog problema je $s=\texttt{abc}$. Primijetimo da je $s$ zajednički podniz za oba ulazna stringa te da ispunjava uslov o ``neponavljajućim'' karakterima. Takođe, može se provjeriti da ne postoji duži zajednički podniz sa takvim svojstvom za ove ulazne stringove, što znači da je rješenje optimalno. Konstruišimo sada jedan Binarni cjelobrojni model za ovaj problem. Nazovimo par $(a, b), 1 \leq i \leq |s_1|, 1 \leq j \leq |s_2|$ \emph{mečing} akko je $s_1[a]=s_2[b], a < b$. Dalje, sa $\mathcal{M}$ označimo skup svih mečinga za dati ulaz $S=\{s_1, s_2\}$. Takođe, označimo sa  $\mathcal{M}_a$, skup svih mečinga koji pokrivaju isto slovo, tj. 
-$\mathcal{M}_{\texttt{a}} = \{ (i, j) \mid s_1[i]=s_2[j]=\texttt{a}\}$, $\texttt{a} \in \Sigma$. Za svaki mečing $p=(p(a),p(b))$, pridružimo jednu binarnu varijablu $z_{p} \in \{0, 1\}$. Označimo $l(z_p)= s_1[ p(a) ], Z_{\texttt{a}} = \{ z \mid l(z) = \texttt{a}\}, \texttt{a}\in \Sigma$, te skup svih vaarijabli sa $Z = \cup_{\texttt{a} \in \Sigma} Z_{\texttt{a}}$. 
+Za primjer, neka su data dva stringa $s_1 = \texttt{abdcccab}$ i $s_2=\texttt{abccacd}$, rješenje ovog problema je $s=\texttt{abc}$. Primijetimo da je $s$ zajednički podniz za oba ulazna stringa te da ispunjava uslov o ``neponavljajućim'' karakterima u sebi. Takođe, može se provjeriti da ne postoji duži zajednički podniz sa takvim svojstvom za ove ulazne stringove, što znači da je ovo rješenje optimalno. Konstruišimo sada jedan Binarni cjelobrojni model za ovaj problem. Nazovimo par $(a, b), 1 \leq i \leq |s_1|, 1 \leq j \leq |s_2|$ \emph{mečing} akko je $s_1[a]=s_2[b], a < b$. Dalje, sa $\mathcal{M}$ označimo skup svih mečinga za dati ulaz $S=\{s_1, s_2\}$. Takođe, označimo sa  $\mathcal{M}_{\texttt{a}}$, skup svih mečinga koji pokrivaju isto slovo, tj. 
+$\mathcal{M}_{\texttt{a}} = \{ (i, j) \mid s_1[i]=s_2[j]=\texttt{a}\}$, $\texttt{a} \in \Sigma$. Za svaki mečing $p=(p(a),p(b))$, pridružimo jednu binarnu varijablu $z_{p} \in \{0, 1\}$. Označimo $l(z_p)= s_1[ p(a) ], Z_{\texttt{a}} = \{ z_p \mid p \in \mathcal{M} \ \wedge\  l(z_p) = \texttt{a}\}, \texttt{a}\in \Sigma$, te skup svih varijabli sa $Z = \cup_{\texttt{a} \in \Sigma} Z_{\texttt{a}}$. 
 
 Za svake dvije binarne varijable $z_{p_1}$ i $z_{p_2}$ kažemo da su u \emph{konflitu} akko vrijedi $$ p_1(a) \geq p_1(a) \mbox{ i } p_1(b) \leq p_2(b)     $$ 
 ili 
@@ -4093,9 +4093,9 @@ $$ l(z_{p_1}) = l(z_{p_2}).$$
 
 Sada možemo formirati ograničenja u modelu. Uslov da je svaki karakter prisutan najviše jednom u rješenju problema se modeluje sa 
 \begin{equation}\label{eq:rflcs-max-1}
-	 \sum_{z \in  Z_a } z \leq 1, \forall a \in \Sigma 
+	 \sum_{z \in  Z_{\texttt{a} }} z \leq 1, \forall \texttt{a} \in \Sigma 
 \end{equation}
-Takođe, s obzirom da rješenje problema odgovara nalasku skupa (međusobno) nekonfliktnih mečinga (odgovarajućih $z$-varijabli) maksimalne kardinalnosti, dodajemo model
+Takođe, s obzirom da rješenje problema odgovara nalasku skupa (međusobno) nekonfliktnih mečinga (odgovarajućih $z$-varijabli) maksimalne kardinalnosti, dodajemo oraničenje
 \begin{equation}\label{eq:rflce-non-conflict}
 	 z_{p} + z_q \leq 1, \forall p,q \in Z, p\neq q, p\mbox{ je u konfliktu sa } q.
 \end{equation}
@@ -4105,7 +4105,9 @@ Kako tražimo skup maksimalne kardinalnosti, imamo funkciju cilja
 \end{equation}
 Dakle, uz funkciju cilja (\ref{eq:rflcs-objective}), ograničenja (\ref{eq:rflcs-max-1})--(\ref{eq:rflce-non-conflict}) sa uslovom $z \in \{0, 1\}, z \in Z$, dobili smo model problema najdužeg stringa bez ponavljanja. 
 
- Implementirajmo ovaj model, uz pretpostavku da je svaki string u ulazu narednog programa dat svojom numeričkom prezentacijom. To znači da je svakom karakteru stringa pridružen jedinstven broj i kao takav se importuje u program. Primjera rad, za string $s_1=\texttt{abbcba}$, pridružen je numerički niz (vektor) 011210. Model je implementiran u programskom jeziku C++, a riješen uz pomoć Cplex rješavača. 
+ Implementirajmo ovaj model, uz pretpostavku da je svaki string u ulazu narednog programa dat svojom numeričkom prezentacijom. To znači da je svakom karakteru stringa pridružen jedinstven broj i kao takav se importuje u program. Primjera rad, za string $s_1=\texttt{abbcba}$, pridružen je numerički niz (vektor) 011210. Naravno, ovo je moguće riješiti i na drugačiji način, bez ovakve konverzije stringa u vektor prezentaciju. 
+ 
+ Model je implementiran u programskom jeziku C++, a riješen uz pomoć Cplex rješavača. 
  
 \begin{verbatim}
 #include <string>
@@ -4250,7 +4252,6 @@ int main( int argc, char **argv )
    }
    env.end();
  }
- 
 } 
 \end{verbatim}
 \end{document}
