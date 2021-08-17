@@ -3155,9 +3155,8 @@ $$ \begin{array}{lll}
 
 \section{Pohlepni Algoritmi}
  
-Pohlepni algoritmi su programska paradigma koja gradi riješenje dio po dio tako da 
-uvijek izabere naredni dio (komponentu rješenja) koja naizgled donosi veće benefite u odnosu na sve ostale komponente. Dakle, u svakom trenutku bira se komponenta koja je lokalno najbolja.  Ovi algoritmi se često koriste u rješavanju teških optimizacionih problema i najčešće su prva strategija koja se primjenjuje prije 
-upotrebe neke složenije paradigme. Optimizacioni problem se rijetko može riješiti do optimalnost pomoću pohlepnih algoritma ali se sa njim mogu ponuditi dobra aproksimaciona rješenja u kratkom vremenskom periodu koja često služe kao osnov za konstrukciju naprednijih algoritama pomoću koja nalaze  rješenja boljeg kvaliteta. Pohlepni algoritmi nekad mogu riješiti problem, kao što je, recimo, Frakcijski problem ruksaka ali ne i 0-1 Knapsack problem. 
+Pohlepni algoritmi su programska paradigma koja gradi riješenje komponentu po komponentu tako da  naredna komponenta rješenja koja se dodaje po nekom kriterujumu donosi veće benefite u odnosu na sve ostale komponente koje se razmatraju za dodavanje u parcijalnom riješenju. Dakle, u svakom trenutku bira se komponenta koja je lokalno najbolji kandidat za dodavanje u rješenje.  Ovi algoritmi se često koriste u rješavanju teških optimizacionih problema i najčešće su prva strategija koja se primjenjuje prije 
+upotrebe neke složenije paradigme. Optimizacioni problem se rijetko može riješiti do optimalnost pomoću pohlepnih algoritma ali se sa njim mogu ponuditi dobra aproksimaciona rješenja u kratkom vremenskom periodu koja često služe kao osnov za konstrukciju naprednijih algoritama koja nalaze  rješenja boljeg kvaliteta. Pohlepni algoritmi nekad mogu riješiti problem, kao što je, recimo, Frakcioni problem ruksaka, ali ne i 0-1 Knapsack problem. 
 
 U ovoj sekciji razmatramo nekoliko poznatih pohlepnih algoritama koji se mogu naći u literaturi, kao što su:
 \begin{itemize}
@@ -3183,23 +3182,25 @@ Algoritam izvršava sljedeće korake:
 
 \begin{itemize}
 	\item Kreirati skup \emph{mstSkup} da bi se pratili svi čvorovi koji su već uključeni u MST.
-	\item Dodijeliti vrijednost svakom čvoru u ulaznom grafu. Vrijednosti inicijalizovati na +$\infty$. 
-	      Dodijeli vrijednosti 0 za čvor koji je izabran prvi u MST;
-	\item Dok god \emph{mstSkup} ne uključi sve čvorove, radimo sljedeće korake:
+	\item Dodijeliti vrijednosti svakom čvoru u ulaznom grafu: inicijalizovati ih na +$\infty$. 
+	      Dodijeli vrijednosti 0 za čvor koji je izabran prvi za MST;
+	\item Dok god \emph{mstSkup} ne uključi sve čvorove iz $V$, radimo sljedeće korake:
 	\begin{itemize}
 		\item Izabrati čvor $u$ koji nije u \emph{mstSkup} sa minimalnom vrijednošću (pohlepni korak);
 		\item \emph{mstSkup} = \emph{mstSkup}$\cup \{u\}$;
-		\item Ažurirati vrijednosti svih susjeda čvora $u$ na sljedeći način. 
-		      Za svaki susjed $v$, ako je težina grane $uv$ manja od
-		      ranije vrijednosti od $v$, dodijeliti vrijednost čvoru $v$ na $w(uv)$. 
+		\item Ažurirati vrijednosti svih susjeda čvora $u$ na sljedeći način:
+		     \begin{itemize}
+		     	\item Za svaki susjed $v$, ako je težina grane $uv$ manja od
+		             ranije vrijednosti za $v$, dodijeliti vrijednost čvoru $v$ na $w(uv)$. 		    
+	         \end{itemize}
 	\end{itemize}
 \end{itemize}
 
-Ideja dodjele vrijednosti čvorovima koji još nisu prisutni u MST je u tome da se efikasno izabere grana minimalne težine koja treba da se doda u trenutno MST. Dakle, ove vrijednosti ukazuju na grane minimalne težine povezujući ih sa skupom čvorova koji su već uključeni u MST.
+Ideja dodjele vrijednosti čvorovima koji još nisu prisutni u MST je u tome da se efikasno izabere grana minimalne težine koja treba da se doda u trenutni MST. Dakle, ove vrijednosti ukazuju na grane minimalne težine kojse su povezane sa skupom čvorova koji su već uključeni u MST.
 
 Kompleksnost algoritma. Lista susjedstva i pretraga: $O(|V|^2)$. Ako  koristimo prioritetni red za nalaženje grane minimalne težine, postiže se kompleksnost od $O( |E| \log(|V|))$. 
 
-MST ima aplikacije u ($i$) dizajniranju mreža kao što je telefonska, gdje je potrebno u svako domaćinstvo (koje je predstavljeno jednim čvorom) postaviti linije tako da se povežu sva domaćinstva u mrežu a da se potroši što manje materijala na infrastrukturu mreže; ($ii$) aproksimaciji drugih teških optimizacionih problema kao što je problem trgovačkog putnika (TSP). Ponovimo, u TSP-u je potrebno naći najkraću konturu koji posjećuje u (težinskom) grafu. Primijetimo da su takvi putevi takođe MST. Težina MST je manja nego težina TSP, jer minimizujemo nad većim skupom rješenja, tako da se može pokazati da je nalazak MST-a u težinskom grafu aproksimira nalazak TSP-a (nad euklidskim težinskim grafovima).  
+MST ima aplikacije u ($i$) dizajniranju mreža kao što je telefonska, gdje je potrebno u svako domaćinstvo (koje je predstavljeno jednim čvorom) postaviti linije tako da se povežu sva domaćinstva u mrežu uz potrošnju što manje materijala za infrastrukturu mreže; ($ii$) aproksimaciji drugih teških optimizacionih problema kao što je problem trgovačkog putnika (TSP). Ponovimo, u TSP-u je potrebno naći najkraću konturu koji posjećuje u (težinskom) grafu. Primijetimo da su takvi putevi takođe MST. Težina MST je manja nego težina TSP, jer minimizujemo nad većim skupom rješenja, tako da se može pokazati da je nalazak MST-a u težinskom grafu aproksimira nalazak TSP-a (nad euklidskim težinskim grafovima).  
 ($iii$) Klaster analiza. $k$-klaster problem  se može posmatrati kao problem nalaženja MST-a, a potom brisanja $k-1$ najskupljih grana iz MST. 
 
 \subsection{Kruskalov algoritam.}
@@ -3215,25 +3216,25 @@ grana na osnovu njihove težine. Neka je $\emph{mst} = \emptyset$. Preciznije, s
 \end{enumerate} 
 
 \noindent Vremenska kompleksnost algoritma je $O(|E|\log |E|)$ ili $O(|E|\log |V|)$. Sortiranje grana uzima $O(|E| \log|E|)$ vremena. Potom, za svaku granu 
-se primjenjuje operacija nalaženja i dodavanja grane u skup \emph{mst}. Ove dvije operacije se izvršavaju u $O(\log |V|)$ vremenu. Dakle, algoritam treba vrijeme od $O(|E|\log |E| + |E|\log |V|)$ za svoje izvršavanje. Kako je $|E|=O(|V|^2)$, dobijamo kompleksnost $O(|E|\mathrm{log}(|V|))$. 
+se primjenjuje operacija nalaženja i dodavanja grane u skup \emph{mst}. Ove dvije operacije se izvršavaju u $O(\log |V|)$ vremenu. Dakle, algoritam treba vrijeme od $O(|E|\log |E| + |E|\log |V|)$ za svoje izvršavanje. Kako je $|E|=O(|V|^2)$, dobijamo kompleksnost $O(|E| \cdot \mathrm{log}(|V|))$. 
 
 \subsection{Dajkstrin algoritam}
 
-Ovaj algoritam je dosta sličan Primovom algoritmu koji služi za nalaženje najkraćih puteva. Ovaj algoritam generiše tzv. SPT (eng. \emph{shortest path tree}) sa datim korjenim čvorom $s$ tako  što se formiraju dva disjunktna skupa čvorova, jedan koji sadrži čvorove uključene u SPT, a na drugoj strani svi ostali čvorovi. Inicijalno, svim čvorovima je dodjeljena vrijednost, tj. $dist[u]=\ +\infty, \forall u \in V\setminus \{s\}$, $dist[s]=0$. Neka je $Q = V$. 
+Ovaj algoritam je dosta sličan Primovom algoritmu koji služi za nalaženje najkraćih puteva u grafu. Ovaj algoritam generiše tzv. SPT (eng. \emph{shortest path tree}) sa datim korjenim čvorom $s$ tako  što se formiraju dva disjunktna skupa čvorova, jedan koji sadrži čvorove uključene u SPT, a na drugoj strani svi ostali čvorovi. Inicijalno, svim čvorovima je dodjeljena vrijednost, tj. $dist[u]=\ +\infty, \forall u \in V\setminus \{s\}$, $dist[s]=0$. Neka je $Q = V$. 
 U svakom koraku algoritma nalazimo čvor $u$ koji je u skupu $Q$ sa minimalnom udaljenšću \emph{dist} od korjenog čvora $s$. Zatim se posmatraju njegovi susjedi $v$ te težine grana od čvora $u$. U slučaju da je zbirna vrijednost $dist[u]$  i težine grane $w(uv)$ manja od trenutne $dist[v]$, vrijednost $dist[v]$ se ažurira jer je nađen novi najkraći put od $s$ od $v$.  Čvor $u$ se zatim izbacuje iz skupa $Q$. Algoritam nastavlja sa istim koracima dok god $Q \neq \emptyset$. 
-Svi koraci algoritma su dati u Algoritmu~\ref{alg:dijkstra-algorithm}. Nakon završetka algoritma, vrijednost \emph{dist[u]} odgovara težini najkraćeg puta od korjenog čvora $s$ do čvora $u$. 
+Svi koraci algoritma su dati u Algoritmu~\ref{alg:dijkstra-algorithm}. Nakon završetka algoritma, vrijednost $dist$[$u$] odgovara težini najkraćeg puta od korjenog čvora $s$ do čvora $u$. 
 
 
 \begin{algorithm}[!ht]
 	\begin{algorithmic}[1]
-		\FOR{ svaki cvor $v \in V$:} 	%// Inicijalizacija  
+		\FOR{ svaki čvor $v \in V$:} 	%// Inicijalizacija  
 	      	\STATE   $dist[v] \gets +\infty$ 	%// Inicijalne udaljenosti od korjenog cvora $s$
 		    \STATE $previous[v] \gets null$ 	%// čvor prije u optimalnoj stazi
 		\ENDFOR
 		\STATE	$dist[s] \gets 0$ 	 
 		\STATE	$Q \gets V(G)=V$
 		\WHILE{$Q \neq \emptyset$} 	 
-		\STATE $u \gets$ cvor iz $Q$ sa najmanjom vrijednošću $dist$
+		\STATE $u \gets$ čvor iz $Q$ sa najmanjom vrijednošću $dist$
 		\STATE $Q \gets Q \setminus \{u\}$
 		\FOR{ sve susjede $v$ od $u$}  
 		\STATE $temp \gets dist[u] + w(u, v)$
@@ -3251,7 +3252,7 @@ Svi koraci algoritma su dati u Algoritmu~\ref{alg:dijkstra-algorithm}. Nakon zav
 Vremenska kompleksnost gornje implementacije algoritma je $O(|V|^2)$. Ako je graf predstavljem listom susjedstva, i skup $Q$ (linija 6, Algoritam \ref{alg:dijkstra-algorithm}) je implementiran kao binarni hip, 
 kompleksnost se redukuje na $O(|E| \cdot \log |V|)$.
 
-Napomenimo da Dijkstrin algoritam ne radi sa grafovima koji imaju negativne težine (pogledati inicijane uslove u  pseudokodu, te liniju 12).  Za ovakve grafove,  primjenjuje se Bellman–Ford algoritam koji je baziran na dinamičkom programiranju. Njega ne pominjemo u detaljima u ovoj knjizi.  %, o kojem ćemo nešto više reći u narednim sekcijama.
+Napomenimo da Dajkstrin algoritam ne radi sa grafovima koji imaju negativne težine (pogledati inicijane uslove u  pseudokodu, te liniju 12).  Za ovakve grafove,  primjenjuje se Bellman–Ford algoritam koji je baziran na dinamičkom programiranju. Njega ne pominjemo u detaljima u ovoj knjizi.  %, o kojem ćemo nešto više reći u narednim sekcijama.
 
 \subsection{Frakcioni Problem Ruksaka}
 
