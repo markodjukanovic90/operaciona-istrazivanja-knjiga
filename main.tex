@@ -523,8 +523,8 @@ sljedeći problem:
 \emph{Koliko treba konzumirati pojedine namirnice da bi se zadovoljila dnevna
 potreba za nutritivnim elementima, a da se pri tome minimizira cijena prehrane?}
  
- \emph{Rješenje.}  Uvedimo prvo varijable $x_j \geq 0$ za količinu konzumirane hrane namirnice $N_j$, $j = 1, \ldots, n$. Funkcija cilja je da se minimizira cijena prehrane, prema tome $$f(x) = c_1 x_1 + \cdots + c_n x_n.$$
- Dalje, ograničenja su sljedeća: treba da se zadovolje dnevne potrebe za unos pojedine namirnice, odakle, za $i$-tu namirnicu treba da bude zadovoljena 
+ \emph{Rješenje.}  Uvedimo prvo varijable $x_j \geq 0$ za količinu hrane namirnice $N_j$, $j = 1, \ldots, n$ koja treba da bude konzumirana. Funkcija cilja je da se minimizira cijena prehrane, prema tome $$f(x) = c_1 x_1 + \cdots + c_n x_n.$$
+ Dalje, ograničenja su sljedeća: treba da se zadovolje dnevne potrebe za unos pojedine namirnice, odakle slijedi da za $i$-tu namirnicu treba da bude zadovoljena 
  $$ a_{i,1} x_1 + \ldots + a_{i,n} x_n \geq b_i $$
  za svaki $i=1,\ldots,n$. Prema tome, uz nenegativne uslove $x_i \geq 0$, formulisali smo model za ovaj problem.  
  
@@ -537,8 +537,8 @@ Primijetimo da apsolutna vrijednost ne odgovara direktno problemu LP-a bilo da j
 
 $f(x) = c^T w$, pod uslovima
 \begin{itemize}
-    \item $ -w \leq k x_i + l - y_i$ 
-    \item $ k x_i + l - y_i \leq w $
+    \item $ -w_i \leq k x_i + l - y_i$ 
+    \item $ k x_i + l - y_i \leq w_i $
 \end{itemize}
 za sve $i = 1, \ldots, n$ gdje je 
 $w_i = z_i, i=1,\ldots,n$, $w_{n+1} = k, w_{n+2} = l$, dok 
@@ -550,7 +550,7 @@ medicinska sestra radi pet dana zaredom u noćnoj smjeni.
 \emph{Zadatak: Pronaći minimalan broj medicinskih sestara koje bolnica treba zaposliti da bi se mogle napraviti takve smjene.}
 
 \emph{Rješenje}. Označimo sa $x_i$ broj medicinskih sestara koje radnu smjenu započinju na $i$-ti dan. Potrebno je minimizovati funkciju 
-$f = \sum_{i=1}^7 x_i$ pod uslovima da su ispunjeni zahtjevi za brojem medicinskih sestara, koja je modelovana sa:
+$f = \sum_{i=1}^7 x_i$ pod uslovima da su ispunjeni zahtjevi za brojem medicinskih sestara, što je modelovano sa:
 \begin{itemize}
     \item $x_1 + x_2 + x_3 + x_4 + x_5 \geq d_5 $
     \item $x_2 + x_3 + x_4 + x_5 + x_6 \geq d_6$
@@ -564,9 +564,9 @@ uz nenegativne uslove
 \begin{itemize}
     \item $x_i \geq 0, x_i \in \mathbb{Z}$, $j=1,\ldots,7.$
 \end{itemize}
-Kao što je primjetno, varijable moraju da budu cjelobrojne, te je ovo specijalan model LP-a, tzv. model cjelobrojnog linearnog programiranja.
+Kao što je primjetno, varijable moraju da budu cjelobrojne, te je ovo model cjelobrojnog linearnog programiranja.
 
-\emph{Problem oglašavanja}. Kompanija želi da se oglašava u medijima. Postoji nekoliko alternativa oglašavanja:  televizijsko, novinska i radio oglašavanje. Cijena svakog medija sa pokrivenošću publike navedena je u sljedećoj tabeli.
+\emph{Problem oglašavanja}. Kompanija želi da se oglašava u medijima. Postoji nekoliko alternativa oglašavanja:  televizijsko, novinsko i radio oglašavanje. Cijena svakog medija sa pokrivenošću publike navedena je u sljedećoj tabeli.
 
 \begin{table}[!ht]
     \centering
@@ -579,7 +579,7 @@ Kao što je primjetno, varijable moraju da budu cjelobrojne, te je ovo specijala
     \label{tab:tab_model_advertising}
 \end{table}
 
-Novine ograničavaju broj oglasa za kompaniju na deset (po sedmici). Štaviše, kako bi se uravnotežilo oglašavanje između sve tri vrste medija, na radiju se ne smije pojaviti više od polovice ukupnog broja oglasa za kompaniju. Najmanje 10\% od svih oglasa bi se trebalo pojaviti na televiziji. Sedmični proračun za oglašavanje iznosi 18.200. 
+Novine ograničavaju broj oglasa za kompaniju na deset (po sedmici). Štaviše, kako bi se uravnotežilo oglašavanje između sve tri vrste medija, na radiju se ne smije pojaviti više od polovine ukupnog broja oglasa za kompaniju. Najmanje 10\% od svih oglasa bi se trebalo pojaviti na televiziji. Sedmični proračun za oglašavanje iznosi 18.200. 
 
 \emph{Zadatak: Koliko oglasa treba zakupiti u svakoj od tri vrste medija u cilju povećavanja ukupnog broja gledalaca kompanije?}
 
@@ -615,11 +615,11 @@ Kompanija želi odrediti gdje treba postaviti antene kako bi se pokrio maksimala
 %https://www.math.unipd.it/~luigi/courses/metmodoc1920/m01.modelli.00.en.beamer.pdf
 \emph{Rješenje}. Posmatrajmo ovaj problem malo generalnije i definišimo: 
 \begin{itemize}
-    \item $I$: skup mjesta;
+    \item $I$: skup mijesta;
     \item $J$: skup oblasti;
     \item $\sigma_{ij}$ : indikator nivoa signala antene   smještene u mjestu $i \in I$ u oblasti $j \in J$;
-    \item $d$: parametar koji označava minimalni nivo signala koji je neophodan. 
-    \item $N$: parametar koji označava maksimalni broj signala iznad granice koju prijemnik može da prepozna (u našoj instanci imamo da je $N=1$)  
+    \item $d$: parametar koji označava minimalni nivo signala koji je neophodan;
+    \item $N$: parametar koji označava maksimalni broj signala iznad granice koju prijemnik može da prepozna (u našoj instanci imamo da je $N=1$);
     \item $x_i$: binarna varijabla koja uzima vrijednost 1 ako je antena smještena u mjestu $i\in I$, 0 inače;
     \item  $z_j$ : binarna varijabla koja uzima vrijednost 1 ako je oblast $j \in J$ pokrivena signalom, 0 inače;
     \item $M_j$: dovoljno veliki parametar, npr. za svako mjesto $j \in J$, $M_j= card(\{ i \in I \mid \sigma_{ij} \geq d\})$.
@@ -642,9 +642,9 @@ pod sljedećim uslovima
 \end{enumerate}
 Uvedimo sljedeću notaciju.
 \begin{itemize}
-    \item  $f_{i}$: označava (fiksni) trošak otvaranja postrojenja $i$, za  $ i = 1,  \ldots, n$. 
-    \item $c_{ij}$: označava troškove zadovoljenja potražnje  kupca $j$ od strane postrojenja $j$ (cijena dostave, cijena proizvoda itd.), $i = 1, \ldots, n$, $j = 1,  \ldots, m$
-    \item $d_{j}$: označava potražnju kupca $j$ za $j = 1, \ldots, m$
+    \item  $f_{i}$: označava (fiksni) trošak otvaranja postrojenja $i$, za  $ i = 1,  \ldots, n$;
+    \item $c_{ij}$: označava troškove zadovoljenja potražnje  kupca $j$ od strane postrojenja $j$ (cijena dostave, cijena proizvoda itd.), $i = 1, \ldots, n$, $j = 1,  \ldots, m$;
+    \item $d_{j}$: označava potražnju kupca $j$ za $j = 1, \ldots, m$;
     \item $u_{i}$: označava maksimalnu količinu proizvoda koji se mogu proizvesti u postrojenju $i$, tj. $u_{i}$ označava kapacitet objekta $i$.
 \end{itemize}
 
@@ -751,9 +751,9 @@ Primijetimo da je svaka funkcija data u obliki $f(x_1, \ldots, x_n) = \sum_{i=1}
    Neka su dati vektori $z^i \in \mathbb{R}^n$,  te $\lambda_i \in [0,1]$ $i=1,\ldots,m$ tako da je $\sum_{i=1}^m \lambda_i = 1.$ Vektor $x =  \sum_{i=1}^m \lambda_i z^i$ se naziva konveksna kombinacija vektora $z^i$.
 \end{definition}
 
-Konveksne funkcije imaju lijepa svojstva sa stanovišta teorije i u kombinaciji sa konveksnim skupovima čine osnov   teorije optimalnosti. 
+Konveksne funkcije imaju lijepa svojstva sa stanovišta teorije i u kombinaciji sa konveksnim skupovima čine osnov  teorije optimalnosti. 
 
-Inače, vrijedi sljedeće:
+Inače, vrijedi sljedeća teorema.
 \begin{thm}
   Neka je $f : S \mapsto \mathbb{R}$ konveksna funkcija definisana na konveksnom skupu $S \subseteq \mathbb{R}^n$. Ako funkcija $f$ u tački $x^* \in S$
  postiže lokalni minimum, onda je ta tačka predstavlja i tačku globalnog minimuma.
@@ -785,13 +785,12 @@ U sljedeće dvije definicije definišimo pojmove poliedra, hiperravni i polupros
    Neka je $A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m$. Skup $P=\{x \in \mathbb{R}^n \mid Ax \geq b\}$ se naziva poliedar u $\mathbb{R}^n$. 
 \end{definition}
 \begin{definition}
-   Neka je $a\in \mathbb{R}^n $ i $b \in \mathbb{R}$. Skup $\{ x \in \mathbb{R}^n \mid a^T x = b \}$ se naziva hiperravan u $\mathbb{R}^n$ čiji je vektorom normale $a$, dok se $\{ x \in \mathbb{R}^n \mid a^T x \geq b \}$ naziva poluprostor. 
+   Neka je $a\in \mathbb{R}^n $ i $b \in \mathbb{R}$. Skup $\{ x \in \mathbb{R}^n \mid a^T x = b \}$ se naziva hiperravan u $\mathbb{R}^n$ čiji je vektor  normale $a$, dok se $\{ x \in \mathbb{R}^n \mid a^T x \geq b \}$ naziva poluprostor. 
 \end{definition}
-Pokažimo sada da je poliedar konveksan skup. To je bitna karakteristika, jer, kako znamo, uslovi  problema LP-a se mogu zapisati kao poliedar, a ako je on konveksan skup, prethodna teorema nam kaže da se onda može naći globalni minimum (maksimum), tj. optimalno rješenje zadanog problema LP-a (ako postoji lokalni minimum).
-\begin{prop}
-  ($i$) Poluprostor u $\mathbb{R}^n$ je konveksan skup.  \\
-  ($ii$) Presjek konačno mnogo skupova je konačan skup. \\
-  ($iii$) Poliedar u $\mathbb{R}^n$ je konveksan skup. 
+Pokažimo sada da je poliedar konveksan skup. To je važna karakteristika, jer, kako znamo, uslovi problema LP-a se mogu zapisati kao poliedar, a kako je on konveksan skup, prethodna teorema nam kaže da postoji globalni minimum (maksimum), tj. optimalno rješenje zadanog problema LP-a (uz pretpostavku da postoji lokalni minimum).
+\begin{prop}Vrijede sljedeće tvrdnje: \\
+  ($i$)  Poluprostor u $\mathbb{R}^n$ je konveksan skup.  \\
+  ($ii$) Presjek konačno mnogo skupova je konačan skup. 
 \end{prop}
 
 \begin{proof}
@@ -808,46 +807,44 @@ Pokažimo sada da je poliedar konveksan skup. To je bitna karakteristika, jer, k
   odakle slijedi da $\lambda x + (1-\lambda) y \in P$, odakle slijedi tvrdnja. 
   
   ($ii$) Neka su $S_1,\ldots, S_n$ konveksni skupovi. Ako $x,y \in \cap_{i=1}^n S_i$, onda slijedi da $x,y \in S_i$ za svaki $i=1,\ldots,n$. Zbog konveksnosti svakog od skupova,  
-  $\lambda x + (1 - \lambda) y \in S_i$, za svaki $i=1,\ldots,n$. Prema tome, vrijedi $ \lambda x + (1-\lambda) y \in \cap_{i=1}^n S_i$, odakle slijedi da je $\cap_{i=1}^n S_i$ konveksan. \\
-  
-  ($iii$) Definišimo $S_i:= \{ (x_1,\ldots, x_n) \in \mathbb{R}^n \mid c^T x \geq b_i \}$, za  $c = (a_{i,1}, \ldots, a_{i, n}),$  $ i=1,\ldots, m$. Kako je $\cap_{i=1}^m S_i$ poliedar koji odgovara problemu LP-a, iz ($ii$) slijedi tvrdnja. 
-\end{proof}\\
-Kao posljedicu prethodne teoreme slijedi da je poliedar $P$ konveksan skup. 
+  $\lambda x + (1 - \lambda) y \in S_i$, za svaki $i=1,\ldots,n$. Prema tome, vrijedi $ \lambda x + (1-\lambda) y \in \cap_{i=1}^n S_i$, odakle slijedi da je $\cap_{i=1}^n S_i$ konveksan. 
+\end{proof}
+Kao posljedica prethodne teoreme slijedi da je poliedar $P$ konveksan skup. 
+  Definišimo $S_i:= \{ (x_1,\ldots, x_n) \in \mathbb{R}^n \mid c^T x \geq b_i \}$, za  $c = (a_{i,1}, \ldots, a_{i, n}),$  $ i=1,\ldots, m$. Kako je $\cap_{i=1}^m S_i$ poliedar koji odgovara problemu LP-a, na osnovu prethodne propozicije ($ii$) slijedi tvrdnja. 
 
-
-Nadalje, formalno definišimo ekstremne tačke, vrhove i bazna dopustiva rješenja koja su već ranije pomenuta u nestriktnom obliku. 
+Nadalje, formalno definišimo ekstremne tačke, vrhove i bazna dopustiva rješenja koja su već ranije pomenuta u ne tako strogom obliku. 
 
 \begin{definition}
    Neka je $P$ poliedar u $\mathbb{R}^n$.  Vektor $x \in P$ se naziva ekstremna tačka poliedra $P$
-   ako ne postoje vektori $y, z \in P$, $y \neq x, z \neq x$ i skalar $\lambda \in [0, 1]$ takvi da je  $x = \lambda y + (1-\lambda)z$. Drugim riječima, ekstremna tačka $x$ ne leži između neke dvije tačke $y,z$ iz poiledra $P$.
+   ako ne postoje vektori $y, z \in P$, $y \neq x, z \neq x$ i skalar $\lambda \in [0, 1]$ takvi da je  $x = \lambda y + (1-\lambda)z$. Drugim riječima, ekstremna tačka $x$ ne leži između neke dvije tačke $y,z$ iz poliedra $P$.
 \end{definition}
 Geometrijska interpretacija ekstremnih tačkača poliedra:  One tačke koje se ne mogu napisati kao netrivijalna konveksna kombinacija tačaka iz poliedra čine skup ekstremnih tačaka. 
  
 \begin{definition}
-   Neka je dat poliedar $P$ u $\mathbb{R}^n$. Tačku $x \in P$ nazivamo vrh (poliedra) ako postoji linearna funkcija  $c^T x$ koja je strogo minimizovana, tj. za sve  $y\in P, y \neq x$, vrijedi $c^T x < c^T y$. 
+   Neka je dat poliedar $P$ u $\mathbb{R}^n$. Tačku $x \in P$ nazivamo vrh (poliedra) ako postoji linearna funkcija  $c^T x$ koja je strogo minimizovana u toj tački, tj. za sve  $y\in P, y \neq x$, vrijedi $c^T x < c^T y$. 
 \end{definition}
 Geometrijski bi to značilo da je vrh poliedra $P$ ona tačka poliedra  kroz koju možemo provući hiperravan sa svojstvom da se sve tačke iz $P$ (izuzev vrha) nalaze sa iste strane te poluravni.
 
 \begin{definition}\label{dfn:lp_aktivan}
    Neka je poliedar $P$ zadan na sljedeći način
    \begin{itemize}
-       \item $a_i^T x \geq b_i, i \in M_1$
-       \item $a_i^T x = b_i, i \in M_2 $
-       \item $a_i^T x \leq b_i, i \in M_3 $. 
+       \item $a_i^T x \geq b_i, i \in C_1$
+       \item $a_i^T x = b_i, i \in C_2 $
+       \item $a_i^T x \leq b_i, i \in C_3 $. 
    \end{itemize}
-   Ako za neko $x^* \in P$ i neki $i_0 \in M_1 \cup M_1 \cup M_2$ vrijedi 
-   $a_{i_0}^T x^* = b_{i_0}$, onda je uslov $i_0$ aktivan u $x^*$. 
+   Ako za neko $x^* \in P$ i neki $i_0 \in C_1 \cup C_1 \cup C_2$ vrijedi 
+   $a_{i_0}^T x^* = b_{i_0}$, onda je ograničenje $i_0$ aktivan u $x^*$. 
 \end{definition}
 
 \begin{definition}
       Neka je zadan poliedar iz Definicije~\ref{dfn:lp_aktivan}. Neka je 
-      $I = \{ i \in M_1 \cup M_2 \cup M_3 \mid a_i^T x^* = b_i \}$  skup indeksa aktivnih u $x^*\in \mathbb{R}^n$.  Ako je skup $\{ a_i \mid i \in I \}$ linearno nezavisan onda se $x^*$  naziva bazno rješenje. 
+      $I = \{ i \in C_1 \cup C_2 \cup C_3 \mid a_i^T x^* = b_i \}$  skup indeksa aktivnih u $x^*\in \mathbb{R}^n$.  Ako je skup $\{ a_i \mid i \in I \}$ linearno nezavisan onda se $x^*$  naziva bazno rješenje. 
 \end{definition}
 % https://faculty.math.illinois.edu/~mlavrov/docs/482-fall-2019/lecture8.pdf
 \begin{definition}
 	 Bazno dopustivo rješenje $x^*$ je bazno rješenje koje zadovoljava  uslove linearnog programa. 
 \end{definition}
-Pokažimo sada da su vrhovi, ekstremen tačke poiedra i bazna dopustiva rješenja jedno te isto kada je riječ o LP-u.
+Pokažimo sada da su vrhovi, ekstremne tačke poliedra i bazna dopustiva rješenja jedno te isto kada je riječ o LP-u.
 \begin{thm}
    Neka je $P$ poliedar i neka je $x^* \in P$. Sljedeće tri tvrdnje su ekvivalentne:
    \begin{enumerate}
@@ -858,7 +855,7 @@ Pokažimo sada da su vrhovi, ekstremen tačke poiedra i bazna dopustiva rješenj
 \end{thm}
 
 \begin{proof}
-      Pokažimo da vrijedi $1 \Rightarrow 2, 2 \Rightarrow 3$, pa onda $3 \Rightarrow 1$, čime pokazujemo ekvivalenciju sve tri tvrdnje. \\
+      Pokažimo da vrijedi $1 \Rightarrow 2, 2 \Rightarrow 3$, pa onda $3 \Rightarrow 1$, čime ćemo pokazati ekvivalenciju sve tri tvrdnje. \\
       $1 \Rightarrow 2$. Neka je $x^*$ vrh poliedra. Iz definicije slijedi da 
       postoji $c\in \mathbb{R}^n$ tako da $c^Tx^* < c^T x$, za sve $x \in P, x \neq x^*$. Pretpostavimo da $x^*$ nije ekstremna tačka poliedra $P$. To bi značilo da postoje $y,z \in P$ koji su ražličiti od $x^*$ koji se može dobiti kao (netrivijalna) konveksna kombinacija $y$ i $z$, tj. $x^* = \lambda y + (1 - \lambda) z $, za $\lambda \in [0,1 ]$. Na osnovu pretpostavke je $c^T x^* < c^T y$. Sada je 
       \begin{align}
@@ -870,11 +867,11 @@ Pokažimo sada da su vrhovi, ekstremen tačke poiedra i bazna dopustiva rješenj
        Ovu implikaciju ćemo dokazati kontrapozicijom. Pretpostavimo da $x^*$ nije BDR i pokažimo da iz toga slijedi da ona nije ni ekstremna tačka.
        Zapišimo poliedar $P$ sa 
        \begin{align}
-            & a_i^T x \geq b_i, i \in M_1 \\
-            & a_i^T x  = b_i, i \in M_2.
+            & a_i^T x \geq b_i, i \in C_1 \\
+            & a_i^T x  = b_i, i \in C_2.
        \end{align}
        Ako $x^*$ nije BDR, to znači da je broj uslova koji su aktivni u $x^*$ manji od $n$. 
-       Ako sa $I \subseteq M_1 \cup M_2$ označimo skup aktivnih indeksa, onda 
+       Ako sa $I \subseteq C_1 \cup C_2$ označimo skup aktivnih indeksa u $x^*$, onda 
        je $\{ a_i \mid i \in I \} \subseteq \mathbb{R}^n$ pravi potprostor od $\mathbb{R}^n$.  Prema tome, postoji vektor $d \in \mathbb{R}^n \setminus \{0\}$ za koji vrijedi $a_i^T d = 0$, za sve $i \in I$. Definišimo vektore 
        $$ y = x^* + \epsilon d, z = x^* - \epsilon d, $$
        za neko $\epsilon > 0$, pa pokažimo da $y, z \in P$.
@@ -894,14 +891,14 @@ Pokažimo sada da su vrhovi, ekstremen tačke poiedra i bazna dopustiva rješenj
 \end{proof}
 
 U nastavku ćemo vidjeti koji sve uslovi treba da vrijede za postojanje BDR-a
-i ekstremne tačke poliedra. Takođe ćemo dati postupak za konstrukciju BDR-a te ćemo definisati degenerativno rješenje.
+i ekstremne tačke poliedra. Takođe ćemo dati postupak za konstrukciju BDR-a te ćemo definisati pojam degenerativnog rješenja.
 
 \begin{thm}
    Neka je $P = \{ x \in \mathbb{R}^n \mid A x = b, x \geq 0\}, A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m$ i $rang(A)= m, m < n$.
    Vektor $x$ je bazno rješenje  akko je $A x = b$ i ako postoje indeksi $p_1,p_2,\ldots, p_m$ tako da vrijedi:
    \begin{enumerate}
-       \item kolone $A_{p_1},\ldots, A_{p_m}$ su linearne nezavisne
-       \item ako $i \in \{p_1,\ldots, p_m\}$, onda $x_i = 0$.
+       \item kolone $A_{p_1},\ldots, A_{p_m}$ su linearno nezavisne
+       \item ako $i \notin \{p_1,\ldots, p_m\}$, onda $x_i = 0$.
    \end{enumerate}
    
 \end{thm}
@@ -918,24 +915,24 @@ Varijable $x_{p_1},\ldots, x_{p_m}$ nazivamo bazne varijable, a vektore  $A_{p_1
 Definišimo sada pojam \emph{degenerativnog} rješenje i degenerativnog baznog rješenja. Pokazaćemo kako se na primjeru pronalazi bazno rješenje te kako izgleda degenerativno bazno rješenje.
 
 \begin{definition}
-      Neka je dat poliedar $P = \{ x \in \mathbb{R}^n \mid a_i^T x \geq b_i, i=1,\ldots,m \}$. Za bazno rješenje $x^*\in \mathbb{R}^n$ kažemo da je degenerativno ako je više od $n$ uslova (ograničenja) aktivno u $x^*$. 
+      Neka je dat poliedar $P = \{ x \in \mathbb{R}^n \mid a_i^T x \geq b_i, i=1,\ldots,m \}$. Za bazno rješenje $x^*\in \mathbb{R}^n$ kažemo da je degenerativno ako je više od $n$  ograničenja aktivno u $x^*$. 
       
 \end{definition}
 
 \begin{definition}
-      Neka je $P = \{ x \in \mathbb{R}^n \mid A x = b, x \geq 0\}, A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m$ poliedar u standardnom obliku i neka je $x$ bazno rješenje. Vektor $x$ nazivamo degenerativno bazno rješenje ako više od $n-m$ komponenti u vektoru $x$ je jednako 0.
+      Neka je $P = \{ x \in \mathbb{R}^n \mid A x = b, x \geq 0\}, A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m$ poliedar   i neka je $x$ bazno rješenje. Vektor $x$ nazivamo degenerativno bazno rješenje ako više od $n-m$ komponenti u vektoru $x$ je jednako 0.
 \end{definition}
-\emph{Primjer.} Zadajmo poliedar $P= \{ (x_1,x_2,x_3)^T \mid x_1 - x_2 = 0, x_1 + x_2 + 2 x_3 = 2, x_1,x_2,x_3 \geq 0 \}$.  Promaći bazna dopustiva rješenja i odrediti jesu li ona degenerativna. \\
+\emph{Primjer.} Zadajmo poliedar $P= \{ (x_1,x_2,x_3)^T \mid x_2 - x_1 = 0, x_1 + x_2 +   x_3 = 2, x_1,x_2,x_3 \geq 0 \}$.  Promaći bazna dopustiva rješenja i odrediti jesu li ona degenerativna. \\
 
 \emph{Rješenje.} Lako je vidjeti da je  
 $A=\left (\begin{array}{ccc}
-   1  & -1 & 0  \\
-   1  &  1 & 2 \\
+   -1  &  1 & 0  \\
+   1  &  1 & 1 \\
 \end{array} \right )$ te $b = [0\ 2]^T$. Prateći postupak konstrukcije baznog rješenja, pronađimo dve linearno nezavisne kolone matrice $A$, recimo prve dvije, odakle je matica $B=\left (\begin{array}{cc}
-   1  & -1    \\
+   -1  & 1    \\
    1  &  1   \\
 \end{array} \right ) .$ Riješimo sistem jednačina (stavka 3), odakle je rješenje $x_B = [1\ 1]^T$, a krajnje rješenje je $x^* = [1\ 1\ 0]^T$. Kako je 
-$x^*$ aktivan u sva tri uslova $x_1 - x_2 = 0, x_1 + x_2 + 2 x_3 = 2$ i $x_3 = 0$, rješenje je nedegenerativno bazno dopustivo rješenje.  Takođe, možemo odabrati drugu i treću kolonu matrice za bazne kolone (kao i prvu i treću), odakle bi dobili rješenje $x^* = [0\ 0\ 1]^T$, aktivno u četiri uslova, odakle smo dobili degenerativno bazno dopustivo rješenje. 
+$x^*$ aktivan u sva tri uslova $x_2 - x_1 = 0, x_1 + x_2 +  x_3 = 2$ i $x_3 = 0$, rješenje je nedegenerativno bazno dopustivo rješenje.  Takođe, možemo odabrati drugu i treću kolonu matrice za bazne kolone (kao i prvu i treću), odakle bi dobili rješenje $x^* = [0\ 0\ 2]^T$, aktivno u četiri uslova, odakle smo dobili degenerativno bazno dopustivo rješenje. 
 
 
 U nastavku govorimo o egzistenciji optimalnog rješenja problema LP-a.
@@ -951,7 +948,7 @@ Sljedeću teoremu navodio bez dokaza.
    \begin{itemize}
        \item  Poliedar $P$ ima barem jednu ekstremnu tačku.
        \item Poliedar $P$ ne sadrži pravac.
-       \item Postoji $n$ linearno nezavisnih vektora  među kolonama matrice $A$, tj. među $a_i, i=1,\ldots,m$.
+       \item Postoji $n$ linearno nezavisnih vektora  među kolonama matrice $A$. %, tj. među $a_i, i=1,\ldots,m$.
    \end{itemize}
 \end{thm}
 
@@ -976,8 +973,8 @@ Sljedeću teoremu navodio bez dokaza.
        \item Postoji ekstremna tačka koja je optimum problema. 
    \end{enumerate}
  \end{thm}
-To nam daje opravdanost ideje simpleks metode koja posjećuje vrhove poliedra 
-da bi našao optimalno rješenje problema LP-a. Metodu opisujemo u narednoj glavi.
+To nam daje opravdanost ideje simpleks metode koja uvijek posjećuje vrhove poliedra 
+da bi našao optimalno rješenje problema LP-a. Metodu konstruišemo u narednoj glavi.
 
 \newpage 
 \chapter{Simpleks Metod}
