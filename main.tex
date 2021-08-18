@@ -1011,10 +1011,10 @@ dio vektora $d$. Bazni dio vektora $d$, kojeg označavamo sa $d_B$, izvešćemo 
 $$ Ad = \sum_{i=1}^n A_i d_i = \sum_{i=1}^m A_{p_i} d_i + A_j = B d_B + A_j = 0$$
 odakle je $d_B = -  B^{-1} \cdot A_j $.  Za ovako dabran $d$ imamo zadovoljen uslov dopustivosti $A( x + \lambda d )  =b$, još provjerimo uslov nenegativnosti koji vrijedi u LP-u, tj. $x + \lambda d \geq 0$:
 \begin{itemize}
-    \item ako je $x$ nedegenerativno, onda je tačno $n-m$ komponenti jednako 0,       pa je za nebazni dio komponenti $x_i + \lambda d_i = 0$, za $i \in N \setminus \{j\}$, dok je $x_j + \lambda d_j = 0$, pa imamo ispunjen uslov nenegativnosti. Za bazne komponente imamo $x_{p_i} \cdot d_{p_i} > 0 $ ako je $d_{p_i}>0$. U protivnom, možemo odabrati  malu vrijednosti $\lambda>0$ (pogledati definiciju $x +\lambda d$) tako da $x_{p_i} \cdot d_{p_i} >0$, pa imam zadovoljen uslov nenegativnosti.
-    \item ako je $x$ degenerativno bazno dopustivo rješenje, slijedi da više od $n-m$ kompomenti od $x$ je jednako 0. Za nebazni slučaj kao i u prvom slučaju pokazujemo uslov nenegativnosti. Za bazne kompomenete $x +\lambda d$,  postoji bazni indeks $i$ za koji je $x_{p_i} = 0$, pa   je $d_{p_i}< 0$, što povlači da ne možemo naći $\lambda>0$ tako da $x_{p_i} + \lambda d_{p_i} >0$  što stvara problem (dopustivost narušena), ali pojava ovog slučaja se na sreću može zaobići (pokazaćemo to u nastavku ove sekcije). 
+    \item Ako je $x$ nedegenerativno, onda je tačno $n-m$ komponenti jednako 0,       pa je za nebazni dio komponenti $x_i + \lambda d_i = 0$, za $i \in N \setminus \{j\}$, dok je $x_j + \lambda d_j = 0$, pa imamo ispunjen uslov nenegativnosti. Za bazne komponente imamo $x_{p_i} \cdot d_{p_i} > 0 $ ako je $d_{p_i}>0$. U protivnom, možemo odabrati  malu vrijednosti $\lambda>0$ (pogledati definiciju $x +\lambda d$) tako da $x_{p_i} \cdot d_{p_i} >0$, pa imam zadovoljen uslov nenegativnosti.
+    \item Ako je $x$ degenerativno bazno dopustivo rješenje, slijedi da više od $n-m$ kompomenti od $x$ je jednako 0. Za nebazni slučaj kao i u prvom slučaju pokazujemo uslov nenegativnosti. Za bazne kompomenete $x +\lambda d$,  postoji bazni indeks $i$ za koji je $x_{p_i} = 0$, pa   je $d_{p_i}< 0$, što povlači da u tom slučaju ne možemo naći $\lambda>0$ tako da $x_{p_i} + \lambda d_{p_i} >0$  što stvara problem (dopustivost narušena), ali pojava ovog slučaja se na sreću može zaobići (pokazaćemo to u nastavku ove sekcije). 
 \end{itemize}
- Ostaje kako odabrati nebaznu varijablu $x_j$. U pomoć pozivamo uslov optimalnosti $c^T ( x + \lambda d ) > c^T x $, odakle slijedi $c^T d < 0$.  Kako je $$c^T d = c_B^T d_B + c_j = c^T ( - B^{-1} A_j ) + c_j < 0.$$
+ Ostaje nam pitanje odabira nebazne varijable $x_j$. U pomoć pozivamo uslov optimalnosti $c^T ( x + \lambda d ) > c^T x $, odakle slijedi $c^T d < 0$.  Kako je $$c^T d = c_B^T d_B + c_j = c^T ( - B^{-1} A_j ) + c_j < 0.$$
  Prema tome, odaberimo $j$ pri čemu je zadovoljeno $ \overline{c_j} = c_j - c_B^T B^{-1}A_j < 0$. Vektor $\overline{c_j}=[\overline{c_1}, \ldots, \overline{c_n}]^T$ se naziva vektor doprinosa, dok vrijednost $\overline{c_j}$ \emph{doprinos nebazne varijable} $x_j$. 
  
 Iz sljedeće teoreme dobijamo uslove optimalnosti rješenja.
@@ -1045,7 +1045,7 @@ Navedimo sada osnovne korake jedne iteracije simpleks metoda:
 \begin{enumerate}
     \item Inicijalizacija: za bazne indekse $p_1,\ldots,p_m \in [n]$, riješiti sistem i dobiti bazno dopustivo rješenje $x$. 
     \item Izračunati doprinos za sve $\overline{c_j} = c_j - c_B^T B^{-1}A_j $
-          $j \in N$. Ako za sve $j$, $\overline{c_j} \geq 0$, optimum je nađen, algoritam staje sa radom. Inače, odabrati neki $j$, td. $\overline{c_j}<0$.
+          $j \in N$. Ako za sve $j$, $\overline{c_j} \geq 0$, optimum je nađen, algoritam staje sa radom. Inače, odabrati neki $j$  td. $\overline{c_j}<0$.
     \item Izračunati $d = -B^{-1}A_j = -u$. Ako je svaki $d_i \geq  0$, funkcija cilja je $f = - \infty$, te algoritam staje. 
     \item Ako je za neki $i$, $d_i < 0$, onda računamo 
              $$ \lambda^* = \min_{ \{i\in [m] \mid d_{p_i} < 0  \}} - \frac{x_{p_i}}{d_{p_i}} =  \min_{ \{i\in [m] \mid u_{p_i} < 0  \}} \frac{x_{p_i}}{u_{p_i}} $$
@@ -1063,7 +1063,7 @@ Navedimo sada osnovne korake jedne iteracije simpleks metoda:
 \section{Tabelarni prikaz Simpleks Metode}
 
 U osnovi, simpleks algoritam se sastoji od stalne izmjene jedne kolone baznih vektora u $B$ sa nekim nebaznim vektorom i tako iterativno u cilju smanjivanja trenutne vrijednosti cilje funkcije, dok god je to moguće. 
-U praktičnom računanju, baratanje sa tabelarnim prikazom koraka simpleks metoda je u mnogome lakše (kompaktnije) nego koristiti standardan oblik LP-a. 
+U praktičnom računanju, rad sa tabelarnim prikazom koraka simpleks metoda je u mnogome lakše (kompaktnije) nego koristiti standardan oblik LP-a. 
 Simpleks tabela ima oblik kao u Tabeli~\ref{tab:simplex_tabelau}. 
 
 \begin{table}[!ht]
@@ -1083,7 +1083,7 @@ Na osnovu ovakve tabele, te koraka simpleks metode opisanih u prethodnoj sekciji
     \item Konstruisati inicijalnu simpleks tabelu sa početnom bazom $B$ i odgovarajućim baznim dopustivim rješenjem $x$.
     \item Pogledati koeficijente doprinosa $\overline{c_j}$. Ako su svi $\overline{c_j} \geq 0$, rješenje se ne može dalje popraviti, pa smo našli optimalno rješenje, inače odabrati neki $j$ sa $\overline{c_j}<0$.
     \item Pogledati vektor $u = B^{-1}A_j$. Ako su sve koordinate od $u$ negativne, rješenje LP-a je $-\infty$, algoritam se prekida.
-    \item Za svaki $u_i > 0$, računati $x_{p_i}/u_i$, i neka je ovaj omjer najmanji za indeks $l$. Kolona $A_{j}$ ulazi u bazu, dok kolona $A_{p_l}$ izlazi iz baze. 
+    \item Za svaki $u_i > 0$, računati $x_{p_i}/u_i$, i neka je   omjer najmanji za indeks $l$. Kolona $A_{j}$ ulazi u bazu, dok kolona $A_{p_l}$ izlazi iz baze. 
     \item Svakom redu table dodati $l$--ti red (pivot red) kojeg množimo odgovarajućim
          skalarom kako bi pivot element postao 1, a svi ostali elementi u pivot koloni 0.
 \end{itemize}
@@ -1099,7 +1099,7 @@ Može se pokazati da poštujući ovakva pravila, osigurava se da simpleks metoda
 
 Obratimo pažnju da se problem minimiziacije vrlo lako prevodi u problem maksimizacije sljedećom transformacijom
 $$ \min_{ x \in P} f(x) = - \max_{x \in P}(-f(x)).$$ 
-Prema tome, ako imamo problem LP-a gdje treba da maksimizujemo vrijednost funkcije cilja, pa onda primijenimo simpleks metod, koraci metoda ostaju isti, uz malu izmijenu u koraku 2, gdje se mijenja znak nejednakosti (radi toga što se mijenja znak koeficijenata u funckciji cilja). Dakle, za popravak rješenja bi u tom slučaju gledaji one doprinose za koje je $\overline{c_j} > 0$.
+Prema tome, ako imamo problem LP-a gdje treba da maksimizujemo vrijednost funkcije cilja, pa onda primijenimo simpleks metod, koraci metoda ostaju isti, uz malu izmijenu u koraku 2, gdje se mijenja znak nejednakosti (radi toga što se mijenja znak koeficijenata u funkciji cilja). Dakle, za popravak rješenja bi u tom slučaju gledali one doprinose za koje je $\overline{c_j} > 0$.
 
 \section{Primjer rješavanja problema LP-a pomoću Simpleks Metode}
 Kako je standardni politop LP-a dat sa svim onim $x \in \mathbb{R}^n$ tako da $Ax \leq (\geq) b$, transformišimo problem LP-a
@@ -1110,7 +1110,7 @@ Kako je standardni politop LP-a dat sa svim onim $x \in \mathbb{R}^n$ tako da $A
     & x \geq 0,\\
 \end{align}
  
-na oblik pogodan simpleks metodi $(A {x} = b)$ dodavanjem ``labavih'' varijabli $s$ na sljedeći način:
+na kanonski oblik pogodan simpleks metodi $(A {x} = b)$ dodavanjem ``labavih'' varijabli $s$ na sljedeći način:
  
 \begin{align}
     & c^T x \rightarrow \max \\
