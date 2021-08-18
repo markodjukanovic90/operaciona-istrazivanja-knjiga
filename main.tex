@@ -3882,27 +3882,37 @@ Treba napomenuti da se primjenom ovakvog operatora ukrštanja takođe mogu dobit
 	\caption{Primjer operatora mutacije}
 \end{figure}
 
-\emph{Operator selekcije}: TODO
+\emph{Operator selekcije}: Da bismo ilustrovali princip rada najjednostavnije rulet selekcije, naprije pretpostavimo da je funkcija prilagođenosti jednaka vrijednosti funkcije cilja. Dalje, posmatrajmo populaciju od 4 jedinke, prikazane u Tabeli~\ref{tab:rulet}.
 
-
-
-Višedecenijska primjera genetskih algoritama u rješavanju velikog broja problema kombinatorne optimizacije dovela je do pojave velikog broja različitih varijanti algoritma, koje se, između ostalog, razlikuju po operatorima koji se primjenjuju, načinu formiranja početne populacije, primjenama različitih strategija lokalnog pretraživanja itd. 
-
-Jedan od korisnih aspekata koji u značajnoj mjeri može da ubrza rad (osnovnog) genetskog algoritma je koncept keširanja. 
-
-Kao što je poznato, keširanje se koristi u situacijama kada se dio podataka koji se obrađuju smješta u zaseban memorijski prostor, uz pretpostavku da će se ti podaci ponovo koristiti u kasnijim fazama izvršenja programa. Na taj način se budući zahtjevi za tim podacima opslužuju brže, u odnosu na vrijeme njihovog ponovnog izračunavanja. 
-
-Koncept keširanja se u genetskim algoritmima može iskoristiti u situacijama kada je, u različitim iteracijama, moguća pojava  identičnih jedinki. S obzirom da je računanje funkcije cilja vremenski često zahtjevna operacija, poželjno je primijeniti tehniku kojom se pamte genetski kodovi i njihove vrijednosti, pa ih kasnije koristiti, nego ih uvijek iznova računati.  Keš se može implementirati na različite načine, od kojih je najprirodnija implementacija preko heš-reda (engl. hash-queue) strukture podataka, unaprijed zadanog kapaciteta. Kada treba da se računa vrijednost funkcije cilja za datu jedinku, prvo se provjerava da li je ta vrijednost već izračunata i pohranjena u kešu. U slučaju da vrijednost ne postoji u keš strukturi, ona se tada po prvi put računa i pohranjuje u keš. U slučaju da je vrijednost pronađena, ona se ne računa, već se samo pročita iz keša. U slučaju da se keš napuni, brišu se one vrijednosti koje najduže nisu korištene (engl. least recently used - LRU). Treba istaći da keširanje ni u kom slučaju ne utiče na kvalitet rješenja, već samo služi za ubrzanje izvršenja genetskog algoritma.
-
-
-
-Naprednija šema  genetskog algoritma, koja sadrži i koncept keširanja je prikazana na Slici \ref{fig:gascheme1}.
-
-
-\begin{figure}[htp]
+\begin{table}
 	\centering
-	\includegraphics[width= 0.8\textwidth]{gasrp.eps} \caption {Šema GA algoritma sa uključenom tehnikom keširanja}\label{fig:gascheme1}
-\end{figure}
+	\begin{tabular}{l|rrrrrrrrr}
+		& \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{fitnes} & \multicolumn{1}{l}{tezine}  \\\hline
+		Jedinka1 & 1                    & 0                    & 0                    & 0                    & 0                    & 1                    & 1                    & 18                         & 17                          \\
+		Jedinka2 & 0                    & 0                    & 0                    & 0                    & 0                    & 1                    & 0                    & 9                          & 6                           \\
+		Jedinka3 & 0                    & 1                    & 0                    & 1                    & 1                    & 0                    & 0                    & 17                         & 22                          \\
+		Jedinka4 & 0                    & 1                    & 0                    & 0                    & 1                    & 1                    & 1                    & 28                         & 22      \\\hline                   
+	\end{tabular}\caption{Primjer korišten za ilustraciju upotrebe rulet selekcije}
+	\label{tab:rulet}
+\end{table}
+Ukupan fitnes svih jedinki (zbir vrijednosti funkcija prilagođenosti svih jedinki) iznosi 72. Vjerovatnoće da će jedinke preživjeti u sljedeću generaciju jednake su redom: $\frac{18}{72},\ \frac{9}{72},\ \frac{17}{72}$ i $\frac{28}{72}$. 
+
+Treba napomenuti da, iako se rulet selekcija na prvi pogled čini pogodnom za odabir jedinki koje preživljavaju u sljedeću generaciju, ona ima i značajne nedostatke. Ovom selekcijom se jedinke sa slabom vrijednošću funkcije cilja često prerano odbacuju, iako možda sadrže potencijalno dobre gene, koji bi ukrštanjem sa drugim jedinkama mogli proizvesti još bolje potomke. Dalje, u kasnijim fazama algoritma, kada se javi više kvalitetnih jedinki koje imaju približno iste (ali ipak različite!) vrijednosti funkcije prilagođenosti, vjerovatnoće da će takve jedinke preživjeti su približno jednake, što dovodi do opasnosti da, nakon selekcije, najbolje jedinke i ne prežive u narednu generaciju. Stoga se u praksi značajno češće koristi turnirska selekcija, kojom se prevazilaze nedostaci rulet selekcije.
+
+
+Na kraju ovog odjeljka treba pomenuti da je višedecenijska primjena genetskih algoritama u rješavanju velikog broja problema kombinatorne optimizacije dovela je do pojave velikog broja različitih varijanti algoritma, koje se, između ostalog, razlikuju po operatorima koji se primjenjuju, načinu formiranja početne populacije, primjenama različitih strategija lokalnog pretraživanja, tehnike keširanja međurezultata itd. 
+
+
+\subsection{Metoda promjenljivih okolina}\label{intro:vns}
+Metoda promjenljivih okolina je metaheuristika uvedena od strane Nenada Mladenovića i Pjera Hansena devedesetih godina prošlog vijeka.
+Pretraga je zasnovana na sistematskoj promjeni okolina da bi se izbjegle situacije kada algoritam ``upada'' u suboptimalna rješenja. Efikasnost VNS algoritma je zasnovana na razmatranju da u mnogim praktičnim optimizacionim problemima postoji veza između lokalnih minimuma. Stoga metod promjenljivih okolina i ne prati unaprijed zadatu putanju, već ``skače'' na potencijalno bolja rješenja koja se nalaze u nekoj okolini trenutno najboljeg.
+Na ovaj se način očuvavaju dobre osobine trenutnog rješenja (ako su neke promjenljive već dostigle optimalne vrijednosti), dok se u novim okolinama pokušavaju poboljšati preostale promjenljive. Ovaj sistem je dodatno ojačan sistemom lokalnog pretraživanja, kojim se prelazi iz trenutnog rješenja u najkvalitetnije rješenje u nekoj njegovoj okolini.
+
+Tako, ideja da se pretraga usmjeri sa jednog na (moguće bolji) drugi minimum koji je smješten u nekoj okolini polaznog minimuma predstavlja razuman  i, kao što je to slučaj u velikom broju raznih optimizacionih problema, opravdan pristup.
+
+Da bi se proširila pretraga,  VNS u potrazi za boljim lokalnim minimumom obično koristi okoline rastuće kardinalnosti. Da bi se definisao skup okolina, pretpostavimo da je $x$ proizvoljno rješenje i $N_k$, za $k=k_{min},\cdots,k_{max}$, konačan skup struktura okolina. Tada se  $N_k(x)$ definiše kao skup rješenja u $k$-toj okolini tačke $x$. Kriterijum za prekid iterativnog procesa je obično dostizanje maksimalnog broja iteracija, maksimalnog broja iteracija bez unapređenja rješenja, ili maksimalno dozvoljenog vremena izvršenja.
+
+TODO
 
 
  \chapter{Optimizacioni rješavači}
