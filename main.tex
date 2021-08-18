@@ -3827,6 +3827,67 @@ $N_{pop}$ označava ukupan broj jedinki u populaciji.  $N_{elite}$ je broj elitn
 \end{figure}
 
 
+
+Primjer
+
+U ovom primjeru posmatrajmo 0-1 problem ruksaka. Ponovimo da nam je, kod ovog problema, na raspolaganju određen broj proizvoda, od kojih svaki proizvod ima svoju vrijednost i težinu. Ruksak je ograničenog maksimalnog kapaciteta (težine) $C$. Podsjetimo se i da se u 0-1 problemu ruksaka svaki proizvod ili ne uzima nikako ili se uzima čitav. Cilj je, kao i u drugim problemima ruksaka, odabrati onaj skup proizvoda, tako da je njihova ukupna vrijednost maksimalna, a da se ne naruši kapacitet ruksaka.
+
+Formalna matematička definicija 0-1 problema ruksaka će nam pomoći u konstrukciji genetskog algoritma, pa ćemo je ovdje navesti.
+
+Neka je dato $n$ proizvoda, koji su opisani pomoću nizova $p$ i $w$. $p_i$ i $w_i$ predstavljaju vrijenost i težinu $i$-tog proizvoda. Neka je $C$ maksimalan kapacitet ruksaka.
+
+Neka je $f(\cdot)$ funkcija koja se maksimizuje i neka je $x$ binarni niz dužine $n$ koji predstavlja jedno rješenje problema: ako je $i$-ti proizvod uključen u rješenje, tada je $x_i = 1$, u protivnom, $x_i =0$. 0-1 problem ruksaka se definiše kao
+
+$$max \{f(x)\} = max \{\sum_{i=1}^{n}x_ip_i\}$$
+s.t.
+$$\sum_{i=0}^{n-1}x_iw_i\leqslant C$$
+$$x_i\in\{0,1\}, i = 1,2,...,n$$
+
+Konstrukciju elemenata genetskog algoritma ćemo prikazati služeći se konkretnim primjerom. U tabeli su prikazani polazni podaci vezani za proizvode, a maksimalan kapacitet rukasaka je 22. 
+
+Kodiranje: genetski kod svake jedinke ćemo prikazati binarnim nizom dužine $n$ (u primjeru je $n=7$). Tako, na primjer, genetski kod 1100100 označava da su proizvodi pod rednim brojem 1, 2 i 5 uključeni u ruksak, dok ostali proizvodi nisu uključeni u ruksak. Vrijednost funkcije cilja za ovo rješenje je 5+8+7=20, dok je ukupna težina 7+8+4 = 19. 
+Primijetimo da ovakav sistem kodiranja može da dovede do nedopustivih rješenja. Na primjer, genetski kod 0101010 označava da su proizvodi pod rednim brojem 2, 4 i 6 uključeni u rješenje, čija je ukupna težina 8+10+6 = 24, što je više od maksimalnog kapaciteta ruksaka.
+
+Treba napomenuti da se u rješavanju velikog broja problema kombinatorne optimizacije pomoću genetskih algoritama (ali i drugih heurističkih metoda) često dozvoljava rad sa nedopustivim rješenjima. Razlog za to leži u činjenici sva nedopustiva rješenja ``podjednako loša'', a nekada je lakše popraviti nedopustivo rješenje u dopustivo rješenje visokog kvaliteta, nego vršiti pretragu samo na prostoru dopustivih rješenja slabijeg kvaliteta.  Zbog toga se za prevazilaženje pojave nedopustivih rješenja najčešće koristi jedna od sljedeće dvije strategije: 
+\begin{itemize}
+	\item
+	nedopustiva rješenja (po automatizmu) dobijaju minimimalnu vrijednost funkcije prilagođenosti, čime se omogućava da sam genetski algoritam odbaci takva rješenja u procesu selekcije. 
+	
+	\item uvodi se tzv. kaznena funkcija, (engl. penalty function), kojom se ``kažnjavaju'' nedopustiva rješenja (najčešće smanjenjem vrijednosti funkcije prilagođenosti), ali se ona ne izbacuju iz razmatranja, u nadi da perspektivnija nedopustiva rješenja mogu prerasti u kvalitetna dopustiva rješenja.
+\end{itemize}
+
+U našem primjeru, pojavu nedopustivih rješenja, dakle, možemo riješiti automatskom dodjelom minimalne vrijednosti funkcije prilagođenosti, ili ``kažnjavanjem'' takvih rješenja smanjenjem vrijednosti funkcije fitnesa. Neke od strategije za ``kažnjavanje'' nedopustivih jedinki bi mogle biti zasnovane na procjeni broja proizvoda koje treba zamijeniti (ili izbaciti) iz datog rješenja, a da rješenje postane dopustivo.
+
+Računanje funkcije prilagođenosti: Za posmatrani problem, najprirodnija fukcija prilagođenosti bi se mogla definisati na način da ona bude jednaka ukupnom zbiru vrijednosti proizvoda uključenih u rješenje (pod uslovom da je to rješenje dopustivo), a da je vrijednost funkcije prilagođenosti  nedopustivih rješenja   jednaka nuli. 
+Imajući u vidu prethodno razmatranje o nedopustivim rješenjima, funkcija prilagođenosti može biti definisana i drugačije, tj. mogla bi da sadrži i dio vezan za  ``kažnjavanje'' nedopustivih rješenja, po nekom od predloženih (ili drugih) principa. Time bi nedopustiva rješenja bila uključena u pretragu.
+
+Operato ukrštanja: Kao što je već pomenuto, osnovni operatori ukrštanja su tzv. jednopoziciono i dvopoziciono ukrštanje. Na našem primjeru ćemo objasniti  jednopoziciono ukrštanje, koje bi moglo biti realizovano na sljedeći način:
+\begin{figure}
+	\caption{Primjer operatora ukrštanja}
+\end{figure}
+
+Preciznije, dva rješenja: 1100100 i 0100011 - koje u ovom slučaju posmatramo kao jedinke roditelje, produkuju dva nova rješenja (dva potomka), tako što se lijevi dio genetskog koda prvog roditelja spaja sa desnim dijelom genetskog koda drugog roditelja i obrnuto, lijevi dio genetskog koda drugog roditelja se ukršta sa desnim dijelom prvog roditelja. 
+Treba napomenuti da se primjenom ovakvog operatora ukrštanja takođe mogu dobiti potomci koji su nedopustive jedinke (bez obzira na to da li su jedinke roditelja dopustive ili ne), a njihova dalja egzistencija u populaciji ponovo zavisi od načina konstruisanja funkcije prilagođenosti.
+
+Mutacija: Kao što je pomenuto, mutacije podrazumijevaju male promjene u genetskom kodu, čija je osnovna namjena izlazak iz lokalnih suboptimalnih rješenja i omogućavanje dalje pretrage u cilju pronalaženja boljih rješenja. Najčešće se mutacija realizuje kao promjena vrijednosti jednog gena. U našem slučaju, u zavisnosti od drugih elemenata algoritma, mogao bi se konstruisati veći broj različitih operatora mutacije: 
+\begin{itemize}
+	\item Mutacija 1: prelazak neke nule u jedinicu. Ova mutacija bi modifikovala trenutnu jedinku na način da se neki proizvod, koji nije bio u rješenju, uključi u rješenje. Time bi se povećala ukupna vrijednost ruksaka, ali postoji opasnost da jedinka postane nedopustiva.
+	\item  Mutacija 2: prelazak neke jedinice u nulu. Ova mutacija bi modifikovala trenutnu jedinku na način da se neki proizvod, koji je bio u rješenju, isljuči iz rješenja. Ovo bi dovelo do smanjenja ukupne vrijednosti ruksaka, ali bi, u slučaju rada sa nedopustivim jedinkama, postojala mogućnost da nedopustivo rješenje postane dopustivo (ili da se poboljša kvalitet nedopustivog rješenja).
+	\item  Mutacija 3: dva gena različitih vrijednosti mijenjaju svoje vrijednosti. Preciznije, biraju se dva gena, od kojih jedan ima vrijednost 0, a drugi ima vrijednost 1, te prvi gen mijenja vrijednost na 1, a drugi na 0. Time se postiže da se, simultano, jedan proizvod, koji nije bio u rješenju, uključuje u rješenje, a drugi proizvod, koji je prije mutacije bio u rješenju, sada izbacuje iz rješenja. Kao i u prethodnim slučajevima, i ovdje je, na sličan način, potrebno razmatrati potencijalnu nedopustivost novonastale jedinke.
+\end{itemize}
+
+
+
+
+
+\begin{figure}
+	\caption{Primjer operatora mutacije}
+\end{figure}
+
+Operator selekcije: TODO
+
+
+
 Višedecenijska primjera genetskih algoritama u rješavanju velikog broja problema kombinatorne optimizacije dovela je do pojave velikog broja različitih varijanti algoritma, koje se, između ostalog, razlikuju po operatorima koji se primjenjuju, načinu formiranja početne populacije, primjenama različitih strategija lokalnog pretraživanja itd. 
 
 Jedan od korisnih aspekata koji u značajnoj mjeri može da ubrza rad (osnovnog) genetskog algoritma je koncept keširanja. 
