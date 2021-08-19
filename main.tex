@@ -358,7 +358,8 @@ Razvoj linearnog programiranja se smatra među najvažnijim naučnim dostignu\-�
 o linearnom programiranju i objavljeno stotine radova koji opisuju važne primjene ove paradigme.  Linearno programiranje koristi matematički model za opisivanje problema. 
 Pridjev linearni znači da su   sve matematičke funkcije u ovom modelu linearne funkcije. Riječ programiranje se ne odnosi na računarsko programiranje; to sinonim za planiranje i optimizaciju. Dakle, linearno programiranje uključuje planiranje aktivnosti u cilju postizanja optimalnog rezultata, tj. rezultata koji najbolje postiže navedeni cilj (prema matematičkom modelu) među svim izvedivim alternativama.  Za rješavanje problema linearnog programiranja dostupan je izuzetno efikasan metod rješavanja, nazvan \emph{simpleks metod}. On rješava probleme ogromnih veličina te je on jedan od razloga ogromnog uticaja linearnog  programiranja posljednjih nekoliko decenija u nauci i u privredi.
 
-\textbf{Primjer}. WYNDOR--GLASS CO projekat: Proizvodi visokokvalitetne staklene proizvode, uključujući prozore i staklena vrata. Postoje tri pogona. Aluminijski okviri i okovi izrađuju se u pogonu 1, drveni okviri izrađuju se u pogonu 2, a pogon 3 proizvodi staklo i sastavlja proizvode.
+\textbf{Primjer}. %WYNDOR--GLASS CO projekat:
+Firma proizvodi visokokvalitetne staklene proizvode, uključujući prozore i staklena vrata. Postoje tri pogona. Aluminijski okviri i okovi izrađuju se u pogonu 1, drveni okviri izrađuju se u pogonu 2, a pogon 3 proizvodi staklo i sastavlja proizvode.
 Zbog pada zarade, rukovodstvo firme je odlučio je obnoviti liniju proizvoda. Neprofitabilni proizvodi se ukidaju, oslobađajući proizvodne kapacitete za lansiranje dva nova proizvoda sa velikim prodajnim potencijalom:
 \begin{itemize}
     \item Proizvod 1: Staklena vrata od 8 $m$ sa aluminijskim okvirom.
@@ -513,7 +514,7 @@ Razmotrimo bilo koji problem LP-a sa dopustivim rješenjima i ograničenom dopus
 
 Ako su sve varijable u problemu LP-a cjelobrojne, riječ je o problemima \emph{Cjelobrojnog programiranja}. Ako pored cjelobrojnih, postoje i neke neprekidne varijable, riječ je o problemima \emph{Mješovitog-cjelobrojnog programiranja}. 
 
-\section{Problemi Modelovani preko Linearnog Programiranja}\label{sec:modeli_lp}
+\section{Modelovanje nekih Problema}\label{sec:modeli_lp}
 
 \emph{Problem optimalne prehrane.} Pretpostavimo da su nam na raspolaganju namirnice $N_1, \ldots, N_n$. Cijena namirnice $N_j$ po jedinici je $c_j, j = 1, \ldots, n$. U namirnicama su prisutni nutritivni elementi $e_j,j=1,\ldots,m$ pri čemu
 u namirnici $N_j$ ima $a_{ij}$ nutritivnog elementa $e_i$, $i = 1, \ldots, n$, $j = 1, \ldots, m$. Svaka osoba u toku dana mora unijeti barem $b_i$
@@ -961,18 +962,18 @@ Sljedeću teoremu navodio bez dokaza.
          $O^* = \{ x \in \mathbb{R}^n \mid A x \geq b_i, c^T x = v  \}$ je takođe poliedar, $O^* \subset P$. Prethodna teorema nam kaže da $P$ ne sadrži pravac. Iz toga slijedi da ni $O^*$ nema pravac, odakle slijedi da $O^*$ ima barem jednu ekstremnu tačku, označimo je sa $q^*$. Pokažimo da je to i ekstremna tačka od $P$.  Ako bi pretpostavili da $q^*$ nije ekstremna tačka, po definiciji slijedi da postoje $y, z \in P$ tako da $q^* = \lambda y + ( 1 - \lambda ) z $, $y \neq q^*, z \neq q^*, \lambda \in [0, 1]$. Kako je $q^* \in O^*$, imamo 
          $$ v = c^T q^* = c^T (  \lambda y + ( 1 - \lambda ) z ) = \lambda 
         \underbrace{ c^T y}_{ \geq v} + ( 1 - \lambda ) \underbrace{c^T z}_{\geq v} \geq \lambda v + (1 - \lambda) v = v,$$
-        odakle imamo $c^T y = v$ i $c^T z = v$, dakle $y, z \in O^*$. Prema tome, $q^*$ nije ekstremna tačka od $O^*$. Prema tome, imam kontradikciju, odakle slijedi da $q^*$  ekstremna tačka od  $P$.
+        odakle imamo $c^T y = v$ i $c^T z = v$, dakle $y, z \in O^*$. Prema tome, $q^*$ nije ekstremna tačka od $O^*$. Prema tome, imam kontradikciju, odakle slijedi da je $q^*$  ekstremna tačka od  $P$.
 \end{proof}
  
- Sljedeća teorema nam daje osnov za konstrukciju simpleks metoda koji je najpoznatija metoda za rješavanje problema LP.
+ Sljedeća stavka nam daje osnov za konstrukciju simpleks metoda koji je najpoznatija metoda za rješavanje problema LP.
  
- \begin{thm}
-   Riješimo problem minimizacije LP-a na poliedru $P$ koji ima barem jednu ekstremnu tačku. Tada vrijedi jedna od sljedeće dvije tvrdnje:
+% \begin{thm}
+ Ako  rješavamo problem minimizacije LP-a na poliedru $P$ koji ima barem jednu ekstremnu tačku, tada vrijedi tačno jedna od sljedeće dvije tvrdnje:
    \begin{enumerate}
        \item Funkcija cilja ima vrijednost $- \infty$ (neograničen).
        \item Postoji ekstremna tačka koja je optimum problema. 
    \end{enumerate}
- \end{thm}
+% \end{thm}
 To nam daje opravdanost ideje simpleks metode koja uvijek posjećuje vrhove poliedra 
 da bi našao optimalno rješenje problema LP-a. Metodu konstruišemo u narednoj glavi.
 
@@ -1003,11 +1004,10 @@ gdje je $A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m, c \in \mathbb{R}^n, 
 
  Neka je $x = [x_1,\ldots, x_n]^T$ bazno dopustivo rješenje poliedra $P$, gdje je $B$ matrica baze, $x_B$ bazni dio vektora $x$, a gdje su na mjesto nebaznih indeksa $N$ postavljene 0.  Kako je ideja metode ``šetanje'' po ivici poliedra  do drugog dok ne nađemo optimalno rješenje, krenimo pravcem $d$ u  tački $x$ (koju  treba da konstruišemo) pri čemu moramo paziti na to da
 \begin{itemize}
-    \item je zadovoljen \emph{uslov optimalnosti}, tj. $c^T (x + \lambda d) \leq c^T x$, što znači da idemo u pravcu smanjenja vrijednosti funkcije cilja;
-    \item je zadovoljen \emph{uslov dopustivosti}, tj. $ (x + \lambda d) \in P$. Dakle, krećemo se samo tačkama dopustivog regiona. 
+    \item je zadovoljen \emph{uslov optimalnosti}, tj. $c^T (x + \lambda d) \leq c^T x, \lambda>0$, što znači da idemo u pravcu smanjenja vrijednosti funkcije cilja;
+    \item je zadovoljen \emph{uslov dopustivosti}, tj. $ (x + \lambda d) \in P$, za neko $\lambda>0$. Dakle, krećemo se samo tačkama dopustivog regiona. 
 \end{itemize}
-Birajmo nebaznu koordinatu u $x$, neka je to $x_j, j \in N$. Definišemo $d_j =1$, $d_i = 0$, za sve $i \in N  \setminus \{j\}$. Time smo definisali nebazni
-dio vektora $d$. Bazni dio vektora $d$, kojeg označavamo sa $d_B$, izvešćemo iz uslova dopustivosti: $Ax + \lambda Ad = b$, odakle je $Ad = 0$. Tada je 
+Birajmo nebaznu koordinatu u $x$, neka je to $x_j, j \in N$. Definišemo $d=(d_B,  d_N)$, gdje su koordinate od (nebaznog dijela) $d_N$ svugdje 0, osim na na koordinati $j$ za koju ima vrijednost 1.   Bazni dio vektora $d$, koji je označen sa $d_B$, izvešćemo iz uslova dopustivosti i pretpostavke da šetamo po granici dopustivog regiona: $Ax + \lambda Ad = b$, odakle je $Ad = 0$. Tada je 
 $$ Ad = \sum_{i=1}^n A_i d_i = \sum_{i=1}^m A_{p_i} d_i + A_j = B d_B + A_j = 0$$
 odakle je $d_B = -  B^{-1} \cdot A_j $.  Za ovako odabran $d$ imamo zadovoljen uslov dopustivosti $A( x + \lambda d )  =b$, još provjerimo uslov nenegativnosti koji vrijedi u LP-u, tj. $x + \lambda d \geq 0$:
 \begin{itemize}
@@ -1020,17 +1020,17 @@ odakle je $d_B = -  B^{-1} \cdot A_j $.  Za ovako odabran $d$ imamo zadovoljen u
 Iz sljedeće teoreme dobijamo uslove optimalnosti rješenja.
 
 \begin{thm}
-  Neka je x bazno dopustivo rješenje i neka je $B$ bazna matrica a $\overline{c}$ vektor doprinosa. Vrijedi 
+  Neka je x bazno dopustivo rješenje i neka je $B$ bazna matrica a $\overline{c}$ vektor doprinosa. Tada vrijedi sljedeće
   \begin{itemize}
       \item Ako je $\overline{c} >0$, onda je $x$ optimalno rješenje.
       \item Ako je x optimalno nedegenerativno rješenje, onda je $\overline{c} \geq 0$.
   \end{itemize}
 \end{thm}
 
-Ostalo nam je još odrediti dužinu koraka pravca $d$, tj. vrijednost $\lambda>0$. Ideja je da se krene nekim smjerom dok god se ne dođe do drugog vrha, tj. $\max \{ \lambda \in \mathbb{R} \mid x + \lambda d \geq 0 \}$. 
+Ostalo nam je još odrediti dužinu koraka pravca $d$, tj. vrijednost $\lambda>0$. Ideja je da se krene nekim smjerom dok god se ne dođe do drugog vrha, tj. treba nam dužina $\max \{ \lambda \in \mathbb{R} \mid x + \lambda d \geq 0 \}$. 
 \begin{itemize}
     \item Ako $d >0$, onda je $  x + \lambda d \geq 0$, za sve $\lambda > 0$, pa je $\lambda^* = \infty$, tj. ciljna funkcija je neograničena.
-    \item Ako postoji $i$, td. $d_i < 0$, onda odaberimo dovoljno malo $\lambda>0$ tako da $x_i + \lambda d_i \geq 0$, odakle slijedi $\lambda \leq -\frac{x_i}{d_i}$. Prema tome 
+    \item Ako postoji $i$, td. $d_i < 0$, onda za dovoljno malo $\lambda>0$ tako da $x_i + \lambda d_i \geq 0$, odakle slijedi $\lambda \leq -\frac{x_i}{d_i}$. Prema tome 
     $$ \lambda^* = \min_{ \{i\in [m] \mid d_{p_i} < 0  \}} - \frac{x_{p_i}}{d_{p_i}} $$
 \end{itemize}
 Za indeks $l$ za koji se postiže ovaj minimum, vrijedi $x_{p_l} + \lambda^* d_{p_l}=0$.
@@ -1292,7 +1292,7 @@ $-x+y=3$ i $x+6y=18$, što je opet ista tačka (i nema napretka vrijednosti funk
  \end{itemize}
  
  Odgovor na prvo pitanje je ako postoji jedinična podmatrica $I_m$ u gornjoj lijevoj blok matrici simpleks tabele,  onda je to jednostavno odrediti (kako smo to i vidjeli u prethodnoj sekciji). 
- Linearnom programu koji sadrži ograničenja $Ax \leq b, x\geq 0$ se dodaju labave varijable da bi uslovi nejednakosti u ograničenjima postali potrebne jednakosti. Na taj način se i formira ova jedinična matrica. Međutim, šta ako uslovi modela imaju oblik $Ax = b, x \geq 0$, i bez smanjenja opštosti, pretpostavimo da je $b \geq 0$. Ako ne postoji očigledno bazno dopustivo rješenje ovog problema, onda uvodimo \emph{umjetne} varijable $\omega = (\omega_1,\ldots, \omega_m)$ nakon čega treba da riješimo sljedeći problem LP-a:
+ Linearnom programu koji sadrži ograničenja $Ax \leq b, x\geq 0$ se dodaju izjednačavajuće varijable da bi uslovi nejednakosti u ograničenjima postali potrebne jednakosti. Na taj način se i formira ova jedinična matrica. Međutim, šta ako je linearan program dat u kanonskom obliku, tj. sa ogarničenjima $Ax = b, x \geq 0$. Bez smanjenja opštosti, pretpostavimo da je $b \geq 0$. Ako ne postoji očigledno bazno dopustivo rješenje ovog problema, onda uvodimo \emph{umjetne} varijable $\omega = (\omega_1,\ldots, \omega_m)$ nakon čega treba da riješimo sljedeći problem LP-a:
  \begin{align}
       &\sum_{i=1}^m \omega_i \rightarrow \min_{x,\omega} \nonumber \\
       &\mbox{ tako da } A x + \omega = b \nonumber \\
@@ -1301,7 +1301,7 @@ $-x+y=3$ i $x+6y=18$, što je opet ista tačka (i nema napretka vrijednosti funk
 Postoje dva moguća slučaja:
 \begin{enumerate}
     \item Ako početni problem LP-a sa jednakosnim ulovima (\ref{eq:lp_equality_constraint}) 
-          ima optimalno rješenje, onda   rjesenje LP-a (\ref{eq:artificial_lp_simplex}) ima (optimalno) rješenje $\omega = 0$. 
+          ima optimalno rješenje, onda   rješenje LP-a (\ref{eq:artificial_lp_simplex}) ima (optimalno) rješenje $\omega = 0$. 
     \item Ako  (\ref{eq:lp_equality_constraint}) nema dopustivo rješenje, onda je barem jedan $\omega_i > 0$.
 \end{enumerate}
  Prema tome, rješimo prvo problem LP-a  (\ref{eq:artificial_lp_simplex}) simpleks metodom i zaključujemo:
@@ -1404,7 +1404,7 @@ $$ \begin{array}{cccc|c}
  
  \section{Geometrija i simpleks metod}
  
-Sljedeći primjer demonstrira odgovarajuće geometrijske korake (``šetanje'') po dopustivom regionu kada se koraci simpleks metode izvršavaju.   %pratiti https://faculty.math.illinois.edu/~mlavrov/docs/482-fall-2019/lecture5.pdf (strana 2 i 3) 
+Sljedeći primjer demonstrira odgovarajuće geometrijske korake (``šetanje'') po dopustivom regionu u odnosu na iteracije simpleks metode koji se izvršavaju.   %pratiti https://faculty.math.illinois.edu/~mlavrov/docs/482-fall-2019/lecture5.pdf (strana 2 i 3) 
  Neka je dat problem:
  \begin{align*}
  	&\max 2x + 3y \\
@@ -1482,7 +1482,7 @@ $$
 \end{figure}
 
 Ova tabela odgovara hodu od tačke $E=(2,0)$ do tačke $D=(6,2)$, kao što vidimo na Slici~\ref{fig:step-3}.
-Zaljučujemo da je jedina koordinata koja odgovara pozitivnom doprinosu kolona 
+Zaključujemo da je jedina koordinata koja odgovara pozitivnom doprinosu kolona 
 4 simpleks tabele. Pivotiranje radimo oko elementa $\overline{a}_{1,4} = \frac{7}{10}$, pa dobijamo simpleks tabelu 
 
 $$\begin{array}{cccccc| c}
@@ -1506,7 +1506,7 @@ hodu $A \rightarrow E \rightarrow D \rightarrow C$.
 \end{figure}
 
 
-Primijetimo da ako bi u prvom koraku birali da mjesto varijable $x$ ubacujemo varijablu $y$ u bazu, došli bi do optimuma tako što bi se pomjerili simpleks metodom prvo u tačku $B$, pa potom u $C$, koja je optimum. Takođe, u ovom slučaju je potrebno generisati samo dvije simpleks tabele (a ne tri, kao što smo mi generisali).
+Primijetimo da ako bi u prvom koraku birali da mjesto varijable $x$ ubacujemo varijablu $y$ u bazu, došli bi do optimuma tako što bi se pomjerili koracima simpleks metode prvo u tačku $B$, pa potom u $C$, koja je optimum. Takođe, u ovom slučaju je potrebno generisati samo dvije simpleks tabele (a ne tri, kao što smo mi generisali).
 
 
 
@@ -1650,14 +1650,14 @@ Generalno posmatrajući, za problem LP-a~(\ref{eq:LP-o1})--(\ref{eq:LP-c2}) njeg
          $ y^T b = b^T y  \leq c^T x$
 \end{proof}
 
-\emph{Posljedica.} Ako je $y$ dopustivo rješenje problema  ($D$).  Onda bilo koje dopustivo rješenje $x$ problema ($P$) je ograničeno odozgo sa $b^T y$. Prema tome, ako je problem ($D$) dopustiv, onda je ($P$) ograničen. Slično se može pokazati da ovo vrijedi kada problemi ($P$) i ($D$) zamijene uloge.
+\emph{Posljedica.} Ako je $y$ dopustivo rješenje problema  ($D$),  onda bilo koje dopustivo rješenje $x$ problema ($P$) je ograničeno odozgo sa $b^T y$. Prema tome, ako je problem ($D$) dopustiv, onda je ($P$) ograničen. Slično se može pokazati da ovo vrijedi kada problemi ($P$) i ($D$) zamijene uloge.
 
 \begin{prop}  
     Ako je $x^*$ dopustivo rješenje za  ($P$), $y^*$ dopustivo rješenje za ($D$) i pri tome vrijedi 
     $c^T x^* = b^T y^*$, onda je $x^*$ optimalno rješenje za problem  ($P$), dok je $y^*$ optimalno rješenje za problem  ($D$).  
 \end{prop}
 \begin{proof}
-         Iz teoreme o slaboj dualnosti imamo: $c^T x  \leq b^T y^* = c^T x^*$, za bilo koje dopustivo rješenje $x$ od  ($P$), pa je $x^*$ upravo optimalno rješenje problema  ($P$) .
+         Iz teoreme o slaboj dualnosti imamo: $c^T x  \leq b^T y^* = c^T x^*$, za bilo koje dopustivo rješenje $x$ od  ($P$), pa je $x^*$ upravo optimalno rješenje problema  ($P$).
          Slično imamo da vrijedi za sva dopustiva rješenja od  ($D$) : $b^T y^* = c^T x^* \geq b^T y$, odakle imamo da je $y^*$ optimalno rješenje za problem  ($D$). 
 \end{proof}
 
