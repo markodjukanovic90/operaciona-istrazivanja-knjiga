@@ -903,12 +903,15 @@ i ekstremne tačke poliedra. Takođe ćemo dati postupak za konstrukciju BDR-a t
    \end{enumerate}
    
 \end{thm}
-Postupak konstrukcije baznog rješenja je dat sljedećim koracima:
+Prema tome, da bi  konstruisali bazno rješenje, radimo sljedeće
 \begin{enumerate}
-    \item Odabrati $m$ linearno nezavisnih kolona $A_{p_1}, \ldots, A_{p_m}$ matrice $A$.
-    \item Postaviti $x_i = 0$, za sve $i \in \{p_1,\ldots, p_m \}$.
-    \item Riješiti sistem $B x_B = b$, za $x_B = [x_{p_1}, \ldots, x_{p_m}]$ i $B= [A_{p_1}, \ldots, A_{p_m}]$
-    \item Vektor $x = (x_1,\ldots, x_n)$ za koje je $x_j = 0$ za $j  \not \in \{p_1,\ldots, p_m \}$ ili $x_{p_i} = (x_B)_i$ za $j = p_i$ je bazno rješenje. 
+    \item Odaberemo $m$ linearno nezavisnih kolona $A_{p_1}, \ldots, A_{p_m}$ matrice $A$.
+    %\item Postavimo $x_i = 0$, za sve $i \in \{p_1,\ldots, p_m \}$.
+    \item Riješimo sistem $B x_B = b$, za $x_B = [x_{p_1}, \ldots, x_{p_m}]$ i $B= [A_{p_1}. \ldots, A_{p_m}]$
+    \item Dodjelimo $$x = (x_1,\ldots, x_n)= \begin{cases}
+    	          0, j  \not \in \{p_1,\ldots, p_m \} \\
+    	         x_{p_i} = (x_B)_i, j \in \{ p_1,\ldots, p_m \}
+    \end{cases},$$  čime dobijamo bazno rješenje. 
 \end{enumerate}
 Varijable $x_{p_1},\ldots, x_{p_m}$ nazivamo bazne varijable, a vektore  $A_{p_1}, \ldots, A_{p_m}$ bazni vektori, indekse $p_1,\ldots, p_m$ bazni indeksi, dok matricu $B$ matrica baze. 
 
@@ -916,7 +919,7 @@ Varijable $x_{p_1},\ldots, x_{p_m}$ nazivamo bazne varijable, a vektore  $A_{p_1
 Definišimo sada pojam \emph{degenerativnog} rješenje i degenerativnog baznog rješenja. Pokazaćemo kako se na primjeru pronalazi bazno rješenje te kako izgleda degenerativno bazno rješenje.
 
 \begin{definition}
-      Neka je dat poliedar $P = \{ x \in \mathbb{R}^n \mid a_i^T x \geq b_i, i=1,\ldots,m \}$. Za bazno rješenje $x^*\in \mathbb{R}^n$ kažemo da je degenerativno ako je više od $n$  ograničenja aktivno u $x^*$. 
+      Neka je dat poliedar $P = \{ x \in \mathbb{R}^n \mid a_i^T x \geq b_i, i=1,\ldots,m \}$. Za bazno rješenje $x^*\in \mathbb{R}^n$ kažemo da je degenerativno ako je više od $m$  ograničenja aktivno u $x^*$. 
       
 \end{definition}
 
@@ -942,7 +945,7 @@ U nastavku govorimo o egzistenciji optimalnog rješenja problema LP-a.
       Poliedar $P$ sadrži pravac akko postoji $x \in P$ i $d \in \mathbb{R}^n \setminus \{0\}$ tako da je $x + \lambda d \in P$, za sve $\lambda \in \mathbb{R}$. 
 \end{definition}
 
-Sljedeću teoremu navodio bez dokaza.
+Sljedeću teoremu koja daje vezu između ekstremnoh tačaka poliedra i dopustivih pravaca navodio bez dokaza.
 
 \begin{thm}
    Neka je dat poliedar $P=\{ x \in \mathbb{R}^n  \mid a_i^T x \geq b_i, i=1,\ldots,m\} $. Tada su sljedeće tri tvrdnje ekvivalentne:
