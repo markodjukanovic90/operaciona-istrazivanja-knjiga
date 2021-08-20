@@ -2391,7 +2391,7 @@ pa se ograničenja u (\ref{eq: piecewise-constraints}) mogu napisati u obliku
              \item $\omega_1 = 1, \omega_2 = 0$: koje odgovara $x\in I_2$, jer je $\beta_1=b_1, \beta_3=0$;
               \item $\omega_1 = 1, \omega_2 = 1$: koje odgovara $x\in I_3$, jer je $\beta_1=b_1, \beta_2=b_2$.
     \end{itemize}
- 
+ %https://download.aimms.com/aimms/download/manuals/AIMMS3OM_LinearProgrammingTricks.pdf
 \emph{Apsolutna funkcija}.   Recimo da imamo model dat sa 
 \begin{align*}
 	  &\min \sum_{j \in J} c_j |x_j| \\
@@ -2425,8 +2425,33 @@ Kada se $z$ minimizuje, ova ograničenja osiguravaju da je $z$ veće ili jednako
 	& x \geq 0.
 \end{align*}
   
-  \emph{Frakciona funkcija cilja}. 
-  
+  \emph{Frakciona funkcija cilja}. Neka je dat sljedeći model:
+  \begin{align*}
+  	  & \min \frac{\sum_{j \in J} c_j x_j + \alpha}{ \sum_{j \in J} d_j x_j + \beta} \\
+  	  & \sum_{j \in J} a_{ij} x_j \leq b_i,  \forall i \in I \\
+  	  & x_j \geq 0, \forall j \in J.
+  \end{align*}
+   Ovdje je funkcija cilja data kao količnik dvije linearne funkcije. Potrebno je transformisati ovu funkciju u linearnu da bismo imali linearni program. Ovakvi modeli su česti u modelima financijskog planiranja. Pretpostavimo da je $\sum_{j \in J}d_j x_j + \beta \neq 0$ za sve tačke iz dopustivog regiona. Glavni trik u transformaciji je uvođenje nove varijable $y_j$ i $t$ tako da je $y_j = t x_j$. U objašnjenju dolje pretpostavljamo da je nazivnik u funkciji cilja pozitivan (slično je izvođenje i sa negativnim nazivnikom, stim da imamo znak ``-'' ispred, što će promijeniti znak nejednakosti u krajnjem modelu). Dakle, uvedemo $t = \frac{1}{\sum_{j \in J} d_j x_j + \beta }$. Time dobijamo model
+   \begin{align*}
+   	    &\min \sum_{j \in J} c_j x_j t + \alpha t \\
+   	    &\sum_{j \in J} a_{ij} x_j \leq b_i,  \forall i \in I \\
+   	    & \sum_{j \in J} d_j x_j t + \beta t = 1 \\
+   	    & t > 0 \\
+   	    & x \geq 0.
+   \end{align*}
+   Množeći prvo ograničenje sa $t>0$ te uvodeći smjenu $y_j = t x_j$, konačno dobijamo (ekvivalentan)  model:
+   \begin{align*}
+        &\min \sum_{j \in J} c_j y_j + \alpha t \\
+        & \sum_{j \in J} a_{ij} y_j \leq b_i t,  \forall i \in I \\
+        & \sum_{j \in J} d_j y_j + \beta t = 1 \\
+        & t > 0 \\
+        & x \geq 0.
+   \end{align*}
+Na kraju, provremeno dozvoliti da je $t \geq 0$, da bi dobili LP model. 
+Za optimalnu vrijednost od $t$ na kraju provjeriti da je $t>0$.   \\
+\emph{Granična ograničenja}. TODO 
+
+
 \emph{Aproksimacija nelinearnih funkcija}. Ako je funkcija cilja nelinearna, ona se aproksimira pomoću niza po-dijelovima-linearnih funkcija, pa se onda primjenjuje transformacija ograničenja u modelu objašnjena u prethodnoj stavki. 
 
 Da bi primijenili veći broj gore navedenih transformacija ograničenja, posmatrajmo sljedeći primjer, koga ćemo modelovati. 
