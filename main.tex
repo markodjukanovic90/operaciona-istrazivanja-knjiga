@@ -2980,9 +2980,9 @@ sa optimalnom vrijednošću $33\frac{1}{7}$. Nakon toga treba da se donese odluk
     & x_1, x_2 \in \mathbb{Z}
 \end{align*}
 
-Relaksacija problem ($P1$) daje riješenje $x^*=(3,2)$, koje je cjelobrojno, pa prema tome i dopustivo u početnom problemu. Njena vrijednost je 28, što je i donja granica ($LB$) početnog problema. Relaksacija problema ($P2$) nam daje rješenje $x^*=(2, \frac{7}{2})$, čija je optimalna vrijednost $\frac{29}{2}$.  Prema tome, rješenje nije cjelobrojno. Primjenjujući metod odsjecajućih ravni na problem ($P2$),konstruišemo odsjecajuću ravan $2x_1 + x_2 \leq 7$ koju dodajemo u problem ($P2$) pa dobijamo problem 
+Relaksacija problem ($P1$) daje riješenje $x^*=(3,2)$, koje je cjelobrojno, pa prema tome i dopustivo u početnom problemu. Njena vrijednost je 28, što je i donja granica ($LB$) početnog problema. Relaksacija problema ($P2$) nam daje rješenje $x^*=(2, \frac{7}{2})$, čija je optimalna vrijednost $\frac{29}{2}$.  Prema tome, rješenje nije cjelobrojno. Primjenjujući metod gomorijevih odsjecajućih ravni na problem ($P2$), konstruišemo odsjecajuću ravan $2x_1 + x_2 \leq 7$ koju dodajemo u problem ($P2$) pa dobijamo problem 
 \begin{align*}
-     &\max 6 x_1 + 5 x_2 \\
+    &\max 6 x_1 + 5 x_2 \\
     & \mbox{s.t. } \\
     & 3x_1 + x_2 \leq 11 \\
     & - x_2 + 2 x_2 \leq 5  \\
@@ -2995,12 +2995,12 @@ Relaksacija problem ($P1$) daje riješenje $x^*=(3,2)$, koje je cjelobrojno, pa 
 Rješavajući LP relaksaciju problema ($P3$), dobijamo rješenje $x^*=(\frac{9}{5}, \frac{17}{5})$, tj.  optimalna vrijednost je $27.8$. Kako je $LB \geq 28.8$, niti jedno cjelobrojno rješenje problema ($P3$) ne može biti bolje od trenutno najbolje donje granice ($LB=28$), pa zaključujemo da je optimalo rješenje početnog problema $x^*=(3,2)$. 
 
 \section{Lagranžova relaksacija}
-U rješavanju problema optimizacije, nalazak optimalnog rješenja je jedan od glavnih ciljeva. Međutim, za mnoge probleme nije realno očekivati da se garantuje optimalnost, već najbolje što se može učiniti za data ograničenja u resursima je da se ponudi dobra dolja granica za optimalnu vrijednost. Ako je ta ganica blizu optimuma, u mnogo slučajeva ona može da zamijeni optimum, štedeći resurse kojima raspolažemo. 
+U rješavanju problema optimizacije, nalazak optimalnog rješenja je jedan od glavnih ciljeva. Međutim, za mnoge probleme nije realno očekivati da se garantuje optimalnost, već najbolje što se može učiniti za data ograničenja  je da se ponudi dobra donja granica za optimalnu vrijednost. Ako je ta ganica blizu optimuma, u mnogo slučajeva ona može da zamijeni optimum, štedeći resurse kojima raspolažemo. 
 
-Ideja \emph{Lagranžove relaksacije} je da u modelu ILP-a   koji ima  ograničenja koja čine problem teškim (ova procjena je najčešće stvar praktičnog iskustva),  posmatramo kao dio ciljne funkcije i da je penalizujemo.  %parametrom $\lambda>0$. 
-Ovo ograničenje potom brišemo iz skupa ograničenja modela i zatim rješavamo novi problem. Na ovaj način, rješenje ovakvog problema je donja granica (za problem minimizacije) za optimalno rješenje datog problema. U praksi, ona je često jako blizu optimalnog rješenja. 
+Ideja \emph{Lagranžove relaksacije} se sastoji u tome da u modelu ILP-a  koji ima  ograničenja koja čine problem teškim (ova procjena je najčešće stvar praktičnog iskustva),  posmatramo kao dio ciljne funkcije koju penalizujemo nekim parametrom.  %parametrom $\lambda>0$. 
+Ovo ograničenje potom brišemo iz skupa ograničenja modela a zatim rješavamo novi problem. Na ovaj način, rješenje ovakvog problema je donja granica (za problem minimizacije) za optimalno rješenje datog problema. U praksi, ona je često jako blizu vrijednosti optimuma. 
 
-\emph{Primjer}. Posmatrajmo problem \emph{najkraćeg puta sa ogaraničenjem} (eng. \emph{Constrained Shortest Path Problem}). Neka je dat usmjeren neciklični graf $G=(V,E)$. Za svaku granu $(i,j) \in E$ dodijelimo cijenu puta $c_{i,j}$ i vrijeme putovanja $t_{i,j}$. Pretpostavimo da je čvor $i=1$ startni čvor (izvorišni čvor), a čvor $n = |V|$ je završni čvor (terminalni čvor). Zadatak je da se naće put  od izvorišnog do terminalnog čvora koji je najeftiniji tako da se čitav put pređe u vremenskom periodu $T$.
+\emph{Primjer}. Posmatrajmo problem \emph{najkraćeg puta sa ogaraničenjem} (eng. \emph{Constrained Shortest Path Problem}). Neka je dat usmjeren neciklični graf $G=(V,E)$. Za svaku granu $(i,j) \in E$ dodijelimo cijenu puta $c_{i,j}$ i vrijeme putovanja $t_{i,j}$. Pretpostavimo da je čvor $i=1$ startni čvor (izvorišni čvor), a čvor $n = |V|$ je završni čvor (terminalni čvor). Zadatak je da se nađe put  od izvorišnog do terminalnog čvora koji je najeftiniji ali tako da se čitav put pređe u vremenskom periodu $T$.
 
 Ovaj problem se modeluje pomoću sljedećeg ILP-a:
  \begin{align}
@@ -3016,7 +3016,7 @@ Ovaj problem se modeluje pomoću sljedećeg ILP-a:
 \end{align} 
 
 Binarna varijabla $x_{i,j}$ dobija vrijednost 1 ako je odabrana grana $(i,j)$ na   putu, a 0 inače.  
-Prvo ograničenje u modelu nam ograničava da je dopustivo rješenje upravo put od izvorišnog do terminalnog čvora. Drugo ograničenje nam kazuje da je vrijeme prelaska puta u granicama dopustivog. Ovo ograničenje spada pod ``komplikovanim'' ograničemnjima jer, kao što znamo,  pronalazak najkraćeg puta u direktnim grafovima sa unaprijed definisanim izvorišnim čvorom je polinomijalno rješiv (Dajkstrin algoritam), dok dodavanjem ograničenja o vremenu taj problem postaje NP-težak problem. Ideja je sada relaksirati ovaj problem uz prebacivanje ograničenja o vremenu u funkciji cilja koja se  penalizuje. 
+Prvo ograničenje u modelu nam ograničava da je dopustivo rješenje upravo put od izvorišnog do terminalnog čvora. Drugo ograničenje nam kazuje da je vrijeme prelaska puta u granicama dopustivog. Ovo ograničenje spada pod ``komplikovanim'' ograničenjima jer, kao što znamo,  pronalazak najkraćeg puta u direktnim grafovima sa unaprijed definisanim izvorišnim čvorom je polinomijalno rješiv (Dajkstrin algoritam), dok dodavanjem ograničenja o vremenu taj problem postaje NP-težak problem. Ideja je sada relaksirati ovaj problem uz prebacivanje ograničenja o vremenu u funkciji cilja koja se zatim penalizuje. 
 Dakle, Lagranžova relaksacija problema je data sa:
 
 \begin{align*}
@@ -3074,12 +3074,12 @@ gdje je $\lambda=(\lambda_1, \ldots, \lambda_n)$ i $c^\lambda_{i,j} = c_{i,j} + 
 
 % interior point method (dodati)...
 \section{Metod Generisanja Kolona}% ovo je za LP probleme sa velikim brojem kolona, pogledati u https://coral.ise.lehigh.edu/~ted/files/ie418/lectures/Lecture18.pdf file:///C:/Users/PC/Downloads/ColumnGenerationTutorial.pdf
-Često se u praksi sreće da je u LP-u (ili ILP-u) broj varijabli puno veći (eksponencijalno) u odnosu na broj ograničenja. U osnovi, riječ je o ekstremno velikim modelima gdje je matrica $A$ velikih dimenzija. Kada je riječ o rješavanju ovakvih problema, veliki dio matrice (tj. njene kolone) nam nikada i neće biti relevantan u rješavanju. Da bi se riješila specifična instanca problema, ono što nam je potrebno su:
+Često se u praksi sreće da je u LP-u (ili ILP-u) broj varijabli puno (eksponencijalno) veći  u odnosu na broj ograničenja. U osnovi, riječ je o ekstremno velikim modelima sa matricom $A$ velikih dimenzija. Kada je riječ o rješavanju ovakvih problema, veliki dio matrice (tj. njene kolone) nam nikada i neće biti relevantan u rješavanju. Da bi se riješila specifična instanca problema, ono što nam je potrebno su:
 \begin{itemize}
     \item Ograničenja koja se vežu uz optimalnost.
     \item Varijable koje su bazne u optimalnom rješenju.
 \end{itemize}
-Prema tome, ono što je potrebno su ograničenja čije su odgovarajuće   dualne vrijednosti pozitivne, kao i varijable koje su pozitivne vrijednosti za optimalnost (vektor doprinosa $\overline{c}$). Ako bismo imali ove varijable i ograničenja na raspolaganju od početka, problem bi riješili veoma brzo. Međutim, ova informacija nam nije besplatna.  U simpleks metodi, vektor doprinosa je potrebno računati u svakoj iteraciji, što nije efikasno ako je matrica $A$ velikih dimenzija. Takođe, vrijeme potrebno za generisanje simpleks tabele bi bilo ogromno u tom slučaju.  Oba ova problema su rješiva uz pomoć \emph{metoda generisanja kolona}.  Ideja ovog metoda se sastoji u sljedećem:
+Prema tome, ono što je potrebno su ograničenja čije su odgovarajuće   dualne vrijednosti pozitivne, kao i varijable koje dobijaju pozitivne vrijednosti za optimalno rješenje (gledajući vektor doprinosa $\overline{c}$). Ako bismo imali ove varijable i ograničenja na raspolaganju od početka, problem bi riješili veoma brzo. Međutim, ova informacija nam nije besplatna.  U simpleks metodi, vektor doprinosa je potrebno računati u svakoj iteraciji, što nije efikasno ako je matrica $A$ velikih dimenzija. Takođe, vrijeme potrebno za generisanje simpleks tabele bi bilo ogromno.  Oba ova problema su rješiva uz pomoć \emph{metode generisanja kolona}.  Ideja ovog metoda se sastoji u sljedećem:
 \begin{itemize}
     \item Krenimo sa ``obećavajućim'' podskupom $S$ kolona matrice $A$; 
     \item Riješimo LP na podskupu kolona $S$; 
@@ -3094,7 +3094,7 @@ Tehnički zapisano, krećemo od \emph{restrikovanog problema}
     & \sum_{i \in I} A_i x_i  \leq b \hspace{2cm} (R)\\
     & x \geq 0. 
 \end{align*}
-kojeg riješimo, te izračunamo optimalno dualno rješenje. Sada je potrebno izgenerisati novu kolonu $A_j$ pri čemu je $c_j - c_B^T B^{-1}A_j < 0$.
+kojeg riješimo, te izračunamo optimalno dualno rješenje. Sada je potrebno izgenerisati novu kolonu $A_j$ za koju je $c_j - c_B^T B^{-1}A_j < 0$.
 
 Ovo se može uraditi rješavanjem \emph{potproblema}:
 $$\min_{a \in C} c_a - c_B^T B^{-1} a,$$
@@ -3102,27 +3102,27 @@ gdje je $C$ skup kolona nad nekim globalnim skupom.
 
 Ako je rješenje problema kolona $a \in C$ čija je vrijednost strogo manja od 0, dodamo kolonu u skup $S$, te riješimo \emph{restrikovani problem} na novom skupu kolona. Ovaj metod se još naziva \emph{generički metod generisanja kolona}.  
 Postoji mnogo pristupa kako ažurirati skup $S$ tokom iteracija. 
-Najjednostavniji se tiče zadržavanja svake kolone koja je do sada izgenerisana  u skup $S$ i dodati novu. Naprednija strategija se tiče izbacivanja onih kolona iz skupa $S$ koje su nebazne u svakoj iteraciji. 
- U nastavku dajemo primjer primjene \emph{metoda generisanja kolona} na poznatim \emph{Cutting Stock} problemu. 
+Najjednostavniji se tiče zadržavanja svake kolone koja je do sada izgenerisana  u skup $S$ i dodati novu u postojeći skup. Naprednija strategija se tiče izbacivanja onih kolona iz skupa $S$ koje su nebazne u svakoj iteraciji. 
+ U nastavku dajemo primjer primjene \emph{metoda generisanja kolona} na poznatom \emph{Cutting stock} problemu. 
  
- \emph{Problem}. Tvornica papira proizvodi role papira fiksne širine  $W$. 
+ \emph{Problem}. Tvornica papira proizvodi rolne papira fiksne širine  $W$. 
  Kupci naručuju različit broj rolni različite širine $w \in \mathbb{R}^m$, dok je sa vektorom $b \in \mathbb{R}^m$ dat zahtjev (broj naručenih rolni).  Zadatak je pronaći optimalan način  rezanja velike rolne da bi se zahtjevi ispunili, a smanjio otpad.  
  
  \emph{Rješenje.} Na Slici~\ref{fig:cuting_stock_solutions} je dato rješenje jedne instance problema. 
- Što se tiče kolona za ovom problemu, one predstavljaju dopustive obrasce (kombinacije rezanja). Jedan dio obrasca sa slike, bi bio $1820$ x $2$ (rolne) u prvoj koloni.
+ Što se tiče kolona za ovom problemu, one predstavljaju dopustive obrasce (kombinacije rezanja). Jedan dio obrasca sa slike bi bio $1820$ x $2$ (rolne) u prvoj koloni.
  Primijetimo da broj različitih obrazaca raste eksponencijalno u odnosu na broj narudžbi.  Ako bismo izvršili enumeraciju svih mogućih obrazaca, trebali bi riješiti sljedeće ILP modele:
  \begin{align*}
       & \min \sum_{i} x_i \\
       & \sum_{ij} a_{i,j }x_j \geq b_i, \forall i \hspace{2cm} (CSILP)\\
       &  x_j \geq 0, x_{j} \in \mathbb{Z} 
  \end{align*}
- gdje je $a_{i,j}$ broj puta da se narudžba $i$ pojavi u obrascu $j$ (vrsta na slici), dok  je $x_j$ broj puta koliko je obrazac $j$ korišten. Primjera radi, na  Slici~\ref{fig:cuting_stock_solutions} bi bilo $a_{1,1}=3$ i $x_1 = 2$, dok je $a_{1,2}=0$; $a_{1,5}=1$ i $ x_5 = 12$.
+ gdje je $a_{i,j}$ broj puta da se narudžba $i$ pojavi u obrascu $j$ (vrsta na slici), dok  je $x_j$ broj puta koliko je obrazac $j$ korišten. Primjera radi, na  Slici~\ref{fig:cuting_stock_solutions} je $a_{1,1}=3$ i $x_1 = 2$, dok je $a_{1,2}=0$; $a_{1,5}=1$ i $ x_5 = 12$.
  
  Ideja je ne stvarati obrasce na početku, već ih generisati prema potrebi (po kolonama) koristeći \emph{metod generisanja kolona}. Kolona $a$ odgovara dopustivom obrascu akko vrijedi 
- $$ \sum_{i=1}^m a_i w_i \leq W $$
+ $$ \sum_{i=1}^m a_i w_i \leq W,$$
  gdje $a$ sadrži samo nenegativne (cjelobrojne) vrijednosti. 
 % Primijetimo da je cijena svakog paterna po kolonama jednaka za svaku kolonu. 
-Primijetimo da je na osnovu prethodnog (razmatrajući relaksaciju problema ($CSILP$)), vrijednosti koeficijenata doprinosa 
+Primijetimo da je na osnovu prethodnog (razmatrajući relaksaciju problema  $CSILP$), vrijednosti koeficijenata doprinosa 
 jednaki $\overline{c} = 1 - \sum_{i} A_{j,i} y_i$.  
  Dakle, potproblem izgleda ovako:
 $$ \begin{array}{lll}
@@ -3136,8 +3136,8 @@ $$ \begin{array}{lll}
  
  \begin{figure}[!ht]
      \centering
-     \includegraphics[width=200pt, height=200pt]{cutting_stock.jpg}
-     \caption{Rješenje jedne instance (treba nacrtati sliku).}
+     \includegraphics[width=230pt, height=230pt]{cutting_stock.eps}
+     \caption{Rješenje jedne instance.}
      \label{fig:cuting_stock_solutions}
  \end{figure}
  Za ovaj problem je lako naći inicijalno bazno dopustivo rješenje:
@@ -3162,7 +3162,7 @@ $$ \begin{array}{lll}
  
  \section{Benderova Dekompozicija}
  
-  \section{Lagranžova Dekompozicija}
+  \section{Dantzig-Wolfe Dekompozicija}
  
  \chapter{Metode za Nalaženje Dopustivih Rješenja}
 
