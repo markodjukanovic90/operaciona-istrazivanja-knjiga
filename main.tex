@@ -2391,7 +2391,42 @@ pa se ograničenja u (\ref{eq: piecewise-constraints}) mogu napisati u obliku
              \item $\omega_1 = 1, \omega_2 = 0$: koje odgovara $x\in I_2$, jer je $\beta_1=b_1, \beta_3=0$;
               \item $\omega_1 = 1, \omega_2 = 1$: koje odgovara $x\in I_3$, jer je $\beta_1=b_1, \beta_2=b_2$.
     \end{itemize}
-    
+ 
+\emph{Apsolutna funkcija}.   Recimo da imamo model dat sa 
+\begin{align*}
+	  &\min \sum_{j \in J} c_j |x_j| \\
+	  & \sum_{j\in J} a_{ij} x_j \leq b_i, \forall i\in I \\
+	  & x_i \in \mathbb{R}, \forall i \in I.
+\end{align*}  
+Transformacija ovakvog modela ide na slejdeći način: 
+svaka slobodna varijabla se može napisati kao razlika dvije pozitivne vrijednosti, tj.  $x_i = x_i^+ - x_i^-$, dok apsolutna vrijednost kao zbir dvije pozitivne varijable, tj. $|x_i|= x_i^+ + x_i^-$. Prema tome, prethodni model transformisemo u 
+\begin{align*}
+     &\min \sum_{j \in J} c_j  (x_i^+ + x_i^-) \\
+     &\sum_{j\in J} a_{ij} (  x_i^+ - x_i^- ) \leq b_i, \forall i\in I \\
+     &  x_i^+, x_i^- \geq 0, \forall i \in I.
+\end{align*}
+  Optimalna rješenja oba prehodna modela su jednaka. Ostavljamo ovu činjenicu čitaocu za dokazivanje.
+ 
+ \emph{Min-max problem}. Neka je dat sljedeći model: 
+ \begin{align*}
+ 	  &\min \max_{k \in K} \sum_{j \in J} c_{kj} x_j \\
+ 	  & \sum_{j \in J} a_{ij} x_j \leq b_i\  \forall i \in I \\
+ 	  & x_j \geq 0\ \forall j \in J.
+ \end{align*}
+Ovaj  model se transformiše u model LP-a uvodeći varijablu $z=\max_{k \in K} \sum_{j \in J} a_{kj}x_j$ koja označava maksimalnu cijenu. Sljedeće dodatna ograničenja treba da budu dodana u početni model poslije smjene da bi ograničili vrijednost varijable $z$:
+\begin{eqnarray}
+	 \sum_{j \in J} a_{kj} x_j \leq z\ \forall k \in K.
+\end{eqnarray}
+Kada se $z$ minimizuje, ova ograničenja osiguravaju da je $z$ veće ili jednako  $\sum_{j \in J} c_{kj}x_j$, za sve $k$. Optimalna vrijednost $z$ neće biti veća od makismuma svih $\sum_{j \in J} c_{kj}x_j$, jer je $z$ minimizovano. Prema tome, optimalna vrijednost od $z$ će biti što manja moguća i jednaka maksimalnoj cijeni nad skupom $K$. Prema tome, model se transformiše u:
+\begin{align*}
+	&\max z \\
+	&\sum_{j \in J} a_{ij} x_j \leq b_i\  \forall i \in I \\ 
+	& 	 \sum_{j \in J} a_{kj} x_j \leq z\ \forall k \in K \\
+	& x \geq 0.
+\end{align*}
+  
+  \emph{Frakciona funkcija cilja}. 
+  
 \emph{Aproksimacija nelinearnih funkcija}. Ako je funkcija cilja nelinearna, ona se aproksimira pomoću niza po-dijelovima-linearnih funkcija, pa se onda primjenjuje transformacija ograničenja u modelu objašnjena u prethodnoj stavki. 
 
 Da bi primijenili veći broj gore navedenih transformacija ograničenja, posmatrajmo sljedeći primjer, koga ćemo modelovati. 
