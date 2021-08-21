@@ -1684,7 +1684,7 @@ $$
 Kako su svi koeficijenti doprinosa ($\overline{c}$ varijable) manje od 0, simpleks metod staje nalazeći optimum koji se dostiže u tački $x = (24, 3, 0)$, i jednak je vrijednosti  $f = 72$.
 \end{comment}
   \newpage
- \chapter{Dualnost}
+ \chapter{Dualnost \& Dopustivost}
  
  Dualnost je pojam koji je vezan za dobijanje gornjih granica optimalne vrijednosti funkcije cilja. Teorija dualnosti povezuje dva vezana problema linearnog programiranja -- jedan od njih je problem linearnog programiranja koji maksimizuje funkciju cilja, dok je drugi problem linearnog programiranja koji minimizuje (ne obavezno istu) funkciju cilja.  Dualnost implicira da svaki problem linearnog programiranja možemo analizirati na dva potpuno različita načina, ali sa ekvivalentnim (optimalnim) rješenjima.   
   Prema tome, svaki problem LP-a se može navesti u drugom, ekvivalentnom obliku na osnovu istih ulaznih podataka. Ponekad rješavanje LP-a na jedan način može da bide puno lakše nego na drugi.
@@ -3456,7 +3456,7 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje.
   \noindent U tom slučaju kažemo da je algoritma $\mathcal{A}$ $c$--aproksimativni algoritam.
   Primjer problema za koji postoji apsolutni apriksimativni algoritam je bojanje planarnog grafa (eng. \emph{Planar Graph Coloring}). Primjer problema za koji postoji relativni apriksimativni algoritam je pokrivanje čvorova. 
   
-  \subsection{Problem Pokrivanja Čvorova: aproksimativni algoritmi}
+  \subsection{Aproksimativni algoritmi za Problem Pokrivanja Čvorova}
   
   Neka je dat graf $G=(V,E)$. Potrebno je naći podskup $C\subseteq V$ najmanje kardinalnosti td. barem jedan čvor svake grane pripada skupu $C$.  Dopustivo rješenje je svaki podskup $C$ koji zadovoljava uslov problema. Takav skup se naziva \emph{pokrivač} čvorova grafa $G$. Primjer pokrivača jednog grafa je dat na Slici~\ref{vertex-cover} gdje pokrivač uključuje sve čvorove crvene boje. 
   
@@ -3525,7 +3525,7 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje.
   Ono sto se takođe zna (Hastad, 2001) je da ne postoji aproksimativni faktor 
   koji garantuje da je $c < \frac{7}{6}$ (osim ako $P \neq NP$). 
   
-  \subsection{Problem Trgovačkog Putnika: aproksimativni algoritmi}
+  \subsection{Aproksimativni algoritmi za Problem Trgovačkog Putnika}
   
   Ovaj problem je jako težak kada je u pitanju konstrukcija aproksimativnog algoritma. Tome svjedoči sljedeća teorema.
  \begin{thm}
@@ -3651,7 +3651,7 @@ Posmatrajmo sljedeći (aproksimativni) algoritam koji umanjuje aproksimativni fa
  $2 cost(M) \leq cost(T) \leq C^*$, odakle dobijamo tvrđenje.  U literaturi je pokazano da ne postoji  aproksimacioni algoritam sa faktorom  $c < \frac{220}{219} \approx 1.0045$ (osim ako je $P=NP$). 
  
  
- \subsection{Problem Binarnog Pakovanja: aproksimativni algoritmi}
+ \subsection{Aproksimativni algoritmi za Problem Binarnog Pakovanja}
 
 \begin{definition}
     Neka je dato $n$ proizvoda veličine $a_1,a_2,\ldots,a_n$ ($0<a_i<1$). Potrebno je spakovati sve proizvode u jedinična pakovanja, tako da je broj korištenih pakovanja minimalan.  
@@ -3679,7 +3679,7 @@ pa slijedi da je algoritam 2--aproksimacioni.
  Još jedan pohlepni algiritma za ovaj problem je \emph{Best fit}. Sljedeći proizvod se stavlja u pakovanje koje ostavlja najmanju prazninu od svih pakovanja kada se taj prizvod smjesti u odgovarajuće pakovanje. Ako takvo pakovanje ne postoji, otvoriti novo pakovanje. 
 Ovaj algoritam je takodje 2--aproksimacioni. Interesantno je napomenuti da za Problem binarnog pakovanja ne postoji aproksimativni algoritam čiji je faktor $c <\frac{3}{2}$ (osim ako je $P=NP$), kako je pokazano u literaturi. 
 
- \subsection{Problem Pokrivanja Skupa: aproksimativni algoritmi}
+ \subsection{Aproksimativni algoritmi za Problem Pokrivanja Skupa}
 Ovaj problem predstavlja uopštenje Problema pokrivanja čvorova, i definisan je na sljedeci naćin.
 \begin{definition}
 	    Neka je dat skup elemenata $X$ te familija podskupova $\mathcal{F}$ skupa $X$ tako da je za svaki $f\in \mathcal{F}$, $|f \cap X| \geq 1$ i $\bigcup_{f \in \mathcal{F}} f = X$. 
@@ -3788,7 +3788,7 @@ Napomenimo da postoji i težinska verzija Problema pokrivanja skupa. U ovoj verz
 \end{align}
 gdje je $w_f$ težina skupa. U svakom koraku algoritma određuje skup $f^* \in \mathcal{F}$ koji minimizuje vrijednost funkcije $g$, koji se zatim dodaje u trenutni (parcijalni) pokrivač $C$.
 
-\subsection{Problem Najkraćeg Nadstringa}
+\subsection{Aproksimativni algoritam za Problem Najkraćeg Nadstringa}
 
 
 \begin{definition}
