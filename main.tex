@@ -2449,10 +2449,35 @@ Kada se $z$ minimizuje, ova ograničenja osiguravaju da je $z$ veće ili jednako
    \end{align*}
 Na kraju, provremeno dozvoliti da je $t \geq 0$, da bi dobili LP model. 
 Za optimalnu vrijednost od $t$ na kraju provjeriti da je $t>0$.   \\
-\emph{Granična ograničenja}. TODO 
+\emph{Domenske granice u ograničenjima}. Neka nam je dat model
+\begin{align*}
+	&\min_{j \in J } c_j x_j \\
+	& l_i \leq \sum_{j \in J} a_{ij} x_j \leq u_i, \forall i\in I \\
+	& x_j \geq 0, \forall j \in J.
+\end{align*} 
+Najlakše je transformisati ovaj model u sljedeći LP (konjunkcija ograničenja): 
+\begin{align*}
+	& \min_{j \in J } c_j x_j \\
+	&  l_i \leq \sum_{j \in J} a_{ij} x_j, \forall i\in I \\
+	&  \sum_{j \in J} a_{ij} x_j \leq u_i, \forall i\in I \\
+	&  x_j \geq 0, \forall j \in J.
+\end{align*}
+Kako sam se $\sum_{j \in J} a_{ij} x_j$ javlja u dva ograničenja (što utiče na performanse rješavača), ovaj model se dalje transformiše na (efikasniji) LP model uz transformaciju
+\begin{align*}
+		 &s_i + \sum_{j \in J} a_{ij} x_j = u_i, \forall i \in I \\
+		 & 0 \leq s_i \leq  u_i - l_i, \forall i \in I.
+\end{align*}
+Dakle, ako je $s_i = 0$, onda je  $\sum_{j \in J} a_{ij} x_j = u_i$, dok ako je  $s_i = u_i - l_i$, imamo da je $\sum_{j \in J} a_{ij} x_j = l_i$, $i\in I$. 
 
+Konačno, dobijamo ekvivalentan LP model
+\begin{align*}
+	&\min_{j \in J } c_j x_j \\
+	&s_i + \sum_{j \in J} a_{ij} x_j = u_i, \forall i \in I \\ 
+	&  0 \leq s_i \leq  u_i - l_i, \forall i \in I \\
+	& x_j \geq 0, \forall j \in J.
+\end{align*}
 
-\emph{Aproksimacija nelinearnih funkcija}. Ako je funkcija cilja nelinearna, ona se aproksimira pomoću niza po-dijelovima-linearnih funkcija, pa se onda primjenjuje transformacija ograničenja u modelu objašnjena u prethodnoj stavki. 
+\emph{Aproksimacija nelinearnih funkcija}. Ako je funkcija cilja nelinearna, ona se aproksimira pomoću niza po-dijelovima-linearnih funkcija, pa se onda primjenjuje transformacija ograničenja u modelu objašnjena u stavki o po-dijelovima linearnim funkcijama. 
 
 Da bi primijenili veći broj gore navedenih transformacija ograničenja, posmatrajmo sljedeći primjer, koga ćemo modelovati. 
 
@@ -2507,8 +2532,9 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
  gdje je $D= \max d_i$. Ekvivalentno se ova funkcija cilja može napisati kao:
  \begin{align*}
       &\min D \\
-      & D \geq d_i,  \forall i \in I
-      & \mbox{s.t. } \\ &(\ref{eq:ex-constr-1})-(\ref{eq:ex-constr-5}).
+      & D \geq d_i,  \forall i \in I \\
+      & \mbox{s.t. } \\ 
+      &(\ref{eq:ex-constr-1})-(\ref{eq:ex-constr-5}).
  \end{align*}
  Još je ostalo zamijeniti svaku funkciju $f_j (s_j)$ aproksimacijom cjelobrojnog programiranja kako bismo izvršili cjelokupno modeliranje. Detalje ostavljamo citaocu kao zadatak. Ako bi funkcija $f_j (s_j)$ sadržala fiksne troškove, tada se ne bi trebale uvoditi nove varijable fiksnih troškova -- u tu svrhu služi već uvedena varijabla $y_j$. 
  % jos neki trikovi u modelovanju: https://download.aimms.com/aimms/download/manuals/AIMMS3OM_LinearProgrammingTricks.pdf
