@@ -926,7 +926,7 @@ Definišimo sada pojam \emph{degenerativnog} rješenje i degenerativnog baznog r
 \begin{definition}
       Neka je $P = \{ x \in \mathbb{R}^n \mid A x = b, x \geq 0\}, A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m$ poliedar   i neka je $x$ bazno rješenje. Vektor $x$ nazivamo degenerativno bazno rješenje ako više od $n-m$ komponenti u vektoru $x$ je jednako 0.
 \end{definition}
-\emph{Primjer.} Zadajmo poliedar $P= \{ (x_1,x_2,x_3)^T \mid x_2 - x_1 = 0, x_1 + x_2 +   x_3 = 2, x_1,x_2,x_3 \geq 0 \}$.  Promaći bazna dopustiva rješenja i odrediti jesu li ona degenerativna. \\
+\emph{\textbf{Primjer.}} Zadajmo poliedar $P= \{ (x_1,x_2,x_3)^T \mid x_2 - x_1 = 0, x_1 + x_2 +   x_3 = 2, x_1,x_2,x_3 \geq 0 \}$.  Promaći bazna dopustiva rješenja i odrediti jesu li ona degenerativna. \\
 
 \emph{Rješenje.} Lako je vidjeti da je  
 $A=\left (\begin{array}{ccc}
@@ -1291,7 +1291,7 @@ Bazne varijable prepoznjemo jer odgovarajući vektori (kolone) zajedno čine jed
  \end{itemize}
  Prema tome, vektori $x_i$, koji su bazni vektori (kolone baze $B$), su napisani preko nebaznih vektora $x_i \in N$. Kako se stavljaju $x_i  = 0$, za sve $i \in N$, onda je trivijano dobiti vrijednosti baznih vektora $x_i$, tj. kolona baze $B$. 
  \vspace{1cm}\\
- \emph{Primjer.} Navedimo primjer jednog linearnog programa koji je neograničen, te ga riješimo simpleks metodom. 
+ \emph{\textbf{Primjer.}} Navedimo primjer jednog linearnog programa koji je neograničen, te ga riješimo simpleks metodom. 
   Neka je dat LP:
   \begin{align*}
   	  &\max -x + 3y \\
@@ -1330,7 +1330,7 @@ Ovo se može vidjeti i na osnovu grafičke reprezentacije dopustivog regiona na 
     \label{fig:unbounded-example-solve}
 \end{figure}
 
-\emph{Primjer.} U nastavku dajemo još jedan primjer kada pivotiranje u simpleks metodi generiše degenerativno rješenje. 
+\emph{\textbf{Primjer.}} U nastavku dajemo još jedan primjer kada pivotiranje u simpleks metodi generiše degenerativno rješenje. 
 Posmatrajmo sljedeći linearni program:
 \begin{align*}
     &\max 2x + 3y \\
@@ -1789,7 +1789,7 @@ Generalno posmatrajući, za problem LP-a~(\ref{eq:LP-o1})--(\ref{eq:LP-c2}) njeg
 \end{proof} \\
 Primijetimo da koeficijenti $y^*$ posljednje vrste završne simpleks tabele odgovaraju  ``izjednačavajućim''   varijablama i one nam daju rješenje problema  ($D$).  
 
-\emph{Primjer.} Potpuno je moguće da problem ($P$) i odgovarajući dual ($D$) nemaju dopustivo rješenje. Pogledajte sljedeći primjer:
+\emph{\textbf{Primjer.}} Potpuno je moguće da problem ($P$) i odgovarajući dual ($D$) nemaju dopustivo rješenje. Pogledajte sljedeći primjer:
 $$\begin{array}{cc}
     \max                      & 2 x_1 - x_2 \\
      \mbox{s.t. }      & x_1 - x_1 \leq 1 \\
@@ -1826,7 +1826,7 @@ Uslovi (\ref{eq:slackness-1}) i (\ref{eq:slackness-2}) se nazivaju \emph{uslovi 
 
 \emph{Komentar}.  Nekada je lakse riješiti jedan od problema, ($P$)  ili  ($D$).  Recimo, lakše je riješiti dualni problem sa dvije varijable i 4 ograničenja (grafički metod), nego primalni  ($P$)  uslov sa 4 varijable i 2 ograničenja. 
 
-\emph{Primjer.} Posmatrajmo problem  ($P$)  i  ($D$)  gdje su:
+\emph{\textbf{Primjer.}} Posmatrajmo problem  ($P$)  i  ($D$)  gdje su:
  
 $$      A = \left(\begin{array}{ccc}
           1 &  4 & 0 \\
@@ -1858,7 +1858,7 @@ $$y_2 > 0 \Rightarrow (Ax - b)_2 y_2 = 0 \Rightarrow 3x_1 - x_2 + x_2 = 3 $$
 i kako je $y_1 + 3 y_2 > 4$, onda $(A^Ty)_1 > c_1$ i prema tome $x_1 =0$, 
 odakle $x =(0, \frac{1}{4}, \frac{13}{4})$. 
 
-\emph{Primjer.} Posmatrajmo problem LP-a:
+\emph{\textbf{Primjer.}} Posmatrajmo problem LP-a:
 $$\begin{array}{llll}
    &\max                     &10 x_1 + 10 x_2 + 20 x_3 + 20 x_4  & \\
    &\mbox{s.t. }      &12 x_1 + 8 x_2  + 6 x_3  + 4 x_4   & \leq 210 \\
@@ -2154,7 +2154,7 @@ Može se pokazati sljedeća teorema koja karakteriše \emph{metod unutrašnje ta
 	\end{itemize}
 \end{thm}
 %https://optimization.cbe.cornell.edu/index.php?title=Interior-point_method_for_LP
-\emph{Primjer.} Riješimo sljedeći primjer LP-a pomoću metoda unutrašnje tačke:
+\emph{\textbf{Primjer.}} Riješimo sljedeći primjer LP-a pomoću metoda unutrašnje tačke:
 \begin{align*}
 	&\max 3 x_1 + 3 x_2 \\
 	&\mbox{s.t.} \\
@@ -2227,7 +2227,7 @@ $L_i \leq x_n \leq U_j$. Obrnuto, ako svi ovih $k \cdot l$ nejednakosti vrijede,
 
 Prema tome, dobili smo sistem od $n-1$ varijabli koji se sastoji od  $k \cdot l$ nejednakosti gore opisanih te originalnih ograničenja koja ne uključuju $x_n$ u sebi. ovaj proces nastavimo iterativno dok ne dobijemo samo jednu promjenjivu koj je potom trivijalno riješena. 
 
-\emph{Primjer.} Pretpostavimo da nam je dat sistem nejednačina:
+\emph{\textbf{Primjer.}} Pretpostavimo da nam je dat sistem nejednačina:
 \begin{align*}
 	 &x - y \geq 1 \\
 	 &-x + 2y \geq 1 \\
@@ -2872,7 +2872,7 @@ Prema tome, pokazali smo da odsjecajuće ravni~(\ref{eq:gomory_cuts}) ne elimini
        \overline{b}_i - \lfloor \overline{b}_i \rfloor=   \sum_{j} (\overline{a}_{i,j} - \lfloor \overline{a}_{i,j} \rfloor) w_j - y_i 
 \end{align}
 
-\emph{Primjer.} Neka je dat sljedeći ILP problem:\\
+\emph{\textbf{Primjer.}} Neka je dat sljedeći ILP problem:\\
 $$\begin{array}{ll}
     &\max 3 x_1 + 4 x_2 \\
     &\mbox{s.t. }  \\
