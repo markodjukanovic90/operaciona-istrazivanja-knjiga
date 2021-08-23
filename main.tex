@@ -3269,9 +3269,35 @@ $$ \begin{array}{lll}
  
  \chapter{Dekompozicioni Metodi}
  
+Dekompozicione metode u matematičkom programiranju su tehnike pomoću kojih se polazni problem (na primjer, problem linearnog programiranja) razbija u više manjih problema, te se, rješavanjem tih manjih problema, na kraju dolazi i do rješenja polaznog.
+
+Široka primjena metoda linearnog, cjelobrojnog i mješovitog cjelobrojnog linearnog programiranja u modelovanju i rješavanju velikog broja različitih problema iz teorije i prakse, doveli su i do porasta interesa i za primjenu i razvoj dekompozicionih metoda. Čak se i tradicionalne metode za rješavanje problema cjelobrojnog programiranja, kao što su branch and bound, ili odsjecajuće ravni, takođe se mogu smatrati dekompozicionim metodama, jer one dijele polazni problem na LP relaksaciju i cjelobrojna ograničenja.
+
+Treba napomenuti da i savremeni MILP rješavači, o čemu će biti govora kasnije, takođe u svojim implementacijama koriste i dekompozicione algoritme, koji, u nekim slučajevima, lakše i brže dovode do rješenja.
  
  
  \section{Benderova Dekompozicija}
+ 
+ Benderova metoda je uvedena šezdesetih godina dvadesetog vijeka, kao algoritam za rješavanje MILP programa. 
+ Osnovna ideja Benderove dekompozicije primijenjenog na MILP program je podjela skupa promjenljivih na dva podskupa, od kojih se jedan skup promjenljivih (skup cjelobrojnih promjenljivih) smatra ``komplikovanim'', odnosno skupom promjenljivih čijim se fiksiranjem dolazi do značajnog pojednostavljenja polaznog problema. Prvi problem (koji se zove i master problem) se rješava nad prvim skupom promjenljivih, dok se vrijednosti promjenljivih iz drugog skupa,  za dato rješenje prvog potproblema, određuju rješavanjem drugog potproblema. Uspješnu primjenu Benderove dekompozicije, između ostalog, obezbjeđuje i teorija dualnosti, odnosno teoreme slabe i jake dualnosti.
+ 
+
+ Posmatrajmo sada sljedeću formulaciju MILP programa
+ 
+ $$\min f^Tx+g^Ty$$
+ s.t. $$Ax+By\geqslant c$$
+ $$x\geqslant 0,\ y \in \mathbb{Z}$$
+ gdje su $x$ i $y$ vektori neprekidnih i cjelobrojnih promjenljivih, respektivno, dimenzija $p$ i $q$. $f,g,c$ su vektori, a $A$ i $B$ matrice odgovarajućih dimenzija. 
+ 
+ Pretpostavimo da raspolažemo jednom početnom vrijednošću vektora $y$. Za tu vrijednost (označimo je sa $\overline{y}$) dobijamo sljedeći potproblem
+ 
+ $$\min  f^Tx+g^T\overline{y}$$
+  s.t. $$Ax\geqslant c-B\overline{y}$$
+ $$x\geqslant 0$$
+ 
+ Sada posmatrajmo dualni problem potproblema (REFF), ignorišući term $g^T\overline{y}$ koji je konstantan.
+ 
+ 
  
   \section{Dantzig-Wolfe Dekompozicija}
  
