@@ -1952,7 +1952,7 @@ gdje je $X = diag (x_1, \ldots, x_n)$, $S= diag(s_1,\ldots s_m)$, $\mathbf{1}=(1
 U nastavku navodimo problem preko koga razvijamo metod unutrašnje tačke. Ograničenja nenegativnosti u primalnom problemu ćemo zamijeniti sa $-ln x_j$, $j=1,\ldots,n$.   
 Primijetite da vrijedi 
 $$\min e^{-\sum_{j=1}^n ln x_j} \Leftrightarrow \max \prod_{j} x_j $$
-Dakle, minimizacija izraza $-\sum_{j=1}^n x_j$ je ekvivalentna maksimizaciji svih hiperravni koje definišu prvi ortant. Dakle, ovakav optimizacioni problem (na prvom ortantu) nas sprečava da se vrijednost neke od varijabli $x_j$ približi nuli (uprkos nenegativnim ograničenjima).  Na osnovu ovih činjenica, definišimo sljedeći optimizacioni problem. 
+Dakle, minimizacija izraza $-\sum_{j=1}^n x_j$ je ekvivalentna maksimizaciji na svim hiperravnima koje definišu prvi ortant. Dakle, ovakav optimizacioni problem (na prvom ortantu) nas sprečava da se vrijednost neke od varijabli $x_j$ približi nuli (uprkos nenegativnim ograničenjima).  Na osnovu ovih činjenica, definišimo sljedeći optimizacioni problem. 
 
 \begin{definition}
 	Barijerni program LP-a (\ref{eq:lp_equality_constraint}) je dat u obliku 
@@ -2011,7 +2011,7 @@ gdje je  $X = diag (x_1, \ldots, x_n ), S = diag(s_1,\ldots, s_n)$ i
 $\textbf{1} = diag (1,\ldots, 1)$. Primijetimo da je $X S \textbf{1}=\sum_{i} s_i x_i$. 
 Potrebno je riješiti $F(x, y, s ) = 0, x,s \geq 0$. Korijen ove (nelinearne) jednačine ćemo naći uz pomoć \emph{Njutnovog metoda}. U nastavku u sažetom obliku izlažemo ideju Njutnovog metoda, jednog od najefikasnijih metoda za rješavanje ovakvih jednačina. Neka je data diferencijalna funkcija $f: \mathbb{R}^n \mapsto \mathbb{R}$.   Tangentna linija 
 $$z - f(x^k) = \triangledown f(x^k) (x - x^k) $$
-je lokalna aproksimacija grafa funkcije $f(x)$. Mijenjajući $z=0$, definiše se nova tačka 
+je lokalna aproksimacija grafa funkcije $f(x)$ oko dte tačke. Mijenjajući $z=0$, definiše se nova tačka 
 \begin{equation} \label{eq:newton-step}
 	x^{k+1} = x^k - (\triangledown f(x^k))^{-1} f(x^k).
 \end{equation}
@@ -2055,7 +2055,7 @@ $$ \triangledown F =\left ( \begin{array}{ccc}
 	S   & 0      & X       \\
 \end{array} \right ) 
 $$
-Prema tome, u tački $(x,y,s)$, Njutnov pravac
+Prema tome, u tački $(x,y,s)$, Njutnov pravac (pomjeraj)
 $
 \begin{pmatrix}
 	\bigtriangleup  x  \\
@@ -2085,7 +2085,7 @@ se izračunava rješavajući sistem linearnih jednačina:
 	\end{pmatrix} 
 \end{equation}
 
-Njutnov metod pod punim brojem iteracija obično narušava uslove $x,s \geq 0$, ali to se može izbjeći (biće prikazano u nastavku).  
+Njutnov metod će u nekoj iteracija obično narušiti uslove $x,s \geq 0$, ali to se može izbjeći (biće prikazano u nastavku).  
 Prethodno izloženo se može lako proširiti i na slučaj kada ne vrijedi $s_ix_i = 0$, tj. kada je $\frac{1}{n}s_ix_i = \mu, \mu > 0$, $i=1,\ldots,n$. Na sličan način računamo Njutnov pravac u smijeru $s_i x_i \approx \mu \theta$, za  $\theta >0$, iz sistema 
 
 \begin{equation} \label{eq:newton-interior-system-k}    
@@ -2112,7 +2112,7 @@ Prethodno izloženo se može lako proširiti i na slučaj kada ne vrijedi $s_ix_
 \emph{Algoritam unutrašnje tačke} se sastoji od sljedećih koraka:
 \begin{enumerate}
 	\item Inicijalizujemo $k=0$, te proizvoljno  $(x^k, y^k, s^k), x^k, s^k \geq 0$, $x^k,s^k \in \mathbb{R}^n, y^k \in \mathbb{R}^m$.
-	\item Izaberimo $ \theta^k \in [0, 1)$ te riješimo sistem (\ref{eq:newton-interior-system-k}) za $(x^k,y^k,s^k)$ i odabran $\theta_k$ te $\mu^k = (y^k)^T s^k $,  odakle   dobijamo
+	\item Izaberimo $ \theta^k \in [0, 1)$ te riješimo sistem (\ref{eq:newton-interior-system-k}) za $(x^k,y^k,s^k)$ i odabran $\theta = \theta_k$ te $\mu = \mu^k = (y^k)^T s^k $,  odakle   dobijamo
 	$  
 	\begin{pmatrix}
 		\bigtriangleup x^k      \\
@@ -4284,7 +4284,7 @@ Upisivanje modela u .lp format se vrši pozivom funkcije \emph{writeLP()}, čiji
  	print(v.name, "=", v.varValue)
  	print("Vrijednost funkcije cilja: ", value(prob.objective))
  \end{verbatim}
- \section{Primjena rješavača PuLP na rješavanje Problema Lokacija}%Capacitated Facility Location
+ \section{Primjena rješavača PuLP na rješavanje jednog Problema Lokacija}%Capacitated Facility Location
  Posmatrajmo već modelovan problem lokacija iz Sekcije~\ref{sec:modeli_lp} uz pomoć PuLP rješavača. Model ovog problema je dat sa:
  \begin{align*}
  	   & \min \sum_{i=1}^n f_i x_i  + \sum_{i,j} c_{ij} y_{ij} d_j  \\
