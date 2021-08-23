@@ -1980,14 +1980,15 @@ Izračunajmo Lagranžove množitelje ovih funkcija. Vrijedi:
 
 $$c + \mu (\frac{1}{x_1}, \frac{1}{x_2}, \ldots, \frac{1}{x_n}) = \triangledown f (x) =\sum_{i=1}^m y_i \triangledown g_i(x) = \sum_{i} y_i a_i = A^T y.$$ 
 
-Uvedimo nenegativni vektor $s =\mu \cdot (\frac{1}{x_1}, \frac{1}{x_2}, \ldots, \frac{1}{x_n})$, pa imamo da bilo koje optimalno rješenje početnog problema treba da zadovoljava:
+Uvedimo nenegativni vektor $s =\mu \cdot (\frac{1}{x_1}, \frac{1}{x_2}, \ldots, \frac{1}{x_n})$, pa imamo da bilo koje optimalno rješenje početnog problema treba da zadovoljava \emph{uslove optimalnosti prvog reda za barijerni problem}:
 \begin{align}
 	&A x = b \nonumber \\
 	&A^T y + s = c  \nonumber \\
 	& (s_1 x_1, \ldots, s_m x_m) = (\mu, \ldots, \mu) \label{eq:primal-dual-central-path-problem} \\
 	& x, s \geq 0. \nonumber
 \end{align}
-Ovo nije linearni program, jer trće ograničenje  nije linearno.
+Primijetimo da ovaj uslov aproksimira iste uslove za primal-dual par. 
+Ovo nisu ograničenja linearnog programa, jer treće ograničenje  nije linearno.
 
 \begin{definition}
 	Primal-dual centralni put $\{(x(\mu), y(\mu), s(\mu)) \in \mathbb{R}^{2n + m} \mid \mu > 0, x(\mu) >0, s(\mu)>0 \}$ je (jedinstveno) rješenje koje zadovoljava uslove (\ref{eq:primal-dual-central-path-problem}) parametrizovano sa $\mu$. 
