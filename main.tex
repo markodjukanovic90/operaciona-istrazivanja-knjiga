@@ -3329,7 +3329,37 @@ Treba napomenuti da i savremeni MILP rješavači, o čemu će biti govora kasnij
   s.t. $$Ax\geqslant c-B\overline{y}$$
  $$x\geqslant 0$$
  
- Sada posmatrajmo dualni problem potproblema (REFF), ignorišući term $g^T\overline{y}$ koji je konstantan.
+ 
+Sada posmatrajmo dualni problem potproblema (REFF), ignorišući term $g^T\overline{y}$ koji je konstantan.
+\begin{align}
+	&\max u^T (c-B\overline{y})\\
+	&s.t. u^TA\leqslant f\\
+	&u\geqslant 0\label{eqn:dd}
+\end{align}
+
+Sada uključujemo teoriju dualnosti i razmatramo sljedeće.
+Ako je optimalno rješenje problem REFF $z^*$, a optimalno rješenje duala $u^*$, na osnovu teoreme o jakoj LP dualnosti imamo
+
+Jednačina 4.14
+
+Dalje, uočiomo da oblast dopustivih rješenja dualnog problema REFF ne zavisi od vrijednosti $\overline{y}$. Stoga, $u^*$ je uvijek dopustivo rješenje problema REFF, vez obzira na vrijednost $\overline{y}$. Odavde, na osnovu slabe LP dualnosti dobijamo
+
+Nejednakost 4.15
+
+Posljednja nejednakost propisuje jednju donju granicu funkcije cilje polaznog problema. Ovo je ključni element koji se koristi u Benderovoj dekompoziciji, pomoću kog se određuje jedna odsjecajuća ravan za master problem (koji će biti definisan kasnije). Treba napomenuti da odsjecajuća ravan REFF ukazuje na činjenicu da, ako bi se za y uzela vrijednost $y=\overline{y}$, funkcija cilja bi ... NEJASNO
+
+Ovo takođe daje i donju granicu za druge vrijednosti $y$ koje bismo mogli probati.
+
+Posmatrajmo sada slučaj da je dualni potproblem neograničen. U toj situaciji baži nejednakost
+
+Nejednakost 4.16
+
+gdje je ${(u^*)}^T$ extreme ray solution.
+
+U ovom slučaju, cilj je eliminisati ovaj extreme ray iz daljeg razmatranja (budućih rješenja). Da bi smo to uradili, potrebno je osigurati da izraz IZRAZ manji ili jednak od nule u svim narednim koracima. Tako, master problemu dodajemo novu odsjecajuću ravan, definisanu sa
+
+4.17
+
  
  
  
