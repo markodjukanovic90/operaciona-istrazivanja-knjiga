@@ -1940,24 +1940,24 @@ Trebali bi naći tačku za koju je $L = 0$, odakle nalazimo optimalno rješenje 
 	&\triangledown_x L(x,y) = 0\\
 	&\triangledown_y L(x,y) = 0
 \end{align} 
-što nas (uz uslov komplementarnosti) dovodi do uslova optimalnosti prvog reda za primal-dual par:
+što nas (uz uslov komplementarnosti) dovodi do:
 \begin{align}
 	&Ax = b \\
 	&A^T y + s = c \\
 	&XS\mathbf{1} = 0 \ (x_j \cdot s_j =0 , \forall j) \\
 	&  (x, s ) \geq 0,
 \end{align}
-gdje je $X = diag (x_1, \ldots, x_n)$, $S= diag(s_1,\ldots s_m)$, $\mathbf{1}=(1,\ldots, 1)$.
+gdje je $X = diag (x_1, \ldots, x_n)$, $S= diag(s_1,\ldots s_m)$, $\mathbf{1}=(1,\ldots, 1)$. Ovaj sistem nazivamo \emph{uslov optimalnosti prvog reda za primal-dual par}. 
 
 U nastavku navodimo problem preko koga razvijamo metod unutrašnje tačke. Ograničenja nenegativnosti u primalnom problemu ćemo zamijeniti sa $-ln x_j$, $j=1,\ldots,n$.   
 Primijetite da vrijedi 
 $$\min e^{-\sum_{j=1}^n ln x_j} \Leftrightarrow \max \prod_{j} x_j $$
-Dakle, minimizacija izraza $-\sum_{j=1}^n x_j$ je ekvivalentna maksimizaciji na svim hiperravnima koje definišu prvi ortant. Dakle, ovakav optimizacioni problem (na prvom ortantu) nas sprečava da se vrijednost neke od varijabli $x_j$ približi nuli (uprkos nenegativnim ograničenjima).  Na osnovu ovih činjenica, definišimo sljedeći optimizacioni problem. 
+Dakle, minimizacija izraza $-\sum_{j=1}^n x_j$ je ekvivalentna maksimizaciji proizvoda udaljenosti od svih hiperravnima koje definišu prvi ortant. Dakle, ovakav optimizacioni problem (na prvom ortantu) nas sprečava da se vrijednost neke od varijabli $x_j$ približi nuli (uprkos nenegativnim ograničenjima).  Na osnovu ovih činjenica, definišimo sljedeći optimizacioni problem. 
 
 \begin{definition}
-	Barijerni program LP-a (\ref{eq:lp_equality_constraint}) je dat u obliku 
+	Barijerni program  primala je dat u obliku 
 	\begin{align*}
-		&\min c^T x + \mu \sum_{j=1}^n ln(x_j) \\
+		&\min c^T x - \mu \sum_{j=1}^n ln(x_j) \\
 		&\mbox{s.t. } A x = b \\
 		& x > 0
 	\end{align*}
@@ -1973,7 +1973,7 @@ Sljedeću teoremu iz teorije optimizacije  za skalarne funkcije sa uslovnim ekst
 
 Primijetimo da u problemu LP-a imamo sljedeće:
 \begin{itemize}
-	\item $f(x) = \min c^T x + \mu \sum_{j=1}^n ln(x_j) $;
+	\item $f(x) = \min c^T x - \mu \sum_{j=1}^n ln(x_j) $;
 	\item $g_i(x) = a_i x - b_i$.
 \end{itemize}
 Izračunajmo Lagranžove množitelje ovih funkcija. Vrijedi:
@@ -1987,7 +1987,7 @@ Uvedimo nenegativni vektor $s =\mu \cdot (\frac{1}{x_1}, \frac{1}{x_2}, \ldots, 
 	& (s_1 x_1, \ldots, s_m x_m) = (\mu, \ldots, \mu) \label{eq:primal-dual-central-path-problem} \\
 	& x, s \geq 0. \nonumber
 \end{align}
-Ovo nije linearni program, jer ograničenje 3 nije linearno.
+Ovo nije linearni program, jer trće ograničenje  nije linearno.
 
 \begin{definition}
 	Primal-dual centralni put $\{(x(\mu), y(\mu), s(\mu)) \in \mathbb{R}^{2n + m} \mid \mu > 0, x(\mu) >0, s(\mu)>0 \}$ je (jedinstveno) rješenje koje zadovoljava uslove (\ref{eq:primal-dual-central-path-problem}) parametrizovano sa $\mu$. 
@@ -2153,6 +2153,39 @@ Može se pokazati sljedeća teorema koja karakteriše \emph{metod unutrašnje ta
 		\item Kompleksnost algoritma je $O(\sqrt{n})$. Dakle,  broj iteracija koji je proporcionalan $\sqrt{n}$ je neophodan da algoritam riješi problem. 
 	\end{itemize}
 \end{thm}
+
+Da bi se uvidjele sličnosti i razlike između simpleks metode i Metode unutrašnje tačke, pogledajte Slike \ref{fig:optimality-approaching-simplex} i  \ref{fig:optimality-approaching-interior}. U njima možete vidjeti kako metod pristupa pretrazi optimalnih rješenja. 
+
+\begin{figure}
+	 	\begin{subfigure}{.45\textwidth}
+	 	\centering
+	 	% include first image
+	 	\includegraphics[width=.9\linewidth]{interior-1}  
+	 \end{subfigure}
+ 	 	\begin{subfigure}{.45\textwidth}
+ 	\centering
+ 	% include first image
+ 	\includegraphics[width=.9\linewidth]{interior-2}  
+ \end{subfigure}
+  \caption{Prilazak optimalnosti kod Simpleks metode.}
+   \label{fig:optimality-approaching-simplex}
+\end{figure}
+
+
+\begin{figure}
+	\begin{subfigure}{.45\textwidth}
+	\centering
+	% include first image
+	\includegraphics[width=.9\linewidth]{interior-3}  
+\end{subfigure}
+\begin{subfigure}{.45\textwidth}
+	\centering
+	% include first image
+	\includegraphics[width=.9\linewidth]{interior-4}  
+\end{subfigure}
+  \caption{Prilazak optimalnosti kod Metode unutrašnje tačke.}
+   \label{fig:optimality-approaching-interior}
+\end{figure}
 %https://optimization.cbe.cornell.edu/index.php?title=Interior-point_method_for_LP
 \emph{\textbf{Primjer.}} Riješimo sljedeći primjer LP-a pomoću metoda unutrašnje tačke:
 \begin{align*}
