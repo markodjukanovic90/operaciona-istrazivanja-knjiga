@@ -4038,13 +4038,30 @@ Mutacijom se vrši slučajna promjena određenog gena (sa nekom malom vjerovatno
 
 Nakon primjene genetskih operatora, formira se naredna generacija. Populacija se tako sastoji od potomaka i nekih starijih jedinki koje su preživjele s obzirom na njihov kvalitet (elitne jedinke). Produkcija novih generacija se nastavlja sve dok ne budu ispunjeni uslovi za završetak algoritma. Najčešći kriterijumi za završetak algoritma su dostignuto maksimalno vrijeme izvršenja, dostignut  maksimalan ukupan broj iteracija, ili dostignut maksimalan broj iteracija bez poboljšanja najboljeg rješenja.
 
-Osnovna šema funkcionisanja genetskog algoritma je prikazana na Slici \ref{fig:gascheme}.
+Osnovna šema funkcionisanja genetskog algoritma je prikazana Algoritmom \ref{alg:gascheme}.
 
 $N_{pop}$ označava ukupan broj jedinki u populaciji.  $N_{elite}$ je broj elitnih jedinki, dok sy promjenljivima  $i$ i $obj_{i}$ predstavljene jedinke i odgovarajuća vrijednost funkcije cilja.
-\begin{figure}[htp]
-	\centering
-	\includegraphics[width= 0.8\textwidth]{gasrp2.eps} \caption {Osnovna šema GA algoritma}\label{fig:gascheme}
-\end{figure}
+%\begin{figure}[htp]
+%	\centering
+%	\includegraphics[width= 0.8\textwidth]{gasrp2.eps} \caption {Osnovna šema GA algoritma}\label{fig:gascheme}
+%\end{figure}
+
+\begin{algorithm}
+	\begin{algorithmic}
+		 \STATE  $ P \gets GenerisiInicijalnuPopulaciju()$
+		 \WHILE{!$IspunjenKriterijZaustavljanja()$}
+		       \FOR{$i=N_{elite}+1; i<N_{pop}; ++i$}
+		            \STATE $Obj_i \gets RacunajFunkcijuCilja(P_i)$
+		       \ENDFOR
+		       \STATE $RacunajFunkcijuPrilagodjenosti(P)$
+		       \STATE $IzvrsiSelekciju(P)$
+		       \STATE $IzvrsiMutaciju(P)$
+		       \STATE $IzvrsiUkrstanje(P)$
+		 \ENDWHILE
+	\end{algorithmic}
+    \caption{Osnovna šema GA.}
+    \label{alg:gascheme}
+\end{algorithm}
 
 
 
@@ -4625,5 +4642,8 @@ int main( int argc, char **argv )
  }
 } 
 \end{verbatim}
+
+
+
 \end{document}
 
