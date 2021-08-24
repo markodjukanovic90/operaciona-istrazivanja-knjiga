@@ -4347,7 +4347,7 @@ Ako je potrebno implementirati varijablu za koju je $x \geq 0$ to radimo kao u p
      \end{itemize}
 \end{itemize}
 Eksportovanje modela za moguće ponovno korištenje se može uraditi pozivom metoda \emph{exportModel}, čiji je argument naziv fajla (.lp ekstenzija).  
- \section{Rješavač PuLP u Python-u}
+ \section{LP alat PuLP}
  % http://www.optimization-online.org/DB_FILE/2011/09/3178.pdf
  % https://coin-or.github.io/pulp/main/the_optimisation_process.html
  PuLP je biblioteka visokog nivoa za modelovanje izgrađena u programskom jeziku Python.  
@@ -4396,7 +4396,7 @@ Upisivanje modela u .lp format se vrši pozivom funkcije \emph{writeLP()}, čiji
  	print(v.name, "=", v.varValue)
  	print("Vrijednost funkcije cilja: ", value(prob.objective))
  \end{verbatim}
- \section{Primjena rješavača PuLP na rješavanje jednog Problema Lokacija}%Capacitated Facility Location
+ \section{Primjena alata PuLP na rješavanje jednog Problema Lokacija}%Capacitated Facility Location
  Posmatrajmo već modelovan problem lokacija iz Sekcije~\ref{sec:modeli_lp} uz pomoć PuLP rješavača. Model ovog problema je dat sa:
  \begin{align*}
  	   & \min \sum_{i=1}^n f_i x_i  + \sum_{i,j} c_{ij} y_{ij} d_j  \\
@@ -4552,7 +4552,7 @@ bool conflict(const Point2d& p1, const Point2d& p2)
 int main( int argc, char **argv ) 
 { 
    vector<int> s1;
-   vector<int> s2
+   vector<int> s2;
    // import stringova u s1 i s2 (numericka prezentacija)
    IloEnv env;
    env.setOut(env.getNullStream());
@@ -4656,9 +4656,9 @@ int main( int argc, char **argv )
 	  \bibitem[8]{cite_key8} Mitchell, Stuart, Michael OSullivan, and Iain Dunning. "PuLP: a linear programming toolkit for python." The University of Auckland, Auckland, New Zealand (2011): 65.
 	  \bibitem[9]{cite_key9}    Talbi, El-Ghazali. Metaheuristics: from design to implementation. Vol. 74. John Wiley \& Sons, 2009.
 	  \bibitem[10]{cite_key10}     Vazirani, Vijay V. Approximation algorithms. Springer Science \& Business Media, 2013.
-	   \bibitem[11]{cite_key11}     Blum, Christian, Maria J. Blesa, and Manuel Lopez-Ibanez. "Beam search for the longest common subsequence problem." Computers \& Operations Research 36.12 (2009): 3178-3186.
+	   \bibitem[11]{cite_key11}     Blum, Christian, Maria J. Blesa, and Manuel Lopez-Ibanez. ``Beam search for the longest common subsequence problem.'' Computers \& Operations Research 36.12 (2009): 3178-3186.
 	 % Odjel za matematiku
-	   \bibitem[12]{cite_key12}   Raidl, Günther R., and Jakob Puchinger. "Combining (integer) linear programming techniques and metaheuristics for combinatorial optimization." Hybrid metaheuristics (2008): 31-62.
+	   \bibitem[12]{cite_key12}   Raidl, Günther R., and Jakob Puchinger. ``Combining (integer) linear programming techniques and metaheuristics for combinatorial optimization.'' Hybrid metaheuristics (2008): 31-62.
 	     \bibitem[13]{cite_key13}      Rahmaniani, Ragheb, et al. "The Benders decomposition algorithm: A literature review." European Journal of Operational Research 259.3 (2017): 801-817.
 	     \bibitem[14]{cite_key14}    Raidl, Günther R. "Decomposition based hybrid metaheuristics." European journal of operational research 244.1 (2015): 66-76.
 	      \bibitem[15]{cite_key15}  Hansen, Pierre, Nenad Mladenović, and José A. Moreno Pérez. "Variable neighbourhood search: methods and applications." 4OR 6.4 (2008): 319-360.
