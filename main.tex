@@ -3408,8 +3408,8 @@ Sada možemo definisati master problem koji nastaje dodavanjem svih odsjecajući
  	\begin{algorithmic}[1] 
  		\STATE Postavi $\overline{y}\in\mathbb{Z}$ na inicijalnu vrijednost
  		\STATE 	$LB \gets$ $-\infty$;$UB \gets$ $+\infty$
- 		\WHILE{$UB-LB<\epsilon$}
- 		\STATE Riješi Benderov potproblem
+ 		\WHILE{$UB-LB>\epsilon$}
+ 		\STATE Riješi dualni problem (Benderov potproblem)
  		
  		$$	\begin{aligned}
  			\max\ &u^T (c-B\overline{y})\\
@@ -3418,7 +3418,7 @@ Sada možemo definisati master problem koji nastaje dodavanjem svih odsjecajući
  			\end{aligned}$$
  		
  		\IF{Potproblem nema dopustivo rješenje}
- 		\STATE  KRAJ // nema dopustivog rješenja
+ 		\STATE  KRAJ // nema  rješenja ?????
  		\ENDIF
  		\IF{Potproblem ima optimalno rješenje}
  		\STATE $UB \gets \min\{UB,g^Ty+(u^k)^T(c-By)\}$
@@ -3440,6 +3440,11 @@ Sada možemo definisati master problem koji nastaje dodavanjem svih odsjecajući
  	\end{algorithmic}
  	\caption{Benderova dekompozicija}\label{alg:bender}
  \end{algorithm}
+
+Primjer.
+
+
+
  
   \section{Dantzig-Wolfe Dekompozicija}%https://www.maxwell.vrac.puc-rio.br/29077/29077_5.PDF
  
