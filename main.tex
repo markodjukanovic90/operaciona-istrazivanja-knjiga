@@ -3322,51 +3322,124 @@ Treba napomenuti da i savremeni MILP rješavači, o čemu će biti govora kasnij
  
 
  Posmatrajmo sada sljedeću formulaciju MILP programa
- 
- $$\min f^Tx+g^Ty$$
- s.t. $$Ax+By\geqslant c$$
- $$x\geqslant 0,\ y \in \mathbb{Z}$$
+ \begin{equation}
+ \begin{aligned}\label{bender1}
+ \min\  &f^Tx+g^Ty\\
+ s.t.\  &Ax+By\geqslant c\\
+ &x\geqslant 0,\ y \in \mathbb{Z}
+ \end{aligned}
+\end{equation}
  gdje su $x$ i $y$ vektori neprekidnih i cjelobrojnih promjenljivih, respektivno, dimenzija $p$ i $q$. $f,g,c$ su vektori, a $A$ i $B$ matrice odgovarajućih dimenzija. 
  
  Pretpostavimo da raspolažemo jednom početnom vrijednošću vektora $y$. Za tu vrijednost (označimo je sa $\overline{y}$) dobijamo sljedeći potproblem
+  \begin{equation}
+ 	\begin{aligned}\label{bender2}
+\min\ &  f^Tx+g^T\overline{y}\\
+  s.t.\ & Ax\geqslant c-B\overline{y}\\
+ &x\geqslant 0
+  \end{aligned}
+\end{equation}
  
- $$\min  f^Tx+g^T\overline{y}$$
-  s.t. $$Ax\geqslant c-B\overline{y}$$
- $$x\geqslant 0$$
- 
- 
-Sada posmatrajmo dualni problem potproblema (REFF), ignorišući term $g^T\overline{y}$ koji je konstantan.
-\begin{align}
-	&\max u^T (c-B\overline{y})\\
-	&s.t. u^TA\leqslant f\\
-	&u\geqslant 0\label{eqn:dd}
-\end{align}
+Sada posmatrajmo dualni problem potproblema~\ref{bender2}, ignorišući term $g^T\overline{y}$ koji je konstantan.
+  \begin{equation}
+	\begin{aligned}\label{bender3}
+	\max\ &u^T (c-B\overline{y})\\
+	s.t.\ &u^TA\leqslant f\\
+	&u\geqslant 0
+  \end{aligned}
+\end{equation}
 
-Sada uključujemo teoriju dualnosti i razmatramo sljedeće.
-Ako je optimalno rješenje problem REFF $z^*$, a optimalno rješenje duala $u^*$, na osnovu teoreme o jakoj LP dualnosti imamo
+Sada uključujemo teoriju dualnosti i razmatramo sljedeće mogućnosti, koje mogu da se jave.
+\begin{itemize}
+\item Ako je optimalno rješenje problema~\ref{bender2} $z^*$, a optimalno rješenje duala~\ref{bender3} $u^*$, na osnovu teoreme o jakoj LP dualnosti imamo
+  \begin{equation}
+	\begin{aligned}\label{bender4}
+z^*-g^Ty=(u^*)^T(c-B\overline{y})
+	\end{aligned}
+\end{equation}
 
-Jednačina 4.14
 
-Dalje, uočiomo da oblast dopustivih rješenja dualnog problema REFF ne zavisi od vrijednosti $\overline{y}$. Stoga, $u^*$ je uvijek dopustivo rješenje problema REFF, vez obzira na vrijednost $\overline{y}$. Odavde, na osnovu slabe LP dualnosti dobijamo
+Dalje, uočiomo da oblast dopustivih rješenja dualnog problema~\ref{bender3} ne zavisi od vrijednosti $\overline{y}$. Stoga, $u^*$ je uvijek dopustivo rješenje problema~\ref{bender3}, bez obzira na vrijednost $\overline{y}$. Odavde, na osnovu slabe LP dualnosti dobijamo
 
-Nejednakost 4.15
+  \begin{equation}
+\label{bender5}
+		z\geqslant g^Ty+(u^*)^T(c-By)
+\end{equation}
 
-Posljednja nejednakost propisuje jednju donju granicu funkcije cilje polaznog problema. Ovo je ključni element koji se koristi u Benderovoj dekompoziciji, pomoću kog se određuje jedna odsjecajuća ravan za master problem (koji će biti definisan kasnije). Treba napomenuti da odsjecajuća ravan REFF ukazuje na činjenicu da, ako bi se za y uzela vrijednost $y=\overline{y}$, funkcija cilja bi ... NEJASNO
+
+Posljednja nejednakost propisuje jednju donju granicu funkcije cilja polaznog problema. Ovo je ključni element koji se koristi u Benderovoj dekompoziciji, pomoću kog se određuje jedna odsjecajuća ravan za master problem (koji će biti definisan kasnije). Treba napomenuti da odsjecajuća ravan~\ref{bender5} ukazuje na činjenicu da, ako bi se za $y$ uzela vrijednost $y=\overline{y}$, funkcija cilja bi bila veća ili jednaka vrijednosti $\overline{z}$, koja se dobije u potproblemu, s obzirom da važi $	z\geqslant g^Ty+(u)^T(c-B\overline{y})$.
 
 Ovo takođe daje i donju granicu za druge vrijednosti $y$ koje bismo mogli probati.
 
-Posmatrajmo sada slučaj da je dualni potproblem neograničen. U toj situaciji baži nejednakost
+\item Posmatrajmo sada slučaj da je dualni potproblem neograničen. U toj situaciji važi nejednakost
 
-Nejednakost 4.16
 
-gdje je ${(u^*)}^T$ extreme ray solution.
+\begin{equation}
+	\label{bender6}
+	(u^*)^T(c-By)>0
+\end{equation}
 
-U ovom slučaju, cilj je eliminisati ovaj extreme ray iz daljeg razmatranja (budućih rješenja). Da bi smo to uradili, potrebno je osigurati da izraz IZRAZ manji ili jednak od nule u svim narednim koracima. Tako, master problemu dodajemo novu odsjecajuću ravan, definisanu sa
+gdje je ${(u^*)}^T$ zrak mogućih rješenja duž kog funkcija neograničeno raste (ekstremni zrak).
 
-4.17
+U ovom slučaju, cilj je eliminisati ovaj zrak iz daljeg razmatranja (budućih rješenja). Da bismo to uradili, potrebno je osigurati da izraz $(u^*)^T(c-By)$ bude manji ili jednak od nule u svim narednim koracima. Tako, master problemu dodajemo novu odsjecajuću ravan, definisanu sa
+\begin{equation}
+	\label{bender7}
+	(u^*)^T(c-By)\leqslant 0
+\end{equation}
 
+\end{itemize}
  
+Sada možemo definisati master problem koji nastaje dodavanjem svih odsjecajućih ravni generisanih u prethodnim koracima.
+  \begin{equation}
+	\begin{aligned}\label{bender8}
+		\min\ &z\\
+		s.t.\ & g^Ty+(u^k)^T(c-By), \ k \in K\\
+		& (u^k)^T(c-By), \ k \in L\\
+		&y \in \mathbb{Z}
+	\end{aligned}
+\end{equation}
  
+ gdje je $K$ skup ekstremnih tačaka, a $L$ skup ekstremnih zrakova od potproblema. Rješavanjem master problema dobijamo novu vrijednost za $y$, koju koristimo u sljedećoj iteraciji.
+ 
+ Treba napomenuti da je potproblem~\ref{bender2} restrikcija originalnog problema~\ref{bender1}, pa je njegova optimalna vrijednost $z^*$ jedna gornja granica za funkciju cilja polaznog problema. Takođe je master problem~\ref{bender8} relaksacija polaznog problema, jer se pri rješavanju master problema ne posmatraju sva ograničenja. Stoga je optimalna vrijednost master problema donja granica za funkciju cilja originalnog problema.
+ DOPUNITI
+ 
+ \begin{algorithm}[!ht] 
+ 	\begin{algorithmic}[1] 
+ 		\STATE Postavi $\overline{y}\in\mathbb{Z}$ na inicijalnu vrijednost
+ 		\STATE 	$LB \gets$ $-\infty$;$UB \gets$ $+\infty$
+ 		\WHILE{$UB-LB<\epsilon$}
+ 		\STATE Riješi Benderov potproblem
+ 		
+ 		$$	\begin{aligned}
+ 			\max\ &u^T (c-B\overline{y})\\
+ 			s.t.\ &u^TA\leqslant f\\
+ 			&u\geqslant 0
+ 			\end{aligned}$$
+ 		
+ 		\IF{Potproblem nema dopustivo rješenje}
+ 		\STATE  KRAJ // nema dopustivog rješenja
+ 		\ENDIF
+ 		\IF{Potproblem ima optimalno rješenje}
+ 		\STATE $UB \gets \min\{UB,g^Ty+(u^k)^T(c-By)\}$
+ 		\STATE Generiši Benderovu odsjecajuću ravan $z\geqslant g^Ty+(u^k)^T(c-By)$ i dodaj je u master problem
+ 		\ENDIF
+		 \IF{Potproblem nije ograničen}
+		\STATE Generiši Benderovu dopustivu ravan 	$(u^k)^T(c-By)\leqslant 0$ i dodaj je u master problem
+		\ENDIF
+		\STATE Riješi Benderov master problem
+			$$\begin{aligned}
+			\min\ &z\\
+			s.t.\ & g^Ty+(u^k)^T(c-By), \ k \in K\\
+			& (u^k)^T(c-By), \ k \in L\\
+			&y \in \mathbb{Z}
+		\end{aligned}$$
+			i odredi novu vrijednost $\overline{y}$ i vrijednost rješenja $z^*$.
+		\STATE $LB \gets$ $\max\{LB,z^*\}$
+ 		\ENDWHILE
+ 	\end{algorithmic}
+ 	\caption{Benderova dekompozicija}\label{alg:bender}
+ \end{algorithm}
  
   \section{Dantzig-Wolfe Dekompozicija}%https://www.maxwell.vrac.puc-rio.br/29077/29077_5.PDF
  
