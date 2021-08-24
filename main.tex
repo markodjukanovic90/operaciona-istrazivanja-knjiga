@@ -2048,6 +2048,8 @@ Pokazuje se da niz $\{x^k\}_{k \in \mathbb{N}}$ definisan uz pomoć (\ref{eq:new
 %    \caption{Demonstracija njutnovog metoda u ravni.}
 %    \label{fig:newton}
 %\end{figure}
+Rješavanje nelinearnih sistema se može generalizovati na funkcije više promjenjivih, za  više informacija pogledati na \url{http://www.ohiouniversityfaculty.com/youngt/IntNumMeth/lecture13.pdf}. 
+
 
 Primijenimo ovu metodu na nalaženje nule funkcije $F(x,y,s)$. Tada imamo
 $$ \triangledown F =\left ( \begin{array}{ccc}
@@ -2056,7 +2058,7 @@ $$ \triangledown F =\left ( \begin{array}{ccc}
 	S   & 0      & X       \\
 \end{array} \right ) 
 $$
-Prema tome, u tački $(x,y,s)$, Njutnov pravac (pomjeraj)
+Prema tome, u fiksnoj tački $(x,y,s)$, Njutnov pravac (pomjeraj)
 $
 \begin{pmatrix}
 	\bigtriangleup  x  \\
@@ -2085,7 +2087,7 @@ se izračunava rješavajući sistem linearnih jednačina:
 		- X S \textbf{1}  \\                   
 	\end{pmatrix} 
 \end{equation}
-
+iz koga se potom računaju tačke naredne  iteracije. 
 Njutnov metod će u nekoj iteracija obično narušiti uslove $x,s \geq 0$, ali to se može izbjeći (biće prikazano u nastavku).  
 Prethodno izloženo se može lako proširiti i na slučaj kada ne vrijedi $s_ix_i = 0$, tj. kada je $\frac{1}{n}s_ix_i = \mu, \mu > 0$, $i=1,\ldots,n$. Na sličan način računamo Njutnov pravac u smijeru $s_i x_i \approx \mu \theta$, za  $\theta >0$, iz sistema 
 
@@ -3390,7 +3392,7 @@ Krenimo prvo sa definicijom pokrivajućeg stabla, pa potom i minimalnog pokrivaj
 Postoji nekoliko efikasnih algoritama za pronalazak MST, koje u nastavku i opisujemo. 
 
 
-\subsection{Primov algoritam.}
+\subsection{Primov algoritam}
 
 Algoritam izvršava sljedeće korake:
 
@@ -3460,7 +3462,7 @@ Svi koraci algoritma su dati u Algoritmu~\ref{alg:dijkstra-algorithm}. Nakon zav
 		\ENDWHILE
 		\STATE	\textbf{return} $previous$ 
 	\end{algorithmic}
-    		\caption{Dajkstrin($G,s $)}\label{alg:dijkstra-algorithm}
+    		\caption{Dajkstra($G,s $)}\label{alg:dijkstra-algorithm}
 \end{algorithm}
 
 Vremenska kompleksnost gornje implementacije algoritma je $O(|V|^2)$. Ako je graf predstavljem listom susjedstva, i skup $Q$ (linija 6, Algoritam \ref{alg:dijkstra-algorithm}) je implementiran kao binarni hip, 
@@ -4076,7 +4078,7 @@ U našem primjeru, pojavu nedopustivih rješenja, dakle, možemo riješiti autom
 \emph{Računanje funkcije prilagođenosti}. Za posmatrani problem, najprirodnija fukcija prilagođenosti bi se mogla definisati na način da ona bude jednaka ukupnom zbiru vrijednosti proizvoda uključenih u rješenje (pod uslovom da je to rješenje dopustivo), a da je vrijednost funkcije prilagođenosti  nedopustivih rješenja   jednaka nuli. 
 Imajući u vidu prethodno razmatranje o nedopustivim rješenjima, funkcija prilagođenosti može biti definisana i drugačije, tj. mogla bi da sadrži i dio vezan za  ``kažnjavanje'' nedopustivih rješenja, po nekom od predloženih (ili drugih) principa. Time bi nedopustiva rješenja bila uključena u pretragu.
 
-\emph{Operator ukrštanja}: Kao što je već pomenuto, osnovni operatori ukrštanja su tzv. jednopoziciono i dvopoziciono ukrštanje. Na našem primjeru ćemo objasniti  jednopoziciono ukrštanje, koje bi moglo biti realizovano na sljedeći način:
+\emph{Operator ukrštanja}. Kao što je već pomenuto, osnovni operatori ukrštanja su tzv. jednopoziciono i dvopoziciono ukrštanje. Na našem primjeru ćemo objasniti  jednopoziciono ukrštanje, koje bi moglo biti realizovano na sljedeći način:
 \begin{figure}
 	\caption{Primjer operatora ukrštanja}
 \end{figure}
@@ -4084,7 +4086,7 @@ Imajući u vidu prethodno razmatranje o nedopustivim rješenjima, funkcija prila
 Preciznije, dva rješenja: 1100100 i 0100011 - koje u ovom slučaju posmatramo kao jedinke roditelje, produkuju dva nova rješenja (dva potomka), tako što se lijevi dio genetskog koda prvog roditelja spaja sa desnim dijelom genetskog koda drugog roditelja i obrnuto, lijevi dio genetskog koda drugog roditelja se ukršta sa desnim dijelom prvog roditelja. 
 Treba napomenuti da se primjenom ovakvog operatora ukrštanja takođe mogu dobiti potomci koji su nedopustive jedinke (bez obzira na to da li su jedinke roditelja dopustive ili ne), a njihova dalja egzistencija u populaciji ponovo zavisi od načina konstruisanja funkcije prilagođenosti.
 
-\emph{Mutacija}: Kao što je pomenuto, mutacije podrazumijevaju male promjene u genetskom kodu, čija je osnovna namjena izlazak iz lokalnih suboptimalnih rješenja i omogućavanje dalje pretrage u cilju pronalaženja boljih rješenja. Najčešće se mutacija realizuje kao promjena vrijednosti jednog gena. U našem slučaju, u zavisnosti od drugih elemenata algoritma, mogao bi se konstruisati veći broj različitih operatora mutacije: 
+\emph{Mutacija}. Kao što je pomenuto, mutacije podrazumijevaju male promjene u genetskom kodu, čija je osnovna namjena izlazak iz lokalnih suboptimalnih rješenja i omogućavanje dalje pretrage u cilju pronalaženja boljih rješenja. Najčešće se mutacija realizuje kao promjena vrijednosti jednog gena. U našem slučaju, u zavisnosti od drugih elemenata algoritma, mogao bi se konstruisati veći broj različitih operatora mutacije: 
 \begin{itemize}
 	\item Mutacija 1: prelazak neke nule u jedinicu. Ova mutacija bi modifikovala trenutnu jedinku na način da se neki proizvod, koji nije bio u rješenju, uključi u rješenje. Time bi se povećala ukupna vrijednost ruksaka, ali postoji opasnost da jedinka postane nedopustiva.
 	\item  Mutacija 2: prelazak neke jedinice u nulu. Ova mutacija bi modifikovala trenutnu jedinku na način da se neki proizvod, koji je bio u rješenju, isljuči iz rješenja. Ovo bi dovelo do smanjenja ukupne vrijednosti ruksaka, ali bi, u slučaju rada sa nedopustivim jedinkama, postojala mogućnost da nedopustivo rješenje postane dopustivo (ili da se poboljša kvalitet nedopustivog rješenja).
@@ -4099,7 +4101,7 @@ Treba napomenuti da se primjenom ovakvog operatora ukrštanja takođe mogu dobit
 	\caption{Primjer operatora mutacije}
 \end{figure}
 
-\emph{Operator selekcije}: Da bismo ilustrovali princip rada najjednostavnije rulet selekcije, naprije pretpostavimo da je funkcija prilagođenosti jednaka vrijednosti funkcije cilja. Dalje, posmatrajmo populaciju od 4 jedinke, prikazane u Tabeli~\ref{tab:rulet}.
+\emph{Operator selekcije}. Da bismo ilustrovali princip rada najjednostavnije rulet selekcije, naprije pretpostavimo da je funkcija prilagođenosti jednaka vrijednosti funkcije cilja. Dalje, posmatrajmo populaciju od 4 jedinke, prikazane u Tabeli~\ref{tab:rulet}.
 
 \begin{table}
 	\centering
