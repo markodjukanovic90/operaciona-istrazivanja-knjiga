@@ -1191,8 +1191,9 @@ Obratimo pažnju da se problem minimiziacije vrlo lako prevodi u problem maksimi
 $$ \min_{ x \in P} f(x) = - \max_{x \in P}(-f(x)).$$ 
 Prema tome, ako imamo problem LP-a gdje treba da maksimizujemo vrijednost funkcije cilja, pa onda primijenimo simpleks metod, koraci metoda ostaju isti, uz malu izmijenu u koraku 2, gdje se mijenja znak nejednakosti (radi toga što se mijenja znak koeficijenata u funkciji cilja). Dakle, za popravak rješenja bi u tom slučaju gledali one doprinose za koje je $\overline{c_j} > 0$.
 
-\section{Primjer rješavanja problema LP-a pomoću Simpleks Metode}
-Kako je standardni politop LP-a dat sa svim onim $x \in \mathbb{R}^n$ tako da $Ax \leq (\geq) b$, transformišimo problem LP-a
+\section{Primjena Simpleks Metode}
+%Kako je standardni poliedar LP-a dat sa svim onim $x \in \mathbb{R}^n$ tako da $Ax \leq (\geq) b$, 
+Prvo transformišimo standardni oblik problema LP
  
   \begin{align}
     & c^T x \rightarrow \max \\
@@ -1401,7 +1402,7 @@ Postoje dva moguća slučaja:
  \end{itemize} 
  Ovaj korak nas vodi ka dvofaznom simpleks metodu. U nastavku dajemo primjer rješavanja jednog problema LP-a pomoću ove metode.      
       
- \section{Primjer rješavanja problema LP-a pomoću dvofaznog simpleks metoda}     
+ \section{Primjena dvofaznog simpleks metoda}     
  
  
  
