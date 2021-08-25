@@ -2304,7 +2304,7 @@ Tada, donje i gornje granice za $y$ postaju uslovi (pogledati gore): $y \leq 6, 
 \chapter{Cjelobrojno Programiranje}
 
 %https://www.google.com/url?sa=t&source=web&rct=j&url=https://web.mit.edu/15.053/www/AMP-Chapter-09.pdf&ved=2ahUKEwiN0cef_f7xAhU0CRAIHWLqCw0QFjAfegQILBAC&usg=AOvVaw1cQCbZJQbc55Z0VLPue2ul
-Nije realno očekivati da varijable odluke dobijaju neprekidne vrijednosti u svim problemima. Recimo, ako se zahtjeva u rasporedu u smjenama da dovoljan broj ljudi bude u svakoj od smjena. Ovaj broj je cjelobrojan, preciznije prirodan broj. U slučaju da su sve varijable odluke u modelu problema cjelobrojne, riječ je o problemu cjelobrojnog programirnja (eng. \emph{Integer programming}). 
+Nije realno očekivati da varijable odluke dobijaju neprekidne vrijednosti u svim problemima. Recimo, ako se zahtjeva u problemu rasporeda ljudskih resursa no smjenama koje se ti?u minimalnog broja osoblja u smjenu. Ovaj broj je cjelobrojan, preciznije prirodan broj. U slučaju da su sve varijable odluke u modelu problema cjelobrojne, riječ je o problemu cjelobrojnog programiranja (eng. \emph{Integer programming}). 
 U ovom odjeljku ćemo se pozabaviti   \emph{cjelobrojnim linearnim programiranjem} (ILP) gdje se zahtjeva da funkcija cilja kao i ograničenja u modelu budu linearni u svojim varijablama, uz varaijble koje su cjelobrojne. Prema tome, ILP ima opšti oblik:
 \begin{align}
     & \max c^T x \nonumber\\
@@ -2441,12 +2441,12 @@ Primijetimo da ako je $y_j = 1$, tada je $j$-to ograničenje zadovoljeno (za dat
 \emph{Složene alternative}. Pretpostavimo da se region sastoji od tri disjunktna regiona kao na Slici~\ref{fig:compound_regions}. Ovakav scenario se može modelovati uz pomoć konstante veliko $M$, te  ograničenjem sa višestrukim izborom, odakle dobijamo:
 \begin{align*}
     &f_1(x) - M_1 y_1 \leq b_1 \\
-    &f_2(x) - M_2 y_1 \leq b_2 (\mbox{region 1}) \\ \hline
+    &f_2(x) - M_2 y_1 \leq b_2 (\mbox{ region 1}) \\ \hline
     & f_3(x) - M_3 y_2 \leq b_3 \\ 
-    & f_4(x) - M_4 y_2 \leq b_4 (\mbox{region 2})\\  \hline 
+    & f_4(x) - M_4 y_2 \leq b_4 (\mbox{ region 2})\\  \hline 
     & f_5(x) - M_5 y_3 \leq b_5 \\
     & f_6(x) - M_6 y_3 \leq b_6 \\
-    & f_7(x) - M_7 y_3 \leq b_7 (\mbox{region 3}) \\ \hline
+    & f_7(x) - M_7 y_3 \leq b_7 (\mbox{ region 3}) \\ \hline
     & y_1 + y_2 + y_3 \leq 2 \\
     & x_1, x_2 \geq 0 \\
     & y_1, y_2, y_3 \geq 0.
@@ -2521,14 +2521,14 @@ pa se ograničenja u (\ref{eq: piecewise-constraints}) mogu napisati u obliku
  %https://download.aimms.com/aimms/download/manuals/AIMMS3OM_IntegerProgrammingTricks.pdf
  \emph{Eliminacija proizvoda varijabli}. Generalno, proizvod dvije varijable se može zamijeniti sa jednom varijablom sa dodatnim ograničenjima. Metod prezentovan ovdje se na isti način može proširiti na roizvod više od dvije varijable. Razlikujemo nekoliko slučajeva:
  \begin{itemize}
- 	\item $x_1$ i $x_2$ su binarne varijable. Uvedemo smjenu $y=x_1 x_2$. Sljedeći uslovi prisiljavaju da $y$ primi vrijednost proizvoda:
+ 	\item $x_1$ i $x_2$ su binarne varijable. Uvedemo smjenu $y=x_1 x_2$. Sljedeći uslovi primoravaju da $y$ primi vrijednost proizvoda:
  	  \begin{align*}
  		      &y \leq x_1 \\
  		      &y \leq x_2 \\
  		      & y \geq x_1 + x_2 - 1 \\
  		      & y \in \{0, 1\}.
  	  \end{align*}
-   \item $x_1$ je binarna, $x_2$ je realna (pozitivna) varijabla, $0 \leq x_2 \leq u$. opet uvodimo istu smjenu $y= x_1 x_2$ koja je neprekidna, te dodamo sljedeća ograničenja da prisilimo $y$ da primi vrijednost proizvoda:
+   \item $x_1$ je binarna, $x_2$ je realna (pozitivna) varijabla, $0 \leq x_2 \leq u$. opet uvodimo istu smjenu $y= x_1 x_2$ koja je neprekidna, te dodamo sljedeća ograničenja da primoramo $y$ da primi vrijednost proizvoda:
     \begin{align*}
     	 &y \leq u x_1 \\
     	 &y \leq x_2 \\
@@ -4219,7 +4219,37 @@ Treba napomenuti da, iako se rulet selekcija na prvi pogled čini pogodnom za od
 
 Na kraju ovog odjeljka treba pomenuti da je višedecenijska primjena genetskih algoritama u rješavanju velikog broja problema kombinatorne optimizacije dovela je do pojave velikog broja različitih varijanti algoritma, koje se, između ostalog, razlikuju po operatorima koji se primjenjuju, načinu formiranja početne populacije, primjenama različitih strategija lokalnog pretraživanja, tehnike keširanja međurezultata itd. 
 
+ 
+\subsection{Lokalna Pretraga}\label{sec: local_search}
 
+Lokalna pretrage je tehnika čija se strategija sastoji u izvođenju niza poboljšanja rješenja počevši od nekog unaprijed zadanog rješenja. Uvedimo prvo koncept okolina i lokalnih optimalnih rješenja kao baznih pojmova u algoritmu lokalne pretrage. Za dato rješenje $x$, definišimo skup (obično dopustivih) rješenja koja su ``blizu'' $x$ u odnosu na neku mjeru. Formalno, okolina predstavlja mapiranje  $\mathcal{N}$ gdje svakom (dopustivom) rješenju pridružujemo skup rješenja, koje zovemo okolina od $x$.  Funkcija okoline se takođe može definisati preko operatora  $\Delta$ koji predstavlja kolekciju   funkcija $\Delta:\Phi \mapsto \Phi$,  gdje je $\Phi$ prostor pretrage (rješenja) razmatrane instance, na sljedeći način:
+$$ x' \in \mathcal{N}(x) \Longleftrightarrow \exists \delta \in \Delta,\delta(x)=x'.$$
+ 
+Prirodan izbor u mnogim aplikacijama je $k$-promijenjena okolina: $x$ i $x^{'}$ pripadaju istoj okolini akko se razlikuju na tačno $k$ komponenti rješenja. Npr. za TSP problem, 2-promijenjena okolina je prirodan izbor gdje su komponente rješenja grane datog grafa.  
+
+  
+Rješenje $x$ je \emph{localni optimum} u odnosu na okolinu $\mathcal{N}$ akko
+$f(x) \leq f(x')$ ($f(x) \geq f(x')$), za sve $x' \in \mathcal{N}(x)$, ako minimizujemo (maksimizujemo) u odnosu na ciljnu funkciju $f$.  \emph{Globalni optimum} je rješenje koje je lokalni optimum u odnosu na bilo koju okolinu.  Imajte na umu da nije svaki lokalni optimum ujedno i globalni. 
+
+\begin{algorithm}[!t] 
+	\caption{Lokalna pretraga (maksimizacija)}\label{alg:ls}
+	\begin{algorithmic}[1]
+		\STATE \textbf{Ulaz:} instanca problema, okolina $\mathcal{N}$
+		\WHILE{$ \left\{ x' \ni \mathcal{N}(x) \mid f(x') > f(x)\right\} \neq \emptyset$}
+		\STATE $ x \gets  \text{ izaberi } x' \in \mathcal{N}(x) $ ako vrijedi  $f(x') > f(x)$ 
+		\ENDWHILE
+	\end{algorithmic}
+\end{algorithm}
+
+Pseudokod lokalne pretrage je dat u Algoritmu~\ref{alg:ls}. Ulaz u algoritam je instanca probelam i jedna okolona. U svakoj iteraciji, lokalna pretraga poboljšava trenutno (najbolje) rješenje ako je rješenje u okolini  $\mathcal{N}(x)$ ima bolju vrijednost ciljne funkcije. Algoritam se prekida ako je trenutno rješenje lokalno najbolje u odnosu na okolinu   $\mathcal{N}$.
+ Postoje dvije strategije za izbor rješenja koje će zamijeniti trenutno najbolje rješenje pod pretpostavkom da postoji više od jednog rješenja sa boljom vrijednosti ciljne funkcije u posmatranoj okolini. Te strategije su:
+ \begin{itemize}
+ 	\item \emph{prvo poboljšanje} (eng. the first imprvement) -- ova strategija prihvata prvo nađeno rješenje $x^{'}$ u okolini $\mathcal{N}(x)$ koje poboljšava $x$. Pretraga se tada seli u tačku  $x = x^{'}$, odakle se pokreće nova iteracija lokalne pretrage.
+ 	\item \emph{najbolje poboljšanje} (eng. the best improvement) --   ova strategija provjerava sva rješenja iz okoline $\mathcal{N}(x)$ i za novo najbolje rješenje bira ono koje je lokalno najbolje u toj okolini. Nalazak ovog  najboljeg rješenja zahtjeva enumeraciju svih rješenja iz okoline pa često ovakav proces u praksi traje dosta dugo,  tako da ona nije uvijek primjenjiva. U praksi se ipak pokazalo da  je čest slučaj da strategija \emph{najboljeg poboljšanja} vodi ka lokalnom optimumu problema u svega nekoliko iteracija lokalne pretrage. 
+ \end{itemize}
+  
+  \emph{Primjer.} U našem problemu 0-1 ruksaka, za okolinu $\mathcal{N}$ bi mogli uzeti $1$-\emph{swap} okolina. Recimo, za $n=4$ i rješenje $x=1100$ imali  bismo $\mathcal{N}(x)= \{ 0100, 1000, 1110, 1101 \}$. 
+  
 \subsection{Metoda promjenljivih okolina}\label{intro:vns}
 Metoda promjenljivih okolina je metaheuristika uvedena od strane Nenada Mladenovića i Pjera Hansena devedesetih godina prošlog vijeka.
 Pretraga je zasnovana na sistematskoj promjeni okolina da bi se izbjegle situacije kada algoritam ``upada'' u suboptimalna rješenja. Efikasnost VNS algoritma je zasnovana na razmatranju da u mnogim praktičnim optimizacionim problemima postoji veza između lokalnih minimuma. Stoga metod promjenljivih okolina i ne prati unaprijed zadatu putanju, već ``skače'' na potencijalno bolja rješenja koja se nalaze u nekoj okolini trenutno najboljeg.
