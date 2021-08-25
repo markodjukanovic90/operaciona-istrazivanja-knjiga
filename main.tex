@@ -4127,7 +4127,7 @@ $N_{pop}$ označava ukupan broj jedinki u populaciji.  $N_{elite}$ je broj elitn
 %\end{figure}
 
 \begin{algorithm}
-	\begin{algorithmic}
+	\begin{algorithmic}[1]
 		 \STATE  $ P \gets GenerisiInicijalnuPopulaciju()$
 		 \WHILE{!$IspunjenKriterijZaustavljanja()$}
 		       \FOR{$i=N_{elite}+1; i<N_{pop}; ++i$}
@@ -4260,14 +4260,37 @@ Ponovimo da algoritam zasnovan na metodi promjenljivih okolina raspolaže jednom
 Tako, ideja da se pretraga usmjeri sa jednog na (moguće bolji) drugi minimum koji je smješten u nekoj okolini polaznog minimuma predstavlja razuman  i, kao što je to slučaj u velikom broju raznih optimizacionih problema, opravdan pristup.
 Da bi se postigli pomenuti efekti ``izlaska'' iz lokalnog suboptimuma, kao i detaljno pretraživanje nove okoline trenutnog najboljeg rješenja, metoda promjenljivih okolina se najčešće realizuje pomoću dvije važne procedure: procedure razmrdavanja (engl. shaking) i procedure lokalnog pretraživanja (engl. local search). Kao i što je to slučaj sa svim metaheurističkim metodama, dugogodišnja primjena metode promjenljivih okolina na rješavanje različitih problema dovela je do pojave velikog broja različitih varijanti, koje, pored osnovnih metoda razmrdavanja i lokalnog pretraživanja, uključuju u mnoge druge strategije.
 
-Da bi se proširila pretraga,  VNS u potrazi za boljim lokalnim minimumom obično koristi okoline rastuće kardinalnosti. Da bi se definisao skup okolina, pretpostavimo da je $x$ proizvoljno rješenje i $N_k$, za $k=k_{min},\cdots,k_{max}$, konačan skup struktura okolina. Tada se  $N_k(x)$ definiše kao skup rješenja u $k$-toj okolini tačke $x$. 
-Način funkcionisanja ove metode prikazan je na Slici
+Da bi se proširila pretraga,  VNS u potrazi za boljim lokalnim minimumom obično koristi okoline rastuće kardinalnosti. Da bi se definisao skup okolina, pretpostavimo da je $x$ proizvoljno rješenje i $N_k$, za $k=k_{min},\ldots,k_{max}$, konačan skup struktura okolina. Tada se  $N_k(x)$ definiše kao skup rješenja u $k$-toj okolini tačke $x$. 
+Način funkcionisanja ove metode prikazan je Algoritmom~\ref{alg:vns}. 
 
 
-U svakom koraku algoritma, VNS započinje od nekog rješenja $x$ i cijelog broja $k$, $k_{min}0\leqslant k\leqslant k_{max}$, koji označava trenutnu okolinu $N_k$. U proceduri razmrdavanja
+U svakom koraku algoritma, VNS započinje od nekog rješenja $x$ i cijelog broja $k$, $k_{min}\leqslant k\leqslant k_{max}$, koji označava trenutnu okolinu $N_k$. U proceduri razmrdavanja
 se na slučajan način bira rješenje  $x'$ iz okoline  $N_k(x)$. Zatim se na to rješenje primjenjuje procedura lokalnog pretraživanja. Najbolje rješenje koje se dobije u lokalnom pretraživanju se dalje poredi sa trenutno najboljim rješenjem i ukoliko je ono bolje od trenutno najboljeg rješenja, ono se proglašava najboljim rješenjem i algoritam nastavlja sa daljim izvršenjem. Postoje različite strategije kada algoritam prelazi u narednu okolinu (u proceduri razmrdavanja), kao i kada se okoline ``resetuju'', tj. kada se algoritam vraća na razmatranje najmanje okoline. 
 
 Najčešći kriterijumi za prekid algoritma algoritma su: dostignuto maksimalno  vrijeme, dostignut maksimalan broj iteracija, maksimalni broj iteracija između dva poboljšanja ili maksimalan broj ponavljanja najboljeg rješenja.
+
+    \begin{algorithm}[!t] 
+	\caption{VNS metaheuristika}\label{alg:vns}
+	\begin{algorithmic}[1]
+		\STATE \textbf{Ulaz:} inicijalno rješenje $s$, okoline $\mathcal{N}_1,\ldots, \mathcal{N}_{k_{\max}}$ 
+		\STATE \textbf{Izlaz:} (poboljšano) rješenje $s$
+		\WHILE{$\neg$ (\emph{IspunjenKriterijzaustavljanja()})}
+		\STATE $k \gets  k_{\min}$
+		\WHILE{$k \leq k_{\max}$}
+		\STATE  $s' \gets$ izabrati random rješenje iz $\mathcal{N}_k(s)$ \hspace{0.3cm}//\,shaking phase 
+		\STATE $s' \gets  LokalnaPretraga(s^{'})$
+		\IF{$f(s') > f(s)$}
+		\STATE $s \gets s'$
+		\STATE $k \gets 1$
+		\ELSE 
+		\STATE $k \gets k+1$ \hspace{0.3cm}//\, koristiti narednu (VNS) okolinu
+		\ENDIF
+		\ENDWHILE
+		\ENDWHILE
+		\STATE \textbf{return} $s$
+	\end{algorithmic}
+\end{algorithm}
+
 
 \emph{Primjer}. Da bismo ilustrovali način funkcionisanja metode promjenljivih okolina, možemo posmatrati isti primjer kao i u slučaju genetskog algoritma: 0-1 problem ruksaka. 
 
