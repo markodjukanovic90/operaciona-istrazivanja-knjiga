@@ -2264,7 +2264,7 @@ za neke
 Ako postoji neka vrijednost  $x_n$ koja zadovoljava sva ograničenja, onda je za sve $i,j$, 
 $L_i \leq x_n \leq U_j$. Obrnuto, ako svi ovih $k \cdot l$ nejednakosti vrijede, onda vrijedi i (\ref{eq:min_max_xi}), pa se može izabrati neki $x_n$ između ove dvije ($\max$ i $\min$) vrijednosti. 
 
-Prema tome, dobili smo sistem od $n-1$ varijabli koji se sastoji od  $k \cdot l$ nejednakosti gore opisanih te originalnih ograničenja koja ne uključuju $x_n$ u sebi. ovaj proces nastavimo iterativno dok ne dobijemo samo jednu promjenjivu koj je potom trivijalno riješena. 
+Prema tome, dobili smo sistem od $n-1$ varijabli koji se sastoji od  $k \cdot l$ nejednakosti gore opisanih te originalnih ograničenja koja ne uključuju $x_n$ u sebi. Ovaj proces nastavimo iterativno dok ne dobijemo samo jednu promjenjivu, te potom trivijalno riješimo sistem. 
 
 \emph{\textbf{Primjer.}} Pretpostavimo da nam je dat sistem nejednačina:
 \begin{align*}
@@ -4593,7 +4593,7 @@ Upisivanje modela u .lp format se vrši pozivom funkcije \emph{writeLP()}, čiji
     print("Vrijednost: ", value(model.objective))    
  \end{verbatim}
  Optimalna vrijednost ove instance je 202.0 a dostiže se za vrijednost varijabli $x = (1, 0, 0)$, te $y_{11}= y_{12}= y_{13} = 1$, dok su ostale vrijednosti 0.
- \subsection{Primjena Cplex-a na jedan String Problem}
+ \section{Primjena Cplex-a na jedan String Problem}
  
  % opisati RFLCS problem, modelovati ga:
  U ovoj sekciji modelujemo problem \emph{najdužeg podniza bez ponavljanja}. Ovaj problem kao ulaz prihvata dva (proizvoljna) stringa $s_1$ i $s_2$ nad proizvoljnom abecedom, a kao izlaz vraća string $s$ maksimalne dužine sa sljedećim karakteristikama:  
