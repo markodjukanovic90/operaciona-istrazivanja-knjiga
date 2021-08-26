@@ -682,12 +682,13 @@ za $ i = 1, \ldots, n, j = 1,  \ldots, m$ koje osigurava bolje performanse jer s
 Kao što smo vidjeli kod funkcije cilja problema oglašavanja,  
 nisu korišteni egzaktni koeficijenti (za broj gledalaca) već brojevi koji su proporcionalni nekoj vrijednosti (1000). Takve transformacije su invarijantne i ne utiču na optimalno rješenje problema ali doprinose čitljivosti modela.
  
-Kada je riječ o linearnom programiranju,  postoji nekoliko osnovnih pretpostavki koje karakterišu svaki model  linearnog programiranja:
+Kada je riječ o linearnim programima,  oni imaju nekoliko onovnih implicitnih pretpostavki. 
 \begin{enumerate}
-    \item \emph{Proporcionalnost.} Doprinos svake aktivnosti ciljnoj funkciji, $f$, proporcionalan je njezinom koeficijentu doprinosa, tj. $c_ix_i$. Doprinos svake aktivnosti svakom   ograničenju proporcionalan je njezinom  koeficijentu doprinosa, tj. $a_ix_i$.
+    \item \emph{Proporcionalnost.} Doprinos svake aktivnosti ciljnoj funkciji $f$ proporcionalan je njezinom koeficijentu doprinosa, tj. $c_ix_i$. Doprinos svake aktivnosti svakom od  ograničenja u modelu proporcionalan je njezinom  koeficijentu doprinosa, tj. $a_ix_i$.
     \item  \emph{Aditivnost.} Svaka funkcija u modelu je zbir  doprinosa pojedinih aktivnosti, npr. $f(x) = \sum_i a_i x_i$.
-    \item \emph{Djeljivost}. Varijable   smiju imati bilo kakve realne vrijednosti koje zadovoljavaju ograničenja modela.
-    \item \emph{Sigurnost}. Pretpostavlja se da su vrijednosti parametara u modelu poznate konstante. 
+    \item \emph{Djeljivost}. Varijable odluke se mogu podijeliti na vrijednosti koje nisu cijele, uzimajući u obzir  razlomljene vrijednosti, dok god zadovoljavaju ograničenja. 
+    \item \emph{Sigurnost}. Pretpostavljamo da su vrijednosti parametara u modelu poznate
+    sa nekom dozom sigurnosti ili se barem tako tretiraju. Dobijeno optimalno rješenje je optimalno za specifični formulisani problem. Ako su vrijednosti parametara pogrešne, tada rezultirajuće rješenje ima malu (upotrebnu)  vrijednost.  
 \end{enumerate}
 %Ako model zadovoljava prethodne 4 pretpostavke, onda je riješ o modelu linearnog programiranja. 
 
