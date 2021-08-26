@@ -364,8 +364,8 @@ Pridjev linearni znači da su   sve matematičke funkcije u ovom modelu linearne
 Firma proizvodi visokokvalitetne staklene proizvode, uključujući prozore i staklena vrata. Postoje tri pogona. Aluminijski okviri i okovi izrađuju se u pogonu 1, drveni okviri izrađuju se u pogonu 2, a pogon 3 proizvodi staklo i sastavlja proizvode.
 Zbog pada zarade, rukovodstvo firme je odlučio je obnoviti liniju proizvoda. Neprofitabilni proizvodi se ukidaju, oslobađajući proizvodne kapacitete za lansiranje dva nova proizvoda sa velikim prodajnim potencijalom:
 \begin{itemize}
-    \item Proizvod 1: Staklena vrata od 8 $m$ sa aluminijskim okvirom.
-    \item Proizvod 2: Dvostruko obješen drveni okvir s okvirom visine 4 $m$.
+    \item Proizvod 1: Staklena vrata od 2 $m$ sa aluminijskim okvirom.
+    \item Proizvod 2: Dvostruko obješen drveni okvir s okvirom visine 1.5 $m$.
 \end{itemize}
 Uslovi i zahtjevi proizvodnje su sljedeći:
 \begin{itemize}
@@ -396,7 +396,7 @@ Za dobivanje razumnih procjena, pomoć ključnog osoblja u raznim jedinicama fir
     \scalebox{0.85}{
     \begin{tabular}{c|c c | c}
     \      &      \multicolumn{2}{l}{Vrijeme proizvodnje serije ($h$)}    & \  \\ \hline
-    \      &      \multicolumn{2}{l}{Proizvod}                      & \  \\ 
+    \      &      \multicolumn{2}{c}{Proizvod}                      & \  \\ 
     Pogon  &  1    &      2                                 & Vrijeme za proizvodnju po sedm. ($h$) \\ \hline 
            1 & 1  &  0 &  4  \\
            2 & 0  &  2 &  12  \\ 
@@ -4642,7 +4642,7 @@ Dakle, uz funkciju cilja (\ref{eq:rflcs-objective}), ograničenja (\ref{eq:rflcs
 #include "path-to-ilocplex.h"
 
 ILOSTLBEGIN	
-struct Point2d // point for structure in 2D-LCPS
+struct Point2d // point for structure
 {
 	
    	public:
