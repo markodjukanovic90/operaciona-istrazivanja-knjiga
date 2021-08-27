@@ -3560,8 +3560,8 @@ $$
 	u_1+u_2&\geqslant 1.01\\
 	u_1+u_3&\geqslant 1.02\\
 	\vdots&\\
-	u_1+u_{10}&\geqslant 1.1\\
-	u_1&\geqslant 1.045\\
+	u_1+u_{11}&\geqslant 1.1\\
+	u_1&\geqslant 1.045\\ 
 	u&\geqslant 0\\
 \end{aligned}
 $$
@@ -3755,17 +3755,168 @@ Računamo razliku između gornje i donje granice
 $$UB-LB=1097.75-1055 = 42.75$$
 i pošto je razlika još uvijek veća od $\epsilon$, nastavljamo dalje sa iterativnim postupkom.
 
-Uzmimo $\overline{y}=41$ i posmatrajmo dualni problem. 
+Uzmimo $\overline{y}=41$ i ponovo formirajmo i riješimo dualni problem. 
+Funkcija cilja dualnog problema sada izgleda 
+$$\min 959u_1+ 100u_2+\ldots+100u_{11},$$
+
+a rješavanjem problema uz data ograničenja dobijamo optimalno rješenje 1013.59, za vrijednosti vektora 
+$$u=\left(\begin{array}{c}
+	1.01 \\
+	0 \\
+	0.01\\
+	0.02\\
+	\vdots \\
+	0.09
+\end{array}\right)$$
+
+Ažuriranjem donje granice dobija se 
+$$LB = \max\{1055,1.045*41+1013.59\} = \max\{1055,1056.435\} = 1056.435 $$
+
+Dalje, dodajemo novu odsjecajuću ravan
+
+$$z\leqslant 1.045y+\left(\begin{array}{c}
+	1.01 \\
+	0 \\
+	0.01\\
+	0.02
+	\vdots \\
+	0.09
+\end{array}\right)^T
+\left(\left(\begin{array}{c}
+	1000 \\
+	100 \\
+	\vdots \\
+	100
+\end{array}\right)-\left(\begin{array}{c}
+	1 \\
+	0 \\
+	\vdots \\
+	0
+\end{array}\right)y\right)$$
+Odnosno 
+$$z\leqslant 1.045y+1010-1.01y+100\cdot0.45$$
+t.j.
+$$z\leqslant 0.035y+1055$$
+
+Ovo ograničenje pridodajemo master problemu, koji sada izgleda
 
 
+$$
+\begin{aligned}
+	\max z\\
+	1000-y\geqslant 0\\
+	z\leqslant 1100-0.055y\\ 
+	z\leqslant 1.045y+1055\\
+	z\leqslant 0.035y+1055\\
+	y\in\mathbb{Z}^+\\	
+\end{aligned}
+$$
+
+Rješavanjem ovog master problema dobijamo optimalno rješenje 
+ za cjelobrojnu vrijednost $\overline{y}=500$, koje iznosi $\overline{z} = 1072.5$.
+ 
+ Ažuriramo i gornju granicu
+
+$$UB = \min\{1097.75, 1072.5\} =  1072.5$$
+
+Računamo razliku između gornje i donje granice $1072.5-1056.435$, što je još uvijek veće od $\epsilon$, pa prelazimo na narednu iteraciju.
+
+Uzimamo 
+$\overline{y}=500$ i formiramo novi dualni problem sa funkcijom cilja
+
+$$\min 500u_1+ 100u_2+\ldots+100u_{11},$$
+
+čija optimalna vrijednost iznosi 540, za vrijednost vektora $u$
+
+$$u=\left(\begin{array}{c}
+	1.05\\
+	0\\
+	0\\
+	0\\
+	0\\
+	0\\
+	0.01 \\
+	0.02 \\
+	\vdots \\
+	0.05
+\end{array}\right)$$
+
+Računamo donju granicu, koja sada iznosi $1.045\cdot 500+540 = 1062.5$.
 
 
-
-
-
-
-
-
+Dalje, master problemu pridružujemo odsjecajuću ravan
+ 
+ 
+ $$z\leqslant 1.045y+\left(\begin{array}{c}
+ 	1.05\\
+ 0\\
+ 0\\
+ 0\\
+ 0\\
+ 0\\
+ 0.01 \\
+ 0.02 \\
+ \vdots \\
+ 0.05
+ \end{array}\right)^T
+ \left(\left(\begin{array}{c}
+ 	1000 \\
+ 	100 \\
+ 	\vdots \\
+ 	100
+ \end{array}\right)-\left(\begin{array}{c}
+ 	1 \\
+ 	0 \\
+ 	\vdots \\
+ 	0
+ \end{array}\right)y\right)$$
+ Odnosno 
+ $$z\leqslant 1.045y+1050-1.05y+100\cdot0.15$$
+ t.j.
+ $$z\leqslant -0.005y+1065$$
+ 
+ 
+ Kada i ovo ograničenje pridodamo master problemu, dobijamo novi master problem
+ 
+ $$
+ \begin{aligned}
+ 	\max z\\
+ 	1000-y\geqslant 0\\
+ 	z\leqslant 1100-0.055y\\ 
+ 	z\leqslant 1.045y+1055\\
+ 	z\leqslant 0.035y+1055\\
+ 	z\leqslant -0.005y+1065\\
+ 	y\in\mathbb{Z}^+\\	
+ \end{aligned}
+ $$
+ čije se optimalno rješenje dobija za vrijednost za cjelobrojnu vrijednost $\overline{y}=250$, koje iznosi $\overline{z} = 1063.75$.
+ 
+ Ažuriranjem gornje granice dobijamo 
+ $$UB = 1063.75$$, pa je razlika između gornje i donje granice jednaka
+ $1063.75-1062.5=1.25$, što je još uvijek veće od $\epsilon$.
+ 
+ Očigledno nam treba još jedna iteracija, pa ponovo formiramo dualni problem uzimajući $\overline{y}=250$.
+ 
+ Nova funkcija cilja sada izgleda
+ $$\min 750u_1+ 100u_2+\ldots+100u_{11},$$
+ 
+ a optimalna vrijednost funkcije cilja je 800.5 za vrijednost vektora $u$
+ 
+ 
+ $$u=\left(\begin{array}{c}
+ 	1.03\\
+ 		0\\
+ 		0\\
+ 		0\\
+ 0.01\\
+ 0.02\\
+ 0.03\\
+ 0.04\\
+ 0.05\\
+ 	1.06\\
+ 	1.07 \\
+ \end{array}\right)$$
+ 
  
   \section{Dantzig-Wolfe Dekompozicija}%https://www.maxwell.vrac.puc-rio.br/29077/29077_5.PDF
  %https://www.youtube.com/watch?v=wxz0NJvKZNM
