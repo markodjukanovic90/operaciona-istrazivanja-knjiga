@@ -3405,7 +3405,10 @@ Sada možemo definisati master problem koji nastaje dodavanjem svih odsjecajući
  Treba napomenuti da je potproblem~\ref{bender2} restrikcija originalnog problema~\ref{bender1}, pa je njegova optimalna vrijednost $z^*$ jedna gornja granica za funkciju cilja polaznog problema. Takođe je master problem~\ref{bender8} relaksacija polaznog problema, jer se pri rješavanju master problema ne posmatraju sva ograničenja. Stoga je optimalna vrijednost master problema donja granica za funkciju cilja originalnog problema.
  DOPUNITI
  
- \begin{algorithm}[!ht] 
+
+ 
+ 
+ \begin{algorithm}[!ht] \label{alg:bender}
  	\begin{algorithmic}[1] 
  		\STATE Postavi $\overline{y}\in\mathbb{Z}$ na inicijalnu vrijednost
  		\STATE 	$LB \gets$ $-\infty$;$UB \gets$ $+\infty$
@@ -3442,7 +3445,324 @@ Sada možemo definisati master problem koji nastaje dodavanjem svih odsjecajući
  	\caption{Benderova dekompozicija}\label{alg:bender}
  \end{algorithm}
 
+
+
+U primjeru kojim ilustrujemo upotrebu Benderove dekompozicije posmatramo jedan jednostavan problem maksimizacije dobiti na osnovu ulaganja po različitim kriterijumima.
+Iako je Algoritmom~\ref{alg:bender} opisan postupak rješavanja problema minimizacije, algoritam se vrlo lako može preformulisati tako da se on može primijeniti i na problem maksimizacije. Jasno je da će u tom slučaju, dualni problem, prikazan u liniji 4 algoritma sada postati problem minimizacije, te će se, rješavanjem dualnog potproblema dobijati donje granice.
+
+
 Primjer.
+
+Pretpostavimo da raspolažemo sumom od 1000KM, koju možemo iskoristiti za ostvarivanje dobiti prema dva različita kriterijuma:
+\begin{itemize}
+	\item Oročenje novca sa fiksnom kamatom u iznosi od 4.5\%. Dodatno ograničenje je da se može oročiti samo cjelobrojan iznos novca.
+	
+	\item Ulaganje u neke od 10 vrsta dionica ($f_1, f_2, f_3,\ldots,f_{10}$), sa stopama rasta $1\%,2\%,\ldots,10\%$, respektivno. Za svaku vrstu dionica, može se investirati maksimalno 100KM.
+\end{itemize}
+Postavlja se pitanje kako treba uložiti početnu količinu novca, tako da se ostvari maksimalna dobit.
+
+S obzirom na postavku zadatka, jasno je da bi optimalno rješenje trebalo da podrazumijeva da se u dionice $f_5,\ldots,f_{10}$ sa maksimalnim mogućim ulaganjem (po 100KM), dok se ostatak novca oročava sa kamatom od  4.5\%.
+
+Sada ćemo problem formalno definisati i riješiti ga metodom Benderove dekompozicije.
+
+Neka su promjenljive definisane sa:
+
+$x1,x_2,\ldots,x_{10}$: iznos uložen u dionice $f_1, f_2, f_3,\ldots,f_{10}$, respektivno
+
+$y$: iznos koji je oročen sa fiksnom kamatom u iznosi od 4.5\%
+
+Sada se problem može formlisati kao
+\begin{equation}
+	\begin{aligned}
+		\max\ 1.01x_1+1.02x_2+\ldots+1.10x_{10}+1.045y\\
+		s.t.\ x_1+x_2+\ldots+x_{10}+y\leqslant1000\\
+		x_1\leqslant 100\\
+		...\\
+		x_{10}\leqslant 100\\
+		y\in \mathbb{Z}\\
+		x1,x_2,\ldots,x_{10},y\geqslant 0
+	\end{aligned}
+\end{equation}
+
+Zapišimo sada model u obliku koji odgovara postavci metoda Benderove dekompozicije.
+ \begin{equation}
+	\begin{aligned}
+		\max\  &f^Tx+g^Ty\\
+		s.t.\  &Ax+By\leqslant c\\
+		&x\geqslant 0,\ y \in \mathbb{Z}^+
+	\end{aligned}
+\end{equation}
+
+
+$x=\left(\begin{array}{c}
+	x_1 \\
+	x_2 \\
+	\vdots \\
+	x_10
+\end{array}\right)$ 
+$f = \left(\begin{array}{c}
+	1.01 \\
+	1.02 \\
+	\vdots \\
+	1.10
+\end{array}\right)$
+
+Primijetimo da je su u našem primjeru $g$ i $y$ jednodimenzioni vektori, koje ćemo u daljem zapisu identifikovati sa njihovom (jedinom) koordinatom, odnosno
+$y=(y)$ i $g=(1.045)$. 
+
+$A=\left(
+\begin{array}{ccc}
+	1 & \ldots & 1 \\
+	1 & \ldots & 0 \\
+	\vdots & \ddots & \vdots \\
+	0 & \ldots & 1
+\end{array}\right)$
+$B=\left(\begin{array}{c}
+	1 \\
+	0 \\
+	\vdots \\
+	0
+\end{array}\right)$ 
+$c=\left(\begin{array}{c}
+	1000 \\
+	100 \\
+	\vdots \\
+	100
+\end{array}\right)$ 
+
+
+Primijenimo sada Benderovu dokompoziciju. Najprije treba odrediti početnu vrijednost za $\overline{y}$, za koju, u ovom koraku, možemo uzeti bilo koju nenegativnu vrijednost. Neka je 
+
+$\overline{y}=1500$
+
+Dalje, neka su $LB=-\infty$ i $UB=+\infty$ i uzmimo da je $\epsilon = 0.1$.
+
+ Nakon inicijalnih postavki, prvi korak je rješavanje dualnog problema (Benderovog potproblema). S obzirom da je početni problem problem maksimizacije, dualni problem će sada biti problem minimizacije. Obilježimo promjenljvie dualnog problema vektorom  $u$, koji ima 11 koordinata (polazni problem ima 11 oraničenja).
+ 
+ Računamo funkciju cilja dualnog problema:
+ $$
+u^T (c-B\overline{y})=(u_1\ldots u_{11})\cdot \left(\left(\begin{array}{c}
+	1000 \\
+	100 \\
+	\vdots \\
+	100
+\end{array}\right)-\left(\begin{array}{c}
+1500 \\
+0 \\
+\vdots \\
+0
+\end{array}\right)\right) = -500u_1+100u_2+\ldots+100u_{11}
+$$
+dok su ograničenja dualnog problema
+
+$$
+\begin{aligned}
+	u_1+u_2&\geqslant 1.01\\
+	u_1+u_3&\geqslant 1.02\\
+	\vdots&\\
+	u_1+u_{10}&\geqslant 1.1\\
+	u_1&\geqslant 1.045\\
+	u&\geqslant 0\\
+\end{aligned}
+$$
+
+Lako se vidi da rješenje dualnog problema nije ograničeno (sa donje strane), za $u_1 = -\infty$, $u_2 = u_3=\ldots u_{11}=0$.
+Odnosno, 
+$$u=\left(\begin{array}{c}
+	1 \\
+	0 \\
+	\vdots \\
+	0
+\end{array}\right)$$ je ekstremni zrak.
+
+Prateći tok algoritma, određujemo odsjecajuću ravan
+
+$$u^{T}(c-By)\geqslant 0$$
+odnosno
+$$1000-y\geqslant 0$$
+Sada rješavamo master problem
+
+$$
+\begin{aligned}
+	\max z\\
+	1000-y\geqslant 0\\
+	y\in\mathbb{Z}^+\\	
+	\end{aligned}
+$$
+
+Vidimo da, bez obzira na vrijednost $y$, vrijednost funkcije cilja nije ograničena.
+Drugim riječima, ako uzmemo bilo koju dopustivu vrijednost za $y$ (recimo $\overline{y}=1000$) dobijamo da je $\overline{z} = +\infty$. Sada možemo zaključiti da u prvoj iteraciji algoritma nismo uspjeli da smanjimo gornju granicu, te nam ostaje $UB = +\infty$.
+
+ Prelazimo na sljedeću iteraciju.
+ 
+ Formulišimo novi dualni problem.
+ 
+  Računamo novu funkciju cilja dualnog problema sa vrijednošću $\overline{y}=1000$:
+ $$
+ u^T (c-B\overline{y})=(u_1\ldots u_{11})\cdot \left(\left(\begin{array}{c}
+ 	1000 \\
+ 	100 \\
+ 	\vdots \\
+ 	100
+ \end{array}\right)-\left(\begin{array}{c}
+ 	1000 \\
+ 	0 \\
+ 	\vdots \\
+ 	0
+ \end{array}\right)\right) = 100u_2+\ldots+100u_{11}
+ $$
+ Imajući u vidu ograničenja dualnog problema, zaključujemo da za vrijednost vektora $$u=\left(\begin{array}{c}
+ 	1.1 \\
+ 	0 \\
+ 	\vdots \\
+ 	0
+ \end{array}\right)$$
+funkcija cilja ima minimalnu vrijednost jednaku 0.
+
+Sada ćemo moći da popravimo donju granicu, odnosno
+
+$$LB = \max\{LB,g^Ty+(u)^T(c-By)\}=\max\{-\infty,1.045*1000+0\} = 1.045$$.
+
+Dalje, dodajemo odsjecajuću ravan kao ograničenje master problema:
+$$z\leqslant g^Ty+(u)^T(c-By)$$ 
+odnosno
+$$z\leqslant 1.045y+\left(\begin{array}{c}
+	1.1 \\
+	0 \\
+	\vdots \\
+	0
+\end{array}\right)^T
+\left(\left(\begin{array}{c}
+	1000 \\
+	100 \\
+	\vdots \\
+	100
+\end{array}\right)-\left(\begin{array}{c}
+1 \\
+0 \\
+\vdots \\
+0
+\end{array}\right)y\right)$$
+$$z\leqslant 1.045y+\left(\begin{array}{c}
+	1.1 \\
+	0 \\
+	\vdots \\
+	0
+\end{array}\right)^T
+\left(\begin{array}{c}
+	1000-y \\
+	100 \\
+	\vdots \\
+	100
+\end{array}\right)$$
+Odnosno
+
+$$z\leqslant 1100-0.055y$$
+
+Sada novodobijenu odsjecajuću ravan pridodajemo ograničenjima master problema i rješavamo master problem
+
+$$
+\begin{aligned}
+	\max z\\
+	1000-y\geqslant 0\\
+	z\leqslant 1100-0.055y\\ 
+	y\in\mathbb{Z}^+\\	
+\end{aligned}
+$$
+
+Nije teško odrediti da je optimalna vrijednost funkcije cilja master problema $\overline{z}=1100$, koja se dobija za vrijednost $\overline{y}=0$.
+Sada možemo da ažuriramo gornju granicu koristeći vrijednost funkcije cilja, odnosno
+
+$$UB = \min\{UB,\overline{z}\} = 1100$$
+
+Pošto je razlika između gornje i donje granice još uvijek veća od $\epsilon$ ($UB-LB = 1100-1045=55$), prelazimo na sljedeću iteraciju.
+
+Uzimamo $\overline{y}=0$ i ponovo rješavamo dualni problem.
+
+Funkcija cilja dualnog problema sada izgleda 
+
+ $$
+u^T (c-B\overline{y})=(u_1\ldots u_{11})\cdot \left(\left(\begin{array}{c}
+	1000 \\
+	100 \\
+	\vdots \\
+	100
+\end{array}\right)-\left(\begin{array}{c}
+	0 \\
+	0 \\
+	\vdots \\
+	0
+\end{array}\right)\right) =1000u_1+ 100u_2+\ldots+100u_{11}
+$$
+
+koja, s obzirom na ograničenja u dualnom problemu, ima minimalnu vrijednost 1055 za vektor $$u=\left(\begin{array}{c}
+	0\\
+	1.01 \\
+	1.02 \\
+	\vdots \\
+	1.1
+\end{array}\right)$$
+
+Pošto dual ima optimalno rješenje, računamo novu donju granicu, odnosno,
+
+
+$$LB = \max\{LB,g^Ty+(u)^T(c-By)\}=\max\{1.045, 1055\} = 1055$$.
+
+Dobijamo novu odsjecajuću ravan koju ćemo pridodati za rješavanje master problema
+
+$$z\leqslant 1.045y+\left(\begin{array}{c}
+	0\\
+	1.01 \\
+	\vdots \\
+	1.1
+\end{array}\right)^T
+\left(\left(\begin{array}{c}
+	1000 \\
+	100 \\
+	\vdots \\
+	100
+\end{array}\right)-\left(\begin{array}{c}
+	1 \\
+	0 \\
+	\vdots \\
+	0
+\end{array}\right)y\right)$$
+Odnosno 
+$$z\leqslant 1.045y+1055$$
+
+Sada novi master problem izgleda 
+
+
+$$
+\begin{aligned}
+	\max z\\
+	1000-y\geqslant 0\\
+	z\leqslant 1100-0.055y\\ 
+	z\leqslant 1.045y+1055\\
+	y\in\mathbb{Z}^+\\	
+\end{aligned}
+$$
+
+
+Rješavanjem ovog problema cjelobrojnog programiranja (na primjer, pomooću nekog od računarskih programa) dobija se optimalno rješenje za cjelobrojnu vrijednost $\overline{y}=41$, koje iznosi $\overline{z} = 1097.75$
+
+Sada možemo da ažuriramo i gornju granicu, odnosno 
+
+$$UB = \min\{1100,\overline{z}\} =  \min\{1100,1097.75\} =1097.75$$
+
+Računamo razliku između gornje i donje granice
+
+$$UB-LB=1097.75-1055 = 42.75$$
+i pošto je razlika još uvijek veća od $\epsilon$, nastavljamo dalje sa iterativnim postupkom.
+
+Uzmimo $\overline{y}=41$ i posmatrajmo dualni problem. 
+
+
+
+
+
+
+
 
 
 
