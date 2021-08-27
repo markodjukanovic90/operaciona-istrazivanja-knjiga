@@ -3472,7 +3472,7 @@ $x1,x_2,\ldots,x_{10}$: iznos uložen u dionice $f_1, f_2, f_3,\ldots,f_{10}$, r
 $y$: iznos koji je oročen sa fiksnom kamatom u iznosi od 4.5\%
 
 Sada se problem može formlisati kao
-\begin{equation}
+\begin{equation}\label{primer:formulacija1}
 	\begin{aligned}
 		\max\ 1.01x_1+1.02x_2+\ldots+1.10x_{10}+1.045y\\
 		s.t.\ x_1+x_2+\ldots+x_{10}+y\leqslant1000\\
@@ -3485,7 +3485,7 @@ Sada se problem može formlisati kao
 \end{equation}
 
 Zapišimo sada model u obliku koji odgovara postavci metoda Benderove dekompozicije.
- \begin{equation}
+ \begin{equation}\label{primer:formulacija2}
 	\begin{aligned}
 		\max\  &f^Tx+g^Ty\\
 		s.t.\  &Ax+By\leqslant c\\
@@ -3566,10 +3566,10 @@ $$
 \end{aligned}
 $$
 
-Lako se vidi da rješenje dualnog problema nije ograničeno (sa donje strane), za $u_1 = -\infty$, $u_2 = u_3=\ldots u_{11}=0$.
+Lako se vidi da rješenje dualnog problema nije ograničeno (sa donje strane), za $u_1 = +\infty$, $u_2 = u_3=\ldots u_{11}=0$.
 Odnosno, 
 $$u=\left(\begin{array}{c}
-	1 \\
+ 1 \\
 	0 \\
 	\vdots \\
 	0
@@ -3706,7 +3706,7 @@ koja, s obzirom na ograničenja u dualnom problemu, ima minimalnu vrijednost 105
 Pošto dual ima optimalno rješenje, računamo novu donju granicu, odnosno,
 
 
-$$LB = \max\{LB,g^Ty+(u)^T(c-By)\}=\max\{1.045, 1055\} = 1055$$.
+$$LB = \max\{LB,g^Ty+(u)^T(c-By)\}=\max\{1.045,0+ 1055\} = 1055$$.
 
 Dobijamo novu odsjecajuću ravan koju ćemo pridodati za rješavanje master problema
 
@@ -3744,15 +3744,15 @@ $$
 $$
 
 
-Rješavanjem ovog problema cjelobrojnog programiranja (na primjer, pomooću nekog od računarskih programa) dobija se optimalno rješenje za cjelobrojnu vrijednost $\overline{y}=41$, koje iznosi $\overline{z} = 1097.75$
+Rješavanjem ovog problema cjelobrojnog programiranja (na primjer, pomooću nekog od računarskih programa) dobija se optimalno rješenje za cjelobrojnu vrijednost $\overline{y}=41$, koje iznosi $\overline{z} = 1097.745$
 
 Sada možemo da ažuriramo i gornju granicu, odnosno 
 
-$$UB = \min\{1100,\overline{z}\} =  \min\{1100,1097.75\} =1097.75$$
+$$UB = \min\{1100,\overline{z}\} =  \min\{1100,1097.745\} =1097.745$$
 
 Računamo razliku između gornje i donje granice
 
-$$UB-LB=1097.75-1055 = 42.75$$
+$$UB-LB=1097.745-1055 = 42.745$$
 i pošto je razlika još uvijek veća od $\epsilon$, nastavljamo dalje sa iterativnim postupkom.
 
 Uzmimo $\overline{y}=41$ i ponovo formirajmo i riješimo dualni problem. 
@@ -3817,7 +3817,7 @@ Rješavanjem ovog master problema dobijamo optimalno rješenje
  
  Ažuriramo i gornju granicu
 
-$$UB = \min\{1097.75, 1072.5\} =  1072.5$$
+$$UB = \min\{1097.745, 1072.5\} =  1072.5$$
 
 Računamo razliku između gornje i donje granice $1072.5-1056.435$, što je još uvijek veće od $\epsilon$, pa prelazimo na narednu iteraciju.
 
@@ -3841,7 +3841,10 @@ $$u=\left(\begin{array}{c}
 	0.05
 \end{array}\right)$$
 
-Računamo donju granicu, koja sada iznosi $1.045\cdot 500+540 = 1062.5$.
+Ažuriramo donju granicu,
+$$LB = \max\{1056.435, 1.045\cdot 500+540\} =1062.5 $$
+
+
 
 
 Dalje, master problemu pridružujemo odsjecajuću ravan
@@ -3895,7 +3898,7 @@ Dalje, master problemu pridružujemo odsjecajuću ravan
  $$UB = 1063.75$$, pa je razlika između gornje i donje granice jednaka
  $1063.75-1062.5=1.25$, što je još uvijek veće od $\epsilon$.
  
- Očigledno nam treba još jedna iteracija, pa ponovo formiramo dualni problem uzimajući $\overline{y}=250$.
+Ponovo formiramo dualni problem uzimajući $\overline{y}=250$.
  
  Nova funkcija cilja sada izgleda
  $$\min 750u_1+ 100u_2+\ldots+100u_{11},$$
@@ -3917,7 +3920,130 @@ Dalje, master problemu pridružujemo odsjecajuću ravan
  	1.07 \\
  \end{array}\right)$$
  
+ Ispitujemo da li se ažurira donja granica:
+ $$LB = \max\{1062.5, 1.045\cdot 250+ 800.5\} = \max\{1062.5,1061.75\}=1062.5$$
  
+ Dalje, određujemo odsjecajuću ravan
+ 
+ 
+ $$z\leqslant 1.045y+\left(\begin{array}{c}
+ 	1.03 \\
+ 	0 \\
+ 	0\\
+ 	0\\
+ 	0.01\\
+ 	0.02\\
+ 	0.03\\
+ 	0.04\\
+ 	0.05\\
+ 	0.06\\
+ 	0.07
+ \end{array}\right)^T
+ \left(\left(\begin{array}{c}
+ 	1000 \\
+ 	100 \\
+ 	\vdots \\
+ 	100
+ \end{array}\right)-\left(\begin{array}{c}
+ 	1 \\
+ 	0 \\
+ 	\vdots \\
+ 	0
+ \end{array}\right)y\right)$$
+ Odnosno 
+ $$z\leqslant 1.045y+1030-1.03y+28$$
+ t.j.
+ $$z\leqslant 0.015y+1058$$
+ 
+ i pridodajemo je master problemu, koji izgleda
+  $$
+ \begin{aligned}
+ 	\max z\\
+ 	1000-y\geqslant 0\\
+ 	z\leqslant 1100-0.055y\\ 
+ 	z\leqslant 1.045y+1055\\
+ 	z\leqslant 0.035y+1055\\
+ 	z\leqslant -0.005y+1065\\
+ 	z\leqslant 0.015y+1058\\
+ 	y\in\mathbb{Z}^+\\	
+ \end{aligned}
+ $$
+ 
+ Rješavanjem master problema dobijamo novu vrijednost $\overline{y} =350$, a gornja granica se ažurira na 
+ $$UB = 1063.25$$
+ 
+ Ponavljajući postupak još jednom, dobijamo redom: 
+ \begin{itemize}
+ 	\item 
+ vrijednost funkcije duala 697,
+ \item vektor
+ 
+  $$u=\left(\begin{array}{c}
+ 	1.04\\
+ 	0\\
+ 	0\\
+ 	0\\
+ 	0\\
+ 	0.01\\
+ 	0.02\\
+ 	0.03\\
+ 	0.04\\
+ 	0.05\\
+ 	1.06\\
+ \end{array}\right)$$
+\item $LB = 1062.75$
+\item odsjecajuću ravan:  $z\leqslant 0.005y+1061$
+\end{itemize}
+
+
+Rješavajući još jednom master problem, koji sada izgleda
+
+  $$
+\begin{aligned}
+	\max z\\
+	1000-y\geqslant 0\\
+	z\leqslant 1100-0.055y\\ 
+	z\leqslant 1.045y+1055\\
+	z\leqslant 0.035y+1055\\
+	z\leqslant -0.005y+1065\\
+	z\leqslant 0.015y+1058\\
+	z\leqslant 0.005y+1061\\
+	y\in\mathbb{Z}^+\\	
+\end{aligned}
+$$
+dobijamo da je nova vrijednost $\overline{y}=400$, a gornja granica $UB = 1063$.
+
+Formirajući i rješavajući (pokazaće se, po posljednji put), dualni problem, dobija se optimalno rješenje 645, pa donja granica iznosi 1063.
+
+Sada vidimo da smo dobili da je donja granica jednaka gornjoj i možemo obustaviti iterativni postupak.
+
+Sada znamo da se optimalno rješenje polaznog problema~\ref{primer:formulacija2}, odnosno~\ref{primer:formulacija1} dobija za vrijednost $\overline{y}=400$, te se on svodi na problem
+
+ \begin{equation}\label{primer:formulacija3}
+	\begin{aligned}
+		\max\  &f^Tx\\
+		s.t.\  &Ax\leqslant c-B\overline{y}\\
+		&x\geqslant 0
+	\end{aligned}
+\end{equation}
+čije je rješenje predstavljeno vektorom
+
+$$x =\left(\begin{array}{c}
+	0\\
+	0\\
+	0\\
+	0\\
+	0\\
+	100\\
+	100\\
+	100\\
+	100\\
+	100\\
+	100\\
+\end{array}\right)$$
+
+
+
   \section{Dantzig-Wolfe Dekompozicija}%https://www.maxwell.vrac.puc-rio.br/29077/29077_5.PDF
  %https://www.youtube.com/watch?v=wxz0NJvKZNM
  %Glavni link: https://www.youtube.com/watch?v=IposxYVBUnY
