@@ -4107,9 +4107,9 @@ odnosno
  
  Samom reformulacijom polaznog problema~\ref{dw1} u DW formulaciju~\ref{dw3} nismo postigli mnogo, jer broj vrhova politopa, a time i broj $\lambda$ promjenljivih može biti jako veliki.
  
- Međutim, pravi razlog za DW dekompoziciju leži u činjenici da za rješavanje problema~\ref{dw3} ne moramo eksplicitno da koristimo sve vrhove politopa $X$. Umjesto toga, krenućemo od jednog   manjeg podskupa (a samim tim i podskupom skupa $\lambda$ promjenljivih). Nakon toga, primijenićemo tehniku ``generisanja kolona'' (engl. column generation), kako bismo u razmatranje uključili nove vrhove politopa $X$, koje će pomoći poboljšanju rješenja Restricted master problema.
+ Međutim, pravi razlog za DW dekompoziciju leži u činjenici da za rješavanje problema~\ref{dw3} ne moramo eksplicitno da koristimo sve vrhove politopa $X$. Umjesto toga, krenućemo od jednog   manjeg podskupa (a samim tim i podskupom skupa $\lambda$ promjenljivih). Nakon toga, primijenićemo tehniku ``generisanja kolona'' (engl. column generation), kako bismo u razmatranje uključili nove vrhove politopa $X$, koje će pomoći poboljšanju rješenja tzv. \emph{Restricted master problema}.
  
- Označimo sada problem formulisan  sa~\ref{dw3} Master problem (MP). Na osnovu master problema formiramo tzv. Restricted master problem (RMP)  sa manjim brojem $\lambda$ promjenljivih.
+ Označimo sada problem formulisan  sa~\ref{dw3} kao \emph{Master problem} (MP). Na osnovu master problema formiramo tzv. Restricted master problem (RMP)  sa manjim brojem $\lambda$ promjenljivih.
  
      \begin{equation}
  	\begin{aligned}\label{dw4}
@@ -4125,14 +4125,15 @@ Označimo sa $\overline{z}$ optimalnu vrijednost funkcije cilja RMP, a sa $z^*$ 
 
 Primijetimo da je $\overline{z}$ jedna gornja granica za master problem, jer je svako dopustivo rješenje RMP takođe i dopustivo za master problem. Ova konstatacija će nam biti od koristi u razmatranju koje slijedi.
 
-Da bismo provjerili da li je optimalno rješenje RMP ujedno i optimalno rješenje master problema, potrebno je da provjerimo da li je reduced cost od svih nebazičnih promjenljivih NIJE JASNO...
+Da bismo provjerili da li je optimalno rješenje RMP ujedno i optimalno rješenje master problema, potrebno je da provjerimo da li su koeficijenti doprinosa svih nebaznih promjenjivih nenegativne, tj. postoji li neka nebazna varijabla koa može doprinijeti dodatnom smanjenju funkcije cilja. Kao što znamo iz simpleks tablele i ranije sekcije o dualnosti linearnog programiranja, ove vrijednosti su ekvivalentne optimalnim vrijednostima dualnih promjenjivih (duala RMP).   
+%je reduced cost od svih nebazičnih promjenljivih NIJE JASNO...
 
 
-i trebamo optimalne vrijednosti dualnih promjenljivih
+%i trebamo optimalne vrijednosti dualnih promjenljivih
 
-Označimo vektorom $y$ optimalnu vrijednost dualne promjenljive koja se odnose na ograničenja $\sum_{j\in I} (A x_j)\lambda_j=b$ i skalarom $\alpha$ optimalnu vrijednost dualne promjenljive koja se odnosi na ograničenje $\sum_{j\in I}\lambda_j = 1$. 
+Označimo vektorom $y$ optimalnu vrijednost dualnih promjenlji koje se odnose na ograničenja $\sum_{j\in I} (A x_j)\lambda_j=b$ i skalarom $\alpha$ optimalnu vrijednost dualne promjenljive koja se odnosi na ograničenje $\sum_{j\in I}\lambda_j = 1$. 
 
-Da bi se odredio reduced cost za $\lambda_j$, odredimo šta imamo u odgovarajućoj koloni: U funkciji cilja, imamo $c^Tx_j$, u ograničenjima $Ax_j$ i još jednu jedinicu (na osnovu ograničenja $\sum_{j\in I}\lambda_j = 1$). Tako, kolona na koju se fokusiramo da bismo izračunali reduced cost izgleda ovako
+Da bi se odredili   koeficijenti doprinosa za $\lambda_j$, odredimo šta imamo u odgovarajućoj koloni: U funkciji cilja, imamo $c^Tx_j$, u ograničenjima $Ax_j$ i još jednu jedinicu (na osnovu ograničenja $\sum_{j\in I}\lambda_j = 1$). Tako, kolona na koju se fokusiramo da bismo izračunali doprinose izgleda ovako
 
 
  $$\left(\begin{array}{c}
@@ -4141,9 +4142,9 @@ Da bi se odredio reduced cost za $\lambda_j$, odredimo šta imamo u odgovarajuć
  	1 
  \end{array}\right)$$
  
- i sada rješavamo Column generation subproblem, čiji je cilj da se pronađe najmanji reduced cost. Ukoliko je najmanji reduced cost manji od nule, dobija se nova kolona. U slučaju da je najmanji reduced cost nenegativan, tada je optimalno rješenje RMP ujedmo i optimalno rješenje master problema.
+ i sada rješavamo \emph{Column generation potproblem}, čiji je cilj da se pronađe najmanji koeficijent doprinosa. Ukoliko je on manji od nule, dobija se nova kolona koja treba da se doda u potproblem RMP.  U slučaju da je on nenegativan, tada je optimalno rješenje RMP ujedmo i optimalno rješenje MP.
  
- Column generation subproblem se definiše kao
+ Column generation potproblem se definiše kao
  
       \begin{equation}
  	\begin{aligned}\label{dw6}
@@ -4155,7 +4156,7 @@ jer je rješenje problema na desnoj strani jednakosti upravo u nekom od vrhova p
 
 Prisjetimo se sada da smo za jednu od polaznih pretpostavki imali da je skup $X$ opisan kao skup sa ``jednostavnim'' ograničenjima, što znači da je problem na desnoj strani jednakosti \ref{dw6} jednostavan za rješavanje.
 
-Reformulišimo  Column generation subproblem sada kao problem maksimizacije, gdje ćemo za funkciju cilja uzeti negativnu vrijednost funkcije cilja minimizacije
+Reformulišimo  Column generation potproblem sada kao problem maksimizacije, gdje ćemo za funkciju cilja uzeti negativnu vrijednost funkcije cilja minimizacije
  
  
        \begin{equation}
