@@ -4047,6 +4047,148 @@ $$x =\left(\begin{array}{c}
   \section{Dantzig-Wolfe Dekompozicija}%https://www.maxwell.vrac.puc-rio.br/29077/29077_5.PDF
  %https://www.youtube.com/watch?v=wxz0NJvKZNM
  %Glavni link: https://www.youtube.com/watch?v=IposxYVBUnY
+ 
+ U ovom odjeljku ćemo objasniti još jednu korisnu tehniku za rješavanje problema linearnog programiranja - Dantzig-Wolfe (DW) dekompoziciju. Ova tehnika je originalno dizajnirana za rješavanje problema linearnog programiranja velikih dimenzija. Osnovna ideja DW dekompozicije je da se na podskup ograničenja polaznog problema primijeni Teorema Minkovskog, odnosno Teorema o reprezentaciji za konveksne poliedre, te da se polazni problem razbije na rješavanje više manjih problema.
+ 
+ 
+ Pođimo od formulacije problema linearnog programiranja
+ 
+  \begin{equation}
+ 	\begin{aligned}\label{dw1}
+ 		\min\  &c^Tx\\
+ 		s.t.\  &Ax=b\\
+ 		&x \in X
+ 	\end{aligned}
+ \end{equation}
+ 
+ gdje je skup $X$ poliedar. Iako za DW dekompoziciju nije neophodno, u daljem razmatranju, radi lakše analize DW dekompozicije, smatraćemo da je $X$ ograničen poliedar, odnosno politop.
+ 
+ Dalje, navešćemo i sljedeću pretpostavku: Ako bismo iz skupa ograničenja izbacili ograničenja $Ax=b$, tada bi rješavanje problema bilo jednostavno. Drugim riječima, skup $X$ je opisan nekim ``jednostavnim'' ograničenjima, dok ograničenja $Ax=b$ čine problem značajno težim, koje ćemo zbog toga i zvati ``komplikovanim ograničenjima''. 
+ 
+ Posmatrajmo sada konfiguraciju za primjenu Teoreme o reprezentaciji na skup $X$.
+ 
+ Neka su tačke $x_1,x_2,\dots,x_t$ vrhovi politopa $X$.  
+ Prema Teoremi o reprezentaciji, za svaku tačku $x\in X$ važi da se ona može predstaviti kao konveksna kombinacija tačaka $x_1,x_2,\dots,x_t$.
+ 
+ Neka je  $x \in X$ proizvoljna tačka iz skupa $X$.  Tada postoje $\lambda_1,\lambda_2,\ldots,\lambda_t$, takvi da važi:
+ 
+ \begin{equation}
+ 	\begin{aligned}
+ 		&x = \sum_{j=1}^t\lambda_jx_j\\
+ 		 &\sum_{j=1}^t\lambda_j = 1\\
+ 		&\lambda_j\geqslant 0,\ j = 1,\ldots,t
+ 	\end{aligned}
+ \end{equation}
+ 
+ Ponovimo da Teorema o reprezentaciji ima svoju formulaciju i u slučaju da poliedar nije ograničen, ali zbog pojednostavljenja daljeg objašnjenja DW dekompozicije, ovaj slučaj nećemo razmatrati.
+ 
+ Uzimajući u obzir prikazanu reprezentaciju proizvoljne tačke $x\in X$, početni problem~\ref{dw1} sada možemo preformulisati 
+ 
+ 
+   \begin{equation}
+ 	\begin{aligned}\label{dw2}
+ 		\min\  &c^T\cdot \sum_{j=1}^t\lambda_jx_j\\
+ 		s.t.\  &A\cdot \sum_{j=1}^t\lambda_jx_j=b\\
+ 		 		 &\sum_{j=1}^t\lambda_j = 1\\
+ 		&\lambda_j\geqslant 0,\ j = 1,\ldots,t
+ 	\end{aligned}
+ \end{equation}
+odnosno
+    \begin{equation}
+ 	\begin{aligned}\label{dw3}
+ 		\min\  & \sum_{j=1}^t(c^T x_j)\lambda_j\\
+ 		s.t.\  &\sum_{j=1}^t (A x_j)\lambda_j=b\\
+ 		&\sum_{j=1}^t\lambda_j = 1\\
+ 		&\lambda_j\geqslant 0,\ j = 1,\ldots,t
+ 	\end{aligned}
+ \end{equation}
+ 
+ Sada se vidi da je početni problem~\ref{dw1} sada predstavljen ekvivalentnom reprezentacijom~\ref{dw3}, u kojem se, umjesto polaznih promjenljivih (vektora $x$), sada posmatraju promjenljive $\lambda_j,\ j = 1,\ldots,t$ (skup ovih promjenljivih ćemo zvati $\lambda$ promjenljive), uz pretpostavku da su  vrhovi $x_1,x_2,\dots,x_t$ konveksnog politopa $X$ poznati. Variranjem vrijednosti $\lambda$ promjenljivih po dopustivom skupu iz formulacije~\ref{dw3}, generišu se tačke iz dopustivog skupa polazne formulacije~\ref{dw1}. Sa druge strane, svaka tačka $x$ iz formulacije~\ref{dw1} ima svoju reprezentaciju preko odgovarajućih vrijednosti  $\lambda$ promjenljivih u dopustivom skupu formulacije~\ref{dw3}. S obzirom na to da i funkcije cilja odgovaraju jedna drugoj, zaključujemo da je i optimalno rješenje polaznog problema~\ref{dw1} jednako optimalnom rješenju reformulisanog problema~\ref{dw3}.
+ 
+ Samom reformulacijom polaznog problema~\ref{dw1} u DW formulaciju~\ref{dw3} nismo postigli mnogo, jer broj vrhova politopa, a time i broj $\lambda$ promjenljivih može biti jako veliki.
+ 
+ Međutim, pravi razlog za DW dekompoziciju leži u činjenici da za rješavanje problema~\ref{dw3} ne moramo eksplicitno da koristimo sve vrhove politopa $X$. Umjesto toga, krenućemo od jednog   manjeg podskupa (a samim tim i podskupom skupa $\lambda$ promjenljivih). Nakon toga, primijenićemo tehniku ``generisanja kolona'' (engl. column generation), kako bismo u razmatranje uključili nove vrhove politopa $X$, koje će pomoći poboljšanju rješenja Restricted master problema.
+ 
+ Označimo sada problem formulisan  sa~\ref{dw3} Master problem (MP). Na osnovu master problema formiramo tzv. Restricted master problem (RMP)  sa manjim brojem $\lambda$ promjenljivih.
+ 
+     \begin{equation}
+ 	\begin{aligned}\label{dw4}
+ 		\min\  & \sum_{j\in I}(c^T x_j)\lambda_j\\
+ 		s.t.\  &\sum_{j\in I} (A x_j)\lambda_j=b\\
+ 		&\sum_{j\in I}\lambda_j = 1\\
+ 		&\lambda_j\geqslant 0,\ j  \in I
+ 	\end{aligned}
+ \end{equation}
+gdje je $I$ skup indeksa onih vrhova politopa koji su uključeni u RMP.
+
+Označimo sa $\overline{z}$ optimalnu vrijednost funkcije cilja RMP, a sa $z^*$ optimalnu vrijednost master problema.
+
+Primijetimo da je $\overline{z}$ jedna gornja granica za master problem, jer je svako dopustivo rješenje RMP takođe i dopustivo za master problem. Ova konstatacija će nam biti od koristi u razmatranju koje slijedi.
+
+Da bismo provjerili da li je optimalno rješenje RMP ujedno i optimalno rješenje master problema, potrebno je da provjerimo da li je reduced cost od svih nebazičnih promjenljivih NIJE JASNO...
+
+
+i trebamo optimalne vrijednosti dualnih promjenljivih
+
+Označimo vektorom $y$ optimalnu vrijednost dualne promjenljive koja se odnose na ograničenja $\sum_{j\in I} (A x_j)\lambda_j=b$ i skalarom $\alpha$ optimalnu vrijednost dualne promjenljive koja se odnosi na ograničenje $\sum_{j\in I}\lambda_j = 1$. 
+
+Da bi se odredio reduced cost za $\lambda_j$, odredimo šta imamo u odgovarajućoj koloni: U funkciji cilja, imamo $c^Tx_j$, u ograničenjima $Ax_j$ i još jednu jedinicu (na osnovu ograničenja $\sum_{j\in I}\lambda_j = 1$). Tako, kolona na koju se fokusiramo da bismo izračunali reduced cost izgleda ovako
+
+
+ $$\left(\begin{array}{c}
+ 	c^Tx_j\\
+ 	Ax_j\\
+ 	1 
+ \end{array}\right)$$
+ 
+ i sada rješavamo Column generation subproblem, čiji je cilj da se pronađe najmanji reduced cost. Ukoliko je najmanji reduced cost manji od nule, dobija se nova kolona. U slučaju da je najmanji reduced cost nenegativan, tada je optimalno rješenje RMP ujedmo i optimalno rješenje master problema.
+ 
+ Column generation subproblem se definiše kao
+ 
+      \begin{equation}
+ 	\begin{aligned}\label{dw6}
+ 		\min_{j=1,\ldots,t}\  & \{c^Tx_j-y^T	Ax_j-\alpha\cdot 1\}=\min_{x\in X}\  & \{c^Tx-y^T	Ax-\alpha\}\\
+ 	\end{aligned}
+ \end{equation}
+ 
+jer je rješenje problema na desnoj strani jednakosti upravo u nekom od vrhova politopa $X$.
+
+Prisjetimo se sada da smo za jednu od polaznih pretpostavki imali da je skup $X$ opisan kao skup sa ``jednostavnim'' ograničenjima, što znači da je problem na desnoj strani jednakosti \ref{dw6} jednostavan za rješavanje.
+
+Reformulišimo  Column generation subproblem sada kao problem maksimizacije, gdje ćemo za funkciju cilja uzeti negativnu vrijednost funkcije cilja minimizacije
+ 
+ 
+       \begin{equation}
+ 	\begin{aligned}\label{dw7}
+ 		\max_{j=1,\ldots,t}\  &  \{y^T	Ax-c^Tx+\alpha\}\\
+ 	\end{aligned}
+ \end{equation}
+Neka je $\hat{z}$ optimalna vrijednost funkcije cilja ovog problema maksimizacije.
+
+Posmatrajmo sada jedno dopustivo rješenje $x$ polaznog problema. Za to rješenje važi 
+$x\in X$ i $Ax=b$. Za to rješenje $x$ važi 	
+ 
+ $$y^T	Ax-c^Tx+\alpha\leqslant \hat{z} \Leftrightarrow c^Tx\geqslant y^T	Ax+\alpha-\hat{z} \Leftrightarrow  y^T b+\alpha-\hat{z}$$
+ 
+ Primijetimo sada da je  $y^T b+\alpha$ zapravo  optimalna vrijednost funkcije duala od RMP, koja je dalje, jednaka optimalnoj vrijednosti $\overline{z}$ RMP-a. 
+ 
+ $$ c^Tx\geqslant \overline{z}-\hat{z}$$
+ 
+ Sada zaključujemo da je razlika između optimalne vrijednosti RMP-a i problema maksimizacije Column generation problema donja granica za originalni LP. Pošto ovo važi za proizvoljno rješenje $x$, zaključujemo da važi 
+ $$z^*\geqslant \overline{z}-\hat{z}$$
+ odnosno, razlika $\overline{z}-\hat{z}$ je donja granica za optimalnu vrijednost funkcije cilja polaznog problema.
+ 
+ Dalje, prisjetimo se da je $\overline{z}$ gornja granica za $z^*$, odnosno važi 
+\begin{equation}\label{dw8}
+	  \overline{z}\geqslant z^*\geqslant \overline{z}-\hat{z}
+\end{equation}
+ 
+ Izraz~\ref{dw8} se može koristiti za određivanje koliko daleko se optimalno rješenje polaznog problema razlikuje od rješenja koja se dobijaju u iterativnom procesu DW dekompozicije.
+ 
+ U slučaju kada je $\hat{z}$ jednako nuli, iz~\ref{dw8} se vidi da je vrijednost $\overline{z}$ zapravo i optimalno rješenje polaznog problema.
+ 
+ Primjer.
+ 
  \chapter{Metode za Nalaženje Dopustivih Rješenja}
 
 \section{Pohlepni Algoritmi}
