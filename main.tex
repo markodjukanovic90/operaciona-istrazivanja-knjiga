@@ -4190,6 +4190,158 @@ $x\in X$ i $Ax=b$, pa imamo da vrijedi %Za to rješenje $x$ važi
  
  Primjer.%http://eaton.math.rpi.edu/faculty/Mitchell/courses/matp6640/notes/09C_egdcmpbeamer.pdf
  
+ Posmatrajmo problem linearnog programiranja
+ 
+   \begin{equation}
+ 	\begin{aligned}\label{primjer:dw1}
+ 		\max\  &x_1\\
+ 		s.t.\  &x_1+3x_2\leqslant \frac94\\
+ 		 &2x_1-3x_2\leqslant 0\\
+ 		&x \in X=\{(x_1,_2):0\leqslant x_1,_2 <\leqslant 1\}.
+ 	\end{aligned}
+ \end{equation}
+ 
+ Vidimo da u ovom problemu imamo dva ``komplikovana'' ograničenja ($x_1+3x_2\leqslant \frac94$ i
+ $2x_1-3x_2\leqslant 0$). Dalje, vidimo da je skup $X$ definisan kao jedinični kvadrat, što u našem slučaju to znači da je riječ o ``jednostavnom'' ograničenju. 
+ 
+ Prije nego što na ovom problemu ilustrujemo upotrebu DW dekompozicije, riješimo problem na neki od (u ovom slučaju) bržih načina. Ako problem predstavimo grafički (Slika XXX), vidimo da je dopustivi skup osjenčeni trougao, a da se maksimalna vrijednost funkcije cilja dostiže u vrhu $(\frac34, 
+ \frac12)$ tog trougla, odnosno,
+
+    \begin{equation}
+ z^* = \frac 34\qquad \textnormal{za}\ x^*=\left(\begin{array}{c}
+ 	\frac34\\
+ 	\frac12
+ \end{array}\right)
+ \end{equation}
+ 
+ Formirajmo sada polaznu konfiguraciju za primjenu DW dekompozicije.
+ 
+ Skup $X$ je politop koji ima četiri tjemena:
+ 
+ $$   
+ x^{(1)}=\left(\begin{array}{c}
+ 		0\\
+ 		0
+ 	\end{array}\right),\  x^{(2)}=\left(\begin{array}{c}
+ 	1\\
+ 	0
+ \end{array}\right),\  x^{(3)}=\left(\begin{array}{c}
+ 0\\
+ 1
+\end{array}\right) \textnormal{i}\ x^{(4)}=\left(\begin{array}{c}
+1\\
+1
+\end{array}\right)
+$$
+ 
+ Zapišimo i polazni problem u kompaktnijem obliku, odnosno
+ 
+ $$
+ A = \left(\begin{array}{cc}
+ 	1 & 3 \\
+ 	2 & -3
+ \end{array}\right) \ b=\left(\begin{array}{c}
+ \frac 9 4\\
+ 0
+\end{array}\right)\ c=\left(\begin{array}{c}
+0\\
+1
+\end{array}\right),
+ $$
+ 
+ pa polazni problem možemo napisati kao
+    \begin{equation}
+ 	\begin{aligned}\label{primjer:dw2}
+ 		\max\  &c^Tx\\
+ 		s.t.\  &Ax\leqslant b\\
+ 		&x \in X
+ 	\end{aligned}
+ \end{equation}
+Na osnovu teoreme o reprezentaciji, svako rješenje $x \in X$ možemo zapisati kao
+
+$$\begin{aligned}
+&x = \sum_{j=1}^4\lambda_j x^{(j)}\\
+&\sum_{j=1}^4\lambda_j=1\\
+&\lambda_1,\lambda_2,\lambda_3,\lambda_4\geqslant 0
+\end{aligned}$$
+ Preformulacijom problema~\ref{primjer:dw} dobijamo
+ 
+     \begin{equation}
+ 	\begin{aligned}\label{primjer:dw3}
+ 		\min\  & \sum_{j=1}^4(c^T x_j)\lambda_j\\
+ 		s.t.\  &\sum_{j=1}^4 (A x_j)\lambda_j\leqslant b\\
+ 		&\sum_{j=1}^4\lambda_j = 1\\
+ 		&\lambda_j\geqslant 0,\ j = 1,\ldots,4
+ 	\end{aligned}
+ \end{equation}
+ Odnosno, nakon sređivanja 
+      \begin{equation}
+ 	\begin{aligned}\label{primjer:dw4}
+ 		\min\  & \lambda_2+\lambda_4\\
+ 		s.t.\  &\left(\begin{array}{c}
+ 			1\\
+ 			2
+ 		\end{array}\right)\lambda_2+\left(\begin{array}{c}
+ 		3\\
+ 		-3
+ 	\end{array}\right)\lambda_3+\left(\begin{array}{c}
+ 	4\\
+ 	-1
+ \end{array}\right)\lambda_4\leqslant \left(\begin{array}{c}
+ 			\frac 9 4\\
+ 			0
+ 		\end{array}\right)\\
+ 		&\sum_{j=1}^4\lambda_j = 1\\
+ 		&\lambda_j\geqslant 0,\ j = 1,\ldots,4
+ 	\end{aligned}
+ \end{equation}
+
+Da bismo u ograničenjima izbjegli znak $\leqslant$ u prva dva ograničenja, dodajmo modelu dvije izjednačavajuće promjenljive $s_1$ i $s_2$, te model zapišimo kao
+      \begin{equation}
+	\begin{aligned}\label{primjer:dw5}
+		\min\  & \lambda_2+\lambda_4\\
+		s.t.\  &\lambda_2+3\lambda_3+4\lambda_4+s_1=\frac 94\\
+		&2\lambda_2-3\lambda_3-\lambda_4+s_2=0\\
+		&\sum_{j=1}^4\lambda_j = 1\\
+		&\lambda_j\geqslant 0,\ j = 1,\ldots,4\\
+		&s_1,s_2\geqslant 0
+	\end{aligned}
+\end{equation}
+
+Sada se može inicijalnizovati RMP, biranjem dopustive baze.
+
+Izabraćemo promjenljive $\lambda_1, s_1$ i $s_2$ kao inicijalne osnovne promjenljive. Pošto sada nemamo promjenljive $\lambda_2,\lambda_3$ i $\lambda_4$,  RMP izgleda ovako
+      \begin{equation}
+	\begin{aligned}\label{primjer:dw6}
+		\min\  & 0\\
+		s.t.\  &s_1=\frac 94\\
+		&s_2=0\\
+		&\lambda_1 = 1\\
+		&\lambda_1,s_1,s_2\geqslant 0
+	\end{aligned}
+\end{equation}
+Posljednji problem se trivijalno rješava (funkcija cilja ima vrijednost 0, a vrijednost promjenljivih se direktno očitavaju iz ograničenja).
+
+Posmatrajmo sada dualni problem problema~\ref{primjer:dw3}. Označimo sa $y_1$, $y_2$ i $\alpha$ promjenljive dualnog problema.
+
+Neka je $c_B$ vektor...
+
+i neka je $B$ matrica...
+
+Za dalje razmatranje biće nam potrebna  Tabela~\ref{tbl:dw1}, koju ćemo popunjavati u iterativnom procesu.
+\begin{table}\centering
+\begin{tabular}{|c|c|c|}
+	\hline
+	$(y_1,y_2,\alpha)=c^T_B B^{-1}$ & $\overline{z}= c^T_B B^{-1}b$&$BV$  \\
+	\hline
+	$B^{-1}$& $B^{-1}b$ &$\vdots$  \\
+	\hline
+\end{tabular}\caption{Forma tabele za praćenje vrijednosti u iterativnom procesu DW dekompozicije}\label{tbl:dw1}
+\end{table}
+
+
+
+
  \chapter{Metode za Nalaženje Dopustivih Rješenja}
 
 \section{Pohlepni Algoritmi}
