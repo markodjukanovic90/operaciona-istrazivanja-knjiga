@@ -4188,7 +4188,7 @@ $x\in X$ i $Ax=b$, pa imamo da vrijedi %Za to rješenje $x$ važi
  
  U slučaju kada je $\hat{z}$ jednako nuli, iz~\ref{dw8} se vidi da je vrijednost $\overline{z}$ zapravo i optimalno rješenje polaznog problema.
  
- Primjer.%http://eaton.math.rpi.edu/faculty/Mitchell/courses/matp6640/notes/09C_egdcmpbeamer.pdf
+ \emph{Primjer.}%http://eaton.math.rpi.edu/faculty/Mitchell/courses/matp6640/notes/09C_egdcmpbeamer.pdf
  
  Posmatrajmo problem linearnog programiranja
  
@@ -4210,7 +4210,7 @@ $x\in X$ i $Ax=b$, pa imamo da vrijedi %Za to rješenje $x$ važi
     \begin{equation}
  z^* = \frac 34\qquad \textnormal{za}\ x^*=\left(\begin{array}{c}
  	\frac34\\
- 	\frac12
+ 	\frac12.
  \end{array}\right)
  \end{equation}
  
@@ -4244,8 +4244,8 @@ $$
  \frac 9 4\\
  0
 \end{array}\right)\ c=\left(\begin{array}{c}
-0\\
-1
+1\\
+0
 \end{array}\right),
  $$
  
@@ -4310,7 +4310,7 @@ Da bismo u ograničenjima izbjegli znak $\leqslant$ u prva dva ograničenja, dod
 
 Sada se može inicijalnizovati RMP, biranjem dopustive baze.
 
-Izabraćemo promjenljive $\lambda_1, s_1$ i $s_2$ kao inicijalne osnovne promjenljive. Pošto sada nemamo promjenljive $\lambda_2,\lambda_3$ i $\lambda_4$,  RMP izgleda ovako
+Izabraćemo promjenljive $\lambda_1, s_1$ i $s_2$ kao inicijalne osnovne promjenljive. Pošto  promjenljive $\lambda_2,\lambda_3$ i $\lambda_4$ ne egzistiraju u potproblemu,  RMP izgleda ovako
       \begin{equation}
 	\begin{aligned}\label{primjer:dw6}
 		\min\  & 0\\
@@ -4320,26 +4320,108 @@ Izabraćemo promjenljive $\lambda_1, s_1$ i $s_2$ kao inicijalne osnovne promjen
 		&\lambda_1,s_1,s_2\geqslant 0
 	\end{aligned}
 \end{equation}
-Posljednji problem se trivijalno rješava (funkcija cilja ima vrijednost 0, a vrijednost promjenljivih se direktno očitavaju iz ograničenja).
+Posljednji problem se trivijalno rješava (funkcija cilja ima vrijednost 0, a vrijednost promjenljivih se direktno očitavaju iz ograničenja). Ispitajmo sada šta šta je optilalna vrijednost dualnih promjenjivih, dakle $y$ i $\alpha$ uz pomoć simpleks tabele problema \ref{primjer:dw6}. Ona izgleda ovako
+\begin{center}
 
-Posmatrajmo sada dualni problem problema~\ref{primjer:dw3}. Označimo sa $y_1$, $y_2$ i $\alpha$ promjenljive dualnog problema.
+\begin{tabular}{c|cccc}
+	       &$s_1$  & $ s_2$   & $\lambda_1$ &  \\
+ $s_1$	   &  1  &   0      &   0         &  $\frac{9}{4}$ \\
+  $s_2$	  &  0  &    1     &   0         &  0             \\
+$\lambda_1$	  &  0  &    0     &   1         &  1   \\ \hline
+	$z$   & 0  &    0     &   0         &  0
+\end{tabular}
+\end{center}
+kako je ovo optimalna simpleks tabela, 
+Posmatrajmo sada dualni problem problema~\ref{primjer:dw3}. Označimo sa $y_1$, $y_2$ i $\alpha$ promjenljive dualnog problema. Kako je ova tabela i optimalna simpleks tabela, vrijednost optimuma dualnih promjenjivih jednaka je odgovarajućim doprinosima (posljednji red tabele), pa je $y_1 = 0 = y_2 = \alpha$. 
 
-Neka je $c_B$ vektor...
-
-i neka je $B$ matrica...
-
-Za dalje razmatranje biće nam potrebna  Tabela~\ref{tbl:dw1}, koju ćemo popunjavati u iterativnom procesu.
+%Za dalje razmatranje biće nam potrebna  Tabela~\ref{tbl:dw1}, koju ćemo popunjavati u iterativnom procesu.
 \begin{table}\centering
-\begin{tabular}{|c|c|c|}
-	\hline
-	$(y_1,y_2,\alpha)=c^T_B B^{-1}$ & $\overline{z}= c^T_B B^{-1}b$&$BV$  \\
-	\hline
-	$B^{-1}$& $B^{-1}b$ &$\vdots$  \\
-	\hline
-\end{tabular}\caption{Forma tabele za praćenje vrijednosti u iterativnom procesu DW dekompozicije}\label{tbl:dw1}
+	\begin{tabular}{|c|c|c|}
+		\hline
+		$(y_1,y_2,\alpha)=c^T_B B^{-1}$ & $\overline{z}= c^T_B B^{-1}b$&$BV$  \\
+		\hline
+		$B^{-1}$& $B^{-1}b$ &$\vdots$  \\
+		\hline
+	\end{tabular}\caption{Forma tabele za praćenje vrijednosti u iterativnom procesu DW dekompozicije}\label{tbl:dw1}
 \end{table}
 
+\emph{Iteracija 1.} 
+Konstruišemo column generation problem sa
+\begin{align}\label{eq:cg-1}
+	 \max_{x \in X} (1, 0)^T x + 0 - (0, 0) \left(\begin{array}{cc}
+	 	1 & 3 \\
+	 	2 & -3
+	 \end{array}\right)  x = \max_{x \in X} x_1. 
+\end{align} 
+Optimalna vrijednost problema (\ref{eq:cg-1}) je jednaka $\hat{z}=1$, i dostiže se, recimo, u ekstremnoj tački $x^2= (1, 0)^T.$ Kako je optimalna vrijednost pozitivna, ulazna kolona u prethodni potproblem postoji koju treba da odaberemo. Ova kolona (ako posmatramo problem (\ref{primjer:dw5})) će biti data sa 
+\begin{align}
+     \begin{pmatrix}
+     	    c^T x^2 \\
+     	    A x^2  \\
+     	    1     \\
+     \end{pmatrix} = \begin{pmatrix}
+               1 \\
+               1  \\
+               2  \\
+               1\\
+ \end{pmatrix}
+\end{align}
+Kada pogledamo prethodne vrijednosti kolone i master problem (\ref{primjer:dw5}), jasno je da ona odgovara koeficijentima varijable $\lambda_2$. Dakle, prethodna kolona je data u odnosu na $\lambda_2$, ali je sada prebacimo na trenutnu bazu datu sa $s_1, s_2$ i $\lambda_1$, gdje je $B^{-1} =  \begin{pmatrix}
+	1 & 0 & 0 \\
+	0 & 1 & 0  \\
+	0 & 0 & 1  \\
+\end{pmatrix}$ da bismo dodali potrebnu kolonu za RMP. Za to je potrebno izvršiti transformacija na nove baze opisane u Tabeli \ref{tbl:dw1}, odakle dobijamo kolonu za dodavanje u RMP:
+ 
+$$	\begin{pmatrix}
+	       1 \\
+	      1  \\
+	      2  \\
+	      1\\
+	\end{pmatrix}
+ $$
 
+Ubacimo za trenutak ovu kolonu u prethodnu simpleks tabelu, odakle imamo tabelu: 
+
+ \begin{center}
+ 	
+ 	\begin{tabular}{c|ccccc}
+ 	                &$s_1$        & $ s_2$   &  $\lambda_1$ & $\lambda_2$   &                \\
+ 		$s_1$	    &   1      &    0         &   0         &     1         &  $\frac{9}{4}$ \\
+ 		$s_2$	    &   0      &    1         &   0         &     2         &  0             \\
+ 		$\lambda_1$ &   0      &    0         &   1         &     1         &  1             \\ \hline
+ 		$z$         &   0      &    0         &   0         &    -1         &  0
+ 	\end{tabular}
+ \end{center}
+Primijetimo da je cijena doprinosa nove kolone promijenjena sa 1 na -1 (zbog korištenja tabelarne forme simpleks metoda, koeficijenti doprinosa se množe sa -1). Sada koristimo novu kolonu kao ulaznu kolonu za transformacije -- u njoj tražimo kandidata za pivota kako smo to navikli u simpleks metodi. Odaberemo element čija je vrijednost $2$, pa pivotirajmo oko njega. Prvo sve elemente u koloni 2 podijelimo sa 2, te potom izvršimo elementarne transformacije u kojima načinimo nule u dodatoj koloni. Varijabla $s_2$ izlazi iz baze, dok $\lambda_2$ ulazi. Na kraju dobijamo transformisanu tabelu:
+
+\begin{center}
+	
+	\begin{tabular}{c|ccccc}
+	             	&$s_1$     &    $ s_2$                &  $\lambda_1$   & $s_2$     &                \\
+		$s_1$	    &   1      &   -$\frac{1}{2}$         &   0         &     0         &  $\frac{9}{4}$ \\
+		$\lambda_2$ &   0      &    $\frac{1}{2}$         &   0         &     1         &  0             \\
+		$\lambda_1$ &   0      &    -$\frac{1}{2}$        &   1         &     0         &  1             \\ \hline
+		$z$         &   0      &    $\frac{1}{2}$         &   0         &    0          &  0
+	\end{tabular}
+\end{center} 
+Dakle, bazne varijable su sada iz skupa $\{s_1, \lambda_1, \lambda_2\}$, koja odgovara baznoj matrici 
+$B^{-1} = 
+\begin{pmatrix}
+	   1 & -\frac{1}{2}    &  0 \\
+	   0 & \frac{1}{2}     &  0  \\
+	   0 & -\frac{1}{2}    &  1  \\
+\end{pmatrix}$
+na osnovu prethodne simpleks tabele, dobijamo optimalne vrijednosti dualnih varijabli iz koeficijenta doprinosa, tj. $y_1 = 0, y_2 = \frac{1}{2}, \alpha = 0$. \\
+\emph{Iteracija 2.} Iz prethodnog dobijamo column generation potproblem 
+\begin{align}
+	 \max_{x \in X} (1, 0)^T x - (0, \frac{1}{2})\left(\begin{array}{cc}
+	 	1 & 3 \\
+	 	2 & -3
+	 \end{array}\right)  x   - 0 = \max_{x \in X}x_1 - x_1 + \frac{3}{2}x_2 = \max_{x \in X} \frac{3}{2}x_2.
+\end{align}
+Rješenje ovog problema je lako dobiti, tj. optimum se dostiže u, recimo,  tački $x^3 = (0, 1)^T$, dok je optimum jednak $\hat{z}= \frac{3}{2}$. Kako je $\hat{z} \geq \frac{3}{2}$, treba da odaberemo novu kolonu koja se dodaje u RMP. 
+
+TODO... prvo izraziti kolone u odnosu na originalni problem, potom prebaciti u odnosu na bazne vektore, ubaciti u prethodnu simpleks tabelu (baznih vektora), pivotirati tabelu, dobiti novu tabelu, izvuci baze, dualne vrijednosti, formirati novi CG problem. 
 
 
  \chapter{Metode za Nalaženje Dopustivih Rješenja}
