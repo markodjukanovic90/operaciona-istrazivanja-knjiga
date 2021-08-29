@@ -4125,13 +4125,13 @@ Označimo sa $\overline{z}$ optimalnu vrijednost funkcije cilja RMP, a sa $z^*$ 
 
 Primijetimo da je $\overline{z}$ jedna gornja granica za master problem, jer je svako dopustivo rješenje RMP takođe i dopustivo za master problem. Ova konstatacija će nam biti od koristi u razmatranju koje slijedi.
 
-Da bismo provjerili da li je optimalno rješenje RMP ujedno i optimalno rješenje master problema, potrebno je da provjerimo da li su koeficijenti doprinosa svih nebaznih promjenjivih nenegativne, tj. postoji li neka nebazna varijabla koa može doprinijeti dodatnom smanjenju funkcije cilja. Kao što znamo iz simpleks tablele i ranije sekcije o dualnosti linearnog programiranja, ove vrijednosti su ekvivalentne optimalnim vrijednostima dualnih promjenjivih (duala RMP).   
+Da bismo provjerili da li je optimalno rješenje RMP ujedno i optimalno rješenje master problema, potrebno je da provjerimo da li su koeficijenti doprinosa svih nebaznih promjenjivih nenegativni, tj. postoji li neka nebazna varijabla koja može doprinijeti dodatnom smanjenju funkcije cilja. Kao što znamo iz simpleks tablele i ranije sekcije o dualnosti linearnog programiranja, ove vrijednosti su ekvivalentne optimalnim vrijednostima dualnih promjenjivih (duala problema RMP).   
 %je reduced cost od svih nebazičnih promjenljivih NIJE JASNO...
 
 
 %i trebamo optimalne vrijednosti dualnih promjenljivih
 
-Označimo vektorom $y$ optimalnu vrijednost dualnih promjenlji koje se odnose na ograničenja $\sum_{j\in I} (A x_j)\lambda_j=b$ i skalarom $\alpha$ optimalnu vrijednost dualne promjenljive koja se odnosi na ograničenje $\sum_{j\in I}\lambda_j = 1$. 
+Označimo vektorom $y$ optimalne vrijednosti dualnih promjenljih koje se odnose na ograničenja $\sum_{j\in I} (A x_j)\lambda_j=b$ i skalarom $\alpha$ optimalnu vrijednost dualne promjenljive koja se odnosi na ograničenje $\sum_{j\in I}\lambda_j = 1$. 
 
 Da bi se odredili   koeficijenti doprinosa za $\lambda_j$, odredimo šta imamo u odgovarajućoj koloni: U funkciji cilja, imamo $c^Tx_j$, u ograničenjima $Ax_j$ i još jednu jedinicu (na osnovu ograničenja $\sum_{j\in I}\lambda_j = 1$). Tako, kolona na koju se fokusiramo da bismo izračunali doprinose izgleda ovako
 
@@ -4156,7 +4156,7 @@ jer je rješenje problema na desnoj strani jednakosti upravo u nekom od vrhova p
 
 Prisjetimo se sada da smo za jednu od polaznih pretpostavki imali da je skup $X$ opisan kao skup sa ``jednostavnim'' ograničenjima, što znači da je problem na desnoj strani jednakosti \ref{dw6} jednostavan za rješavanje.
 
-Reformulišimo  Column generation potproblem sada kao problem maksimizacije, gdje ćemo za funkciju cilja uzeti negativnu vrijednost funkcije cilja minimizacije
+Reformulišimo  Column generation potproblem sada kao problem maksimizacije, gdje ćemo za funkciju cilja uzeti negativnu vrijednost funkcije cilja minimizacije, tj.
  
  
        \begin{equation}
@@ -4167,7 +4167,7 @@ Reformulišimo  Column generation potproblem sada kao problem maksimizacije, gdj
 Neka je $\hat{z}$ optimalna vrijednost funkcije cilja ovog problema maksimizacije.
 
 Posmatrajmo sada jedno dopustivo rješenje $x$ polaznog problema. Za to rješenje važi 
-$x\in X$ i $Ax=b$. Za to rješenje $x$ važi 	
+$x\in X$ i $Ax=b$, pa imamo da vrijedi %Za to rješenje $x$ važi 	
  
  $$y^T	Ax-c^Tx+\alpha\leqslant \hat{z} \Leftrightarrow c^Tx\geqslant y^T	Ax+\alpha-\hat{z} \Leftrightarrow  y^T b+\alpha-\hat{z}$$
  
