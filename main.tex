@@ -4320,7 +4320,7 @@ Izabraćemo promjenljive $\lambda_1, s_1$ i $s_2$ kao inicijalne osnovne promjen
 		&\lambda_1,s_1,s_2\geqslant 0
 	\end{aligned}
 \end{equation}
-Posljednji problem se trivijalno rješava (funkcija cilja ima vrijednost 0, a vrijednost promjenljivih se direktno očitavaju iz ograničenja). Ispitajmo sada šta šta je optilalna vrijednost dualnih promjenjivih, dakle $y$ i $\alpha$ uz pomoć simpleks tabele problema \ref{primjer:dw6}. Ona izgleda ovako
+Posljednji problem se trivijalno rješava (funkcija cilja ima vrijednost 0, a vrijednost promjenljivih se direktno očitavaju iz ograničenja). Ispitajmo sada optimalnu vrijednost dualnih promjenjivih, dakle $y$ i $\alpha$ uz pomoć simpleks tabele problema \ref{primjer:dw6}. Ona izgleda ovako
 \begin{center}
 
 \begin{tabular}{c|cccc}
@@ -4331,8 +4331,8 @@ $\lambda_1$	  &  0  &    0     &   1         &  1   \\ \hline
 	$z$   & 0  &    0     &   0         &  0
 \end{tabular}
 \end{center}
-kako je ovo optimalna simpleks tabela, 
-Posmatrajmo sada dualni problem problema~\ref{primjer:dw3}. Označimo sa $y_1$, $y_2$ i $\alpha$ promjenljive dualnog problema. Kako je ova tabela i optimalna simpleks tabela, vrijednost optimuma dualnih promjenjivih jednaka je odgovarajućim doprinosima (posljednji red tabele), pa je $y_1 = 0 = y_2 = \alpha$. 
+ 
+Posmatrajmo sada dualni problem problema~\ref{primjer:dw3}. Označimo sa $y_1$, $y_2$ i $\alpha$ promjenljive dualnog problema. Kako imamo optimalnu simpleks tabelu, vrijednost optimuma dualnih promjenjivih jednaka je odgovarajućim koeficijentima doprinosa (posljednji red tabele), pa je $y_1 = 0 = y_2 = \alpha$. 
 
 %Za dalje razmatranje biće nam potrebna  Tabela~\ref{tbl:dw1}, koju ćemo popunjavati u iterativnom procesu.
 \begin{table}\centering
@@ -4353,7 +4353,7 @@ Konstruišemo column generation problem sa
 	 	2 & -3
 	 \end{array}\right)  x = \max_{x \in X} x_1. 
 \end{align} 
-Optimalna vrijednost problema (\ref{eq:cg-1}) je jednaka $\hat{z}=1$, i dostiže se, recimo, u ekstremnoj tački $x^2= (1, 0)^T.$ Kako je optimalna vrijednost pozitivna, ulazna kolona u prethodni potproblem postoji koju treba da odaberemo. Ova kolona (ako posmatramo problem (\ref{primjer:dw5})) će biti data sa 
+Optimalna vrijednost problema (\ref{eq:cg-1}) je jednaka $\hat{z}=1$, i dostiže se, recimo, u ekstremnoj tački $x^2= (1, 0)^T.$ Kako je optimalna vrijednost pozitivna, ulazna kolona za prethodni potproblem postoji te je treba da odaberemo. Ova kolona (ako posmatramo problem (\ref{primjer:dw5})) će biti data sa 
 \begin{align}
      \begin{pmatrix}
      	    c^T x^2 \\
@@ -4370,7 +4370,8 @@ Kada pogledamo prethodne vrijednosti kolone i master problem (\ref{primjer:dw5})
 	1 & 0 & 0 \\
 	0 & 1 & 0  \\
 	0 & 0 & 1  \\
-\end{pmatrix}$ da bismo dodali potrebnu kolonu za RMP. Za to je potrebno izvršiti transformacija na nove baze opisane u Tabeli \ref{tbl:dw1}, odakle dobijamo kolonu za dodavanje u RMP:
+\end{pmatrix}$ %da bismo dodali potrebnu kolonu za RMP. 
+Za to je potrebno izvršiti transformacija na nove baze čiji su koraci opisani u Tabeli \ref{tbl:dw1}, odakle dobijamo kolonu za dodavanje u RMP:
  
 $$	\begin{pmatrix}
 	       1 \\
@@ -4392,7 +4393,7 @@ Ubacimo za trenutak ovu kolonu u prethodnu simpleks tabelu, odakle imamo tabelu:
  		$z$         &   0      &    0         &   0         &    -1         &  0
  	\end{tabular}
  \end{center}
-Primijetimo da je cijena doprinosa nove kolone promijenjena sa 1 na -1 (zbog korištenja tabelarne forme simpleks metoda, koeficijenti doprinosa se množe sa -1). Sada koristimo novu kolonu kao ulaznu kolonu za transformacije -- u njoj tražimo kandidata za pivota kako smo to navikli u simpleks metodi. Odaberemo element čija je vrijednost $2$, pa pivotirajmo oko njega. Prvo sve elemente u koloni 2 podijelimo sa 2, te potom izvršimo elementarne transformacije u kojima načinimo nule u dodatoj koloni. Varijabla $s_2$ izlazi iz baze, dok $\lambda_2$ ulazi. Na kraju dobijamo transformisanu tabelu:
+Primijetimo da je cijena doprinosa dodate kolone promijenjena sa 1 na -1 (zbog korištenja tabelarne forme simpleks metoda, koeficijenti doprinosa se množe sa -1). Sada koristimo novu kolonu kao ulaznu kolonu za transformacije -- u njoj tražimo kandidata za pivota kako smo to i vidjeli u simpleks metodi. Odaberemo element čija je vrijednost $2$, pa pivotirajmo oko njega. Prvo sve elemente u koloni 2 podijelimo sa 2, te potom izvršimo elementarne transformacije u kojima načinimo nule u ostalim elementima novododate kolone. Varijabla $s_2$ izlazi iz baze, dok $\lambda_2$ ulazi. Na kraju dobijamo transformisanu tabelu:
 
 \begin{center}
 	
