@@ -3247,7 +3247,7 @@ Tehnički zapisano, krećemo od \emph{restrikovanog master problema}
     & \sum_{i \in I} A_i x_i  \leq b \hspace{2cm} (R)\\
     & x \geq 0. 
 \end{align*}
-kojeg riješimo, te izračunamo optimalno dualno rješenje. Sada je potrebno izgenerisati novu kolonu $A_j$ za koju je $c_j - c_B^T B^{-1}A_j < 0$.
+kojeg riješimo, te izračunamo optimalno dualno rješenje. Sada je potrebno izgenerisati novu kolonu $A_j$ za koju je koeficijent doprinosa negativan, tj. $\overline{c_j} = c_j - c_B^T B^{-1}A_j < 0$.
 %Pogledati: https://www.youtube.com/watch?v=0SV99VJaGzw
 Ovo se može uraditi rješavanjem \emph{potproblema}:
 $$\min_{a \in C} c_a - c_B^T B^{-1} a,$$
