@@ -4268,7 +4268,7 @@ $$\begin{aligned}
  
      \begin{equation}
  	\begin{aligned}\label{primjer:dw3}
- 		\min\  & \sum_{j=1}^4(c^T x_j)\lambda_j\\
+ 		\max\  & \sum_{j=1}^4(c^T x_j)\lambda_j\\
  		s.t.\  &\sum_{j=1}^4 (A x_j)\lambda_j\leqslant b\\
  		&\sum_{j=1}^4\lambda_j = 1\\
  		&\lambda_j\geqslant 0,\ j = 1,\ldots,4
@@ -4277,7 +4277,7 @@ $$\begin{aligned}
  Odnosno, nakon sređivanja 
       \begin{equation}
  	\begin{aligned}\label{primjer:dw4}
- 		\min\  & \lambda_2+\lambda_4\\
+ 		\max  & \lambda_2+\lambda_4\\
  		s.t.\  &\left(\begin{array}{c}
  			1\\
  			2
@@ -4299,7 +4299,7 @@ $$\begin{aligned}
 Da bismo u ograničenjima izbjegli znak $\leqslant$ u prva dva ograničenja, dodajmo modelu dvije izjednačavajuće promjenljive $s_1$ i $s_2$, te model zapišimo kao
       \begin{equation}
 	\begin{aligned}\label{primjer:dw5}
-		\min\  & \lambda_2+\lambda_4\\
+		\max\  & \lambda_2+\lambda_4\\
 		s.t.\  &\lambda_2+3\lambda_3+4\lambda_4+s_1=\frac 94\\
 		&2\lambda_2-3\lambda_3-\lambda_4+s_2=0\\
 		&\sum_{j=1}^4\lambda_j = 1\\
@@ -4313,7 +4313,7 @@ Sada se može inicijalnizovati RMP, biranjem dopustive baze.
 Izabraćemo promjenljive $\lambda_1, s_1$ i $s_2$ kao inicijalne osnovne promjenljive. Pošto  promjenljive $\lambda_2,\lambda_3$ i $\lambda_4$ ne egzistiraju u potproblemu,  RMP izgleda ovako
       \begin{equation}
 	\begin{aligned}\label{primjer:dw6}
-		\min\  & 0\\
+		\max\  & 0\\
 		s.t.\  &s_1=\frac 94\\
 		&s_2=0\\
 		&\lambda_1 = 1\\
@@ -4371,7 +4371,7 @@ Kada pogledamo prethodne vrijednosti kolone i master problem (\ref{primjer:dw5})
 	0 & 1 & 0  \\
 	0 & 0 & 1  \\
 \end{pmatrix}$ %da bismo dodali potrebnu kolonu za RMP. 
-Za to je potrebno izvršiti transformacija na nove baze čiji su koraci opisani u Tabeli \ref{tbl:dw1}, odakle dobijamo kolonu za dodavanje u RMP:
+Za to je potrebno izvršiti njenu transformaciju na nove baze čiji su koraci opisani u Tabeli \ref{tbl:dw1}, odakle dobijamo kolonu za dodavanje u RMP:
  
 $$	\begin{pmatrix}
 	       1 \\
@@ -4393,7 +4393,7 @@ Ubacimo za trenutak ovu kolonu u prethodnu simpleks tabelu, odakle imamo tabelu:
  		$z$         &   0      &    0         &   0         &    -1         &  0
  	\end{tabular}
  \end{center}
-Primijetimo da je cijena doprinosa dodate kolone promijenjena sa 1 na -1 (zbog korištenja tabelarne forme simpleks metoda, koeficijenti doprinosa se množe sa -1). Sada koristimo novu kolonu kao ulaznu kolonu za transformacije -- u njoj tražimo kandidata za pivota kako smo to i vidjeli u simpleks metodi. Odaberemo element čija je vrijednost $2$, pa pivotirajmo oko njega. Prvo sve elemente u koloni 2 podijelimo sa 2, te potom izvršimo elementarne transformacije u kojima načinimo nule u ostalim elementima novododate kolone. Varijabla $s_2$ izlazi iz baze, dok $\lambda_2$ ulazi. Na kraju dobijamo transformisanu tabelu:
+Primijetimo da je cijena doprinosa dodate kolone promijenjena sa 1 na -1 (zbog korištenja tabelarne forme simpleks metoda, optimalna vrijednost problema je -$\hat{z}$, jer se u stvari minimizuje CG potproblem). Sada koristimo novu kolonu kao ulaznu kolonu za transformacije -- u njoj tražimo kandidata za pivota kako smo to i vidjeli u simpleks metodi. Odaberemo element čija je vrijednost $2$, pa pivotirajmo oko njega. Prvo sve elemente u koloni 2 podijelimo sa 2, te potom izvršimo elementarne transformacije u kojima načinimo nule u ostalim elementima novododate kolone. Varijabla $s_2$ izlazi iz baze, dok $\lambda_2$ ulazi u bazu. Na kraju dobijamo transformisanu tabelu:
 
 \begin{center}
 	
@@ -4412,7 +4412,7 @@ $B^{-1} =
 	   0 & \frac{1}{2}     &  0  \\
 	   0 & -\frac{1}{2}    &  1  \\
 \end{pmatrix}$
-na osnovu prethodne simpleks tabele, dobijamo optimalne vrijednosti dualnih varijabli iz koeficijenta doprinosa, tj. $y_1 = 0, y_2 = \frac{1}{2}, \alpha = 0$. \\
+na osnovu prethodne simpleks tabele, dobijamo   vrijednosti dualnih varijabli iz koeficijenta doprinosa, tj. $y_1 = 0, y_2 = \frac{1}{2}, \alpha = 0$. \\
 \emph{Iteracija 2.} Iz prethodnog dobijamo column generation potproblem 
 \begin{align}
 	 \max_{x \in X} (1, 0)^T x - (0, \frac{1}{2})\left(\begin{array}{cc}
@@ -4420,7 +4420,7 @@ na osnovu prethodne simpleks tabele, dobijamo optimalne vrijednosti dualnih vari
 	 	2 & -3
 	 \end{array}\right)  x   - 0 = \max_{x \in X}x_1 - x_1 + \frac{3}{2}x_2 = \max_{x \in X} \frac{3}{2}x_2.
 \end{align}
-Rješenje ovog problema je lako dobiti, tj. optimum se dostiže u, recimo,  tački $x^3 = (0, 1)^T$, dok je optimum jednak $\hat{z}= \frac{3}{2}$. Kako je $\hat{z} \geq \frac{3}{2}$, treba da odaberemo novu kolonu koja se dodaje u RMP. 
+Rješenje ovog problema je lako dobiti, tj. optimum se dostiže u, recimo,  tački $x^3 = (0, 1)^T$, dok je optimum jednak $\hat{z}= \frac{3}{2}$. Kako je $\hat{z} > 0$, treba da odaberemo novu kolonu koja se dodaje u RMP. 
 
 TODO... prvo izraziti kolone u odnosu na originalni problem, potom prebaciti u odnosu na bazne vektore, ubaciti u prethodnu simpleks tabelu (baznih vektora), pivotirati tabelu, dobiti novu tabelu, izvuci baze, dualne vrijednosti, formirati novi CG problem. 
 
