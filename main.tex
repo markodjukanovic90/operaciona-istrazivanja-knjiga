@@ -2867,7 +2867,7 @@ koraka. Iako se algoritam generalno smatra   neefikasnim, ovaj metod je dovelo d
 Recimo, ako imamo sljedeći problem ILP-a:
 \begin{align*}
     &\max z = 3x_1 + 4 x_2 \\
-    &\mbox{pod uslovima } \\
+    &\mbox{s.t.} \\
     &5x_1 + 8x_1 \leq 24 \\
     & x_1, x_2 \geq 0, x_1,x_2\in \mathbb{Z}
 \end{align*}
@@ -3225,7 +3225,9 @@ gdje je $\lambda=(\lambda_1, \ldots, \lambda_n)$ i $c^\lambda_{i,j} = c_{i,j} + 
 
 % interior point method (dodati)...
 \section{Metod Generisanja Kolona}% ovo je za LP probleme sa velikim brojem kolona, pogledati u https://coral.ise.lehigh.edu/~ted/files/ie418/lectures/Lecture18.pdf file:///C:/Users/PC/Downloads/ColumnGenerationTutorial.pdf
-Često se u praksi sreće da je u LP-u (ili ILP-u) broj varijabli puno (eksponencijalno) veći  u odnosu na broj ograničenja. U osnovi, riječ je o ekstremno velikim modelima sa matricom $A$ velikih dimenzija. Kada je riječ o rješavanju ovakvih problema, veliki dio matrice (tj. njene kolone) nam nikada i neće biti relevantan u rješavanju. Da bi se riješila specifična instanca problema, ono što nam je potrebno su:
+
+%video: https://www.youtube.com/watch?v=O918V86Grhc
+Često se u praksi nalazi na situaciju da je u LP-u (ili ILP-u) broj varijabli puno (eksponencijalno) veći  u odnosu na broj ograničenja. U osnovi, riječ je o ekstremno velikim modelima sa matricom $A$ velikih dimenzija. Kada je riječ o rješavanju ovakvih problema, veliki dio matrice (tj. njene kolone) nam nikada i neće biti relevantan u rješavanju. Da bi se riješila specifična instanca problema, ono što nam je potrebno su:
 \begin{itemize}
     \item Ograničenja koja se vežu uz optimalnost.
     \item Varijable koje su bazne u optimalnom rješenju.
@@ -3238,7 +3240,7 @@ Prema tome, ono što je potrebno su ograničenja čije su odgovarajuće   dualne
           cijenama doprinosa;
     \item Itrerativno pozivamo perthodna dva koraka dok god postoje kolone   sa negativnim doprinosom koje nisu u $S$.
 \end{itemize}
-Tehnički zapisano, krećemo od \emph{restrikovanog problema}
+Tehnički zapisano, krećemo od \emph{restrikovanog master problema}
 \begin{align*}
     &\min c^T x \\
     &\mbox{s.t} \\
@@ -3246,7 +3248,7 @@ Tehnički zapisano, krećemo od \emph{restrikovanog problema}
     & x \geq 0. 
 \end{align*}
 kojeg riješimo, te izračunamo optimalno dualno rješenje. Sada je potrebno izgenerisati novu kolonu $A_j$ za koju je $c_j - c_B^T B^{-1}A_j < 0$.
-
+%Pogledati: https://www.youtube.com/watch?v=0SV99VJaGzw
 Ovo se može uraditi rješavanjem \emph{potproblema}:
 $$\min_{a \in C} c_a - c_B^T B^{-1} a,$$
 gdje je $C$ skup kolona nad nekim globalnim skupom. 
@@ -5603,7 +5605,7 @@ Ako je potrebno implementirati varijablu za koju je $x \geq 0$ to radimo kao u p
      \end{itemize}
 \end{itemize}
 Eksportovanje modela za moguće ponovno korištenje se može uraditi pozivom metoda \emph{exportModel}, čiji je argument naziv fajla (.lp ekstenzija).  
- \section{LP alat PuLP}
+ \section{Alat PuLP}
  % http://www.optimization-online.org/DB_FILE/2011/09/3178.pdf
  % https://coin-or.github.io/pulp/main/the_optimisation_process.html
  PuLP je biblioteka visokog nivoa za modelovanje izgrađena u programskom jeziku Python.  
@@ -5718,7 +5720,7 @@ Upisivanje modela u .lp format se vrši pozivom funkcije \emph{writeLP()}, čiji
     print("Vrijednost: ", value(model.objective))    
  \end{verbatim}
  Optimalna vrijednost ove instance je 202.0 a dostiže se za vrijednost varijabli $x = (1, 0, 0)$, te $y_{11}= y_{12}= y_{13} = 1$, dok su ostale vrijednosti 0.
- \section{Primjena Cplex-a na jedan String Problem}
+ \section{Primjena Cplex-a na jedan problem stringova}
  
  % opisati RFLCS problem, modelovati ga:
  U ovoj sekciji modelujemo problem \emph{najdužeg podniza bez ponavljanja}. Ovaj problem kao ulaz prihvata dva (proizvoljna) stringa $s_1$ i $s_2$ nad proizvoljnom abecedom, a kao izlaz vraća string $s$ maksimalne dužine sa sljedećim karakteristikama:  
@@ -5906,9 +5908,9 @@ int main( int argc, char **argv )
 	\bibitem[2]{cite_key2} Hillier, Frederick S. Introduction to operations research. Tata McGraw-Hill Education, 2012.
 	\bibitem[3]{cite_key3}  https://faculty.math.illinois.edu/~mlavrov/
 	 \bibitem[4]{cite_key4}  Bisschop, Johannes. AIMMS optimization modeling. Lulu. com, 2006.
-	  \bibitem[5]{cite_key5} Feillet, Dominique. "A tutorial on column generation and branch-and-price for vehicle routing problems." 4or 8.4 (2010): 407-424.
+	  \bibitem[5]{cite_key5} Feillet, Dominique. ``A tutorial on column generation and branch-and-price for vehicle routing problems.'' 4or 8.4 (2010): 407-424.
 	  \bibitem[6]{cite_key6}  Rebeka Čordaš. Linearno programiranje i primjene. Sveu\v cili\v ste J.J.Strossmayera u Osijeku, diplomski rad (2012)
-	  \bibitem[7]{cite_key7}   Manual, CPLEX User’S. "Ibm ilog cplex optimization studio." Version 12 (1987): 1987-2018.
+	  \bibitem[7]{cite_key7}   Manual, CPLEX User’S. ``Ibm ilog cplex optimization studio.'' Version 12 (1987): 1987-2018.
 	  \bibitem[8]{cite_key8} Mitchell, Stuart, Michael OSullivan, and Iain Dunning. "PuLP: a linear programming toolkit for python." The University of Auckland, Auckland, New Zealand (2011): 65.
 	  \bibitem[9]{cite_key9}    Talbi, El-Ghazali. Metaheuristics: from design to implementation. Vol. 74. John Wiley \& Sons, 2009.
 	  \bibitem[10]{cite_key10}     Vazirani, Vijay V. Approximation algorithms. Springer Science \& Business Media, 2013.
@@ -5916,8 +5918,8 @@ int main( int argc, char **argv )
 	 % Odjel za matematiku
 	   \bibitem[12]{cite_key12}   Raidl, Günther R., and Jakob Puchinger. ``Combining (integer) linear programming techniques and metaheuristics for combinatorial optimization.'' Hybrid metaheuristics (2008): 31-62.
 	     \bibitem[13]{cite_key13}      Rahmaniani, Ragheb, et al. "The Benders decomposition algorithm: A literature review." European Journal of Operational Research 259.3 (2017): 801-817.
-	     \bibitem[14]{cite_key14}    Raidl, Günther R. "Decomposition based hybrid metaheuristics." European journal of operational research 244.1 (2015): 66-76.
-	      \bibitem[15]{cite_key15}  Hansen, Pierre, Nenad Mladenović, and José A. Moreno Pérez. "Variable neighbourhood search: methods and applications." 4OR 6.4 (2008): 319-360.
+	     \bibitem[14]{cite_key14}    Raidl, Günther R. ``Decomposition based hybrid metaheuristics.'' European journal of operational research 244.1 (2015): 66-76.
+	      \bibitem[15]{cite_key15}  Hansen, Pierre, Nenad Mladenović, and José A. Moreno Pérez. ``Variable neighbourhood search: methods and applications.'' 4OR 6.4 (2008): 319-360.
 \end{thebibliography}
 
 \end{document}
