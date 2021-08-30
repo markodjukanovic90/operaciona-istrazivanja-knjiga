@@ -4050,6 +4050,11 @@ $$x =\left(\begin{array}{c}
  
  U ovom odjeljku ćemo objasniti još jednu korisnu tehniku za rješavanje problema linearnog programiranja - Dantzig-Wolfe (DW) dekompoziciju. Ova tehnika je originalno dizajnirana za rješavanje problema linearnog programiranja velikih dimenzija. Osnovna ideja DW dekompozicije je da se na podskup ograničenja polaznog problema primijeni Teorema Minkovskog, odnosno Teorema o reprezentaciji za konveksne poliedre, te da se polazni problem razbije na rješavanje više manjih problema.
  
+ \begin{thm}
+ 	Neka je $P = \{ x \in \mathbb{R}^n \mid Ax \leq b\}$ ograničeni poliedar i neka je $\{x^{(1)}, \ldots, x^{(p)} \}$ skup ekstremnih tačaka od $P$. Tada za sve $x \in P$ vrijedi 
+ 	 $$ x = \sum_{i=1}^p \lambda_i x^{(i)},$$ 
+ 	 gdje je $\lambda_i \geq 0,i=1,\ldots,p$, $\sum_{i=1}^p \lambda_i=1$.
+ \end{thm}
  
  Pođimo od formulacije problema linearnog programiranja
  
