@@ -4202,7 +4202,7 @@ $x\in X$ i $Ax=b$, pa imamo da vrijedi %Za to rješenje $x$ važi
  		\max\  &x_1\\
  		s.t.\  &x_1+3x_2\leqslant \frac94\\
  		 &2x_1-3x_2\leqslant 0\\
- 		&x \in X=\{(x_1,_2):0\leqslant x_1,_2 <\leqslant 1\}.
+ 		&x \in X=\{(x_1,_2):0\leqslant x_{1, 2}  \leqslant 1\}.
  	\end{aligned}
  \end{equation}
  
@@ -4475,7 +4475,7 @@ Sada nađimo pivota oko kolone koja je dodana. Kandidati za izlazak iz baze su i
 	\end{tabular}
 	
 \end{center} 
-  Pročitamo vjrijednost dualnih promjenjivih u posljednjoj vrsti: $y_1 =0, y_2=\frac{1}{5}$ i $\alpha=\frac{3}{5}$.\\ \emph{Iteracija 3.} Prema tome, novi CG potproblem je dat sa 
+  Pročitamo vrijednost dualnih promjenjivih u posljednjoj vrsti: $y_1 =0, y_2=\frac{1}{5}$ i $\alpha=\frac{3}{5}$.\\ \emph{Iteracija 3.} Prema tome, novi CG potproblem je dat sa 
   \begin{align*}
         \max_{x \in X} (1, 0)^T x - (0, \frac{1}{5})\left(\begin{array}{cc}
        	1 & 3 \\
@@ -4483,7 +4483,92 @@ Sada nađimo pivota oko kolone koja je dodana. Kandidati za izlazak iz baze su i
        \end{array}\right)  x   - \frac{3}{5} &= \max_{x \in X}x_1  - \frac{2}{5}x_1 + \frac{3}{5}x_2 - \frac{3}{5} \\
        &= \max_{x \in X} \frac{3}{5}x_1 + \frac{3}{5}x_2 - \frac{3}{5}.
   \end{align*} 
-Optimalna vrijednost CG potproblema se dostiže u $x^{(4)} = (1, 1)^T$ i ona je jednaka $\hat{z}=\frac{3}{5}$. Kako je $\hat{z}>0$, tražićemo novu kolonu koju treba dodati u potproblem. 
+Optimalna vrijednost CG potproblema se dostiže u $x^{4} = (1, 1)^T$ i ona je jednaka $\hat{z}=\frac{3}{5}$. Kako je $\hat{z}>0$, tražićemo novu kolonu koju treba dodati u potproblem. Ova kolona (ako posmatramo problem (\ref{primjer:dw5})) je   data sa 
+\begin{align}
+	V =   \begin{pmatrix}
+		c^T x^4\\
+		A x^4  \\
+		1     \\
+	\end{pmatrix} = \begin{pmatrix}
+		1 \\
+		4  \\
+		-1  \\
+		1\\  
+	\end{pmatrix}
+\end{align}
+Kada pogledamo prethodne vrijednosti kolone $V$ i master problem (\ref{primjer:dw5}), jasno je da ona odgovara koeficijentima varijable $\lambda_4$. Dakle, prethodna kolona je data u odnosu na varijablu $\lambda_4$ početnog problema, ali je sada izražavamo preko trenutne baze (potproblema) vektora $s_1, \lambda_2$ i $\lambda_3$.  Dakle, nakon množenja kolone sa inverzom baze 
+$B^{-1}= 
+\begin{pmatrix}
+	 1 &  \frac{2}{5}   & -\frac{9}{5} \\
+	 0 &  -\frac{1}{5}  & \frac{3}{5}  \\
+	 0 &  -\frac{1}{5}  & \frac{2}{5}  \\ 
+\end{pmatrix} $, koraci opisani u Tabeli \ref{tbl:dw1}, sljedeća kolona je ulazna koja se dodaje u simpleks tabelu:
+
+\begin{center}
+	
+	$\begin{pmatrix}
+		-\frac{3}{5}            \\
+		\frac{9}{5}     \\
+		 \frac{2}{5}       \\
+		\frac{3}{5}    \\
+	\end{pmatrix}$
+\end{center}
+Dakle, imamo simpleks tabelu 
+
+\begin{center}
+	
+	\begin{tabular}{c|cccc|c}
+		$s_1$	    &   1      &    $\frac{2}{5}$          &   -$\frac{9}{5}$       &  $\frac{9}{5} $        &  $\frac{9}{20}$ \\
+		$\lambda_2$  &   0      &    $\frac{1}{5}$         &   $\frac{3}{5}$        &   $\frac{2}{5}$        &  $\frac{3}{5}$             \\
+		$\lambda_3$  &   0      &    -$\frac{1}{5}$        &   $\frac{2}{5}$        &   $\frac{3}{5}$         &  $\frac{2}{5}$            \\ \hline
+		$z$          &   0      &    $\frac{1}{5}$         &  $ \frac{3}{5}$        &   -$\frac{3}{5}$         & $\frac{3}{5}$
+	\end{tabular}
+	
+\end{center} 
+Nađimo sada pivota u dodanoj koloni. Kako je $\frac{9/20}{9/5} < \frac{2/5}{3/5}< \frac{3/5}{2/5}$, slijedi da je pivot element $\frac{9}{5}$.  Sada pivotiramo oko tog elementa na način da se kolona transformiše elementarnim transformacijama po vrstama na kolonu sa svim nulama osim na poziciji pivota, gdje treba da stoji jedinica. Na taj način, simpleks tabela se transformiše u novu simpleks tabelu 
+\begin{center}
+	
+	\begin{tabular}{c|cccc|c}
+		$\lambda_4$	 &   $\frac{5}{9}$      &    $\frac{2}{9}$          &   -1       &  1      &  $\frac{1}{4}$ \\
+		$\lambda_2$  &   -$\frac{2}{9}$    &   $\frac{1}{9}$        &   1        &   0         &  $\frac{1}{2}$        \\
+	    $\lambda_3$  &  -$\frac{1}{3}$     &    -$\frac{1}{3}$      &   1        &   0        &  $\frac{1}{4}$      
+		    \\ \hline
+		$z$          &   $\frac{1}{3}$     &    $\frac{1}{3}$         &  $0$        &  0         & $\frac{3}{4}$
+	\end{tabular}
+	
+\end{center} 
+Iz prethodne tabele pročitamo vrijednost dualnih varijabli: $y_1 =  \frac{1}{3}=y_2$, dok je $\lambda=0$. \\
+\emph{Iteracija 4.} Na osnovu vrijednosti dualnih varijabli, formira se novi column generation potproblem:
+ 
+	 \begin{align*}
+		\max_{x \in X} (1, 0)^T x - (\frac{1}{3}, \frac{1}{3})\left(\begin{array}{cc}
+			1 & 3 \\
+			2 & -3
+		\end{array}\right)  x   - 0 &= \max_{x \in X} (x_1  - x_1 ) = 0    
+	\end{align*} 
+  Iz ovoga zaključujemo da je $\hat{z}=0$, pa iz (\ref{dw8}) slijedi da smo dobili optimum početnog problema i optimalna tačka je data sa 
+\begin{align*}
+  	 x^* &= \frac{1}{2} x^2 + \frac{1}{4} x^3 + \frac{1}{4} x^4  
+  	     = \frac{1}{2} \begin{pmatrix}
+  	     	      1 \\
+  	     	      0
+  	     \end{pmatrix} +
+       \frac{1}{4} \begin{pmatrix}
+       	                  0 \\
+       	                  1
+       \end{pmatrix} +
+   \frac{1}{4} \begin{pmatrix}
+   	                  1 \\
+   	                  1
+   \end{pmatrix}\\
+   &= \begin{pmatrix}
+   	        \frac{1}{2} + 0 + \frac{1}{4} \\
+   	        0 + \frac{1}{4} + \frac{1}{4}
+   \end{pmatrix} = \begin{pmatrix}
+         \frac{3}{4} \\
+         \frac{1}{2}
+  \end{pmatrix}
+\end{align*}
 
 %TODO... prvo izraziti kolone u odnosu na originalni problem, potom prebaciti u odnosu na bazne vektore, ubaciti u prethodnu simpleks tabelu (baznih vektora), pivotirati tabelu, dobiti novu tabelu, izvuci baze, dualne vrijednosti, formirati novi CG problem. 
 
