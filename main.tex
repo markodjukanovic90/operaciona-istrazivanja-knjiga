@@ -4375,7 +4375,7 @@ Kada pogledamo prethodne vrijednosti kolone i master problem (\ref{primjer:dw5})
 	1 & 0 & 0 \\
 	0 & 1 & 0  \\
 	0 & 0 & 1  \\
-\end{pmatrix}$ %da bismo dodali potrebnu kolonu za RMP. 
+\end{pmatrix}. $ %da bismo dodali potrebnu kolonu za RMP. 
 Za to je potrebno izvršiti njenu transformaciju na nove baze čiji su koraci opisani u Tabeli \ref{tbl:dw1}, odakle dobijamo kolonu za dodavanje u RMP:
  
 $$	\begin{pmatrix}
@@ -4425,9 +4425,67 @@ na osnovu prethodne simpleks tabele, dobijamo   vrijednosti dualnih varijabli iz
 	 	2 & -3
 	 \end{array}\right)  x   - 0 = \max_{x \in X}x_1 - x_1 + \frac{3}{2}x_2 = \max_{x \in X} \frac{3}{2}x_2.
 \end{align}
-Rješenje ovog problema je lako dobiti, tj. optimum se dostiže u, recimo,  tački $x^3 = (0, 1)^T$, dok je optimum jednak $\hat{z}= \frac{3}{2}$. Kako je $\hat{z} > 0$, treba da odaberemo novu kolonu koja se dodaje u RMP. 
+Rješenje ovog problema je lako dobiti, tj. optimum se dostiže u, recimo,  tački $x^3 = (0, 1)^T$, dok je optimalna vrijednost jednaka $\hat{z}= \frac{3}{2}$. Kako je $\hat{z} > 0$, treba da odaberemo novu kolonu koja se dodaje u RMP. 
+Ova kolona (ako posmatramo problem (\ref{primjer:dw5})) je   data sa 
+\begin{align}
+	V =   \begin{pmatrix}
+		c^T x^3\\
+		A x^3  \\
+		1     \\
+	\end{pmatrix} = \begin{pmatrix}
+		0 \\
+		3  \\
+		-3  \\
+		1\\  
+	\end{pmatrix}
+\end{align}
 
-TODO... prvo izraziti kolone u odnosu na originalni problem, potom prebaciti u odnosu na bazne vektore, ubaciti u prethodnu simpleks tabelu (baznih vektora), pivotirati tabelu, dobiti novu tabelu, izvuci baze, dualne vrijednosti, formirati novi CG problem. 
+Kada pogledamo prethodne vrijednosti kolone $V$ i master problem (\ref{primjer:dw5}), jasno je da ona odgovara koeficijentima varijable $\lambda_3$. Dakle, prethodna kolona je data u odnosu na varijablu $\lambda_3$ početnog problema, ali je sada izražavamo preko trenutne baze (potproblema) vektora $s_1, s_2$ i $\lambda_2$. Dakle, nakon množenja kolone sa inverzom baze $B^{-1}$, koraci opisani u Tabeli \ref{tbl:dw1}, sljedeća kolona se dodaje u simpleks tabelu:
+
+\begin{center}
+ 
+  $\begin{pmatrix}
+	 -\frac{3}{2}            \\
+	 \frac{9}{2}     \\
+ 	-\frac{3}{2}       \\
+	 \frac{5}{2}    \\
+   \end{pmatrix}$
+\end{center}
+Dakle, dobijamo tabelu 
+
+\begin{center}
+ 
+		\begin{tabular}{c|cccc|c}
+		   $s_1$	    &   1      &   -$\frac{1}{2}$         &   0         &   $\frac{9}{2}$          &  $\frac{9}{4}$ \\
+		   $\lambda_2$  &   0      &    $\frac{1}{2}$         &   0         &  -$ \frac{3}{2}$         &  0             \\
+		   $\lambda_1$  &   0      &    -$\frac{1}{2}$        &   1         &  $\frac{5}{2} $          &  1             \\ \hline
+		   $z$          &   0      &    $\frac{1}{2}$         &   0         &   -$\frac{3}{2}$       & 0  
+	\end{tabular}
+ 
+\end{center} 
+Sada nađimo pivota oko kolone koja je dodana. Kandidati za izlazak iz baze su ili $s_1$ ili $\lambda_2$ dok će mjesto njih ući varijabla $\lambda_3$. Kako je $\frac{9/4}{9/2}=\frac{1}{2} < \frac{1/2}{5/2}=\frac{1}{5}$, imamo da je $\frac{5}{2}$ pivot element. Sada pivotiramo oko tog elementa na način da se kolona transformiše elementarnim transformacijama po vrstama na kolonu sa svim nulama osim na poziciji pivota, gdje treba da stoji jedinica. Na taj način, simpleks tabela se transformiše u novu simpleks tabelu 
+
+\begin{center}
+	
+	\begin{tabular}{c|cccc|c}
+		$s_1$	    &   1      &    $\frac{2}{5}$          &   -$\frac{9}{5}$       &   0          &  $\frac{9}{20}$ \\
+		$\lambda_2$  &   0      &    $\frac{1}{5}$         &   $\frac{3}{5}$        &   0          &  $\frac{3}{5}$             \\
+		$\lambda_3$  &   0      &    -$\frac{1}{5}$        &   $\frac{2}{5}$        &   1          &  $\frac{2}{5}$            \\ \hline
+		$z$          &   0      &    $\frac{1}{5}$         &  $ \frac{3}{5}$        &   0           & $\frac{3}{5}$
+	\end{tabular}
+	
+\end{center} 
+  Pročitamo vjrijednost dualnih promjenjivih u posljednjoj vrsti: $y_1 =0, y_2=\frac{1}{5}$ i $\alpha=\frac{3}{5}$.\\ \emph{Iteracija 3.} Prema tome, novi CG potproblem je dat sa 
+  \begin{align*}
+        \max_{x \in X} (1, 0)^T x - (0, \frac{1}{5})\left(\begin{array}{cc}
+       	1 & 3 \\
+       	2 & -3
+       \end{array}\right)  x   - \frac{3}{5} &= \max_{x \in X}x_1  - \frac{2}{5}x_1 + \frac{3}{5}x_2 - \frac{3}{5} \\
+       &= \max_{x \in X} \frac{3}{5}x_1 + \frac{3}{5}x_2 - \frac{3}{5}.
+  \end{align*} 
+Optimalna vrijednost CG potproblema se dostiže u $x^{(4)} = (1, 1)^T$ i ona je jednaka $\hat{z}=\frac{3}{5}$. Kako je $\hat{z}>0$, tražićemo novu kolonu koju treba dodati u potproblem. 
+
+%TODO... prvo izraziti kolone u odnosu na originalni problem, potom prebaciti u odnosu na bazne vektore, ubaciti u prethodnu simpleks tabelu (baznih vektora), pivotirati tabelu, dobiti novu tabelu, izvuci baze, dualne vrijednosti, formirati novi CG problem. 
 
 
  \chapter{Metode za Nalaženje Dopustivih Rješenja}
