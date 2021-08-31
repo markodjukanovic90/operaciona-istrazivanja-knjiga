@@ -3290,7 +3290,7 @@ Iterativni proves rješavanja RMP problema se može prekinuti i ranije (bez dost
  gdje $a$ sadrži samo nenegativne (cjelobrojne) vrijednosti. 
 % Primijetimo da je cijena svakog paterna po kolonama jednaka za svaku kolonu. 
 Primijetimo da je na osnovu prethodnog (razmatrajući relaksaciju problema  $CSILP$), vrijednosti koeficijenata doprinosa 
-jednaki $\overline{c} = 1 - \sum_{i} A_{j,i} y_i$.  
+jednaki $\overline{c} = 1 - \sum_{i} a_{j,i} y_i$.  
  Dakle, potproblem izgleda ovako:
 $$ \begin{array}{lll}
      &\max& \sum_{i=1}^m y_i a_i \\
@@ -3299,7 +3299,7 @@ $$ \begin{array}{lll}
      & &a_i \in \mathbb{Z},
  \end{array}$$
   gdje su $y_i$ vrijednosti optimuma duala. 
- Ovaj problem je poznat pod nazivom \emph{cjelobrojni problem ruksaka} (eng. integer knapsack problem). Iako je NP-težak, ovaj problem se u praksi rješava na vrlo efikasan način uz pomoć dinamičkog programiranja. 
+ Ovaj problem je poznat pod nazivom \emph{cjelobrojni problem ruksaka} (eng. integer knapsack problem). Iako je NP-težak, on se u praksi rješava na vrlo efikasan način uz pomoć dinamičkog programiranja. 
  
  \begin{figure}[!ht]
      \centering
