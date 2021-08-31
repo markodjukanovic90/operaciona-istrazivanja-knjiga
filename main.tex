@@ -3227,36 +3227,50 @@ gdje je $\lambda=(\lambda_1, \ldots, \lambda_n)$ i $c^\lambda_{i,j} = c_{i,j} + 
 \section{Metod Generisanja Kolona}% ovo je za LP probleme sa velikim brojem kolona, pogledati u https://coral.ise.lehigh.edu/~ted/files/ie418/lectures/Lecture18.pdf file:///C:/Users/PC/Downloads/ColumnGenerationTutorial.pdf
 
 %video: https://www.youtube.com/watch?v=O918V86Grhc
-Često se u praksi nalazi na situaciju da je u LP-u (ili ILP-u) broj varijabli puno (eksponencijalno) veći  u odnosu na broj ograničenja. U osnovi, riječ je o ekstremno velikim modelima sa matricom $A$ velikih dimenzija. Kada je riječ o rješavanju ovakvih problema, veliki dio matrice (tj. njene kolone) nam nikada i neće biti relevantan u rješavanju. Da bi se riješila specifična instanca problema, ono što nam je potrebno su:
+Često se u praksi nalazi na situaciju da je u LP-u (ili ILP-u) broj varijabli puno (eksponencijalno) veći  u odnosu na broj ograničenja. U osnovi, riječ je o ekstremno velikim modelima sa matricom $A$ velikih dimenzija. Kada je riječ o rješavanju ovakvih problema, veliki dio matrice (tj. njene kolone) nam obično nikada i neće biti relevantan u rješavanju. Da bi se riješila specifična instanca problema, ono što nam je potrebno su:
 \begin{itemize}
     \item Ograničenja koja se vežu uz optimalnost.
     \item Varijable koje su bazne u optimalnom rješenju.
 \end{itemize}
-Prema tome, ono što je potrebno su ograničenja čije su odgovarajuće   dualne vrijednosti pozitivne, kao i varijable koje dobijaju pozitivne vrijednosti za optimalno rješenje (gledajući vektor doprinosa $\overline{c}$). Ako bismo imali ove varijable i ograničenja na raspolaganju od početka, problem bi riješili veoma brzo. Međutim, ova informacija nam nije besplatna.  U simpleks metodi, vektor doprinosa je potrebno računati u svakoj iteraciji, što nije efikasno ako je matrica $A$ velikih dimenzija. Takođe, vrijeme potrebno za generisanje simpleks tabele bi bilo ogromno.  Oba ova problema su rješiva uz pomoć \emph{metode generisanja kolona}.  Ideja ovog metoda se sastoji u sljedećem:
+Dakle, ono što je potrebno su ograničenja čije su odgovarajuće dualne vrijednosti pozitivne, kao i varijable koje imaju pozitivne vrijednosti koeficijenata doprinosa za optimalno rješenje (tj. vektor  $\overline{c}$). Ako bismo imali ove varijable i ograničenja na raspolaganju od početka, problem bi riješili veoma brzo. Međutim, ovo nije  besplatna informacija.  U simpleks metodi, vektor doprinosa je potrebno računati u svakoj iteraciji, što nije efikasno ako je matrica $A$ velikih dimenzija. Takođe, vrijeme potrebno za generisanje simpleks tabele bi bilo ogromno.  Oba ova problema su rješiva uz pomoć \emph{metode generisanja kolona}.  Ideja ovog metoda se sastoji u sljedećem. 
 \begin{itemize}
     \item Krenimo sa ``obećavajućim'' podskupom $S$ kolona matrice $A$; 
-    \item Riješimo LP na podskupu kolona $S$; 
+    \item Riješimo restrikovani LP na odabrnom podskupu kolona $S$; 
     \item Procijenimo ostale kolone i dodajmo u $S$ one sa negativnim 
           cijenama doprinosa;
     \item Itrerativno pozivamo perthodna dva koraka dok god postoje kolone   sa negativnim doprinosom koje nisu u $S$.
 \end{itemize}
-Tehnički zapisano, krećemo od \emph{restrikovanog master problema}
+Tehnički zapisano, krećemo od \emph{restrikovanog master problema} (RMP)
 \begin{align*}
     &\min c^T x \\
     &\mbox{s.t} \\
-    & \sum_{i \in I} A_i x_i  \leq b \hspace{2cm} (R)\\
+    & \sum_{i \in I} A_i x_i  \leq b \hspace{2cm} (RMP)\\
     & x \geq 0. 
 \end{align*}
-kojeg riješimo, te izračunamo optimalno dualno rješenje. Sada je potrebno izgenerisati novu kolonu $A_j$ za koju je koeficijent doprinosa negativan, tj. $\overline{c_j} = c_j - c_B^T B^{-1}A_j < 0$.
+gdje $I$ inicijalizujemo kao skup kolona kojie čine inicijalno BDR za RMP (i po mogućnosti neke druge kolone za koje mislimo da su ``bitne'' u kontekstu problema).  Riješimo RMP,  te izračunamo odgovarajuće optimalno dualno rješenje. Sada je potrebno naći varaijblu $x_j$ i odgovarajuću kolonu $A_j$ za koju je koeficijent doprinosa negativan, tj. $\overline{c_j} = c_j - c_B^T B^{-1}A_j < 0$.
 %Pogledati: https://www.youtube.com/watch?v=0SV99VJaGzw
-Ovo se može uraditi rješavanjem \emph{potproblema}:
-$$\min_{a \in C} c_a - c_B^T B^{-1} a,$$
-gdje je $C$ skup kolona nad nekim globalnim skupom. 
+Ovo se može uraditi rješavanjem \emph{column generating potproblema} (CGSP):
+$$\min_{a \in C} \overline{c_j} = \min_{a \in C} c_a - c_B^T B^{-1} a,$$
+gdje je $C$ skup kolona nad nekim globalnim skupom. Za LP problem možemo staviti $C = \{1,\ldots,n\}$. 
 
-Ako je rješenje problema kolona $a \in C$ čija je vrijednost strogo manja od 0, dodamo kolonu u skup $S$, te riješimo \emph{restrikovani problem} na novom skupu kolona. Ovaj metod se još naziva \emph{generički metod generisanja kolona}.  
+Ako je rješenje problema kolona $a \in C$ za koju je $\overline{c_a}<0$, dodamo odgovarajuću $A_a$ u skup $S$, te riješimo  RMP na novom skupu kolona. Ako ne postoji takva kolona, onda je rješenje RMP takođe optimalno i za početni problem. %Ovaj metod se još naziva \emph{generički metod generisanja kolona}.   
+ Proces dodavanja kolona se nastavlja sve dok postoji kolona $a\in C$ sa negativnom cijenom doprinosa. 
+
 Postoji mnogo pristupa kako ažurirati skup $S$ tokom iteracija. 
 Najjednostavniji se tiče zadržavanja svake kolone koja je do sada izgenerisana  u skup $S$ i dodati novu u postojeći skup. Naprednija strategija se tiče izbacivanja onih kolona iz skupa $S$ koje su nebazne u svakoj iteraciji. 
- U nastavku dajemo primjer primjene \emph{metoda generisanja kolona} na poznatom \emph{Cutting stock} problemu. 
+
+\emph{Bazna column generation šema.} U osnovi, šema se sastoji od dva koraka:
+\begin{enumerate}
+	\item Prvo izaberemo za ulazne kolone one sa najvećim negativnim koeficijentom doprinosa među varijablama koje odgovaraju skupu $I$.
+	\item Jednom kada su svi koeficijenti nenegativni (tj. kada smo našli optimalnu vrijednost za  RMP), tražimo nove varijable (kolone) van skupa $I$ (rješavajući CGSP) koje će biti ubačene u $I$. 
+\end{enumerate}
+Ako u koraku 1 za skup $I$ uzmemo bazne kolone, u svakom koraku pri rješavanju CGSP dobijamo kolonu koja ulazi kao bazna i zamjenjuje kolonu iz $I$. To znači da rješavanje RMP traje samo jednu iteraciju (simpleks metoda), jer uvijek imamo $m$ kolona i novu ulaznu kolonu $A_a$. Dakle, ovaj proces ne uzima mnogo memorije i rješavanje RMP je efikasno. Težište je ovdje prebačeno na korak 2 i rješavanje CGSP. Ako ne postoji efikasan način rješavanja ovog problema, onda efikasna primjena CG frejmvorka je nerealna.  
+ 
+
+Iterativni proves rješavanja RMP problema se može prekinuti i ranije (bez dostizanja optimalnog rješenja početnog problema), usljed velikog broja iteracija,  iako je moguće da postoje kolona van RMP problema koje će eventualno ući u konstrukciju optimalne baze.  Takođe, ako RMP nije riješen do optimalnosti u nekoj iteraciji, ali CGSP jeste, i dalje se garantuje rješavanje početnog (LP) problema do optimalnosti kada se (master) iteracije prekinu. Prema tome, rješavanje RMP problema u svakoj iteraciji nije toliko bitno dok god rješavamo CGSP do optimalnosti u svakom koraku. Obruto ne vrijedi:   ako bi iskoristili neku heuristiku za rješavanje CGSP, onda se optimalnost početnog LP-a ne može garantovati. Razlog je vrlo jednostavan, heuristika treba da nađe bilo koju kolonu sa negativnim koeficijentom doprinosa koja će biti ubačena u RMP, čine se proces (uspješno) nastavlja. Ali, ako heuristika ne uspije u nalasku takve kolone, to ne znači da takva kolona ne postoji. 
+
+
+ U nastavku dajemo primjenu \emph{metode generisanja kolona} na poznatom \emph{Cutting stock} problemu. 
  
  \emph{Problem}. Tvornica papira proizvodi rolne papira fiksne širine  $W$. 
  Kupci naručuju različit broj rolni različite širine $w \in \mathbb{R}^m$, dok je sa vektorom $b \in \mathbb{R}^m$ dat zahtjev (broj naručenih rolni).  Zadatak je pronaći optimalan način  rezanja velike rolne da bi se zahtjevi ispunili, a smanjio otpad.  
