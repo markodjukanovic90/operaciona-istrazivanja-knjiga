@@ -3291,7 +3291,7 @@ Iterativni proves rješavanja RMP problema se može prekinuti i ranije (bez dost
 % Primijetimo da je cijena svakog paterna po kolonama jednaka za svaku kolonu. 
 Primijetimo da je na osnovu prethodnog (razmatrajući relaksaciju problema  $CSILP$), vrijednosti koeficijenata doprinosa 
 jednaki $\overline{c} = 1 - \sum_{i} a_{j,i} y_i$.  
- Dakle, potproblem izgleda ovako:
+ Dakle, CG potproblem izgleda ovako:
 $$ \begin{array}{lll}
      &\max& \sum_{i=1}^m y_i a_i \\
      &  &\sum_{i} w_i a_i \leq W \hspace{2cm} (CGP)\\
@@ -3319,7 +3319,197 @@ $$ \begin{array}{lll}
  \end{enumerate}
  Primijetimo da je dodavanje nove kolone u $S$ odgovara dodavanju novog obrasca (u rješenje). 
  
- %Za uraditi: https://ocw.mit.edu/courses/sloan-school-of-management/15-083j-integer-programming-and-combinatorial-optimization-fall-2009/lecture-notes/ (Lekcija 19-25)
+ \emph{Primjer.} Riješimo sada jednu instancu ovog problema pomocu CG frejmvorka. Recimo da imamo $W = 15$, te tri narudžbe za sječenje:
+ \begin{enumerate}
+ 	\item stavka: $b_1=80$ rolni dužine 4;
+ 	\item stavka: $b_2=50$ rolni dužine 6;
+ 	\item stavka: $b_3=100$ rolni dužine 7. 
+ \end{enumerate}
+ Označimo sa $A_j = \begin{pmatrix}
+                          a_4 \\
+                          a_6 \\
+                          a_7
+                   \end{pmatrix}$
+               je patern $j$, koji označava koliko od kojih ronli smo ugradili u veliku rolnu na jediničnu širinu. Enumerišimo sve paterne i otpad koji se generiše njime: 
+               $$A_1 = 
+               \begin{pmatrix}
+               	     3 \\
+               	     0 \\
+               	     0  
+               \end{pmatrix},
+               A_2=\begin{pmatrix}
+                 	0 \\
+                	2 \\
+                	0  
+               \end{pmatrix}, 
+           A_3=\begin{pmatrix}
+           	0 \\
+           	0 \\
+           	2  
+         \end{pmatrix},
+           A_4=  \begin{pmatrix}
+           	2 \\
+           	0 \\
+           	1  
+           \end{pmatrix},
+       A_5 = \begin{pmatrix}
+       	2 \\
+       	1 \\
+       	0  
+       \end{pmatrix},
+   A_6 =\begin{pmatrix}
+      	0 \\
+        1 \\
+      	1  
+   \end{pmatrix},$$
+sa veličinom otpada 
+$$ waste_1 = 3, waste_2 = 3, waste_3 = 1, waste_4 = 0, waste_5 = 1, waste_6 = 2,$$
+redom. 
+ILP model koji odgovara gore ulaznim podacima je sljedeći:
+\begin{align*}
+	 &\min x_1 + x_2 + x_3 + x_4 + x_5 + x_6 \\
+	 &s.t. \\
+	 &\begin{pmatrix}
+	 	3 \\
+	 	0 \\
+	 	0  
+	 \end{pmatrix} x_1 + \begin{pmatrix}
+	 0 \\
+	 2 \\
+	 0  
+ \end{pmatrix} x_2 +\begin{pmatrix}
+ 0 \\
+ 0 \\
+ 2  
+\end{pmatrix} x_3 + 
+ \begin{pmatrix}
+	2 \\
+	0 \\
+	1  
+\end{pmatrix} x_4 + 
+ \begin{pmatrix}
+	2 \\
+	1 \\
+	0  
+\end{pmatrix} x_5 + 
+\begin{pmatrix}
+	0 \\
+	1 \\
+	1  
+\end{pmatrix} x_6 = \begin{pmatrix}
+      80 \\
+      50 \\
+      100
+\end{pmatrix} \\
+& x_i \geq 0, x_i \in \mathbb{Z}, i=1,\ldots,6.
+\end{align*}
+ Uzmimo prve tri varijable $x_1, x_2$ i $x_3$ koji će generisati početni skup kolona $I$.
+ Dakle, imamo sljedeći restrikovani MP:
+ \begin{align*}
+ 	 &\min x_1 + x_2 + x_3 \\
+ 	 & s.t. \\
+ 	 &\begin{pmatrix}
+ 	 	3 \\
+ 	 	0 \\
+ 	 	0  
+ 	 \end{pmatrix} x_1 + \begin{pmatrix}
+ 	 	0 \\
+ 	 	2 \\
+ 	 	0  
+ 	 \end{pmatrix} x_2 +\begin{pmatrix}
+ 	 	0 \\
+ 	 	0 \\
+ 	 	2  
+ 	 \end{pmatrix} x_3 = \begin{pmatrix}
+  	     80 \\
+  	     50 \\
+  	     100
+  \end{pmatrix} \\
+  & x_i \geq 0, x_i \in \mathbb{Z}, i=1,2,3.
+ \end{align*}  
+Da bi problem gledali sa jednostavnije strane, izbacimo uslove integralnosti (cjelobrojnosti promjenjivih). Tada ovaj problem možemo da riješimo uz pomoć simpleks metoda gdje je 
+$B^{-1} =\begin{pmatrix}
+	    \frac{1}{3} & 0 & 0 \\
+	    0 & \frac{1}{2} & 0  \\
+	    0 &   0 & \frac{1}{2}
+\end{pmatrix}$ a završna simpleks tabela ima oblik 
+
+\begin{center}
+ 
+\begin{tabular}{cccc|c}
+	  $x_1$ &     $\frac{1}{3}$  &   0 & 0  & $\frac{80}{3}$ \\
+	  $x_2$ &     0              &  $\frac{1}{2}$  & 0 & $25$ \\
+	  $x_3$ &     0              &  0    &  $\frac{1}{2}$  & 50 \\ \hline
+	  $z$   &  $\frac{1}{3}$     &  $\frac{1}{2}$   &  $\frac{1}{2}$ & $\frac{305}{3}$ 
+\end{tabular}
+\end{center}
+Sljedeći korak je naći kolonu čija je koeficijent doprinosa negativan i upaciti je potom u restrikovani MP da bi se trenutno rješenje poboljšalo. Treba da riješimo column generating potproblem
+\begin{align}
+	\min_{i=1,\ldots,n} \overline{c_j} = \min_{i=1,\ldots,n} 1 - y^T N
+\end{align}
+gdje su $N$ vektori (kolone) koji odgovaraju nebaznim varijablama. Ovaj problem je ekvivalentan rješavanju problema
+\begin{align}
+	\max_{j=1,\ldots,n} y^T A_j,
+\end{align}
+gdje su $A_j$ paterni, $j=1,\ldots, 6$. 
+Ako je rješenje veće od 0, optimalno rješenje nađeno rješavanjem prethodnog RMP je optimalno i za početni problem. Inače, biramo varijablu (i odgovarajuću kolonu) sa minimalnim negativnim doprinosom koju potom ubacujemo u RMP. Kako je svaki patern dat u opštem slučaju kao $A_j = \begin{pmatrix}
+	a_4 \\
+	a_6 \\
+	a_7
+\end{pmatrix}$, CG potproblem se svodi na sljedeći optimizacioni problem:
+\begin{align}
+	 \max y_1 a_4 + y_2 a_6 + y_3 a_7  
+\end{align}
+uz zadovoljenje uslova o maksimalnoj širini
+\begin{align}
+   &	4 a_4 + 6 a_6 + 7 a_7 \leq 15 \\
+   &	a_4, a_6, a_7 \geq 0, a_4, a_6, a_7 \in \mathbb{Z}.
+\end{align}
+kako smo to i ranije pomenuli, ovaj problem je klasični problem ruksaka koji se u praksi rješava veoma efikasno. Dakle, ako je rješenje problema ruksaka manje ili jednako od 1, trenutno najbolje rješenje je optimalno rješenje. U protivnom, optimalno rješenje $(a_4^*, a_6^*, a_7^*)^T$ ulazi kao nova kolona u RMP. Na osnovi prethodne simpleks tabele imamo: $y_1 = \frac{1}{3}, y_2 = y_3 = \frac{1}{2}$, pa treba da riješimo sljedeći CG problem:
+\begin{align*}
+      &\frac{1}{3} a_4 + \frac{1}{2} a_6 + \frac{1}{2} a_7 \\
+      & 4 a_4 + 6 a_6 + 7 a_7 \leq 15 \\
+      & 	a_4, a_6, a_7 \geq 0, a_4, a_6, a_7 \in \mathbb{Z}.
+\end{align*}
+Uz pomoć algoritma dinamičkog programiranja riješimo ovaj problem, pa dobijamo rješenje 
+$(a_4^*, a_6^*, a_7^*)^T =  (2, 0, 1)^T=A_4$ optimalne vrijednosti $\frac{7}{6}$. Prekonvertujmo vektor $\begin{pmatrix}
+	2\\
+    0 \\
+    1
+\end{pmatrix}$
+na bazu koja je generisana vektorima baze $x_1$, $x_2$ i $x_3$.  Iz toga slijedi da vektor 
+$$ B^{-1}A_4 = \begin{pmatrix}
+	  \frac{2}{3} \\
+	  0           \\
+	  \frac{1}{3}
+\end{pmatrix}$$ ulazi u novu simpleks tabelu (uz redukovanu cijenu doprinosa od -(1- $\frac{7}{6}$)= $\frac{1}{6}$):
+
+\begin{center}
+	
+	\begin{tabular}{ccccc|c}
+		$x_1$ &     $\frac{1}{3}$  &   0 & 0  &      $ \frac{2}{3}$           & $\frac{80}{3}$ \\
+		$x_2$ &     0              &  $\frac{1}{2}$  & 0     & 0                 &     $25$ \\
+		$x_3$ &     0              &  0    &  $\frac{1}{2}$  & $ \frac{1}{3}$    & 50 \\ \hline
+		$z$   &  $\frac{1}{3}$     &  $\frac{1}{2}$   &  $\frac{1}{2}$ &   $\frac{1}{6}$   & $\frac{305}{3}$ 
+	\end{tabular}
+\end{center}
+U novododanoj koloni tražimo pivot element (kao i u simpleks metodi). Lako je vidjeti da je pivot element $\frac{2}{3}$, pa radeći elementarne transformacije po vrstama oko pivota, dobijamo simpleks tabelu:
+\begin{center}
+	\begin{tabular}{ccccc| c}
+		  $x_4$ & $\frac{1}{2}$ & 0 & 0 & 1 & 40 \\
+		  $x_2$ & 0 & $\frac{1}{2}$ & 0 & 0 & 25 \\
+		  $x_3$ & -$\frac{1}{4}$ & 0 & $\frac{1}{2}$ & 0 & 30 \\ \hline
+		  z  & $\frac{1}{4}$ & $\frac{1}{2}$ & $\frac{1}{2}$ & 0 & 95 
+	\end{tabular}
+\end{center}
+
+Dalje, generišimo novi CG potproblem čitajući vrijednost dualnih promjenjivih iz prethodne simpleks tabele: $y_1 = \frac{1}{4}$, $y_2 = \frac{1}{2}$, $y_3= \frac{1}{2}$, a dobijamo novi potproblem:
+\begin{align*}
+	 \frac{1}{4} a_4 + \frac{1}{2} a_6 + \frac{1}{2} a_7
+\end{align*}
+uz uslove nenegativnosti i kapaciteta i integralnosti (cjelobrojnosti). Rješavajući problem uz pomoć dinamičkog problema, dobijamo optimalno rješenje $A_5 = (2,1,0)^T$, dok je vrijednost optimuma 1, odakle slijedi da je optimum nađen sa prethodnim rješenjem (ne postoji više ulaznih kolona koje se dodaju u RMP), i ono je jednako 95, dok je rješenje dato sa $x_1^* = 0, x_2^* = 25, x_3^*=30, x_4^*= 40$. Dakle, koristimo samo 3 različita paterna za sječenje. 
+
+ %Za uraditi:  https://ocw.mit.edu/courses/sloan-school-of-management/15-083j-integer-programming-and-combinatorial-optimization-fall-2009/lecture-notes/ (Lekcija 19-25)
  
  \newpage
  
