@@ -2300,22 +2300,22 @@ Sve ove nejednakosti su donje granice. Prema tome, ako $x=7$, vidimo da će pro�
 Tada, donje i gornje granice za $y$ postaju uslovi (pogledati gore): $y \leq 6, y \geq 4, y \leq 4$ te $y \geq 0$. Prema tome, možemo staviti $y=4$ i naći dopustivo rješenje. 
 
 %kompleksnost i Farkasova lema...
-%  dualna simpleks metoda ? 
+%  dualna simpleks metoda ? https://www.youtube.com/watch?v=lyNHVnT9zVk&list=PLY9yf2-4yyeT0Jh80w5yuevm0o9lAAUJg&index=40
 \newpage
 \chapter{Cjelobrojno Programiranje}
 
 %https://www.google.com/url?sa=t&source=web&rct=j&url=https://web.mit.edu/15.053/www/AMP-Chapter-09.pdf&ved=2ahUKEwiN0cef_f7xAhU0CRAIHWLqCw0QFjAfegQILBAC&usg=AOvVaw1cQCbZJQbc55Z0VLPue2ul
-Nije realno očekivati da varijable odluke dobijaju neprekidne vrijednosti u svim problemima. Recimo, ako se zahtjeva u problemu rasporeda ljudskih resursa no smjenama koje se ti?u minimalnog broja osoblja u smjenu. Ovaj broj je cjelobrojan, preciznije prirodan broj. U slučaju da su sve varijable odluke u modelu problema cjelobrojne, riječ je o problemu cjelobrojnog programiranja (eng. \emph{Integer programming}). 
-U ovom odjeljku ćemo se pozabaviti   \emph{cjelobrojnim linearnim programiranjem} (ILP) gdje se zahtjeva da funkcija cilja kao i ograničenja u modelu budu linearni u svojim varijablama, uz varaijble koje su cjelobrojne. Prema tome, ILP ima opšti oblik:
+Nije realno očekivati da varijable odluke mogu da dobiju neprekidne vrijednosti u svim problemima. Recimo, ograničenja u problemu rasporeda ljudskih resursa po smjenama koje se tiču minimalnog broja osoblja u smjenama zahtjevaju varijable koje su diskretnog tipa. U slučaju da su sve varijable odluke u modelu problema cjelobrojne, riječ je o problemu cjelobrojnog programiranja (eng. \emph{Integer programming}). 
+U ovom odjeljku ćemo se pozabaviti   \emph{cjelobrojnim linearnim programiranjem} (ILP) gdje se još pored integralnosti (cjelobrojnosti) varaijbli zahtjeva da funkcija cilja kao i ograničenja u modelu budu linearni u svojim varijablama. Prema tome, ILP ima opšti oblik:
 \begin{align}
     & \max c^T x \nonumber\\
     & A x \leq b \nonumber \\
     & x \geq 0 \nonumber\\
-    & x_i \in \mathbb{Z}, \mbox{ za sve } i \label{ilp-formulation}
+    & x_i \in \mathbb{Z}, \mbox{ za sve } i. \label{ilp-formulation}
 \end{align}
 U nastavku modelujmo nekoliko poznatih problema uz pomoć paradigme ILP-a. 
 
-\section{Modelovanje uz pomoć ILP-a}
+\section{Modelovanje nekih problema}
 
 \emph{Problem ruksaka.} Neka je dato $n$ proizvoda i neka je težina $i$-tog proizvoda jednaka $w_i$, dok je vrijednost jednaka $c_i$, $i=1,\ldots,n$. Koje proizvode treba da stavimo u ruksak kapaciteta $C$ tako da je vrijednost proizvoda u ruksaku maksimalna. \\
 \emph{Rješenje}. Definišimo varijable $x_i$ koje dobijaju vrijednost 1 ako odaberemo $i$-ti proizvod kojieg stavljamo u ruksak, u protivnom 0, $i=1,\ldots,n$. Ograničenje kapaciteta ruksaka se modeluje ograničenjem $\sum_{i=1}^n w_i x_i \leq C$, dok je funkcija cilja ona koja maksimizuje profit odabranih proizvoda, dakle modeluje se uz pomoć linearne kombinacije $f(x) = \sum_{i=1}^n c_i x_i$. Time smo modelovali ovaj problem.
