@@ -2771,19 +2771,19 @@ Na Slici~\ref{fig:bnb_ilp} je prikazano B\&B drvo sljedećeg ILP-a:
 
 
 \section{Implicitna Enumeracija}
-Posmatrajmo sada specijalnu B\&B proceduru koja se može primijeniti na problem Binarnog cjelobrojnog programiranja, gdje su sve diskretne varijable u suštini predstavljaju binarne odluke. Ovaj algoritam ne zahtjeva da se izvedu rješenja LP-relaksacija, već rad sa kompletnom enumeracijom. Dakle, izlistaju se sve binarne kombinacije za varijable i izabere se ona koja je dopustiva i daje najveću vrijednost ciljnoj funkciji. Ovaj pristup radi dobro na problemima malih dimenzija gdje postoji svega nekoliko binarnih varijabli u modelu. Primijetimo da u problemu sa $n$ binarnih varijabli imamo da je broj kombinacija za varijable odluke jednak $2^n$ (dakle, raste eksponencijalnom brzinom s obzirom na veličinu ulaza). Ideja ove B\&B procedure je u svakom koraku ovog metoda fiksirati neku od varijabli na 0 ili 1, dobijajući dva nova potproblema koja treba da budu riješena. 
+Posmatrajmo sada specijalnu B\&B proceduru koja se može primijeniti na problem Binarnog cjelobrojnog programiranja, gdje   sve diskretne varijable u suštini predstavljaju logičke odluke. Ovaj algoritam ne zahtjeva da se izvedu rješenja LP-relaksacija, već radi sa kompletnom enumeracijom. Dakle, izlistaju se sve binarne kombinacije za varijable i izabere se ona koja je dopustiva i daje najveću vrijednost ciljnoj funkciji. Ovaj pristup radi dobro na problemima malih dimenzija gdje postoji svega nekoliko binarnih varijabli u modelu. Primijetimo da u problemu sa $n$ binarnih varijabli,  broj kombinacija za varijable odluke jednak $2^n$ (dakle, raste eksponencijalnom brzinom u odnosu na veličinu ulaza). Ideja implicitne enumeracije je u svakom koraku ovog metoda fiksirati neku od varijabli na 0 ili 1, dobijajući dva nova potproblema koja treba da budu riješena te implicitno određivanje da li su neophodna dalja fiksiranja.  
 
 Fiksiramo $i=1$ i $LB=-\infty$. 
 
 \begin{enumerate}
-    \item U početnom problemu  $x_j=0$ za sve $j$ (kažemo da je svaka varijabla \emph{slobodna}). Ako je dobijeno rješenje dopustivo, ažuriramo vrijednost u LB.
+    \item U početnom problemu  stavimo $x_j=0$ za sve $j$ (kažemo da je svaka varijabla \emph{slobodna}). Ako je dobijeno rješenje dopustivo, ažuriramo vrijednost u $LB$.
     \item Fiksiramo $x_i=0$  i $x_i=1$, te dobijamo dva potproblema koja treba riješiti.
-    \item  Provjerimo u oba potproblema da li je tako fiksirano rješenje dopustivo. U slučaju da jeste, na osnovu koeficijenata u ciljnoj funkciji (pozitivni ili negativni) ako su svi  ostali koeficijenti nefiksirani (neslobodnih) varijabli negativni, zaključujemo da je to rješenje najbolje za fiksirane varijable u potproblemu i dalje se ovaj protproblem više ne dijeli. Ako svi takvi koeficijenti nisu negativni, idemo na korak 3. Primijetimo da   potproblem sa fiksnim $x_i=0$ ne mora da provjeravamo, jer je on isti kao i početni (korjeni) problem.
+    \item  Provjerimo za oba potproblema da li je tako fiksirano rješenje dopustivo. U slučaju da jeste, na osnovu koeficijenata u ciljnoj funkciji (pozitivni ili negativni) ako su svi  ostali koeficijenti nefiksiranih (neslobodnih) varijabli negativni, zaključujemo da je to rješenje najbolje za fiksirane varijable u potproblemu i dalje se ovaj protproblem više ne dijeli. Ako svi takvi koeficijenti nisu negativni, idemo na korak 4. Primijetimo da  potproblem sa fiksnim $x_i=0$ ne mora da provjeravamo, jer je on isti kao i korjeni (korjeni) problem.
     \item Azuriramo $i = i+1$ i idemo na korak 3 sa potproblemima koji mogu dalje da se dijele, dok god je $i \leq n$. Inače, izlazimo iz petlje sa optimalnim rješenjem (LB). 
 \end{enumerate}
  Primijetimo da i u ovom slučaju dobijamo drvo odluke (binarno drvo) gdje su na granama koje spajaju čvor na dubini $i$ sa čvorom na dubini $i+1$  ugrađene odluke da li je varijabla $x_i$ fiksirana na 0 ili 1.
 
-Na Slici~(\ref{fig:bnb_binary}) je dato ovakvo drvo odlučivanja za problem 
+Na Slici~\ref{fig:bnb_binary} je dato drvo odlučivanja za problem 
 \begin{align}
    &\max -8 x_1 - 2x_2 - 4x_3 - 7x_4 -5x_5 + 10 \\
    & -3 x_1 - 3 x_2 + x_3 + 2 x_4 + 3 x_5 \leq -2 \\
@@ -2855,9 +2855,9 @@ Prodiskutujmo ovo rješenje po čvorovima dobijenog stabla:
   \end{itemize}
   Potpuna enumeracija bi generisala 32 čvora za gornji problem. Implicitna enumeracija generiše svega 11 čvorova. 
  
-\section{Metoda Odsjecajućih Ravni}
+\section{Metoda odsijecajućih ravni}
   
-\emph{Metoda odsjecajućih ravni} rješava cjelobrojne programe mijenjanjem rješenja linearnog programiranja sve dok se ne dobije cjelobrojno rješenje. Metoda ne radi  na principu dijeljenja dopustivog regiona problema na podregione, kao u B\&B metodama, već radi sa jednim linearnim programom, kojeg poboljšava dodavanjem novih ograničenja. Nova ograničenja sukcesivno smanjuju dopustiv region dok se ne pronađe cjelobrojno optimalno rješenje.   
+\emph{Metoda odsijecajućih ravni} rješava cjelobrojne programe mijenjanjem rješenja linearnog programiranja sve dok se ne dobije cjelobrojno rješenje. Metoda ne radi  na principu dijeljenja dopustivog regiona problema na podregione, kao u B\&B metodama, već radi sa samo jednim linearnim programom, kojeg poboljšava iterativnim dodavanjem novih ograničenja. Nova ograničenja sukcesivno smanjuju dopustiv region dok se ne pronađe cjelobrojno optimalno rješenje.   
  Istorijski gledano, to je prvi algoritam razvijen za probleme cjelobrojno programiranja za koji se dokazalo da konvergira u konačnom broju
 koraka. Iako se algoritam generalno smatra   neefikasnim, ovaj metod je dovelo do konstrukcije drugih, učinkovitijih algoritama.  
   
@@ -2869,16 +2869,16 @@ Recimo, ako imamo sljedeći problem ILP-a:
     &\max z = 3x_1 + 4 x_2 \\
     &\mbox{s.t.} \\
     &5x_1 + 8x_1 \leq 24 \\
-    & x_1, x_2 \geq 0, x_1,x_2\in \mathbb{Z}
+    & x_1, x_2 \geq 0, x_1,x_2\in \mathbb{Z},
 \end{align*}
 jedna njegova validna nejednakost je $z \leq 5$. 
 
 \begin{definition}
-      Konveksni omotač za problem problema~(\ref{ilp-formulation}) je najmanji (dopustivi) poliedar nekog LP-a koji sadrži sve cjelobrojne tačke tog problema.
+      Konveksni omotač za problem  ~(\ref{ilp-formulation}) je najmanji (dopustivi) poliedar nekog LP-a koji sadrži sve cjelobrojne tačke tog problema.
 \end{definition}
-Ako riješimo LP problem čiji je dopustivi skup konveksni omotač cjelobrojnih tačaka, onda je to rješenje optimalno za odgovarajući ILP. Međutim ovaj problem je  NP-težak, pa prema tome nije očekivano da se takav konveksni omotač može naći u generalnom slučaju. Nalazak korisnih ograničenja (ne svih) koja učestvuju u izgradnji konveksnog omotača je takođe veoma težak zadatak, mada je ovo ponekad moguće (kao u slučaju problema trgovačkog putnika). Prema tome, ostaje nam naći korisne odsjecajuće ravni neovisno od problema nalaska konveksnog omotača, što je i najčešći slučaj u praksi. 
+Ako riješimo LP problem čiji je dopustivi skup konveksni omotač cjelobrojnih tačaka, onda je to rješenje optimalno za odgovarajući ILP. Međutim ovaj problem je  NP-težak, pa prema tome nije očekivano da se takav konveksni omotač može naći u generalnom slučaju. Nalazak korisnih ograničenja (ne svih) koja učestvuju u izgradnji konveksnog omotača je takođe veoma težak zadatak, mada je ovo ponekad i moguće (kao u slučaju problema trgovačkog putnika). Prema tome, ostaje nam naći korisne odsjecajuće ravni neovisno od problema nalaska konveksnog omotača, što se najčeše  u praksi i radi. 
 
-Pogledajmo   \emph{problem pakovanja skupa} dat na sljedeći način. Neka je data kolekcija $D$ rombova (u $\mathbb{R}^2$). 
+Posmatrajmo   \emph{problem pakovanja skupa} dat na sljedeći način. Neka je data kolekcija $D$ rombova (u $\mathbb{R}^2$). 
 Zadatak se sastoji od odabira maksimalnog broja rombova tako da se niti jedan od njih ne prepliće (presjeca).  Za rombove kažemo da se prepliću ako imaju barem jednu zajedničku tačku u presjeku. 
 Neka je $O$ skup svih parova rombova koji se prepliću. Sljedeći ILP odgovara ovom problemu:
 \begin{align*}
@@ -2889,13 +2889,13 @@ Neka je $O$ skup svih parova rombova koji se prepliću. Sljedeći ILP odgovara o
 gdje je $x_d$ binaran varijabla koja dobija vrijednost 1 ako je romb $d$ selektovan, inače 0. 
 Kao što vidimo, broj binarnih varijabli u praksi može biti veoma velik, što nas rješava mogućnosti efikasne primjene neke od B\&B tehnika.
 
-Pokušajmo dodati odsjecajuće ravni u prethodni ILP. Za svaku tačku $c$, enumerišimo sve one (moguće) rombove iz $D$ koje sadrže ovu tačku. Označimo takav skup sa $D(c)$. Prema tome, za svaki skup $D(c)$, najviše jedan romb može da bude selektovan. Sada dodajemo sljedeća ograničenja u prethodni model
+Pokušajmo dodati odsjecajuće ravni u prethodni ILP. Za svaku tačku $c$, enumerišimo sve one (moguće) rombove iz $D$ koji sadrže ovu tačku. Označimo takav skup sa $D(c)$. Prema tome, za svaki skup $D(c)$, najviše jedan romb može da bude selektovan. Sada dodajemo sljedeća ograničenja u prethodni model
 \begin{equation}
      \sum_{d \in D(c)} x_d \leq 1, \forall c.
 \end{equation}
 Ove odsjecajuće ravni će ubrzati rješavanje ovog problema za   red veličine.
 
-Pozabavimo se sada \emph{Gomorijevim odsjecajućim ravnima}, generalnu metodu za dodavanje odsjecajućih ravni u ILP.  Ideja je dobiti ove ravni iz nekog od ograničenja optimalne tabele simpleks metode LP relaksacije problema. Neka simpleks metod generiše sljedeći skup jednakosti u formi:
+Pozabavimo se sada \emph{Gomorijevim odsjecajućim ravnima}, generalnu metodu za dodavanje odsijecajućih ravni u ILP.  Ideja je dobiti ove ravni iz nekog od ograničenja optimalne tabele simpleks metode LP relaksacije problema. Neka simpleks metod generiše sljedeći skup jednakosti u formi:
 
 $$x_i + \sum_{ij} \overline{a}_{i,j} w_j= \overline{b}_i, i=1, \ldots,m$$
 gdje su $x_i$ bazne promjenjive, a $w_j$ nebazne promjenjive. Napišimo ovu jednakost u drugačijem obliku tako da su na lijevoj strani cjelobrojni dijelovi, dok su na desnoj decimalni dijelovi, tj.
@@ -2907,7 +2907,7 @@ Ako je $x$ dopustivo cjelobrojno rješenje, onda je desna strana manja od 1, pa 
 \end{equation}
 za bilo koje dopustivo rješenje koje je cjelobrojno. Dalje, kako su nebazne varijable jednake 0 u bilo kom baznom dopustivom rješenju, tada imamo 
 $$ \overline{b}_i - \lfloor \overline{b}_i  \rfloor    - \sum_{ij} (\overline{a}_{i,j} - \lfloor \overline{a}_{i,j} \rfloor) w_j = \overline{b}_i - \lfloor \overline{b}_i \rfloor  \geq 0.$$
-Prema tome, pokazali smo da odsjecajuće ravni~(\ref{eq:gomory_cuts}) ne eliminišu bazna dopustiva rješenja, pa ispunjava sve uslove. Uvodeći dodatnu promjenjivu $y_i$ za nejednakosti u (\ref{eq:gomory_cuts}), sljedeća ograničenja dodajemo u ILP:
+Prema tome, pokazali smo da odsjecajuće ravni~(\ref{eq:gomory_cuts}) ne eliminišu bazna dopustiva rješenja, pa ispunjava sve uslove za validnu nejednakost. Uvodeći dodatnu promjenjivu $y_i$ za nejednakosti u (\ref{eq:gomory_cuts}), sljedeća (validna) ograničenja dodajemo u ILP:
 \begin{align}\label{gomory_cplex}
        \overline{b}_i - \lfloor \overline{b}_i \rfloor=   \sum_{j} (\overline{a}_{i,j} - \lfloor \overline{a}_{i,j} \rfloor) w_j - y_i 
 \end{align}
@@ -2915,13 +2915,13 @@ Prema tome, pokazali smo da odsjecajuće ravni~(\ref{eq:gomory_cuts}) ne elimini
 \emph{\textbf{Primjer.}} Neka je dat sljedeći ILP problem:\\
 $$\begin{array}{ll}
     &\max 3 x_1 + 4 x_2 \\
-    &\mbox{s.t. }  \\
+    & {s.t. }  \\
     & \frac{2}{5}x_1 + x_2 \leq 3 \\
     &\frac{2}{5}x_1 - \frac{2}{5}x_2 \leq 1 \\
     &x_1, x_2 \geq 0, \\
     &  x_1, x_1 \in \mathbb{Z}.
 \end{array}$$
-Riješimo ga uz pomoć gomorijevih odsjecajućih ravni. 
+Riješimo ga uz pomoć gomorijevih odsijecajućih ravni. 
 
 \emph{Rješenje.}
 Inicijalna simpleks tabela je data sa 
@@ -3010,7 +3010,7 @@ Rješenje ILP problema gdje su svi koeficijenti u ograničenjima cjelobrojni, je
     & x_1, x_2 \in \mathbb{Z}
 \end{align*}
 \emph{Rješenje. }
-Na Slici~(\ref{fig:region_ilp_primjer_2}), dat je skup tačaka koje su dopustive za problem, kao i optimalna tačka $x=(5,4)$.
+Na Slici~ \ref{fig:region_ilp_primjer_2} dat je skup tačaka koje su dopustive za problem, za koji je optimalna tačka $x^*=(5,4)$.
 \begin{figure}
     \centering
     \includegraphics[width=170pt,height=170pt]{region_ilp_primjer_2.eps}
@@ -3018,7 +3018,7 @@ Na Slici~(\ref{fig:region_ilp_primjer_2}), dat je skup tačaka koje su dopustive
     \label{fig:region_ilp_primjer_2}
 \end{figure}
 
-Riješimo sada ovaj problem uz pomoć Gomorijevih odsjecajućih ravni. 
+Riješimo sada ovaj problem uz pomoć Gomorijevih odsijecajućih ravni. 
 Početna simpleks tabela je data sa 
 $$\begin{array}{ccc c| c}
     3  & -1 & 1 &  0  & 12  \\
@@ -3096,12 +3096,12 @@ gdje je lako uočiti da je optimalno bazno dopustivo rješenje $x=(5, 4, 1, 7, 0
 \section{B\&C algoritam za rješavanje ILP-a}
 %https://homepages.rpi.edu/~mitchj/handouts/bc_algo/
 % http://www.mi.fu-berlin.de/wiki/pub/Main/GunnarKlauP1winter0708/discMath_klau_ILP_I.pdf
-Za razliku od B\&B procedure koja rješava ILP, ovdje dodajemo i metod odsjecajućih ravni u rješavanju relaksacija potproblema koji odgovaraju čvorovima (drveta). Dakle, ako  uzimamo trenutno aktivni čvor i rješavamo njegov potproblem, dijelimo ga na nekoliko potproblema (podjelom dopustivog regiona na više disjunktnih -- dodavanjem ograničenja) ili ga rješavamo rekurzivnim dodavanjem (gomorijevih) odsjecajućih ravni. Primijenimo ovu ideju na rješavanje jednog ILP-a.
+Za razliku od B\&B procedure koja rješava ILP, B\&C dodaje  i metod odsijecajućih ravni u rješavanju  potproblema koji odgovaraju čvorovima (drveta). Dakle, ako  uzimamo trenutno aktivni čvor i rješavamo njegov potproblem, dijelimo ga na nekoliko potproblema (podjelom dopustivog regiona na više disjunktnih -- dodavanjem ograničenja) ili ga rješavamo rekurzivnim dodavanjem (gomorijevih) odsijecajućih ravni. Dekonstrirajmo ovu ideju na rješavanje jednog ILP-a.
 
 \emph{Primjer}.  Riješimo problem modelovan uz pomoć sljedećeg ILP-a:
 \begin{align*}
     &\max 6 x_1 + 5 x_2 \\
-    & \mbox{s.t. } \\
+    &  {s.t. } \\
     & 3x_1 + x_2 \leq 11 \\
     & - x_2 + 2 x_2 \leq 5 \\
     & x_1, x_2 \geq 0 \\
@@ -3131,7 +3131,7 @@ sa optimalnom vrijednošću $33\frac{1}{7}$. Nakon toga treba da se donese odluk
     & x_1, x_2 \in \mathbb{Z}
 \end{align*}
 
-Relaksacija problem ($P1$) daje riješenje $x^*=(3,2)$, koje je cjelobrojno, pa prema tome i dopustivo u početnom problemu. Njena vrijednost je 28, što je i donja granica ($LB$) početnog problema. Relaksacija problema ($P2$) nam daje rješenje $x^*=(2, \frac{7}{2})$, čija je optimalna vrijednost $\frac{29}{2}$.  Prema tome, rješenje nije cjelobrojno. Primjenjujući metod gomorijevih odsjecajućih ravni na problem ($P2$), konstruišemo odsjecajuću ravan $2x_1 + x_2 \leq 7$ koju dodajemo u problem ($P2$) pa dobijamo problem 
+Relaksacija problem ($P1$) daje riješenje $x^*=(3,2)$, koje je cjelobrojno, pa prema tome i dopustivo u početnom problemu. Njena vrijednost je 28, što je i donja granica ($LB$) početnog problema. Relaksacija problema ($P2$) nam daje rješenje $x^*=(2, \frac{7}{2})$, čija je optimalna vrijednost $\frac{29}{2}$.  Prema tome, rješenje nije cjelobrojno. Primjenjujući metod gomorijevih odsijecajućih ravni na problem ($P2$), konstruišemo odsjecajuću ravan $2x_1 + x_2 \leq 7$ koju dodajemo u problem ($P2$) pa dobijamo problem 
 \begin{align*}
     &\max 6 x_1 + 5 x_2 \\
     & \mbox{s.t. } \\
@@ -3596,7 +3596,7 @@ U ovom slučaju, cilj je eliminisati ovaj zrak iz daljeg razmatranja (budućih r
 
 \end{itemize}
  
-Sada možemo definisati master problem koji nastaje dodavanjem svih odsjecajućih ravni generisanih u prethodnim koracima.
+Sada možemo definisati master problem koji nastaje dodavanjem svih odsijecajućih ravni generisanih u prethodnim koracima.
   \begin{equation}
 	\begin{aligned}\label{bender8}
 		\min\ &z\\
