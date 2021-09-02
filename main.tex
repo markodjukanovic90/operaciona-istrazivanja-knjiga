@@ -693,10 +693,10 @@ Kada je riječ o linearnim programima,  oni imaju nekoliko onovnih implicitnih p
 %Ako model zadovoljava prethodne 4 pretpostavke, onda je riješ o modelu linearnog programiranja. 
 
 \section{Osnovne teoreme o Linearnom Programiranju}
-U ovom poglavlju ćemo formalno pokazati način rješavanja linearnog problema. U osnovi, pokazaćemo da ako je problem
-linearnog programiranja dopustiv i ograničen i postoje vrhovi, onda postoji i optimalno rješenje tog LP problema. Kako smo ranije neformalno pomenuli,  to rješenje je upravo jedan od vrhova. 
+U ovom poglavlju ćemo formalno izvesti način rješavanja linearnog problema. U osnovi, pokazaćemo da ako je problem
+linearnog programiranja dopustiv i ograničen i postoje vrhovi, onda postoji i optimalno rješenje tog LP problema. Kako smo ranije neformalno pomenuli,  to rješenje je upravo jedan od vrhova poliedra. 
 
-Prije nego ovo formalno pokažemo, uvedimo nekoliko definicija. 
+Prije nego ovo formalno pokažemo, uvedimo nekoliko osnovnih definicija. 
 
 \begin{definition}
   Za skup $S \in \mathbb{R}^n$ kažemo da je konveksan akko za sve $x,y\in S$ i $\lambda\in [0, 1]$ vrijedi $\lambda x + (1 - \lambda)y \in S$
@@ -861,7 +861,7 @@ Pokažimo sada da su vrhovi, ekstremne tačke poliedra i bazna dopustiva rješen
 \begin{proof}
       Pokažimo da vrijedi $1 \Rightarrow 2, 2 \Rightarrow 3$, pa onda $3 \Rightarrow 1$, čime ćemo pokazati ekvivalenciju sve tri tvrdnje. \\
       $1 \Rightarrow 2$. Neka je $x^*$ vrh poliedra. Iz definicije slijedi da 
-      postoji $c\in \mathbb{R}^n$ tako da $c^Tx^* < c^T x$, za sve $x \in P, x \neq x^*$. Pretpostavimo da $x^*$ nije ekstremna tačka poliedra $P$. To bi značilo da postoje $y,z \in P$ koji su ražličiti od $x^*$ koji se može dobiti kao (netrivijalna) konveksna kombinacija $y$ i $z$, tj. $x^* = \lambda y + (1 - \lambda) z $, za $\lambda \in [0,1 ]$. Na osnovu pretpostavke je $c^T x^* < c^T y$. Sada je 
+      postoji $c\in \mathbb{R}^n$ tako da $c^Tx^* < c^T x$, za sve $x \in P, x \neq x^*$. Pretpostavimo da $x^*$ nije ekstremna tačka poliedra $P$. To bi značilo da postoje $y,z \in P$ koji su ražličiti od $x^*$ koji se može dobiti kao (netrivijalna) konveksna kombinacija $y$ i $z$ (oba različita od $x^*$), tj. $x^* = \lambda y + (1 - \lambda) z $, za $\lambda \in [0,1 )$. Na osnovu pretpostavke je $c^T x^* < c^T y$. Sada je 
       \begin{align}
           &c^T x^* = c^T ( \lambda y + (1 - \lambda) z )  = c^T( \lambda y) + c^T((1- \lambda) z) < \nonumber \\
           &< \lambda c^T x^* + ( 1 - \lambda) c^T x^* = c^T x^*.
@@ -929,7 +929,7 @@ Definišimo sada pojam \emph{degenerativnog} rješenje i degenerativnog baznog r
 \begin{definition}
       Neka je $P = \{ x \in \mathbb{R}^n \mid A x = b, x \geq 0\}, A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m$    i neka je $x$ bazno rješenje. Vektor $x$ nazivamo degenerativno bazno rješenje ako više od $n-m$ komponenti u vektoru $x$ je jednako 0.
 \end{definition}
-\emph{\textbf{Primjer.}} Zadajmo poliedar $P= \{ (x_1,x_2,x_3)^T \mid x_2 - x_1 = 0, x_1 + x_2 +   x_3 = 2, x_1,x_2,x_3 \geq 0 \}$.  Promaći bazna dopustiva rješenja i odrediti jesu li ona degenerativna. \\
+\emph{\textbf{Primjer.}} Zadajmo poliedar $P= \{ (x_1,x_2,x_3)^T \mid x_2 - x_1 = 0, x_1 + x_2 +   x_3 = 2, x_1,x_2,x_3 \geq 0 \}$.  Pronaći bazna dopustiva rješenja i odrediti jesu li ona degenerativna. \\
 
 \emph{Rješenje.} Lako je vidjeti da je  
 $A=\left (\begin{array}{ccc}
