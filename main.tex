@@ -1156,7 +1156,7 @@ Navedimo sada osnovne korake jedne iteracije simpleks metoda:
 \section{Tabelarni prikaz Simpleks Metode}
 
 U osnovi, simpleks algoritam se sastoji od stalne izmjene jedne kolone baznih vektora u $B$ sa nekim nebaznim vektorom i tako iterativno u cilju smanjivanja trenutne vrijednosti cilje funkcije, dok god je to moguće. 
-U praktičnom računanju, rad sa tabelarnim prikazom koraka simpleks metoda je u mnogome lakše (kompaktnije) nego koristiti standardan oblik LP-a. 
+U praktičnom računanju, rad sa tabelarnim prikazom koraka simpleks metoda je u mnogome lakše (kompaktnije i prirodnije) nego koristiti standardan oblik LP-a. 
 Simpleks tabela ima oblik kao u Tabeli~\ref{tab:simplex_tabelau}. 
 
 \begin{table}[!ht]
@@ -1175,7 +1175,7 @@ Na osnovu ovakve tabele, te koraka simpleks metode opisanih u prethodnoj sekciji
 \begin{itemize}
     \item Konstruisati inicijalnu simpleks tabelu sa početnom bazom $B$ i odgovarajućim baznim dopustivim rješenjem $x$.
     \item Pogledati koeficijente doprinosa $\overline{c_j}$. Ako su svi $\overline{c_j} \geq 0$, rješenje se ne može dalje popraviti, pa smo našli optimalno rješenje, inače odabrati neki $j$ sa $\overline{c_j}<0$.
-    \item Pogledati vektor $u = B^{-1}A_j$. Ako su sve koordinate od $u$ negativne, rješenje LP-a je $-\infty$, algoritam se prekida.
+    \item Pogledati vektor (kolonu) $u = B^{-1}A_j$. Ako su sve koordinate od $u$ negativne, rješenje LP-a je $-\infty$, algoritam se prekida.
     \item Za svaki $u_i > 0$, računati $x_{p_i}/u_i$, i neka je   omjer najmanji za indeks $l$. Kolona $A_{j}$ ulazi u bazu, dok kolona $A_{p_l}$ izlazi iz baze. 
     \item Svakom redu table dodati $l$--ti red (pivot red) kojeg množimo odgovarajućim
          skalarom kako bi pivot element postao 1, a svi ostali elementi u pivot koloni 0.
@@ -1201,7 +1201,7 @@ Prvo transformišimo standardni oblik problema LP
   \begin{align}
     & c^T x \rightarrow \max \\
     & Ax \leq b \\
-    & x \geq 0,\\
+    & x \geq 0\\
 \end{align}
  
 na kanonski oblik pogodan simpleks metodi $(A {x} = b)$ dodavanjem ``izjednačavajućih'' varijabli $s$ na sljedeći način:
@@ -1230,7 +1230,7 @@ U primjeru kojeg rješavamo, neka je dat problem LP-a:
     & x_1, x_2 \geq 0. \nonumber \\
 \end{align*}
  
- Pretvarajući ga dodavajući izjednačavajuće varijable $s = (s_1, s_2)>0$, dobijamo 
+ Pretvorimo ga u kanonski oblik dodavajući izjednačavajuće varijable $s = (s_1, s_2)>0$, pa dobijamo 
 
 \begin{align*}
     & x_1    & + 3x_2  &+ s_1& &= 9 \\
@@ -1238,7 +1238,7 @@ U primjeru kojeg rješavamo, neka je dat problem LP-a:
     & x_1   &   + x_2  &\  & &= f - 0 \\
 \end{align*}
  Ovaj problem odgovara simpleks tabeli \\
- \begin{table}[!ht]
+ \begin{table}[H]
      \centering
      \begin{tabular}{c c c c | c}
      	 $x_1$ & $x_2$ &  $s_1$ & $s_2$ & \\ \hline
@@ -1248,7 +1248,7 @@ U primjeru kojeg rješavamo, neka je dat problem LP-a:
      \end{tabular}
      \caption{Inicijalna simpleks tabela.}
      \label{tab:simpleks_tabela1}
- \end{table} \\
+ \end{table} 
  Na početku uzmemo za bazu vektore $s_1$ i $s_2$. Prema tome, bazno dopustivo rješenje je $x = (0, 0, 9, 8)$, za koji je $f =0$. Sada ažiriramo simpleks tabelu izvodeći pivotiranje. Izaberimo indeks $j$ td. $\overline{c_j}>0$. Neka je $j=1$, i on odgovara varijabli $x_1$ čiju vrijednost želimo da povećamo u funkciji cilja. Izaberimo pivot vrstu. Gledamo odnos $\overline{b_i}/\overline{a}_{1,j}$, za sve $\overline{a}_{1,j} > 0$,  $B^{-1} A_1 = \overline{a}_{1,j}$
  i tražimo onaj indeks koji minimizuje datu vrijednost. Imamo dvije mogućnosti, $9/1$ i $8/2$, pa je $i = 2$ traženi indeks. Dakle, pivot je element $\overline{a}_{1,2}=2$. Sada radimo standardne operacije pivotiranja oko ovog elementa,  tako da sve elemente u koloni 1 simpleks matrice učinimo nulama, dok je element u drugoj vrsti 1 (Gausove eliminacije u rješavanju sistema jednačina). Primjera radi, vrsti 1 se dodaje druga vrsta pomnožena sa -$\frac{1}{2}$. Druga vrsta se dijeli sa $\frac{1}{2}$. Dok trećoj vrsti se dodaje takođe druga vrsta pomnožena sa -$\frac{1}{2}$. 
  Primjenjujući ove transformacije, dobijamo simpleks tabelu:
@@ -1296,7 +1296,7 @@ Bazne varijable prepoznjemo jer odgovarajući vektori (kolone) zajedno čine jed
  Prema tome, vektori $x_i$, koji su bazni vektori (kolone baze $B$), su napisani preko nebaznih vektora $x_i \in N$. Kako se stavljaju $x_i  = 0$, za sve $i \in N$, onda je trivijano dobiti vrijednosti baznih vektora $x_i$, tj. kolona baze $B$. 
  \vspace{1cm}\\
  \emph{\textbf{Primjer.}} Navedimo primjer jednog linearnog programa koji je neograničen, te ga riješimo simpleks metodom. 
-  Neka je dat LP:
+  Neka je dat problem LP-a:
   \begin{align*}
   	  &\max -x + 3y \\
   	  & -x + y \leq 3 \\
@@ -1338,6 +1338,7 @@ Ovo se može vidjeti i na osnovu grafičke reprezentacije dopustivog regiona na 
 Posmatrajmo sljedeći linearni program:
 \begin{align*}
     &\max 2x + 3y \\
+    & s.t. \\
 	& -x + y \leq 3 \\
 	& x - 2y \leq 2 \\
 	& x + 6y \leq 18
@@ -1364,7 +1365,7 @@ $$\begin{array}{ccccc|c}
      1 & 0 & -\frac{6}{7} & 0 & \frac{1}{7} & 0 \\ \hline
      0 & 0 & \frac{9}{7}  & 0 & -\frac{5}{7} & -9 \\
 \end{array}$$
-Razlog za to je jer tri linije $x=0$, $-x+y=3$ i $x+6y=18$ se susreću u tački $(0,3)$ (Slika~\ref{fig:deg-sol}). U prošlom koraku, kada su $x$ i $s_1$ bile nebazne varijable, tačka (0,3) je posmatrana kao presjek $x=0$ i $-x +y =3$. Nakon sljedećeg koraka $s_1$ i $s_3$ postaju nebazne, pa se pomjeramo u presjeku 
+Razlog za to je jer se tri linije $x=0$, $-x+y=3$ i $x+6y=18$ susreću u tački $(0,3)$ (Slika~\ref{fig:deg-sol}). U prošlom koraku, kada su $x$ i $s_1$ bile nebazne varijable, tačka (0,3) je posmatrana kao presjek $x=0$ i $-x +y =3$. Nakon sljedećeg koraka $s_1$ i $s_3$ postaju nebazne, pa se pomjeramo u presjeku 
 $-x+y=3$ i $x+6y=18$, što je opet ista tačka (i nema napretka vrijednosti funkcije cilja). 
  Ovo pivotiranje se naziva \emph{degenerativno pivotiranje}. u ovom primjeru, napustićemo vrh $(0,3)$ nakon sljedećeg pivotiranja. U komplikovanijim primjerima, kada se mnoga ograničenja mogu sresti u jednom vrhu, ostajanje u tom vrhu je velika opasnost. Ovo se može izbjeći poštovanjem 
  Bladovog pravila. Primijetimo da koristeći Bladovo pravilo u prvom koraku simpleks metode (uzimajući za pivota elemente iz kolone 1, a ne kolone 2), degenerativno pivotiranje se ne bi pojavilo.  
@@ -1382,7 +1383,7 @@ $-x+y=3$ i $x+6y=18$, što je opet ista tačka (i nema napretka vrijednosti funk
  \begin{itemize}
      \item Da li se uvijek može naći bazno dopustivo rješenje za početno rješenje 
      simpleks algoritma?
-     \item Da li se simpleks algoritam uvijek prekida, tj. da li uvijek ili nalazi optimalno rješenje ili se zaključi da je funkcija cilja neograničena?
+     \item Da li se simpleks algoritam uvijek prekida sa nalaskom optimalnog rješenja ili je funkcija cilja neograničena?
  \end{itemize}
  
  Odgovor na prvo pitanje je ako postoji jedinična podmatrica $I_m$ u gornjoj lijevoj blok matrici simpleks tabele,  onda je to jednostavno odrediti (kako smo to i vidjeli u prethodnoj sekciji). 
@@ -1411,28 +1412,28 @@ Postoje dva moguća slučaja:
  
 Riješimo sljedeći problem LP-a:
 
-\begin{align}
+\begin{align*}
 	 &\min x_1 + x_2 - x_3 - x_4 \\
 	 &\mbox{s.t.   } x_1 + 2x_2 + x_3 + x_4 = 7 \\
 	 &\mbox{\ \ \ \ \ \ \ } 2x_1 - x_2 - x_3 - 3x_4 = -1 \\
 	 &\mbox{\ \ \ \ \ \ \ }  x_1,x_2,x_3,x_4 \geq 0.
-\end{align}
+\end{align*}
 
 Dodajmo umjetne varijable na početni problem (uz prethodno množenje uslova 2 sa (-1)), odakle dobijamo:
 
-\begin{align}
+\begin{align*}
 	&\min x_1 + x_2 - x_3 - x_4 \\
 	&\mbox{s.t.   } x_1 + 2x_2 + x_3 + x_4 + \omega_1 = 7 \\
 	&\mbox{\ \ \ \ \ \ \ } -2x_1 + x_2 + x_3 + 3x_4 + \omega_2 = -1 \\
 	&\mbox{\ \ \ \ \ \ \ }  x_1,x_2,x_3,x_4, \omega_1, \omega_2\geq 0.
-\end{align}
+\end{align*}
 Prva faza metoda je formirati metod 
-\begin{align}
+\begin{align*}
 	&\min \omega_1 + \omega_2 \\
 		&\mbox{s.t.   } x_1 + 2x_2 + x_3 + x_4 + \omega_1 = 7 \\
 	&\mbox{\ \ \ \ \ \ \ } -2x_1 + x_2 + x_3 + 3x_4 + \omega_2 = -1 \\
 	&\mbox{\ \ \ \ \ \ \ }  x_1,x_2,x_3,x_4, \omega_1, \omega_2\geq 0.
-\end{align}
+\end{align*}
 
 
 Formirajmo početnu simpleks tabelu:\\
@@ -1469,7 +1470,7 @@ $$ \begin{array}{cccccc|c}
     \end{array}
 $$
 Kako su koeficijenti doprinosa svi veći ili jednaki 0, našli smo minimum. 
-Prema tome, bazno dopustivo rješenje je jednako $(x, \omega)= (1,3, 0, 0)$. Prema tome, nastavljamo dalje sa algoritmom, tj. drugom fazom metoda.  Posljednja simpleks tabela prve faze dvofaznog simpleks metoda se lako transformiše za početni problem: 
+Prema tome, bazno dopustivo rješenje je jednako $(x, \omega)= (1,3, 0, 0)$. Dakle, nastavljamo dalje sa algoritmom, tj. drugom fazom metoda.  Posljednja simpleks tabela prve faze dvofaznog simpleks metoda se lako transformiše za početni problem: 
 \begin{itemize}
 	\item posljednja vrsta dobija koeficijente originalne funkcije cilja razmatranog LP-a:
 	\item kolone koje odgovaraju varijablama $\omega$ izbrišemo iz simpleks tabele;
@@ -1498,25 +1499,27 @@ $$ \begin{array}{cccc|c}
  
  \section{Geometrija i simpleks metod}
  
-Sljedeći primjer demonstrira odgovarajuće geometrijske korake (``šetanje'') po dopustivom regionu u odnosu na iteracije simpleks metode koji se izvršavaju.   %pratiti https://faculty.math.illinois.edu/~mlavrov/docs/482-fall-2019/lecture5.pdf (strana 2 i 3) 
+Sljedeći primjer demonstrira odgovarajuće geometrijske korake (``šetanje'') po dopustivom regionu shodno iteracijama simpleks metode koji se izvršavaju.   %pratiti https://faculty.math.illinois.edu/~mlavrov/docs/482-fall-2019/lecture5.pdf (strana 2 i 3) 
  Neka je dat problem:
  \begin{align*}
  	&\max 2x + 3y \\
+ 	& s.t. \\
  	& -x + y \leq 3 \\
  	& x - 2y \leq 2 \\
  	& 3x + 4y \leq 26 \\
  	& x, y \geq 0.
  \end{align*}
- Dodajmo izravnavajuće varijable u početni LP, odakle dobijamo 
+ Dodajmo izjednačavajuće varijable u početni LP, odakle dobijamo 
   \begin{align*}
  	&\max 2x + 3y \\
+ 	& s.t. \\
  	& -x + y + s_1 = 3 \\
  	& x - 2y + s_2 = 2 \\
  	& 3x + 4y + s_3 =  26 \\
  	& x, y, s_1, s_2, s_3 \geq 0.
  \end{align*}
 Kao što smo pomenuli kod simpleks metode, 
-izravnavajuće varijable čine pogodne bazne varijable od kojih krećemo 
+izjednačavajuće varijable čine pogodne bazne varijable od kojih krećemo 
 sa simpleks metodom (jedinična podmatrica u gornjoj blok matrici 
 simpleks tabele). Bazno rješenje, prema tome, ima oblik 
 $(x, y, s_1, s_2, s_3) = (0, 0, 3, 2, 26)$, koje je i dopustivo. Inicijalna simpleks 
