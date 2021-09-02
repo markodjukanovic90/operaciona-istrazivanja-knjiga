@@ -365,7 +365,7 @@ Firma proizvodi visokokvalitetne staklene proizvode, uključujući prozore i sta
 Zbog pada zarade, rukovodstvo firme je odlučio je obnoviti liniju proizvoda. Neprofitabilni proizvodi se ukidaju, oslobađajući proizvodne kapacitete za lansiranje dva nova proizvoda sa velikim prodajnim potencijalom:
 \begin{itemize}
     \item Proizvod 1: Staklena vrata od 2 $m$ sa aluminijskim okvirom.
-    \item Proizvod 2: Dvostruko obješen drveni okvir s okvirom visine 1.5 $m$.
+    \item Proizvod 2: Dvostruki drveni okvir s okvirom visine 1.5 $m$.
 \end{itemize}
 Uslovi i zahtjevi proizvodnje su sljedeći:
 \begin{itemize}
@@ -416,8 +416,7 @@ Konstruišimo sada model. Uvedimo varijablu $x_1$ za broj serija proizvoda 1 pro
 \end{itemize}
 %https://www.desmos.com/calculator
 \section{Rješenje grafičkom metodom}
- Problem iz prethodne sekcije se veoma malen jer sadrži samo dvije varijable odluke i samim tim sve alternative mogu biti predstavljene u dvije dimenzije. U tom slučaju, pri njegovom rješavanju može se koristiti grafička metoda. Ovaj postupak uključuje konstrukciju dvodimenzionalnog osnog sistema sa osama $x_1$ i $x_2$.  Prvi korak je identifikovati vrijednosti ($x_1$, $x_2$) koje su dopuštene ograničenjima. Njih drugačije zovemo dopustivim rješenjima. To se radi crtanjem svake od 
-linija koja se graniči sa rasponom dopuštenih vrijednosti ograničenja. Ograničimo prostor sastavljen od svih 6 uslova, što rezultira slikom~\ref{fig:fig1}.  Rezultujući region dopustivih rješenja $(x_1, x_2)$ se naziva dopustivi region. Posljednji je korak odabrati tačku u ovom regionu  koja maksimizira vrijednost $f = 3x_1 + 5x_2$. 
+ Problem iz prethodne sekcije je malih dimenzija jer sadrži samo dvije varijable odluke i samim tim sve alternative mogu biti predstavljene u dvije dimenzije. U tom slučaju, pri njegovom rješavanju može se koristiti \emph{grafička metoda}. Ovaj postupak uključuje dvodimenzionalni dekartov sistem sa osama $x_1$ i $x_2$.  Prvi korak je identifikovati vrijednosti ($x_1$, $x_2$) koje su dopuštene ograničenjima. Njih drugačije zovemo dopustivim rješenjima. To uradimo crtanjem grafika svakog od ograničenja sa njihovim  dopuštenim vrijednostima. Ograničimo prostor sastavljen od svih 6 uslova, što rezultira Slikom~\ref{fig:fig1}.  Rezultujući region dopustivih rješenja $(x_1, x_2)$ se naziva dopustivi region. Posljednji je korak odabrati tačku u ovom regionu  koja maksimizira vrijednost $f = 3x_1 + 5x_2$. 
 
 %) The resulting region of permissible values of (x1, x2), called the feasible region,
 \begin{figure}
@@ -426,7 +425,7 @@ linija koja se graniči sa rasponom dopuštenih vrijednosti ograničenja. Ograni
     \caption{Dopustiv region.}
     \label{fig:fig1}
 \end{figure}
-Pogledajmo sada grafike $3x_1 + 5 x_2 = c$, za $c \in \{10,20, 36\}$, kao na Slici~\ref{fig:fig2}. Jasno se vidi da prava $f = 36$ prolazi kroz tačku (vrh) regiona $(2,6)$ koja je dopustiva. Dakle, jasno je da je $(2, 6)$ rješenje problema i da niti jedna druga funkcija $f=c, c > 36$ ne presijeca dopustiv region. 
+Pogledajmo sada niz (implicitnih) funkcija $3x_1 + 5 x_2 = c$, za $c \in \{10,20, 36\}$, kao na Slici~\ref{fig:fig2}. Jasno se vidi da prava $f = 36$ prolazi kroz tačku (vrh) regiona $(2,6)$ koja je svakako dopustiva. Dakle, jasno je da je $(2, 6)$ rješenje problema i da niti jedna druga funkcija $f=c, c > 36$ ne presijeca dopustiv region. 
 
 Ovaj se postupak često naziva \emph{grafičkom metodom za linearno programiranje}. Ona se može koristiti za rješavanje bilo kojeg problema linearnog programiranja s dvije varijable. Uz znatan trud, moguće je proširiti ovu metodu na problem sa tri varijable, što je krajnji domet grafičke metode. Za uopšten slučaj se koristi  simpleks metoda o kojoj će biti riječi u narednim sekcijama.
 
@@ -509,18 +508,18 @@ programu postoji varijabla koja ne zadovoljava uslov nenegativnosti, ona se mož
      \label{fig:unbounded_solution}
  \end{figure}
  
-Uvedimo pojam \emph{ekstremalnih tačaka}, koje igraju bitnu ulogu u simpleks metodi, koja rješava LP u generalnom obliku. Za rješenje $x$ kažemo da je \emph{ekstremna tačka} ako se nalazi u vrhu dopustivog regiona (u presjeku ivica dopustivog regiona).  Postoji neraskidiva veza između ovih tačaka i optimalnog rješenja LP-a. Ove veze ćemo dokazati u nastavku ove knjige. Uglavnom, vrijede sljedeće činjenice. 
-Razmotrimo bilo koji problem LP-a sa dopustivim rješenjima i ograničenom dopustivom regijom. Problem mora posjedovati barem jednu tačku u vrhu i barem jedno optimalno rješenje. Nadalje, najbolja tačka u vrhu dopustivog regiona mora biti optimalno rješenje. Dakle, ako problem ima tačno jedno optimalno rješenje, to mora biti tačka u vrhu. Ako problem ima više optimalnih rješenja, barem dva moraju biti rješenja koja su tačke u vrhu dopustivog regiona.
+Uvedimo pojam \emph{ekstremalnih tačaka}, koje igraju bitnu ulogu u simpleks metodi, koja rješava LP u generalnom obliku. Za rješenje $x$ kažemo da je \emph{ekstremna tačka} ako se nalazi u vrhu dopustivog regiona (u presjeku granica dopustivog regiona).  Postoji neraskidiva veza između ovih tačaka i optimalnog rješenja LP-a. Ove veze ćemo formalno pokazati u nastavku ove knjige. Uglavnom, vrijede sljedeće činjenice. 
+Razmotrimo bilo koji problem LP-a sa dopustivim rješenjima i ograničenom dopustivom regionom. Problem tada posjeduje barem jednu tačku u vrhu i barem jedno optimalno rješenje. Nadalje, jedna od tačka u vrhu dopustivog regiona mora biti optimalno rješenje. Dakle, ako problem ima tačno jedno optimalno rješenje, to mora biti tačka u vrhu. Ako problem ima više optimalnih rješenja, barem dva moraju biti rješenja koja su tačke  vrhova dopustivog regiona.
 
 \textit{Napomena.} Imajte na umu da (optimalno) rješenje LP-a ne mora da bude cjelobrojno. Budući da svaka varijabla odluke predstavlja nivo odgovarajuće aktivnosti, pretpostavlja se da se aktivnosti mogu izvoditi na razlomljenim nivoima (aktivnost  se ne dijeli samo na diskretne dijelove), na osnovu nenegativnih ograničenja.  
 
-Ako su sve varijable u problemu LP-a cjelobrojne, riječ je o problemima \emph{Cjelobrojnog programiranja}. Ako pored cjelobrojnih, postoje i neke neprekidne varijable, riječ je o problemima \emph{Mješovitog-cjelobrojnog programiranja}. 
+Ako su sve varijable u problemu LP-a cjelobrojne, riječ je o problemima \emph{Cjelobrojnog programiranja}. Ako pored cjelobrojnih, postoje i neke varijable koje su neprekidne, riječ je o problemima \emph{Mješovitog-cjelobrojnog programiranja}. 
 
 \section{Modelovanje nekih Problema}\label{sec:modeli_lp}
 
 \emph{Problem optimalne prehrane.} Pretpostavimo da su nam na raspolaganju namirnice $N_1, \ldots, N_n$. Cijena namirnice $N_j$ po jedinici je $c_j, j = 1, \ldots, n$. U namirnicama su prisutni nutritivni elementi $e_j,j=1,\ldots,m$ pri čemu
 u namirnici $N_j$ ima $a_{ij}$ nutritivnog elementa $e_i$, $i = 1, \ldots, n$, $j = 1, \ldots, m$. Svaka osoba u toku dana mora unijeti barem $b_i$
-jedinica nutritivnog elementa $e_i$. Potrebno je formulisati
+jedinica nutritivnog elementa $e_i$. Potrebno je modelovati
 sljedeći problem: 
 
 \emph{Koliko treba konzumirati pojedine namirnice da bi se zadovoljila dnevna
