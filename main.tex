@@ -1977,7 +1977,7 @@ Sljedeću teoremu iz teorije optimizacije  za skalarne funkcije sa uslovnim ekst
 	gdje se $y_i$ nazivaju Lagranžovi množitelji. 
 \end{thm}
 
-Primijetimo da u problemu LP-a imamo sljedeće:
+Primijetimo da u barijarnom problemu imamo sljedeće:
 \begin{itemize}
 	\item $f(x) = \min c^T x - \mu \sum_{j=1}^n ln(x_j) $;
 	\item $g_i(x) = a_i x - b_i$.
@@ -1993,8 +1993,10 @@ Uvedimo nenegativni vektor $s =\mu \cdot (\frac{1}{x_1}, \frac{1}{x_2}, \ldots, 
 	& (s_1 x_1, \ldots, s_m x_m) = (\mu, \ldots, \mu) \label{eq:primal-dual-central-path-problem} \\
 	& x, s \geq 0. \nonumber
 \end{align}
-Primijetimo da ovaj uslov aproksimira iste uslove za primal-dual par. 
-Ovo nisu ograničenja linearnog programa, jer treće ograničenje  nije linearno.
+Primijetimo da ovaj uslov aproksimira iste uslove za primal-dual par.  
+interesantno je da parametar $\mu$ kontroliše udaljenost do opptimalnosti, tj. 
+$$ c^T x - b^T y = c^T x - x^T A y = x^T(c- A^Ty ) = x^T s = n \mu.$$
+ Uslovi~(\ref{eq:primal-dual-central-path-problem}) ne daju linearni sistem, jer treće ograničenje  nije linearno.
 
 \begin{definition}
 	Primal-dual centralni put $\{(x(\mu), y(\mu), s(\mu)) \in \mathbb{R}^{2n + m} \mid \mu > 0, x(\mu) >0, s(\mu)>0 \}$ je (jedinstveno) rješenje koje zadovoljava uslove (\ref{eq:primal-dual-central-path-problem}) parametrizovano sa $\mu$. 
@@ -2016,13 +2018,15 @@ $$ F(x, y, s) = \left (\begin{array}{c}
 \end{array} \right ),$$
 gdje je  $X = diag (x_1, \ldots, x_n ), S = diag(s_1,\ldots, s_n)$ i 
 $\textbf{1} = diag (1,\ldots, 1)$. Primijetimo da je $X S \textbf{1}=\sum_{i} s_i x_i$. 
-Potrebno je riješiti $F(x, y, s ) = 0, x,s \geq 0$. Korijen ove (nelinearne) jednačine ćemo naći uz pomoć \emph{Njutnovog metoda}. U nastavku u sažetom obliku izlažemo ideju Njutnovog metoda, jednog od najefikasnijih metoda za rješavanje ovakvih jednačina. Neka je data diferencijalna funkcija $f: \mathbb{R}^n \mapsto \mathbb{R}$.   Tangentna linija 
+Potrebno je riješiti $F(x, y, s ) = 0, x,s \geq 0$. Korjen ove (nelinearne) jednačine ćemo naći uz pomoć \emph{Njutnovog metoda}, tj. riješimo (\ref{eq:primal-dual-central-path-problem}) uz pomoć ovog metoda. 
+
+U nastavku u sažetom obliku izlažemo ideju Njutnovog metoda, jednog od najefikasnijih metoda za rješavanje ovakvih (nelinearnih sistema) jednačina. Neka je data diferencijalna funkcija $f: \mathbb{R}^n \mapsto \mathbb{R}$.   Tangentna linija 
 $$z - f(x^k) = \triangledown f(x^k) (x - x^k) $$
 je lokalna aproksimacija grafa funkcije $f(x)$ oko dte tačke. Mijenjajući $z=0$, definiše se nova tačka 
 \begin{equation} \label{eq:newton-step}
 	x^{k+1} = x^k - (\triangledown f(x^k))^{-1} f(x^k).
 \end{equation}
-Pokazuje se da niz $\{x^k\}_{k \in \mathbb{N}}$ definisan uz pomoć (\ref{eq:newton-step}) konvergira ka stacionarnoj tački funkcije $f(x)$. Simulacija koraka njutnovog metoda je data na Slici~\ref{fig:newton}. 
+Pokazuje se da niz $\{x^k\}_{k \in \mathbb{N}}$ definisan uz pomoć (\ref{eq:newton-step}) konvergira ka stacionarnoj tački funkcije $f(x)$. Simulacija koraka Njutnovog metoda je data na Slici~\ref{fig:newton}. 
 
 \begin{figure}[!ht]
 	%    \centering
@@ -2195,6 +2199,9 @@ Da bi se uvidjele sličnosti i razlike između simpleks metode i Metode unutraš
   \caption{Prilazak optimalnosti kod Metode unutrašnje tačke.}
    \label{fig:optimality-approaching-interior}
 \end{figure}
+Paralelizovani objektno orjentisani optimizacioni siftver baziran na metodi unutrašnje tačke se može naći na 
+\url{https://www.maths.ed.ac.uk/~gondzio/parallel/solver.html}.  \\
+
 %https://optimization.cbe.cornell.edu/index.php?title=Interior-point_method_for_LP
 \emph{\textbf{Primjer.}} Riješimo sljedeći primjer LP-a pomoću metoda unutrašnje tačke:
 \begin{align*}
