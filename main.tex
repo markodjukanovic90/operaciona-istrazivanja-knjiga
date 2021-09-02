@@ -1918,15 +1918,15 @@ jedanog problema i varijabli u drugom problemu je data preko sljedeće tabele
 
 \section{Metod Unutrašnje Tačke}
 
-Simpleks metod ne garantuje   rješavanje LP-a u polinomijalnom broju koraka u odnosu na veličinu ulaza. % V. Klee and G. Minty constructed an example LP: simplex method needs 2^n iterations to solve it 
+Simpleks metod ne garantuje   rješavanje proizvoljnog problema LP u polinomijalnom broju koraka u odnosu na veličinu ulaza. % V. Klee and G. Minty constructed an example LP: simplex method needs 2^n iterations to solve it 
 %Dakle, iz njega se ne može zaključiti da je problem rješavanja generalnog LP problema   polinomijalno rješiv. 
-\emph{Metod unutrašnje tačke} rješava bilo koji LP problem u polinomijanom vremenu. Dakle, tj. rješavanje problema LP-a pripada klasi $\mathcal{P}$. Iako u praksi često ne postiže dobre  performanse kao i simpleks metod, te se uvijek prvo preporučuje korištenje simpleks metoda u rješavanju LP-a, ovaj metod je sa teoretskog stanovišta veoma važan.  \emph{Metod unutrašnje tačke} (eng. Interior point metod) je dizajniran 50-ih godina XX vijeka i sve do 80-ih godina nije bio smatran za algoritam koji se efikasno može primijeniti na probleme velikih dimenzija. Tek 1984.godine (N. Karmakar, inžinjer u IBM-u) je formalno dokazao da se ovaj algoritam izvršava u polinomijalnom broju koraka za probleme linearnog programiranja. U današnje vrijeme, usljed ekstremnog poboljšanja performansi mašina, pokazalo se da je \emph{metod unutrašnje tačke} kompetentan sa simpleks metodom kada je riječ o LP-u velikih dimenzija (sa matricom $A$ čiji je broj elemenata $10^9$ i više).
+\emph{Metod unutrašnje tačke} rješava bilo koji problem LP-a  u polinomijanom vremenu. U ovoj sekciji ćemo dati konstrukciju ovog metoda, koji pokazuje da rješavanje problema LP-a pripada klasi $\mathcal{P}$. Iako u praksi često ne postiže dobre  performanse kao i simpleks metod, te se uvijek prvo preporučuje korištenje simpleks metoda u rješavanju LP-a, ovaj metod je sa teoretskog stanovišta veoma važan.  \emph{Metod unutrašnje tačke} (eng. Interior point metod) je dizajniran 50-ih godina XX vijeka i sve do 80-ih godina nije bio smatran za algoritam koji se efikasno može primijeniti na probleme velikih dimenzija. Tek 1984.godine (N. Karmakar, inžinjer u IBM-u) je formalno dokazao da se ovaj algoritam izvršava u polinomijalnom broju koraka za probleme linearnog programiranja. U današnje vrijeme, usljed ekstremnog poboljšanja performansi mašina, pokazalo se da je \emph{metod unutrašnje tačke} kompetentan sa simpleks metodom kada je riječ o LP-u velikih dimenzija (sa matricom $A$ čiji je broj elemenata $10^9$ i više).
 
 Za razliku od simpleks metoda, koji ``hoda'' po granicama poliedra (dopustivog regiona), \emph{metod unutrašnje tačke}, kako i samo ime kaže, se kreće po unutrašnjim tačkama poliedra  dok ne naiđe na optimalno rješenje problema. 
 
-Postoji nekoliko metoda ove vrste, kao što su: metod centralne putanje, redukcija potencijala, afino skaliranje, itd. Mi ćemo u ovoj sekciji obratiti pažnju na metod centralne putanje. Da ponovimo, ova sekcija se bavi rješavanjem LP-a (\ref{eq:lp_equality_constraint}). 
+Postoji nekoliko metoda ove vrste, kao što su: metod centralne putanje, redukcija potencijala, afino skaliranje, itd. Mi ćemo u ovoj sekciji obratiti pažnju na metod centralne putanje. Da ponovimo, ova sekcija se bavi rješavanjem problema LP-a u obliku (\ref{eq:lp_equality_constraint}). 
 
-Neka je dat par Primal-dual linearnih programa dat sa
+Neka je par Primal-dual linearnih programa dat sa
 
 $$ \begin{array}{lll}
 	&\mbox{Primal}            & \mbox{Dual}     \\
@@ -1935,16 +1935,18 @@ $$ \begin{array}{lll}
 	& x \geq 0                &   s \geq 0
 \end{array}
 $$
+\begin{definition}
 Lagranžijan primal-dual linearnih programa definišemo sa 
 \begin{equation}
 	L(x,y) = c^Tx - y^T(Ax - b) - s^T x.
 \end{equation}
+\end{definition}
 Trebali bi naći tačku za koju je $L = 0$, odakle nalazimo optimalno rješenje (oba problema).  Uslovi za nalazak stacionarne tačku Lagranžijana $L$ su dati sa:
 \begin{align}
 	&\triangledown_x L(x,y) = 0\\
 	&\triangledown_y L(x,y) = 0
 \end{align} 
-što nas (uz uslov komplementarnosti) dovodi do:
+što nas (uz uslov komplementarnosti) dovodi do sistema:
 \begin{align}
 	&Ax = b \\
 	&A^T y + s = c \\
@@ -2231,12 +2233,12 @@ Iz trečeg uslova   $x_1(\mu)=x_2(\mu)=2$, što je i optimum. Primijetimo da ovd
 %Fourier–Motzkin elimination ==> Problem dopustivosti...
 \section{Fourier–Motzkin-ova Eliminacija}
 %https://faculty.math.illinois.edu/~mlavrov/docs/482-fall-2019/lecture19.pdf
-Vezano pitanje za problem  LP-a koji se rješava  je sljedeće pitanje:
+Vezano pitanje za problem  LP-a koji se rješava  je sljedeće:
 \emph{Neka su date matrica $A$ i vektor $b$, da li je skup $P = \{x: A x \leq b\}$ neprazan?} Dakle, da li postoji dopustivo rješenje linearnog programa? 
 
 Problem dopustivosti može da služi i da odgovorimo sljedeće pitanje: 
 \emph{Da li je optimalna vrijednost funkcije cilja problema LP-a veća od neke unaprijed zadate  vrijednosti k?}.
- Na ovo pitanje možemo odgovoriti pomoću Fourier–Motzkin-ove eliminacije, koja je potpuno drugačija od simpleks metode te je zbog toga i navedena u ovoj knjizi. Ideja algoritma se sastoji od sljedećeg. POtrebno je naći proceduru koja će redukovati problem sa $n$ varijabli na ekvivalentan problem sa $n-1$ varijabli. Ekvivalentnost se podrazumijeva u pogledu da početi problem ima riješenje akko ima i redukovani problem. Ova procedura se iterativno izvršava, smanjujući broj varijabli u problemu. Na kraju ćemo eventualno ostati sa sitemom od jedne varijable za koji se lako može provjeriti da li postoji barem jedna tačka između najveće gornje granice i najmanje donje granice koja zadovoljava uslov. 
+ Na ovo pitanje možemo odgovoriti pomoću Fourier–Motzkin-ove eliminacije, koja je potpuno drugačija od simpleks metode te je zbog toga i navedena u ovoj knjizi. Ideja algoritma se sastoji od procedure koja će redukovati problem sa $n$ varijabli na ekvivalentan problem sa $n-1$ varijabli. Ekvivalentnost se podrazumijeva u pogledu da početi problem ima riješenje akko ima i redukovani problem. Ova procedura se iterativno izvršava, smanjujući broj varijabli u problemu u svakom koraku. Na kraju ćemo eventualno ostati sa sitemom od jedne varijable za koji se lako može provjeriti da li postoji barem jedna tačka između najveće gornje granice i najmanje donje granice koja zadovoljava uslove. 
  
  Glavni korak ovog metoda je redukcija problema na ekvivalentan problem sa manjim brojem varijabli. Pretpostavimo da imamo varijable $x_1,\ldots, x_n$ i da želimo da eliminišemo varijablu $x_n$. za svaku od ograničenja
  \begin{equation}\label{eq:inequality_i}
@@ -2254,8 +2256,8 @@ Problem dopustivosti može da služi i da odgovorimo sljedeće pitanje:
  \begin{equation}\label{eq:min_max_xi}
      \max\{L_1,\ldots, L_k \} \leq x_n \leq \min \{ U_1, \ldots, U_l \},
    \end{equation}
-za neke 
- jer bi moralo da postoji nešto između najveće donje granice za vrijednost varaijble $x_n$ te njegove najmanje gornje granice. Međutim, kako su sve donje i gornje granice izražene preko nepoznatih $x_1, \ldots, x_{n-1}$,  u (\ref{eq:min_max_xi}) jednakost se ne može samo tako napisati, pa napišemo sljedeće nejednakosti 
+   
+ jer bi moralo da postoji nešto između najveće donje granice za vrijednost varijable $x_n$ te njegove najmanje gornje granice. Međutim, kako su sve donje i gornje granice izražene preko nepoznatih $x_1, \ldots, x_{n-1}$,  u (\ref{eq:min_max_xi}) jednakost se ne može samo tako napisati, pa napišemo sljedeće nejednakosti 
  $$\begin{array}{cccc}
        L_1 \leq U_1 & L_1 \leq U_2   &  \cdots   & L_1 \leq U_l \\
        L_2 \leq U_1 & L_2  \leq U_2  &  \cdots   & L_2 \leq U_l \\
@@ -2265,7 +2267,7 @@ za neke
 Ako postoji neka vrijednost  $x_n$ koja zadovoljava sva ograničenja, onda je za sve $i,j$, 
 $L_i \leq x_n \leq U_j$. Obrnuto, ako svi ovih $k \cdot l$ nejednakosti vrijede, onda vrijedi i (\ref{eq:min_max_xi}), pa se može izabrati neki $x_n$ između ove dvije ($\max$ i $\min$) vrijednosti. 
 
-Prema tome, dobili smo sistem od $n-1$ varijabli koji se sastoji od  $k \cdot l$ nejednakosti gore opisanih te originalnih ograničenja koja ne uključuju $x_n$ u sebi. Ovaj proces nastavimo iterativno dok ne dobijemo samo jednu promjenjivu, te potom trivijalno riješimo sistem. 
+Prema tome, početni problem je redukovan na sistem od $n-1$ varijabli sa dodatnih  $k \cdot l$ nejednakosti gore opisanih uz originalna ograničenja koja ne uključuju $x_n$ u sebi. Ovaj proces nastavimo iterativno dok ne dobijemo samo jednu promjenjivu, te potom (trivijalno) riješimo sistem. 
 
 \emph{\textbf{Primjer.}} Pretpostavimo da nam je dat sistem nejednačina:
 \begin{align*}
@@ -2296,7 +2298,7 @@ $$
     & x \geq 0.	
 \end{cases}
 $$
-Sve ove nejednakosti su donje granice. Prema tome, ako $x=7$, vidimo da će proći. 
+Sve ove nejednakosti su donje granice. Prema tome, ako $x=7$, vidimo da će ta vrijednost proći. 
 Tada, donje i gornje granice za $y$ postaju uslovi (pogledati gore): $y \leq 6, y \geq 4, y \leq 4$ te $y \geq 0$. Prema tome, možemo staviti $y=4$ i naći dopustivo rješenje. 
 
 %kompleksnost i Farkasova lema...
@@ -2305,8 +2307,8 @@ Tada, donje i gornje granice za $y$ postaju uslovi (pogledati gore): $y \leq 6, 
 \chapter{Cjelobrojno Programiranje}
 
 %https://www.google.com/url?sa=t&source=web&rct=j&url=https://web.mit.edu/15.053/www/AMP-Chapter-09.pdf&ved=2ahUKEwiN0cef_f7xAhU0CRAIHWLqCw0QFjAfegQILBAC&usg=AOvVaw1cQCbZJQbc55Z0VLPue2ul
-Nije realno očekivati da varijable odluke mogu da dobiju neprekidne vrijednosti u svim problemima. Recimo, ograničenja u problemu rasporeda ljudskih resursa po smjenama koje se tiču minimalnog broja osoblja u smjenama zahtjevaju varijable koje su diskretnog tipa. U slučaju da su sve varijable odluke u modelu problema cjelobrojne, riječ je o problemu cjelobrojnog programiranja (eng. \emph{Integer programming}). 
-U ovom odjeljku ćemo se pozabaviti   \emph{cjelobrojnim linearnim programiranjem} (ILP) gdje se još pored integralnosti (cjelobrojnosti) varaijbli zahtjeva da funkcija cilja kao i ograničenja u modelu budu linearni u svojim varijablama. Prema tome, ILP ima opšti oblik:
+Nije realno očekivati da varijable odluke mogu da dobiju neprekidne vrijednosti u svim problemima. Recimo, ograničenja u problemu rasporeda ljudskih resursa po smjenama koje se tiču minimalnog broja osoblja potrebnog u svakoj od smjenama zahtjevaju varijable koje su diskretnog tipa. U slučaju da su sve varijable odluke u modelu problema cjelobrojne, riječ je o problemu cjelobrojnog programiranja (eng. \emph{Integer programming}). 
+U ovom odjeljku ćemo se pozabaviti   \emph{cjelobrojnim linearnim programiranjem} (ILP) gdje se još pored integralnosti (cjelobrojnosti) varijabli zahtijeva da funkcija cilja kao i ograničenja u modelu budu linearni u svojim varijablama. Prema tome, ILP ima opšti oblik:
 \begin{align}
     & \max c^T x \nonumber\\
     & A x \leq b \nonumber \\
@@ -2317,12 +2319,12 @@ U nastavku modelujmo nekoliko poznatih problema uz pomoć paradigme ILP-a.
 
 \section{Modelovanje nekih problema}
 
-\emph{Problem ruksaka.} Neka je dato $n$ proizvoda i neka je težina $i$-tog proizvoda jednaka $w_i$, dok je vrijednost jednaka $c_i$, $i=1,\ldots,n$. Koje proizvode treba da stavimo u ruksak kapaciteta $C$ tako da je vrijednost proizvoda u ruksaku maksimalna. \\
-\emph{Rješenje}. Definišimo varijable $x_i$ koje dobijaju vrijednost 1 ako odaberemo $i$-ti proizvod kojieg stavljamo u ruksak, u protivnom 0, $i=1,\ldots,n$. Ograničenje kapaciteta ruksaka se modeluje ograničenjem $\sum_{i=1}^n w_i x_i \leq C$, dok je funkcija cilja ona koja maksimizuje profit odabranih proizvoda, dakle modeluje se uz pomoć linearne kombinacije $f(x) = \sum_{i=1}^n c_i x_i$. Time smo modelovali ovaj problem.
+\emph{Problem ruksaka.} Neka je dato $n$ proizvoda i neka je težina $i$-tog proizvoda jednaka $w_i$, dok je vrijednost svakog od njih jednaka $c_i$, $i=1,\ldots,n$. Koje proizvode treba da stavimo u ruksak kapaciteta $C$ tako da je vrijednost proizvoda u ruksaku maksimalna. \\
+\emph{Rješenje}. Definišimo varijable $x_i$ koje dobijaju vrijednost 1 ako odaberemo $i$-ti proizvod kojeg stavimo u ruksak, u protivnom 0, $i=1,\ldots,n$. Kapacitet ruksaka se modeluje ograničenjem $\sum_{i=1}^n w_i x_i \leq C$, dok je funkcija cilja ona koja maksimizuje profit odabranih proizvoda, dakle modeluje se uz pomoć linearne kombinacije $f(x) = \sum_{i=1}^n c_i x_i$. Time je problem modelovan.
 
 \emph{Problem rasporeda}. Čitava klasa problema koja se naziva sekvenciranje, raspoređivanje i usmjeravanje u osnovi su predstavljeni modelima cjelobrojnog programiranja. Kao primjer, recimo da je potrebno rasporediti studenate u  učionicu na takav način
-da je minimizovan broj učenika koji ne mogu pohađati nastavu koja je njihov prvi izbor među svim ostalim izborima. Postoje ograničenja u pogledu broja i kapaciteta učionica dostupnih u bilo kom trenutku, dostupnosti predavača na fakultetu u određeno vrijeme i preferencijama studenata za određene rasporede. Jasno je da imamo varijablu za   $i$-tog studenta 
-kojipohađa $j$-to predavanje tokom $n$-tog vremenskog perioda (recimo, vrijeme je diskretizovano po 45 min/čas) -- koja je jednaka 1 ako se student uklapa u takav raspored, inače 0. 
+da je minimizovan broj učenika koji ne mogu pohađati nastavu koja je njihov prvi izbor među svim ostalim izborima. Postoje ograničenja u pogledu broja i kapaciteta učionica dostupnih u bilo kom trenutku, dostupnosti predavača na fakultetu u određeno vrijeme i preferencijama studenata za određene rasporede. Jasno je da imamo varijablu $X_{i,j,n}$ za   $i$-tog studenta 
+koji pohađa $j$-to predavanje tokom $n$-tog vremenskog perioda (recimo, vrijeme je diskretizovano po 45 min/čas) -- koja je jednaka 1 ako se student uklapa u takav raspored, inače 0. 
 
 Posmatrajmo ipak malo specifičniji problem u odnosu na ovaj generalni (koji je dosta težak i za modeovanje, a kamoli za rješavanje). 
 Razmotrimo raspoređivanje osoblja zaduženog za upravljanje letom aviona. 
@@ -2348,9 +2350,9 @@ Model ovakvog problema je dat sa
     & x_i \in \{0, 1 \}, \forall i \in \{1, \ldots, n\} \\
     & a_{ij} \in \{0, 1\}, \forall i \in \{1, \ldots, n\}, j \in\{1,\ldots, m\} \nonumber
 \end{align}
-Ograničenje (\ref{ineq:set_cover}) je poznato ograničenje koje se javlja u pokrivanju problema skupa (eng. \emph{set-covering problem}).
+Ograničenje (\ref{ineq:set_cover}) je poznato ograničenje koje se javlja u pokrivanju problema skupa (eng. \emph{set covering problem}).
 
-\emph{Problem trgovačkog putnika}. Problem ima ovakvu formulaciju: krenuvši od svog mjesta, putnik želi da posjeti ostalih ($n-1$) gradova pod minimalnim troškovima te da se na kraju vrati na isto mjeto. U suštini, ovo je grafovski problem gdje je ulaz (bez smanjenja opštosti) kompletan težinski graf, a potrebno je naći hamiltonovu konturu minimalne težine u datom grafu. Pod težine konture se podrazumijeva zbir težina njenih grana. 
+\emph{Problem trgovačkog putnika}. Problem je formulisan na slejdeći način. Krenuvši od svog mjesta, putnik želi da posjeti ostalih ($n-1$) gradova pod minimalnim troškovima i da se na kraju vrati na isto mjesto. U suštini, ovo je problem grafovske prirode gdje je ulaz (bez smanjenja opštosti) kompletan težinski graf, a potrebno je naći hamiltonovu konturu minimalne težine u datom grafu. Pod težinom konture se podrazumijeva zbir težina njenih grana. 
 
 \emph{Rješenje}. Označimo težinu grane od grada $i$ do grada $j$ sa $c_{ij}$.  Definišimo (binarne) varijable 
 $$x_{ij} = \begin{cases}
@@ -2362,17 +2364,17 @@ $$  \sum_{i=1}^n x_{ij} = 1, \forall j =1,\ldots, n,$$
 što znači da se iz tačno jednog grada dolazi u svaki grad $j$, dok sličnim jednakostima nametnemo da se iz grada $j$ odlazi u tačno jedan drugi grad sa:
 
 $$  \sum_{j=1}^n x_{ij} = 1, \forall i =1,\ldots, n$$ 
- uz uslove $x_{ij}\geq 0$. Primijetimo sljedeće, ovakvi uslovi ne sprečavaju pojavu rješenja koja predstavljaju uniju disjunktnih podruta, što nije dopustivo u ovom slučaju. Ako pretpostavimo da je rješenje dato u obliku podruta $R_1, \ldots, R_k$, gdje je $R_i = \{ v_{i_1}, \ldots, v_{i_k} \}$, onda se može izbjeći pojava podruta dodavanjem dodatnih ograničenja u početni model problema, te ga takvog ponovo riješiti. Recimo, eliminacija pojave podrute $R_2$ (u odnosu na podrutu $R_1$) se vrši dodavanjem ograničenja:
+ uz uslove $x_{ij}\geq 0$. Primijetimo sljedeće, ovakvi uslovi ne sprečavaju pojavu rješenja koja predstavljaju uniju disjunktnih podruta, što nije dopustivo u ovom slučaju. Ako pretpostavimo da je rješenje dato u obliku podruta $R_1, \ldots, R_k$, gdje je $R_i = \{ v_{i_1}, \ldots, v_{i_k} \}$, onda se može izbjeći pojava podruta dodavanjem dodatnih ograničenja u početni model problema, te ga takvog sukcesivno riješavati dodavanjem ograničenja dok god en dobijemo rješenje koje nije sastavljeno od više od jedne rute. Recimo, eliminacija pojave podrute $R_2$ (u odnosu na podrutu $R_1$) se vrši dodavanjem ograničenja:
  $$ \sum_{l=1}^{1_k}\sum_{t=1}^{2_k} x_{1_l, 2_t} \geq 1.$$
  U najgorem slučaju, potrebno je dodati $2^n-1$ ovakvih ograničenja da bi se dobilo dopustivo rješenje. Postoje i druga ograničenja koja mogu da se dodaju za eliminaciju podruta, bez gore pomenutog iterativnog procesa, ali o njima će biti riječi u narednim sekcijama. 
  
  \section{Neke tehnike u konstrukciji modela Cjelobrojnog Programiranja}
  
  \emph{Binarne varijable.} Pretpostavimo da trebamo odrediti da li uključiti sljedeće aktivnosti: ($i$) izgraditi novo postrojenje,
-($ii$) poduzeti reklamnu kampanju ili ($iii$) razviti novi proizvod. Jasno je da su ove odluke korespondiraju ka logičkim odlukama da ili ne, prema tome modelujemo ih sa  $x_i \in \{0, 1 \}$, $i=1,2,3$. Često se nameće uslov da se najviše jedna od odluka izvrši, što se modeluje sa $\sum_{i=1}^3 x_1 \leq 1$. Ovo ograničenje se obično naziva \emph{ograničenjem sa višestrukim izborom} (eng. multiple--choice constraint), jer se njime ograničava izbor odluka na najviše jednu od, u ovom slučaju, tri dostupne alternative. 
+($ii$) poduzeti reklamnu kampanju ili ($iii$) razviti novi proizvod. Jasno je da su ove odluke korespondiraju ka logičkim odlukama da ili ne, prema tome modelujemo ih uvodeći  varijable $x_i \in \{0, 1 \}$, $i=1,2,3$. Često se nameće uslov da se najviše jedna od odluka izvrši, što se modeluje sa $\sum_{i=1}^3 x_1 \leq 1$. Ovo ograničenje se obično naziva \emph{ograničenjem sa višestrukim izborom} (eng. multiple--choice constraint), jer se njime ograničava izbor odluka na najviše jednu od, u ovom slučaju, tri dostupne alternative. 
 
 
-Pretpostavimo da proizvođač lijekova treba da odluči hoće li koristiti spremnik za fermentaciju u proizvodnji. Ako koristi spremnik, tehnologija obrade zahtijeva da se napravi $X$ jedinica ljekova. Dakle, proizvodnja $y$ mora biti 0 ili $K$, a problem se može modelirati binarnom varijablom $x_j \in \{ 0, 1\}$ zamjenom $Kx_j$ za $y_i$. 
+Pretpostavimo da proizvođač lijekova treba da odluči hoće li koristiti spremnik za fermentaciju u proizvodnji. Ako koristi spremnik, tehnologija obrade zahtijeva da se napravi $K$ jedinica ljekova. Dakle, proizvodnja $y$ mora biti 0 ili $K$, a problem se može modelirati binarnom varijablom $x_j \in \{ 0, 1\}$ zamjenom $Kx_j$ za $y_i$. 
 
 \emph{Logička ograničenja}. Jedno od najprostijih logičkih pitanja u matematičkom programiranju je da li dati izbor varijabli odluka zadovoljava ograničenje
 
@@ -2393,7 +2395,7 @@ te napišimo
 \end{equation}
 
 gdje je $M$ (dovoljno velika) konstanta tako da je 
-ograničenje zadovoljeno za sve $x$ ako je $y =1$. Kad god je $y=0$ i ako je uslov (\ref{eq:constr-ex-1-ilp}) zadovoljen, onda je i ograničenje (\ref{eq:constr-ex-1-ilp-big-B}) zadovoljeno. U praksi je određivanje konstante $M$ često slijedi iz samog problema. Inače, veoma je bitno da uzmemo što manju vrijednost za $M$ da bismo izbjegli potencijalne numeričke probleme prilikom računanja. 
+ograničenje zadovoljeno za sve $x$ ako je $y =1$. Kad god je $y=0$ i ako je uslov (\ref{eq:constr-ex-1-ilp}) zadovoljen, onda je i ograničenje (\ref{eq:constr-ex-1-ilp-big-B}) zadovoljeno. U praksi   određivanje konstante $M$ često slijedi iz samog problema. Inače, veoma je bitno da uzmemo što manju vrijednost za $M$ da bismo izbjegli potencijalne numeričke probleme prilikom računanja. 
 
 \emph{Alternativna ograničenja}. Pogledajmo sljedeću situaciju sa alternativnim ograničenjima:
 \begin{align}
@@ -2412,12 +2414,13 @@ Konstante $M_1$ i $M_2$ se odabiru da oba ograničenja u (\ref{ineq:f_leq_b2})  
 
 Ograničenje $y_1 + y_2 \leq 1$ implicira da barem jedna od $y$--varijabli mora da bude 0, tj. barem jedno ograničenje mora da bude zadovoljeno. 
 
-Primijetimo da možemo  pojednostaviti ovu formulaciju koristeći $y_1 + y_2 = 1$ (jer ovo povlači da ili $y_1$ ili $y_2$ su 0), tj. uvrštanjem $y_2 =  1-y_1$, odakle dobijamo 
+Pojednostavimo ovu formulaciju koristeći ograničenje $y_1 + y_2 = 1$ mjesto ograničenja sa nejednakosti (jer ovo povlači da ili $y_1$ ili $y_2$ je jednako 0), tj. uvrštanjem $y_2 =  1-y_1$, odakle dobijamo 
 \begin{align*}
       & f_1(x) - M_1 y_1       \leq b_1 \\
       & f_2(x) - M_2 (1-y_1)   \leq b_2  \\
-      & y_1, y_1 \in \{0,1 \}.
+      & y_1 \in \{0,1 \}.
 \end{align*}
+
 \emph{Uslovna ograničenja}. 
 Pretpostavimo da želimo modelovati sljedeći scenario sa ograničenjima 
 \begin{align*}
@@ -2442,12 +2445,12 @@ Primijetimo da ako je $y_j = 1$, tada je $j$-to ograničenje zadovoljeno (za dat
 \emph{Složene alternative}. Pretpostavimo da se region sastoji od tri disjunktna regiona kao na Slici~\ref{fig:compound_regions}. Ovakav scenario se može modelovati uz pomoć konstante veliko $M$, te  ograničenjem sa višestrukim izborom, odakle dobijamo:
 \begin{align*}
     &f_1(x) - M_1 y_1 \leq b_1 \\
-    &f_2(x) - M_2 y_1 \leq b_2 (\mbox{ region 1}) \\ \hline
+    &f_2(x) - M_2 y_1 \leq b_2\ (\mbox{ region 1}) \\ \hline
     & f_3(x) - M_3 y_2 \leq b_3 \\ 
-    & f_4(x) - M_4 y_2 \leq b_4 (\mbox{ region 2})\\  \hline 
+    & f_4(x) - M_4 y_2 \leq b_4\ (\mbox{ region 2})\\  \hline 
     & f_5(x) - M_5 y_3 \leq b_5 \\
     & f_6(x) - M_6 y_3 \leq b_6 \\
-    & f_7(x) - M_7 y_3 \leq b_7 (\mbox{ region 3}) \\ \hline
+    & f_7(x) - M_7 y_3 \leq b_7\ (\mbox{ region 3}) \\ \hline
     & y_1 + y_2 + y_3 \leq 2 \\
     & x_1, x_2 \geq 0 \\
     & y_1, y_2, y_3 \geq 0.
@@ -2478,7 +2481,7 @@ $$f(x) = \begin{cases}
 $$
 gdje su $I_1, I_2$ i $I_3$ disjunktni intervali na $\mathbb{R}$.
 
-Da bi se modelovala funkciju cilja modela, varijablu $x$ izrazimo na osnovu tri varijable 
+Da bi se modelovala ovakva funkciju cilja u modelu, varijablu $x$ izrazimo preko tri nove varijable 
 $$x = \beta_1 + \beta_2 + \beta_3$$
 pod uslovima 
 \begin{align}
@@ -2486,7 +2489,7 @@ pod uslovima
      &0  \leq \beta_2 \leq \delta^2_2 - \delta^2_1 = b_2 \nonumber \\
      &0  \leq \beta_3 \leq \delta^3_2- \delta^3_1 = b_3, \label{eq: piecewise-constraints}
 \end{align}
-te je cijena tada jednaka 
+dakle slijedi da je funkcija cilja   jednaka 
 $$ C = c_1 \beta_1 + c_2 \beta_2 + c_3 \beta_3.$$ 
 Primijetimo da imamo problema na graničnim uslovima intervala, dakle u tačkama $I_1 \cap I_2 =\{\delta^1_2\}$ i $I_2 \cap I_3 =\{\delta^2_2\}$. Trebalo bi da vrijedi da $\beta_1 =  \delta^1_2 - \delta^1_1$ kad god je $\beta_2  > 0$ kao i $\beta_2 =  \delta^2_2 - \delta^2_1$ kad god je $\beta_3  > 0$.  S obzirom da su ovo uslovna ograničenja, ona se modeluju uvođenjem dodatnih binarnih varijabli 
 $$ \omega_1 = \begin{cases}
@@ -2503,7 +2506,7 @@ pa se ograničenja u (\ref{eq: piecewise-constraints}) mogu napisati u obliku
 \begin{align}
      & b_1 \omega_1 \leq \beta_1 \leq b_1   \nonumber \\
      & b_2 \omega_2 \leq \beta_2 \leq \omega_1 b_2 \nonumber \\
-     & 0 \leq \beta_3 \leq b_3 \omega_2 \nonumber \\
+     & 0 \leq \beta_3  \omega_2 \leq b_3\nonumber \\
      & \omega_1, \omega_2 \geq 0. \label{eq: piecewise-constraints-equivalent}
 \end{align}
       Primijetimo da ako $\omega_1 = 0$, onda je $\omega_2= 0$ kako bi se održala dopustivost za ograničenja nametnuta  od strane $\beta_2$, pri čemu se uslovi u (\ref{eq: piecewise-constraints-equivalent}) prevode u
@@ -2512,7 +2515,7 @@ pa se ograničenja u (\ref{eq: piecewise-constraints}) mogu napisati u obliku
             $$   \beta_1 = b_1, 0 \leq \beta_2 \leq b_2, \beta_3 =0.$$
     Ako je $\omega_1 = \omega_2 = 1$, onda se  uslovi u (\ref{eq: piecewise-constraints-equivalent}) prevode u
     $$ \beta_1 = b_1, \beta_2 = b_2, 0 \leq \beta_3 \leq b_3.$$
-    Prema tome, postoje 3 dopustive kombinacije parametara $\omega_1$ i $\omega_2$:
+    Prema tome, postoje tri dopustive kombinacije parametara $\omega_1$ i $\omega_2$:
     \begin{itemize}
              \item  $\omega_1 = 0, \omega_2= 0:$ koje odgovara $x \in I_1$ jer $\beta_2=\beta_3=0$;  
              \item $\omega_1 = 1, \omega_2 = 0$: koje odgovara $x\in I_2$, jer je $\beta_1=b_1, \beta_3=0$;
@@ -2536,7 +2539,7 @@ pa se ograničenja u (\ref{eq: piecewise-constraints}) mogu napisati u obliku
     	 & y \geq x_2 + u(1-x_1) \\
     	 & y \geq 0.
     \end{align*}
-  \item $x_1, x_2$ u obje neprekidne varijable, $0 \leq x_1 \leq u_1$, $0 \leq x_2 \leq u_2$. Uvedemo varijable $y_1 = \frac{1}{2}( x_1 + x_2) $ i  $y_2 =\frac{1}{2}(x_1 - x_2)$. Tada se izraz $x_1x_2$ može predstaviti u separabilnoj formi $y_1^2 - y_2^2$ koja se može aproksimirati po-dijelovima-linearnim funkcijama. Granice za vrijednosti novih varijabli su 
+  \item $x_1, x_2$ u obje neprekidne varijable, $0 \leq x_1 \leq u_1$, $0 \leq x_2 \leq u_2$. Uvedemo varijable $y_1 = \frac{1}{2}( x_1 + x_2) $ i  $y_2 =\frac{1}{2}(x_1 - x_2)$. Tada se izraz $x_1x_2$ može predstaviti u separabilnoj formi $y_1^2 - y_2^2$ koja se zatim može aproksimirati po-dijelovima-linearnim funkcijama. Granice za vrijednosti novih varijabli su 
   $$ \frac{1}{2}(l_1 + l_2) \leq y_1 \leq \frac{1}{2}(u_1 + u_2)$$ i 
   $$ \frac{1}{2}(l_1 - u_2) \leq y_1 \leq \frac{1}{2}(u_1 - l_2) $$
   
@@ -2544,22 +2547,22 @@ pa se ograničenja u (\ref{eq: piecewise-constraints}) mogu napisati u obliku
 
 \emph{Aproksimacija nelinearnih funkcija}. Kako smo omenuli u prethodnoj stavci, ako je funkcija cilja neprekidna i nelinearna, ona se može aproksimirati uz pomoću niza po-dijelovima-linearnih funkcija, pa se onda primjenjuje transformacija ograničenja  prezentovana u stavki o po-dijelovima-linearnim funkcijama. 
 
-Da bi primijenili veći broj gore navedenih transformacija ograničenja, posmatrajmo sljedeći primjer, koga ćemo modelovati. 
+Da bi primijenili veći broj gore navedenih transformacija ograničenja u praksi, posmatrajmo sljedeći primjer kojeg modelujemo. 
 
 
-\emph{Primjer}. Pretpostavimo da je stanovništvo koncentrirano u $I$ okruga  unutar grada i da u okrugu $i\in [I]$ ima $p_i$ ljudi. Preliminarna analiza (premjeri zemljišta, politika, socijalna situacija, itd.) ograničila je potencijalne lokacije vatrogasnih domova na $J$ mijesta. Neka $d_{ij} \geq 0$ predstavlja udaljenost od središta okruga (dijela grada) $i$  do mjesta $j$. 
+\emph{Primjer}. Pretpostavimo da je stanovništvo koncentrirano u $I$ okruga  unutar grada i da u okrugu $i\in [I]$ stanuje $p_i$ ljudi. Preliminarna analiza (premjeri zemljišta, politika, socijalna situacija, itd.) ograničila je potencijalne lokacije vatrogasnih domova na $J$ lokacija. Neka $d_{ij} \geq 0$ predstavlja udaljenost od središta okruga (dijela grada) $i$  do lokacije $j$. 
 
-Zadatak: \emph{Naći najbolji odabir mijesta gdje će se dodijeliti vatrogasni domovi u svakom od okruga.}
+Zadatak: \emph{Potrebno je odabrati strategiju odabira najboljih lokacija gdje će se podići vatrogasni domovi za svaki od okruga.}
 
 Definišimo binarne varijable 
-$$y_i = \begin{cases}
-              1, \mbox{ ako je lokacija } i \mbox{ odabrana za izgradnju doma} \\
+$$y_j = \begin{cases}
+              1, \mbox{ ako je lokacija } j \mbox{ odabrana za izgradnju doma} \\
               0, \mbox{ inače}
         \end{cases}$$
 i 
 $$
 x_{ij}= \begin{cases}
-             1, \mbox{ ako je lokacija za vatrogasni dom } i \mbox{ pridružena mjestu } j \\
+             1, \mbox{ ako je lokacija za vatrogasni dom } j \mbox{ pridružena opskrbljivanju okruuga } i \\
              0, \mbox{ inače}. 
         \end{cases}
 $$
@@ -2573,11 +2576,11 @@ Takođe, ne postoji okrug koji je pridružen nekorištenoj lokaciji (za vatrogas
  \end{equation}
 %gdje je $|I|$ broj mijesta. 
 
-Dalje, udaljenost okruga $i$ ka pridruženom vatrogasnom domu je jednaka $d_i = \sum_{j} d_{ij}x_{ij} $. Dalje, veličina populacije (broj ljudi) koja će biti opskrbljivana od strane mjesta $j$ je jednaka 
+Udaljenost okruga $i$ ka pridruženom vatrogasnom domu je jednaka $d_i = \sum_{j |in J} d_{ij}x_{ij} $. Dalje, veličina populacije (broj ljudi) koja će biti opskrbljivana od strane doma na lokaciji $j$ je jednaka 
 \begin{equation}\label{eq:ex-constr-3}
-    s_j = \sum_{i} p_i x_{ij}. 
+    s_j = \sum_{i \in I} p_i x_{ij}. 
 \end{equation}
-Pretpostavimo da je središnji okrug posebno osjetljiv na požar i da  mjesta 1 i 2 ili mjesta 3 i 4 mogu biti iskorištena da zaštite okrug. Ovakva situacija se modeluje sa
+Pretpostavimo da je središnji okrug posebno osjetljiv na požar i da lokacije za dom  1 i 2 ili lokacije 3 i 4 mogu biti iskorištena da zaštite okrug. Ovakva situacija se modeluje sa
 \begin{equation*} 
     y_1 + y_2 \geq 2 \mbox{ ili } y_3 + y_4 \geq 2
 \end{equation*}
@@ -2591,7 +2594,7 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
 \begin{equation}\label{eq:ex-constr-5}
      \sum_{j \in J} f_j(s_j) \leq B.
 \end{equation}
- Funkcija cilja koja bi se mogla optimizovati je minimizacija udaljenosti 
+ Funkcija cilja koja bi se mogla optimizovati u ovoj varaijnti problema je minimizacija udaljenosti 
  okruga koja je najdalje od svog pridruženog vatrogasnog doma ($d_i$):
       $$\min D $$
  gdje je $D= \max d_i$. Ekvivalentno se ova funkcija cilja može napisati kao:
@@ -2605,9 +2608,11 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
  % jos neki trikovi u modelovanju: https://download.aimms.com/aimms/download/manuals/AIMMS3OM_LinearProgrammingTricks.pdf
  
  \section{Kompleksnost Cjelobrojnog Programiranja}
-   Što se tiče rješivosti problema cjelobrojnog programiranja, ona spada u NP--teške probleme, za razliku od LP-a koji je polinomijalan. U nastavku ove sekcije dajemo dokaz da je rješivost ILP-a NP--težak problem.  Ideja je da  svedemo problem 3--SAT na ILP.\\ 
+   Što se tiče rješivosti problema cjelobrojnog programiranja, ona spada u NP--teške probleme, za razliku od LP-a koji je, kako smo pokazali, polinomijalno rješiv. U nastavku ove sekcije dajemo dokaz da je rješivost ILP-a zaista NP--težak problem.  Ideja je da  svedemo problem 3--SAT na ILP.\\ 
      %https://mediaspace.msu.edu/media/Proving+that+Integer+Programming+is+NP-Complete/1_0j1vkmvw
-   Uvedimo prvo problem 3--SAT-a. Neka su dati literali $x_1, \ldots, x_n$. Svaki literal može da bude pozitivan ($x_1$) ili negativan  ($\neg x_1$). Kažemo da je formula napisana u \emph{konjunktivnoj normalnoj formi} (CNF) akko je napisana kao konjunkcija klauzula (ili literala). Pod klauzulom podrazumijevamo formuli koja je sastavljena od literala i disjunkcija. Npr. formula $\phi(x_1, x_2, x_3)= (x_1 \vee  \neg x_2) \wedge (x_1 \vee x_3)$ je napisana u CNF; u njoj postoje dvije klauzule. CNF formula $\phi(x)$ je zadovoljiva akko postoji dodjela $\overline{x}$ literalima ($\overline{x}_i \in \{TRUE, FALSE\}$) tako da je $\phi(\overline{x})$ tačna (prema zakonima bulove algebre).  
+   Iako je 3--SAT problem trebao biti poznat onome ko je slušao kurs iz osnova teorije algoritama, radi lakše čitljivosti ćemo ga ovdje izložiti. 
+   
+   Neka su dati literali $x_1, \ldots, x_n$. Svaki literal može da bude pozitivan ($x_1$) ili negativan  ($\neg x_1$). Kažemo da je formula napisana u \emph{konjunktivnoj normalnoj formi} (CNF) akko je napisana kao konjunkcija klauzula (ili literala). Pod klauzulom podrazumijevamo formulu koja je sastavljena od literala i disjunkcija. Npr. formula $\phi(x_1, x_2, x_3)= (x_1 \vee  \neg x_2) \wedge (x_1 \vee x_3)$ je napisana u CNF; u njoj postoje dvije klauzule. CNF formula $\phi(x)$ je zadovoljiva akko postoji dodjela $\overline{x}$ literalima ($\overline{x}_i \in \{TRUE, FALSE\}$) tako da je $\phi(\overline{x})$ tačna (prema zakonima bulove algebre).  
    
    Kažemo da je konjunktivna formula $\phi(x)$  napisana u 3--CNF  akko se u svakoj klauzuli nalazi najviše 3 različita literala. Napomenimo da se bilo koja formula može redukovati u 3--CNF, u smislu rješivosti. Dakle, svaka klauzula 
    $l_1 \vee l_2 \vee \cdots \vee l_n$ se prevodi u 3--CNF na sljedeći način:
@@ -2616,25 +2621,25 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
        &\vee x_{n-2} ) \wedge ( \neg x_{n-2} \vee l_{n-1} \vee l_n ).  
     \end{align*}    
       Imajte na umu da ove formule nisu logički ekvivalentne ali su ekvivalentne u smislu zadovoljenja. 
-    Pokazano je da je problem 3--SAT, gdje je ulaz 3--CNF formula,  u opštem slučaju NP-težak.  
+    Pokazano je da je problem 3--SAT, gdje je ulaz 3--CNF formula,  u opštem slučaju NP-kompletan problem.  
     
    \begin{thm}
    	  Rješivost ILP-a je NP-težak problem.
    \end{thm}
    \begin{proof}
-   	   Izvedimo redukciju sa 3-SAT problema. Neka je dat 3--SAT izraz sa varijablama 
+   	   Izvedimo redukciju sa 3-SAT problema. Neka je dat 3--SAT izraz sa literalima  
    	   $x_1,\ldots, x_n$.  Konstruišimo ILP instancu sa varijablama $z_1, \ldots, z_n$ gdje imamo:
    	   \begin{itemize}
    	   	   \item Svaka klauzula $\phi_i(x)$ je konvertovana u nejednakost gdje
    	   	      $z_i = x_i$, ako je $x_i$ pozitivan literal u klauzuli $\phi$, odnosno $z_i = 1 - x_i$ ako je $x_i$ negativan literal u klauzuli $\phi$ (negacija ispred). Primjera radi, ako je data instanca problema 3-SAT sa 
-   	   	      $\phi(x) = (x_1 \vee \neg x_2 \vee \neg x_3) \wedge ( x_2 \vee \neg x_4 \vee x_5 )$, dobijamo instancu ILP-a
+   	   	      $\phi(x) = (x_1 \vee \neg x_2 \vee \neg x_3) \wedge ( x_2 \vee \neg x_4 \vee x_5 )$, transformišemo je (u polinomijalnom vremenu) na instancu ILP-a
    	   	      \begin{align*}
    	   	         	 &z_1 + (1- z_2) + (1 - z_3 ) \geq 1 \\
    	   	         	 &z_2 + (1-z_4)  + z_5 \geq 1 \\
    	   	         	 & z_i \in \{0,1\}, i=1,\ldots,5.
    	   	      \end{align*} 
    	   \end{itemize}
-   	   Dakle, iz gornje redukcije, nalazak rješenja ILP instance odgovara nalasku dodjele $\overline{x}$ varijabli tako da je formula $\phi$ zadovoljena. Dakle, treba da se provjeri da li je ILP instanca dopustiva. Takođe, lako je vidjeti da je ova redukcija polinomna. Prema tome, ILP je NP-težak, s obzirom da je 3--SAT problem NP-kompletan. 
+   	   Dakle, iz gornje redukcije, nalazak rješenja ILP instance odgovara nalasku dodjele $\overline{x}$ literalima tako da je formula $\phi$ zadovoljena. Dakle, treba da se provjeri da li je ILP instanca dopustiva. Takođe, lako je vidjeti da je ova redukcija polinomna. Prema tome, ILP je NP-težak, s obzirom da je 3--SAT problem NP-kompletan. 
    \end{proof} \\
  Može se pokazati i sljedeća teorema.
  \begin{thm} Neka je $k\in \mathbb{Z}$.
