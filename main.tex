@@ -470,7 +470,7 @@ Kompaktiniji oblik standardne forme je dat sa:
 \begin{align}
     & f = c^T x \rightarrow \max \label{eq:LP-o1}\\
     &  A x \leq b \label{eq:LP-c1} \\
-    & x \geq 0 \label{eq:LP-c2}.
+    & x \geq 0 \label{eq:LP-c2},
 \end{align}
 
 gdje je $A \in \mathbb{R}^{m \times n}$, $x \in \mathbb{R}^n$ i $b \in \mathbb{R}^{m \times 1}$. Imajte na umu da ograničenja (\ref{eq:LP-c1}) mogu da imaju i oblike:
@@ -480,7 +480,7 @@ gdje je $A \in \mathbb{R}^{m \times n}$, $x \in \mathbb{R}^n$ i $b \in \mathbb{R
     \item neke od varijabli $x_i=0$.
 \end{itemize}
 Bilo koji problem koji koristi neke od prethodna tri ograničenja predstavlja i dalje problem linearnog programiranja. Dodavajući tzv. izravnavajuće varijabe $s \in \mathbb{R}^m$ u linearni program sa ograničenjima $Ax \leq b$, dobijamo linearni program sa ograničenjia $Ax + s = b, s \geq 0$. Isto tako, linearan program sa ograničenja $Ax \leq b$ se može izmijeniti u ograničenja sa jednakostima dodavanjem izravnavajućih varijabli kao $Ax - s = b, s\geq 0$. Forma linearnog programa sa ograničenjima $Ax = b$ se naziva \emph{kanonska} forma linearnog programiranja.   Takođe, ako u linearnom
-programu postoji varijabla koja nema uslov nenegativnosti, ona se može zameniti razlikom dve nove nenegativne promenljive. Kanonski oblik linearnog programiranja je pogodan za izvođenje Gausovih transformacija efikasno nad matricom problema, što će biti od koristi u konstrukciji simpleks metoda.   %, jer je svaki broj razlika dva nenegativna broja.
+programu postoji varijabla koja ne zadovoljava uslov nenegativnosti, ona se može zameniti razlikom dve nove nenegativne promenljive. Kanonski oblik linearnog programiranja je pogodan za efikasno izvođenje Gausovih transformacija  nad matricom problema, što će biti od koristi u konstrukciji simpleks metoda.   %, jer je svaki broj razlika dva nenegativna broja.
 
  U nastavku pratimo sljedeću terminologiju u vezi linearnog programiranja (LP):
 \begin{itemize}
@@ -638,7 +638,7 @@ pod sljedećim uslovima
 \end{itemize}
 %\printbibliography[heading=subbibliography,notkeyword=this]
 
-\emph{Problem lokacija}. Problemi s lokacijom često se postavljaju na sljedeći način: pretpostavimo da postoji $n$ postrojenja (prodavnica)  i  $m$ kupaca. Problem ima dva pitanja:
+\emph{Problem lokacija}. Problemi s lokacijom često se postavljaju na sljedeći način: pretpostavimo da postoji $n$ postrojenja (prodavnica)  i  $m$ kupaca. Dva pitanja treba da budu riješena:
 \begin{enumerate}
     \item koji od $n$ postrojenja otvoriti i
      \item koje  postrojenje koristiti za opskrbu kojeg od kupaca, kako bi se zadovoljila fiksna potražnja svakog od kupaca   uz minimalni trošak otvaranja postrojenja.
@@ -680,7 +680,7 @@ za $ i = 1, \ldots, n, j = 1,  \ldots, m$ koje osigurava bolje performanse jer s
 
 %\subsection{Pretpostavke o Linearnom Programiranju}
 Kao što smo vidjeli kod funkcije cilja problema oglašavanja,  
-nisu korišteni egzaktni koeficijenti (za broj gledalaca) već brojevi koji su proporcionalni nekoj vrijednosti (1000). Takve transformacije su invarijantne i ne utiču na optimalno rješenje problema ali doprinose čitljivosti modela.
+nisu korišteni egzaktni koeficijenti (za broj gledalaca) već brojevi koji su proporcionalni nekoj vrijednosti (1000). Takve transformacije su invarijantne i ne utiču na potragu za optimalnim rješenjem  problema, a doprinose čitljivosti modela.
  
 Kada je riječ o linearnim programima,  oni imaju nekoliko onovnih implicitnih pretpostavki. 
 \begin{enumerate}
@@ -916,7 +916,7 @@ Prema tome, da bi  konstruisali bazno rješenje, radimo sljedeće
     	         x_{p_i} = (x_B)_i, j \in \{ p_1,\ldots, p_m \}
     \end{cases},$$  čime dobijamo bazno rješenje. 
 \end{enumerate}
-Varijable $x_{p_1},\ldots, x_{p_m}$ nazivamo bazne varijable, a vektore  $A_{p_1}, \ldots, A_{p_m}$ bazni vektori, indekse $p_1,\ldots, p_m$ bazni indeksi, dok matricu $B$ matrica baze. 
+Varijable $x_{p_1},\ldots, x_{p_m}$ nazivamo \emph{bazne varijable}, a vektore  $A_{p_1}, \ldots, A_{p_m}$ \emph{bazni vektori}, indekse $p_1,\ldots, p_m$ \emph{bazni indeksi}, dok matricu $B$ matrica baze. 
 
 
 Definišimo sada pojam \emph{degenerativnog} rješenje i degenerativnog baznog rješenja. Pokazaćemo kako se na primjeru pronalazi bazno rješenje te kako izgleda degenerativno bazno rješenje.
