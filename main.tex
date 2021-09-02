@@ -1760,7 +1760,7 @@ Generalno posmatrajući, za problem LP-a~(\ref{eq:LP-o1})--(\ref{eq:LP-c2}) njeg
 \end{thm}
 \begin{proof}
          Napišimo ograničenja probema ($P$) kao $Ax + \omega = b, x, \omega \geq 0$.
-         Primijenimo simpleks metod, pa pogledajmo posljednju simpleks tabelu u obliku:
+         Primijenimo simpleks metod, pa pogledajmo posljednju (optimalnu) simpleks tabelu:
          
          $$\begin{array}{c |c | c}
          \overbrace{\ \ \ \ \ \hspace{1.5cm}}_{x \mbox{ varijable}}     &  \overbrace{\ \ \ \ \ \hspace{1.5cm}}_{\omega \mbox{ varijable}} &   \\
@@ -2163,7 +2163,7 @@ Može se pokazati sljedeća teorema koja karakteriše \emph{metod unutrašnje ta
 	\begin{itemize}
 		\item Algoritam unutrašnje tačke konvergira ka optimalnom rješenju problema (\ref{eq:lp_equality_constraint}). %Dualna granica se smanjuje $1 - \frac{\beta}{n}$ pri svakom koraku.
 		\item U svim iteracijama, algoritam generiše dopustive tačke.
-		\item Kompleksnost algoritma je $O(\sqrt{n})$. Dakle,  broj iteracija koji je proporcionalan $\sqrt{n}$ je neophodan da algoritam riješi problem. 
+		\item Kompleksnost algoritma je $O(\sqrt{n})$. %Dakle,  broj iteracija  proporcionalan $\sqrt{n}$ je neophodan  algoritmu unutrašnje tačke riješi problem. 
 	\end{itemize}
 \end{thm}
 
