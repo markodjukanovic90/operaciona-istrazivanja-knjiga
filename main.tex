@@ -1941,7 +1941,7 @@ Lagranžijan primal-dual linearnih programa definišemo sa
 	L(x,y) = c^Tx - y^T(Ax - b) - s^T x.
 \end{equation}
 \end{definition}
-Trebali bi naći tačku za koju je $L = 0$, odakle nalazimo optimalno rješenje (oba problema).  Uslovi za nalazak stacionarne tačku Lagranžijana $L$ su dati sa:
+Trebali bi naći tačku za koju je $L = 0$, odakle nalazimo optimalno rješenje (oba problema).  Uslovi za nalazak stacionarne tačku Lagranžijana $L$ su dati iz sistema
 \begin{align}
 	&\triangledown_x L(x,y) = 0\\
 	&\triangledown_y L(x,y) = 0
@@ -1955,7 +1955,7 @@ Trebali bi naći tačku za koju je $L = 0$, odakle nalazimo optimalno rješenje 
 \end{align}
 gdje je $X = diag (x_1, \ldots, x_n)$, $S= diag(s_1,\ldots s_m)$, $\mathbf{1}=(1,\ldots, 1)$. Ovaj sistem nazivamo \emph{uslov optimalnosti prvog reda za primal-dual par}. 
 
-U nastavku navodimo problem preko koga razvijamo metod unutrašnje tačke. Ograničenja nenegativnosti u primalnom problemu ćemo zamijeniti sa $-ln x_j$, $j=1,\ldots,n$.   
+U nastavku navodimo problem preko koga razvijamo metod unutrašnje tačke. Ograničenja nenegativnosti u primalnom problemu  zamijenimo sa $-ln x_j$, $j=1,\ldots,n$.   
 Primijetite da vrijedi 
 $$\min e^{-\sum_{j=1}^n ln x_j} \Leftrightarrow \max \prod_{j} x_j $$
 Dakle, minimizacija izraza $-\sum_{j=1}^n x_j$ je ekvivalentna maksimizaciji proizvoda udaljenosti od svih hiperravnima koje definišu prvi ortant. Dakle, ovakav optimizacioni problem (na prvom ortantu) nas sprečava da se vrijednost neke od varijabli $x_j$ približi nuli (uprkos nenegativnim ograničenjima).  Na osnovu ovih činjenica, definišimo sljedeći optimizacioni problem. 
