@@ -306,21 +306,21 @@ Da napomenemo, vrijednost koja se parametru obično dodjeljuje samo je procjena 
 
 \section{Testiranje Modela}
 Razvoj velikih matematičkih modela je analogan razvoju velikih softvera. Kad se dovrši prva verzija softvera, ona neizbježno sadrži mnogo bugova. Stoga, pristupa se testiranju kako bi se pokušalo pronaći i
-ispraviti što više bugova. Na kraju, nakon niza iteracija poboljšanja programa, programeri zaključuju da trenutni program sada
+ispraviti što više grešaka. Na kraju, nakon niza iteracija poboljšanja programa, programeri zaključuju da trenutni program sada
 daje generalno valjane rezultate. Obično, neke manje pogreške nesumnjivo ostaju skrivene u programu, a možda nikada neće biti otkrivene. Glavne pogreške su manje-više uklonjene da se program sada može pouzdano koristiti.  Slično tome, prva verzija matematičkog modela neizbježno sadrži mnoge
-nedostatke. Neki relevantni faktori ili međusobni odnosi ne budu   ugrađeni
+nedostatke. Neki relevantni faktori ili međusobni odnosi često ne budu   ugrađeni
 u model, a neki parametri ne budu pravilno procijenjeni. Sve to
-je neizbježno, s obzirom na potencijalne probleme u komunikaciji kao i razumijevanju svih aspekata problema te poteškoća pri prikupljanju pouzdanih podataka. Stoga, prije nego što upotrijebimo model, on se mora  temeljno testirati kako bismo mogli  identifikovati 
-i ispraviti što više njegovih nedostataka. Na kraju, nakon dugog niza poboljšanih
+je izvijesno, s obzirom na potencijalne probleme u komunikaciji kao i razumijevanja svih aspekata problema te poteškoća pri prikupljanju pouzdanih podataka. Stoga, prije nego što upotrijebimo model, on se mora  temeljno testirati kako bismo mogli  identifikovati 
+i ispraviti što više njegovih nedostataka. Na kraju, nakon velikog broja iteracija poboljšanja 
 modela, OR tim koji radi na modelu zaključuje da trenutni model sada daje razumno valjane rezultate.  Iako neki manji nedostaci nesumnjivo ostaju skriveni u modelu (a možda nikada neće ni biti otkriveni), glavni nedostaci su uklonjeni tako da se može tvrditi da je model pouzdan. Ovaj postupak ispitivanja i poboljšanja modela radi povećanja njegove valjanosti se naziva \emph{validacija modela}. 
 
 Budući da OR tim može provesti mjesece na izradu svih detalja modela, lako je izgubiti suštinu zbog detalja. Stoga, nakon što su detalji uključeni u 
 početnu verziju modela, dobar način za početak provjere valjanosti je ponovni pogled na cjelokupni model kako bi se provjerilo da li ima  očiglednih pogrešaka ili propusta. Poželjno je da grupa koja radi ovaj pregled uključi barem jednog pojedinca koji nije učestvovao u konstrukciji modela. Preispitivanje definicije
 problema i poređenje sa modelom mogu pomoći u otkrivanju nekih pogrešaka. Također je korisno da su svi matematički izrazi dimenzionalno konzistentni.  Ponekad se  dodatni uvid u valjanost modela dobija i 
-mijenjanjem vrijednosti parametara i / ili varijabli odluke i provjerom da li se  izlaz iz modela ponaša na očekivan način. To se često otkriva kada se parametrima ili varijablama dodjeljuju ekstremne vrijednosti u blizini njihovih maksimuma ili minimuma. 
+mijenjanjem vrijednosti parametara i / ili varijabli odluke i provjerom da li se  izlaz iz modela ponaša na očekivan način. To se često može otkriti kada se parametrima ili varijablama dodjeljuju ekstremne vrijednosti u blizini njihovih maksimuma ili minimuma. 
  
-  Sistematski pristup ispitivanju modela podrazumijeva upotreba retrospektivnog testa. Ovaj test uključuje upotrebu istorijskih podataka koja prati konstrukciju modela, a zatim utvrđuje koliko bi dobro funkcionisao model i rezultirajuće rješenje 
-ako bi rješenje bilo korišteno u praksi.  Ovaj pristup može ukazati na dijelove na kojima model ima nedostatke što zahtijeva dalje izmjene. 
+  Sistematski pristup ispitivanju modela podrazumijeva upotreba retrospektivnog testa. Ovaj test uključuje upotrebu istorijskih podataka koji prate konstrukciju modela, a zatim utvrđuje koliko bi dobro funkcionisao model i rezultirajuće rješenje 
+ako bi rješenje bilo korišteno u praksi.  Ovaj pristup može ukazati na dijelove na kojima model ima nedostatke što zahtijeva dalje izmjene u modelu. 
 S druge strane, nedostatak retrospektivnog ispitivanja je taj što koristi iste podatke kao i oni koji vode ka formulaciju modela. %Ključno je pitanje da li prošlost zaista reprezentuje budućnost. %Da bi se zaobišao   nedostatak retrospektivnog testiranja, ponekad je korisno privremeno nastaviti sa statusom quo. To će dati nove podatke koji nisu bili dostupni kada  je
   %model konstruiran. 
   Važno je još dokumentovati postupke koji se koriste u testiranju valjanosti modela. Ovo može  povećati povjerenje u model za buduće korisnike. Takođe, ako se u budućnosti pojave pitanja u vezi sa modelom, ova će dokumentacija biti korisna u dijagnosticiranju problema. 
@@ -343,26 +343,27 @@ Sljedeći primjer nam opisuje sistem u IBM-u za kontrolu usluga i zaliha rezervi
 automatizovana skladišta, deseci terenskih distribucijskih centara i postaja za dijelove te nekoliko hiljada vanjskih (povezanih) lokacija. Inventar dijelova koji se održava u ovoj mreži se procijenjuje u milijardama dolara. \emph{Optimizer} se sastoji od četiri glavna modula. Modul sistema predviđanja sadrži nekoliko programa za procjenu stope kvara pojedinih vrsta dijelova. Modul sistema za dostavljanje podataka sastoji se od otprilike 100 programa koji    obrađuju
 preko 15 Gb podataka kako bi se osigurali ulazni podaci za model. Sistem odlučivanja potom rješava model koji traje i  sedmicu dana kako bi se optimizovala kontrola zaliha. Četvrti modul uključuje šest programa koji integriraju \emph{Optimizer} u IBM-ov sistem upravljanja zalihama dijelova. %PIMS je sofisticirani informacijski i kontrolni sustav koji sadrži milijune redaka koda 
 \section{Implementacija}
-Nakon što se razvije sistem za primjenu modela, posljednja faza OR studije je primjena ovog sistema kako ga je uprava (koja naručuje razvoj sistema) propisala. Ova je faza ključna jer se ovdje ``ubiru plodovi rada''. Stoga je važno da OR tim  sudjeluje u  lanisiranju ove faze, kako bi se osiguralo da se rješenja modela precizno prevedu u operativni postupak i kako bi se ispravili svi nedostaci u rješenjima koja se otkriju. Uspjeh faze implementacije uvelike ovisi o podršci vrha uprave. Mnogo je vjerojatnije da će OR tim dobiti potporu ako je dobro informisao upravu i poticao  njeno vođstvo tijekom studija na aktivno učešće. Dobra komunikacija pomaže da studija postignu ono što je uprava željela te takođe potiče njihovu potporu u izvršenje čitavog projekta.  Faza provođenja uključuje nekoliko koraka. Prvo, OR tim daje operativnom rukovodstvu opis novog sistema koji treba da bude usvojen. Dalje, ove dvije strane dijele odgovornost za razvijanje koraka potrebnih za pokretanje ovog sistema. Operativno rukovodstvo zatim posmatra uključeno osoblje kojima daje detaljna uputstva za korištenje sistema, čime počinje proces primjene. Ako se sistem uspješno uvede, novi sistem se može koristiti u godinama koje dolaze. Imajući to na umu, OR tim nadgleda iskustva korisnika sistem i nastoji utvrditi koje izmjene bi trebalo da se urade na sistemu u budućnosti u cilju lakšeg korištenja.  Tokom vremena u kojem se koristi novi sistem, važno je i dalje dobijati povratne informacije o funkcionisanju sistema te da li su pretpostavke o modelu i dalje zadovoljene. Kada se pojave značajna odstupanja od originalnih pretpostavki modela, model treba ponovno pogledati radi utvrđivanja treba li se u sistemu izvršiti bilo kakve korekcije. Nakon završetka projekta, potrebno je da OR tim dokumentuje svoju metodologiju dovoljno jasno i precizno kako bi se čitav posao mogao ponoviti. Repliciranje bi trebalo
+Nakon što se razvije sistem za primjenu modela, posljednja faza OR studije je primjena ovog sistema kako ga je uprava (koja naručuje razvoj sistema) propisala. Ova je faza ključna jer se ovdje ``ubiru plodovi rada''. Stoga je važno da OR tim  sudjeluje u  lanisiranju ove faze, kako bi se osiguralo da se rješenja modela precizno prevedu u operativni postupak i kako bi se ispravili svi nedostaci u rješenjima koja se otkriju. Uspjeh faze implementacije uvelike ovisi o podršci vrha uprave (firme). Mnogo je vjerojatnije da će OR tim dobiti potporu ako je dobro informisao upravu i poticao  njeno vođstvo tijekom razvoja rješenja na aktivno učešće. Dobra komunikacija pomaže da studija postignu ono što je uprava željela te takođe potiče njihovu potporu u izvršenje čitavog projekta.  Faza provođenja uključuje nekoliko koraka. Prvo, OR tim daje operativnom rukovodstvu opis novog sistema koji treba da bude usvojen. Dalje, ove dvije strane dijele odgovornost za razvijanje koraka potrebnih za pokretanje ovog sistema. Operativno rukovodstvo zatim posmatra uključeno osoblje kojima daje detaljna uputstva za korištenje sistema, čime počinje proces primjene sistema. Ako se sistem uspješno uvede, on se može koristiti u godinama koje dolaze. Imajući to na umu, OR tim nadgleda iskustva korisnika sistema i nastoji utvrditi koje izmjene bi trebalo da se urade na sistemu u budućnosti u cilju njegovog lakšeg korištenja.  Tokom vremena u kojem se koristi novi sistem, važno je i dalje dobijati povratne informacije o funkcionisanju sistema te da li su pretpostavke o modelu i dalje zadovoljene. Kada se pojave značajna odstupanja od originalnih pretpostavki modela, model treba ponovno pogledati radi utvrđivanja treba li se u sistemu izvršiti bilo kakve korekcije. Nakon završetka projekta, potrebno je da OR tim dokumentuje svoju metodologiju dovoljno jasno i precizno kako bi se čitav posao mogao ponoviti. Repliciranje bi trebalo
 biti dio profesionalnog etičkog kodeksa projektovanja (informacionih) sistema. %Ovo je stanje osobito važno kada se proučavaju kontroverzna pitanja javne politike. 
 
-\textbf{Primjer.} Vratimo se na   IBM projekat pomenut u prethodnim sekcijama.  Tri su se glavna faktora pokazala posebno važnim za uspješan završetak projekta. Kao što je raspravljano u prethodnim poglavljima, 
+\textbf{Primjer.} Vratimo se na realni  IBM projekat pomenut u prethodnim sekcijama.  Tri su se glavna faktora pokazala posebno važnim za uspješan završetak projekta. Kao što je raspravljano u prethodnim poglavljima, 
 prvo je   uključivanje korisničkog tima i (operativnog rukovodstva) koji je savjetovao tim tokom trajanja   projekta. U vrijeme faze implementacije, operativno rukovodstvo imalo je snažan  uticaj te pobornici instaliranja \emph{Optimizer}-a u  funkcionalna područja poslovanja IBM-a. Drugi faktor uspjeha bio je vrlo široka povratna informacija korisnika sistema gdje su identifikovane problematične tačke u sistemu koje su  trebale biti ispravljene prije potpune implementacije. 
 Treći faktor je bio taj da je novi sustav postupno uvođen fazu po fazu, uz pažljivo testiranje u svakoj fazi, kako bi se veće pogreške mogle ukloniti prije nego što je sistem   pušten na  nacionalnoj (i operativnoj) razini.  
 \vspace{0.5cm}
 
-Ostatak ove knjige je fokusiran prvenstveno na konstruisanje metoda za rješavanje matematičkih modela. Sa ovim poglavljem  smo  pokušali objasniti da konstrukcija modela složenih problema ne sadrži samo ova dva koraka, već su oni samo dio cjelokupnog OR procesa. Treba imati na umu da su druge faze vrlo važne za provođenje uspješnog OR istraživanja. Predlažemo da se nakon izučavanja algoritama za rješavanja modela, čitalac vrati na ovo poglavlje u cilju što jasnije slike razvoja potpunog OR istraživanja zasnovano na kompleksnim procesima u praksi.  OR zahtijeva značajnu količinu domišljatosti i inovativnosti, pa ne postoji standardni postupak kojeg bi se timovi trebali pridržavati pri razvijaju sistema zasnovanih na operacionim istraživanjima. %Prethodni opis može da se promatra kao model koji otprilike pokazuje koliko je uspješan ILI se provode studije. 
+Ostatak ove knjige je fokusiran prvenstveno na konstruisanje metoda za rješavanje matematičkih modela. Sa ovim poglavljem  smo  pokušali objasniti da konstrukcija modela složenih problema ne sadrži samo ova dva koraka, već su oni samo dio cjelokupnog OR procesa. Treba imati na umu da su druge faze vrlo važne za provođenje uspješnog OR projekta. Predlažemo da se nakon izučavanja algoritama za rješavanja modela, čitalac vrati na ovo poglavlje u cilju što jasnije slike razvoja potpunog OR projekta zasnovanog na kompleksnim procesima u praksi.  OR zahtijeva značajnu količinu domišljatosti i inovativnosti, pa ne postoji standardni postupak kojeg bi se timovi trebali pridržavati pri razvijaju sistema zasnovanih na operacionim istraživanjima. %Prethodni opis može da se promatra kao model koji otprilike pokazuje koliko je uspješan ILI se provode studije. 
 \newpage
 
 \chapter{Linearno Programiranje} 
    
-Razvoj linearnog programiranja se smatra među najvažnijim naučnim dostignu\-ćima XX vijeka. Njegov uticaj od 1950. je ogroman u nauci i industriji. Danas je to standardni alat koji je uštedio milione dolara ogromnom broju firmi u raznim zemljama svijeta  Napisani su deseci udžbenika
-o linearnom programiranju i objavljeno stotine radova koji opisuju važne primjene ove paradigme.  Linearno programiranje koristi matematički model za opisivanje problema. 
-Pridjev linearni znači da su   sve matematičke funkcije u ovom modelu linearne funkcije. Riječ programiranje se ne odnosi na računarsko programiranje; to sinonim za planiranje i optimizaciju. Dakle, linearno programiranje uključuje planiranje aktivnosti u cilju postizanja optimalnog rezultata, tj. rezultata koji najbolje postiže navedeni cilj (prema matematičkom modelu) među svim izvedivim alternativama.  Za rješavanje problema linearnog programiranja dostupan je izuzetno efikasan metod rješavanja, nazvan \emph{simpleks metod}. On rješava probleme ogromnih veličina te je on jedan od razloga ogromnog uticaja linearnog  programiranja posljednjih nekoliko decenija u nauci i u privredi.
+Razvoj linearnog programiranja se smatra među najvažnijim naučnim dostignu\-ćima XX vijeka. Njegov uticaj od 1950. je ogroman u nauci i industriji. Danas je to standardni alat koji je uštedio milione dolara ogromnom broju firmi u raznim zemljama svijeta.  Napisani su deseci udžbenika
+o linearnom programiranju i objavljene stotine radova koji  primjenjuju ovu paradigme na probleme iz raznih naučnih domena.  Linearno programiranje koristi matematički model za opisivanje problema. 
+Pridjev linearni podrazumijeva da su  matematičke funkcije korištene u modelu linearne funkcije. Riječ programiranje se ne odnosi na računarsko programiranje; to je sinonim za planiranje i optimizaciju. Dakle, linearno programiranje uključuje planiranje aktivnosti u cilju postizanja optimalnog rezultata, tj. rezultata koji najbolje postiže navedeni cilj (prema matematičkom modelu) među svim izvedivim alternativama.  Za rješavanje problema linearnog programiranja dostupan je izuzetno efikasan metod rješavanja, nazvan \emph{simpleks metod}. On je pogodan za rješavanje problema velikih dimenzija te je zaslužan za ogroman uticaja linearnog  programiranja posljednjih nekoliko decenija u raznim oblastima nauke, a i u privredi.
 
-\textbf{Primjer}. %WYNDOR--GLASS CO projekat:
-Firma proizvodi visokokvalitetne staklene proizvode, uključujući prozore i staklena vrata. Postoje tri pogona. Aluminijski okviri i okovi izrađuju se u pogonu 1, drveni okviri izrađuju se u pogonu 2, a pogon 3 proizvodi staklo i sastavlja proizvode.
-Zbog pada zarade, rukovodstvo firme je odlučio je obnoviti liniju proizvoda. Neprofitabilni proizvodi se ukidaju, oslobađajući proizvodne kapacitete za lansiranje dva nova proizvoda sa velikim prodajnim potencijalom:
+\textbf{Primjer}. U ovom primjeru opisujemo jedan industrijski projekat -- {WYNDOR--GLASS CO projekat} te kako OR može da riješi ozbiljne probleme jedne firme. 
+  
+Firma \texttt{WYNDOR--GLASS} proizvodi visokokvalitetne staklene proizvode, uključujući prozore i staklena vrata. Postoje tri pogona. Aluminijski okviri i okovi izrađuju se u pogonu 1, drveni okviri izrađuju se u pogonu 2, a pogon 3 proizvodi staklo i sastavlja proizvode.
+Zbog pada zarade, rukovodstvo firme   odlučio je obnoviti liniju proizvoda. Neprofitabilni proizvodi se ukidaju, oslobađajući proizvodne kapacitete za lansiranje dva nova proizvoda sa velikim prodajnim potencijalom:
 \begin{itemize}
     \item Proizvod 1: Staklena vrata od 2 $m$ sa aluminijskim okvirom.
     \item Proizvod 2: Dvostruki drveni okvir s okvirom visine 1.5 $m$.
@@ -370,25 +371,28 @@ Zbog pada zarade, rukovodstvo firme je odlučio je obnoviti liniju proizvoda. Ne
 Uslovi i zahtjevi proizvodnje su sljedeći:
 \begin{itemize}
     \item Proizvod 1 zahtijeva   korištenje proizvodnih kapaciteta u postrojenjima 1 i 3, ali nijedan u pogonu 2. 
-    \item Proizvod 2 treba   postrojenja 2 i 3. 
+    \item Proizvod 2 treba   postrojenja 2 i 3 za proizvodnju. 
 \end{itemize}
-    Rukovodstvo je zaključio da bi kompanija mogla prodati sve proizvode koje bi mogla proizvesti u postrojenjima. Međutim, budući da se oba proizvoda koriste proizvodni kapacitet u pogonu 3, nije jasno koja bi kombinacija dva proizvoda bila najisplativija. Stoga je formiran tim za proučavanje ovog pitanja, te davanja adekvatnog odgovora.
+    Rukovodstvo je zaključio da bi kompanija mogla prodati sve proizvode koje bi mogla proizvesti u postrojenjima. Međutim, budući da   oba proizvoda koriste proizvodni kapacitet u pogonu 3, nije jasno koja bi kombinacija proizvodnje dva proizvoda bila najisplativija. %Stoga je formiran tim za proučavanje ovog pitanja, te davanja adekvatnog odgovora.
 
-Tim prvo razgovora sa rukovodstvom kako bi se utvrdili ciljevi ovog istraživanja. Te su rasprave dovele do sljedeće definicije (idealizovanog) problema:
+Nakon razgovora tima koji će dati odgovor na postavljena pitanja, razgovarano je sa rukovodstvom firme kako bi se utvrdili ciljevi ovog istraživanja. Te su rasprave dovele do sljedeće definicije (idealizovanog) problema koji se rješava:
 \begin{itemize}
-    \item Utvrditi  stope proizvodnje  ova dva proizvoda kako bi se maksimalizirala ukupna dobit, podložno ograničenjima koja nameću   proizvodni kapaciteti dostupni u tri pogona. Svaki će se proizvod proizvoditi u serijama od po 20, tako da se stopa proizvodnje definiše kao broj serija proizvedenih na nivou jedne sedmice. Dopuštena je bilo koja kombinacija stope proizvodnje koja zadovoljava   ograničenja, uključujući i slučaj proizvodnje niti jednog komada prvog proizvoda i što  više   drugog. 
+    \item Utvrditi  stope proizvodnje  ova dva proizvoda kako bi se maksimalizirala ukupna dobit, podložno ograničenjima koja nameću   proizvodni kapaciteti dostupni u sva tri pogona. 
+    \item Svaki će se proizvod proizvoditi u serijama od po 20 komada, tako da se stopa proizvodnje definiše kao broj serija proizvedenih na nivou jedne sedmice. 
+    \item Dopuštena je bilo koja kombinacija stope proizvodnje koja zadovoljava   ograničenja, uključujući i slučaj proizvodnje niti jednog komada prvog proizvoda i maksimalnog broja drugog proizvoda. 
 \end{itemize}
 
-Identifikovani su podaci koje treba prikupiti: 
-($i$) Broj radnih sati u sedmici dostupan u svakom pogonu za nove proizvode.  
-($ii$) Broj radnih sati korištenih u svakom pogonu za svaku proizvedenu seriju svakog novog proizvoda.
-($iii$) Dobit po proizvedenoj seriji svakog novog proizvoda. Dobit po proizvedenoj seriji odabrana je kao odgovarajuća mjera nakon što je tim zaključio da je inkrementalna dobit svake dodatne proizvedene serije   približno konstantna bez obzira na ukupan broj proizvedenih serija.
+Identifikovani su podaci koje treba prikupiti prije modelovanja:
+\begin{itemize}
+	\item[($i$)]   Broj radnih sati u sedmici dostupan u svakom pogonu za nove proizvode.  
+	\item[($ii$)]   Broj radnih sati korištenih u svakom pogonu za svaku proizvedenu seriju svakog novog proizvoda.
+	\item[($iii$)] Dobit po proizvedenoj seriji svakog novog proizvoda. Dobit po proizvedenoj seriji odabrana je kao odgovarajuća mjera nakon što je zaključeno da je inkrementalna dobit svake dodatne proizvedene serije  približno konstantna bez obzira na ukupan broj proizvedenih serija.
+\end{itemize} 
 
-Budući da značajniji troškovi za pokretanje
- proizvodnje i promovisanju novih proizvoda neće postojati, ukupna dobit je približno jednaka dobiti po proizvedenoj seriji puta broj serija.  
+Budući da značajniji troškovi za pokretanje proizvodnje i promovisanje novih proizvoda ne postoje, ukupna dobit je približno jednaka dobiti po proizvedenoj seriji pomnoženo sa brojem serija proizvodnje.  
 
-Nakon ovoga, trebalo je procijeniti konstante u modelu. Ovaj proces je tekao u komunikaciji između organizacije i tima. 
-Za dobivanje razumnih procjena, pomoć ključnog osoblja u raznim jedinicama firme je bila važna. Osoblje u proizvodnom odjelu dalo je podatke za ($i$). Razvoj procjena za ($ii$) zahtijeva analizu proizvodnih inženjera uključenih u dizajniranje proizvodnih procesa novih proizvoda. Analizirajući podatke o resursima inženjera i marketinškog odjela,  razvijena procjena za treću kategoriju. Tabela~\ref{tab:procjene-1} daje te procjene. 
+Nakon ovoga, trebalo je procijeniti konstante u modelu. Ovaj proces je tekao u komunikaciji između organizacije firme i tima zadužen za rješenje problema. 
+Za dobijanje razumnih procjena, pomoć ključnog osoblja u raznim odjelima firme je od bitne važnosti. Osoblje u proizvodnom odjelu dalo je podatke za ($i$). Razvoj procjena za ($ii$) zahtijevalo je analizu proizvodnih inženjera uključenih u dizajniranje proizvodnih procesa novih proizvoda. Analizirajući podatke o resursima inženjera i marketinškog odjela firme,  razvijena je procjena za ($iii$). Tabela~\ref{tab:procjene-1} daje te procjene. 
 
 
 \begin{table}[!ht]
@@ -450,7 +454,7 @@ U nastavku navodimo notaciju koja se najčešće koriste u formiranju generalnog
     \item $x_j$: količina aktivnosti $j$ ($j = 1,\ldots,n$);
     \item $c_j$: povećanje u profitu ako se količna aktivnosti $j$ podigne za jediničnu vrijednost;
     \item $b_i$: ukupna količina resursa $i$ ($i=1,\ldots,m$) koja je dozvoljena za lociranje aktivnosti;
-    \item $a_{ij}$: količina resursa $i$ koja se uzima od strane jedinične vrijednosti aktivnosti $j$.
+    \item $a_{ij}$: količina resursa $i$ koja se uzima od strane jedinične (vrijednosti) aktivnosti $j$.
 \end{itemize}
 Prema tome, matematički modeli problema linearnog programiranja ima sljedeću postavku:
 
