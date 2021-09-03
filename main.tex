@@ -4914,7 +4914,7 @@ Napomenimo da Dajkstrin algoritam ne radi sa grafovima koji imaju negativne tež
 \end{definition}
 U 0-1 problemu ruksaka se ne dopušta dijeljenje proizvoda, ili se uzima cijeli (1) ili se uopšte ne uzima (0). U frakcionalnom problemu ruksaka, svaki proizvod posjeduje težinu i vrijednost, te se kao takav može podijeliti na dijelove (recimo uzme se pola od ukupne količine proizvoda). Efikasno riješavanje ovog problema se izvodi primjenom pohlepnog algoritma na sljedeći način. 
 \begin{itemize}
-	\item Računajmo podjele količina/vrijednost za svaki proizvod, te se proizvodi  sortiraju na osnovu tih vrijednosti (količnik).   \item Uzmemo proizvod sa najvećom količničkom vrijednošću te ga dodamo u ruksak. 
+	\item Računajmo podjele količina/vrijednost za svaki proizvod, te se proizvodi  sortiraju na osnovu tih vrijednosti.   \item Uzmemo proizvod sa najvećom količničkom vrijednošću te ga dodamo u ruksak. 
 	\item Nastavljamo proces dodavanja sa sljedećim proizvodom dok ga ne budemo mogli da ga  dodamo cijelog u ruksak.    Ako je to slučaj, dodamo dio njega (onoliko koliko god je moguće, a da se kapacitet ruksaka ne naruši). 
 \end{itemize}
 Može se pokazati sljedeća teorema. 
@@ -5013,7 +5013,7 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje.
  \label{alg:gridi-vc}
   \end{algorithm}
   
-  \noindent Pokazaćemo da je ovo aproksimativni algoritam. Izračunajmo koeficijent aproksimacije $c$  Algoritma~\ref{alg:gridi-vc}.
+  \noindent Pokazaćemo da je ovo aproksimativni algoritam. Izračunajmo koeficijent aproksimacije $c$ za Algoritam~\ref{alg:gridi-vc}.
   Grane koje se biraju u ovom algoritmu su grane maksimalnog mečinga ($M$), pa je prema tome, skup $C$ uistinu pokrivač čvorova, prema definiciji mečinga. Dalje, jasno je da se algoritam izvodi u polinomijalnom vremenu. Neka je $C^*$ pokrivač koji je rješenje problema. Tada $C^*$ sadrži barem jedan kraj svake grane iz $M$, odakle slijedi $|C^*|\geq |M|$. Dalje, $|C|= 2 \cdot |M| \geq 2 \cdot |C^*|$. Prema tome, ovo je $2$--aproksimativni algoritam za problem pokrivanja čvorova grafa. Jednakost u prethodnoj aproksimaciji se postiže, recimo, za bipartitne grafove $K_{n,n}$. 
   
   Posmatrajmo sljedeći pohlepni Algoritam ~\ref{alg:gridi-vc-2} za problem pokrivanja čvorova.  
@@ -5045,7 +5045,7 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje.
   \end{figure}
   
   Optimalno rješenje je podskup čvorova $C^*$ koji se sastoji od svih čvorova sa vrha grafa (obojeni crnom bojom); dakle, ukupno ih je $k!$. Međutim, ako pratimo korake Algoritma~\ref{alg:gridi-vc-2}, dobijemo 
-  da je $$|C| = k!\cdot( 1/k + 1/k-1 + \cdots + 1/2 + 1) \approx k! \cdot \log k$$. 
+  da je $$|C| = k!\cdot( 1/k + 1/k-1 + \cdots + 1/2 + 1) \approx k! \cdot \log k.$$  
   Dakle, imamo da je
   $$   |C| \approx \log k \cdot |C^*|.$$ Prema tome, ovaj algoritam je $\log k$--aproksimativni algoritam, za $k \in \mathbb{N}$. 
   
@@ -5394,7 +5394,7 @@ Iz prethodnog bi slijedilo da Algoritam~\ref{alg:ss} daje $2H_n$--aproksimaciju.
  \end{comment} 
   
 \section{Heurističke Metode}
- U prethodnom odjeljku smo vidjeli da za aproksimativne algoritme važe važna osobina da se rješavanjem problema ne garantuje pronalazak optimalnog rješenja, ali postoji garancija da se rješenje nalazi unutar nekog faktora kvaliteta (c), u odnosu na optimalno rješenje. \fxnote{nije dobar izraz unutar faktora - ispraviti i gore}
+ U prethodnom odjeljku smo vidjeli da za aproksimativne algoritme vrijedi važna osobina da se rješavanjem problema ne garantuje pronalazak optimalnog rješenja, ali postoji garancija da se rješenje nalazi unutar nekog faktora kvaliteta (c), u odnosu na optimalno rješenje. \fxnote{nije dobar izraz unutar faktora - ispraviti i gore}
  Drugim riječima, za rješenja dobijena aproksimativnim algoritmima se zna koliko maksimalno mogu da odstupaju od optimalnog rješenja, a to odstupanje je određeno faktorom kvaliteta.
  
  Posebna vrsta približnih metoda (metoda koje ne daju i/ili ne garantuju pronalazak optimalnog rješenja) su tzv. heurističke metode. 
@@ -5402,7 +5402,7 @@ Iz prethodnog bi slijedilo da Algoritam~\ref{alg:ss} daje $2H_n$--aproksimaciju.
  Za razliku od aproksimativnih algoritama, kod heurističkih metoda, u opštem slučaju, ne propisuje se faktor kvaliteta rješenja, već je primarni cilj razviti i primijeniti tehniku pomoću koje se u razumnom vremenu može doći do dovoljno dobrog (zadovoljavajućeg) rješenja. Heurističke metode mogu biti izvedene iz teorijskih razmatranja, ali i iz eksperimentalnih rezultata (na primjer, na osnovu rješavanja problema manjih dimenzija ili uopštavanjem tehnika uspješno primijenjenih na uzorcima). 
  
  
- Snaga heurističkih algoritama leži u smanjenju prostora pretraživanja i usmjeravanju procesa pretraživanja u one regione koji sadrže bolje rješenja, čime se značajno ubrzava proces pronalaženja rješenja. Naravno, ne postoji univerzalna strategija koja garantuje uspjeh heurističkog algoritma, tj. ne postoji garancija da će heuristički algoritam (uvijek) pronaći dovoljno dobro rješenje u razumnom vremenu. Ipak, višedecinijski razvoj i upotreba različitih heurističkih algoritama ukazuju na činjenicu da ove metode zauzimaju veoma važno mjesto u oblasti kombinatorne optimizacije, a njihova uspješna primjena u širokom spektru različitih problema dokazuje njihovu stvarnu upotrebnu vrijednost.
+ Snaga heurističkih algoritama leži u smanjenju prostora pretraživanja i usmjeravanju procesa pretraživanja u one regione koji sadrže bolje rješenja, čime se značajno ubrzava proces pronalaženja rješenja. Naravno, ne postoji univerzalna strategija koja garantuje uspjeh heurističkog algoritma, tj. ne postoji garancija da će heuristički algoritam (uvijek) pronaći dovoljno dobro rješenje u razumnom vremenu. Ipak, višedecenijski razvoj i upotreba različitih heurističkih algoritama ukazuju na činjenicu da ove metode zauzimaju veoma važno mjesto u oblasti kombinatorne optimizacije, a njihova uspješna primjena u širokom spektru različitih problema dokazuje njihovu stvarnu upotrebnu vrijednost.
  
  
  Svaka heuristička metoda mora da zadovolji dva pravila: da je rešenje ``dovoljno
@@ -5453,7 +5453,7 @@ Iz prethodnog bi slijedilo da Algoritam~\ref{alg:ss} daje $2H_n$--aproksimaciju.
 Genetski algoritmi spadaju u klasu populacionih i evolucijskih algoritama, čije je ponašanje inspirisano procesom evolucije koji se odvija u prirodi.
 Kao što je već rečeno, u osnovi se podrazumijeva rad sa populacijom jedinki, gdje svaka jedinka predstavlja potencijalno rješenje polaznog problema, dok je populacija  podskup ukupnog prostora pretraživanja. Populacija se u iterativnom postupku mijenja tako što se stare jedinke mijenjaju novim, potencijalno boljim jedinkama.
 
-Osnovni okvir za funkcionisanje geneskih algoritama je dat od strane Džona Holanda, u radu``Adaptation in natural and artificial system''.
+Osnovni okvir za funkcionisanje geneskih algoritama je dat od strane Džona Holanda, u radu ``Adaptation in natural and artificial system''.
 
 Svakoj jedinki se dodjeljuje brojevna vrijednost, tzv. prilagođenost (engl.  fitness), koja ocjenjuje kvalitet posmatrane jedinke. Cilj genetskog algoritma je da se iz iteracije u iteraciju pronalaze jedinke sa sve boljom prilagođenošću, pod čime se smatra i pojedinačno poboljšanje svake jedinke, ali i prosječna prilagođenost kompletne populacije, što se postiže standardnim genetskim operatorima: selekcijom, ukrštanjem i mutacijom.
 
@@ -5462,7 +5462,7 @@ Populacija je centralna struktura kod genetskog algoritma i ona  obično broji o
 
 Početna populacija se obično kreira na slučajan način, čime se omogućava kreiranje raznovrsnog genetskog materijala, korisnog za kasnije faze algoritma i raznovrsnost samih jedinki. U nekim slučajevima se za generisanje polaznih jedinki koristi i neka druga heuristika, čime se pretraga od početka usmjerava ka onim oblastima pretraživanja za koje se pretpostavlja da sadrže kvalitetnija rješenja.
 
-Tokom rada algoritma, na populaciju se primjenjuju genetski operatori selekcije, mutacije i ukrštanja. Pored ovih osnovnih operatora, na neke jedinke se mogu primijeniti i drugi operatori, čijom se primjenom teži ka poboljšanju rješenja (na primjer, na jedinke sa boljom prilagođenošću se mogu primijeniti i tehnike lokalnogp pretraživanja).
+Tokom rada algoritma, na populaciju se primjenjuju genetski operatori selekcije, mutacije i ukrštanja. Pored ovih osnovnih operatora, na neke jedinke se mogu primijeniti i drugi operatori, čijom se primjenom teži ka poboljšanju rješenja (na primjer, na jedinke sa boljom prilagođenošću se mogu primijeniti i tehnike lokalnog  pretraživanja).
 
 Operator selekcije bira jedinke koje preživljavaju u procesu evolucije. Po pravilu, boljim jedinkama (jedinkama sa boljom prilagođenošću) se operatorom selekcije daje veća vjerovatnoća da će preživjeti u narednu generaciju, dok  slabije jedinke selekcijom dobijaju manju šansu da prežive, te se tako izbacuju iz populacije. Postoji veći broj tehnika selekcije, a najpoznatije su: jednostavna (ili rulet) selekcija, turnirska, eliminacijska selekcija i elitizam. Rulet selekcija diktira da je vjerovatnoća da će jedinka preživjeti u narednu generaciju proporcionalna prilagođenosti. Kod turnirske selekcije se formiraju skupovi jedinki, od kojih samo ona sa najboljom prilagođenošću preživljava u sljedeću generaciju. Eliminacijska selekcija je primarno zasnovana na izbacivanju loših jedinki, prije nego na odabiru boljih za narednu generaciju. Elitizam podrazumijeva da će nekoliko najboljih (elitnih) jedinki direktno preći u narednu generaciju, čime se daje pouzdana pretpostavka da  algoritam teži globalnom optimumu.
 
