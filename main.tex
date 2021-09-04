@@ -5577,13 +5577,13 @@ Na kraju ovog odjeljka treba pomenuti da je višedecenijska primjena genetskih a
  
 \subsection{Lokalna Pretraga}\label{sec: local_search}
 
-Lokalna pretrage je tehnika čija se strategija sastoji u izvođenju niza poboljšanja rješenja počevši od nekog unaprijed zadanog rješenja. Uvedimo prvo koncept okolina i lokalnih optimalnih rješenja kao baznih pojmova u algoritmu lokalne pretrage. Za dato rješenje $x$, definišimo skup (obično dopustivih) rješenja koja su ``blizu'' $x$ u odnosu na neku mjeru. Formalno, okolina predstavlja mapiranje  $\mathcal{N}$ gdje svakom (dopustivom) rješenju pridružujemo skup rješenja, koje zovemo okolina od $x$.  Funkcija okoline se takođe može definisati preko operatora  $\Delta$ koji predstavlja kolekciju   funkcija $\Delta:\Phi \mapsto \Phi$,  gdje je $\Phi$ prostor pretrage (rješenja) razmatrane instance, na sljedeći način:
+Lokalna pretrage je tehnika čija se strategija sastoji u izvođenju niza poboljšanja rješenja počevši od nekog unaprijed zadanog rješenja. Uvedimo prvo koncept okolina i lokalnih optimalnih rješenja kao baznih pojmova u algoritmu lokalne pretrage. Za dato rješenje $x$, definišimo skup (obično dopustivih) rješenja koja su ``blizu'' $x$ u odnosu na neku mjeru. Formalno, okolina predstavlja mapiranje  $\mathcal{N}$ gdje svakom (dopustivom) rješenju pridružujemo skup rješenja, koje zovemo okolina od $x$.  Funkcija okoline se takođe može definisati preko operatora  $\Delta$, koji predstavlja kolekciju   funkcija $\Delta:\Phi \mapsto \Phi$,  gdje je $\Phi$ prostor pretrage (rješenja) razmatrane instance, na sljedeći način:
 $$ x' \in \mathcal{N}(x) \Longleftrightarrow \exists \delta \in \Delta,\delta(x)=x'.$$
  
-Prirodan izbor u mnogim aplikacijama je $k$-promijenjena okolina: $x$ i $x^{'}$ pripadaju istoj okolini akko se razlikuju na tačno $k$ komponenti rješenja. Npr. za TSP problem, 2-promijenjena okolina je prirodan izbor gdje su komponente rješenja grane datog grafa.  
+Prirodan izbor u mnogim aplikacijama je $k$-promijenjena (eng. \emph{k-exchange}) okolina: $x$ i $x^{'}$ pripadaju istoj okolini akko se razlikuju na tačno $k$ komponenti rješenja. Npr. za TSP problem, 2-promijenjena okolina je prirodan izbor gdje su komponente rješenja grane datog grafa.  
 
   
-Rješenje $x$ je \emph{localni optimum} u odnosu na okolinu $\mathcal{N}$ akko
+Rješenje $x$ je \emph{lokalni optimum} u odnosu na okolinu $\mathcal{N}$ akko
 $f(x) \leq f(x')$ ($f(x) \geq f(x')$), za sve $x' \in \mathcal{N}(x)$, ako minimizujemo (maksimizujemo) u odnosu na ciljnu funkciju $f$.  \emph{Globalni optimum} je rješenje koje je lokalni optimum u odnosu na bilo koju okolinu.  Imajte na umu da nije svaki lokalni optimum ujedno i globalni. 
 
 \begin{algorithm}[!t] 
@@ -5599,11 +5599,11 @@ $f(x) \leq f(x')$ ($f(x) \geq f(x')$), za sve $x' \in \mathcal{N}(x)$, ako minim
 Pseudokod lokalne pretrage je dat u Algoritmu~\ref{alg:ls}. Ulaz u algoritam je instanca probelam i jedna okolona. U svakoj iteraciji, lokalna pretraga poboljšava trenutno (najbolje) rješenje ako je rješenje u okolini  $\mathcal{N}(x)$ ima bolju vrijednost ciljne funkcije. Algoritam se prekida ako je trenutno rješenje lokalno najbolje u odnosu na okolinu   $\mathcal{N}$.
  Postoje dvije strategije za izbor rješenja koje će zamijeniti trenutno najbolje rješenje pod pretpostavkom da postoji više od jednog rješenja sa boljom vrijednosti ciljne funkcije u posmatranoj okolini. Te strategije su:
  \begin{itemize}
- 	\item \emph{prvo poboljšanje} (eng. the first imprvement) -- ova strategija prihvata prvo nađeno rješenje $x^{'}$ u okolini $\mathcal{N}(x)$ koje poboljšava $x$. Pretraga se tada seli u tačku  $x = x^{'}$, odakle se pokreće nova iteracija lokalne pretrage.
+ 	\item \emph{prvo poboljšanje} (eng. the first imprvement) -- ova strategija prihvata prvo nađeno rješenje $x'$ u okolini $\mathcal{N}(x)$ koje poboljšava $x$. Pretraga se tada seli u tačku  $x = x'$, odakle se pokreće nova iteracija lokalne pretrage.
  	\item \emph{najbolje poboljšanje} (eng. the best improvement) --   ova strategija provjerava sva rješenja iz okoline $\mathcal{N}(x)$ i za novo najbolje rješenje bira ono koje je lokalno najbolje u toj okolini. Nalazak ovog  najboljeg rješenja zahtjeva enumeraciju svih rješenja iz okoline pa često ovakav proces u praksi traje dosta dugo,  tako da ona nije uvijek primjenjiva. U praksi se ipak pokazalo da  je čest slučaj da strategija \emph{najboljeg poboljšanja} vodi ka lokalnom optimumu problema u svega nekoliko iteracija lokalne pretrage. 
  \end{itemize}
   
-  \emph{Primjer.} U našem problemu 0-1 ruksaka, za okolinu $\mathcal{N}$ bi mogli uzeti $1$-\emph{swap} okolina. Recimo, za $n=4$ i rješenje $x=1100$ imali  bismo $\mathcal{N}(x)= \{ 0100, 1000, 1110, 1101 \}$. 
+  \emph{Primjer.} U   problemu 0-1 ruksaka, za okolinu $\mathcal{N}$ bi mogli uzeti $1$-\emph{swap} okolina. Recimo, za $n=4$ i rješenje $x=1100$ imali  bismo $$\mathcal{N}(x)= \{ 0100, 1000, 1110, 1101 \}.$$ 
   
 \subsection{Metoda promjenljivih okolina}\label{intro:vns}
 Metoda promjenljivih okolina je metaheuristika uvedena od strane Nenada Mladenovića i Pjera Hansena devedesetih godina prošlog vijeka.
@@ -5667,22 +5667,22 @@ Praktično gledano, u našem primjeru u $k$-tom koraku izvršenja procedure razm
 \emph{Lokalno pretraživanje}. 
 Za rješenje  $x'$ dobijeno u  proceduri razmrdavanja poziva se lokalno pretraživanje. Ova procedura podrazumijeva temeljno (ispcrpno) pretraživanje svih (ili skoro svih) rješenja, koja se blago razlikuju od rješenja  $x'$. Lokalno pretraživanje u ovom problemu bi moglo biti zasnovano na sličnim razmatranjima kao mutacije kod genetskog algoritma. Na primjer, jedno lokalno pretraživanje bi moglo da bude zasnovano na tzv. 1-swap pristupu (razmjena vrijednosti parova koordinata). Preciznije, lokalno pretraživanje razmatra sva rješenja nastala od rješenja $x'$ na način da je jedan proizvod koji je bio uključen u ruksak sada izbačen, a neki drugi proizvod, koji prvobitno nije bio u ruksaku, sada jeste.
 
-Postoje različite strategije koliko dugo se izvršava lokalna pretraga. U opštem slučaju, potrebno je napraviti balans između utrošenog vremena pretraživanja i potrebe za lokalnim poboljšanjem rješenja. Stoga je generalan dobar pristup kostrukcija  procedura lokalnog pretraživanja koje se brzo izvršavaju (u idealnom slučaju u $O(1)$ vremenu), kako bi se omogućilo što iscrpnije pretraživanje okoline datog rješenja. Takođe, nekada se kombinuje više metoda lokalnog pretraživanja (ovo važi za većinu heurističkih metoda), koje, manje ili više temeljno, pretražuju okoline datog rješenja, u zavisnosti od brzine ili drugih parametara.
+Postoje različite strategije koliko dugo se izvršava lokalna pretraga. U opštem slučaju, potrebno je napraviti balans između utrošenog vremena pretraživanja i potrebe za lokalnim poboljšanjem rješenja. Stoga je generalno dobar pristup kostrukcija  procedura lokalnog pretraživanja koje se brzo izvršavaju (u idealnom slučaju u $O(1)$ vremenu), kako bi se omogućilo što iscrpnije pretraživanje okoline datog rješenja. Takođe, nekada se kombinuje više metoda lokalnog pretraživanja (ovo važi za većinu heurističkih metoda), koje, manje ili više temeljno, pretražuju okoline datog rješenja, u zavisnosti od brzine ili drugih parametara.
 
  \chapter{Optimizacioni rješavači}
  
  Kao što smo i pomenuli u uvodnoj sekciji, modelovanje problema koji odgovara rješenju problema je 
- posao koji uzima najveći dio vremena. Kada dođemo do modela koji približno odgovara potrebama uprave 
+ dio koji uzima najveći dio vremena. Kada dođemo do modela koji približno odgovara potrebama uprave 
  koja naručuje sistem zasnovan na OR istraživanju, rješavanje modela se svodi na pozivanje odgovarajućih rješavača. Neki od najpoznatijih su 
  CPLEX koji može biti pozivan u Javi, C++ i Python-u uz pomoć odgovarajućih API-ja, zatim Lindo, Gurobi te modul PuLP u Python-u, među ostalima.  
  
- U nastavku opisujemo korištenje Cplex i PuLP rješavača u implementacijom modela i njegovog rješavanja. 
+ U nastavku opisujemo korištenje Cplex i PuLP rješavača u implementaciji modela i njegovog rješavanja. 
  %https://realpython.com/linear-programming-python/
  %https://www.ibm.com/products/ilog-cplex-optimization-studio
  %https://www.youtube.com/watch?v=J7tNzCsYgy8
  
  \section{Optimizacioni rješavač Cplex}
- CPLEX alat je generalni rješavač za rjesavanje optimizacionih problema, a među njima  LP, ILP i MILP. Konstruisan je od strane IBM-a, i moze da se preuzme sa linka \url{https://www.ibm.com/products/ilog-cplex-optimization-studio}. On je dio \emph{IBM ILOG CPLEX Optimization Studio}-a koji ukljucuje i druge opcije poput \emph{Constraint Programming} (CP) solvera itd.
+ CPLEX alat je generalni rješavač za rješavanje optimizacionih problema, a među njima  LP, ILP i MILP. Konstruisan je od strane IBM-a, i može da se preuzme sa linka \url{https://www.ibm.com/products/ilog-cplex-optimization-studio}. On je dio \emph{IBM ILOG CPLEX Optimization Studio}-a koji ukljucuje i druge opcije poput \emph{Constraint Programming} (CP) solvera itd.
  
  U nastavku opisujemo proces same implementacije modela u CPLEX-u, preko programskog jezika $C$++.
  Da bismo ukljucili CPLEX u $C$++ kod, nepohodno ga je uključiti u $C$++ program sa:
@@ -5702,7 +5702,7 @@ Postoje različite strategije koliko dugo se izvršava lokalna pretraga. U opšt
  \end{verbatim}
  
  \noindent Unutar \emph{try-catch} bloka implementiramo prvo objekat modela (instanca klase \emph{IloModel}), a zatim se model uvlači u rješavač CPLEX (kreira se objekat klase \emph{IloColex}) i rješava pozivanjem odgovarajuće metode (\emph{solve}).
- Model je instanca klase \emph{IloModel} čiji konstruktor uzima objekat klase \emph{IloEnv} kao parameter dok je model koi se rješava pomoću CPLEX-a instanca klase \emph{IloCplex} koji uzima instancu klase \emph{IloModel} kao vrijednost svog parametra.  Ako bismo željeli da riješimo model pomoću CP slovera, mjesto \emph{IloCplex} bismo koristili klasu \emph{IloCP}. 
+ Model je instanca klase \emph{IloModel} čiji konstruktor uzima objekat klase \emph{IloEnv} kao parameter dok je model koji se rješava pomoću CPLEX-a instanca klase \emph{IloCplex} koji uzima instancu klase \emph{IloModel} kao vrijednost svog parametra.  Ako bismo željeli da riješimo model pomoću CP slovera, mjesto \emph{IloCplex} bismo koristili klasu \emph{IloCP}. 
  
 
  \begin{verbatim}
@@ -5710,15 +5710,15 @@ Postoje različite strategije koliko dugo se izvršava lokalna pretraga. U opšt
  	// potrebno deklarisati ciljnu funkciju, varijable i ogranjčenja
  	IloCplex cplex(model);
  	if(!cplex.solve()){ // poziv cplex  solver-a
- 		env.error() << " Nije optimizovan." << endl;
- 		throw(-1);
+ 		    env.error() << " Nije optimizovan." << endl;
+ 		    throw(-1);
  	}
  	//cplex zavrsio sa optimizovanjem problema ... ispis rjesenja
  \end{verbatim}
  
  \noindent Sljedeći korak je implementacija varijabli, funkcije cilja i ograničenja u modelu. 
  
- \noindent \textbf{\emph{Deklarisanje varijabli}}. Ako zelimo da deklarisemo (realnu) varijablu $x$ gdje je $0 \leq x \leq 40$, koristimo klasu \emph{IloNumVar}, što odgovara sljedećoj liniji koda:
+ \noindent \textbf{\emph{Deklarisanje varijabli}}. Ako želimo da deklarisemo (realnu) varijablu $x$ gdje je $0 \leq x \leq 40$, koristimo klasu \emph{IloNumVar}, što odgovara sljedećoj liniji koda:
  \begin{verbatim}
  	IloNumVar x = IloNumVar(env,0.0,40.0);
  \end{verbatim}
@@ -5734,7 +5734,7 @@ Ako je potrebno implementirati varijablu za koju je $x \geq 0$ to radimo kao u p
  \begin{verbatim}
  	IloNumVarArray x(env);
  	for(int i=0; i<n; i++){
- 		 x.add(IloNumVar(env, 1.0, IloInfinity));
+ 		   x.add(IloNumVar(env, 1.0, IloInfinity));
  	}
  \end{verbatim}
  
@@ -5746,15 +5746,15 @@ Ako je potrebno implementirati varijablu za koju je $x \geq 0$ to radimo kao u p
  	
  	FloatMatrix x(env, n);
  	for(int i = 0; i < n; i++){
- 		x[i] = IloNumVarArray(env, m);
+ 		     x[i] = IloNumVarArray(env, m);
  		for(int j = 0; j < m; j++){
- 			x[i][j] = IloNumVar(env, 0.0) // x_ij>=0
+ 		  	  x[i][j] = IloNumVar(env, 0.0) // x_ij>=0
  		}
  	}
  \end{verbatim}
  
  \noindent \textbf{\emph{Funkcija cilja}}. 
- Postoje dvije klase koje služe za deklarisanje funkcija cilja: \emph{IloMaximize}, \emph{IloMinimize}, zavisno od toga da li makimizujemo ili minimizujemo. \emph{IloMaximize} se prosljeđuju dva parametra: objekat IloEnv okruzenja, te objekat klase \emph{IloExpr} gdje se definiše  izraz koji odgovara funkciji cilja. 
+ Postoje dvije klase koje služe za deklarisanje funkcija cilja: \emph{IloMaximize} i \emph{IloMinimize}, zavisno od toga da li maksimizujemo ili minimizujemo. \emph{IloMaximize} se prosljeđuju dva parametra: objekat IloEnv okruženja, te objekat klase \emph{IloExpr} gdje se definiše  izraz koji odgovara funkciji cilja. 
  
  \begin{verbatim}
  	IloExpr expr(env);
@@ -5763,7 +5763,7 @@ Ako je potrebno implementirati varijablu za koju je $x \geq 0$ to radimo kao u p
  	model.add(obj);
  \end{verbatim}
  
- \noindent Za deklarisanje izraza $expr$ možemo koristiti operatora ``+=,'' gdje se na desnoj strani nalazi objekat IloNumVar koji predstavlja varijablu (eventualno pomnožena sa nekim koeficijentom). 
+ \noindent Za deklarisanje izraza $expr$ možemo koristiti operatora ``+='', gdje se na desnoj strani nalazi objekat IloNumVar koji predstavlja varijablu (eventualno pomnožena sa nekim koeficijentom). 
  Recimo, ako želimo da implementiramo funkciju cilja $\sum_{i=1}^n c_i x_i$, implementacija bi bila ovakva:
  
  \begin{verbatim}
@@ -5795,15 +5795,15 @@ Ako je potrebno implementirati varijablu za koju je $x \geq 0$ to radimo kao u p
  Recimo da je potrebno dodati ograničenja $x_i + x_j \leq 1$ za sve $i<j, i.j \in [n]$ u IloCplex model
  
  \begin{verbatim}
- 	     IloRangeArray c(env);
+ 	     IloRangeArray constr(env);
  	     // neka su definisane varijable x (IloNumVarArray) 
  	     for (i=0; i<n-1; ++i)
  	          for(j=i+1; i<n; ++j)
- 	               c.add( x[i] + x[j] <= 1)     
-      	 model.add(c); //dodavanje ograničenja u model
+ 	               constr.add( x[i] + x[j] <= 1)     
+      	 model.add(constr); //dodavanje ograničenja u model
  \end{verbatim}
  
- \noindent \textbf{\emph{Metode za eksport rješenja (statistike) iz modela}}. Metod \emph{getStatus} (koji se poziva na instancu klase \emph{IloCplex})  pokazuje da li je rješenje koje je nađeno dopustivo, ograničeno ili optimalno ili je CPLEX pokazao da je model nedopustiv ili neogranicen.
+ \noindent \textbf{\emph{Metode za eksport rješenja (statistike) iz modela}}. Metod \emph{getStatus} (koji se poziva na instancu klase \emph{IloCplex})  pokazuje da li je rješenje koje je nađeno dopustivo, ograničeno ili optimalno ili je CPLEX pokazao da je model nedopustiv ili neograničen.
  
  \begin{verbatim}
  	// kreiranje modela 
@@ -5811,37 +5811,38 @@ Ako je potrebno implementirati varijablu za koju je $x \geq 0$ to radimo kao u p
  	// pokretanje cplex-a (.solve)
  	// Output
  	timer.end();
- 	IloNumArray sval(env); // ovdje ce se cuvati rjesenje
+ 	IloNumArray xval(env); // ovdje ce se cuvati rjesenje
  	env.out() << "Status rjesenja = " << cplex.getStatus() << endl;
  	env.out() << "Vrijednost = " << cplex.getObjValue() << endl;
  	env.out() << "Vrijeme = " << timer.getTime() << endl;
- 	cplex.getValues(sval, s);
- 	env.out() << "sj vrijednosti = " << sval << endl;
+ 	cplex.getValues(xval, x);
+ 	env.out() << "sj vrijednosti = " << xval << endl;
  \end{verbatim}
 \begin{itemize}
 	\item Metod \emph{getObjValue} vraća optimalnu vrijednost funkcije cilja (ili najbolju vrijdnost nađenu u toku unaprijed definisanog vremena).
-	\item Metod \emph{getStatus}: vraća status rješenja koje je CPLEX našao u zadanom vremenu.
+	\item Metod \emph{getStatus}: vraća status rješenja koje je CPLEX našao u zadanom vremenu (dopustivo, optimalno, nedopustivo).
 	\item Metod \emph{getValues}(\emph{vals, var}) gdje je 
 	\begin{itemize}
-	 	  \item \emph{vals} -- numerički niz (najčešće instanca klase \emph{IloNumArray}) u koju će se kopirati rješenja;    
+	 	  \item \emph{vals} -- numerički niz (najčešće instanca klase \emph{IloNumArray}) u koju će se kopirati krajnja rješenja koje je Cplex našao;    
           \item \emph{var} -- varijable u modelu.
     \end{itemize}
-     \item \emph{getDuals(vals, con)}:
+     \item Metod \emph{getDuals(vals, con)}:
      \begin{itemize}
      	\item \emph{vals} -- numerički niz (najčešće instanca klase \emph{IloNumArray}) u koju će se kopirati rješenja duala;
      	\item \emph{con} -- ograničenja u modelu (instanca klase \emph{IloRangeArray}) za koje se računaju koeficijenti koji odgovaraju dualu. 
      \end{itemize}
 \end{itemize}
-Eksportovanje modela za moguće ponovno korištenje se može uraditi pozivom metoda \emph{exportModel}, čiji je argument naziv fajla (.lp ekstenzija).  
+Eksportovanje modela za eventualno ponovno korištenje se može dobiti pozivom metoda \emph{exportModel}, čiji je argument naziv fajla (.$lp$ ekstenzija).  
  \section{Alat PuLP}
  % http://www.optimization-online.org/DB_FILE/2011/09/3178.pdf
  % https://coin-or.github.io/pulp/main/the_optimisation_process.html
- PuLP je biblioteka visokog nivoa za modelovanje izgrađena u programskom jeziku Python.  
- Ona omogućava korisniku da kreira programe koristeći izraze prirodne za ovaj programski jezik 
+ PuLP je biblioteka visokog nivoa za implementaciju modela i njihovo rješavanje, izgrađena u programskom jeziku Python.  
+ Ona omogućava korisniku da kreira programe koristeći izraze prirodne za ovaj programski jezik,  
  pri tome izbjegavajući pojavljivanje specijalne sintakse gdje god je to moguće. PuLP je fokusirana na podršći modelovanju i rješavanju LP i MILP modela. Interesantno je da PuLP 
- ne zavisi od nekih drugih softverskih paketa.   Podržava mnogo komercijalnih i nekomercijalnih rješavače, te može biti proširena za podržavanje dodatnih rješavača. 
+ ne zavisi od nekih drugih softverskih paketa.   Podržava mnogo komercijalnih i nekomercijalnih rješavača, te može biti proširena za podržavanje dodatnih rješavača. 
  
- PuLP radi na principu modularnog pristupa prevođenja modela napisanog prema definisanim pravilima na vektorsku prezentaciju modela (koristeči vekrore, rijetke matrice itd.), nako čega je takav konvertovani model proslijeđen u interfejs klase nekod od rješavača. Kako je interfejs mnogih rješavača sličan, ili se sa njima rukuje pisanjem modela u standardne .lp ili .mps  formate datoteka, osnovne generičke klase rješavača uključene su sa PuLP-om pored specifičnih interfejsa popularnih rješavača. Ove generičke klase rješavača se mogu proširiti od strane korisnika novih rješavača uz minimalan trud.   
+ PuLP radi na principu modularnog pristupa prevođenja modela napisanog prema definisanim pravilima na njegovu vektorsku prezentaciju (koristeći vektore, rijetke matrice itd.), nakon čega je tako konvertovani model proslijeđen u interfejs klase nekod od rješavača. Kako je interfejs mnogih rješavača sličan, ili se sa njima rukuje tako što se model napiše u standardnim .$lp$ ili .$mps$  formatima  datoteka, osnovne generičke klase rješavača uključene su u PuLP  pored specifičnih interfejsa %popularnih rješavača. 
+ Ove generičke klase rješavača se mogu proširiti od strane korisnika novih rješavača uz minimalan trud.   
  
  Da bismo koristili PuLp modul, prvo importujemo:
  \begin{verbatim}
@@ -5849,7 +5850,7 @@ Eksportovanje modela za moguće ponovno korištenje se može uraditi pozivom met
  \end{verbatim}
  Konkretno, ovaj paket se (u Linux-u) može instalirati pozivom: \emph{sudo pip install pulp} ili \emph{sudo apt-get install glpk-utils}. 
  % https://www.coin-or.org/PuLP/CaseStudies/index.html (za primjere) 
- Kreiranje instance problem je dato sljedećim kodom:
+ Kreiranje jedne instance problema je dato sljedećim kodom:
  \begin{verbatim}
  	prob = LpProblem("Naziv problema", LpMinimize)
  \end{verbatim}
@@ -5857,7 +5858,7 @@ Ovdje je   riječ o problemu minimizacije. Ako bi bilo potrebno da maksimizujemo
 LpMaximize. 
 
 \textbf{\emph{Deklarisanje varijabli}}.  Za deklarisanje varijabli se koristi klasa \emph{LpVariable}. Ona ima četiri atributa: prvi je naziv varijable, drugi donja granica vrijednosti varijable, treći gornju granicu za vrijednost varijable, dok četvrti označava tip varijable. Tip varijable koji je moguć LpContinuous ili LpInteger, označavajući neprekidnu (realnu) i diskretnu varijablu, redom.  
-Ako želimo deklarisati varijablu $x_1\leq 0$, koja je neprekidna, imali bismo sljedeću liniju koda:
+Ako želimo deklarisati varijablu $x_1\geq 0$, koja je neprekidna, imali bismo sljedeću liniju koda:
 \begin{verbatim}
 	 x1 = LpVariable( "x1", 0, None, LpContinuous)
 \end{verbatim}
@@ -5865,14 +5866,14 @@ Ako želimo deklarisati varijablu $x_1\leq 0$, koja je neprekidna, imali bismo s
 \begin{verbatim}
 	 x1 = LpVariable("x1", 0, None)
 	 x2 = LpVariable("x2", 0, None) 
-	 prob += (x1 + x2) # dodavanje funkcije cilja u model prob
+	 prob += (x1 + x2) # dodavanje funkcije cilja x1+x2 u model prob
 \end{verbatim}  
-\textbf{\emph{Deklarisanje ograničenja u modelu}}.  Na sličan način kao i za funkciju cilja, ograničenja se dodaju u model pomoću operatora +=. Implementacija ograničenja je bliska ograničenjima u modelu, dakle prvo se konstruišu izrazi koji su vezani nekim operatorom poređenja. Primjera radi, ako bi željeli dodati ograničenja $x_1 + 2 x_2 \leq 2$ i $x_1-x_2 \geq 0$,  u prethodni model, imali bi 
+\textbf{\emph{Deklarisanje ograničenja u modelu}}.  Na sličan način kao i za funkciju cilja, ograničenja se  u model dodaju pomoću operatora +=. Implementacija ograničenja je bliska ograničenjima u modelu, dakle prvo se konstruišu izrazi koji su vezani nekim operatorom poređenja. Primjera radi, ako bi željeli dodati ograničenja $x_1 + 2 x_2 \leq 2$ i $x_1-x_2 \geq 0$,  u prethodni model, imali bi 
 \begin{verbatim}
-	 prob+=  x1 + 2 * x2 <=2, "Ogranicenje 1"
-	 prob+=  x1 - x2 >= 0, "Ogranicenje 2" 
+	 prob +=  x1 + 2 * x2 <=2, "Ogranicenje 1"
+	 prob +=  x1 - x2 >= 0, "Ogranicenje 2" 
 \end{verbatim}
-Upisivanje modela u .lp format se vrši pozivom funkcije \emph{writeLP()}, čiji je argument naziv fajla. 
+Upisivanje modela u .$lp$ format se vrši pozivom funkcije \emph{writeLP()}, čiji je argument naziv fajla. 
 
  \noindent \textbf{\emph{Metode za eksport rješenja (statistike) iz modela}}. Rješavanje modela se inicira pozivom funkcije \emph{solve}() na instancu modela. Čitanje svih varijabli iz modela ide pomoću funkcije $variables()$. Svaka varijabla kao atribute ima svoj naziv (atribut name), te vrijednost koju je dobila pri rješavanju modela (atribut varValue). Atribut objective instance modela nosi (najbolju) vrijednost funkcije cilja dobijene rješavanjem modela. Status rješavanja se dobija iz atributa status instance modela. 
  
@@ -5948,10 +5949,10 @@ Upisivanje modela u .lp format se vrši pozivom funkcije \emph{writeLP()}, čiji
     print("Vrijednost: ", value(model.objective))    
  \end{verbatim}
  Optimalna vrijednost ove instance je 202.0 a dostiže se za vrijednost varijabli $x = (1, 0, 0)$, te $y_{11}= y_{12}= y_{13} = 1$, dok su ostale vrijednosti 0.
- \section{Primjena Cplex-a na jedan problem stringova}
+ \section{Primjena Cplex rješavača na jedan problem stringova}
  
  % opisati RFLCS problem, modelovati ga:
- U ovoj sekciji modelujemo problem \emph{najdužeg podniza bez ponavljanja}. Ovaj problem kao ulaz prihvata dva (proizvoljna) stringa $s_1$ i $s_2$ nad proizvoljnom abecedom, a kao izlaz vraća string $s$ maksimalne dužine sa sljedećim karakteristikama:  
+ U ovoj sekciji modelujemo problem \emph{najdužeg zajedničkog podniza bez ponavljanja}. Ovaj problem kao ulaz prihvata dva (proizvoljna) stringa $s_1$ i $s_2$ nad proizvoljnom abecedom, a kao izlaz vraća string $s$ maksimalne dužine sa sljedećim karakteristikama:  
  \begin{itemize}
  	\item $s$ je zajednički podniz oba stringa; 
  	\item $s$ ne sadrži karakter koji se u njemu pojavljuje dva ili više puta.
@@ -5971,7 +5972,7 @@ Sada možemo formirati ograničenja u modelu. Uslov da je svaki karakter prisuta
 \begin{equation}\label{eq:rflcs-max-1}
 	 \sum_{z \in  Z_{\texttt{a} }} z \leq 1, \forall \texttt{a} \in \Sigma 
 \end{equation}
-Takođe, s obzirom da rješenje problema odgovara nalasku skupa (međusobno) nekonfliktnih mečinga (odgovarajućih $z$-varijabli) maksimalne kardinalnosti, dodajemo oraničenje
+Takođe, s obzirom da rješenje problema odgovara nalasku skupa (međusobno) nekonfliktnih mečinga (odgovarajućih $z$-varijabli) maksimalne kardinalnosti, dodajemo ograničenje
 \begin{equation}\label{eq:rflce-non-conflict}
 	 z_{p} + z_q \leq 1, \forall p,q \in Z, p\neq q, p\mbox{ je u konfliktu sa } q.
 \end{equation}
@@ -6007,7 +6008,7 @@ struct Point2d // point for structure
    	
    	bool operator == (const Point2d & p2) const
    	{
-   		   return (a == p2.a and b == p2.b);
+   		     return (a == p2.a and b == p2.b);
    	}
    	friend std::ostream&  operator << (std::ostream & os, const Point2d&  p)
    	{
@@ -6017,9 +6018,9 @@ struct Point2d // point for structure
     	
 };	
 	
-class Hash2d  //hashing the point
+class Hash2d  //hashing the points
 {
-	   // works if the length of strings <= 5000
+	   // works if the length of strings <= 5000 (can be adapted)
 	   public:
 	   std::size_t operator()(const Point2d & pl ) const
 	   {
