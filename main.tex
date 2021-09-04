@@ -1947,12 +1947,46 @@ Lagranžijan primal-dual linearnih programa definišemo sa
 	L(x,y) = c^Tx - y^T(Ax - b) - s^T x.
 \end{equation}
 \end{definition}
-Trebali bi naći tačku za koju je $L = 0$, odakle nalazimo optimalno rješenje (oba problema).  Uslovi za nalazak stacionarne tačku Lagranžijana $L$ su dati iz sistema
+
+Vrijedi niz teorema koje obezbjeđuju dovoljne optimalne uslove za LP-a. U nastavku navodimo najvažnije od njih. 
+%http://www.optimization-online.org/DB_FILE/2008/06/2024.pdf
+\begin{thm}
+	 Pretpostavimo da postoje $y \in \mathbb{R}^m, s \in \mathbb{R}^n$ tako da je 
+	 \begin{align*}
+	 	    &A^Ty + s = c \\
+	 	    & s \geq 0.
+	 \end{align*}
+ Tada, ako je $x$ dopustivo rješenje za Primal, vrijedi 
+ $$ c^T x - b^T y = s^T x \geq 0 .$$
+\end{thm}
+\begin{proof}
+	 Pretpostavimo da je $x$ dopustivo za Primal. Tada vrijedi
+	 $$ c^Tx = (A^Ty + s)^Tx = s^Tx + y^Tb \geq b^T y.$$
+	 Dakle, pokazali smo tvrdnju. Štaviše, vrijednost $b^Ty$ je donja granica na optimalnu vrijednost Primala. Takođe, ako je $s^T x = 0$ donja granica je dostignuta, i $x$ je optimalno rješenje Primala.
+\end{proof}
+\begin{thm}
+	Pretpostavimo da Primal ima barem jedno optimalno rješenje. Vektor $x \in \mathbb{R}^n$ je optimalno rješenje za Primal akko postoje $y \in \mathbb{R}^m, s\in \mathbb{R}^n$ tako da 
+	\begin{align}
+		  &A x= b \label{eq:oc1}\\
+		  & x \geq 0 \label{eq:oc2}\\
+		  & A^T y + s = 0 \label{eq:oc3}\\
+		  & s \geq 0 \label{eq:oc4}\\
+		  & s^T x = 0. \label{eq:oc5} 
+	\end{align}
+Optimalna vrijednost je data sa $b^T y$.
+\end{thm}
+\begin{proof}
+ Za potrebne uslove, neka je $\tilde{x}$ optimalno rješenje za Primal. Zbog uslova dopustivosti za Primal, treba da vrijedi (\ref{eq:oc1}) i (\ref{eq:oc2}). Iz prethodne teoreme je pokazano da je optimalna vrijednost Primala  jednaka $b^Ty$ te dodatno da je $\tilde{x}$ optimalno samo ako je $s^T \tilde{x}=0$, pa vrijedi i (\ref{eq:oc5}).
+ 
+ 	Dovoljni uslovi se mogu pokazati na osnovu koraka konstrukcije simpleks metode  i teoreme o komplementarnosti. Dakle, ako postoje $x, y, s$ koji zadovoljavaju uslove optimalnosti, onda je $x$ optimalno rješenje.
+\end{proof}
+
+Drugi način da se dođe do uslova optimalnosti je preko Lagranžijana para Primal-Dual, tj. nalazak stacionarne tačke za $L$, odakle nalazimo optimalno rješenje (oba problema).  Uslovi za nalazak stacionarne tačke se mogu izvesti iz sistema
 \begin{align}
 	&\triangledown_x L(x,y) = 0\\
-	&\triangledown_y L(x,y) = 0
+	&\triangledown_y L(x,y) = 0,
 \end{align} 
-što nas (uz uslov komplementarnosti) dovodi do sistema:
+što nas (uz uslov komplementarnosti za $x$ i $y$) ponovo dovodi do sistema:
 \begin{align}
 	&Ax = b \\
 	&A^T y + s = c \\
@@ -1971,7 +2005,7 @@ Dakle, minimizacija izraza $-\sum_{j=1}^n x_j$ je ekvivalentna maksimizaciji pro
 	\begin{align*}
 		&\min c^T x - \mu \sum_{j=1}^n ln(x_j) \\
 		&\mbox{s.t. } A x = b \\
-		& x > 0
+		& x \geq 0
 	\end{align*}
 \end{definition}
 za neki $\mu >0$. Lagranžijan barijernog problema je dat sa 
@@ -2000,7 +2034,7 @@ Uvedimo nenegativni vektor $s =\mu \cdot (\frac{1}{x_1}, \frac{1}{x_2}, \ldots, 
 	& x, s \geq 0. \nonumber
 \end{align}
 Primijetimo da ovaj uslov aproksimira iste uslove za primal-dual par.  
-interesantno je da parametar $\mu$ kontroliše udaljenost do opptimalnosti, tj. 
+interesantno je da parametar $\mu$ kontroliše udaljenost do optimalnosti, tj. 
 $$ c^T x - b^T y = c^T x - x^T A y = x^T(c- A^Ty ) = x^T s = n \mu.$$
  Uslovi~(\ref{eq:primal-dual-central-path-problem}) ne daju linearni sistem, jer treće ograničenje  nije linearno.
 
@@ -2242,6 +2276,66 @@ Iz trečeg uslova   $x_1(\mu)=x_2(\mu)=2$, što je i optimum. Primijetimo da ovd
 % dualni simpleks metod ==> 4.7 PRIMAL-DUAL ALGORITHMS
 % Ako bi uzeli $\mu = 1$, rješenje koje se dobije je 
 
+\section{Farkašova lema}
+Još jedna primjena teorije dualnosti u LP-u se ogleda u dokazivanju sljedeće teoreme alternativnosti.
+
+\begin{thm}
+	Neka je $A\in \mathbb{R}^{m \times n}$ matica i $c\in \mathring{R}^n$. Onda jedna i samo jedna od dva sljedeća sistema ima rješenje:
+	\begin{enumerate}
+		\item  $Ax \geq 0$  i $c^T x < 0$; \label{case:1}
+		\item $A^T y = c$ i $y \geq 0$. \label{case:2}
+	\end{enumerate}
+\end{thm}
+\begin{proof}
+	  Pogledajmo prvi sistem. Vidimo sličnosti sa Primalnom rješenju. Napišimo sljedeći LP 
+	  \begin{align*}
+	  	 &\min c^T x \\
+	  	 &s.t. \\
+	  	 & A x \geq 0.
+	  \end{align*}
+  Šta se može reći o ovom LP-u? Ako pogledamo desnu stranu ograničenja, vidimo da je vektor $x = 0$ 
+  dopustivo rješenje problema, tako da problem ima barem jedno dopustivo rješenje. Zaključujemo da naš LP može da bude ili optimalan ili neograničen. Posmatrajmo njegov Dualni problema   dat sa 
+  \begin{align*}
+  	   &\max 0 \\
+  	   &s.t. \\
+  	   & A^T y  = c \\
+  	   & y \geq 0.
+  \end{align*}
+  Primijetimo da ako postoji barem jedno dopustivo rješenje za prethodni dual, optimalno rješenje je 0. Ako ne postoji niti jedno dopustivo rješenje, problem nije dopustiv. 
+  
+  Ono što zaključujemo iz odnosa definisanog primala i njegovog duala je:
+  \begin{itemize}
+  	\item primal je optimalan akko je dual optimalan; 
+  	\item primal je neograničen  akko je njegov dual nije dopustiv.  
+  \end{itemize}
+  Posmatrajmo sada kada je primal optimalan? Ono što vidimo je da ako bi $x$ bio dopustiv tako da je $c^Tx < 0$ to bi onda i bilo koje $kx$, za proizvoljno $k>0$ bilo takođe dopustivo. Iz toga bi slijedilo da vrijednost funkcije cilja nije ograničena odozdo, tj. teži ka -$\infty$. Dakle, u tom slučaju je problem neograničen. Zaključujemo, kad god je primal optimalan, ta vrijednost mora biti 0, i dostiže se za $x =0$; inače je problem neograničen. Dalje, ako je primal optimalan, to  je ekvivalentno da tim da je sistem iz slučaja (\ref{case:1}) nedopustiv (nema rješenja).  Ako sistem iz slučaja (\ref{case:1}) ima rješenje, primal je neograničen (vrijedi i obrnut smijer). Ako pogledamo   dualni problem, dual je optimalan akko sistem iz  slučaja (\ref{case:2}) ima rješenje. Slično, dual nije dopustiv akko je sistem iz  slučaja (\ref{case:2}) nedopustiv (nema rješenje). Iz niza prethodnih ekvivalencija, zaključujemo da vrijedi: 
+  \begin{itemize}
+  	  \item Sistem iz  slučaja (\ref{case:1}) nema rješenja akko sistem iz  slučaja (\ref{case:2}) ima rješenje. 
+  	  \item Sistem iz  slučaja (\ref{case:1}) ima rješenja akko sistem iz  slučaja (\ref{case:2}) nema rješenje. 
+   \end{itemize}
+\end{proof}\\
+
+\emph{Geometrijska interpretacija Farkašove leme.}
+Neka je dat sistem:
+\begin{align*}
+	&x_1 + 4 x_2  < 0: c^T x\\ \hline
+	& 2 x_1 + 3 x_2 \geq 0 \\
+	& 3 x_1 + 2 x_2 \geq 0 \\
+	& 4 x_1 + x_2 \geq 0 \\
+	& -x_1 + 3 x_2 \geq 0: Ax \geq 0.
+\end{align*}
+
+Pogledajmo kako izgleda sistem iz slučaja (\ref{case:2}). On je dat sa:
+\begin{align*}
+	&2 y_1 + 3 y_2 + 4 y_3 - y_4 = 1\\
+	&3y_1 + 2 y_2 + y_3 + 3 y_4 = 4 \\
+	& y_1, y_2, y_3, y_4 \geq 0. 
+\end{align*}
+\begin{figure}
+	\includegraphics{lema-farkas.png}
+\end{figure}
+U osnovi geometrijska interpretacija nam kaže da se vektor $c =(1,4)^T$ može predstaviti kao linearna kombinacija vekotora vrsta matrice $A$, kao što vidimo na slici~\ref{fig:farkas-slika} jer se nalazi unutar prostora upregnutog sa vektorima $a_1, \ldots, a_n$.  To implicira da početni sistem nema rješenje. 
+Kada bi postavili $c=(5,0)^T$, dobili bi da se on ne može izraziti preko vektora vrste matrice $A$ (jer je van prostora upregnutog sa vektrima vrste), pa prema tome početni problem za ovu konfiguraciju ima rješenje.  
 
 %Fourier–Motzkin elimination ==> Problem dopustivosti...
 \section{Fourier–Motzkin-ova Eliminacija}
