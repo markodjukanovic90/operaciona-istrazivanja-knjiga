@@ -1695,10 +1695,79 @@ hodu $A \rightarrow E \rightarrow D \rightarrow C$.
 \end{figure}
 
 
-Primijetimo da ako bi u prvom koraku birali da mjesto varijable $x$ ubacujemo varijablu $y$ u bazu, došli bi do optimuma tako što bi se pomjerili koracima simpleks metode prvo u tačku $B$, pa potom u $C$, koja je optimum. Takođe, u ovom slučaju je potrebno generisati samo dvije simpleks tabele (a ne tri, kao što smo mi generisali).
+Primijetimo da ako bi u prvom koraku birali da mjesto varijable $x$ ubacujemo varijablu $y$ u bazu, došli bi do optimuma tako što bi se pomjerili koracima simpleks metode prvo u tačku $B$, pa potom u $C$, koja je optimum. Takođe, u ovom slučaju je potrebno generisati samo dvije simpleks tabele (a ne tri, kao što smo mi generisali).\vspace{1cm}
+\\
+\textbf{\large Zadaci}.
+\begin{enumerate}
+	\item Grafičkom metodom riješiti sljedeći problem
+	\begin{align*}
+		 &\max   x + 2 y \\
+		 & s.t. \\
+		 & x \leq 10 \\
+		 & 2 x + x \geq 0 \\
+		 & x,y \geq 0.
+	\end{align*}
+\item Grafičkom metodom riješiti sljedeći problem 
+     \begin{align*}
+     	     & \max  8 x + y \\
+     	     & s.t. \\
+     	     &  x + y \leq 40 \\
+     	     & 2x + y \leq 60 \\
+     	     & x,y \geq 0.
+     \end{align*}
+ \item Uz pomoć Simpleks metoda, riješiti sljedeći problem LP-a:%http://www.phpsimplex.com/en/simplex_method_example.htm (PHP simpleks: http://www.phpsimplex.com/simplex/simplex.htm?l=en)
+ \begin{align*}
+ 	 &\max  3x + 2y \\
+ 	 & s.t. \\
+ 	 & 2x + y \leq 18 \\
+ 	 & 2x + 3y \leq 42 \\
+ 	 & 3x + y \leq 24 \\
+ 	 & x,y \geq 0.
+ \end{align*} 
+Uporedite dobijeno rješenje sa rješenjem koje se dobije 
+koristeći grafičku metodu.
+\item %https://courses.lumenlearning.com/sanjacinto-finitemath1/chapter/reading-solving-standard-maximization-problems-using-the-simplex-method/
+   Uz pomoć Simpleks metoda, riješiti sljedeći problem LP-a:
+ \begin{align*}
+ 	  &\max z = 2x + 3y + z \\
+ 	  & s.t. \\
+ 	  & 3x + 5 y \leq 5 \\
+ 	  & 2x + y - z \leq 13 \\
+ 	  & z \leq 4 \\
+ 	  & x,y,z \geq 0.
+ \end{align*}
+\item Uz pomoć dvofaznog simpleks metoda, riješiti sljedeći problem LP-a:%http://sma.epfl.ch/~niemeier/opt09/opt09_ch06.pdf
+   \begin{align*}
+   	    &\min  x_1 + x_2 + x_3 \\
+   	    & s.t. \\
+   	    & x_1 + 2 x_2 + 3 x_3 = 3 \\
+   	    & -x_1 + 2 x_2 + 6 x_3 = 2 \\
+   	    & - 4x_2 - 9 x_3 = -5 \\
+   	    & 3 x_3 + x_4 = 1 \\
+   	    & x_1, x_2, x_3, x_4 \geq 0.
+   \end{align*}
+\item  Uz pomoć Simpleks metoda, riješiti sljedeći problem LP-a:%http://myweb.usf.edu/~molla/2016_spring_math482/two_phase_pres-3up.pdf
+\begin{align*}
+    & \min -x_1 - x_2 - x_3 \\
+    & s.t. \\
+    & 2 x_1 - x_2 + 2 x_3 + x_4 = 4 \\
+    & 2x_1 - 3x_2 + x_3 + x_5 =  -5 \\
+    & -x_1 + x_2 - 2x_3 + x_6 = -1 \\
+    & x_1, x_2, x_3, x_4, x_5, x_6 \geq 0.	
+\end{align*}
+\item Uz pomoć Simpleks metoda, riješiti sljedeći problem LP-a:
+ %https://personal.utdallas.edu/~scniu/OPRE-6201/documents/LP10-Special-Situations.pdf (Degeneracy in Simplex method):
+\begin{align*}
+	 &\max 2x_1 + x_2 \\
+	 & s.t. \\
+	 &4 x_1 + 3 x_2 \leq 12 \\
+	 & 4 x_1 + x_2 \leq 8 \\
+	 & 4 x_1 + 2 x_2 \leq 8 \\
+	 & x_1, x_2 \geq 0.
+\end{align*}
+U ovom primjeru detektovati degenerativno bazno rješenje koje je nađeno simpleks metodom. Diskutovati zašto je ono degenerativno. 
 
-
-
+\end{enumerate}
 
 
 \begin{comment}
