@@ -2636,7 +2636,7 @@ Pokazati da je dual dualnog problema ponovo primalni problem (P).
 	&x_2 \geq 0 \\
 	& x_1 + x_2 \leq -2
 \end{align*}
-nedopustiv.
+nedopustiv.%https://people.inf.ethz.ch/fukudak/lect/opt2011/aopt11note4.pdf
 
 \end{enumerate}
 \newpage
@@ -2702,15 +2702,15 @@ $$  \sum_{i=1}^n x_{ij} = 1, \forall j =1,\ldots, n,$$
 $$  \sum_{j=1}^n x_{ij} = 1, \forall i =1,\ldots, n$$ 
  uz uslove $x_{ij}\geq 0$. Primijetimo sljedeće, ovakvi uslovi ne sprečavaju pojavu rješenja koja predstavljaju uniju disjunktnih podruta, što nije dopustivo u ovom slučaju. Ako pretpostavimo da je rješenje dato u obliku podruta $R_1, \ldots, R_k$, gdje je $R_i = \{ v_{i_1}, \ldots, v_{i_k} \}$, onda se može izbjeći pojava podruta dodavanjem dodatnih ograničenja u početni model problema, te ga takvog sukcesivno riješavati dodavanjem ograničenja dok god en dobijemo rješenje koje nije sastavljeno od više od jedne rute. Recimo, eliminacija pojave podrute $R_2$ (u odnosu na podrutu $R_1$) se vrši dodavanjem ograničenja:
  $$ \sum_{l=1}^{1_k}\sum_{t=1}^{2_k} x_{1_l, 2_t} \geq 1.$$
- U najgorem slučaju, potrebno je dodati $2^n-1$ ovakvih ograničenja da bi se dobilo dopustivo rješenje. Postoje i druga ograničenja koja mogu da se dodaju za eliminaciju podruta, bez gore pomenutog iterativnog procesa, ali o njima će biti riječi u narednim sekcijama. 
+ U najgorem slučaju, potrebno je dodati $2^n-1$ ovakvih ograničenja da bi se dobilo dopustivo rješenje. %Postoje i druga ograničenja koja mogu da se dodaju za eliminaciju podruta, bez gore pomenutog iterativnog procesa, ali o njima će biti riječi u narednim sekcijama. 
  
  \section{Neke tehnike u konstrukciji modela Cjelobrojnog Programiranja}
  
- \emph{Binarne varijable.} Pretpostavimo da trebamo odrediti da li uključiti sljedeće aktivnosti: ($i$) izgraditi novo postrojenje,
-($ii$) poduzeti reklamnu kampanju ili ($iii$) razviti novi proizvod. Jasno je da su ove odluke korespondiraju ka logičkim odlukama da ili ne, prema tome modelujemo ih uvodeći  varijable $x_i \in \{0, 1 \}$, $i=1,2,3$. Često se nameće uslov da se najviše jedna od odluka izvrši, što se modeluje sa $\sum_{i=1}^3 x_1 \leq 1$. Ovo ograničenje se obično naziva \emph{ograničenjem sa višestrukim izborom} (eng. multiple--choice constraint), jer se njime ograničava izbor odluka na najviše jednu od, u ovom slučaju, tri dostupne alternative. 
+ \emph{Binarne varijable.} Pretpostavimo da je potrebno uključiti sljedeće aktivnosti: ($i$) izgraditi novo postrojenje ili
+($ii$) poduzeti reklamnu kampanju ili ($iii$) razviti novi proizvod. Jasno je da su ove odluke korespondiraju ka logičkim odlukama da ili ne, pa ih, prema tome, modelujemo   uvodeći  (binarne) varijable $x_i \in \{0, 1 \}$, $i=1,2,3$. Često se nameće uslov da se najviše jedna od ovih odluka izvrši, što se modeluje sa $\sum_{i=1}^3 x_1 \leq 1$. Ovo ograničenje se obično naziva \emph{ograničenjem sa višestrukim izborom} (eng. \emph{multiple choice constraint}), jer se njime ograničava izbor odluka na najviše jednu od, u ovom slučaju, tri dostupne alternative. 
 
 
-Pretpostavimo da proizvođač lijekova treba da odluči hoće li koristiti spremnik za fermentaciju u proizvodnji. Ako koristi spremnik, tehnologija obrade zahtijeva da se napravi $K$ jedinica ljekova. Dakle, proizvodnja $y$ mora biti 0 ili $K$, a problem se može modelirati binarnom varijablom $x_j \in \{ 0, 1\}$ zamjenom $Kx_j$ za $y_i$. 
+Pretpostavimo da proizvođač lijekova treba da odluči hoće li koristiti spremnik za fermentaciju u proizvodnji. Ako koristi spremnik, tehnologija obrade zahtijeva da se napravi $K$ jedinica ljekova. Dakle, količina proizvodnja $y$ dobija vrijednosti 0 ili $K$, a problem se može modelovati binarnom varijablom $x_j \in \{ 0, 1\}$, pa zamjenom $Kx_j$ za $y_i$. 
 
 \emph{Logička ograničenja}. Jedno od najprostijih logičkih pitanja u matematičkom programiranju je da li dati izbor varijabli odluka zadovoljava ograničenje
 
@@ -2778,7 +2778,7 @@ barem $k$ od njih treba da budu zadovoljena. Modelovanje ovakvog scenarija vrši
 \end{align}
 Primijetimo da ako je $y_j = 1$, tada je $j$-to ograničenje zadovoljeno (za dato $x$). Dakle, barem $k$ ograničenja treba da budu zadovoljena da bi $x$ bilo dopustivo rješenje. 
 
-\emph{Složene alternative}. Pretpostavimo da se region sastoji od tri disjunktna regiona kao na Slici~\ref{fig:compound_regions}. Ovakav scenario se može modelovati uz pomoć konstante veliko $M$, te  ograničenjem sa višestrukim izborom, odakle dobijamo:
+\emph{Složene alternative}. Pretpostavimo da se dopustiv region problema LP sastoji od tri disjunktna regiona kao na Slici~\ref{fig:compound_regions}. Ovakav scenario se može modelovati uz pomoć konstante veliko $M$, te  ograničenjem sa višestrukim izborom, odakle dobijamo:
 \begin{align*}
     &f_1(x) - M_1 y_1 \leq b_1 \\
     &f_2(x) - M_2 y_1 \leq b_2\ (\mbox{ region 1}) \\ \hline
@@ -2800,7 +2800,7 @@ Primijetimo da ako je $y_j = 1$, tada je $j$-to ograničenje zadovoljeno (za dat
 \end{figure}
 Uslov $y_1 + y_2 + y_3 \leq 2$ nam upravo ograničava da rješenje $(x_1, x_2)$ pripada tačno jednom od (disjunktnih) dopustivih regiona. 
 
-\emph{Reporezentovanje nelinearnih funkcija}. ($i$) \underline{Fiksne cijene}. Ciljna funkcija problema minimizacije može da sadrži i neke fiksne troškove (fiksni troškovi ulaganja, fiksni troškovi postavljanja opreme itd.). Na primjer, trošak proizvodnje $x$ jedinica određenog proizvoda može da se sastoji od fiksnih troškova postavljanja opreme i promjenjivih troškova koji se tiču proizvedene robe na opremi (mašinama). Pretpostavimo da oprema ima kapacitet proizvodnje od $B$ jedinica. Neka je $y$ binarna varijabla koja pokazuje kada nastaje fiksni trošak, pri čemu  je $y=1$ ako je $x >0$, dok je $y=0$ ako je $x=0$. Tada doprinos cijeni proizvodnje $x$ jedinica proizvoda ima oblik 
+\emph{Reporezentovanje nelinearnih funkcija}. ($i$) \underline{Fiksne cijene}. Ciljna funkcija problema minimizacije može da sadrži i neke fiksne troškove (fiksni troškovi ulaganja, fiksni troškovi postavljanja opreme itd.). Na primjer, trošak proizvodnje $x$ jedinica određenog proizvoda može da se sastoji od fiksnih troškova postavljanja opreme i promjenjivih troškova koji se tiču proizvedene robe na opremi (mašinama). Pretpostavimo da oprema ima kapacitet proizvodnje od $B$ jedinica. Neka je $y$ binarna varijabla koja pokazuje kada nastaje fiksni trošak, pri čemu  je $y=1$ ako je $x >0$, dok je $y=0$ ako je $x=0$. Tada doprinos cijeni proizvodnje od $x$ jedinica proizvoda se može predstaviti sa
 $$ yB + c x $$ pod uslovima:
 \begin{align}
      &x \leq By \\
@@ -2881,14 +2881,14 @@ pa se ograničenja u (\ref{eq: piecewise-constraints}) mogu napisati u obliku
   
  \end{itemize} 
 
-\emph{Aproksimacija nelinearnih funkcija}. Kako smo omenuli u prethodnoj stavci, ako je funkcija cilja neprekidna i nelinearna, ona se može aproksimirati uz pomoću niza po-dijelovima-linearnih funkcija, pa se onda primjenjuje transformacija ograničenja  prezentovana u stavki o po-dijelovima-linearnim funkcijama. 
+\emph{Aproksimacija nelinearnih funkcija}. Kako smo pomenuli u prethodnoj stavci, ako je funkcija cilja neprekidna i nelinearna, ona se može aproksimirati uz pomoću niza po-dijelovima-linearnih funkcija. Na tu aproksimaciju potom primjenimo transformaciju ograničenja  data u stavci o po-dijelovima-linearnim funkcijama. 
 
 Da bi primijenili veći broj gore navedenih transformacija ograničenja u praksi, posmatrajmo sljedeći primjer kojeg modelujemo. 
 
 
-\emph{Primjer}. Pretpostavimo da je stanovništvo koncentrirano u $I$ okruga  unutar grada i da u okrugu $i\in [I]$ stanuje $p_i$ ljudi. Preliminarna analiza (premjeri zemljišta, politika, socijalna situacija, itd.) ograničila je potencijalne lokacije vatrogasnih domova na $J$ lokacija. Neka $d_{ij} \geq 0$ predstavlja udaljenost od središta okruga (dijela grada) $i$  do lokacije $j$. 
+\emph{Primjer}. Pretpostavimo da je stanovništvo koncentrirano u $I$ okruga  unutar grada i da u okrugu $i\in [I]$ stanuje $p_i$ ljudi. Preliminarna analiza (premjeri zemljišta, politika, socijalna situacija, itd.) ograničila je potencijalne lokacije vatrogasnih domova na $J$ lokacija. Neka $d_{ij} \geq 0$ predstavlja udaljenost   središta okruga (dijela grada) $i$  do lokacije $j$. 
 
-Zadatak: \emph{Potrebno je odabrati strategiju odabira najboljih lokacija gdje će se podići vatrogasni domovi za svaki od okruga.}
+Zadatak: \emph{Potrebno je odabrati lokacija gdje će se podići vatrogasni domovi za svaki od okruga. O funkciji cilja i dodatnim ograničenjima ćemo diskutovati u toku modelovanja samog problema.}
 
 Definišimo binarne varijable 
 $$y_j = \begin{cases}
@@ -2898,7 +2898,7 @@ $$y_j = \begin{cases}
 i 
 $$
 x_{ij}= \begin{cases}
-             1, \mbox{ ako je lokacija za vatrogasni dom } j \mbox{ pridružena opskrbljivanju okruuga } i \\
+             1, \mbox{ ako je lokacija za vatrogasni dom } j \mbox{ pridružena opskrbljivanju okruga } i \\
              0, \mbox{ inače}. 
         \end{cases}
 $$
@@ -2912,7 +2912,7 @@ Takođe, ne postoji okrug koji je pridružen nekorištenoj lokaciji (za vatrogas
  \end{equation}
 %gdje je $|I|$ broj mijesta. 
 
-Udaljenost okruga $i$ ka pridruženom vatrogasnom domu je jednaka $d_i = \sum_{j |in J} d_{ij}x_{ij} $. Dalje, veličina populacije (broj ljudi) koja će biti opskrbljivana od strane doma na lokaciji $j$ je jednaka 
+Udaljenost okruga $i$ ka pridruženom vatrogasnom domu je jednaka $d_i = \sum_{j \in J} d_{ij}x_{ij} $. Dalje, veličina populacije (broj ljudi) koja će biti opskrbljivana od strane doma na lokaciji $j$ je jednaka 
 \begin{equation}\label{eq:ex-constr-3}
     s_j = \sum_{i \in I} p_i x_{ij}. 
 \end{equation}
@@ -2931,13 +2931,13 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
      \sum_{j \in J} f_j(s_j) \leq B.
 \end{equation}
  Funkcija cilja koja bi se mogla optimizovati u ovoj varaijnti problema je minimizacija udaljenosti 
- okruga koja je najdalje od svog pridruženog vatrogasnog doma ($d_i$):
+ okruga koja se nalazi najdalje od svog pridruženog vatrogasnog doma ($d_i$):
       $$\min D $$
  gdje je $D= \max d_i$. Ekvivalentno se ova funkcija cilja može napisati kao:
  \begin{align*}
       &\min D \\
       & D \geq d_i,  \forall i \in I \\
-      & \mbox{s.t. } \\ 
+      &  {s.t. } \\ 
       &(\ref{eq:ex-constr-1})-(\ref{eq:ex-constr-5}).
  \end{align*}
  Još je ostalo zamijeniti svaku funkciju $f_j (s_j)$ aproksimacijom cjelobrojnog programiranja kako bismo izvršili cjelokupno modeliranje. Detalje ostavljamo citaocu kao zadatak. Ako bi funkcija $f_j (s_j)$ sadržala fiksne troškove, tada se ne bi trebale uvoditi nove varijable fiksnih troškova -- u tu svrhu služi već uvedena varijabla $y_j$. 
@@ -2946,9 +2946,9 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
  \section{Kompleksnost Cjelobrojnog Programiranja}
    Što se tiče rješivosti problema cjelobrojnog programiranja, ona spada u NP--teške probleme, za razliku od LP-a koji je, kako smo pokazali, polinomijalno rješiv. U nastavku ove sekcije dajemo dokaz da je rješivost ILP-a zaista NP--težak problem.  Ideja je da  svedemo problem 3--SAT na ILP.\\ 
      %https://mediaspace.msu.edu/media/Proving+that+Integer+Programming+is+NP-Complete/1_0j1vkmvw
-   Iako je 3--SAT problem trebao biti poznat onome ko je slušao kurs iz osnova teorije algoritama, radi lakše čitljivosti ćemo ga ovdje izložiti. 
+   Iako je 3--SAT problem trebao biti poznat onome ko je slušao kurs iz osnova teorije algoritama, radi lakše čitljivosti ćemo ga ovdje definisati. 
    
-   Neka su dati literali $x_1, \ldots, x_n$. Svaki literal može da bude pozitivan ($x_1$) ili negativan  ($\neg x_1$). Kažemo da je formula napisana u \emph{konjunktivnoj normalnoj formi} (CNF) akko je napisana kao konjunkcija klauzula (ili literala). Pod klauzulom podrazumijevamo formulu koja je sastavljena od literala i disjunkcija. Npr. formula $\phi(x_1, x_2, x_3)= (x_1 \vee  \neg x_2) \wedge (x_1 \vee x_3)$ je napisana u CNF; u njoj postoje dvije klauzule. CNF formula $\phi(x)$ je zadovoljiva akko postoji dodjela $\overline{x}$ literalima ($\overline{x}_i \in \{TRUE, FALSE\}$) tako da je $\phi(\overline{x})$ tačna (prema zakonima bulove algebre).  
+   Neka su dati literali $x_1, \ldots, x_n$. Svaki literal može da bude pozitivan ($x_1$) ili negativan  ($\neg x_1$). Kažemo da je formula napisana u \emph{konjunktivnoj normalnoj formi} (CNF) akko je napisana kao konjunkcija klauzula (ili literala). Pod klauzulom podrazumijevamo formulu koja je sastavljena od literala povezanih disjunkcijama. Npr. formula $\phi(x_1, x_2, x_3)= (x_1 \vee  \neg x_2) \wedge (x_1 \vee x_3)$ je napisana u CNF; u njoj postoje dvije klauzule. CNF formula $\phi(x)$ je zadovoljiva akko postoji dodjela $\overline{x}$ literalima ($\overline{x}_i \in \{TRUE, FALSE\}$) tako da je $\phi(\overline{x})$ tačna (prema zakonima bulove algebre).  
    
    Kažemo da je konjunktivna formula $\phi(x)$  napisana u 3--CNF  akko se u svakoj klauzuli nalazi najviše 3 različita literala. Napomenimo da se bilo koja formula može redukovati u 3--CNF, u smislu rješivosti. Dakle, svaka klauzula 
    $l_1 \vee l_2 \vee \cdots \vee l_n$ se prevodi u 3--CNF na sljedeći način:
@@ -2981,6 +2981,31 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
  \begin{thm} Neka je $k\in \mathbb{Z}$.
  	 Problem odlučivanja da li postoji cjelobrojno rješenje u ILP-u (pod uslovom da minimizujemo) koje je manje od $k$ je NP--kompletno. 
  \end{thm}
+ 
+\textbf{\large Zadaci}
+\begin{enumerate}%https://www.utc.fr/~dnace/dokuwiki/_media/fr/upt-cours-2012lp.pdf
+	\item Problem totalnog pokrivanja. %Neka je dato $n$ mijesta, te $m$ zahtjeva koji treba da budu ispunjeni ($d_1,\ldots, d_m$).  
+	Sa $D_c$ označimo maksimalnu daljinu koja se može pokriti instalacijom (skladišta, antene). Pod ``pokrivanjem'' podrazumijevamo ispunjavanje zahtjeva klijenata (koji žive u nekom mjestu). Sa $c_i$ označimo cijenu instalacije (antene, skladišta isl.) na mjesto $i$. Sa $d_{ij}$ označimo udaljenost između mjesta $i$ i $j$. Zadatak ovog problema je koja mjesta odabrati (za instaliranje antene, skladišta isl.) tako da su sva mjesta pokrivena, ali da pri tome minimizujemo troškove instalacija. Sa jednog odabranog mjesta se pokrivaju sva susjedna koja su u njegovom radijusu od $D_c$. 
+	\item Problem maksimalnog pokrivanja (eng. \emph{maximum coverage problem}). Neka je u ulazu data kolekcija skupova  $S=\{ S_1, \ldots, S_m\}$ te broj $k \in \mathbb{N}$. Potrebno je naći podskup $S' \subseteq S$, tako da je $|S'|\leq k$, a broj pokrivenih elemenata $|\bigcup_{s' \in S'} s'|$ je maksimizovan. \\
+	Uputstvo. sa $x_j \in \{0, 1\}$ označimo varijablu koja dobija vrijednost 1 ako je $S_i$ selektovan u rješenje $S'$, inače 0. Dodatno, sa $y_j \in \{0, 1 \}$ definišemo varijablu koja dobija vrijednost 1 ako je   element $e_j$ pokriven rješenjem.  
+%http://courses.ieor.berkeley.edu/ieor151/lecture_notes/ieor151_lec14.pdf
+	\item $P$-center problem čvorova (eng. \emph{vertex p-center problem}). Formulacija problema je  predstavljena neusmjerenim grafom $G = (I, J, E)$, gdje su čvorovi potražnje predstavljeni skupom vrhova $i\in I$, a moguće lokacije objekata date su drugim skupom vrhova $j \in J$ , a grane $e_{i,j} \in E$ postoje samo između čvorova $i \in  I$ i čvorova $j \in J$. Nadalje, čvorovima $d_{i,j}\geq 0$ dodjeljujemo pozitivne težine, što predstavlja udaljenost između čvorova $i$ i $j$. Imajte na umu da je moguće imati i udaljenost 0 između čvora potražnje i moguće lokacije objekta. 
+	
+	U ovom problemu želimo postaviti $p$ objekata kako bismo smanjili maksimalnu udaljenost između bilo kojeg čvora potražnje i	njegovog servisnog objekta. 
+	\item %https://personal.utdallas.edu/~metin/Or6302/Notes/integer.pdf
+	 Pretpostavimo da se selimo u novi stan i da imamo samo dva kofera u koje možemo spakovati svoje stvari. Prvi kofer može da spakuje 22 kg, a drugi 28 kg. Težina i vrijednosti stvari
+	su dati sa \\
+ \begin{table}[!ht]
+ 	\centering
+	\begin{tabular}{l|cccccccc}
+		Stavka & A & B & C & D & E & F & G & H \\ \hline
+		Težina & 10 & 9 & 15 & 3 & 11 & 6 & 3 & 4 \\
+		Vrijednost & 5 & 2 & 7 & 6 & 1 & 6 & 8 & 6 \\ \hline
+	\end{tabular} 
+    
+ \end{table}
+Navedite model koji maksimizuje vrijednosti predmeta koji će biti ubačeni u ova dva kofera. 
+\end{enumerate}
 
 
  \chapter{Tehnike u rješavanju Cjelobrojnog programiranja}
