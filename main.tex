@@ -2574,7 +2574,70 @@ Tada, donje i gornje granice za $y$ postaju uslovi (pogledati gore): $y \leq 6, 
 \vspace{1.5cm}
 \textbf{\large Zadaci}
 \begin{enumerate}
-	\item abc...
+	\item %http://www.nitjsr.ac.in/course_assignment/CA02CA3103%20RMTLPP:%20Duality.pdf
+	Napišite odgovarajući dual linearnog programa:
+	\begin{align*}
+		 &\max x_1 - x_2 + 3 x_3 \\
+		 & s.t. \\
+		 & x_1 + x_2 + x_3 \leq 10 \\
+		 & 2x_1 - x_2 - x_3 \leq 2 \\
+		 & 2x_1 - 2x_2 - 3 x_3 \leq 6 \\
+		 & x_1, x_2, x_3 \geq 0.
+	\end{align*}
+ \item    	Napišite odgovarajući dual linearnog programa:
+      \begin{align*}
+      	  &\min 3 x_1 - 2 x_2 + 4 x_3 \\
+      	  & s.t. \\
+      	  & 3x_1 + 5 x_2 + 4 x_3 \geq 7 \\
+      	  & 6 x_1 + x_2 + 3 x_3 \geq 4 \\
+      	  & 7 x_1 - 2 x_2 - x_3 \leq 10 \\
+      	  & x_1 - 2 x_2 + 5 x_3 \geq 3 \\
+      	  & 4 x_1 + 7 x_2 - 2 x_3 \geq 2 \\
+      	  & x_1, x_2, x_3 \geq 0.
+      \end{align*}
+  \item Napišite dual sljedećeg linearnog programa:
+  \begin{align*}
+        &\min x_1 - 3 x_2 - 2 x_3 \\
+        & s.t. \\
+        & 3 x_1 - x_2 + 2 x_3 \leq 7 \\
+        & 2 x_1 - 4 x_2 \geq 12 \\
+        & -4x_1 + 3x_2 + 8 x_3 = 10 \\
+        & x_1, x_1 \geq 0 \\
+        & x_3 \in \mathbb{R}. 
+  \end{align*}
+\item %http://www.nitjsr.ac.in/course_assignment/CA02CA3103%20RMTLPP:%20Duality.pdf
+Pokazati da je dual dualnog problema ponovo primalni problem (P).
+\item Ako je primalni problem (P) neograničen (ima neograničenu funkciju cilja), njegov dual nije dopustiv.
+\item Istražiti verziju simpleks metoda zvanu \emph{Dualni simpleks metod}.
+\item Koristeći Farkaš-ovu lemu, pokazati sljedeći rezultat. 
+ 
+	Tačno jedan od sljedećih sistema ima rješenje:%https://web.stanford.edu/class/msande310/hw2sol.pdf
+	\begin{enumerate}
+		\item $Ax > 0$; 
+		\item $y^T A = 0, y \geq 0, y \neq 0.$
+	\end{enumerate}
+ \item Koristeći Farkaš-ovu lemu, pokazati sljedeći rezultat. 	Tačno jedan od sljedećih sistema ima rješenje:%https://web.stanford.edu/class/msande310/hw2sol.pdf
+ \begin{enumerate}
+ 	\item $Ax \leq b$; 
+ 	\item $y^T A = 0, y^T b < 0, y \geq 0.$
+ \end{enumerate}
+ \item  %https://www.cs.cmu.edu/~odonnell/toolkit13/lecture13-anonymous.pdf
+ Koristeći Furijer-Motzkin-ovu eliminaciju, pokazati da postoji rješenje za sljedeći sistem nejednačina:
+ \begin{align*} 
+ 	&x - 5y + 2 z \geq 7 \\
+ 	&3x - 2y - 6 z \geq -12 \\
+ 	& -2x + 5y - 4z \geq -10 \\
+ 	& -3x + 6y - 3z \geq -9 \\
+ 	& -10 y + z \geq -15 \\  
+ \end{align*}
+\item Pomoću Furijer-Motzkin-ovu eliminacije, pokazati sa je sistem 
+\begin{align*}
+	&x_1 \geq 0 \\
+	&x_2 \geq 0 \\
+	& x_1 + x_2 \leq -2
+\end{align*}
+nedopustiv.
+
 \end{enumerate}
 \newpage
 \chapter{Cjelobrojno Programiranje}
