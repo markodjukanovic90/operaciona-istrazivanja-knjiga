@@ -2489,8 +2489,12 @@ Pogledajmo kako izgleda sistem iz slučaja (\ref{case:2}). On je dat sa:
 	&3y_1 + 2 y_2 + y_3 + 3 y_4 = 4 \\
 	& y_1, y_2, y_3, y_4 \geq 0. 
 \end{align*}
-\begin{figure}
-	\includegraphics{lema-farkas.png}
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=320pt, height=250pt]{farkas-geometry.eps}
+	\vspace{-1cm}
+	\caption{Geometrijska interpretacija Farkašove leme.}
+	\label{fig:farkas-slika}
 \end{figure}
 U osnovi geometrijska interpretacija nam kaže da se vektor $c =(1,4)^T$ može predstaviti kao linearna kombinacija vekotora vrsta matrice $A$, kao što vidimo na slici~\ref{fig:farkas-slika} jer se nalazi unutar prostora upregnutog sa vektorima $a_1, \ldots, a_n$.  To implicira da početni sistem nema rješenje. 
 Kada bi postavili $c=(5,0)^T$, dobili bi da se on ne može izraziti preko vektora vrste matrice $A$ (jer je van prostora upregnutog sa vektrima vrste), pa prema tome početni problem za ovu konfiguraciju ima rješenje.  
@@ -2552,8 +2556,7 @@ $-x + 2y \geq 1 \Rightarrow y \geq \frac{x+1}{2}$, te $ 3x - 5y \geq 1 \Rightarr
  	& x \geq 0, y \geq 0.  	
  \end{cases}
  $$
-Ove nejednakosti se mogu pojednostaviti u donje i gornje granice, 
-za $x$, dato sa:
+Ove nejednakosti se mogu pojednostaviti u donje i gornje granice za $x$, dato sa:
 $$
 \begin{cases}
     &x \geq 3 \\
@@ -2568,6 +2571,11 @@ Tada, donje i gornje granice za $y$ postaju uslovi (pogledati gore): $y \leq 6, 
 
 %kompleksnost i Farkasova lema...
 %  dualna simpleks metoda ? https://www.youtube.com/watch?v=lyNHVnT9zVk&list=PLY9yf2-4yyeT0Jh80w5yuevm0o9lAAUJg&index=40
+\vspace{1.5cm}
+\textbf{\large Zadaci}
+\begin{enumerate}
+	\item abc...
+\end{enumerate}
 \newpage
 \chapter{Cjelobrojno Programiranje}
 
