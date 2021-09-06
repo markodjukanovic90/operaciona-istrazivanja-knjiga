@@ -3950,9 +3950,9 @@ Dalje, generišimo novi CG potproblem čitajući vrijednost dualnih promjenjivih
 	 \frac{1}{4} a_4 + \frac{1}{2} a_6 + \frac{1}{2} a_7
 \end{align*}
 uz uslove nenegativnosti i kapaciteta i integralnosti (cjelobrojnosti). Rješavajući problem uz pomoć dinamičkog problema, dobijamo optimalno rješenje $A_5 = (2,1,0)^T$, dok je vrijednost optimuma za CG potproblem jednak 1, odakle slijedi da je optimum početnog problema nađen sa prethodnim rješenjem (ne postoji više ulaznih kolona koje se dodaju u RMP), i ono je jednako 95, dok je rješenje dato sa $x_1^* = 0, x_2^* = 25, x_3^*=30, x_4^*= 40$. Dakle, koristimo samo 3 različita paterna za sječenje. 
-
+\\ \vspace{1cm}
  %Za uraditi:  https://ocw.mit.edu/courses/sloan-school-of-management/15-083j-integer-programming-and-combinatorial-optimization-fall-2009/lecture-notes/ (Lekcija 19-25)
-  \vspace{1cm} \\
+  
  \textbf{\large Zadaci}
  \begin{enumerate}
  	\item %http://web.tecnico.ulisboa.pt/mcasquilho/compute/_linpro/TaylorB_module_c.pdf
@@ -3984,7 +3984,8 @@ Nakon primjene B\&B metode, riješiti metod grafički dijeljeći region na podre
 	 & x_1,x_2, x_3 \geq 0 \\
 	 & x_2 \in \mathbb{Z}.
 \end{align*}
-\item  Pomoću metode implicitne enumeracije riješiti sljedeći ILP:
+\item %http://www.ens-lyon.fr/DI/wp-content/uploads/2012/01/LagrangianRelax.pdf
+ Pomoću metode implicitne enumeracije riješiti sljedeći ILP:
 \begin{align*}
   &\max 1000 x_1 + 700 x_2 + 800 x_3 \\
   &s.t. \\
@@ -4028,7 +4029,28 @@ Nakon primjene B\&B metode, riješiti metod grafički dijeljeći region na podre
   	 & x_1, x_2 \geq 0 \\
   	 & x_1, x_2\in \mathbb{Z}.
   \end{align*}
-\item abc...
+\item  Za sljedeći problem 
+\begin{align*}
+	&\min c^T x \\
+	&s.t. \\
+	& Ax = b \\
+	& D x \geq q \\
+	& x \geq 0
+\end{align*}
+napisati odgovarajuću lagranžovu relaksaciju. 
+\item %https://personal.eur.nl/birbil/bolbilim/teaa/02_Lag_Rel.pdf
+Neka je dad problem ILP-a:
+\begin{align*}
+	&\max x_2 \\
+	& -2x_1 + 2x_2 \leq 1 \\
+	& 2 x_1 + 2 x_2 \leq 7 \\
+	& x_1, x_2 \geq 0 \\
+	& x_1, x_2 \in \mathbb{Z}.
+\end{align*}
+Definisati Lagranžovu relaksaciju za ovaj problem (npr. uzeti prvo ograničenje za ``teško''). Riješiti početni problem sa jednom od tehnika za rješavanje ILP-a. Potom, riješiti Lagranžovu relaksaciju problema za $\lambda=0.25$. Šta možemo zaključiti na osnovu rješenja Lagranžove relaksacije i pročetnog problema? 
+\item   Pomoću Column generation frejmvorka, riješiti jedni instancu Cutting stock problema gdje je  
+$W = 20$, te postoje tri narudžbe za sječenje: 1. stavka: $b_1=60$ rolni dužine 7; 2. stavka: $b_2=40$ rolni dužine 8; 3. stavka: $b_3=70$ rolni dužine 10. 
+
  \end{enumerate}
  
  \newpage
