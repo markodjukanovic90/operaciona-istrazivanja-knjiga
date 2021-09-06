@@ -112,7 +112,7 @@
 \nodeDist=25mm
 % \ChapterDOI{} %will be filled in at production
 \author{
- Marko Đukanović  
+ Marko Đukanović  \& Dragan Matić
 % Noam Chimpsky\affiliation{University of Pluto}\lastand 
 % Jane Wilson\affiliation{National Institute for Language}
 }
@@ -3959,7 +3959,7 @@ uz uslove nenegativnosti i kapaciteta i integralnosti (cjelobrojnosti). Rješava
  
 Dekompozicione metode u matematičkom programiranju su tehnike pomoću kojih se polazni problem (na primjer, problem linearnog programiranja) razbija u više manjih problema, te se, rješavanjem tih manjih problema, na kraju dolazi i do rješenja polaznog.
 
-Široka primjena metoda linearnog, cjelobrojnog i mješovitog cjelobrojnog linearnog programiranja u modelovanju i rješavanju velikog broja različitih problema iz teorije i prakse, doveli su i do porasta interesa i za primjenu i razvoj dekompozicionih metoda. Čak se i tradicionalne metode za rješavanje problema cjelobrojnog programiranja, kao što su branch and bound, ili odsjecajuće ravni, takođe se mogu smatrati dekompozicionim metodama, jer one dijele polazni problem na LP relaksaciju i cjelobrojna ograničenja.
+Široka primjena metoda linearnog, cjelobrojnog i mješovitog cjelobrojnog linearnog programiranja u modelovanju i rješavanju velikog broja različitih problema iz teorije i prakse, doveli su do porasta interesa i za primjenu i razvoj dekompozicionih metoda. Čak se i tradicionalne metode za rješavanje problema cjelobrojnog programiranja, kao što su B\&B, ili odsjecajuće ravni, takođe   mogu smatrati dekompozicionim metodama, jer one dijele polazni problem na LP relaksaciju i cjelobrojna ograničenja.
 
 Treba napomenuti da i savremeni MILP rješavači, o čemu će biti govora kasnije, takođe u svojim implementacijama koriste i dekompozicione algoritme, koji, u nekim slučajevima, lakše i brže dovode do rješenja.
  
@@ -4000,7 +4000,7 @@ Sada posmatrajmo dualni problem potproblema~\ref{bender2}, ignorišući term $g^
 
 Sada uključujemo teoriju dualnosti i razmatramo sljedeće mogućnosti, koje mogu da se jave.
 \begin{itemize}
-\item Ako je optimalno rješenje problema~\ref{bender2} $z^*$, a optimalno rješenje duala~\ref{bender3} $u^*$, na osnovu teoreme o jakoj LP dualnosti imamo
+\item Ako je optimalno rješenje problema~(\ref{bender2}) $z^*$, a optimalno rješenje duala~(\ref{bender3}) $u^*$, na osnovu teoreme o jakoj LP dualnosti imamo
   \begin{equation}
 	\begin{aligned}\label{bender4}
 z^*-g^Ty=(u^*)^T(c-B\overline{y})
@@ -4008,7 +4008,7 @@ z^*-g^Ty=(u^*)^T(c-B\overline{y})
 \end{equation}
 
 
-Dalje, uočiomo da oblast dopustivih rješenja dualnog problema~\ref{bender3} ne zavisi od vrijednosti $\overline{y}$. Stoga, $u^*$ je uvijek dopustivo rješenje problema~\ref{bender3}, bez obzira na vrijednost $\overline{y}$. Odavde, na osnovu slabe LP dualnosti dobijamo
+Dalje, uočiomo da oblast dopustivih rješenja dualnog problema~(\ref{bender3}) ne zavisi od vrijednosti $\overline{y}$. Stoga, $u^*$ je uvijek dopustivo rješenje problema~(\ref{bender3}), bez obzira na vrijednost $\overline{y}$. Odavde, na osnovu slabe LP dualnosti dobijamo
 
   \begin{equation}
 \label{bender5}
@@ -4016,9 +4016,9 @@ Dalje, uočiomo da oblast dopustivih rješenja dualnog problema~\ref{bender3} ne
 \end{equation}
 
 
-Posljednja nejednakost propisuje jednju donju granicu funkcije cilja polaznog problema. Ovo je ključni element koji se koristi u Benderovoj dekompoziciji, pomoću kog se određuje jedna odsjecajuća ravan za master problem (koji će biti definisan kasnije). Treba napomenuti da odsjecajuća ravan~\ref{bender5} ukazuje na činjenicu da, ako bi se za $y$ uzela vrijednost $y=\overline{y}$, funkcija cilja bi bila veća ili jednaka vrijednosti $\overline{z}$, koja se dobije u potproblemu, s obzirom da važi $	z\geqslant g^Ty+(u)^T(c-B\overline{y})$.
+Posljednja nejednakost propisuje jednju donju granicu funkcije cilja polaznog problema. Ovo je ključni element koji se koristi u Benderovoj dekompoziciji, pomoću kog se određuje jedna odsjecajuća ravan za master problem (koji će biti definisan kasnije). Treba napomenuti da odsjecajuća ravan~(\ref{bender5}) ukazuje na činjenicu da, ako bi se za $y$ uzela vrijednost $y=\overline{y}$, funkcija cilja bi bila veća ili jednaka vrijednosti $\overline{z}$, koja se dobije u potproblemu, s obzirom da važi $	z\geqslant g^Ty+(u)^T(c-B\overline{y})$.
 
-Ovo takođe daje i donju granicu za druge vrijednosti $y$ koje bismo mogli probati.
+Ovo takođe daje i donju granicu za druge vrijednosti $y$ koje bismo mogli probati u narednim iteracijama.
 
 \item Posmatrajmo sada slučaj da je dualni potproblem neograničen. U toj situaciji važi nejednakost
 
@@ -4048,10 +4048,10 @@ Sada možemo definisati master problem koji nastaje dodavanjem svih odsijecajuć
 	\end{aligned}
 \end{equation}
  
- gdje je $K$ skup ekstremnih tačaka, a $L$ skup ekstremnih zrakova od potproblema. Rješavanjem master problema dobijamo novu vrijednost za $y$, koju koristimo u sljedećoj iteraciji.
+ gdje je $K$ skup ekstremnih tačaka, a $L$ skup ekstremnih zrakova od potproblema. Rješavanjem master problema (koji je obično puno lakši od početnog problema) dobijamo novu vrijednost za $y$, koju koristimo u sljedećoj iteraciji.
  
- Treba napomenuti da je potproblem~\ref{bender2} restrikcija originalnog problema~\ref{bender1}, pa je njegova optimalna vrijednost $z^*$ jedna gornja granica za funkciju cilja polaznog problema. Takođe je master problem~\ref{bender8} relaksacija polaznog problema, jer se pri rješavanju master problema ne posmatraju sva ograničenja. Stoga je optimalna vrijednost master problema donja granica za funkciju cilja originalnog problema.
- DOPUNITI
+ Treba napomenuti da je potproblem~(\ref{bender2}) restrikcija originalnog problema~(\ref{bender1}), pa je njegova optimalna vrijednost $z^*$ jedna gornja granica za funkciju cilja polaznog problema. Takođe je master problem~(\ref{bender8}) relaksacija polaznog problema, jer se pri rješavanju master problema ne posmatraju sva ograničenja. Stoga je optimalna vrijednost master problema donja granica za funkciju cilja originalnog problema.
+% DOPUNITI
  
 
  
@@ -4096,10 +4096,10 @@ Sada možemo definisati master problem koji nastaje dodavanjem svih odsijecajuć
 
 
 U primjeru kojim ilustrujemo upotrebu Benderove dekompozicije posmatramo jedan jednostavan problem maksimizacije dobiti na osnovu ulaganja po različitim kriterijumima.
-Iako je Algoritmom~\ref{alg:bender} opisan postupak rješavanja problema minimizacije, algoritam se vrlo lako može preformulisati tako da se on može primijeniti i na problem maksimizacije. Jasno je da će u tom slučaju, dualni problem, prikazan u liniji 4 algoritma sada postati problem minimizacije, te će se, rješavanjem dualnog potproblema dobijati donje granice.
+Iako je Algoritmom~\ref{alg:bender} opisan postupak rješavanja problema minimizacije, algoritam se vrlo lako može preformulisati tako da se on može primijeniti i na problem maksimizacije. Jasno je da će u tom slučaju, dualni problem, prikazan u liniji 4 algoritma tada postati problem minimizacije, te će se, rješavanjem dualnog potproblema dobijati donje granice.
 
 
-Primjer.
+\emph{Primjer.} 
 
 Pretpostavimo da raspolažemo sumom od 1000KM, koju možemo iskoristiti za ostvarivanje dobiti prema dva različita kriterijuma:
 \begin{itemize}
@@ -4115,11 +4115,9 @@ Sada ćemo problem formalno definisati i riješiti ga metodom Benderove dekompoz
 
 Neka su promjenljive definisane sa:
 
-$x1,x_2,\ldots,x_{10}$: iznos uložen u dionice $f_1, f_2, f_3,\ldots,f_{10}$, respektivno
+$x_1,x_2,\ldots,x_{10}$: iznos uložen u dionice $f_1, f_2, f_3,\ldots,f_{10}$, respektivno
 
-$y$: iznos koji je oročen sa fiksnom kamatom u iznosi od 4.5\%
-
-Sada se problem može formlisati kao
+$y$: iznos koji je oročen sa fiksnom kamatom u iznosi od 4.5\%. Sada se problem može formlisati kao
 \begin{equation}\label{primer:formulacija1}
 	\begin{aligned}
 		\max\ 1.01x_1+1.02x_2+\ldots+1.10x_{10}+1.045y\\
@@ -4147,7 +4145,7 @@ $x=\left(\begin{array}{c}
 	x_2 \\
 	\vdots \\
 	x_10
-\end{array}\right)$ 
+\end{array}\right)$,  
 $f = \left(\begin{array}{c}
 	1.01 \\
 	1.02 \\
@@ -4156,7 +4154,7 @@ $f = \left(\begin{array}{c}
 \end{array}\right)$
 
 Primijetimo da je su u našem primjeru $g$ i $y$ jednodimenzioni vektori, koje ćemo u daljem zapisu identifikovati sa njihovom (jedinom) koordinatom, odnosno
-$y=(y)$ i $g=(1.045)$. 
+$y=(y)$ i $g=(1.045)$. Takođe je i 
 
 $A=\left(
 \begin{array}{ccc}
@@ -4179,11 +4177,7 @@ $c=\left(\begin{array}{c}
 \end{array}\right)$ 
 
 
-Primijenimo sada Benderovu dokompoziciju. Najprije treba odrediti početnu vrijednost za $\overline{y}$, za koju, u ovom koraku, možemo uzeti bilo koju nenegativnu vrijednost. Neka je 
-
-$\overline{y}=1500$
-
-Dalje, neka su $LB=-\infty$ i $UB=+\infty$ i uzmimo da je $\epsilon = 0.1$.
+Primijenimo sada Benderovu dokompoziciju. Najprije treba odrediti početnu vrijednost za $\overline{y}$, za koju, u ovom koraku, možemo uzeti bilo koju nenegativnu vrijednost. Neka je $\overline{y}=1500$. Dalje, neka su $LB=-\infty$ i $UB=+\infty$ i uzmimo da je $\epsilon = 0.1$.
 
  Nakon inicijalnih postavki, prvi korak je rješavanje dualnog problema (Benderovog potproblema). S obzirom da je početni problem problem maksimizacije, dualni problem će sada biti problem minimizacije. Obilježimo promjenljvie dualnog problema vektorom  $u$, koji ima 11 koordinata (polazni problem ima 11 oraničenja).
  
@@ -4241,9 +4235,7 @@ $$
 Vidimo da, bez obzira na vrijednost $y$, vrijednost funkcije cilja nije ograničena.
 Drugim riječima, ako uzmemo bilo koju dopustivu vrijednost za $y$ (recimo $\overline{y}=1000$) dobijamo da je $\overline{z} = +\infty$. Sada možemo zaključiti da u prvoj iteraciji algoritma nismo uspjeli da smanjimo gornju granicu, te nam ostaje $UB = +\infty$.
 
- Prelazimo na sljedeću iteraciju.
- 
- Formulišimo novi dualni problem.
+ Prelazimo na sljedeću iteraciju. Formulišimo novi dualni problem.
  
   Računamo novu funkciju cilja dualnog problema sa vrijednošću $\overline{y}=1000$:
  $$
@@ -4704,7 +4696,7 @@ $$x =\left(\begin{array}{c}
  	 gdje je $\lambda_i \geq 0,i=1,\ldots,p$, $\sum_{i=1}^p \lambda_i=1$.
  \end{thm}
  
- Pođimo od formulacije problema linearnog programiranja
+ Pođimo od kanonske formulacije problema linearnog programiranja
  
   \begin{equation}
  	\begin{aligned}\label{dw1}
@@ -4720,14 +4712,14 @@ $$x =\left(\begin{array}{c}
  
  Posmatrajmo sada konfiguraciju za primjenu Teoreme o reprezentaciji na skup $X$.
  
- Neka su tačke $x_1,x_2,\dots,x_t$ vrhovi politopa $X$.  
- Prema Teoremi o reprezentaciji, za svaku tačku $x\in X$ važi da se ona može predstaviti kao konveksna kombinacija tačaka $x_1,x_2,\dots,x_t$.
+ Neka su tačke $x^{(1)},x^{(2)},\dots,x^{(t)}$ vrhovi politopa $X$.  
+ Prema Teoremi o reprezentaciji, za svaku tačku $x\in X$ važi da se ona može predstaviti kao konveksna kombinacija tačaka $x^{(1)},x^{(2)},\dots,x^{(t)}$.
  
  Neka je  $x \in X$ proizvoljna tačka iz skupa $X$.  Tada postoje $\lambda_1,\lambda_2,\ldots,\lambda_t$, takvi da važi:
  
  \begin{equation}
  	\begin{aligned}
- 		&x = \sum_{j=1}^t\lambda_jx_j\\
+ 		&x = \sum_{j=1}^t\lambda_jx^{(j)}\\
  		 &\sum_{j=1}^t\lambda_j = 1\\
  		&\lambda_j\geqslant 0,\ j = 1,\ldots,t
  	\end{aligned}
@@ -4735,13 +4727,13 @@ $$x =\left(\begin{array}{c}
  
  Ponovimo da Teorema o reprezentaciji ima svoju formulaciju i u slučaju da poliedar nije ograničen, ali zbog pojednostavljenja daljeg objašnjenja DW dekompozicije, ovaj slučaj nećemo razmatrati.
  
- Uzimajući u obzir prikazanu reprezentaciju proizvoljne tačke $x\in X$, početni problem~\ref{dw1} sada možemo preformulisati 
+ Uzimajući u obzir prikazanu reprezentaciju proizvoljne tačke $x\in X$, početni problem~(\ref{dw1}) sada možemo preformulisati 
  
  
    \begin{equation}
  	\begin{aligned}\label{dw2}
- 		\min\  &c^T\cdot \sum_{j=1}^t\lambda_jx_j\\
- 		s.t.\  &A\cdot \sum_{j=1}^t\lambda_jx_j=b\\
+ 		\min\  &c^T\cdot \sum_{j=1}^t\lambda_jx^{(j)}\\
+ 		s.t.\  &A\cdot \sum_{j=1}^t\lambda_jx^{(j)}=b\\
  		 		 &\sum_{j=1}^t\lambda_j = 1\\
  		&\lambda_j\geqslant 0,\ j = 1,\ldots,t
  	\end{aligned}
@@ -4749,20 +4741,20 @@ $$x =\left(\begin{array}{c}
 odnosno
     \begin{equation}
  	\begin{aligned}\label{dw3}
- 		\min\  & \sum_{j=1}^t(c^T x_j)\lambda_j\\
- 		s.t.\  &\sum_{j=1}^t (A x_j)\lambda_j=b\\
+ 		\min\  & \sum_{j=1}^t(c^T x^{(j)})\lambda_j\\
+ 		s.t.\  &\sum_{j=1}^t (A x^{(j)})\lambda_j=b\\
  		&\sum_{j=1}^t\lambda_j = 1\\
  		&\lambda_j\geqslant 0,\ j = 1,\ldots,t
  	\end{aligned}
  \end{equation}
  
- Sada se vidi da je početni problem~\ref{dw1} sada predstavljen ekvivalentnom reprezentacijom~\ref{dw3}, u kojem se, umjesto polaznih promjenljivih (vektora $x$), sada posmatraju promjenljive $\lambda_j,\ j = 1,\ldots,t$ (skup ovih promjenljivih ćemo zvati $\lambda$ promjenljive), uz pretpostavku da su  vrhovi $x_1,x_2,\dots,x_t$ konveksnog politopa $X$ poznati. Variranjem vrijednosti $\lambda$ promjenljivih po dopustivom skupu iz formulacije~\ref{dw3}, generišu se tačke iz dopustivog skupa polazne formulacije~\ref{dw1}. Sa druge strane, svaka tačka $x$ iz formulacije~\ref{dw1} ima svoju reprezentaciju preko odgovarajućih vrijednosti  $\lambda$ promjenljivih u dopustivom skupu formulacije~\ref{dw3}. S obzirom na to da i funkcije cilja odgovaraju jedna drugoj, zaključujemo da je i optimalno rješenje polaznog problema~\ref{dw1} jednako optimalnom rješenju reformulisanog problema~\ref{dw3}.
+ Sada se vidi da je početni problem~(\ref{dw1}) sada predstavljen ekvivalentnom reprezentacijom~(\ref{dw3}), u kojem se, umjesto polaznih promjenljivih (vektora $x$), sada posmatraju promjenljive $\lambda_j,\ j = 1,\ldots,t$ (skup ovih promjenljivih ćemo zvati $\lambda$ promjenljive), uz pretpostavku da su  vrhovi $x^{(1)},x^{(2)},\dots,x^{(t)}$ konveksnog politopa $X$ poznati. Variranjem vrijednosti $\lambda$ promjenljivih po dopustivom skupu iz formulacije~\ref{dw3}, generišu se tačke iz dopustivog skupa polazne formulacije~(\ref{dw1}). Sa druge strane, svaka tačka $x$ iz formulacije~(\ref{dw1}) ima svoju reprezentaciju preko odgovarajućih vrijednosti  $\lambda$ promjenljivih u dopustivom skupu formulacije~(\ref{dw3}). S obzirom na to da i funkcije cilja odgovaraju jedna drugoj, zaključujemo da je i optimalno rješenje polaznog problema~(\ref{dw1}) jednako optimalnom rješenju reformulisanog problema~(\ref{dw3}).
  
- Samom reformulacijom polaznog problema~\ref{dw1} u DW formulaciju~\ref{dw3} nismo postigli mnogo, jer broj vrhova politopa, a time i broj $\lambda$ promjenljivih može biti jako veliki.
+ Samom reformulacijom polaznog problema~(\ref{dw1}) u DW formulaciju~(\ref{dw3}) nismo postigli mnogo, jer broj vrhova politopa, a time i broj $\lambda$ promjenljivih može biti jako veliki.
  
- Međutim, pravi razlog za DW dekompoziciju leži u činjenici da za rješavanje problema~\ref{dw3} ne moramo eksplicitno da koristimo sve vrhove politopa $X$. Umjesto toga, krenućemo od jednog   manjeg podskupa (a samim tim i podskupom skupa $\lambda$ promjenljivih). Nakon toga, primijenićemo tehniku ``generisanja kolona'' (engl. column generation), kako bismo u razmatranje uključili nove vrhove politopa $X$, koje će pomoći poboljšanju rješenja tzv. \emph{Restricted master problema}.
+ Međutim, pravi razlog za DW dekompoziciju leži u činjenici da za rješavanje problema~(\ref{dw3}) ne moramo eksplicitno da koristimo sve vrhove politopa $X$. Umjesto toga, krenućemo od jednog   manjeg podskupa (a samim tim i podskupom skupa $\lambda$ promjenljivih). Nakon toga, primijenićemo tehniku ``generisanja kolona'' (engl. \emph{column generation}), kako bismo u razmatranje uključili nove vrhove politopa $X$, koje će pomoći poboljšanju rješenja tzv. \emph{Restricted master problema}.
  
- Označimo sada problem formulisan  sa~\ref{dw3} kao \emph{Master problem} (MP). Na osnovu master problema formiramo tzv. Restricted master problem (RMP)  sa manjim brojem $\lambda$ promjenljivih.
+ Označimo sada problem formulisan  sa~(\ref{dw3}) kao \emph{Master problem} (MP). Na osnovu master problema formiramo tzv. Restricted master problem (RMP)  sa manjim brojem $\lambda$ promjenljivih.
  
      \begin{equation}
  	\begin{aligned}\label{dw4}
@@ -4784,14 +4776,14 @@ Da bismo provjerili da li je optimalno rješenje RMP ujedno i optimalno rješenj
 
 %i trebamo optimalne vrijednosti dualnih promjenljivih
 
-Označimo vektorom $y$ optimalne vrijednosti dualnih promjenljih koje se odnose na ograničenja $\sum_{j\in I} (A x_j)\lambda_j=b$ i skalarom $\alpha$ optimalnu vrijednost dualne promjenljive koja se odnosi na ograničenje $\sum_{j\in I}\lambda_j = 1$. 
+Označimo vektorom $y$ optimalne vrijednosti dualnih promjenljih koje se odnose na ograničenja $\sum_{j\in I} (A x^{(j)})\lambda_j=b$ i skalarom $\alpha$ optimalnu vrijednost dualne promjenljive koja se odnosi na ograničenje $\sum_{j\in I}\lambda_j = 1$. 
 
-Da bi se odredili   koeficijenti doprinosa za $\lambda_j$, odredimo šta imamo u odgovarajućoj koloni: U funkciji cilja, imamo $c^Tx_j$, u ograničenjima $Ax_j$ i još jednu jedinicu (na osnovu ograničenja $\sum_{j\in I}\lambda_j = 1$). Tako, kolona na koju se fokusiramo da bismo izračunali doprinose izgleda ovako
+Da bi se odredili   koeficijenti doprinosa za $\lambda_j$, odredimo šta imamo u odgovarajućoj koloni: U funkciji cilja, imamo $c^Tx^{(j)}$, u ograničenjima $A x^{(j)} $ i još jednu jedinicu (na osnovu ograničenja $\sum_{j\in I}\lambda_j = 1$). Tako, kolona na koju se fokusiramo da bismo izračunali doprinose izgleda ovako
 
 
  $$\left(\begin{array}{c}
- 	c^Tx_j\\
- 	Ax_j\\
+ 	c^T x^{(j)}\\
+ 	A x^{(j)} \\
  	1 
  \end{array}\right)$$
  
@@ -4801,13 +4793,13 @@ Da bi se odredili   koeficijenti doprinosa za $\lambda_j$, odredimo šta imamo u
  
       \begin{equation}
  	\begin{aligned}\label{dw6}
- 		\min_{j=1,\ldots,t}\  & \{c^Tx_j-y^T	Ax_j-\alpha\cdot 1\}=\min_{x\in X}\  & \{c^Tx-y^T	Ax-\alpha\}\\
+ 		\min_{j=1,\ldots,t}\  & \{c^T x^{(j)} -y^T	Ax_j-\alpha\cdot 1\}=\min_{x\in X}\  & \{c^Tx-y^T	Ax-\alpha\}\\
  	\end{aligned}
  \end{equation}
  
 jer je rješenje problema na desnoj strani jednakosti upravo u nekom od vrhova politopa $X$.
 
-Prisjetimo se sada da smo za jednu od polaznih pretpostavki imali da je skup $X$ opisan kao skup sa ``jednostavnim'' ograničenjima, što znači da je problem na desnoj strani jednakosti \ref{dw6} jednostavan za rješavanje.
+Prisjetimo se sada da smo za jednu od polaznih pretpostavki imali da je skup $X$ opisan kao skup sa ``jednostavnim'' ograničenjima, što znači da je problem na desnoj strani jednakosti (\ref{dw6}) jednostavan za rješavanje.
 
 Reformulišimo  Column generation potproblem sada kao problem maksimizacije, gdje ćemo za funkciju cilja uzeti negativnu vrijednost funkcije cilja minimizacije, tj.
  
@@ -4837,9 +4829,9 @@ $x\in X$ i $Ax=b$, pa imamo da vrijedi %Za to rješenje $x$ važi
 	  \overline{z}\geqslant z^*\geqslant \overline{z}-\hat{z}
 \end{equation}
  
- Izraz~\ref{dw8} se može koristiti za određivanje koliko daleko se optimalno rješenje polaznog problema razlikuje od rješenja koja se dobijaju u iterativnom procesu DW dekompozicije.
+ Izraz~(\ref{dw8}) se može koristiti za određivanje koliko daleko se optimalno rješenje polaznog problema razlikuje od rješenja koja se dobijaju u iterativnom procesu DW dekompozicije.
  
- U slučaju kada je $\hat{z}$ jednako nuli, iz~\ref{dw8} se vidi da je vrijednost $\overline{z}$ zapravo i optimalno rješenje polaznog problema.
+ U slučaju kada je $\hat{z}$ jednako nuli, iz~(\ref{dw8}) se vidi da je vrijednost $\overline{z}$ zapravo i optimalno rješenje polaznog problema.
  
  \emph{Primjer.}%http://eaton.math.rpi.edu/faculty/Mitchell/courses/matp6640/notes/09C_egdcmpbeamer.pdf
  
@@ -4850,7 +4842,7 @@ $x\in X$ i $Ax=b$, pa imamo da vrijedi %Za to rješenje $x$ važi
  		\max\  &x_1\\
  		s.t.\  &x_1+3x_2\leqslant \frac94\\
  		 &2x_1-3x_2\leqslant 0\\
- 		&x \in X=\{(x_1,_2):0\leqslant x_{1, 2}  \leqslant 1\}.
+ 		&x \in X=\{(x_{1,2}):0\leqslant x_{1, 2}  \leqslant 1\}.
  	\end{aligned}
  \end{equation}
  
@@ -4861,6 +4853,7 @@ $x\in X$ i $Ax=b$, pa imamo da vrijedi %Za to rješenje $x$ važi
  	
  	\includegraphics[scale=4]{dw2.png}
  	\caption{Grafička interpretacija problema. Optimalno rješenje je označeno sa $x^*$. }
+ 	\label{fig:dw1}
  \end{figure}
  
  Prije nego što na ovom problemu ilustrujemo upotrebu DW dekompozicije, riješimo problem na neki od (u ovom slučaju) bržih načina. Ako problem predstavimo grafički (Slika~\ref{fig:dw1}), vidimo da je dopustivi skup osjenčeni trougao, a da se maksimalna vrijednost funkcije cilja dostiže u vrhu $(\frac34, 
@@ -4923,12 +4916,12 @@ $$\begin{aligned}
 &\sum_{j=1}^4\lambda_j=1\\
 &\lambda_1,\lambda_2,\lambda_3,\lambda_4\geqslant 0
 \end{aligned}$$
- Preformulacijom problema~\ref{primjer:dw} dobijamo
+ Preformulacijom problema~(\ref{primjer:dw}) dobijamo
  
      \begin{equation}
  	\begin{aligned}\label{primjer:dw3}
- 		\max\  & \sum_{j=1}^4(c^T x_j)\lambda_j\\
- 		s.t.\  &\sum_{j=1}^4 (A x_j)\lambda_j\leqslant b\\
+ 		\max\  & \sum_{j=1}^4(c^T  x^{(j)})\lambda_j\\
+ 		s.t.\  &\sum_{j=1}^4 (A  x^{(j)})\lambda_j\leqslant b\\
  		&\sum_{j=1}^4\lambda_j = 1\\
  		&\lambda_j\geqslant 0,\ j = 1,\ldots,4
  	\end{aligned}
@@ -5012,11 +5005,11 @@ Konstruišemo column generation problem sa
 	 	2 & -3
 	 \end{array}\right)  x = \max_{x \in X} x_1. 
 \end{align} 
-Optimalna vrijednost problema (\ref{eq:cg-1}) je jednaka $\hat{z}=1$, i dostiže se, recimo, u ekstremnoj tački $x^2= (1, 0)^T.$ Kako je optimalna vrijednost pozitivna, ulazna kolona za prethodni potproblem postoji te je treba da odaberemo. Ova kolona (ako posmatramo problem (\ref{primjer:dw5})) će biti data sa 
+Optimalna vrijednost problema (\ref{eq:cg-1}) je jednaka $\hat{z}=1$, i dostiže se, recimo, u ekstremnoj tački $ x^{(2)}= (1, 0)^T.$ Kako je optimalna vrijednost pozitivna, ulazna kolona za prethodni potproblem postoji te je treba da odaberemo. Ova kolona (ako posmatramo problem (\ref{primjer:dw5})) će biti data sa 
 \begin{align}
      \begin{pmatrix}
-     	    c^T x^2 \\
-     	    A x^2  \\
+     	    c^T  x^{(2)} \\
+     	    A x^{(2)}  \\
      	    1     \\
      \end{pmatrix} = \begin{pmatrix}
                1 \\
@@ -5079,12 +5072,12 @@ na osnovu prethodne simpleks tabele, dobijamo   vrijednosti dualnih varijabli iz
 	 	2 & -3
 	 \end{array}\right)  x   - 0 = \max_{x \in X}x_1 - x_1 + \frac{3}{2}x_2 = \max_{x \in X} \frac{3}{2}x_2.
 \end{align}
-Rješenje ovog problema je lako dobiti, tj. optimum se dostiže u, recimo,  tački $x^3 = (0, 1)^T$, dok je optimalna vrijednost jednaka $\hat{z}= \frac{3}{2}$. Kako je $\hat{z} > 0$, treba da odaberemo novu kolonu koja se dodaje u RMP. 
+Rješenje ovog problema je lako dobiti, tj. optimum se dostiže u, recimo,  tački $x^{(3)}= (0, 1)^T$, dok je optimalna vrijednost jednaka $\hat{z}= \frac{3}{2}$. Kako je $\hat{z} > 0$, treba da odaberemo novu kolonu koja se dodaje u RMP. 
 Ova kolona (ako posmatramo problem (\ref{primjer:dw5})) je   data sa 
 \begin{align}
 	V =   \begin{pmatrix}
-		c^T x^3\\
-		A x^3  \\
+		c^T  x^{(3)}\\
+		A  x^{(3)}  \\
 		1     \\
 	\end{pmatrix} = \begin{pmatrix}
 		0 \\
@@ -5137,7 +5130,7 @@ Sada nađimo pivota oko kolone koja je dodana. Kandidati za izlazak iz baze su i
        \end{array}\right)  x   - \frac{3}{5} &= \max_{x \in X}x_1  - \frac{2}{5}x_1 + \frac{3}{5}x_2 - \frac{3}{5} \\
        &= \max_{x \in X} \frac{3}{5}x_1 + \frac{3}{5}x_2 - \frac{3}{5}.
   \end{align*} 
-Optimalna vrijednost CG potproblema se dostiže u $x^{4} = (1, 1)^T$ i ona je jednaka $\hat{z}=\frac{3}{5}$. Kako je $\hat{z}>0$, tražićemo novu kolonu koju treba dodati u potproblem. Ova kolona (ako posmatramo problem (\ref{primjer:dw5})) je   data sa 
+Optimalna vrijednost CG potproblema se dostiže u $x^{(4)} = (1, 1)^T$ i ona je jednaka $\hat{z}=\frac{3}{5}$. Kako je $\hat{z}>0$, tražićemo novu kolonu koju treba dodati u potproblem. Ova kolona (ako posmatramo problem (\ref{primjer:dw5})) je   data sa 
 \begin{align}
 	V =   \begin{pmatrix}
 		c^T x^4\\
@@ -5202,7 +5195,7 @@ Iz prethodne tabele pročitamo vrijednost dualnih varijabli: $y_1 =  \frac{1}{3}
 	\end{align*} 
   Iz ovoga zaključujemo da je $\hat{z}=0$, pa iz (\ref{dw8}) slijedi da smo dobili optimum početnog problema i optimalna tačka je data sa 
 \begin{align*}
-  	 x^* &= \frac{1}{2} x^2 + \frac{1}{4} x^3 + \frac{1}{4} x^4  
+  	 x^* &= \frac{1}{2}  x^{(2)}+ \frac{1}{4} x^{(3)} + \frac{1}{4} x^{(4)} 
   	     = \frac{1}{2} \begin{pmatrix}
   	     	      1 \\
   	     	      0
