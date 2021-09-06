@@ -3952,6 +3952,84 @@ Dalje, generišimo novi CG potproblem čitajući vrijednost dualnih promjenjivih
 uz uslove nenegativnosti i kapaciteta i integralnosti (cjelobrojnosti). Rješavajući problem uz pomoć dinamičkog problema, dobijamo optimalno rješenje $A_5 = (2,1,0)^T$, dok je vrijednost optimuma za CG potproblem jednak 1, odakle slijedi da je optimum početnog problema nađen sa prethodnim rješenjem (ne postoji više ulaznih kolona koje se dodaju u RMP), i ono je jednako 95, dok je rješenje dato sa $x_1^* = 0, x_2^* = 25, x_3^*=30, x_4^*= 40$. Dakle, koristimo samo 3 različita paterna za sječenje. 
 
  %Za uraditi:  https://ocw.mit.edu/courses/sloan-school-of-management/15-083j-integer-programming-and-combinatorial-optimization-fall-2009/lecture-notes/ (Lekcija 19-25)
+  \vspace{1cm} \\
+ \textbf{\large Zadaci}
+ \begin{enumerate}
+ 	\item %http://web.tecnico.ulisboa.pt/mcasquilho/compute/_linpro/TaylorB_module_c.pdf
+ 	Pomoću metode grananja i ograničavanja (B\&B) riješiti sljedeći problem ILP-a:
+ 	\begin{align*}
+ 		&\max 100 x_1 + 150 x_2 \\
+ 		& s.t. \\
+ 		& 8000 x_1 + 4000 x_2 \leq 40 000 \\
+ 		& 15 x_1 + 30 x_2 \leq 200 \\
+ 		& x_1, x_2 \geq 0 \\
+ 		& x_1, x_2 \in \mathbb{Z}.
+ 	\end{align*}
+   \item %http://web.tecnico.ulisboa.pt/mcasquilho/compute/_linpro/TaylorB_module_c.pdf
+   	Pomoću metode grananja i ograničavanja  (B\&B) riješiti sljedeći problem ILP-a:
+   \begin{align*}
+   	    &\max 5 x_1 + 4 x_2 \\
+   	    & s.t. \\
+   	    & 3 x_1 + 4 x_2 \leq 10 \\
+   	    & x_1, x_2 \geq 0 \\
+   	    & x_1, x_2 \in \mathbb{Z}.
+   \end{align*}
+Nakon primjene B\&B metode, riješiti metod grafički dijeljeći region na podregione i uoprediti dobijena rješenja. 
+\item 	Pomoću metode grananja i ograničavanja  (B\&B) riješiti sljedeći problem ILP-a:
+\begin{align*}
+	 &\max 5x_1 + 6 x_2 + 4 x_3 \\
+	 &s.t. \\
+	 & 5x_1 + 3 x_2 + 6 x_3 \leq 20 \\
+	 & x_1 + 3x_2 \leq 12 \\
+	 & x_1,x_2, x_3 \geq 0 \\
+	 & x_2 \in \mathbb{Z}.
+\end{align*}
+\item  Pomoću metode implicitne enumeracije riješiti sljedeći ILP:
+\begin{align*}
+  &\max 1000 x_1 + 700 x_2 + 800 x_3 \\
+  &s.t. \\
+  & 5000 x_1 + 6000 x_2 + 4000 x_3 \leq 10000 \\
+  & x_1, x_2, x_3 \in \{0, 1\}.
+\end{align*}
+\item  Pomoću metode implicitne enumeracije riješiti sljedeći ILP:
+\begin{align*}
+	 &\max 20 x_1 + 30 x_2 + 10 x_3 + 40 x_4 \\
+	 &s.t. \\
+	 & 2x_1 + 4 x_2 + 3 x_3 + 7 x_4 \leq 10 \\
+	 & 10 x_1 + 7 x_2 + 20 x_3 + 15 x_4 \leq 40 \\
+	 & x_1 + 10 x_2 + x_3 \leq 10 \\
+	 & x_1, x_2, x_3, x_4 \in \{0, 1\}.
+\end{align*}
+	\item Metodom gomorijevih odsjecajućih ravni, riješiti sljedeći ILP:% https://homepages.rpi.edu/~mitchj/handouts/gomorycuts/gomorycuts.html
+	\begin{align*}
+		 &\min -x_1 - x_2 \\
+		 &s.t.\\
+		 & 2 x_1 + 5x_2 \leq 20 \\
+		 & 4 x_1 + 3 x_2 \leq 17 \\
+		 & x_1, x_2 \geq 0 \\
+		 & x_1, x_2 \in \mathbb{Z}.
+	\end{align*}
+\item Metodom gomorijevih odsjecajućih ravni, riješiti sljedeći ILP:% https://homepages.rpi.edu/~mitchj/handouts/gomorycuts/gomorycuts.html
+\begin{align*}
+	& \max x_1 + 4 x_2 \\
+	& s.t. \\
+	& 2 x_1 + 4 x_2 \leq 7 \\
+	& 5 x_1 + 3 x_2 \leq 15 \\
+	& x_1, x_2 \geq 0 \\
+	& x_1, x_2 \in \mathbb{Z}.
+	\end{align*}
+\item    %http://sisdin.unipv.it/labsisdin/teaching/courses/ails/files/Cutting%20Plane%20Method.pdf
+  Uz pomoć algoritma B\&C riješiti sljedeći problem ILP-a:
+  \begin{align*}
+  	 &\max x_1 + 2 x_2 \\
+  	 &s.t. \\
+  	 & -2x_1 + 2 x_2 \leq 5 \\
+  	 & 6 x_1 + 4 x_2 \leq 25 \\
+  	 & x_1, x_2 \geq 0 \\
+  	 & x_1, x_2\in \mathbb{Z}.
+  \end{align*}
+\item abc...
+ \end{enumerate}
  
  \newpage
  
