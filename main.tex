@@ -2702,7 +2702,12 @@ $$  \sum_{i=1}^n x_{ij} = 1, \forall j =1,\ldots, n,$$
 $$  \sum_{j=1}^n x_{ij} = 1, \forall i =1,\ldots, n$$ 
  uz uslove $x_{ij}\geq 0$. Primijetimo sljedeće, ovakvi uslovi ne sprečavaju pojavu rješenja koja predstavljaju uniju disjunktnih podruta, što nije dopustivo u ovom slučaju. Ako pretpostavimo da je rješenje dato u obliku podruta $R_1, \ldots, R_k$, gdje je $R_i = \{ v_{i_1}, \ldots, v_{i_k} \}$, onda se može izbjeći pojava podruta dodavanjem dodatnih ograničenja u početni model problema, te ga takvog sukcesivno riješavati dodavanjem ograničenja dok god en dobijemo rješenje koje nije sastavljeno od više od jedne rute. Recimo, eliminacija pojave podrute $R_2$ (u odnosu na podrutu $R_1$) se vrši dodavanjem ograničenja:
  $$ \sum_{l=1}^{1_k}\sum_{t=1}^{2_k} x_{1_l, 2_t} \geq 1.$$
- U najgorem slučaju, potrebno je dodati $2^n-1$ ovakvih ograničenja da bi se dobilo dopustivo rješenje. %Postoje i druga ograničenja koja mogu da se dodaju za eliminaciju podruta, bez gore pomenutog iterativnog procesa, ali o njima će biti riječi u narednim sekcijama. 
+ U najgorem slučaju, potrebno je dodati $2^n-1$ ovakvih ograničenja da bi se dobilo dopustivo rješenje. 
+ Generalno ograničenje koje služi za eliminaciju podtura u modelu TSP-a se može dodati sa:
+ \begin{align}
+ 	  \sum_{i \in S} \sum_{i \notin S} x_{ij} \geq 2, \forall S \subset [n].
+ \end{align}
+  %Postoje i druga ograničenja koja mogu da se dodaju za eliminaciju podruta, bez gore pomenutog iterativnog procesa, ali o njima će biti riječi u narednim sekcijama. 
  
  \section{Neke tehnike u konstrukciji modela Cjelobrojnog Programiranja}
  
@@ -3004,8 +3009,79 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
 	\end{tabular} 
     
  \end{table}
-Navedite model koji maksimizuje vrijednosti predmeta koji će biti ubačeni u ova dva kofera. 
-\end{enumerate}
+Konstruišite model koji maksimizuje vrijednost  predmeta koji će biti ubačeni u ova dva kofera. 
+\item Višedimenzionalni više-direkcioni problem particionisanja brojeva (eng. \emph{multidimensional multi-way number partitioning problem}). Neka je dat skup vektora $S$. Inače, vektori mogu da budu iz proizvoljneg prostora $\mathbb{R}^m, m \in \mathbb{N}$.   Zadatak je podijeliti skup $S$ na $p \geq 1$ particija tako da su sume vrijednosti  elemenata  po koordinatama za sve particije podjednake. 
+
+\item Problem maksimalnog nezavisnog skupa (eng. \emph{independent set problem}). U ulazu je dat graf $G = (V, E)$. Potrebno je naći podskup $V' \subseteq V$ maksimalne kardinalnosti u grafu $G$ tako da niti jedan od čvorova iz $V'$ nisu susjedni. 
+\item Problem maksimalne klike (eng. \emph{maximum clique problem}).   U ulazu je dat graf $G = (V, E)$. Potrebno je naći podskup $V' \subseteq V$ maksimalne kardinalnosti tako da je indukovani podgraf 
+$G[V']$ grafa $G$ kompletan graf (postoji grana između bilo koja dva čvora iz $V'$). 
+\item % http://people.brunel.ac.uk/~mastjjb/jeb/or/moreip.html
+Proizvođač igračaka planira proizvodnju novih igračaka. Troškovi pripreme proizvodnih pogona i jedinični profit za svaku igračku dati su u nastavku: 
+ \begin{table}[H]
+	\centering
+	\begin{tabular}{l|cc}
+	  Igračka &  Troškovi pripreme    & Profit \\ \hline
+	  1       &  45000     &  12     \\
+	  2       &  76000     &  16     \\	\hline
+	\end{tabular} 
+\end{table}
+ Kompanija ima dvije tvornice koje mogu proizvoditi ove igračke. Kako bi se izbjeglo udvostručenje troškova pripreme za proizvodnju,  samo jedna tvornica se može koristiti u datom momentu. 
+ 
+ 
+ Stope proizvodnje svake igračke date su u nastavku (u jedinicama/satu): 
+  \begin{table}[H]
+ 	\centering
+ 	\begin{tabular}{l|cc}
+ 		         &  Igračka 1 & Igračka 2 \\ \hline
+ 	Tvornica 1   &  52     &  38     \\
+    Tvornica 2   &  42     &  23     \\	\hline
+ 	\end{tabular} 
+ \end{table}
+ Fabrika 1 i 2, imaju 480 i 720 sati radnog vremena za proizvodnju ovih igračaka, redom. Proizvođač želi znati koju će od novih igračaka proizvesti, gdje i koliko svake (ako uopšte) treba proizvesti kako bi se povećala ukupna zarada. 
+ \item %http://people.brunel.ac.uk/~mastjjb/jeb/or/moreip.html
+ Hrana se proizvodi rafiniranjem sirovih ulja i njihovim miješanjem. Sirova ulja dolaze u dvije kategorije: 
+ \begin{itemize}
+ 	\item vegansko ulje:
+ 	\begin{enumerate}
+ 		\item VEG1
+ 		\item VEG2 
+ 	\end{enumerate}
+   \item obično ulje:
+   \begin{enumerate}
+   	\item Ulje1
+   	\item Ulje2 
+   	\item Ulje3
+   \end{enumerate}
+ \end{itemize}
+Cijene za kupovinu svakog ulja date su u nastavku (u \$/toni)
+\begin{table}[H]
+ 	\centering
+ 	\begin{tabular}{ccccc}
+            VEG1 & VEG2 & Ulje1 & Ulje2 & Ulje3 \\ \hline
+            115  & 128  & 132   & 109   & 114 \\ 		
+    \end{tabular} 
+\end{table}
+Finalni proizvod prodaje se po 180 funti po toni. Biljna ulja i ne-biljna ulja zahtijevaju različite proizvodne linije za rafinisanje. Nije moguće rafinisati više od 210 t biljnih ulja i više od 260 t ne-biljnih ulja. Pretpostavimo da u procesu rafinisanja nema gubitka težine, a troškovi prerade mogu se zanemariti. 
+
+Postoji tehničko ograničenje koje se odnosi na tvrdoću konačnog proizvoda. U jedinicama u kojima se mjeri tvrdoća, dopušteno je da ona bude izmešđu 3.5 i 6.2. Pretpostavlja se da se tvrdoća odnosi linearno sa miješanjem vrsti ulja. Tvrdoća sirovog ulja je data sljedećom tabelom: 
+\begin{table}[H]
+	\centering
+	\begin{tabular}{ccccc}
+		    VEG1 & VEG2 & Ulje1 & Ulje2 & Ulje3 \\ \hline
+		    8.8  & 6.2  & 1.9   & 4.3   & 5.1   \\
+    \end{tabular} 
+\end{table}
+
+Potrebno je odrediti šta kupiti i kako miješati sirova ulja tako da kompanija maksimizira svoj profit. 
+
+U osnovni model uključiti i sljedeća ograničenja:
+\begin{itemize}
+	\item Hrana nikad ne smije biti napravljena od više od 3 vrste ulja. 
+	\item Ako je ulje korišteno, onda se mora iskoristiti barem 30 t ulja.
+	\item Ako su ili VEG1 ili VEG2 ulja korištena, onda i Ulje2 mora biti korišteno.  
+\end{itemize}
+
+\end{enumerate}                                                       
 
 
  \chapter{Tehnike u rješavanju Cjelobrojnog programiranja}
