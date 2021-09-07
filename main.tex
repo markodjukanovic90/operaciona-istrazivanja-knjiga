@@ -2638,6 +2638,34 @@ Pokazati da je dual dualnog problema ponovo primalni problem (P).
 \end{align*}
 nedopustiv.%https://people.inf.ethz.ch/fukudak/lect/opt2011/aopt11note4.pdf
 
+\item Neka su $x^0$ i $y^0$ dopustive tačke za polazni (kanonski) LP i njegov dual. Dokazati da su te dvije tačke optimalne ako i samo ako važi 
+
+$$\langle Ax^0-b,y^0\rangle=\langle A^Ty^0-c,x^0\rangle=0$$
+
+\item Formirati dualan LP za problem
+$$\min -x_1+2x_2+3x_3$$
+pri uslovima
+\begin{align}
+	& x_1-x_2+2x_3=1\\
+	& 2x_1+x_2\leqslant 3 \\
+	& x \geq 0 \\
+	& x_1\leqslant 0,\ x_2\geqslant 0, x_3\geqslant 0
+\end{align}
+pa riješiti oba problema.
+
+\item Koristeći teoriju dualnosti, riješiti zadatak linearnog programiranja
+
+$$\min x_1+x_2+\cdots nx_n$$
+
+pri uslovima
+$$
+\begin{aligned}
+	& x_1\geqslant 1\\
+	& x_1+x_2\geqslant 2 \\
+	& \cdots\\
+	& x_1+x_2+\cdots+x_n\geqslant n\\
+	&x_1\geqslant 0,\ x_2\geqslant 0,\cdots,x_n\geqslant 0,
+\end{aligned}$$
 \end{enumerate}
 \newpage
 \chapter{Cjelobrojno Programiranje}
@@ -2988,7 +3016,70 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
  \end{thm}
  
 \textbf{\large Zadaci}
-\begin{enumerate}%https://www.utc.fr/~dnace/dokuwiki/_media/fr/upt-cours-2012lp.pdf
+\begin{enumerate}
+	
+	\item Preduzeće za prikupljanje reciklažnog otpada raspolaže sa dvije deponije, koje su označene sa A i B. Dnevni troškovi održavanja deponije A su 300KM dnevno, a deponije B 45KM dnevno.  U deponiji A se dnevno prikupi 250 flaša i 100 limenki, dok se u deponiji B prikupi 160 flaša i 350 limenki. Da bi se isplatio rad deponija mjesečno treba prikupiti barem 5200 flaša i 4000 limenki.
+	Koliko bi dana mjesečno trebale raditi obje deponije da budu isplative i da troškovi budu minimalni?
+	
+	\item Fabrika proizvodi artikle A i B te ih prodaje po cijeni 30 KM, odnosno 50 KM, po komadu. Za
+	proizvodnju fabrika koristi samo jednu mašinu, pri čemu je za proizvodnju artikla A potrebno 19
+	minuta, a proizvoda B 26 minuta. Tokom dana aparat može da radi najviše 8 sati. Odredi koliko treba
+	proizvesti proizvoda A, a koliko B, da bi zarada bila najveća.
+	
+	\item Marko se sprema na planinarenje. Na raspolaganju ima samo jedan ruksak i pet namirnica, po jedan
+	komad svake od njih. Ruksak je kapaciteta 2.5 L i ne smije biti teži od 2 kg. U tabeli su
+	prikazani podaci o namirnicama
+	\begin{table}
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			Namirnica & Masa (g) & Zapremina (L) & Kalorijska vrijednost (kcal) \\
+			\hline
+			Čokolada & 300 & 0,5 & 1500 \\
+			\hline
+			Kokos & 500 & 1,4 & 1300 \\
+			\hline
+			Mlijeko& 1000 & 1 & 660 \\
+			\hline
+			Pasulj u konzervi& 400 & 0,8 & 650 \\
+			\hline
+			Keks& 500 & 0,9 & 1800 \\
+			\hline
+		\end{tabular}
+	\end{table}
+	Kako treba napuniti tako da ukupna kalorijska vrijednost ponesenih namirnica bude maksimalna?
+	
+	\item Riješiti prethodni zadatak ako Marko na raspolaganju ima dovoljno veliki broj svih pojedinačnih namirnica.
+	
+	
+	\item Preduzeće  razmatra izvođenje 5 trogodišnjih projekata, ali u svakoj godini može u to uložiti najviše
+	25 000 KM. Procjena troškova za svaki projekat u tri godine dana je tabelom (u hiljadama maraka), kao i
+	očekivana dobit od projekta (čista dobit – troškovi su oduzeti):
+	
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		Projekat & 1. godina & 2. godina & 3. godina & Dobit \\
+		\hline
+		1 & 5 & 1 & 8 & 20 \\
+		\hline
+		2 & 4 & 7 & 10 & 40 \\
+		\hline
+		3 & 3 & 9 & 2 & 20 \\
+		\hline
+		4 & 7 & 4 & 1 & 15 \\
+		\hline
+		5 & 8 & 6 & 10 & 30 \\
+		\hline
+	\end{tabular}
+	Odrediti Koje od projekata treba realizovati da se maksimizuje ukupna dobit.
+	
+	\item Zadat je skup $S$ koji se sastoji od $n$ brojeva. Koristeći tehnike cjelobrojnog linearnog programiranja, podijeliti skup $S$ na dva podskupa, tako da je zbirovi elemenata u prvom i drugom podskupu što manje razlikuju.
+	
+	\item Riješiti prethodni zadatak uz dodatni uslov da nijedan podskup ne smije da sadrži više od $\frac {2n}3$ elemenata.
+	
+	
+	
+	
+	%https://www.utc.fr/~dnace/dokuwiki/_media/fr/upt-cours-2012lp.pdf
 	\item Problem totalnog pokrivanja. %Neka je dato $n$ mijesta, te $m$ zahtjeva koji treba da budu ispunjeni ($d_1,\ldots, d_m$).  
 	Sa $D_c$ označimo maksimalnu daljinu koja se može pokriti instalacijom (skladišta, antene). Pod ``pokrivanjem'' podrazumijevamo ispunjavanje zahtjeva klijenata (koji žive u nekom mjestu). Sa $c_i$ označimo cijenu instalacije (antene, skladišta isl.) na mjesto $i$. Sa $d_{ij}$ označimo udaljenost između mjesta $i$ i $j$. Zadatak ovog problema je koja mjesta odabrati (za instaliranje antene, skladišta isl.) tako da su sva mjesta pokrivena, ali da pri tome minimizujemo troškove instalacija. Sa jednog odabranog mjesta se pokrivaju sva susjedna koja su u njegovom radijusu od $D_c$. 
 	\item Problem maksimalnog pokrivanja (eng. \emph{maximum coverage problem}). Neka je u ulazu data kolekcija skupova  $S=\{ S_1, \ldots, S_m\}$ te broj $k \in \mathbb{N}$. Potrebno je naći podskup $S' \subseteq S$, tako da je $|S'|\leq k$, a broj pokrivenih elemenata $|\bigcup_{s' \in S'} s'|$ je maksimizovan. \\
