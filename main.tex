@@ -5712,7 +5712,7 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje.
   \begin{figure}
   	\centering
   	\includegraphics[width=120mm,height=80mm]{vc-2-example.eps}
-  	\caption{Graf (nacrtati ga).} 
+  	%\caption{Graf (nacrtati ga).} 
   	\label{vertex-cover}
  
   \end{figure}
@@ -6376,6 +6376,18 @@ Postoje različite strategije koliko dugo se izvršava lokalna pretraga. U opšt
 	\item Osmisliti genetski algoritam i metodu promjenljivih okolina kojima se rješava problem određivanja maksimalne klike u grafu.
 	
 		\item Osmisliti genetski algoritam i metodu promjenljivih okolina kojima se rješava problem određivanja maksimalnog nezavisnog skupa čvorova u grafu.
+		\item %https://www.mpi-inf.mpg.de/fileadmin/inf/d1/teaching/winter15/ApproxAlg/ex01.pdf
+		   Neka je dat ruksak čija je veličina jednaka $C$ i skup proizvoda $I = \{1,\ldots, n\}$, gdje proizvod $i$ ima svoju cijenu $c_i>0$ i veličinu $s_i>0$. Pokrivač ruksaka je skup proizvoda $I' \subseteq I$ tako da je $\sum_{i \in I'} s_i > C$.  Problem pokrivača ruksaka traži podskup proizvoda koji je pokrivač ruksaka sa minimalnom    cijenom.   Pretpostavimo da ne postoji proizvod čija je cijena veća od    cijene optimalnog rješenja. Konstruisati 2--aproksimativni algoritam za ovaj problem pod prethodnom pretpostavkom. 
+		   \item Pokazali smo da postoji 2--aproksimativni algoritam za problem pokrivanja čvora. Da li se može konstruisati instanca na kojoj (jedan od dva algoritma) ne daje bolju aproksimaciju od faktora 2? 
+		   \item %https://massivedatasets.files.wordpress.com/2011/04/approx1-exercisesf114.pdf
+		   Neka je dat kompletan nedirektan graf $G = (V, E)$ u kojem težine grana zadovoljavaju nejednakost trougla i neka je $k$ pozitivan prirodan broj. Probem se sastoji u particionisanju skupa $V$ na $k$ disjunktnih skupova $V_1, \ldots, V_k$ da bi se minimizirala grana najveće cijene između dva čvora u istom skupu, ili simbolički 
+		   $$ \max_{1 \leq i \leq k, u,v \in V_i} c(uv).$$
+		   Konstruisati 2--aproksimativni algoritam za ovaj problem (metričko $k$--klasterovanje). 
+		\item %https://www.ibr.cs.tu-bs.de/courses/ws1920/aa/exercises/exercise_03.pdf
+		 Neka je dat netežinski graf $G=(V,E)$. Problem koji se razmatra je naći particiju $V$ na $k$ skupova $V_1,\ldots, V_k$ tako da je broj grana koje su između dvije različite particije minimizovan. Konstruisati (gridi) algoritam koji je 1-$\frac{1}{k}$--aproksimativni. 
+		 \item U problemu bojanja grafa, u ulazu nam je dat neusmjeren graf $G = (V,E)$. Kažemo da je funkcija $f:V \mapsto \{1,\ldots, k\}$ $k$-bojenje akko ne postoje susjedni čvorovi grafa kojima je pridružen isti broj, tj. $f(u) \neq f(v)$, za $uv \in E$. Problem bojenja grafa traži za $k$-funkciju na grafu $G$, gdje je $k$ minimalan. Konstrusaiti pohlepni algoritam za koji je $k = \Delta + 1$, gdje je $\Delta$ maksimalni stepen čvora u $G$. 
+		 \item %https://www.ibr.cs.tu-bs.de/courses/ws1920/aa/exercises/exercise_05.pdf
+		 Problem obilaska segmenata (eng. \emph{Segment tour problem}). Neka je dat skup segmenata $S = \{s_0 = (p_0, p_1), s_1 =(p_2, p_3),\ldots\}$ u $\mathbb{R}^2$. Problem traži da se nađe (geometrijski) obilazak minimalne dužine koji sadrži sve segmente iz skupa $S$. Konstruisati 3--aproksimativni algoritam.  
 \end{enumerate}
 
 
