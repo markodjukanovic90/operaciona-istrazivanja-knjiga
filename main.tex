@@ -6835,7 +6835,7 @@ Izbaciti rješenje problema u obliku skupa odabranih čvorova koji su komponenet
       
       ($a$) uz pomoć Cplex-a; ($b$) uz pomoć PuLP modula. 
    \item   %https://www.researchgate.net/publication/220316431_An_efficient_ILP_formulation_for_the_single_machine_scheduling_problem
-   Neka je u ulazu dat skup od $V$ poslova koji treba da budu urađeni na mašini. Svaki posao $j$ je dat intervalom $[r_j, d_j]$, $r_j < d_j$, gdje $r_j$ označava dopustivo vrijeme puštanja posla u rad (na mašini) dok $d_j$ označava vrijeme do kada se posao mora završiti.  Vrijeme procesiranja posla $j$ je dato sa $d_j$. 
+   Neka je data instanca koja se sastoji od skupa $V$ poslova koji treba da budu urađeni na mašini. Svaki posao $j$ je dat intervalom $[r_j, d_j]$, $r_j < d_j$, gdje $r_j$ označava dopustivo vrijeme puštanja posla u rad (na mašini) dok $d_j$ označava vrijeme do kada se posao mora završiti.  Vrijeme procesiranja posla $j$ je dato sa $d_j$. 
    Potrebno je za sve poslove $j  \in V$ naći dopustiv redosljed izvršavanja (na mašini) tako što su nađena startna vremena izvršenja $s_j$ ($s_j \geq r_j \wedge s_j + p_j \leq d_j$). Ovaj problem je modelovan iz pomoć sljedećeg modela:
    \begin{align*}
           &\max D - R \\
@@ -6851,7 +6851,7 @@ Izbaciti rješenje problema u obliku skupa odabranih čvorova koji su komponenet
           Model implementirati:
     
     ($a$) uz pomoć Cplex-a; ($b$) uz pomoć PuLP modula. 
-    \item Neka je instanca problema data sa $n$ brojeva iz skupa $\mathbb{R}^p$, $p\in \mathbb{N}$. Sa $w_{i}=(w_{i1},\ldots, w_{ip})$ označimo $i$-ti element u skupu $S$. 
+    \item Neka je data instanca koja se sastoji  $n$ brojeva iz skupa $\mathbb{R}^p$, $p\in \mathbb{N}$. Sa $w_{i}=(w_{i1},\ldots, w_{ip})$ označimo $i$-ti element u skupu $S$. 
     Neka je $s_j = \sum_{i=1}^n w_{ij}, j=1,\ldots, p$ i neka je dat model:
     \begin{align*}
     	&\min t  \\
@@ -6862,7 +6862,19 @@ Izbaciti rješenje problema u obliku skupa odabranih čvorova koji su komponenet
     \end{align*}
              Model implementirati:
      
-     ($a$) uz pomoć Cplex-a; ($b$) uz pomoć PuLP modula. 
+     ($a$) uz pomoć Cplex-a; ($b$) uz pomoć PuLP modula.
+    \item %http://elib.mi.sanu.ac.rs/files/journals/publ/119/publn119p51-58.pdf
+    Neka je data instanca koja se sastoji od grafa $G=(V,E)$ pri čemu je svakom od čvorova grafa data težina $f(v)  \in \{0, 1, 2\}, v \in V$. Neka je dat model:
+    \begin{align*}
+          &\min \sum_{i \in V} x_i + \sum_{i \in V} y_i \\
+          &s.t. \\
+          & x_i + \sum_{j \in N_i } y_j  \geq 1 \\
+          & y_i \leq x_i, i \in V \\
+          &x_i, y_i \in \{0, 1\}, i \in V.
+    \end{align*}
+     Model implementirati:
+
+($a$) uz pomoć Cplex-a; ($b$) uz pomoć PuLP modula. 
 \end{enumerate}
 \begin{thebibliography}{widest entry}
 	\bibitem[1]{cite_key1}  {https://towardsdatascience.com/the-big-picture-of-operations-research-8652d5153aad}
