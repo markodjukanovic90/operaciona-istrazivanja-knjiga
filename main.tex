@@ -3085,7 +3085,7 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
 	\item Problem maksimalnog pokrivanja (eng. \emph{maximum coverage problem}). Neka je u ulazu data kolekcija skupova  $S=\{ S_1, \ldots, S_m\}$ te broj $k \in \mathbb{N}$. Potrebno je naći podskup $S' \subseteq S$, tako da je $|S'|\leq k$, a broj pokrivenih elemenata $|\bigcup_{s' \in S'} s'|$ je maksimizovan. \\
 	Uputstvo. sa $x_j \in \{0, 1\}$ označimo varijablu koja dobija vrijednost 1 ako je $S_i$ selektovan u rješenje $S'$, inače 0. Dodatno, sa $y_j \in \{0, 1 \}$ definišemo varijablu koja dobija vrijednost 1 ako je   element $e_j$ pokriven rješenjem.  
 %http://courses.ieor.berkeley.edu/ieor151/lecture_notes/ieor151_lec14.pdf
-	\item $P$-center problem čvorova (eng. \emph{vertex p-center problem}). Formulacija problema je  predstavljena neusmjerenim grafom $G = (I, J, E)$, gdje su čvorovi potražnje predstavljeni skupom vrhova $i\in I$, a moguće lokacije objekata date su drugim skupom vrhova $j \in J$ , a grane $e_{i,j} \in E$ postoje samo između čvorova $i \in  I$ i čvorova $j \in J$. Nadalje, čvorovima $d_{i,j}\geq 0$ dodjeljujemo pozitivne težine, što predstavlja udaljenost između čvorova $i$ i $j$. Imajte na umu da je moguće imati i udaljenost 0 između čvora potražnje i moguće lokacije objekta. 
+	\item $P$-center problem čvorova (eng. \emph{vertex p-center problem}). Formulacija problema je  predstavljena neusmjerenim grafom $G = (I, J, E)$, gdje su čvorovi potražnje predstavljeni skupom vrhova $i\in I$, a moguće lokacije objekata date su drugim skupom vrhova $j \in J$ , a grane $e_{i,j} \in E$ postoje samo između čvorova $i \in  I$ i čvorova $j \in J$. Nadalje, čvorovima $d_{i,j}\geq 0$ dodjeljujemo pozitivne težine, što predstavlja udaljenost između čvorova $i$ i $j$. Imajte na umu da je moguće imati i udaljenost 0 između čvora potražnje i moguće lokacije objekta. Za svaki čvor $i \in I$ pridružena je težina (zahtjeva) $h_i>0$, koja predstavlja količinu zahtjeva tog čvora. 
 	
 	U ovom problemu želimo postaviti $p$ objekata kako bismo smanjili maksimalnu udaljenost između bilo kojeg čvora potražnje i	njegovog servisnog objekta. 
 	\item %https://personal.utdallas.edu/~metin/Or6302/Notes/integer.pdf
@@ -6698,7 +6698,7 @@ class Hash2d  //hashing the points
 	   public:
 	   std::size_t operator()(const Point2d & pl ) const
 	   {
-	    	   return 5000*pl.a + + pl.b;   
+	    	   return 5000*pl.a  + pl.b;   
 	   }
 };
 
@@ -6806,6 +6806,52 @@ int main( int argc, char **argv )
 } 
 \end{verbatim}
 
+%\vspace{1cm} \\
+\textbf{\large Zadaci}
+\begin{enumerate}
+	\item Neka je u ulazu dat graf  $G = (V, E)$ kao instanca problema. Implementirati sljedeći ILP model:
+	\begin{align*}
+		& \max \sum_{v \in V} x_v \\
+		& s.t. \\
+		& x_{v'} + x_{v''} \leq 1, \forall (v' v'')\in E \\
+		& x_v \in \{0, 1 \}, \forall v \in  V.
+	\end{align*}
+Izbaciti rješenje problema u obliku skupa odabranih čvorova koji su komponeneta optimalnog rješenja. Riješiti relaksaciju datog ILP-a. Zaokružiti dobijeno rješenje, tj. transformisati ga u najbliže cjelobrojno rješenje (gledajući po koordinatama).  Model implementirati:
+
+ ($a$) uz pomoć Cplex-a; ($b$) uz pomoć PuLP modula.
+\item % http://courses.ieor.berkeley.edu/ieor151/lecture_notes/ieor151_lec13.pdf
+     Neka je instanca modela sljedećeg problema data sa usmjerenim težinskim grafom $G= (V_1 \cup V_2, E)$, gdje su $V_1$ i $V_2$ disjunktni skupovi, te prirodan broj $p\geq 1$. Težine grane između čvorova $i$ i $j$ je data sa $d_{i,j}\geq 0 $ i postoje samo grane između čvorova iz skupa $V_1$ u skup $V_2$. Svakom čvoru iz skupa $V_1$ pridružena je težina $h_{i}$. 
+     Neka je MILP model dat  sa:
+     \begin{align*}
+     	 &\min \sum_{j \in V_2}\sum_{i \in V_1} h_i d_{i,j} Y_{i,j} \\
+     	 &s.t. \\
+     	 & \sum_{j \in V_2} Y_{i, j} = 1, \forall i \in V_1 \\
+     	 & Y_{i,j} - X_j \leq 0, \forall i  \in V_1, \forall j \in V_2 \\     	 
+     	 & \sum_{i \in V_2} X_j  = p \\
+     	 & X_j \in \{0, 1\}, \forall j \in V_2 \\
+     	 & Y_{i,j} \in \{0, 1\}, \forall i \in V_1, \forall j \in V_2.
+     \end{align*}
+      Model implementirati:
+      
+      ($a$) uz pomoć Cplex-a; ($b$) uz pomoć PuLP modula. 
+   \item   %https://www.researchgate.net/publication/220316431_An_efficient_ILP_formulation_for_the_single_machine_scheduling_problem
+   Neka je u ulazu dat skup od $V$ poslova koji treba da budu urađeni na mašini. Svaki posao $j$ je dat intervalom $[r_j, d_j]$, $r_j < d_j$, gdje $r_j$ označava dopustivo vrijeme puštanja posla u rad (na mašini) dok $d_j$ označava vrijeme do kada se posao mora završiti.  Vrijeme procesiranja posla $j$ je dato sa $d_j$. 
+   Potrebno je za sve poslove $j  \in V$ naći dopustiv redosljed izvršavanja (na mašini) tako što su nađena startna vremena izvršenja $s_j$ ($s_j \geq r_j \wedge s_j + p_j \leq d_j$). Ovaj problem je modelovan iz pomoć sljedećeg modela:
+   \begin{align*}
+          &\max D - R \\
+          & s.t. \\
+          & R \geq r_i, \forall i \in V \\
+          & D \leq d_i, \forall i \in V \\
+          & R \geq r_i + \sum_{ \{ j \in V \setminus \{t\} \mid r_j \geq r_i \} } p_j x_j^+, \forall i \in V \\
+          & D \leq d_i -  \sum_{ \{ j \in V \setminus \{t\} \mid d_j \leq d_i \}} p_j x_j^-, \forall i \in V \\
+          & x_j^+ + x_j^-  = 1, \forall i \in V \\
+          &   x_j^+, x_j^- \in \{0, 1\}, \forall i \in V \\
+          & D, R \in \mathbb{Z}. 
+   \end{align*} 
+          Model implementirati:
+    
+    ($a$) uz pomoć Cplex-a; ($b$) uz pomoć PuLP modula. 
+\end{enumerate}
 \begin{thebibliography}{widest entry}
 	\bibitem[1]{cite_key1}  {https://towardsdatascience.com/the-big-picture-of-operations-research-8652d5153aad}
 	\bibitem[2]{cite_key2} Hillier, Frederick S. Introduction to operations research. Tata McGraw-Hill Education, 2012.
