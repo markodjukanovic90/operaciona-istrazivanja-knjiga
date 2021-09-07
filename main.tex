@@ -3072,12 +3072,11 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
 	\end{tabular}
 	Odrediti Koje od projekata treba realizovati da se maksimizuje ukupna dobit.
 	
-	\item Zadat je skup $S$ koji se sastoji od $n$ brojeva. Koristeći tehnike cjelobrojnog linearnog programiranja, podijeliti skup $S$ na dva podskupa, tako da je zbirovi elemenata u prvom i drugom podskupu što manje razlikuju.
+	\item Zadat je skup $S$ koji se sastoji od $n$ brojeva. Koristeći tehnike cjelobrojnog linearnog programiranja, podijeliti skup $S$ na dva podskupa, tako da se zbirovi elemenata u prvom i drugom podskupu što manje razlikuju.
 	
 	\item Riješiti prethodni zadatak uz dodatni uslov da nijedan podskup ne smije da sadrži više od $\frac {2n}3$ elemenata.
 	
-	
-	
+
 	
 	%https://www.utc.fr/~dnace/dokuwiki/_media/fr/upt-cours-2012lp.pdf
 	\item Problem totalnog pokrivanja. %Neka je dato $n$ mijesta, te $m$ zahtjeva koji treba da budu ispunjeni ($d_1,\ldots, d_m$).  
@@ -6343,6 +6342,44 @@ Za rješenje  $x'$ dobijeno u  proceduri razmrdavanja poziva se lokalno pretraž
 
 Postoje različite strategije koliko dugo se izvršava lokalna pretraga. U opštem slučaju, potrebno je napraviti balans između utrošenog vremena pretraživanja i potrebe za lokalnim poboljšanjem rješenja. Stoga je generalno dobar pristup kostrukcija  procedura lokalnog pretraživanja koje se brzo izvršavaju (u idealnom slučaju u $O(1)$ vremenu), kako bi se omogućilo što iscrpnije pretraživanje okoline datog rješenja. Takođe, nekada se kombinuje više metoda lokalnog pretraživanja (ovo važi za većinu heurističkih metoda), koje, manje ili više temeljno, pretražuju okoline datog rješenja, u zavisnosti od brzine ili drugih parametara.
 
+
+
+\section{Zadaci}
+
+\begin{enumerate}
+	\item Na šahovskoj tabli dimenzije 8x8 je postavljeno nekoliko topova, tako da se nikoja dva topa međusobno ne napadaju. Dodati na tu tablu još topova, tako da ih bude maksimalno 8, a da se i dalje nikoja dva topa ne napadaju.
+	\item Istraži na internetu problem vraćanja kusura pomoću minimalnog broja novčanica (kovanica). Koristi google pretragu \textit{change-making problem} ili \textit{coin change problem}. Napiši pohlepni algoritam koji rješava ovaj problem. Ispitaj pod kojim uslovima pohlepni algoritam uvijek daje optimalno rješenje. Pronađi kontraprimjer kada pohlepni algoritam neće dati optimalno rješenje.
+	\item Bojenje grafa je procedura koja svakom čvoru grafa dodjeljuje jednu boju, poštujući pravilo da susjedni čvorovi nisu obojeni istom bojom. Napiši pohlepni algoritam pomoću kog se vrši bojenje grafa, tako da se iskoristi što je manje moguće boja. Pokušaj da okarakterišeš neku klasu grafova za koju tvoj pohlepni algoritam uvijek daje optimalno rješenje. Konstruiši kontraprimjer kada pohlepni algoritam neće dati optimalno rješenje.
+	
+	\item Osmisli pohlepni algoritam koji rješava problem trgovačkog putnika. Pronađi kontraprimjer kada tvoj algoritam ne pronalazi optimalno rješenje.
+	
+	\item Osmisliti pohlepni algoritam koji rješava problem određivanja maksimalnog nezavisnog skupa čvorova u grafu. Odredi neke klase grafova za koje tvoj pohlepni algoritam uvijek pronalazi optimalno rješenje. Pronađi kontraprimjer kada pohlepni algoritam ne pronalazi optimalno rješenje.
+	
+	\item svaki razlomak se može napisati kao zbir razlomaka od kojih svaki ima jedinicu u brojiocu. Taj zapis su koristili još i stari Egipćani, po kojima se taj zapis i zove ``egipatski razlomak''. 
+	Napisati pohlepni algoritam koji proizvoljan razlomak zapisuje kao ``egipatski razlomak'', odnosno kao zbir razlomaka koji imaju jedinicu u brojiocu.
+	
+	\item Zadat je skup $S$ koji se sastoji od $n$ brojeva. Koristeći pohlepni algoritam, podijeliti skup $S$ na dva podskupa, tako da se zbirovi elemenata u prvom i drugom podskupu što manje razlikuju.
+	
+	\item $N$ kajakaša koji su teški redom $1\leqslant w_1\leqslant w_2\leqslant \cdots \leqslant W_N$. Cilj je rasporediti kajakaše u što manje kajaka--dvosjeda. Maksimalna težina koju jedan kajak može da izdrži je $k$. Pretpostavka je da je $w_i\leqslant k$. Napisati pohlepni algoritam koji rješava ovaj zadatak.
+	
+		%http://poincare.matf.bg.ac.rs/~ezivkovm/nastava/12_asp-pohlepni-algoritmi.pdf
+	\item  Napisati pohlepni algoritam koji ispituje da li je jedna riječ podriječ druge riječi.
+	
+	\item Poznate su visine $n$ momaka i $n$ djevojaka. Napisati program koji
+	određuje koliko se najviše plesnih parova može formirati tako da je momak uvijek
+	viši od djevojke.
+	
+	
+	\item Problem postavljanja kraljica na šahovsku tablu podrazumijeva pozicioniranje kraljica tako da se nikoje dvije kraljice ne napadaju. Osmisliti genetski algoritam koji rješava ovaj problem.
+	\item Osmisliti genetski algoritam i metodu promjenljivih okolina kojima se rješava problem bojenja čvorova grafa.
+	
+	\item Osmisliti genetski algoritam i metodu promjenljivih okolina kojima se rješava problem određivanja maksimalne klike u grafu.
+	
+		\item Osmisliti genetski algoritam i metodu promjenljivih okolina kojima se rješava problem određivanja maksimalnog nezavisnog skupa čvorova u grafu.
+\end{enumerate}
+
+
+
  \chapter{Optimizacioni rješavači}
  
  Kao što smo i pomenuli u uvodnoj sekciji, modelovanje problema koji odgovara rješenju problema je 
@@ -6809,6 +6846,10 @@ int main( int argc, char **argv )
 %\vspace{1cm} \\
 \textbf{\large Zadaci}
 \begin{enumerate}
+	\item Istraži na internetu dostupne optimizacione  rješavače za probleme linearnog, cjelobrojnog (i mješovitog cjelobrojno--linearnog) programiranja. Procijeni njihov kvalitet, upotrebnu vrijednost i prepoznaj njihove prednosti i nedostatke u svakog od njih u odnosu na ostale.
+	
+	\item Koristeći neki od rješavača, provjeri ispravnost rješenja zadataka iz Glave 4 i Glave 6.
+	
 	\item Neka je u ulazu dat graf  $G = (V, E)$ kao instanca problema. Implementirati sljedeći ILP model:
 	\begin{align*}
 		& \max \sum_{v \in V} x_v \\
