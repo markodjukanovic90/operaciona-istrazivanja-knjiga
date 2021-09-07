@@ -5316,6 +5316,41 @@ Iz prethodne tabele pročitamo vrijednost dualnih varijabli: $y_1 =  \frac{1}{3}
          \frac{1}{2}
   \end{pmatrix}
 \end{align*}
+\vspace{1cm} \\
+
+\textbf{Zadaci}
+\begin{enumerate}
+	\item % http://motor.ece.iit.edu/ms/benders.pdf
+	  	Uz pomoć Benderove dekompozicije riješiti sljedeći MILP problem:
+	  \begin{align*}
+	  	   &\min x + y \\
+	  	   &s.t. \\
+	  	   & 2x + y \geq 3 \\
+	  	   & x \geq 0 \\
+	  	   & y \in \{-5, -4,\ldots, 3, 4\}.
+   	  \end{align*}
+	\item %http://eaton.math.rpi.edu/faculty/Mitchell/courses/matp6620/notesMATP6620/lecture23/23C_benders_egbeamer.pdf
+	Uz pomoć Benderove dekompozicije riješiti sljedeći MILP problem:
+	\begin{align*}
+		 &\max 8 y_1 + 9 y_2 + 5 y_3 + 6 y_4 - 15 x_1 - 10 x_2 \\
+		 & s.t.\\
+		 &y_1 + y_3 \leq 1 \\
+		 & y_1 + y_4 \leq 1 \\
+		 &y_2 + y_4 \leq 1 \\
+		 & -x_1-x_2 \leq -1 \\
+		 & y_1 - x_1 \leq 0 \\
+		 & y_2 - x_1 \leq 0 \\
+		 & y_3 - x_2 \leq 0 \\
+		 & y_4 - x_2 \leq 0 \\
+		 & y_1,y_2,y_3,y_4,x_1, x_2 \geq 0 \\
+		 & x_1, x_2 \in \mathbb{Z}.
+	\end{align*}
+\item %https://homepages.rpi.edu/~mitchj/handouts/egdcmp/ 
+	Uz pomoć Dantzig-Wolfe dekompozicije riješiti sljedeći MILP problem:
+	\begin{align*}
+		content...
+	\end{align*}
+\end{enumerate}
 
 %TODO... prvo izraziti kolone u odnosu na originalni problem, potom prebaciti u odnosu na bazne vektore, ubaciti u prethodnu simpleks tabelu (baznih vektora), pivotirati tabelu, dobiti novu tabelu, izvuci baze, dualne vrijednosti, formirati novi CG problem. 
 
