@@ -6851,6 +6851,18 @@ Izbaciti rješenje problema u obliku skupa odabranih čvorova koji su komponenet
           Model implementirati:
     
     ($a$) uz pomoć Cplex-a; ($b$) uz pomoć PuLP modula. 
+    \item Neka je instanca problema data sa $n$ brojeva iz skupa $\mathbb{R}^p$, $p\in \mathbb{N}$. Sa $w_{i}=(w_{i1},\ldots, w_{ip})$ označimo $i$-ti element u skupu $S$. 
+    Neka je $s_j = \sum_{i=1}^n w_{ij}, j=1,\ldots, p$ i neka je dat model:
+    \begin{align*}
+    	&\min t  \\
+    	& s.t. \\
+    	&-0.5 \cdot t + \sum_{i=1}^n w_{i,j}    x_i  \leq 0.5 \cdot s_j, j=1,\ldots,p \\
+    	& 0.5 \cdot t + \sum_{i=1}^n w_{i,j} x_i  \geq 0.5 \cdot s_j, j=1,\ldots,p \\
+    	& x_j \in \{0, 1\}, j = 1,\ldots,n.
+    \end{align*}
+             Model implementirati:
+     
+     ($a$) uz pomoć Cplex-a; ($b$) uz pomoć PuLP modula. 
 \end{enumerate}
 \begin{thebibliography}{widest entry}
 	\bibitem[1]{cite_key1}  {https://towardsdatascience.com/the-big-picture-of-operations-research-8652d5153aad}
