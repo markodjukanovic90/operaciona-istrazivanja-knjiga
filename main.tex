@@ -6390,11 +6390,18 @@ Postoje različite strategije koliko dugo se izvršava lokalna pretraga. U opšt
 		 Problem obilaska segmenata (eng. \emph{Segment tour problem}). Neka je dat skup segmenata $S = \{s_0 = (p_0, p_1), s_1 =(p_2, p_3),\ldots\}$ u $\mathbb{R}^2$. Problem traži da se nađe (geometrijski) obilazak minimalne dužine koji sadrži sve segmente iz skupa $S$. Konstruisati 3--aproksimativni algoritam.  
 		 \item Neka je dat kompletan težinski graf $G=(V,E)$ čije grane zadovoljavaju nejednakost trougla. $ k$ poštara treba da prođu grafom tako da svaka grana u datom podskupu grana $E' \subseteq E$ bude pređena barem od strane jednog poštara. Startni i završni čvor za svakog od poštara je izabran po slobodnoj volji. Zadatak ovog problema je naći šetnju u grafu sa minimalnom dužinom (za sve poštare). 
 		 Konstruisati 2--aproksimativni graf ovog problema. 
-		 \item Neka je dat usmjereni graf $G = (V,E) $ sa nenegativnim težinama grana $w:E\mapsto\mathbb{R}$. Zadatak je naći  podskup čvorova $S \subseteq V$ tako da je suma grana iz $S$ u $V\setminus S$ najveća moguća, tj. 
+		 \item %https://www.ibr.cs.tu-bs.de/courses/ws1920/aa/exercises/exercise_03.pdf
+		 Neka je dat usmjereni graf $G = (V,E) $ sa nenegativnim težinama grana $w:E\mapsto\mathbb{R}$. Zadatak je naći  podskup čvorova $S \subseteq V$ tako da je suma grana iz $S$ u $V\setminus S$ najveća moguća, tj. 
 		  $$ \sum_{s \in S, t \notin S, st \in E }w(st)$$
 		  je maksimizovana.  
 		  
 		  Konstruisati $\frac{1}{4}$--aproksimativni algoritam.
+		 \item  %https://www.cs.cornell.edu/gomes/MYPAPERS/gomes-williams05.pdf
+		 Neka je data instanca problema sa pozitivnim prirodnim  brojem $k$ i multi-skupom 
+		 $T = \{t_1,\ldots, t_n\}$ vremena (procesiranja poslova), $t_i \in \mathbb{Q}$ za sve $i=1,\ldots, n$. 
+		 Zadatak je da se nađe dodjela poslova svakoj od $k$ mašina (dakle, funkcija $f:\{1,\ldots, n\} \mapsto \{1,\ldots, k\}$) tako da je vrijeme završetka svih poslova na mašinama minimizovano, pod uslovom da one mogu izvršavati poslove paralelno, tj. funkcija cilja koja se minimizuje je data sa 
+		 $$\max \{  \sum_{i: f(i) = j } t_i \mid j=1,\ldots, k \}$$
+		 Konstruisati 2--aproksimativni algoritam.
 \end{enumerate}
 
 
