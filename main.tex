@@ -6388,6 +6388,13 @@ Postoje različite strategije koliko dugo se izvršava lokalna pretraga. U opšt
 		 \item U problemu bojanja grafa, u ulazu nam je dat neusmjeren graf $G = (V,E)$. Kažemo da je funkcija $f:V \mapsto \{1,\ldots, k\}$ $k$-bojenje akko ne postoje susjedni čvorovi grafa kojima je pridružen isti broj, tj. $f(u) \neq f(v)$, za $uv \in E$. Problem bojenja grafa traži za $k$-funkciju na grafu $G$, gdje je $k$ minimalan. Konstrusaiti pohlepni algoritam za koji je $k = \Delta + 1$, gdje je $\Delta$ maksimalni stepen čvora u $G$. 
 		 \item %https://www.ibr.cs.tu-bs.de/courses/ws1920/aa/exercises/exercise_05.pdf
 		 Problem obilaska segmenata (eng. \emph{Segment tour problem}). Neka je dat skup segmenata $S = \{s_0 = (p_0, p_1), s_1 =(p_2, p_3),\ldots\}$ u $\mathbb{R}^2$. Problem traži da se nađe (geometrijski) obilazak minimalne dužine koji sadrži sve segmente iz skupa $S$. Konstruisati 3--aproksimativni algoritam.  
+		 \item Neka je dat kompletan težinski graf $G=(V,E)$ čije grane zadovoljavaju nejednakost trougla. $ k$ poštara treba da prođu grafom tako da svaka grana u datom podskupu grana $E' \subseteq E$ bude pređena barem od strane jednog poštara. Startni i završni čvor za svakog od poštara je izabran po slobodnoj volji. Zadatak ovog problema je naći šetnju u grafu sa minimalnom dužinom (za sve poštare). 
+		 Konstruisati 2--aproksimativni graf ovog problema. 
+		 \item Neka je dat usmjereni graf $G = (V,E) $ sa nenegativnim težinama grana $w:E\mapsto\mathbb{R}$. Zadatak je naći  podskup čvorova $S \subseteq V$ tako da je suma grana iz $S$ u $V\setminus S$ najveća moguća, tj. 
+		  $$ \sum_{s \in S, t \notin S, st \in E }w(st)$$
+		  je maksimizovana.  
+		  
+		  Konstruisati $\frac{1}{4}$--aproksimativni algoritam.
 \end{enumerate}
 
 
