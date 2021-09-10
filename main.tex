@@ -3333,25 +3333,32 @@ Na Slici~\ref{fig:bnb_ilp} je prikazano B\&B drvo sljedećeg ILP-a:
 
 
 \section{Implicitna Enumeracija}
-Posmatrajmo sada specijalnu B\&B proceduru koja se može primijeniti na problem Binarnog cjelobrojnog programiranja, gdje   sve diskretne varijable u suštini predstavljaju logičke odluke. Ovaj algoritam ne zahtjeva da se izvedu rješenja LP-relaksacija, već radi sa kompletnom enumeracijom. Dakle, izlistaju se sve binarne kombinacije za varijable i izabere se ona koja je dopustiva i daje najveću vrijednost ciljnoj funkciji. Ovaj pristup radi dobro na problemima malih dimenzija gdje postoji svega nekoliko binarnih varijabli u modelu. Primijetimo da u problemu sa $n$ binarnih varijabli,  broj kombinacija za varijable odluke jednak $2^n$ (dakle, raste eksponencijalnom brzinom u odnosu na veličinu ulaza). Ideja implicitne enumeracije je u svakom koraku ovog metoda fiksirati neku od varijabli na 0 ili 1, dobijajući dva nova potproblema koja treba da budu riješena te implicitno određivanje da li su neophodna dalja fiksiranja.  
+Posmatrajmo sada specijalnu B\&B proceduru koja se može primijeniti na problem Binarnog cjelobrojnog programiranja, gdje    sve diskretne varijable u suštini modeluju logičke odlukame. Ovaj algoritam ne zahtjeva da se posmatraju rješenja LP-relaksacija, već radi se sa enumeracijom. Dakle, izlistaju se sve moguće kombinacije vrijednosti koje varijable mogu da prime, pa se izabere ona koja je dopustiva i daje najveću vrijednost za ciljnu funkciju. Ovaj pristup radi dobro na problemima malih dimenzija gdje postoji svega nekoliko binarnih varijabli u modelu. Primijetimo da u problemu sa $n$ binarnih varijabli,  broj kombinacija za varijable odluke je jednak $2^n$ (dakle, raste eksponencijalnom brzinom u odnosu na veličinu ulaza). 
+
+Prisjetimo se da u standardnoj B\&B proceduri, podjela na manje probleme je izvedena dodavanjem dodatnih ograničenja i izbacujući ograničenja za integralnost (cjelobrojnost). U implicitnoj enumeraciji se primjenjuje suprotna taktika, zadržavajući 0-1 restrikcije, ali ignorišući linearne nejednakosti. 
+Ideja implicitne enumeracije je uključiti B\&B proces tako što se fiksiraju neke od varijabli na 0 ili 1. Varijable koje ostaju neodređene se nazivaju \emph{slobodne varijable}.  B\&B kreće od slučaja da ne postoje varijable koje nisu slobodne. U svakom koraku fiksiramo jednu od varijabli i rješavamo problem bez razmatranja ograničenja sa nejednakostima. Potom provjeravamo da li je to rješenje dopustovo (zadovoljava ograničenja sa nejednakostima). U narednim podjelama (fiksiranjima) prethodne (ne-slobodne) varijable ostaju fiksirane. 
+%, dobijajući dva nova potproblema koja treba da budu riješena te implicitno određivanje da li su neophodna dalja fiksiranja.  
+Pretpostavimo da je u pitanju problem makismizacije. Proces implicitne enumeracije se sastoji od sljedećih koraka. 
 
 Fiksiramo $i=1$ i $LB=-\infty$. 
 
 \begin{enumerate}
-    \item U početnom problemu  stavimo $x_j=0$ za sve $j$ (kažemo da je svaka varijabla \emph{slobodna}). Ako je dobijeno rješenje dopustivo, ažuriramo vrijednost u $LB$.
-    \item Fiksiramo $x_i=0$  i $x_i=1$, te dobijamo dva potproblema koja treba riješiti.
-    \item  Provjerimo za oba potproblema da li je tako fiksirano rješenje dopustivo. U slučaju da jeste, na osnovu koeficijenata u ciljnoj funkciji (pozitivni ili negativni) ako su svi  ostali koeficijenti nefiksiranih (neslobodnih) varijabli negativni, zaključujemo da je to rješenje najbolje za fiksirane varijable u potproblemu i dalje se ovaj protproblem više ne dijeli. Ako svi takvi koeficijenti nisu negativni, idemo na korak 4. Primijetimo da  potproblem sa fiksnim $x_i=0$ ne mora da provjeravamo, jer je on isti kao i korjeni (korjeni) problem.
-    \item Azuriramo $i = i+1$ i idemo na korak 3 sa potproblemima koji mogu dalje da se dijele, dok god je $i \leq n$. Inače, izlazimo iz petlje sa optimalnim rješenjem (LB). 
+    \item U početnom problemu  stavimo $x_j=0$ za sve $j$ (kažemo da je svaka varijabla \emph{slobodna}) za koje je $c_j > 0$, a inače 0. Ako je dobijeno rješenje dopustivo, ažuriramo vrijednost za $LB$.
+    \item Fiksiramo sada $x_i=0$ za jedan potproblem, te $x_i=1$, za drugi potproblem koji treba da se riješe.
+    
+    \item  Provjerimo za oba potproblema da li je rješenje (sa fiksnim dijelom) koje maksimizuje rješenje potproblema (kao u koraku 1) dopustivo. U slučaju da jeste,   ovaj protproblem se više ne dijeli; po mogućnosti ažuriramo LB, ako je nađeno novo najbolje rješenje.   %Inače, idemo na korak 4. Primijetimo da  potproblem sa fiksnim $x_i=0$ ne mora da provjeravamo, jer je on isti kao i korjeni (korjeni) problem.
+    \item Ažuriramo $i = i+1$ i idemo na korak 3 sa potproblemima koji mogu dalje da se dijele, dok god je $i \leq n$. Inače, izlazimo iz petlje sa optimalnim rješenjem (LB). 
 \end{enumerate}
  Primijetimo da i u ovom slučaju dobijamo drvo odluke (binarno drvo) gdje su na granama koje spajaju čvor na dubini $i$ sa čvorom na dubini $i+1$  ugrađene odluke da li je varijabla $x_i$ fiksirana na 0 ili 1.
 
 Na Slici~\ref{fig:bnb_binary} je dato drvo odlučivanja za problem 
-\begin{align}
+\begin{align*}
    &\max -8 x_1 - 2x_2 - 4x_3 - 7x_4 -5x_5 + 10 \\
+   & s.t. \\
    & -3 x_1 - 3 x_2 + x_3 + 2 x_4 + 3 x_5 \leq -2 \\
    & -5 x_1 - 3 x_2 - 2 x_3 - x_4 + x_5 \leq -4 \\
    & x_i \in \{0, 1\}, \mbox{ za } i=1,\ldots,5.
-\end{align}
+\end{align*}
 
 %\begin{figure}
 %    \centering
@@ -3407,12 +3414,11 @@ Na Slici~\ref{fig:bnb_binary} je dato drvo odlučivanja za problem
 
 Prodiskutujmo ovo rješenje po čvorovima dobijenog stabla:
   \begin{itemize}
-      \item U čvoru 0 imamo da je rješenje $x_i = 0$, za sve $i$ nije dopustivo, ali znamo da je tada $z^*=f(x) \leq 10$.
-      \item  Dalje, granamo ovaj problem na dva (korak 2), jedan gdje je $x_i=1$ a drugi $x_1=0$, odakle dobijamo dva potproblema (odgovaraju čvorovima 1 i 2). U čvoru 2 imamo potproblem gdje je fiksiran $x_1=1$. Jasno je da kada uvrstimo ovu vrijednost u početni problem, funkcija cilja nikad neće biti veća od 2 (negativnost koeficijenata funkcije cilja slobodnih varijabli), odakle zaključujemo da je za ovaj potproblem $z^*=f(x) \geq 2$, za sve dopustive vektore $(1,x_2,\ldots,x_n)$. Prema tome, imamo $LB$=2. 
-      \item Problem u čvoru 2 je isti kao problem u čvoru 1, pa nastavljamo dalje sa dijeljenjem problema. 
+      \item U čvoru 0 imamo da je rješenje $x_i = 0$, za sve $i$, koje  nije dopustivo, ali znamo da   tada za optimalno rješenje vrijedi $z^*=f(x^*) \leq 10$.
+      \item  Dalje, granamo ovaj problem na dva (korak 2), jedan gdje je $x_i=1$ a drugi $x_1=0$, odakle dobijamo dva potproblema (odgovaraju čvorovima 1 i 2). U čvoru 2 imamo potproblem za koji je $x_1=1$. Jasno je da kada uvrstimo $(1,0, \ldots, 0)$ u početni problem, da je ono dopustivo. Prema tome, optimalna vrijednost problema neće biti manji od 2, odakle zaključujemo da je za ovaj potproblem $z^*=f(x^*) \geq 2$. Dakle, imamo $LB$=2. 
+      \item Problem u čvoru 2 je isti kao problem u čvoru 1, pa nastavljamo dalje sa dijeljenjem problema fiksirajući slobodne varijable. 
       \item Sada fiksiramo promjenjivu $x_2$ (uz već fiksiran $x_1=0$). 
-            Za potproblem u čvoru 4, provjerimo da ne postoji dopuna do doustivog rješenja za ovako fiksirane vrijednosti, pa tu stajemo sa njim. Za potproblem u čvoru 3, imamo sada podjelu na dva potproblema fiksirajući varijablu $x_3$, tj. dva odgovarajuća nova čvora 5 i 6. Za problem u čvoru 5, lako se vidi da za ovakve fiksirane varijable imamo 
-            $z^*=f(x) \leq 4$, pa je novo najbolje rješenje $LB=4$. Problem u čvoru 6 dijelimo dalje (po varijabli $x_4$), odakle dobijamo dva nova potproblema, koji odgovaraju čvoru 7 i 8. Lako se vidi (iz samo jednog dopustivog rješenja) da je $z^*<LB$.  Za čvor 8, imamo novo grananje (po varijabli $x_5$). Kako su ovdje sve varijable kompletno fiksne, primijetimo da niti jedna od ovih tačaka  nije dopustiva.
+            Za potproblem u čvoru 4, provjerimo da ne postoji dopuna do dopustivog rješenja za ovako fiksirane vrijednosti (narušeno ograničenje 1), pa tu stajemo sa njim. Za potproblem u čvoru 3, imamo sada podjelu na dva potproblema fiksirajući varijablu $x_3$, tj. dva   nova čvora 5 i 6. Za problem u čvoru 5, lako se vidi da za ovakve fiksirane varijable imamo dopustivo rješenje za koje je vrijednost funkcije cilja jednaka 4, pa zaključujemo da je $z^*=f(x^*) \leq 4$, odakle imamo $LB=4$. Problem u čvoru 6 dijelimo dalje (po varijabli $x_4$), odakle dobijamo dva nova potproblema, koji odgovaraju čvoru 7 i 8. Lako se zaključi da je $z^*<LB$ ka ovaj potproblem.  Za čvor 8, imamo novo grananje (po varijabli $x_5$). Kako su ovdje sve varijable kompletno fiksne, primijetimo da niti jedna od ovih tačaka  nije dopustiva.
             \item Prema tome, optimalno rješenje početnog problema je $LB=4$ i dostiže se u tački $x=(0, 1, 1, 0, 0)$. 
   \end{itemize}
   Potpuna enumeracija bi generisala 32 čvora za gornji problem. Implicitna enumeracija generiše svega 11 čvorova. 
