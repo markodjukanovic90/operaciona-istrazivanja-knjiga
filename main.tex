@@ -1803,7 +1803,7 @@ U ovom primjeru detektovati degenerativno bazno rješenje koje je nađeno simple
 \begin{comment}
 $$\begin{array}{ccccc}
      \max                & 3x_1     &          &   + x_3  &       \\           
-     \mbox{s.t. }   & x_1      &+ 2x_2    &   + x_3  & = 30  \\
+     {s.t. }   & x_1      &+ 2x_2    &   + x_3  & = 30  \\
                          & x_1      &- 2x_2    &   + 2x_3 & = 18  \\
                          & x \geq 0 &          &       &          \\
 \end{array}$$
@@ -1811,7 +1811,7 @@ Dodavanjem umjetnih varijabli, dobijamo problem
    
 $$\begin{array}{ccccccc}
      \min                &          &          &            & \omega_1 & +\omega_2   &    \\           
-     \mbox{s.t. }  & x_1      &+ 2x_2    &   + x_3    &+ \omega_1  &  &= 30  \\
+     {s.t. }  & x_1      &+ 2x_2    &   + x_3    &+ \omega_1  &  &= 30  \\
                          & x_1      &- 2x_2    &   + 2x_3    & & \omega_2  &= 18  \\
                          & x \geq 0 &  \omega \geq 0        &       &    &  &     \\
 \end{array}$$
@@ -1915,7 +1915,7 @@ Posmatrajući funkciju cilja i koeficijente uz varijable u (\ref{eq:dual-1}), ja
 $4 y_1 + y_2 \geq 1$ i $3 y_1 + y_2 \geq 1$. Da bi ocjena gornje granice bila što bolja u (\ref{eq:dual-1}), dakle koeficijent na desnoj strani što veći, pa je potrebno maksimizovati izraz $9y_1 + 8 y_2$, pod gore navedenim uslovima. Prema tome, početnom problemu, kojeg označavamo sa ($P$), odgovara dualni problem 
 $$\begin{array}{cccc}
      \min                    &  9 y_1 &+& 8 y_2        \\
-     \mbox{s.t. }     &  4 y_1 &+& y_2 \geq 1   \\
+     {s.t. }     &  4 y_1 &+& y_2 \geq 1   \\
                              &  3 y_1 &+& y_2 \geq 1
 \end{array}$$
 Generalno posmatrajući, za problem LP-a~(\ref{eq:LP-o1})--(\ref{eq:LP-c2}) njegov dualni problem, označen sa ($D$), je dat sa 
@@ -1990,7 +1990,7 @@ Primijetimo da koeficijenti $y^*$ posljednje vrste završne simpleks tabele odgo
 \emph{\textbf{Primjer.}} Potpuno je moguće da problem ($P$) i odgovarajući dual ($D$) nemaju dopustivo rješenje. Pogledajte sljedeći primjer:
 $$\begin{array}{cc}
     \max                      & 2 x_1 - x_2 \\
-     \mbox{s.t. }      & x_1 - x_1 \leq 1 \\
+     {s.t. }      & x_1 - x_1 \leq 1 \\
                               & -x_1 + x_2 \leq -2 \\
                              & x_1, x_2 \geq 0.
 \end{array}$$
@@ -2059,7 +2059,7 @@ odakle $x =(0, \frac{1}{4}, \frac{13}{4})$.
 \emph{\textbf{Primjer.}} Posmatrajmo problem LP-a:
 $$\begin{array}{llll}
    &\max                     &10 x_1 + 10 x_2 + 20 x_3 + 20 x_4  & \\
-   &\mbox{s.t. }      &12 x_1 + 8 x_2  + 6 x_3  + 4 x_4   & \leq 210 \\
+   &{s.t. }      &12 x_1 + 8 x_2  + 6 x_3  + 4 x_4   & \leq 210 \\
     &                        &3 x_1 + 6 x_2   + 12 x_3 + 24 x_4 & \leq 210 \\
      &                       & x_1,\ldots, x_4 \geq 0.                                 &
 \end{array}
@@ -2068,7 +2068,7 @@ Ovaj problem ima 4 varijable i 2 ograničenja. Prema tome, ima smisla razmatrati
 
 $$\begin{array}{lll}
     &\min                    &  210 y_1 + 210 y_2      \\
-    &\mbox{s.t. }     &  12 y_1  + 3   y_2 \geq 10 \\
+    &{s.t. }     &  12 y_1  + 3   y_2 \geq 10 \\
     &                        &  8  y_1 + 6    y_2 \geq 10 \\
     &                        &  6 y_1 + 12 y_2  \geq 20 \\
     &                        &  4 y_1 + 24 y_2  \geq 20 \\
@@ -2192,7 +2192,7 @@ Dakle, minimizacija izraza $-\sum_{j=1}^n x_j$ je ekvivalentna maksimizaciji pro
 	Barijerni program  primala je dat u obliku 
 	\begin{align*}
 		&\min c^T x - \mu \sum_{j=1}^n ln(x_j) \\
-		&\mbox{s.t. } A x = b \\
+		&{s.t. } A x = b \\
 		& x \geq 0
 	\end{align*}
 \end{definition}
@@ -2470,7 +2470,7 @@ Iz trečeg uslova   $x_1(\mu)=x_2(\mu)=2$, što je i optimum. Primijetimo da ovd
 Još jedna primjena teorije dualnosti u LP-u se ogleda u dokazivanju sljedeće teoreme alternativnosti.
 
 \begin{thm}
-	Neka je $A\in \mathbb{R}^{m \times n}$ matica i $c\in \mathring{R}^n$. Onda jedna i samo jedna od dva sljedeća sistema ima rješenje:
+	Neka je $A\in \mathbb{R}^{m \times n}$ matica i $c\in \mathrm{R}^n$. Onda jedna i samo jedna od dva sljedeća sistema ima rješenje:
 	\begin{enumerate}
 		\item  $Ax \geq 0$  i $c^T x < 0$; \label{case:1}
 		\item $A^T y = c$ i $y \geq 0$. \label{case:2}
@@ -3101,8 +3101,8 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
 		\hline
 		5 & 8 & 6 & 10 & 30 \\
 		\hline
-	\end{tabular}
-	Odrediti Koje od projekata treba realizovati da se maksimizuje ukupna dobit.
+	\end{tabular}  \\
+	Odrediti koje od projekata treba realizovati da se maksimizuje ukupna dobit.
 	
 	\item Zadat je skup $S$ koji se sastoji od $n$ brojeva. Koristeći tehnike cjelobrojnog linearnog programiranja, podijeliti skup $S$ na dva podskupa, tako da se zbirovi elemenata u prvom i drugom podskupu što manje razlikuju.
 	
@@ -3683,7 +3683,7 @@ sa optimalnom vrijednošću $33\frac{1}{7}$. Nakon toga treba da se donese odluk
 
 \begin{align*}
     &\max 6 x_1 + 5 x_2 \\
-    & \mbox{s.t. } \\
+    & {s.t. } \\
     & 3x_1 + x_2 \leq 11 \\
     & - x_2 + 2 x_2 \leq 5 \hspace{2cm} (P1) \\
     & x_1 \geq 3 \\
@@ -3693,7 +3693,7 @@ sa optimalnom vrijednošću $33\frac{1}{7}$. Nakon toga treba da se donese odluk
 
 \begin{align*}
     &\max 6 x_1 + 5 x_2 \\
-    & \mbox{s.t. } \\
+    & {s.t. } \\
     & 3x_1 + x_2 \leq 11 \\
     & - x_2 + 2 x_2 \leq 5 \hspace{2cm} (P2) \\
     & x_1  \leq 2 \\
@@ -3704,7 +3704,7 @@ sa optimalnom vrijednošću $33\frac{1}{7}$. Nakon toga treba da se donese odluk
 Relaksacija problem ($P1$) daje riješenje $x^*=(3,2)$, koje je cjelobrojno, pa prema tome i dopustivo u početnom problemu. Njena vrijednost je 28, što je i donja granica ($LB$) početnog problema. Relaksacija problema ($P2$) nam daje rješenje $x^*=(2, \frac{7}{2})$, čija je optimalna vrijednost $\frac{29}{2}$.  Prema tome, rješenje nije cjelobrojno. Primjenjujući metod gomorijevih odsijecajućih ravni na problem ($P2$), konstruišemo odsjecajuću ravan $2x_1 + x_2 \leq 7$ koju dodajemo u problem ($P2$) pa dobijamo problem 
 \begin{align*}
     &\max 6 x_1 + 5 x_2 \\
-    & \mbox{s.t. } \\
+    & {s.t. } \\
     & 3x_1 + x_2 \leq 11 \\
     & - x_2 + 2 x_2 \leq 5  \\
     & 2x_1 + x_2 \leq 7 \hspace{2cm} (P3)\\ 
@@ -3726,7 +3726,7 @@ Ovo ograničenje potom brišemo iz skupa ograničenja modela a zatim rješavamo 
 Ovaj problem se modeluje pomoću sljedećeg ILP-a:
  \begin{align}
     &z^*=\min\sum_{(i,j) \in E }c_{i,j}x_{i,j} \\
-    &\mbox{s.t. }\\
+    &{s.t. }\\
     & \sum_{i} x_{i,j} - \sum_{i} x_{j,i} = \begin{cases}  
                                                1, \mbox{ ako } i=1 \\
                                               -1, \mbox{ ako } i=n \\
@@ -3742,7 +3742,7 @@ Dakle, Lagranžova relaksacija problema je data sa:
 
 \begin{align*}
        &L(\lambda)= \min\sum_{(i,j) \in E }c_{i,j}x_{i,j}  + \lambda(\sum_{(i,j) \in E} t_{i,j} x_{i,j} - T ) = \min \sum_{(i,j) \in E} (c_{i,j} + t_{i,j} )x_{i,j} - \lambda T \\
-        &\mbox{s.t. }\\
+        &{s.t. }\\
     & \sum_{i} x_{i,j} - \sum_{i} x_{j,i} = \begin{cases}  
                                                1, \mbox{ ako } i=1 \\
                                               -1, \mbox{ ako } i=n \\
@@ -4298,7 +4298,7 @@ Sada možemo definisati master problem koji nastaje dodavanjem svih odsijecajuć
  			\end{aligned}$$
  		
  		\IF{Potproblem nema dopustivo rješenje}
- 		\STATE  KRAJ // nema  rješenja ?????
+ 		\STATE  KRAJ // nema  rješenja  
  		\ENDIF
  		\IF{Potproblem ima optimalno rješenje}
  		\STATE $UB \gets \min\{UB,g^Ty+(u^k)^T(c-By)\}$
@@ -5144,7 +5144,7 @@ $$\begin{aligned}
 &\sum_{j=1}^4\lambda_j=1\\
 &\lambda_1,\lambda_2,\lambda_3,\lambda_4\geqslant 0
 \end{aligned}$$
- Preformulacijom problema~(\ref{primjer:dw}) dobijamo
+ Preformulacijom problema~(\ref{primjer:dw2}) dobijamo
  
      \begin{equation}
  	\begin{aligned}\label{primjer:dw3}
