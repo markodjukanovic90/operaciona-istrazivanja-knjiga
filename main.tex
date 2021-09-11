@@ -11,6 +11,7 @@
 \newtheorem{thm}{Teorema}
 \newtheorem{lm}{Lema}
 \newtheorem{prop}{Propozicija}
+\newtheorem{poslje}{Posljedica}
 \usepackage{algorithm}
 \usepackage{algorithmic}
 \usepackage{dot2texi}
@@ -825,10 +826,11 @@ U sljedeće dvije definicije definišimo pojmove poliedra, hiperravni i polupros
 \begin{definition}
    Neka je $a\in \mathbb{R}^n $ i $b \in \mathbb{R}$. Skup $\{ x \in \mathbb{R}^n \mid a^T x = b \}$ se naziva hiperravan u $\mathbb{R}^n$ čiji je vektor  normale $a$, dok se $\{ x \in \mathbb{R}^n \mid a^T x \geq b \}$ naziva poluprostor. 
 \end{definition}
-Pokažimo sada da je poliedar konveksan skup. To je važna karakteristika, jer, kako znamo, uslovi problema LP-a se mogu zapisati kao poliedar, a kako je on konveksan skup, prethodna teorema nam kaže da postoji globalni minimum (maksimum), tj. optimalno rješenje zadanog problema LP-a (uz pretpostavku da postoji lokalni minimum).
+Pokažimo sada da je poliedar konveksan skup. To je važna karakteristika, jer, kako znamo, uslovi problema LP-a najčešće formiraju odgovarajući poliedar, a kako je on konveksan skup, prethodna teorema nam garantuje da, uz pretpostavku da postoji lokalni minimum (maksimum), tada postoji  i globalni minimum (maksimum), tj. optimalno rješenje zadanog problema LP-a.
+
 \begin{prop}Vrijede sljedeće tvrdnje: \\
   ($i$)  Poluprostor u $\mathbb{R}^n$ je konveksan skup.  \\
-  ($ii$) Presjek konačno mnogo skupova je konačan skup. 
+  ($ii$) Presjek konačno mnogo konveksnih skupova je konveksan skup. 
 \end{prop}
 
 \begin{proof}
@@ -847,21 +849,37 @@ Pokažimo sada da je poliedar konveksan skup. To je važna karakteristika, jer, 
   ($ii$) Neka su $S_1,\ldots, S_n$ konveksni skupovi. Ako $x,y \in \cap_{i=1}^n S_i$, onda slijedi da $x,y \in S_i$ za svaki $i=1,\ldots,n$. Zbog konveksnosti svakog od skupova,  
   $\lambda x + (1 - \lambda) y \in S_i$, za svaki $i=1,\ldots,n$. Prema tome, vrijedi $ \lambda x + (1-\lambda) y \in \cap_{i=1}^n S_i$, odakle slijedi da je $\cap_{i=1}^n S_i$ konveksan. 
 \end{proof}
-Kao posljedica prethodne teoreme slijedi da je poliedar $P$ konveksan skup. 
-  Definišimo $S_i:= \{ (x_1,\ldots, x_n) \in \mathbb{R}^n \mid c^T x \geq b_i \}$, za  $c = (a_{i,1}, \ldots, a_{i, n}),$  $ i=1,\ldots, m$. Kako je $\cap_{i=1}^m S_i$ poliedar koji odgovara problemu LP-a, na osnovu prethodne propozicije ($ii$) slijedi tvrdnja. 
+
+Iz prethodne teoreme slijedi sljedeća posljedica.
+
+\begin{poslje}
+Poliedar $P$ je konveksan skup.	
+\end{poslje}
+ 
+\begin{proof}
+  Definišimo $S_i:= \{ (x_1,\ldots, x_n) \in \mathbb{R}^n \mid c^T x \geq b_i \}$, za  $c = (a_{i,1}, \ldots, a_{i, n}),$  $ i=1,\ldots, m$. Kako je $\cap_{i=1}^m S_i$ poliedar koji odgovara problemu LP-a, na osnovu prethodne propozicije ($ii$), slijedi tvrdnja. 
+\end{proof}
+
+
 
 Nadalje, formalno definišimo ekstremne tačke, vrhove i bazna dopustiva rješenja koja su već ranije pomenuta u ne tako strogom obliku. 
 
+
 \begin{definition}
    Neka je $P$ poliedar u $\mathbb{R}^n$.  Vektor $x \in P$ se naziva ekstremna tačka poliedra $P$
-   ako ne postoje vektori $y, z \in P$, $y \neq x, z \neq x$ i skalar $\lambda \in [0, 1]$ takvi da je  $x = \lambda y + (1-\lambda)z$. Drugim riječima, ekstremna tačka $x$ ne leži između neke dvije tačke $y,z$ iz poliedra $P$.
+   ako ne postoje vektori $y, z \in P$, $y \neq x, z \neq x$ i skalar $\lambda \in [0, 1]$ takvi da je  $x = \lambda y + (1-\lambda)z$.
 \end{definition}
-Geometrijska interpretacija ekstremnih tačkača poliedra:  One tačke koje se ne mogu napisati kao netrivijalna konveksna kombinacija tačaka iz poliedra čine skup ekstremnih tačaka. 
+
+ Drugim riječima, ekstremna tačka $x$ ne leži između neke dvije tačke $y,z$ iz poliedra $P$.
+Možemo reći i ovako: One tačke koje se ne mogu napisati kao netrivijalna konveksna kombinacija tačaka iz poliedra čine skup ekstremnih tačaka. 
+ 
  
 \begin{definition}
    Neka je dat poliedar $P$ u $\mathbb{R}^n$. Tačku $x \in P$ nazivamo vrh (poliedra) ako postoji linearna funkcija  $c^T x$ koja je strogo minimizovana u toj tački, tj. za sve  $y\in P, y \neq x$, vrijedi $c^T x < c^T y$. 
 \end{definition}
-Geometrijski bi to značilo da je vrh poliedra $P$ ona tačka poliedra  kroz koju možemo provući hiperravan sa svojstvom da se sve tačke iz $P$ (izuzev vrha) nalaze sa iste strane te poluravni.
+Geometrijski posmatrano,  vrh poliedra $P$ je ona tačka poliedra  kroz koju možemo provući hiperravan sa svojstvom da se sve tačke iz $P$ (izuzev vrha) nalaze sa iste strane te poluravni.
+
+Uvedimo sada nekoliko novih pojmova koji će nam pomoći da definišemo bazno dopustivo rješenje.
 
 \begin{definition}\label{dfn:lp_aktivan}
    Neka je poliedar $P$ zadan na sljedeći način
@@ -871,7 +889,7 @@ Geometrijski bi to značilo da je vrh poliedra $P$ ona tačka poliedra  kroz koj
        \item $a_i^T x \leq b_i, i \in C_3 $. 
    \end{itemize}
    Ako za neko $x^* \in P$ i neki $i_0 \in C_1 \cup C_1 \cup C_2$ vrijedi 
-   $a_{i_0}^T x^* = b_{i_0}$, onda je ograničenje $i_0$ aktivan u $x^*$. 
+   $a_{i_0}^T x^* = b_{i_0}$, onda je indeks $i_0$ aktivan u $x^*$. 
 \end{definition}
 
 \begin{definition}
@@ -882,7 +900,8 @@ Geometrijski bi to značilo da je vrh poliedra $P$ ona tačka poliedra  kroz koj
 \begin{definition}
 	 Bazno dopustivo rješenje $x^*$ je bazno rješenje koje zadovoljava  uslove linearnog programa. 
 \end{definition}
-Pokažimo sada da su vrhovi, ekstremne tačke poliedra i bazna dopustiva rješenja jedno te isto kada je riječ o LP-u.
+Pokažimo sada da su vrhovi, ekstremne tačke poliedra i bazna dopustiva rješenja predstavljaju istu stvar kada je riječ o LP-u.
+
 \begin{thm}
    Neka je $P$ poliedar i neka je $x^* \in P$. Sljedeće tri tvrdnje su ekvivalentne:
    \begin{enumerate}
@@ -893,16 +912,18 @@ Pokažimo sada da su vrhovi, ekstremne tačke poliedra i bazna dopustiva rješen
 \end{thm}
 
 \begin{proof}
-      Pokažimo da vrijedi $1 \Rightarrow 2, 2 \Rightarrow 3$, pa onda $3 \Rightarrow 1$, čime ćemo pokazati ekvivalenciju sve tri tvrdnje. \\
+      Pokažimo da vrijedi $1 \Rightarrow 2, 2 \Rightarrow 3$, pa onda $3 \Rightarrow 1$, čime ćemo pokazati ekvivalenciju sve tri tvrdnje.
+      
       $1 \Rightarrow 2$. Neka je $x^*$ vrh poliedra. Iz definicije slijedi da 
-      postoji $c\in \mathbb{R}^n$ tako da $c^Tx^* < c^T x$, za sve $x \in P, x \neq x^*$. Pretpostavimo da $x^*$ nije ekstremna tačka poliedra $P$. To bi značilo da postoje $y,z \in P$ koji su ražličiti od $x^*$ koji se može dobiti kao (netrivijalna) konveksna kombinacija $y$ i $z$ (oba različita od $x^*$), tj. $x^* = \lambda y + (1 - \lambda) z $, za $\lambda \in [0,1 )$. Na osnovu pretpostavke je $c^T x^* < c^T y$. Sada je 
+      postoji $c\in \mathbb{R}^n$ tako da $c^Tx^* < c^T x$, za sve $x \in P, x \neq x^*$. Pretpostavimo da $x^*$ nije ekstremna tačka poliedra $P$. 
+      To bi značilo da postoje $y,z \in P$, koji su različiti od $x^*$, takvi da se $x^*$ može predstaviti kao njihova (netrivijalna) konveksna kombinacija, tj. $x^* = \lambda y + (1 - \lambda) z $, za $\lambda \in (0,1 )$. Na osnovu pretpostavke je $c^T x^* < c^T y$. Sada je 
       \begin{align}
           &c^T x^* = c^T ( \lambda y + (1 - \lambda) z )  = c^T( \lambda y) + c^T((1- \lambda) z) < \nonumber \\
           &< \lambda c^T x^* + ( 1 - \lambda) c^T x^* = c^T x^*.
       \end{align}
-      što je nemoguće, odakle slijedi tvdrnja. \\
+      što je nemoguće, odakle slijedi tvrdnja. \\
       $2 \Rightarrow 3$.
-       Ovu implikaciju ćemo dokazati kontrapozicijom. Pretpostavimo da $x^*$ nije BDR i pokažimo da iz toga slijedi da ona nije ni ekstremna tačka.
+       Ovu implikaciju ćemo dokazati kontrapozicijom. Pretpostavimo da tačka $x^*$ nije BDR i pokažimo da iz toga slijedi da ona nije ni ekstremna tačka.
        Zapišimo poliedar $P$ sa 
        \begin{align}
             & a_i^T x \geq b_i, i \in C_1 \\
@@ -928,8 +949,8 @@ Pokažimo sada da su vrhovi, ekstremne tačke poliedra i bazna dopustiva rješen
      Iz toga vidimo da je $x^*$ rješenje LP problema minimizacije. Jednakost u (\ref{eq:3_impl_1}) vrijedi ako i samo ako je $a_i^T x = b_i$ za sve $i \in I$. Kako je $x^*$ BDR, broj linearno nezavisnih vektora $a_i, i \in I$ koji su  aktivni u $x^*$ je jednak $n$, pa sistem $a_i^T x = b_i, i \in I$ ima jedinstveno rješenje koje je upravo $x^*$. Prema tome, pokazano je da postoji vektor $c \in \mathbb{R}^n$ za koji vrijedi $c^T x > c^T x^*$ za sve $x \neq x^*$, $x \in P$, odake na osnovu definicije vrha poliedra, slijedi tvrdnja. 
 \end{proof}
 
-U nastavku ćemo vidjeti koji sve uslovi treba da vrijede za postojanje BDR-a
-i ekstremne tačke poliedra. Takođe ćemo dati postupak za konstrukciju BDR-a te ćemo definisati pojam degenerativnog rješenja.
+U nastavku ćemo vidjeti koji uslovi treba da vrijede za postojanje BDR-a
+i ekstremne tačke poliedra. Takođe, daćemo i postupak za konstrukciju BDR-a, te ćemo definisati pojam degenerativnog rješenja.
 
 \begin{thm}
    Neka je $P = \{ x \in \mathbb{R}^n \mid A x = b, x \geq 0\}, A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m$ i $rang(A)= m, m < n$.
@@ -940,7 +961,7 @@ i ekstremne tačke poliedra. Takođe ćemo dati postupak za konstrukciju BDR-a t
    \end{enumerate}
    
 \end{thm}
-Prema tome, da bi  konstruisali bazno rješenje, radimo sljedeće
+Prema tome, da bismo  konstruisali bazno rješenje, radimo sljedeće:
 \begin{enumerate}
     \item Odaberemo $m$ linearno nezavisnih kolona $A_{p_1}, \ldots, A_{p_m}$ matrice $A$.
     %\item Postavimo $x_i = 0$, za sve $i \in \{p_1,\ldots, p_m \}$.
@@ -973,16 +994,16 @@ $A=\left (\begin{array}{ccc}
    -1  & 1    \\
    1  &  1   \\
 \end{array} \right ) .$ Riješimo sistem jednačina (stavka 3), odakle je rješenje $x_B = [1\ 1]^T$, a krajnje rješenje je $x^* = [1\ 1\ 0]^T$. Kako je 
-$x^*$ aktivan u sva tri uslova $x_2 - x_1 = 0, x_1 + x_2 +  x_3 = 2$ i $x_3 = 0$, rješenje je nedegenerativno bazno dopustivo rješenje.  Takođe, možemo odabrati drugu i treću kolonu matrice za bazne kolone (kao i prvu i treću), odakle bi dobili rješenje $x^* = [0\ 0\ 2]^T$, aktivno u četiri uslova, odakle smo dobili degenerativno bazno dopustivo rješenje. 
+$x^*$ aktivan u sva tri uslova $x_2 - x_1 = 0, x_1 + x_2 +  x_3 = 2$ i $x_3 = 0$, rješenje je nedegenerativno bazno dopustivo rješenje.  Takođe, možemo odabrati drugu i treću kolonu matrice za bazne kolone (kao i prvu i treću), odakle bismo dobili rješenje $x^* = [0\ 0\ 2]^T$, aktivno u četiri uslova, pa smo dobili degenerativno bazno dopustivo rješenje. 
 
 
-U nastavku govorimo o egzistenciji optimalnog rješenja problema LP-a.
+U nastavku govorimo o egzistenciji optimalnog rješenja problema LP-a. U narednoj definiciji objašnjavamo šta znači da poliedar $P$ sadrži pravac.
 
 \begin{definition}
       Poliedar $P$ sadrži pravac akko postoji $x \in P$ i $d \in \mathbb{R}^n \setminus \{0\}$ tako da je $x + \lambda d \in P$, za sve $\lambda \in \mathbb{R}$. 
 \end{definition}
 
-Sljedeću teoremu koja daje vezu između ekstremnoh tačaka poliedra i dopustivih pravaca navodio bez dokaza.
+Sljedeću teoremu, koja daje vezu između ekstremnih tačaka poliedra i dopustivih pravaca, navodimo bez dokaza.
 
 \begin{thm}
    Neka je dat poliedar $P=\{ x \in \mathbb{R}^n  \mid a_i^T x \geq b_i, i=1,\ldots,m\} $. Tada su sljedeće tri tvrdnje ekvivalentne:
@@ -993,40 +1014,43 @@ Sljedeću teoremu koja daje vezu između ekstremnoh tačaka poliedra i dopustivi
    \end{itemize}
 \end{thm}
 
+Sljedeća teorema nam daje dovoljan uslov za postojanje optimalnog rješenja koje je  ekstremna tačka poliedra.
+
 \begin{thm}
    Neka je zadan problem LP-a sa funkcijom cilja $c^Tx$ koju je potrebno minimizovati na poliedru $P$. Pretpostavimo da za poliedar $P$ postoji barem jedna ekstremna tačka i da za dati problem postoji optimalno rješenje. Tada postoji i optimalno rješenje koje je ekstremna tačka poliedra $P$.
 \end{thm}
 
 \begin{proof}
          Sa $O^* \not = \emptyset$ označimo skup svih optimalnih rješenja LP problema nad poliedrom $P= \{ x \in \mathbb{R}^n \mid A x \geq b \}$ te neka je $c^T x^* = v$, za sve $x^* \in O^*$. Vidimo da je 
-         $O^* = \{ x \in \mathbb{R}^n \mid A x \geq b_i, c^T x = v  \}$ je takođe poliedar, $O^* \subset P$. Prethodna teorema nam kaže da $P$ ne sadrži pravac. Iz toga slijedi da ni $O^*$ nema pravac, odakle slijedi da $O^*$ ima barem jednu ekstremnu tačku, označimo je sa $q^*$. Pokažimo da je to i ekstremna tačka od $P$.  Ako bi pretpostavili da $q^*$ nije ekstremna tačka, po definiciji slijedi da postoje $y, z \in P$ tako da $q^* = \lambda y + ( 1 - \lambda ) z $, $y \neq q^*, z \neq q^*, \lambda \in [0, 1]$. Kako je $q^* \in O^*$, imamo 
+         $O^* = \{ x \in \mathbb{R}^n \mid A x \geq b_i, c^T x = v  \}$ je takođe poliedar, $O^* \subset P$. Prethodna teorema nam kaže da $P$ ne sadrži pravac. Iz toga slijedi da ni $O^*$ nema pravac, odakle slijedi da $O^*$ ima barem jednu ekstremnu tačku, označimo je sa $q^*$. Pokažimo da je to i ekstremna tačka od $P$.  Ako bismo pretpostavili da $q^*$ nije ekstremna tačka poliedra $P$, po definiciji slijedi da postoje $y, z \in P$ tako da $q^* = \lambda y + ( 1 - \lambda ) z $, $y \neq q^*, z \neq q^*, \lambda \in [0, 1]$. Kako je $q^* \in O^*$, imamo 
          $$ v = c^T q^* = c^T (  \lambda y + ( 1 - \lambda ) z ) = \lambda 
         \underbrace{ c^T y}_{ \geq v} + ( 1 - \lambda ) \underbrace{c^T z}_{\geq v} \geq \lambda v + (1 - \lambda) v = v,$$
-        odakle imamo $c^T y = v$ i $c^T z = v$, dakle $y, z \in O^*$. Prema tome, $q^*$ nije ekstremna tačka od $O^*$. Prema tome, imam kontradikciju, odakle slijedi da je $q^*$  ekstremna tačka od  $P$.
+        odakle imamo $c^T y = v$ i $c^T z = v$, dakle $y, z \in O^*$. Prema tome, $q^*$ nije ekstremna tačka od $O^*$. Prema tome, imamo kontradikciju, odakle slijedi da je $q^*$  ekstremna tačka od  $P$.
 \end{proof}
  
- Sljedeća stavka nam daje osnov za konstrukciju simpleks metoda koji je najpoznatija metoda za rješavanje problema LP.
+ Ova važna tvrđenja nam daju osnov za konstrukciju simpleks metoda koji je, kao što smo već pomenuli, jedna od najpoznatijih i najefikasnijih metoda za rješavanje problema LP.
  
 % \begin{thm}
  Ako  rješavamo problem minimizacije LP-a na poliedru $P$ koji ima barem jednu ekstremnu tačku, tada vrijedi tačno jedna od sljedeće dvije tvrdnje:
    \begin{enumerate}
-       \item Funkcija cilja ima vrijednost $- \infty$ (neograničen).
-       \item Postoji ekstremna tačka koja je optimum problema. 
+       \item Funkcija cilja ima vrijednost $- \infty$ (funkcija cilja je neograničena).
+       \item Postoji ekstremna tačka u kojoj funkcija cilja dostiže optimalno rješenje. 
    \end{enumerate}
 % \end{thm}
-To nam daje opravdanost ideje simpleks metode koja uvijek posjećuje vrhove poliedra 
-da bi našao optimalno rješenje problema LP-a. Metodu konstruišemo u narednoj glavi.
+Kako ćemo vidjeti u narednom poglavlju, upravo  ove tvrdnje opravdavaju ideju simpleks metode, koja uvijek posjećuje vrhove poliedra 
+u cilju pronalaska optimalnog rješenje problema LP-a.
 
 \section{Neke tehnike modelovanja problema Linearnog Programiranja}
 
-\emph{Apsolutna funkcija}.   Recimo da imamo model dat sa 
+\emph{Apsolutna funkcija}.   Pretpostavimo da imamo model dat sa 
 \begin{align*}
 	&\min \sum_{j \in J} c_j |x_j| \\
 	& \sum_{j\in J} a_{ij} x_j \leq b_i, \forall i\in I \\
 	& x_i \in \mathbb{R}, \forall i \in I.
-\end{align*}  
-Transformacija ovakvog modela ide na sljedeći način: 
-svaka slobodna varijabla se može napisati kao razlika dvije pozitivne vrijednosti, tj.  $x_i = x_i^+ - x_i^-$, dok apsolutna vrijednost kao zbir dvije pozitivne varijable, tj. $|x_i|= x_i^+ + x_i^-$. Prema tome, prethodni model transformisemo u 
+\end{align*} 
+
+Kao što znamo, apsolutna vrijednost nije linearna funkcija, ali se ovaj model može transformisati u model linearnog programiranja na sljedeći način: 
+svaka slobodna varijabla se može napisati kao razlika dvije pozitivne vrijednosti, tj.  $x_i = x_i^+ - x_i^-$, a apsolutna vrijednost kao zbir dvije pozitivne varijable, tj. $|x_i|= x_i^+ + x_i^-$. Prema tome, prethodni model transformisemo u 
 \begin{align*}
 	&\min \sum_{j \in J} c_j  (x_i^+ + x_i^-) \\
 	&\sum_{j\in J} a_{ij} (  x_i^+ - x_i^- ) \leq b_i, \forall i\in I \\
