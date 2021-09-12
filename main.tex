@@ -6282,12 +6282,49 @@ U našem primjeru, pojavu nedopustivih rješenja, dakle, možemo riješiti autom
 Imajući u vidu prethodno razmatranje o nedopustivim rješenjima, funkcija prilagođenosti može biti definisana i drugačije, tj. mogla bi da sadrži i dio vezan za  ``kažnjavanje'' nedopustivih rješenja, po nekom od predloženih (ili drugih) principa. Time bi nedopustiva rješenja bila uključena u pretragu.
 
 \emph{Operator ukrštanja}. Kao što je već pomenuto, osnovni operatori ukrštanja su tzv. jednopoziciono i dvopoziciono ukrštanje. Na našem primjeru ćemo objasniti  jednopoziciono ukrštanje, koje bi moglo biti realizovano na sljedeći način:
-\begin{figure}
-	\caption{Primjer operatora ukrštanja}
-\end{figure}
+\begin{table}[H]
+	\centering
 
-Preciznije, dva rješenja: 1100100 i 0100011 - koje u ovom slučaju posmatramo kao jedinke roditelje, produkuju dva nova rješenja (dva potomka), tako što se lijevi dio genetskog koda prvog roditelja spaja sa desnim dijelom genetskog koda drugog roditelja i obrnuto, lijevi dio genetskog koda drugog roditelja se ukršta sa desnim dijelom prvog roditelja. 
-Treba napomenuti da se primjenom ovakvog operatora ukrštanja takođe mogu dobiti potomci koji su nedopustive jedinke (bez obzira na to da li su jedinke roditelja dopustive ili ne), a njihova dalja egzistencija u populaciji ponovo zavisi od načina konstruisanja funkcije prilagođenosti.
+\begin{tabular}{ccccc}
+              &	Prije ukrštanja: &    &  Poslije ukrštanja:   \\
+   Jednika 1: &	XXX $\mid$ XXXX  &    &   XXXYYYY             \\
+   Jedinka 2:&	YYY $\mid$ YYYY  &    &   YYYXXXX             \\
+\end{tabular}
+	\caption{Primjer operatora ukrštanja: jednopoziciono ukrštanje.}
+\end{table}
+U ovom generičkom primjeru možemo vidjeti jednopoziciono ukrštanje u pozicijama $(3, 3).$  Specifičnije, pretpostavimo da imamo dva rješenja (jedinke) konstruisane u algoritamskom procesu: 1100100 i 0100011. Na osnovu jednopozicionog ukrštanja, one produkuju dva nova rješenja (dva potomka), tako što se lijevi dio genetskog koda prvog roditelja spaja sa desnim dijelom genetskog koda drugog roditelja i obrnuto, lijevi dio genetskog koda drugog roditelja se ukršta sa desnim dijelom prvog roditelja. 
+Treba napomenuti da se primjenom ovakvog operatora ukrštanja takođe mogu dobiti potomci koji su nedopustive jedinke (bez obzira na to da li su jedinke roditelja dopustive ili ne), a njihova dalja egzistencija u populaciji ponovo zavisi od načina konstruisanja funkcije prilagođenosti. 
+
+Kod dvopozicionog ukrštanja postoje dvije pozicije u svakoj od jedinki na osnovu kojih se radi ukrštanje. Generička procedura ovakvog ukrštanja je data sljedećom tabelom: 
+\begin{table}[H]
+	\centering
+	
+	\begin{tabular}{ccccc}
+		&	Prije ukrštanja: &    &  Poslije ukrštanja:                         \\
+		Jednika 1: &	XXX $\mid$ XXXX $\mid$ XX  &    &   XXXYYYYXX             \\
+		Jedinka 2 :&	YYY $\mid$ YYYY $\mid$ YY  &    &   YYYXXXXYY             \\
+	\end{tabular}
+	\caption{Primjer operatora ukrštanja: dvopoziciono ukrštanje.}
+\end{table}
+
+U ovom primjeru ukrštanje je izvedeno u pozicijama $(3,7)$ prve jedinke i pozicijama $(3, 7)$ druge jedinke. Kao i kod jednopozicionog ukrštanja i ovdje je moguće da novonastale jedinke ne budu dopustive. 
+
+Kod uniformnog ukrštanja, za svaki par jedinki koje se ukrštaju, prvo se generiše maska na slučajan način, tj. binarni niz dužine genetskog koda jedinki. Ukoliko je na poziciji $i$ generisane maske vrijednost 1, onda prvi potomak za $i$-ti gen uzima vrijednosti prve jedinke, dok je $i$-ti gen druge jedinke vrijednost $i$-tog gena druge jedinke. Inače, vrijedi obrnita situacija. Jedan primjer ovakvog ukrštanja je data sljedećom tabelom: 
+
+\begin{table}[H]
+	\centering
+	
+	\begin{tabular}{cc}
+		Maska:      &   110001100   \\
+		Jednika 1:  &	XXXXXXXXX   \\ 
+		Jedinka 2 : &	YYYYYYYYY   \\
+		Poslije ukrštanja:  &       \\ \hline
+		            &  XXYYYXXYY    \\
+		            &  YYXXXYYXX    \\
+	\end{tabular}
+	\caption{Primjer operatora ukrštanja: uniformno ukrštanje.}
+\end{table}
+
 
 \emph{Mutacija}. Kao što je pomenuto, mutacije podrazumijevaju male promjene u genetskom kodu, čija je osnovna namjena izlazak iz lokalnih suboptimalnih rješenja i omogućavanje dalje pretrage u cilju pronalaženja boljih rješenja. Najčešće se mutacija realizuje kao promjena vrijednosti jednog gena. U našem slučaju, u zavisnosti od drugih elemenata algoritma, mogao bi se konstruisati veći broj različitih operatora mutacije: 
 \begin{itemize}
@@ -6296,13 +6333,16 @@ Treba napomenuti da se primjenom ovakvog operatora ukrštanja takođe mogu dobit
 	\item  Mutacija 3: dva gena različitih vrijednosti mijenjaju svoje vrijednosti. Preciznije, biraju se dva gena, od kojih jedan ima vrijednost 0, a drugi ima vrijednost 1, te prvi gen mijenja vrijednost na 1, a drugi na 0. Time se postiže da se, simultano, jedan proizvod, koji nije bio u rješenju, uključuje u rješenje, a drugi proizvod, koji je prije mutacije bio u rješenju, sada izbacuje iz rješenja. Kao i u prethodnim slučajevima, i ovdje je, na sličan način, potrebno razmatrati potencijalnu nedopustivost novonastale jedinke.
 \end{itemize}
 
-
-
-
-
-\begin{figure}
-	\caption{Primjer operatora mutacije}
-\end{figure}
+\begin{table}[H]
+	\centering
+	\begin{tabular}{lc}
+		Maska:  & 10001000100  \\
+		Jedinka: & 11001001000  \\
+		Nakon mutacije &       \\
+		               & 01000001100      \\
+	\end{tabular}	
+	\caption{Primjer operatora mutacije (uniformno mutiranje)}
+\end{table}
 
 \emph{Operator selekcije}. Da bismo ilustrovali princip rada najjednostavnije rulet selekcije, naprije pretpostavimo da je funkcija prilagođenosti jednaka vrijednosti funkcije cilja. Dalje, posmatrajmo populaciju od 4 jedinke, prikazane u Tabeli~\ref{tab:rulet}.
 
