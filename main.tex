@@ -992,7 +992,7 @@ Varijable $x_{p_1},\ldots, x_{p_m}$ nazivamo \emph{bazne varijable}, a vektore  
 Definišimo sada pojam \emph{degenerativnog} rješenje i degenerativnog baznog rješenja. Pokazaćemo kako se na primjeru pronalazi bazno rješenje te kako izgleda degenerativno bazno rješenje.
 
 \begin{definition}
-      Neka je dat poliedar $P = \{ x \in \mathbb{R}^n \mid a_i^T x \geq b_i, i=1,\ldots,m \}$. Za bazno rješenje $x^*\in \mathbb{R}^n$ kažemo da je degenerativno ako je više od $m$  ograničenja aktivno u $x^*$. 
+      Neka je dat poliedar $P = \{ x \in \mathbb{R}^n \mid a_i^T x \geq b_i, i=1,\ldots,m \}$. Za bazno rješenje $x^*\in \mathbb{R}^n$ kažemo da je degenerativno ako je više od $n$  ograničenja aktivno u $x^*$. 
       
 \end{definition}
 
@@ -1012,7 +1012,7 @@ $A=\left (\begin{array}{ccc}
 $x^*$ aktivan u sva tri uslova $x_2 - x_1 = 0, x_1 + x_2 +  x_3 = 2$ i $x_3 = 0$, rješenje je nedegenerativno bazno dopustivo rješenje.  Takođe, možemo odabrati drugu i treću kolonu matrice za bazne kolone (kao i prvu i treću), odakle bismo dobili rješenje $x^* = [0\ 0\ 2]^T$, aktivno u četiri uslova, pa smo dobili degenerativno bazno dopustivo rješenje. 
 
 
-U nastavku govorimo o egzistenciji optimalnog rješenja problema LP-a. U narednoj definiciji objašnjavamo šta znači da poliedar $P$ sadrži pravac.
+U nastavku govorimo o egzistenciji optimalnog rješenja problema LP-a. U narednoj definiciji objašnjavamo pojam pravca u poliedru.
 
 \begin{definition}
       Poliedar $P$ sadrži pravac akko postoji $x \in P$ i $d \in \mathbb{R}^n \setminus \{0\}$ tako da je $x + \lambda d \in P$, za sve $\lambda \in \mathbb{R}$. 
