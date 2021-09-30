@@ -555,7 +555,7 @@ Prije toga, za početak, razmotrimo bilo koji problem LP-a sa dopustivim rješen
 
 Ako su sve varijable u problemu LP-a cjelobrojne, riječ je o problemima \emph{Cjelobrojnog programiranja}. Ako pored cjelobrojnih, postoje i neke varijable koje su neprekidne, riječ je o problemima \emph{Mješovitog--cjelobrojnog linearnog programiranja}. Veliki broj realnih problema koji dolaze iz prakse su upravo problemi Mješovitog--cjelobrojnog linearnog programiranja.
 
-\section{Modelovanje nekih Problema paradigmama Matematičkog Programiranja}\label{sec:modeli_lp}
+\section{Modelovanje nekih Problema paradigmom Linearnog Programiranja}\label{sec:modeli_lp}
 
 \emph{Problem optimalne prehrane.} Pretpostavimo da su nam na raspolaganju namirnice $N_1, \ldots, N_n$. Cijena namirnice $N_j$ po jedinici je $c_j, j = 1, \ldots, n$. U namirnicama su prisutni nutritivni elementi $e_j,j=1,\ldots,m$ pri čemu
 u namirnici $N_j$ ima $a_{ij}$ nutritivnog elementa $e_i$, $i = 1, \ldots, n$, $j = 1, \ldots, m$. Svaka osoba u toku dana treba da unese barem $b_i$
@@ -593,143 +593,7 @@ za sve $i = 1, \ldots, n$ gdje je
 $w_i = z_i, i=1,\ldots,n$, $w_{n+1} = k, w_{n+2} = l$, dok 
 $c_i = 1, i=1,\ldots,n$, i $c_{n+1} = 0, c_{n+2} = 0$. 
 
-\emph{Problem rasporeda}. Uprava bolnice želi da napravi raspored dežurstva po sedmičnim noćnim smjenama za svoje medicinske sestre. Potrebno je da broj medicinskih sestara za noćnu smjenu na $j$--ti dan bude barem (cio broj) $d_j, j = 1,\ldots 7$. Svaka
-medicinska sestra radi pet dana zaredom u noćnoj smjeni. 
 
-\emph{Zadatak: Pronaći minimalan broj medicinskih sestara koje bolnica treba zaposliti da bi se mogle napraviti takve smjene.}
-
-\emph{Rješenje}. Označimo sa $x_i$ broj medicinskih sestara koje radnu smjenu započinju na $i$-ti dan. Potrebno je minimizovati funkciju 
-$f = \sum_{i=1}^7 x_i$ pod uslovima da su ispunjeni zahtjevi za brojem medicinskih sestara, što je modelovano sa:
-\begin{itemize}
-    \item $x_1 + x_2 + x_3 + x_4 + x_5 \geq d_5 $
-    \item $x_2 + x_3 + x_4 + x_5 + x_6 \geq d_6$
-    \item $x_3 + x_4 + x_5 + x_6 + x_7 \geq d_7$
-    \item $x_4 + x_5 + x_6 + x_7 + x_1 \geq d_1 $
-    \item $x_5 + x_6 + x_7 + x_1 + x_2 + x_3 \geq d_2$
-    \item $x_6 + x_7 + x_1 + x_2 + x_3 + x_4 \geq d_3$
-    \item $x_6 + x_7 + x_1 + x_2 + x_3 + x_4 \geq d_4$
-\end{itemize}
-uz nenegativne uslove 
-\begin{itemize}
-    \item $x_i \geq 0, x_i \in \mathbb{Z}$, $j=1,\ldots,7.$
-\end{itemize}
-Primijetimo da u ovom problemu varijable moraju da budu cjelobrojne, te je ovo model cjelobrojnog linearnog programiranja.
-
-\emph{Problem oglašavanja}. Kompanija želi da se oglašava u medijima. Postoji nekoliko alternativa oglašavanja:  televizijsko, novinsko i radio oglašavanje. Cijena svakog medija sa pokrivenošću publike navedena je u sljedećoj tabeli.
-
-\begin{table}[!ht]
-    \centering
-    \begin{tabular}{l|c|c|c} \hline
-                 \                  & Televizija & Novine & Radio  \\ \hline
-         Cijena po oglašavanju      & 2000       & 600    & 300    \\
-         Broj gledalaca/slušalaca/čitalaca      & 1000      & 4000  & 1800 \\ \hline
-    \end{tabular}
-    \caption{Cijene reklama sa brojem gledalaca/slušalaca/čitalaca.}
-    \label{tab:tab_model_advertising}
-\end{table}
-
-Novine ograničavaju broj oglasa za kompaniju na deset (po sedmici). Štaviše, kako bi se uravnotežilo oglašavanje između sve tri vrste medija, na radiju se ne smije pojaviti više od polovine ukupnog broja oglasa za kompaniju. Najmanje 10\% od svih oglasa bi se trebalo pojaviti na televiziji. Sedmični budžet za oglašavanje iznosi 18.200. 
-
-\emph{Zadatak: Koliko oglasa treba zakupiti u svakoj od tri vrste medija u cilju povećavanja ukupnog broja gledalaca kompanije?}
-
-\emph{Rješenje}.   Označimo sa $x_1$ broj oglasa na televiziji, sa $x_2$ broj oglasa u novinama i $x_3$ broj oglasa na radiju. Potrebno je maksimizovati   uspješnost oglašavanja, tj. funkciju 
-$f(x) = 10 x_1 + 4 x_2 + 1.8 x_3.$ Uslovi pod kojima tražimo rješenja su modelovani na sljedeći način:
-\begin{itemize}
-    \item $2000 x_1 + 600 x_2 + 300 x_3 \leq 18.200$ (uslov za cijenu);
-    \item  $ x_2 \leq 10$ (limit na broj reklama u novinama)
-    \item $x_1 + x_2 \geq x_3$ (uslov za maksimalno polovinu oglašavanja na radiju) 
-    \item ${x_1}\geq 0.1\cdot (x_1 + x_2 + x_3)$ (uslov za broj reklama na televiziji)
-    \item $x_i \geq 0, x_i \in \mathbb{Z}, i=1,2,3$.
-\end{itemize}
-
-U ovom problemu možemo još primijetiti da u funkciji cilja   
-nisu korišteni egzaktni koeficijenti (za broj gledalaca) već brojevi koji su proporcionalni nekoj vrijednosti (1000). Takve transformacije su invarijantne i ne utiču na potragu za optimalnim rješenjem  problema, a doprinose čitljivosti modela.
-
-
-%https://www.math.unipd.it/~luigi/courses/metmodoc1819/m01.modelli.00.en.pdf
-\emph{Problem pokrivanja}. Telefonska kompanija želi da instalira antene na neka mjesta kako bi pokrila šest oblasti. Postoji pet mjesta za antene. Nakon nekih simulacija, za svaku oblast utvrđen je intenzitet signala koji antena šalje, postavljena na određenom mjestu. Tabela~\ref{tab:tb-3} daje   primjer jedne instance problema sa nivoima intenziteta signala.
-
-\begin{table}[!ht]
-    \centering
-    \begin{tabular}{c|cccccc} \hline
-     \              & oblast1 & oblast 2 & oblast 3 & oblast 4 & oblast 5 & oblast 6 \\ \hline
-     Mjesto $A$     & 10  & 20 & 16 & 25 & 0   & 10   \\
-     Mjesto $B$     & 0   & 12 & 18 &  23 & 11 & 6   \\
-     Mjesto $C$     & 21  &  8 & 5  &  6 & 23  &  19 \\
-     Mjesto $D$    &  16 &  15 & 15 &  8 & 14 & 18   \\
-     Mjesto $E $    &  21 & 13 & 13 & 17 & 18  & 22    \\ \hline
-    \end{tabular}
-    \caption{Intenziteti signala.}
-    \label{tab:tb-3}
-\end{table}
-
-Prijemnici prepoznaju samo signale čija je udaljenost najmanje   $d$. Nadalje, nije moguće imati više od jednog signala koji dostiže udaljenost $d$ u istoj oblasti, inače bi to moglo da prouzrokuje smetnje. %Na kraju, antena se može postaviti na mjesto $E$ samo ako je antena instalirana i na mjestu $D$ (ova antena bi služila kao most). 
-Kompanija želi da odredi gdje treba postaviti antene kako bi se pokrio maksimalanan broj oblasti sa signalom. 
-
-%https://www.math.unipd.it/~luigi/courses/metmodoc1920/m01.modelli.00.en.beamer.pdf
-\emph{Rješenje}. Posmatrajmo ovaj problem malo opštije i definišimo: 
-\begin{itemize}
-    \item $I$: skup mjesta;
-    \item $J$: skup oblasti;
-    \item $\sigma_{ij}$ : indikator nivoa signala antene   smještene u mjestu $i \in I$ u oblasti $j \in J$;
-    \item $d$: parametar koji označava minimalni nivo signala koji je neophodan;
-    \item $N$: parametar koji označava maksimalni broj signala iznad granice koju prijemnik može da prepozna (u našoj instanci imamo da je $N=1$);
-    \item $x_i$: binarna varijabla koja uzima vrijednost 1 ako je antena smještena u mjestu $i\in I$, 0 inače;
-    \item  $z_j$ : binarna varijabla koja uzima vrijednost 1 ako je oblast $j \in J$ pokrivena signalom, 0 inače;
-    \item $M_j$: dovoljno veliki parametar, npr. za svako mjesto $j \in J$, $M_j= card(\{ i \in I \mid \sigma_{ij} \geq d\})$.
- \end{itemize}
-Formulišimo sada (cjelobrojni) linearni program ovog problema. 
-Funkcija cilja je data sa:
-$$ f(x) = \sum_{j \in J} z_j \rightarrow \min $$
-pod sljedećim uslovima 
-\begin{itemize}
-    \item  $ \sum_{\{i \in I \mid \sigma_{ij} \geq d \}} x_i \geq z_i, \forall j \in J $ (barem jedna antena treba da bude uključena da bi se oblast pokrila signalom)
-    \item $ \sum_{\{i \in I \mid \sigma_{ij} \geq d \}} x_i  \leq N + M_j( 1 - z_j), \forall j \in J $ (maksimalan broj signala koje prijemnici mogu obraditi)  
-    \item $x_i, z_j \in\{0, 1\}, \forall i \in I, \forall j \in J$
-\end{itemize}
-%\printbibliography[heading=subbibliography,notkeyword=this]
-
-\emph{Problem lokacija}. Problemi s lokacijom često se postavljaju na sljedeći način: pretpostavimo da postoji $n$ postrojenja (prodavnica)  i  $m$ kupaca. Dva pitanja treba da budu riješena:
-\begin{enumerate}
-    \item koji od $n$ postrojenja otvoriti i
-     \item koje  postrojenje koristiti za opsluživanje kojeg od kupaca, kako bi se zadovoljila fiksna potražnja svakog od kupaca uz minimalni trošak otvaranja postrojenja.
-\end{enumerate}
-Uvedimo sljedeću notaciju.
-\begin{itemize}
-    \item  $f_{i}$: označava (fiksni) trošak otvaranja postrojenja $i$, za  $ i = 1,  \ldots, n$;
-    \item $c_{ij}$: označava troškove zadovoljenja potražnje  kupca $j$ od strane postrojenja $j$ (cijena dostave, cijena proizvoda itd.), $i = 1, \ldots, n$, $j = 1,  \ldots, m$;
-    \item $d_{j}$: označava potražnju kupca $j$ za $j = 1, \ldots, m$;
-    \item $u_{i}$: označava maksimalnu količinu proizvoda koji se mogu proizvesti u postrojenju $i$, tj. $u_{i}$ označava kapacitet objekta $i$.
-\end{itemize}
-
-\emph{Rješenje}. Funkcija cilja ima sljedeći oblik:
-$$ f(x) = \sum_{i=1}^n f_i x_i  + \sum_{i,j} c_{ij} y_{ij} d_j,$$
-gdje je
-\begin{itemize}
-    \item $x_i$: binarna varijabla koja ozačava da li je (1) ili nije (0) otvoreno postrojenje $i$;
-    \item $y_{ij} \in \mathbb{R}^+$ realna varijabla, koja označava dio potražnje $d_j$ kupca $j$ ostvarena iz prodavnice $i$.
-\end{itemize}
-Ograničenja ovog modela su sljedeća:
-\begin{itemize}
-    \item $\sum_{i} y_{ij} = 1, \forall j\in\{1,\ldots,m\}$ (zahtjevi kupaca treba da budu ispunjeni)
-    \item $\sum_{j} d_j y_{ij} \leq u_i x_i, \forall i \in \{1,\ldots,n\}$
-\end{itemize}
-Ovaj model pripada modelu \emph{mješovitnog linearnog programiranja}, gdje postoje varijable koje su cjelobrojne i neprekidne za isti model.
-
-\emph{Problem postrojenja sa neograničenim kapacitetom.}
-Čest slučaj gornjeg problema lokacija je slučaj kada je  $ u_{i} = + \infty,i=1\ldots,m$. U ovom slučaju je optimalna strategija zadovoljiti svu (ne parcijalnu) potražnju kupca $j$ iz najbližeg otvorenog objekta. Zbog toga neprekidne varijable  $y_{ij}$ možemo zamijeniti binarnim varijablama $z_{ij}$, $i=1,\ldots,n, j=1,\ldots,m$ pri čemu varijabla dobija vrijednost 1 ako je kupac $j$ snabdjeven od strane postrojenja $i$. Prema tome, model izgleda ovako:
-
-\begin{align*}
-     &\sum_{i=1}^n f_i x_i  + \sum_{i,j} c_{ij} z_{ij} d_j \rightarrow \min\\
-     & s.t. \nonumber \\
-     & \sum_{i} z_{ij} = 1, \forall j\in\{1,\ldots,m\} \\
-     & \sum_{i,j} d_j z_{ij} \leq M x_i, \forall i \in \{1,\ldots,n\} \\
-     & x_i, z_{ij} \in \{0,1\} \mbox{ za } i = 1, \ldots, n, j = 1,  \ldots, m.
-\end{align*}
-Vrijednost $M$ je konstanta koja uzima neku veliku vrijednost (zbir količine potražnji svih kupaca). Međutim, u praksi se često izbjegava upotreba $M$-konstante, te se tako ovo ograničenje zamjenjuje sa $ z_{ij} \leq x_i$ 
-za $ i = 1, \ldots, n, j = 1,  \ldots, m$ koje osigurava bolje performanse jer se generišu preciznije linearne relaksacije o kojima će biti riječi u narednim sekcijama. Prethodni model spada u modele \emph{binarnog linearnog programiranja}. 
-
-%\subsection{Pretpostavke o Linearnom Programiranju}
 
  
 Kada je riječ o linearnim programima,  oni imaju nekoliko osnovnih implicitnih pretpostavki. 
@@ -2756,6 +2620,143 @@ U nastavku modelujmo nekoliko poznatih problema uz pomoć paradigme ILP-a.
 
 \emph{Problem ruksaka.} Neka je dato $n$ proizvoda i neka je težina $i$-tog proizvoda jednaka $w_i$, dok je vrijednost svakog od njih jednaka $c_i$, $i=1,\ldots,n$. Koje proizvode treba da stavimo u ruksak kapaciteta $C$ tako da je vrijednost proizvoda u ruksaku maksimalna. \\
 \emph{Rješenje}. Definišimo varijable $x_i$ koje dobijaju vrijednost 1 ako odaberemo $i$-ti proizvod kojeg stavimo u ruksak, u protivnom 0, $i=1,\ldots,n$. Kapacitet ruksaka se modeluje ograničenjem $\sum_{i=1}^n w_i x_i \leq C$, dok je funkcija cilja ona koja maksimizuje profit odabranih proizvoda, dakle modeluje se uz pomoć linearne kombinacije $f(x) = \sum_{i=1}^n c_i x_i$. Time je problem modelovan.
+
+
+\emph{Problem rasporeda}. Uprava bolnice želi da napravi raspored dežurstva po sedmičnim noćnim smjenama za svoje medicinske sestre. Potrebno je da broj medicinskih sestara za noćnu smjenu na $j$--ti dan bude barem (cio broj) $d_j, j = 1,\ldots 7$. Svaka
+medicinska sestra radi pet dana zaredom u noćnoj smjeni. 
+
+\emph{Zadatak: Pronaći minimalan broj medicinskih sestara koje bolnica treba zaposliti da bi se mogle napraviti takve smjene.}
+
+\emph{Rješenje}. Označimo sa $x_i$ broj medicinskih sestara koje radnu smjenu započinju na $i$-ti dan. Potrebno je minimizovati funkciju 
+$f = \sum_{i=1}^7 x_i$ pod uslovima da su ispunjeni zahtjevi za brojem medicinskih sestara, što je modelovano sa:
+\begin{itemize}
+	\item $x_1 + x_2 + x_3 + x_4 + x_5 \geq d_5 $
+	\item $x_2 + x_3 + x_4 + x_5 + x_6 \geq d_6$
+	\item $x_3 + x_4 + x_5 + x_6 + x_7 \geq d_7$
+	\item $x_4 + x_5 + x_6 + x_7 + x_1 \geq d_1 $
+	\item $x_5 + x_6 + x_7 + x_1 + x_2 + x_3 \geq d_2$
+	\item $x_6 + x_7 + x_1 + x_2 + x_3 + x_4 \geq d_3$
+	\item $x_6 + x_7 + x_1 + x_2 + x_3 + x_4 \geq d_4$
+\end{itemize}
+uz nenegativne uslove 
+\begin{itemize}
+	\item $x_i \geq 0, x_i \in \mathbb{Z}$, $j=1,\ldots,7.$
+\end{itemize}
+Primijetimo da su u ovom problemu varijable  cjelobrojne. Ovaj model pripada paradigmi cjelobrojnog linearnog programiranja.
+
+\emph{Problem oglašavanja}. Kompanija želi da se oglašava u medijima. Postoji nekoliko alternativa oglašavanja:  televizijsko, novinsko i radio oglašavanje. Cijena svakog medija sa pokrivenošću publike navedena je u sljedećoj tabeli.
+
+\begin{table}[!ht]
+	\centering
+	\begin{tabular}{l|c|c|c} \hline
+		\                  & Televizija & Novine & Radio  \\ \hline
+		Cijena po oglašavanju      & 2000       & 600    & 300    \\
+		Broj gledalaca/slušalaca/čitalaca      & 1000      & 4000  & 1800 \\ \hline
+	\end{tabular}
+	\caption{Cijene reklama sa brojem gledalaca/slušalaca/čitalaca.}
+	\label{tab:tab_model_advertising}
+\end{table}
+
+Novine ograničavaju broj oglasa za kompaniju na deset (po sedmici). Štaviše, kako bi se uravnotežilo oglašavanje između sve tri vrste medija, na radiju se ne smije pojaviti više od polovine ukupnog broja oglasa za kompaniju. Najmanje 10\% od svih oglasa bi se trebalo pojaviti na televiziji. Sedmični budžet za oglašavanje iznosi 18.200. 
+
+\emph{Zadatak: Koliko oglasa treba zakupiti u svakoj od tri vrste medija u cilju povećavanja ukupnog broja gledalaca kompanije?}
+
+\emph{Rješenje}.   Označimo sa $x_1$ broj oglasa na televiziji, sa $x_2$ broj oglasa u novinama i $x_3$ broj oglasa na radiju. Potrebno je maksimizovati   uspješnost oglašavanja, tj. funkciju 
+$f(x) = 10 x_1 + 4 x_2 + 1.8 x_3.$ Uslovi pod kojima tražimo rješenja su modelovani na sljedeći način:
+\begin{itemize}
+	\item $2000 x_1 + 600 x_2 + 300 x_3 \leq 18.200$ (uslov za cijenu);
+	\item  $ x_2 \leq 10$ (limit na broj reklama u novinama)
+	\item $x_1 + x_2 \geq x_3$ (uslov za maksimalno polovinu oglašavanja na radiju) 
+	\item ${x_1}\geq 0.1\cdot (x_1 + x_2 + x_3)$ (uslov za broj reklama na televiziji)
+	\item $x_i \geq 0, x_i \in \mathbb{Z}, i=1,2,3$.
+\end{itemize}
+
+U ovom problemu možemo još primijetiti da u funkciji cilja   
+nisu korišteni egzaktni koeficijenti (za broj gledalaca) već brojevi koji su proporcionalni nekoj vrijednosti (1000). Takve transformacije su invarijantne i ne utiču na potragu za optimalnim rješenjem  problema, a doprinose čitljivosti modela.
+
+
+%https://www.math.unipd.it/~luigi/courses/metmodoc1819/m01.modelli.00.en.pdf
+\emph{Problem pokrivanja}. Telefonska kompanija želi da instalira antene na neka mjesta kako bi pokrila šest oblasti. Postoji pet mjesta za antene. Nakon nekih simulacija, za svaku oblast utvrđen je intenzitet signala koji antena šalje, postavljena na određenom mjestu. Tabela~\ref{tab:tb-3} daje   primjer jedne instance problema sa nivoima intenziteta signala.
+
+\begin{table}[!ht]
+	\centering
+	\begin{tabular}{c|cccccc} \hline
+		\              & oblast1 & oblast 2 & oblast 3 & oblast 4 & oblast 5 & oblast 6 \\ \hline
+		Mjesto $A$     & 10  & 20 & 16 & 25 & 0   & 10   \\
+		Mjesto $B$     & 0   & 12 & 18 &  23 & 11 & 6   \\
+		Mjesto $C$     & 21  &  8 & 5  &  6 & 23  &  19 \\
+		Mjesto $D$    &  16 &  15 & 15 &  8 & 14 & 18   \\
+		Mjesto $E $    &  21 & 13 & 13 & 17 & 18  & 22    \\ \hline
+	\end{tabular}
+	\caption{Intenziteti signala.}
+	\label{tab:tb-3}
+\end{table}
+
+Prijemnici prepoznaju samo signale čija je udaljenost najmanje   $d$. Nadalje, nije moguće imati više od jednog signala koji dostiže udaljenost $d$ u istoj oblasti, inače bi to moglo da prouzrokuje smetnje. %Na kraju, antena se može postaviti na mjesto $E$ samo ako je antena instalirana i na mjestu $D$ (ova antena bi služila kao most). 
+Kompanija želi da odredi gdje treba postaviti antene kako bi se pokrio maksimalanan broj oblasti sa signalom. 
+
+%https://www.math.unipd.it/~luigi/courses/metmodoc1920/m01.modelli.00.en.beamer.pdf
+\emph{Rješenje}. Posmatrajmo ovaj problem malo opštije i definišimo: 
+\begin{itemize}
+	\item $I$: skup mjesta;
+	\item $J$: skup oblasti;
+	\item $\sigma_{ij}$ : indikator nivoa signala antene   smještene u mjestu $i \in I$ u oblasti $j \in J$;
+	\item $d$: parametar koji označava minimalni nivo signala koji je neophodan;
+	\item $N$: parametar koji označava maksimalni broj signala iznad granice koju prijemnik može da prepozna (u našoj instanci imamo da je $N=1$);
+	\item $x_i$: binarna varijabla koja uzima vrijednost 1 ako je antena smještena u mjestu $i\in I$, 0 inače;
+	\item  $z_j$ : binarna varijabla koja uzima vrijednost 1 ako je oblast $j \in J$ pokrivena signalom, 0 inače;
+	\item $M_j$: dovoljno veliki parametar, npr. za svako mjesto $j \in J$, $M_j= card(\{ i \in I \mid \sigma_{ij} \geq d\})$.
+\end{itemize}
+Formulišimo sada (cjelobrojni) linearni program ovog problema. 
+Funkcija cilja je data sa:
+$$ f(x) = \sum_{j \in J} z_j \rightarrow \min $$
+pod sljedećim uslovima 
+\begin{itemize}
+	\item  $ \sum_{\{i \in I \mid \sigma_{ij} \geq d \}} x_i \geq z_i, \forall j \in J $ (barem jedna antena treba da bude uključena da bi se oblast pokrila signalom)
+	\item $ \sum_{\{i \in I \mid \sigma_{ij} \geq d \}} x_i  \leq N + M_j( 1 - z_j), \forall j \in J $ (maksimalan broj signala koje prijemnici mogu obraditi)  
+	\item $x_i, z_j \in\{0, 1\}, \forall i \in I, \forall j \in J$
+\end{itemize}
+%\printbibliography[heading=subbibliography,notkeyword=this]
+
+\emph{Problem lokacija}. Problemi s lokacijom često se postavljaju na sljedeći način: pretpostavimo da postoji $n$ postrojenja (prodavnica)  i  $m$ kupaca. Dva pitanja treba da budu riješena:
+\begin{enumerate}
+	\item koji od $n$ postrojenja otvoriti i
+	\item koje  postrojenje koristiti za opsluživanje kojeg od kupaca, kako bi se zadovoljila fiksna potražnja svakog od kupaca uz minimalni trošak otvaranja postrojenja.
+\end{enumerate}
+Uvedimo sljedeću notaciju.
+\begin{itemize}
+	\item  $f_{i}$: označava (fiksni) trošak otvaranja postrojenja $i$, za  $ i = 1,  \ldots, n$;
+	\item $c_{ij}$: označava troškove zadovoljenja potražnje  kupca $j$ od strane postrojenja $j$ (cijena dostave, cijena proizvoda itd.), $i = 1, \ldots, n$, $j = 1,  \ldots, m$;
+	\item $d_{j}$: označava potražnju kupca $j$ za $j = 1, \ldots, m$;
+	\item $u_{i}$: označava maksimalnu količinu proizvoda koji se mogu proizvesti u postrojenju $i$, tj. $u_{i}$ označava kapacitet objekta $i$.
+\end{itemize}
+
+\emph{Rješenje}. Funkcija cilja ima sljedeći oblik:
+$$ f(x) = \sum_{i=1}^n f_i x_i  + \sum_{i,j} c_{ij} y_{ij} d_j,$$
+gdje je
+\begin{itemize}
+	\item $x_i$: binarna varijabla koja ozačava da li je (1) ili nije (0) otvoreno postrojenje $i$;
+	\item $y_{ij} \in \mathbb{R}^+$ realna varijabla, koja označava dio potražnje $d_j$ kupca $j$ ostvarena iz prodavnice $i$.
+\end{itemize}
+Ograničenja ovog modela su sljedeća:
+\begin{itemize}
+	\item $\sum_{i} y_{ij} = 1, \forall j\in\{1,\ldots,m\}$ (zahtjevi kupaca treba da budu ispunjeni)
+	\item $\sum_{j} d_j y_{ij} \leq u_i x_i, \forall i \in \{1,\ldots,n\}$
+\end{itemize}
+Ovaj model pripada modelu \emph{mješovitnog linearnog programiranja}, gdje postoje varijable koje su cjelobrojne i neprekidne za isti model.
+
+\emph{Problem postrojenja sa neograničenim kapacitetom.}
+Čest slučaj gornjeg problema lokacija je slučaj kada je  $ u_{i} = + \infty,i=1\ldots,m$. U ovom slučaju je optimalna strategija zadovoljiti svu (ne parcijalnu) potražnju kupca $j$ iz najbližeg otvorenog objekta. Zbog toga neprekidne varijable  $y_{ij}$ možemo zamijeniti binarnim varijablama $z_{ij}$, $i=1,\ldots,n, j=1,\ldots,m$ pri čemu varijabla dobija vrijednost 1 ako je kupac $j$ snabdjeven od strane postrojenja $i$. Prema tome, model izgleda ovako:
+
+\begin{align*}
+	&\sum_{i=1}^n f_i x_i  + \sum_{i,j} c_{ij} z_{ij} d_j \rightarrow \min\\
+	& s.t. \nonumber \\
+	& \sum_{i} z_{ij} = 1, \forall j\in\{1,\ldots,m\} \\
+	& \sum_{i,j} d_j z_{ij} \leq M x_i, \forall i \in \{1,\ldots,n\} \\
+	& x_i, z_{ij} \in \{0,1\} \mbox{ za } i = 1, \ldots, n, j = 1,  \ldots, m.
+\end{align*}
+Vrijednost $M$ je konstanta koja uzima neku veliku vrijednost (zbir količine potražnji svih kupaca). Međutim, u praksi se često izbjegava upotreba $M$-konstante, te se tako ovo ograničenje zamjenjuje sa $ z_{ij} \leq x_i$ 
+za $ i = 1, \ldots, n, j = 1,  \ldots, m$ koje osigurava bolje performanse jer se generišu preciznije linearne relaksacije o kojima će biti riječi u narednim sekcijama. Prethodni model spada u modele \emph{binarnog linearnog programiranja}. 
 
 \emph{Problem rasporeda}. Čitava klasa problema koja se naziva sekvenciranje, raspoređivanje i usmjeravanje u osnovi su predstavljeni modelima cjelobrojnog programiranja. Kao primjer, recimo da je potrebno rasporediti studenate u  učionicu na takav način
 da je minimizovan broj učenika koji ne mogu pohađati nastavu koja je njihov prvi izbor među svim ostalim izborima. Postoje ograničenja u pogledu broja i kapaciteta učionica dostupnih u bilo kom trenutku, dostupnosti predavača na fakultetu u određeno vrijeme i preferencijama studenata za određene rasporede. Jasno je da imamo varijablu $X_{i,j,n}$ za   $i$-tog studenta 
