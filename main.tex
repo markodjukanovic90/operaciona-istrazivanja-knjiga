@@ -1787,8 +1787,8 @@ Kako su svi koeficijenti doprinosa ($\overline{c}$ varijable) manje od 0, simple
   \newpage
  \chapter{Dualnost \& Dopustivost}
  
- Dualnost je pojam koji je vezan za dobijanje gornjih granica optimalne vrijednosti funkcije cilja. Teorija dualnosti povezuje dva vezana problema linearnog programiranja -- jedan od njih je problem linearnog programiranja koji maksimizuje funkciju cilja, dok je drugi problem linearnog programiranja koji minimizuje (ne obavezno istu) funkciju cilja.  Dualnost implicira da svaki problem linearnog programiranja možemo analizirati na dva potpuno različita načina, ali sa ekvivalentnim (optimalnim) rješenjima.   
-  Prema tome, svaki problem LP-a se može navesti u drugom, ekvivalentnom obliku na osnovu istih ulaznih podataka. Ponekad rješavanje LP-a na jedan način može da bide puno lakše nego na drugi.
+ %Dualnost je pojam koji je vezan za dobijanje gornjih granica optimalne vrijednosti funkcije cilja. 
+ Teorija dualnosti povezuje dva vezana problema linearnog programiranja -- jedan od njih je problem linearnog programiranja koji maksimizuje funkciju cilja, dok je drugi problem linearnog programiranja onaj koji minimizuje (ne obavezno istu) funkciju cilja. Svaki problem LP-a se može navesti u drugom, ekvivalentnom obliku na osnovu istih ulaznih podataka. Ponekad rješavanje LP-a na jedan način može da bude puno lakše nego na drugi.  Dakle, dualnost implicira da svaki problem linearnog programiranja možemo analizirati na dva potpuno različita načina, ali sa ekvivalentnim (optimalnim) rješenjima. 
  
  
  
@@ -1815,7 +1815,7 @@ Sabirajući ove dvije nejednakosti i grupišući sabirke dobijamo
      x_1 ( 4 y_1 + y_2 ) + x_2 ( 3 y_1 + y_2 ) \leq 9 y_1 + 8 y_2 
 \end{equation}
 Posmatrajući funkciju cilja i koeficijente uz varijable u (\ref{eq:dual-1}), jasno je da treba vrijediti 
-$4 y_1 + y_2 \geq 1$ i $3 y_1 + y_2 \geq 1$. Da bi ocjena gornje granice bila što bolja u (\ref{eq:dual-1}), dakle koeficijent na desnoj strani što veći, pa je potrebno maksimizovati izraz $9y_1 + 8 y_2$, pod gore navedenim uslovima. Prema tome, početnom problemu, kojeg označavamo sa ($P$), odgovara dualni problem 
+$4 y_1 + y_2 \geq 1$ i $3 y_1 + y_2 \geq 1$. Da bi ocjena gornje granice bila što bolja u (\ref{eq:dual-1}), dakle koeficijent na desnoj strani što veći, potrebno je maksimizovati izraz $9y_1 + 8 y_2$, pod gore navedenim uslovima. Prema tome, početnom problemu, kojeg označavamo sa ($P$), odgovara dualni problem 
 $$\begin{array}{cccc}
      \min                    &  9 y_1 &+& 8 y_2        \\
      {s.t. }     &  4 y_1 &+& y_2 \geq 1   \\
@@ -1857,7 +1857,7 @@ Generalno posmatrajući, za problem LP-a~(\ref{eq:LP-o1})--(\ref{eq:LP-c2}) njeg
 \end{thm}
 \begin{proof}
          Napišimo ograničenja probema ($P$) kao $Ax + \omega = b, x, \omega \geq 0$.
-         Primijenimo simpleks metod, pa pogledajmo posljednju (optimalnu) simpleks tabelu:
+         Primijenimo simpleks metod, pa posmatrajmo posljednju (optimalnu) simpleks tabelu:
          
          $$\begin{array}{c |c | c}
          \overbrace{\ \ \ \ \ \hspace{1.5cm}}_{x \mbox{ varijable}}     &  \overbrace{\ \ \ \ \ \hspace{1.5cm}}_{\omega \mbox{ varijable}} &   \\
@@ -1978,7 +1978,7 @@ $$\begin{array}{lll}
     &                        &  y_1, y_2 \geq 0.
 \end{array}$$
 Dopustiv region dualnog problema je dat na Slici~ \ref{fig:fig6-dual-region}. %gdje je dopustiv region označen plavom bojom. 
-Dalje, može se pokazati da je optimum duala u presjeku prave $12 y_1 + 3 y_2 = 10$ i prave $6y_1 + 12 y_2 = 20$. Iz slike \ref{fig:fig6-dual-region} takođe vidimo da se druga i četvrta prava ne dostižu u tački optimuma (tu vrijedi stroga nejednakost nakon uvrštavanja tačke optimuma u uslove). Dakle, iz uslova komplementarnosti slijedi da za optimum $x$ primala  ($P$)  vrijedi $x_2 = 0$ i $x_4 = 0$.  Kako je $y_1, y_2 > 0$, onda vrijedi 
+Dalje, može se pokazati da je optimum duala u presjeku prave $12 y_1 + 3 y_2 = 10$ i prave $6y_1 + 12 y_2 = 20$. Na osnovu Slike \ref{fig:fig6-dual-region} takođe vidimo da se druga i četvrta prava ne dostižu u tački optimuma (vrijedi stroga nejednakost nakon uvrštavanja tačke optimuma u uslove). Dakle, iz uslova komplementarnosti slijedi da za optimum $x$ primala  ($P$)  vrijedi $x_2 = 0$ i $x_4 = 0$.  Kako je $y_1, y_2 > 0$, onda vrijedi 
 
 \begin{align}
     &10 x_1 + 20 x_3 = 210 \nonumber \\
@@ -2013,11 +2013,12 @@ jedanog problema i varijabli u drugom problemu je data preko sljedeće tabele
 \end{table}
 
 
-\section{Metod Unutrašnje Tačke}
+\section{Metod Unutrašnje T
+	ačke}
 
 Simpleks metod ne garantuje   rješavanje proizvoljnog problema LP u polinomijalnom broju koraka u odnosu na veličinu ulaza. % V. Klee and G. Minty constructed an example LP: simplex method needs 2^n iterations to solve it 
 %Dakle, iz njega se ne može zaključiti da je problem rješavanja generalnog LP problema   polinomijalno rješiv. 
-\emph{Metod unutrašnje tačke} rješava bilo koji problem LP-a  u polinomijanom vremenu. U ovoj sekciji ćemo dati konstrukciju ovog metoda, koji pokazuje da rješavanje problema LP-a pripada klasi $\mathcal{P}$. Iako u praksi često ne postiže dobre  performanse kao i simpleks metod, te se uvijek prvo preporučuje korištenje simpleks metoda u rješavanju LP-a, ovaj metod je sa teoretskog stanovišta veoma važan.  \emph{Metod unutrašnje tačke} (eng. Interior point metod) je dizajniran 50-ih godina XX vijeka i sve do 80-ih godina nije bio smatran za algoritam koji se efikasno može primijeniti na probleme velikih dimenzija. Tek 1984.godine (N. Karmakar, inžinjer u IBM-u) je formalno dokazao da se ovaj algoritam izvršava u polinomijalnom broju koraka za probleme linearnog programiranja. U današnje vrijeme, usljed ekstremnog poboljšanja performansi mašina, pokazalo se da je \emph{metod unutrašnje tačke} kompetentan sa simpleks metodom kada je riječ o LP-u velikih dimenzija (sa matricom $A$ čiji je broj elemenata $10^9$ i više).
+\emph{Metod unutrašnje tačke} rješava bilo koji problem LP-a  u polinomijanom vremenu. U ovoj sekciji ćemo dati konstrukciju ovog metoda, koji pokazuje da rješavanje problema LP-a pripada klasi $\mathcal{P}$. Iako u praksi često ne postiže dobre  performanse kao i simpleks metod, te se uvijek prvo preporučuje korištenje simpleks metoda u rješavanju LP-a, ovaj metod je veoma važan sa teoretskog stanovišta.  \emph{Metod unutrašnje tačke} (eng. Interior point metod) je dizajniran 50-ih godina XX vijeka i sve do 80-ih godina nije bio smatran za algoritam koji se efikasno može primijeniti na probleme velikih dimenzija. Tek 1984.godine (N. Karmakar, inžinjer u IBM-u) je formalno dokazao da se ovaj algoritam izvršava u polinomijalnom broju koraka za probleme linearnog programiranja. U današnje vrijeme, usljed ekstremnog poboljšanja performansi mašina, pokazalo se da je \emph{metod unutrašnje tačke} kompetentan sa simpleks metodom kada je riječ o problemima LP-a  velikih dimenzija (sa matricom $A$ čiji je broj elemenata $10^9$ i više).
 
 Za razliku od simpleks metoda, koji ``hoda'' po granicama poliedra (dopustivog regiona), \emph{metod unutrašnje tačke}, kako i samo ime kaže, se kreće po unutrašnjim tačkama poliedra  dok ne naiđe na optimalno rješenje problema. 
 
@@ -2051,7 +2052,7 @@ Vrijedi niz teorema koje obezbjeđuju dovoljne optimalne uslove za LP-a. U nasta
  $$ c^T x - b^T y = s^T x \geq 0 .$$
 \end{thm}
 \begin{proof}
-	 Pretpostavimo da je $x$ dopustivo za Primal. Tada vrijedi
+	 Pretpostavimo da je $x$ dopustivo za Primal (P). Tada vrijedi
 	 $$ c^Tx = (A^Ty + s)^Tx = s^Tx + y^Tb \geq b^T y.$$
 	 Dakle, pokazali smo tvrdnju. Štaviše, vrijednost $b^Ty$ je donja granica na optimalnu vrijednost Primala. Takođe, ako je $s^T x = 0$ donja granica je dostignuta, i $x$ je optimalno rješenje Primala.
 \end{proof}
