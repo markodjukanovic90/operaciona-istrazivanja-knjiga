@@ -1120,16 +1120,16 @@ gdje je $A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m, c \in \mathbb{R}^n, 
 
 \section{Konstrukcija simpleks metode}
 
- Neka je $x = [x_1,\ldots, x_n]^T$ bazno dopustivo rješenje poliedra $P$, gdje je $B$ matrica baze, $x_B$ bazni dio vektora $x$, a gdje su na mjesto nebaznih indeksa $N$ postavljene 0.  Ideja simpleks metode je  ``šetanje'' po ivici poliedra  do drugog (baznog) dopustivog rješenja dok ne nađemo optimalno rješenje. Krenimo pravcem $d$ u  početnoj tački $x$  pri čemu moramo paziti na to da
+ Neka je $x = [x_1,\ldots, x_n]^T$ bazno dopustivo rješenje poliedra $P$, gdje je $B$ matrica baze, $x_B$ bazni dio vektora $x$, a gdje su na mjesto nebaznih indeksa $N$ postavljene 0.  Ideja simpleks metode je  ``šetanje'' po ivici poliedra  do drugog (baznog) dopustivog rješenja dok ne nađemo optimalno rješenje. Krenimo pravcem $d$ u  početnoj tački $x$  pri čemu trebamo obratiti  pažnju na to da je zadovoljen
 \begin{itemize}
-    \item je zadovoljen \emph{uslov optimalnosti}, tj. $c^T (x + \lambda d) \leq c^T x, \lambda>0$, što znači da idemo u pravcu smanjenja vrijednosti funkcije cilja;
-    \item je zadovoljen \emph{uslov dopustivosti}, treba da je pravac $d$ dopustiv u tački $x$, tj. $ (x + \lambda d) \in P$, za neko $\lambda>0$. Dakle, uvijek se krećemo samo tačkama dopustivog regiona. 
+    \item \emph{uslov optimalnosti}, tj. $c^T (x + \lambda d) \leq c^T x, \lambda>0$, što znači da idemo u pravcu smanjenja vrijednosti funkcije cilja;
+    \item \emph{uslov dopustivosti}, treba da je pravac $d$ dopustiv u tački $x$, tj. $ (x + \lambda d) \in P$, za neko $\lambda>0$. Dakle, uvijek se krećemo samo tačkama dopustivog regiona. 
 \end{itemize}
-Birajmo nebaznu koordinatu u $x$, neka je to $x_j, j \in N$. Definišemo $d=(d_B,  d_N)$, gdje su koordinate od (nebaznog dijela) $d_N$ svugdje 0, osim na na koordinati $j$ za koju prima vrijednost 1.   Bazni dio vektora $d$, koji je označen sa $d_B$, izvešćemo iz uslova dopustivosti i pretpostavke da ``šetamo'' po granici dopustivog regiona: $Ax + \lambda Ad = b$, odakle je $Ad = 0$. Tada je 
-$$ Ad = \sum_{i=1}^n A_i d_i = \sum_{i=1}^m A_{p_i} d_i + A_j = B d_B + A_j = 0$$
-odakle je $d_B = -  B^{-1} \cdot A_j $.  Za ovako odabran $d$ imamo zadovoljen uslov dopustivosti $A( x + \lambda d )  =b$, a još treba da provjerimo uslov nenegativnosti, tj. $x + \lambda d \geq 0$:
+Birajmo nebaznu koordinatu u $x$, neka je to $x_j, j \in N$. Definišemo $d=(d_B,  d_N)$, gdje su koordinate od (nebaznog dijela) $d_N$ svugdje 0, osim na na koordinati $j$ za koju prima vrijednost 1.   Bazni dio vektora $d$, koji je označen sa $d_B$, izvešćemo iz uslova dopustivosti i pretpostavke da ``šetamo'' po granici dopustivog regiona poliedra $P$: $Ax + \lambda Ad = b$, odakle je $Ad = 0$. Tada vrijedi i
+$$ Ad = \sum_{i=1}^n A_i d_i = \sum_{i=1}^m A_{p_i} d_i + A_j = B d_B + A_j = 0$$ za one koordinate $p_i$ koje pripadaju baznom dijelu, 
+odakle je $d_B = -  B^{-1} \cdot A_j $.  Za ovako odabran $d$ imamo zadovoljen uslov dopustivosti jer $A( x + \lambda d )  =b$. Posmatrajmo sada uslov nenegativnosti, tj. $x + \lambda d \geq 0$:
 \begin{itemize}
-    \item Ako je $x$ nedegenerativno, onda je tačno $n-m$ komponenti jednako 0,       pa je za nebazni dio komponenti $x_i + \lambda d_i = 0$, za $i \in N \setminus \{j\}$, dok je $x_j + \lambda d_j = 0$, pa imamo ispunjen uslov nenegativnosti. Za bazne komponente imamo $x_{p_i} \cdot d_{p_i} > 0 $ ako je $d_{p_i}>0$. U protivnom, možemo odabrati  malu vrijednost  $\lambda>0$ (pogledati definiciju $x +\lambda d$) tako da $x_{p_i} \cdot d_{p_i} >0$, pa imam zadovoljen uslov nenegativnosti.
+    \item Ako je $x$ nedegenerativno, onda je tačno $n-m$ komponenti jednako 0,       pa je za nebazni dio komponenti $x_i + \lambda d_i = 0$, za $i \in N \setminus \{j\}$, dok je $x_j + \lambda d_j = 0$, pa imamo ispunjen uslov nenegativnosti. Za bazne komponente imamo $x_{p_i} \cdot d_{p_i} > 0 $ ako je $d_{p_i}>0$. U protivnom, možemo odabrati  malu vrijednost  $\lambda>0$ (pogledati definiciju dopustivog pravca $x +\lambda d$) tako da $x_{p_i} \cdot d_{p_i} >0$, pa imam zadovoljen uslov nenegativnosti.
     \item Ako je $x$ degenerativno bazno dopustivo rješenje, slijedi da više od $n-m$ kompomenti od $x$ je jednako 0. Za nebazni slučaj kao i u prvom slučaju pokazujemo uslov nenegativnosti. Za bazne kompomenete $x +\lambda d$,  postoji bazni indeks $i$ za koji je $x_{p_i} = 0$, pa   je $d_{p_i}< 0$, što povlači da u tom slučaju ne možemo naći $\lambda>0$ tako da $x_{p_i} + \lambda d_{p_i} >0$  što stvara problem (dopustivost narušena). Pojava ovog slučaja se na sreću može zaobići (pokazaćemo to u nastavku ove sekcije). 
 \end{itemize}
  Ostaje nam pitanje odabira nebazne varijable $x_j$. U pomoć pozivamo uslov optimalnosti $c^T ( x + \lambda d ) > c^T x $, odakle slijedi $c^T d < 0$.  Kako je $$c^T d = c_B^T d_B + c_j = c^T ( - B^{-1} A_j ) + c_j < 0.$$
@@ -1145,7 +1145,7 @@ Iz sljedeće teoreme dobijamo uslove optimalnosti rješenja.
   \end{itemize}
 \end{thm}
 
-Ostalo nam je još odrediti dužinu koraka pravca $d$, tj. vrijednost $\lambda>0$. Ideja je da se krene nekim smjerom dok god se ne dođe do drugog vrha, tj. treba odrediti dužinu vektora $d$, tj. $\max \{ \lambda \in \mathbb{R} \mid x + \lambda d \geq 0 \}$. 
+Ostalo nam je još odrediti dužinu koraka pravca $d$, tj. vrijednost $\lambda>0$. Ideja je da se krene nekim smjerom dok god se ne dođe do drugog vrha, tj. treba odrediti dužinu vektora $d$ koji je jednak $\max \{ \lambda \in \mathbb{R} \mid x + \lambda d \geq 0 \}$. Razlikujemo sljedeća dva slučaja:
 \begin{itemize}
     \item Ako $d >0$, onda je $  x + \lambda d \geq 0$, za sve $\lambda > 0$, pa je $\lambda^* = \infty$, tj. ciljna funkcija je neograničena.
     \item Ako postoji $i$, td. $d_i < 0$, onda za dovoljno malo $\lambda>0$ tako da $x_i + \lambda d_i \geq 0$ imamo $\lambda \leq -\frac{x_i}{d_i}$. Prema tome 
@@ -1178,11 +1178,11 @@ Navedimo sada osnovne korake jedne iteracije simpleks metoda:
     \label{fig:simpleks-visuelisation}
 \end{figure}
 
-\section{Tabelarni prikaz Simpleks Metode}
+\section{Tabelarni oblik Simpleks Metode}
 
-U osnovi, simpleks algoritam se sastoji od stalne izmjene jedne kolone baznih vektora u $B$ sa nekim nebaznim vektorom i tako iterativno u cilju smanjivanja trenutne vrijednosti cilje funkcije, dok god je to moguće. 
+U osnovi, simpleks algoritam se sastoji od stalne izmjene jedne kolone baznih vektora u $B$ sa nekim nebaznim vektorom (i odgovarajućom kolonom) iterativno u cilju smanjenja trenutne vrijednosti cilje funkcije, dok god je to moguće. 
 U praktičnom računanju, rad sa tabelarnim prikazom koraka simpleks metoda je u mnogome lakše (kompaktnije i prirodnije) nego koristiti standardan oblik LP-a. 
-Simpleks tabela ima oblik kao u Tabeli~\ref{tab:simplex_tabelau}. 
+Tabelarni simpleks prikaz se može vidjeti u Tabeli~\ref{tab:simplex_tabelau}. 
 
 \begin{table}[!ht]
     \centering
@@ -1196,14 +1196,14 @@ Simpleks tabela ima oblik kao u Tabeli~\ref{tab:simplex_tabelau}.
     \label{tab:simplex_tabelau}
 \end{table}
 
-Na osnovu ovakve tabele, te koraka simpleks metode opisanih u prethodnoj sekciji, radimo sljedeće korake u tabelarnom rješavanju:
+Na osnovu ovakve tabele, te koraka simpleks metode opisanih u prethodnoj sekciji, sljedeći koracu se izvršavaju u tabelarnom obliku simpleks metode:
 \begin{itemize}
-    \item Konstruisati inicijalnu simpleks tabelu sa početnom bazom $B$ i odgovarajućim baznim dopustivim rješenjem $x$.
-    \item Pogledati koeficijente doprinosa $\overline{c_j}$. Ako su svi $\overline{c_j} \geq 0$, rješenje se ne može dalje popraviti, pa smo našli optimalno rješenje, inače odabrati neki $j$ sa $\overline{c_j}<0$.
+    \item Konstruisati inicijalnu simpleks tabelu sa početnom bazom $B$ i odgovarajuće bazno dopustivo rješenje $x$.
+    \item Posmatrati koeficijente doprinosa $\overline{c_j}$ (posljednja vrsta tabele). Ako su svi $\overline{c_j} \geq 0$, rješenje se ne može dalje popraviti, pa smo našli optimalno rješenje. U protivnom, odabrati neki $j$ sa $\overline{c_j}<0$.
     \item Pogledati vektor (kolonu) $u = B^{-1}A_j$. Ako su sve koordinate od $u$ negativne, rješenje LP-a je $-\infty$, algoritam se prekida.
     \item Za svaki $u_i > 0$, računati $x_{p_i}/u_i$, i neka je   omjer najmanji za indeks $l$. Kolona $A_{j}$ ulazi u bazu, dok kolona $A_{p_l}$ izlazi iz baze. 
     \item Svakom redu table dodati $l$--ti red (pivot red) kojeg množimo odgovarajućim
-         skalarom kako bi pivot element postao 1, a svi ostali elementi u pivot koloni 0.
+         skalarom da bi pivot element postao 1 na kraju, a svi ostali elementi u pivot koloni budu 0.
 \end{itemize}
 
 U ovom postupku  može se desiti situacija da postoji dva ili više redova koji su kandidati za ulazak u bazu. Ako se odabere nepovoljan kandidat, postupak može da proizvede degenerativno BDR ili čak da dođe do ciklusa. 
@@ -1217,17 +1217,17 @@ Može se pokazati da poštujući ovakva pravila, osigurava se da simpleks metoda
 
 Obratimo pažnju da se problem minimiziacije vrlo lako prevodi u problem maksimizacije sljedećom transformacijom
 $$ \min_{ x \in P} f(x) = - \max_{x \in P}(-f(x)).$$ 
-Prema tome, ako imamo problem LP-a gdje treba da maksimizujemo vrijednost funkcije cilja, pa onda primijenimo simpleks metod, koraci metoda ostaju isti, uz malu izmijenu u koraku 2, gdje se mijenja znak nejednakosti (radi toga što se mijenja znak koeficijenata u funkciji cilja). Dakle, za popravak rješenja bi u tom slučaju gledali one doprinose za koje je $\overline{c_j} > 0$.
+Prema tome, ako imamo problem LP-a gdje treba da maksimizujemo vrijednost funkcije cilja, pa onda primijenimo simpleks metod, koraci metoda ostaju isti, uz malu izmijenu u koraku 2, gdje se mijenja znak nejednakosti (jer se mijenja znak koeficijenata u funkciji cilja). Dakle, za popravak rješenja u slučaju problema maksimizacije se posmatraju oni doprinosi za koje je $\overline{c_j} > 0$.
 
 \section{Primjena Simpleks Metode}
 %Kako je standardni poliedar LP-a dat sa svim onim $x \in \mathbb{R}^n$ tako da $Ax \leq (\geq) b$, 
 Prvo transformišimo standardni oblik problema LP
  
-  \begin{align}
+  \begin{align*}
     & c^T x \rightarrow \max \\
     & Ax \leq b \\
     & x \geq 0\\
-\end{align}
+\end{align*}
  
 na kanonski oblik pogodan simpleks metodi $(A {x} = b)$ dodavanjem ``izjednačavajućih'' varijabli $s$ na sljedeći način:
  
@@ -1274,8 +1274,8 @@ U primjeru kojeg rješavamo, neka je dat problem LP-a:
      \caption{Inicijalna simpleks tabela.}
      \label{tab:simpleks_tabela1}
  \end{table} 
- Na početku uzmemo za bazu vektore $s_1$ i $s_2$. Prema tome, bazno dopustivo rješenje je $x = (0, 0, 9, 8)$, za koji je $f =0$. Sada ažiriramo simpleks tabelu izvodeći pivotiranje. Izaberimo indeks $j$ td. $\overline{c_j}>0$. Neka je $j=1$, i on odgovara varijabli $x_1$ čiju vrijednost želimo da povećamo u funkciji cilja. Izaberimo pivot vrstu. Gledamo odnos $\overline{b_i}/\overline{a}_{1,j}$, za sve $\overline{a}_{1,j} > 0$,  $B^{-1} A_1 = \overline{a}_{1,j}$
- i tražimo onaj indeks koji minimizuje datu vrijednost. Imamo dvije mogućnosti, $9/1$ i $8/2$, pa je $i = 2$ traženi indeks. Dakle, pivot je element $\overline{a}_{1,2}=2$. Sada radimo standardne operacije pivotiranja oko ovog elementa,  tako da sve elemente u koloni 1 simpleks matrice učinimo nulama, dok je element u drugoj vrsti 1 (Gausove eliminacije u rješavanju sistema jednačina). Primjera radi, vrsti 1 se dodaje druga vrsta pomnožena sa -$\frac{1}{2}$. Druga vrsta se dijeli sa $\frac{1}{2}$. Dok trećoj vrsti se dodaje takođe druga vrsta pomnožena sa -$\frac{1}{2}$. 
+ Na početku uzmemo za bazu vektore $s_1$ i $s_2$. Prema tome, bazno dopustivo rješenje je $x = (0, 0, 9, 8)$, za koji je $f =0$. Sada ažiriramo simpleks tabelu izvodeći pivotiranje. Izaberimo indeks $j$ td. $\overline{c_j}>0$. Neka je $j=1$, što odgovara varijabli $x_1$ čiji doprinos želimo da povećamo (jer maksimizujemo) u funkciji cilja. Izaberimo pivot vrstu tako što posmatramo odnos $\overline{b_i}/\overline{a}_{1,j}$, za sve $\overline{a}_{1,j} > 0$,  $B^{-1} A_1 = \overline{a}_{1,j}$
+ i tražimo onaj indeks koji minimizuje datu vrijednost. Imamo dvije mogućnosti, $9/1$ i $8/2$, pa dobijamo da je $i = 2$ traženi indeks. Prema tome, pivot je dat elementom $\overline{a}_{1,2}=2$. Sada radimo standardne operacije pivotiranja oko ovog elementa,  tako da sve elemente u koloni 1 simpleks matrice načinimo nulama, dok element u drugoj vrsti postaje 1 (Gausove eliminacije u rješavanju sistema jednačina). Primjera radi, vrsti 1 se dodaje druga vrsta pomnožena sa -$\frac{1}{2}$. Druga vrsta se dijeli sa $\frac{1}{2}$. Dok trećoj vrsti se dodaje takođe druga vrsta pomnožena sa -$\frac{1}{2}$. 
  Primjenjujući ove transformacije, dobijamo simpleks tabelu:
  
   \begin{table}[!ht]
@@ -1289,7 +1289,7 @@ U primjeru kojeg rješavamo, neka je dat problem LP-a:
      \label{tab:simpleks_tabela2}
  \end{table}
 Bazne varijable prepoznjemo jer odgovarajući vektori (kolone) zajedno čine jediničnu matricu. Prema tome, 
- nebazne varijable su $x_2$ i $s_2$, koje dobijaju vrijednost 0, dok ostale lako izračunavamo, tj. $ x = (4, 0, 5, 0)$. Ponavljamo opet korake, nalazimo pivota, tj. poziciju  $(i,j)$. Lako je vidjeti da kolona 2 jedina odgovara nalasku odgovarajućeg pivot elementa. Dalje, za pogodnu vrstu $i$, imamo da je $5 / (5/2) < 4 / (1/2)$, prema tome $i =1$. Dakle pivot je 
+ nebazne varijable su $x_2$ i $s_2$, koje dobijaju vrijednost 0, dok ostale lako izračunavamo, odakle je $ x = (4, 0, 5, 0)$. Ponavljamo prethodne korake sa novom simpleks tabelom, nalazimo pivot, tj. poziciju  $(i,j)$. Lako je vidjeti da kolona 2 jedina odgovara nalasku odgovarajućeg pivot elementa. Dalje, za pogodnu vrstu $i$, imamo da je $5 / (5/2) < 4 / (1/2)$, prema tome $i =1$. Dakle, pivot je 
  $\overline{a}_{1,2} = \frac{5}{2}$. Radimo ponovo Gausove eliminacije oko prve vrste, pa se dobija simpleks tabela:
  
    \begin{table}[!ht]
@@ -1406,12 +1406,12 @@ $-x+y=3$ i $x+6y=18$, što je opet ista tačka (i nema napretka vrijednosti funk
  \section{Dvofazni simpleks algoritam}
  Postoje dva pitanja koja se nameću u primjeni simpleks algoritma:
  \begin{itemize}
-     \item Da li se uvijek može naći bazno dopustivo rješenje za početno rješenje 
+     \item Da li se uvijek može naći bazno dopustivo rješenje za inicijalni korak 
      simpleks algoritma?
      \item Da li se simpleks algoritam uvijek prekida sa nalaskom optimalnog rješenja ili je funkcija cilja neograničena?
  \end{itemize}
  
- Odgovor na prvo pitanje je ako postoji jedinična podmatrica $I_m$ u gornjoj lijevoj blok matrici simpleks tabele,  onda je to jednostavno odrediti (kako smo to i vidjeli u prethodnoj sekciji). 
+ Parcijalni odgovor na prvo pitanje je kada postoji jedinična podmatrica $I_m$ u gornjoj lijevoj blok matrici simpleks tabele,  onda je bazu jednostavno odrediti (kako smo to i vidjeli u prethodnoj sekciji). 
  Linearnom programu koji sadrži ograničenja $Ax \leq b, x\geq 0$ se dodaju izjednačavajuće varijable da bi uslovi nejednakosti u ograničenjima postali potrebne jednakosti. Na taj način se i formira ova jedinična matrica. Međutim, šta ako je linearan program dat u kanonskom obliku, tj. sa ogarničenjima $Ax = b, x \geq 0$. Bez smanjenja opštosti, pretpostavimo da je $b \geq 0$. Ako ne postoji očigledno bazno dopustivo rješenje ovog problema, onda uvodimo \emph{umjetne} varijable $\omega = (\omega_1,\ldots, \omega_m)$ nakon čega treba da riješimo sljedeći problem LP-a:
  \begin{align}
       &\sum_{i=1}^m \omega_i \rightarrow \min_{x,\omega} \nonumber \\
@@ -1429,7 +1429,7 @@ Postoje dva moguća slučaja:
       \item Ako se desi slučaj 2, odustanemo od daljeg rješavanja problema.
       \item Ako se desi slučaj 1, optimalno rješenje problema (\ref{eq:artificial_lp_simplex}) sa $\omega_i=0$ nam daje početno bazno dopustivo rješenje problema (\ref{eq:lp_equality_constraint}) u prvom simpleks koraku a prema tome i bazne vektore. 
  \end{itemize} 
- Ovaj korak nas vodi ka dvofaznom simpleks metodu. U nastavku dajemo primjer rješavanja jednog problema LP-a pomoću ove metode.      
+ Ovaj korak nas vodi ka \emph{dvofaznoj simpleks metodi}. U nastavku dajemo primjer rješavanja jednog problema LP-a pomoću ove metode.      
       
  \section{Primjena dvofaznog simpleks metoda}     
  
@@ -1486,8 +1486,8 @@ $$ \begin{array}{cccccc|c}
  \end{array}
  $$
  Jedini vektor sa negativnim doprinosom u prethodnoj simpleks tabeli je 
- onaj koji odgovara prboj koloni, pa tražimo pivota u njoj. 
- Jedino u prvoj vrsti imamo pozitivan element, koji odgovara vrijednosti pravca $\frac{5}{5}$, dakle pivot je $\overline{a}_{1,1}=5$. Izvršavajući opet elementarne transformacije, dobijamo tabelu 
+ onaj koji odgovara prvoj koloni, pa u njoj i tražimo pivota.  
+ Kako se jedino u prvoj vrsti nalazi pozitivan element, koji odgovara vrijednosti pravca $\frac{5}{5}$, dakle pivot je $\overline{a}_{1,1}=5$. Izvršavajući elementarne transformacije oko ovog elementa, dobijamo tabelu 
  $$ \begin{array}{cccccc|c}
         1 & 0 & -\frac{1}{5}  & -1   &  \frac{1}{5}     & -\frac{2}{5}  & 1                    \\
         0 & 1 & \frac{3}{5}   &  1   &   \frac{2}{5}  & \frac{1}{5}      & 3                   \\ \hline
@@ -1628,9 +1628,9 @@ hodu $A \rightarrow E \rightarrow D \rightarrow C$.
 \end{figure}
 
 
-Primijetimo da ako bi u prvom koraku birali da mjesto varijable $x$ ubacujemo varijablu $y$ u bazu, došli bi do optimuma tako što bi se pomjerili koracima simpleks metode prvo u tačku $B$, pa potom u $C$, koja je optimum. Takođe, u ovom slučaju je potrebno generisati samo dvije simpleks tabele (a ne tri, kao što smo mi generisali).\vspace{1cm}
+Primijetimo da ako bi u prvom koraku birali da mjesto varijable $x$ ubacujemo varijablu $y$ u bazu, došli bi do optimuma tako što bi se pomjerili koracima simpleks metode prvo u tačku $B$, pa potom u $C$, koja je optimum. Takođe, u ovom slučaju je potrebno generisati samo dvije simpleks tabele (a ne tri, kao što smo mi generisali u ovom primjeru).\vspace{1cm}
 \\
-\textbf{\large Zadaci}.
+\textbf{\Large Zadaci}.
 \begin{enumerate}
 	\item Grafičkom metodom riješiti sljedeći problem
 	\begin{align*}
