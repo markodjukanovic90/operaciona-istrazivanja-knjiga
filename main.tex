@@ -2087,7 +2087,7 @@ Drugi način da se dođe do uslova optimalnosti je preko Lagranžijana para Prim
 \end{align}
 gdje je $X = diag (x_1, \ldots, x_n)$, $S= diag(s_1,\ldots s_m)$, $\mathbf{1}=(1,\ldots, 1)$. Ovaj sistem nazivamo \emph{uslov optimalnosti prvog reda za primal-dual par}. 
 
-U nastavku navodimo problem preko koga razvijamo metod unutrašnje tačke. Ograničenja nenegativnosti u primalnom problemu  zamijenimo sa $-ln x_j$, $j=1,\ldots,n$.   
+U nastavku navodimo pojam barijernog problema preko koga razvijamo metod unutrašnje tačke. Zamijenimo ograničenja nenegativnosti u primalnom problemu sa $-ln x_j$, $j=1,\ldots,n$.   
 Primijetite da vrijedi 
 $$\min e^{-\sum_{j=1}^n ln x_j} \Leftrightarrow \max \prod_{j} x_j $$
 Dakle, minimizacija izraza $-\sum_{j=1}^n x_j$ je ekvivalentna maksimizaciji proizvoda udaljenosti od svih hiperravnima koje definišu prvi ortant. Dakle, ovakav optimizacioni problem (na prvom ortantu) nas sprečava da se vrijednost neke od varijabli $x_j$ približi nuli (uprkos nenegativnim ograničenjima).  Na osnovu ovih činjenica, definišimo sljedeći optimizacioni problem. 
@@ -2126,7 +2126,7 @@ Uvedimo nenegativni vektor $s =\mu \cdot (\frac{1}{x_1}, \frac{1}{x_2}, \ldots, 
 	& x, s \geq 0. \nonumber
 \end{align}
 Primijetimo da ovaj uslov aproksimira iste uslove za primal-dual par.  
-interesantno je da parametar $\mu$ kontroliše udaljenost do optimalnosti, tj. 
+interesantno je da parametar $\mu$ kontroliše udaljenost od optimalnosti, tj. 
 $$ c^T x - b^T y = c^T x - x^T A y = x^T(c- A^Ty ) = x^T s = n \mu.$$
  Uslovi~(\ref{eq:primal-dual-central-path-problem}) ne daju linearni sistem, jer treće ograničenje  nije linearno.
 
@@ -2140,7 +2140,7 @@ Primijetimo sljedeće, ako se u problemu (\ref{eq:primal-dual-central-path-probl
 	&\Longleftrightarrow s^T x = 0  \Longleftrightarrow (A^T y - c)^T x = 0 \\
 	&\Longleftrightarrow y^T A x - c^T x = 0 \Longleftrightarrow y^T b = c^Tx
 \end{align*}
-jer je $Ax = b$. Primijetimo da   vrijednost (optimalnih) dualnih promjenjivih $y$ upravo odgovara vrijednosti Lagranžovih množitelja. Takođe, kako $\mu$ teži ka nuli,   (\ref{eq:primal-dual-central-path-problem}) sve preciznije aproksimira rješenja početnog problema (\ref{eq:lp_equality_constraint}). 
+jer je $Ax = b$. Takođe, primijetimo da   vrijednost (optimalnih) dualnih promjenjivih $y$ upravo odgovara vrijednosti Lagranžovih množitelja. Takođe, kako $\mu$ teži ka nuli,   (\ref{eq:primal-dual-central-path-problem}) sve preciznije aproksimira rješenja početnog problema (\ref{eq:lp_equality_constraint}). 
 
 Da bi došli do koraka samog algoritma, uvedimo notaciju 
 $$ F(x, y, s) = \left (\begin{array}{c}
@@ -2381,14 +2381,14 @@ Još jedna primjena teorije dualnosti u LP-u se ogleda u dokazivanju sljedeće t
 	\end{enumerate}
 \end{thm}
 \begin{proof}
-	  Pogledajmo prvi sistem. Vidimo sličnosti sa Primalnom rješenju. Napišimo sljedeći LP 
+	  Pogledajmo prvi sistem. Uočimo sličnosti sa Primalnom problemu. Posmatrajmo sljedeći LP:
 	  \begin{align*}
 	  	 &\min c^T x \\
 	  	 &s.t. \\
 	  	 & A x \geq 0.
 	  \end{align*}
   Šta se može reći o ovom LP-u? Ako pogledamo desnu stranu ograničenja, vidimo da je vektor $x = 0$ 
-  dopustivo rješenje problema, tako da problem ima barem jedno dopustivo rješenje. Zaključujemo da naš LP može da bude ili optimalan ili neograničen. Posmatrajmo njegov Dualni problema   dat sa 
+  dopustivo rješenje problema, tako da problem ima barem jedno dopustivo rješenje. Zaključujemo da naš LP može da bude ili optimalan ili neograničen. Posmatrajmo njegov dual   dat sa 
   \begin{align*}
   	   &\max 0 \\
   	   &s.t. \\
@@ -2402,7 +2402,7 @@ Još jedna primjena teorije dualnosti u LP-u se ogleda u dokazivanju sljedeće t
   	\item primal je optimalan akko je dual optimalan; 
   	\item primal je neograničen  akko je njegov dual nije dopustiv.  
   \end{itemize}
-  Posmatrajmo sada kada je primal optimalan? Ono što vidimo je da ako bi $x$ bio dopustiv tako da je $c^Tx < 0$ to bi onda i bilo koje $kx$, za proizvoljno $k>0$ bilo takođe dopustivo. Iz toga bi slijedilo da vrijednost funkcije cilja nije ograničena odozdo, tj. teži ka -$\infty$. Dakle, u tom slučaju je problem neograničen. Zaključujemo, kad god je primal optimalan, ta vrijednost mora biti 0, i dostiže se za $x =0$; inače je problem neograničen. Dalje, ako je primal optimalan, to  je ekvivalentno da tim da je sistem iz slučaja (\ref{case:1}) nedopustiv (nema rješenja).  Ako sistem iz slučaja (\ref{case:1}) ima rješenje, primal je neograničen (vrijedi i obrnut smijer). Ako pogledamo   dualni problem, dual je optimalan akko sistem iz  slučaja (\ref{case:2}) ima rješenje. Slično, dual nije dopustiv akko je sistem iz  slučaja (\ref{case:2}) nedopustiv (nema rješenje). Iz niza prethodnih ekvivalencija, zaključujemo da vrijedi: 
+  Odgovorimo sada na pitanje Kada je primal optimalan. Ono što vidimo je da ako bi $x$ bio dopustiv tako da je $c^Tx < 0$ to bi onda i bilo koje $kx$, za proizvoljno $k>0$ bilo takođe dopustivo. Iz toga bi slijedilo da vrijednost funkcije cilja nije ograničena odozdo, tj. teži ka -$\infty$. Dakle, u tom slučaju je problem neograničen. Zaključujemo, kad god je primal optimalan, ta vrijednost mora biti 0, i dostiže se za $x =0$; inače je problem neograničen. Dalje, ako je primal optimalan, to  je ekvivalentno da tim da je sistem iz slučaja (\ref{case:1}) nedopustiv (nema rješenja).  Ako sistem iz slučaja (\ref{case:1}) ima rješenje, primal je neograničen (vrijedi i obrnut smijer). Ako pogledamo   dualni problem, dual je optimalan akko sistem iz  slučaja (\ref{case:2}) ima rješenje. Slično, dual nije dopustiv akko je sistem iz  slučaja (\ref{case:2}) nedopustiv (nema rješenje). Iz niza prethodnih ekvivalencija, zaključujemo da vrijedi: 
   \begin{itemize}
   	  \item Sistem iz  slučaja (\ref{case:1}) nema rješenja akko sistem iz  slučaja (\ref{case:2}) ima rješenje. 
   	  \item Sistem iz  slučaja (\ref{case:1}) ima rješenja akko sistem iz  slučaja (\ref{case:2}) nema rješenje. 
