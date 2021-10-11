@@ -128,7 +128,7 @@
 
 \newpage
 
-\chapter{Predmet izučavanja operacionih istraživanja}
+\chapter{Predmet izučavanja Operacionih istraživanja}
 
 Operaciona istraživanja su oblast koja pripada matematičkim disciplinama. Ona predstavlja osnovnu disciplinu u menadžmentu, a naziv joj potiče iz njene osnovne uloge, a to je istraživanje  operacija u organizacionim sistemima (logistika, problem raspoređivanja, itd.) gdje je svrha optimizacija (troškova, vremena, $\ldots$). Operaciona istraživanja u osnovi predstavljaju analitički metod rješavanja problema i donošenja odluka koje se primjenjuju u organizaciji raznih sistema. Metodologija ovih istraživanja  najčešće obuhvata razbijanje problema na bazne komponente a potom njihovo rješavanje u definisanim koracima uz pomoć matematičkog aparata. 
 
@@ -3466,9 +3466,9 @@ Prodiskutujmo ovo rješenje po čvorovima dobijenog stabla:
   \end{itemize}
   Potpuna enumeracija bi generisala 32 čvora za gornji problem. Implicitna enumeracija generiše svega 11 čvorova. 
  
-\section{Metoda odsijecajućih ravni}
+\section{Metoda odsjecajućih ravni}
   
-\emph{Metoda odsijecajućih ravni} rješava cjelobrojne programe mijenjanjem rješenja linearnog programiranja sve dok se ne dobije cjelobrojno rješenje. Metoda ne radi  na principu dijeljenja dopustivog regiona problema na podregione, kao u B\&B metodama, već radi sa samo jednim linearnim programom, kojeg poboljšava iterativnim dodavanjem novih ograničenja. Nova ograničenja sukcesivno smanjuju dopustiv region dok se ne pronađe cjelobrojno optimalno rješenje.   
+\emph{Metoda odsjecajućih ravni} rješava cjelobrojne programe mijenjanjem rješenja linearnog programiranja sve dok se ne dobije cjelobrojno rješenje. Metoda ne radi  na principu dijeljenja dopustivog regiona problema na podregione, kao u B\&B metodama, već radi sa samo jednim linearnim programom, kojeg poboljšava iterativnim dodavanjem novih ograničenja. Nova ograničenja sukcesivno smanjuju dopustiv region dok se ne pronađe cjelobrojno optimalno rješenje.   
  Istorijski gledano, to je prvi algoritam razvijen za probleme cjelobrojno programiranja za koji se dokazalo da konvergira u konačnom broju
 koraka. Iako se algoritam generalno smatra   neefikasnim, ovaj metod je dovelo do konstrukcije drugih, učinkovitijih algoritama.  
   
@@ -3506,7 +3506,7 @@ Pokušajmo dodati odsjecajuće ravni u prethodni ILP. Za svaku tačku $c$, enume
 \end{equation}
 Ove odsjecajuće ravni će ubrzati rješavanje ovog problema za   red veličine.
 
-Pozabavimo se sada \emph{Gomorijevim odsjecajućim ravnima}, generalnu metodu za dodavanje odsijecajućih ravni u ILP.  Ideja je dobiti ove ravni iz nekog od ograničenja optimalne tabele simpleks metode LP relaksacije problema. Neka simpleks metod generiše sljedeći skup jednakosti u formi:
+Pozabavimo se sada \emph{Gomorijevim odsjecajućim ravnima}, generalnu metodu za dodavanje odsjecajućih ravni u ILP.  Ideja je dobiti ove ravni iz nekog od ograničenja optimalne tabele simpleks metode LP relaksacije problema. Neka simpleks metod generiše sljedeći skup jednakosti u formi:
 
 $$x_i + \sum_{ij} \overline{a}_{i,j} w_j= \overline{b}_i, i=1, \ldots,m$$
 gdje su $x_i$ bazne promjenjive, a $w_j$ nebazne promjenjive. Napišimo ovu jednakost u drugačijem obliku tako da su na lijevoj strani cjelobrojni dijelovi, dok su na desnoj decimalni dijelovi, tj.
@@ -3532,7 +3532,7 @@ $$\begin{array}{ll}
     &x_1, x_2 \geq 0, \\
     &  x_1, x_1 \in \mathbb{Z}.
 \end{array}$$
-Riješimo ga uz pomoć gomorijevih odsijecajućih ravni. 
+Riješimo ga uz pomoć gomorijevih odsjecajućih ravni. 
 
 \emph{Rješenje.}
 Inicijalna simpleks tabela je data sa 
@@ -3629,7 +3629,7 @@ Na Slici~ \ref{fig:region_ilp_primjer_2} dat je skup tačaka koje su dopustive z
     \label{fig:region_ilp_primjer_2}
 \end{figure}
 
-Riješimo sada ovaj problem uz pomoć Gomorijevih odsijecajućih ravni. 
+Riješimo sada ovaj problem uz pomoć Gomorijevih odsjecajućih ravni. 
 Početna simpleks tabela je data sa 
 $$\begin{array}{ccc c| c}
     3  & -1 & 1 &  0  & 12  \\
@@ -3707,7 +3707,7 @@ gdje je lako uočiti da je optimalno bazno dopustivo rješenje $x=(5, 4, 1, 7, 0
 \section{B\&C algoritam za rješavanje ILP-a}
 %https://homepages.rpi.edu/~mitchj/handouts/bc_algo/
 % http://www.mi.fu-berlin.de/wiki/pub/Main/GunnarKlauP1winter0708/discMath_klau_ILP_I.pdf
-Za razliku od B\&B procedure koja rješava ILP, B\&C dodaje  i metod odsijecajućih ravni u rješavanju  potproblema koji odgovaraju čvorovima (drveta). Dakle, ako  uzimamo trenutno aktivni čvor i rješavamo njegov potproblem, dijelimo ga na nekoliko potproblema (podjelom dopustivog regiona na više disjunktnih -- dodavanjem ograničenja) ili ga rješavamo rekurzivnim dodavanjem (gomorijevih) odsijecajućih ravni. Dekonstrirajmo ovu ideju na rješavanje jednog ILP-a.
+Za razliku od B\&B procedure koja rješava ILP, B\&C dodaje  i metod odsjecajućih ravni u rješavanju  potproblema koji odgovaraju čvorovima (drveta). Dakle, ako  uzimamo trenutno aktivni čvor i rješavamo njegov potproblem, dijelimo ga na nekoliko potproblema (podjelom dopustivog regiona na više disjunktnih -- dodavanjem ograničenja) ili ga rješavamo rekurzivnim dodavanjem (gomorijevih) odsjecajućih ravni. Dekonstrirajmo ovu ideju na rješavanje jednog ILP-a.
 
 \emph{Primjer}.  Riješimo problem modelovan uz pomoć sljedećeg ILP-a:
 \begin{align*}
@@ -3742,7 +3742,7 @@ sa optimalnom vrijednošću $33\frac{1}{7}$. Nakon toga treba da se donese odluk
     & x_1, x_2 \in \mathbb{Z}
 \end{align*}
 
-Relaksacija problem ($P1$) daje riješenje $x^*=(3,2)$, koje je cjelobrojno, pa prema tome i dopustivo u početnom problemu. Njena vrijednost je 28, što je i donja granica ($LB$) početnog problema. Relaksacija problema ($P2$) nam daje rješenje $x^*=(2, \frac{7}{2})$, čija je optimalna vrijednost $\frac{29}{2}$.  Prema tome, rješenje nije cjelobrojno. Primjenjujući metod gomorijevih odsijecajućih ravni na problem ($P2$), konstruišemo odsjecajuću ravan $2x_1 + x_2 \leq 7$ koju dodajemo u problem ($P2$) pa dobijamo problem 
+Relaksacija problem ($P1$) daje riješenje $x^*=(3,2)$, koje je cjelobrojno, pa prema tome i dopustivo u početnom problemu. Njena vrijednost je 28, što je i donja granica ($LB$) početnog problema. Relaksacija problema ($P2$) nam daje rješenje $x^*=(2, \frac{7}{2})$, čija je optimalna vrijednost $\frac{29}{2}$.  Prema tome, rješenje nije cjelobrojno. Primjenjujući metod gomorijevih odsjecajućih ravni na problem ($P2$), konstruišemo odsjecajuću ravan $2x_1 + x_2 \leq 7$ koju dodajemo u problem ($P2$) pa dobijamo problem 
 \begin{align*}
     &\max 6 x_1 + 5 x_2 \\
     & {s.t. } \\
@@ -4307,7 +4307,7 @@ U ovom slučaju, cilj je eliminisati ovaj zrak iz daljeg razmatranja (budućih r
 
 \end{itemize}
  
-Sada možemo definisati master problem koji nastaje dodavanjem svih odsijecajućih ravni generisanih u prethodnim koracima.
+Sada možemo definisati master problem koji nastaje dodavanjem svih odsjecajućih ravni generisanih u prethodnim koracima.
   \begin{equation}
 	\begin{aligned}\label{bender8}
 		\min\ &z\\
