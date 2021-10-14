@@ -546,23 +546,23 @@ programu postoji varijabla koja ne zadovoljava uslov nenegativnosti, ona se mož
      \label{fig:unbounded_solution}
  \end{figure}
  
-Uvedimo sada pojam \emph{ekstremalnih tačaka}, koje igraju bitnu ulogu u simpleks metodu. Za rješenje $x$ kažemo da je \emph{ekstremna tačka} ako se nalazi u vrhu dopustivog regiona (u presjeku granica dopustivog regiona).
+Uvedimo sada pojam \emph{ekstremalnih tačaka}, koje igraju bitnu ulogu u simpleks metodi. Za rješenje $x$ kažemo da je \emph{ekstremna tačka} ako se nalazi u vrhu dopustivog regiona (u presjeku granica dopustivog regiona).
 
 Postoji važne veze između ovih tačaka i optimalnog rješenja LP-a, o čemu će biti riječi u nastavku ove knjige.
-Prije toga, za početak, razmotrimo bilo koji problem LP-a sa dopustivim rješenjima i ograničenim dopustivom regionom. Tada će važiti, što ćemo uskoro i pokazati, da problem tada posjeduje barem jednu tačku koja je vrh tog regiona i barem jedno optimalno rješenje. Nadalje, jedan od vrhova mora biti optimalno rješenje. Dakle, ako problem ima tačno jedno optimalno rješenje, to mora biti tačka u vrhu. Ako problem ima više optimalnih rješenja, barem dva moraju biti rješenja koja su tačke  vrhova dopustivog regiona.
+Prije toga, za početak, razmotrimo bilo koji problem LP-a sa dopustivim rješenjima i ograničenim dopustivim regionom. Tada će važiti, što ćemo uskoro i pokazati, da problem tada posjeduje barem jednu tačku koja je vrh tog regiona i barem jedno optimalno rješenje. Nadalje, jedan od vrhova mora biti optimalno rješenje. Dakle, ako problem ima tačno jedno optimalno rješenje, to rješenje je tačka u vrhu. Ako problem ima više optimalnih rješenja, barem dva moraju biti rješenja koja su tačke  vrhova dopustivog regiona.
 
-\textit{Napomena.} Iako je to vjerovatno jasno, imajte na umu da (optimalno) rješenje LP-a ne mora da bude cjelobrojno. Budući da svaka varijabla odluke predstavlja nivo odgovarajuće aktivnosti, pretpostavlja se da se aktivnosti mogu izvoditi na razlomljenim nivoima (aktivnost  se ne dijeli samo na diskretne dijelove), na osnovu nenegativnih ograničenja.  
+\textit{Napomena.} Imajte na umu da (optimalno) rješenje LP-a ne mora da bude cjelobrojno. Budući da svaka varijabla odluke predstavlja nivo odgovarajuće aktivnosti, pretpostavlja se da se aktivnosti mogu izvoditi na razlomljenim nivoima (aktivnost  se ne dijeli samo na diskretne dijelove), na osnovu nenegativnih ograničenja.  
 
 Ako su sve varijable u problemu LP-a cjelobrojne, riječ je o problemima \emph{Cjelobrojnog programiranja}. Ako pored cjelobrojnih, postoje i neke varijable koje su neprekidne, riječ je o problemima \emph{Mješovitog--cjelobrojnog linearnog programiranja}. Veliki broj realnih problema koji dolaze iz prakse su upravo problemi Mješovitog--cjelobrojnog linearnog programiranja.
 
 \section{Modelovanje nekih Problema paradigmom Linearnog Programiranja}\label{sec:modeli_lp}
 
 \emph{Problem optimalne prehrane.} Pretpostavimo da su nam na raspolaganju namirnice $N_1, \ldots, N_n$. Cijena namirnice $N_j$ po jedinici je $c_j, j = 1, \ldots, n$. U namirnicama su prisutni nutritivni elementi $e_j,j=1,\ldots,m$ pri čemu
-u namirnici $N_j$ ima $a_{ij}$ nutritivnog elementa $e_i$, $i = 1, \ldots, n$, $j = 1, \ldots, m$. Svaka osoba u toku dana treba da unese barem $b_i$
+u namirnici $N_j$ ima $a_{ij} \geq 0$ nutritivnog elementa $e_i$, $i = 1, \ldots, n$, $j = 1, \ldots, m$. Svaka osoba u toku dana treba da unese barem $b_i$
 jedinica nutritivnog elementa $e_i$. Potrebno je modelovati
 sljedeći problem: 
 
-\emph{Koliko treba konzumirati pojedine namirnice da bi se zadovoljila dnevna
+\emph{Koliko treba konzumirati pojedinih namirnica da bi se zadovoljila dnevna
 potreba za svim nutritivnim elementima, a da se pri tome minimizuje cijena prehrane?}
  
  \emph{Rješenje.}  Uvedimo prvo varijable $x_j \geq 0$ za količinu hrane namirnice $N_j$, $j = 1, \ldots, n$ koja treba da bude konzumirana. Funkcija cilja je da se minimizuje cijena prehrane, pa je, prema tome 
@@ -582,7 +582,7 @@ k, l \in \mathbb{R}$ koja u smislu $l_1$ norme najbolje aproksimira date podatke
 \emph{Rješenje}.
 Označimo $z_i = |k x_i + l - y_i| = \max\{k x_i + l - y_i, y_i - k x_i - l \}$, $i=1,\ldots,n$. 
 
-Primijetimo da apsolutna vrijednost ne odgovara direktno problemu LP-a bilo da je prisutna u funkciji cilja ili ograničenjima, jer ona sama po sebi nije linearna funkcija. Međutim, elementarnim transformacijama, polazni problem možemo da preformulišemo na sljedeći  problem linearnog programiranja:
+Primijetimo da apsolutna vrijednost ne odgovara direktno problemu LP-a bilo da je prisutna u funkciji cilja ili ograničenjima, jer ona sama po sebi nije linearna funkcija. Međutim, elementarnim transformacijama, polazni problem možemo da preformulišemo na sljedeći  problem linearnog programiranja: % ogranizenje |kx_i + l - y_i | <= z_i <=> dalje se svodi na dva ogranicenja...
 
 $f(x) = c^T w$, pod uslovima
 \begin{itemize}
@@ -600,9 +600,9 @@ Kada je riječ o linearnim programima,  oni imaju nekoliko osnovnih implicitnih 
 \begin{enumerate}
     \item \emph{Proporcionalnost.} Doprinos svake aktivnosti ciljnoj funkciji $f$ proporcionalan je njenom koeficijentu doprinosa, tj. $c_ix_i$. Doprinos svake aktivnosti svakom od  ograničenja u modelu proporcionalan je njenom  koeficijentu doprinosa, tj. $a_ix_i$.
     \item  \emph{Aditivnost.} Svaka funkcija u modelu je zbir  doprinosa pojedinih aktivnosti, npr. $f(x) = \sum_i a_i x_i$.
-    \item \emph{Djeljivost}. Varijable odluke se mogu podijeliti na vrijednosti koje nisu cijele, uzimajući u obzir  razlomljene vrijednosti, dok god zadovoljavaju ograničenja. 
+    \item \emph{Djeljivost}. Varijable odluke se mogu podijeliti na vrijednosti koje nisu cijele, uzimajući u obzir  razlomljene vrijednosti, dok god su ograničenja zadovoljena.  
     \item \emph{Sigurnost}. Pretpostavljamo da su vrijednosti parametara u modelu poznate
-    sa nekom dozom sigurnosti ili se barem tako tretiraju. Dobijeno optimalno rješenje je optimalno za specifični formulisani problem. Ako su vrijednosti parametara pogrešne, tada rezultirajuće rješenje ima malu (upotrebnu)  vrijednost.  
+    sa nekom dozom sigurnosti ili se barem tako tretiraju. Dobijeno optimalno rješenje je optimalno za specifični formulisani problem. Ako su vrijednosti parametara pogrešne, tada rezultirajuće rješenje po pravilu ima malu (upotrebnu)  vrijednost.  
 \end{enumerate}
 %Ako model zadovoljava prethodne 4 pretpostavke, onda je riješ o modelu linearnog programiranja. 
 
@@ -705,7 +705,7 @@ U sljedeće dvije definicije definišimo pojmove poliedra, hiperravni i polupros
 \begin{definition}
    Neka je $a\in \mathbb{R}^n $ i $b \in \mathbb{R}$. Skup $\{ x \in \mathbb{R}^n \mid a^T x = b \}$ se naziva hiperravan u $\mathbb{R}^n$ čiji je vektor  normale $a$, dok se $\{ x \in \mathbb{R}^n \mid a^T x \geq b \}$ naziva poluprostor. 
 \end{definition}
-Pokažimo sada da je poliedar konveksan skup. To je važna karakteristika, jer, kako znamo, uslovi problema LP-a najčešće formiraju odgovarajući poliedar, a kako je on konveksan skup, prethodna teorema nam garantuje da, uz pretpostavku da postoji lokalni minimum (maksimum), tada postoji  i globalni minimum (maksimum), tj. optimalno rješenje zadanog problema LP-a.
+Pokažimo sada da je poliedar konveksan skup. To je važna karakteristika jer se uslovima problema LP-a formira odgovarajući poliedar, a kako je on konveksan skup, prethodna teorema nam garantuje da, uz pretpostavku da postoji lokalni minimum (maksimum), postoji  i globalni minimum (maksimum), tj. optimalno rješenje zadanog problema LP-a.
 
 \begin{prop}Vrijede sljedeće tvrdnje: \\
   ($i$)  Poluprostor u $\mathbb{R}^n$ je konveksan skup.  \\
@@ -732,7 +732,7 @@ Pokažimo sada da je poliedar konveksan skup. To je važna karakteristika, jer, 
 Iz prethodne teoreme slijedi sljedeća posljedica.
 
 \begin{poslje}
-Poliedar $P$ je konveksan skup.	
+Poliedar $P$ nekog problema LP-a je konveksan skup.	
 \end{poslje}
  
 \begin{proof}
@@ -749,14 +749,14 @@ Nadalje, formalno definišimo ekstremne tačke, vrhove i bazna dopustiva rješen
    ako ne postoje vektori $y, z \in P$, $y \neq x, z \neq x$ i skalar $\lambda \in [0, 1]$ takvi da je  $x = \lambda y + (1-\lambda)z$.
 \end{definition}
 
- Drugim riječima, ekstremna tačka $x$ ne leži između neke dvije tačke $y,z$ iz poliedra $P$.
+ Drugim riječima, ekstremna tačka $x$ ne leži između neke dvije tačke $y,z$    poliedra $P$.
 Možemo reći i ovako: One tačke koje se ne mogu napisati kao netrivijalna konveksna kombinacija tačaka iz poliedra čine skup ekstremnih tačaka. 
  
  
 \begin{definition}
    Neka je dat poliedar $P$ u $\mathbb{R}^n$. Tačku $x \in P$ nazivamo vrh (poliedra) ako postoji linearna funkcija  $c^T x$ koja je strogo minimizovana u toj tački, tj. za sve  $y\in P, y \neq x$, vrijedi $c^T x < c^T y$. 
 \end{definition}
-Geometrijski posmatrano,  vrh poliedra $P$ je ona tačka poliedra  kroz koju možemo provući hiperravan sa svojstvom da se sve tačke iz $P$ (izuzev vrha) nalaze sa iste strane te poluravni.
+Geometrijski posmatrano,  vrh poliedra $P$ je ona tačka poliedra  kroz koju možemo provući poluravan sa svojstvom da se sve tačke iz $P$ (izuzev vrha) nalaze sa iste strane te poluravni.
 
 Uvedimo sada nekoliko novih pojmova koji će nam pomoći da definišemo bazno dopustivo rješenje.
 
@@ -768,7 +768,7 @@ Uvedimo sada nekoliko novih pojmova koji će nam pomoći da definišemo bazno do
        \item $a_i^T x \leq b_i, i \in C_3 $. 
    \end{itemize}
    Ako za neko $x^* \in P$ i neki $i_0 \in C_1 \cup C_1 \cup C_2$ vrijedi 
-   $a_{i_0}^T x^* = b_{i_0}$, onda je indeks $i_0$ aktivan u $x^*$. 
+   $a_{i_0}^T x^* = b_{i_0}$, onda je indeks (ograničenje) $i_0$ aktivan u $x^*$. 
 \end{definition}
 
 \begin{definition}
@@ -795,10 +795,10 @@ Pokažimo sada da su vrhovi, ekstremne tačke poliedra i bazna dopustiva rješen
       
       $1 \Rightarrow 2$. Neka je $x^*$ vrh poliedra. Iz definicije slijedi da 
       postoji $c\in \mathbb{R}^n$ tako da $c^Tx^* < c^T x$, za sve $x \in P, x \neq x^*$. Pretpostavimo da $x^*$ nije ekstremna tačka poliedra $P$. 
-      To bi značilo da postoje $y,z \in P$, koji su različiti od $x^*$, takvi da se $x^*$ može predstaviti kao njihova (netrivijalna) konveksna kombinacija, tj. $x^* = \lambda y + (1 - \lambda) z $, za $\lambda \in (0,1 )$. Na osnovu pretpostavke je $c^T x^* < c^T y$. Sada je 
+      To bi značilo da postoje $y,z \in P$, koji su različiti od $x^*$, takvi da se $x^*$ može predstaviti kao njihova (netrivijalna) konveksna kombinacija, tj. $x^* = \lambda y + (1 - \lambda) z $, za neko $\lambda \in (0,1 )$. Na osnovu pretpostavke je $c^T x^* < c^T y$. Sada je 
       \begin{align}
-          &c^T x^* = c^T ( \lambda y + (1 - \lambda) z )  = c^T( \lambda y) + c^T((1- \lambda) z) < \nonumber \\
-          &< \lambda c^T x^* + ( 1 - \lambda) c^T x^* = c^T x^*.
+          &c^T x^* = c^T ( \lambda y + (1 - \lambda) z )  = c^T( \lambda y) + c^T((1- \lambda) z) > \nonumber \\
+          &>\lambda c^T x^* + ( 1 - \lambda) c^T x^* = c^T x^*.
       \end{align}
       što je nemoguće, odakle slijedi tvrdnja. \\
       $2 \Rightarrow 3$.
@@ -826,10 +826,10 @@ Pokažimo sada da su vrhovi, ekstremne tačke poliedra i bazna dopustiva rješen
           c^T x = \sum_{i \in I} a_i^T x \geq c^T x^*  
        \end{equation}
      Iz toga vidimo da je $x^*$ rješenje LP problema minimizacije. Jednakost u (\ref{eq:3_impl_1}) vrijedi ako i samo ako je $a_i^T x = b_i$ za sve $i \in I$. Kako je $x^*$ BDR, broj linearno nezavisnih vektora $a_i, i \in I$ koji su  aktivni u $x^*$ je jednak $n$, pa sistem $a_i^T x = b_i, i \in I$ ima jedinstveno rješenje koje je upravo $x^*$. Prema tome, pokazano je da postoji vektor $c \in \mathbb{R}^n$ za koji vrijedi $c^T x > c^T x^*$ za sve $x \neq x^*$, $x \in P$, odake na osnovu definicije vrha poliedra, slijedi tvrdnja. 
-\end{proof}
+\end{proof}\\
 
-U nastavku ćemo vidjeti koji uslovi treba da vrijede za postojanje BDR-a
-i ekstremne tačke poliedra. Takođe, daćemo i postupak za konstrukciju BDR-a, te ćemo definisati pojam degenerativnog rješenja.
+U nastavku ćemo vidjeti koji uslovi treba da vrijede za postojanje BDR-a, tj. 
+ ekstremne tačke poliedra. Takođe, daćemo i postupak za konstrukciju BDR-a, te ćemo uvesti pojam degenerativnog rješenja.
 
 \begin{thm}
    Neka je $P = \{ x \in \mathbb{R}^n \mid A x = b, x \geq 0\}, A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m$ i $rang(A)= m, m < n$.
@@ -861,7 +861,7 @@ Definišimo sada pojam \emph{degenerativnog} rješenje i degenerativnog baznog r
 \end{definition}
 
 \begin{definition}
-      Neka je $P = \{ x \in \mathbb{R}^n \mid A x = b, x \geq 0\}, A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m$    i neka je $x$ bazno rješenje. Vektor $x$ nazivamo degenerativno bazno rješenje ako više od $n-m$ komponenti u vektoru $x$ je jednako 0.
+      Neka je $P = \{ x \in \mathbb{R}^n \mid A x = b, x \geq 0\}, A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m$    i neka je $x$ bazno rješenje. Vektor $x$ nazivamo degenerativno bazno rješenje ako je više od $n-m$ komponenti u vektoru $x$   jednako 0.
 \end{definition}
 \emph{\textbf{Primjer.}} Zadajmo poliedar $P= \{ (x_1,x_2,x_3)^T \mid x_2 - x_1 = 0, x_1 + x_2 +   x_3 = 2, x_1,x_2,x_3 \geq 0 \}$.  Pronaći bazna dopustiva rješenja i odrediti jesu li ona degenerativna. \\
 
@@ -873,7 +873,7 @@ $A=\left (\begin{array}{ccc}
    -1  & 1    \\
    1  &  1   \\
 \end{array} \right ) .$ Riješimo sistem jednačina (stavka 3), odakle je rješenje $x_B = [1\ 1]^T$, a krajnje rješenje je $x^* = [1\ 1\ 0]^T$. Kako je 
-$x^*$ aktivan u sva tri uslova $x_2 - x_1 = 0, x_1 + x_2 +  x_3 = 2$ i $x_3 = 0$, rješenje je nedegenerativno bazno dopustivo rješenje.  Takođe, možemo odabrati drugu i treću kolonu matrice za bazne kolone (kao i prvu i treću), odakle bismo dobili rješenje $x^* = [0\ 0\ 2]^T$, aktivno u četiri uslova, pa smo dobili degenerativno bazno dopustivo rješenje. 
+$x^*$ aktivan u sva tri uslova $x_2 - x_1 = 0, x_1 + x_2 +  x_3 = 2$ i $x_3 = 0$, rješenje je nedegenerativno bazno dopustivo rješenje.  Takođe, možemo odabrati drugu i treću kolonu matrice za bazne kolone (kao i prvu i treću), odakle bismo dobili rješenje $x^* = [0\ 0\ 2]^T$, aktivno u četiri uslova, pa smo dobili degenerativno bazno dopustivo rješenje. \\
 
 
 U nastavku govorimo o egzistenciji optimalnog rješenja problema LP-a. U narednoj definiciji objašnjavamo pojam pravca u poliedru.
@@ -901,23 +901,23 @@ Sljedeća teorema nam daje dovoljan uslov za postojanje optimalnog rješenja koj
 
 \begin{proof}
          Sa $O^* \not = \emptyset$ označimo skup svih optimalnih rješenja LP problema nad poliedrom $P= \{ x \in \mathbb{R}^n \mid A x \geq b \}$ te neka je $c^T x^* = v$, za sve $x^* \in O^*$. Vidimo da je 
-         $O^* = \{ x \in \mathbb{R}^n \mid A x \geq b_i, c^T x = v  \}$ je takođe poliedar, $O^* \subset P$. Prethodna teorema nam kaže da $P$ ne sadrži pravac. Iz toga slijedi da ni $O^*$ nema pravac, odakle slijedi da $O^*$ ima barem jednu ekstremnu tačku, označimo je sa $q^*$. Pokažimo da je to i ekstremna tačka od $P$.  Ako bismo pretpostavili da $q^*$ nije ekstremna tačka poliedra $P$, po definiciji slijedi da postoje $y, z \in P$ tako da $q^* = \lambda y + ( 1 - \lambda ) z $, $y \neq q^*, z \neq q^*, \lambda \in [0, 1]$. Kako je $q^* \in O^*$, imamo 
+         $O^* = \{ x \in \mathbb{R}^n \mid A x \geq b_i, c^T x = v  \}$ je takođe poliedar, $O^* \subset P$. Prethodna teorema nam kaže da $P$ ne sadrži pravac. Iz toga slijedi da ni $O^*$ nema pravac, odakle slijedi da $O^*$ ima barem jednu ekstremnu tačku (stavka 1 prethodne teoreme), označimo je sa $q^*$. Pokažimo da je to i ekstremna tačka od $P$.  Ako bismo pretpostavili da $q^*$ nije ekstremna tačka poliedra $P$, po definiciji slijedi da postoje $y, z \in P$ tako da $q^* = \lambda y + ( 1 - \lambda ) z $, $y \neq q^*, z \neq q^*, \lambda \in [0, 1]$. Kako je $q^* \in O^*$, imamo 
          $$ v = c^T q^* = c^T (  \lambda y + ( 1 - \lambda ) z ) = \lambda 
         \underbrace{ c^T y}_{ \geq v} + ( 1 - \lambda ) \underbrace{c^T z}_{\geq v} \geq \lambda v + (1 - \lambda) v = v,$$
-        odakle imamo $c^T y = v$ i $c^T z = v$, dakle $y, z \in O^*$. Prema tome, $q^*$ nije ekstremna tačka od $O^*$. Prema tome, imamo kontradikciju, odakle slijedi da je $q^*$  ekstremna tačka od  $P$.
+        odakle imamo $c^T y = v$ i $c^T z = v$, dakle $y, z \in O^*$. Prema tome, $q^*$ nije ekstremna tačka od $O^*$. Prema tome, imamo kontradikciju, odakle slijedi da je $q^*$  ekstremna tačka poliedra  $P$.
 \end{proof}
  
  Ova važna tvrđenja nam daju osnov za konstrukciju simpleks metoda koji je, kao što smo već pomenuli, jedna od najpoznatijih i najefikasnijih metoda za rješavanje problema LP.
  
 % \begin{thm}
- Ako  rješavamo problem minimizacije LP-a na poliedru $P$ koji ima barem jednu ekstremnu tačku, tada vrijedi tačno jedna od sljedeće dvije tvrdnje:
+ \emph{Posljedica.} Ako  rješavamo problem minimizacije LP-a na poliedru $P$ koji ima barem jednu ekstremnu tačku, tada vrijedi tačno jedna od sljedeće dvije tvrdnje:
    \begin{enumerate}
        \item Funkcija cilja ima vrijednost $- \infty$ (funkcija cilja je neograničena).
        \item Postoji ekstremna tačka u kojoj funkcija cilja dostiže optimalno rješenje. 
    \end{enumerate}
 % \end{thm}
-Kako ćemo vidjeti u narednom poglavlju, upravo  ove tvrdnje opravdavaju ideju simpleks metode, koja uvijek posjećuje vrhove poliedra 
-u cilju pronalaska optimalnog rješenje problema LP-a.
+Kako ćemo vidjeti u narednom poglavlju, upravo  ove tvrdnje opravdavaju ideju simpleks metode, koja je bazirana na posjećivanju vrhova poliedra 
+u cilju pronalaska optimalnog rješenja.
 
 \section{Neke tehnike modelovanja problema Linearnog Programiranja}
 
