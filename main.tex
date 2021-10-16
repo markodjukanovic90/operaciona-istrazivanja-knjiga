@@ -498,6 +498,7 @@ Postavka (\ref{form:LP-1})--(\ref{form:LP-4}) se još naziva i \emph{standardna 
 Kompaktiniji oblik standardne forme je dat sa:
 \begin{align}
     & f = c^T x \rightarrow \max \label{eq:LP-o1}\\
+    & \mbox{s.t.} \nonumber \\
     &  A x \leq b \label{eq:LP-c1} \\
     & x \geq 0 \label{eq:LP-c2},
 \end{align}
@@ -929,7 +930,7 @@ u cilju pronalaska optimalnog rješenja.
 \end{align*} 
 
 Kao što znamo, apsolutna vrijednost nije linearna funkcija, ali se ovaj model može transformisati u model linearnog programiranja na sljedeći način: 
-svaku slobodnu varijablu ćemo zapisati kao razliku dvije pozitivne varijable, tj.  $x_i = x_i^+ - x_i^-$, a apsolutnu vrijednost kao zbir dvije pozitivne varijable, tj. $|x_i|= x_i^+ + x_i^-$. Prema tome, prethodni model transformisemo u 
+svaku slobodnu varijablu ćemo zapisati kao razliku dvije pozitivne varijable, tj.  $x_i = x_i^+ - x_i^-$, a apsolutnu vrijednost kao zbir dvije pozitivne varijable, tj. $|x_i|= x_i^+ + x_i^-$. Prema tome, prethodni model se transformiše  u 
 \begin{align*}
 	&\min \sum_{j \in J} c_j  (x_i^+ + x_i^-) \\
 	&\sum_{j\in J} a_{ij} (  x_i^+ - x_i^- ) \leq b_i, \forall i\in I \\
@@ -939,7 +940,8 @@ Ostavljamo čitaocu da pokaže da ova dva modela imaju jednaka optimalna rješen
 
 \emph{Min-max problem}. Neka je dat sljedeći model: 
 \begin{align*}
-	&\min \max_{k \in K} \sum_{j \in J} c_{kj} x_j \\
+	&\min_{x} \max_{k \in K} \sum_{j \in J} c_{kj} x_j \\
+	&\mbox{s.t.} \nonumber \\
 	& \sum_{j \in J} a_{ij} x_j \leq b_i\  \forall i \in I \\
 	& x_j \geq 0\ \forall j \in J.
 \end{align*}
@@ -947,7 +949,7 @@ Ovaj  model se transformiše u model LP-a uvodeći varijablu $z=\max_{k \in K} \
 \begin{eqnarray}
 	\sum_{j \in J} a_{kj} x_j \leq z\ \forall k \in K.
 \end{eqnarray}
-Kada se $z$ minimizuje, ova ograničenja osiguravaju da je $z$ veće ili jednako  $\sum_{j \in J} c_{kj}x_j$, za sve $k$. Optimalna vrijednost $z$ neće biti veća od makismuma svih $\sum_{j \in J} c_{kj}x_j$, jer je $z$ minimizovano. Prema tome, optimalna vrijednost od $z$ će biti što manja moguća i jednaka maksimalnoj cijeni nad skupom $K$. Prema tome, model se transformiše u:
+Kada se $z$ minimizuje, ova ograničenja osiguravaju da je $z$ veće ili jednako  $\sum_{j \in J} c_{kj}x_j$, za sve $k$. Optimalna vrijednost $z$ neće biti veća od makismuma svih $\sum_{j \in J} c_{kj}x_j$, jer je $z$ minimizovano. Prema tome, optimalna vrijednost varijable $z$ će težiti da bude što manja moguća i jednaka maksimalnoj cijeni nad skupom $K$. Prema tome, model se transformiše u:
 \begin{align*}
 	&\max z \\
 	&\sum_{j \in J} a_{ij} x_j \leq b_i\  \forall i \in I \\ 
@@ -977,7 +979,7 @@ Množeći prvo ograničenje sa $t>0$ te uvodeći smjenu $y_j = t x_j$, konačno 
 	& t > 0 \\
 	& x \geq 0.
 \end{align*}
-Na kraju, provremeno dozvoliti da je $t \geq 0$, da bi dobili LP model. 
+Na kraju, potrebno dozvoliti da je $t \geq 0$, da bi dobili LP model. 
 Za optimalnu vrijednost od $t$ na kraju provjeriti da je $t>0$.   \\
 \emph{Domenske granice u ograničenjima}. Neka nam je dat model
 \begin{align*}
