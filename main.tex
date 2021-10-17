@@ -857,7 +857,7 @@ Varijable $x_{p_1},\ldots, x_{p_m}$ nazivamo \emph{bazne varijable}, a vektore  
 Definišimo sada pojam \emph{degenerativnog} rješenje i degenerativnog baznog rješenja. Pokazaćemo kako se na primjeru pronalazi bazno rješenje te kako izgleda degenerativno bazno rješenje.
 
 \begin{definition}
-      Neka je dat poliedar $P = \{ x \in \mathbb{R}^n \mid a_i^T x \geq b_i, i=1,\ldots,m \}$. Za bazno rješenje $x^*\in \mathbb{R}^n$ kažemo da je degenerativno ako je više od $n$  ograničenja aktivno u $x^*$. 
+      Neka je dat poliedar $P = \{ x \in \mathbb{R}^n \mid a_i^T x \geq b_i, x_i \geq 0, i=1,\ldots,m \}$. Za bazno rješenje $x^*\in \mathbb{R}^n$ kažemo da je degenerativno ako je više od $n$  ograničenja aktivno u $x^*$. 
       
 \end{definition}
 
@@ -905,7 +905,7 @@ Sljedeća teorema nam daje dovoljan uslov za postojanje optimalnog rješenja koj
          $O^* = \{ x \in \mathbb{R}^n \mid A x \geq b_i, c^T x = v  \}$ je takođe poliedar, $O^* \subset P$. Prethodna teorema nam kaže da $P$ ne sadrži pravac. Iz toga slijedi da ni $O^*$ nema pravac, odakle slijedi da $O^*$ ima barem jednu ekstremnu tačku (stavka 1 prethodne teoreme), označimo je sa $q^*$. Pokažimo da je to i ekstremna tačka od $P$.  Ako bismo pretpostavili da $q^*$ nije ekstremna tačka poliedra $P$, po definiciji slijedi da postoje $y, z \in P$ tako da $q^* = \lambda y + ( 1 - \lambda ) z $, $y \neq q^*, z \neq q^*, \lambda \in [0, 1]$. Kako je $q^* \in O^*$, imamo 
          $$ v = c^T q^* = c^T (  \lambda y + ( 1 - \lambda ) z ) = \lambda 
         \underbrace{ c^T y}_{ \geq v} + ( 1 - \lambda ) \underbrace{c^T z}_{\geq v} \geq \lambda v + (1 - \lambda) v = v,$$
-        odakle imamo $c^T y = v$ i $c^T z = v$, dakle $y, z \in O^*$. Prema tome, $q^*$ nije ekstremna tačka od $O^*$. Prema tome, imamo kontradikciju, odakle slijedi da je $q^*$  ekstremna tačka poliedra  $P$.
+        odakle imamo $c^T y = v$ i $c^T z = v$, dakle $y, z \in O^*$. Prema tome, $q^*$ nije ekstremna tačka od $O^*$. Dakle, imamo kontradikciju, odakle slijedi da je $q^*$  ekstremna tačka poliedra  $P$.
 \end{proof}
  
  Ova važna tvrđenja nam daju osnov za konstrukciju simpleks metoda koji je, kao što smo već pomenuli, jedna od najpoznatijih i najefikasnijih metoda za rješavanje problema LP.
@@ -920,7 +920,7 @@ Sljedeća teorema nam daje dovoljan uslov za postojanje optimalnog rješenja koj
 Kako ćemo vidjeti u narednom poglavlju, upravo  ove tvrdnje opravdavaju ideju simpleks metode, koja je bazirana na posjećivanju vrhova poliedra 
 u cilju pronalaska optimalnog rješenja.
 
-\section{Neke tehnike modelovanja problema Linearnog Programiranja}
+\section{Neke tehnike u modelovanju problema Linearnog Programiranja}
 
 \emph{Apsolutna funkcija}.   Pretpostavimo da imamo model dat sa 
 \begin{align*}
