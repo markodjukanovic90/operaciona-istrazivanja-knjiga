@@ -1131,8 +1131,8 @@ odakle je $d_B = -  B^{-1} \cdot A_j $.  Za ovako odabran $d$ imamo zadovoljen u
     \item Ako je $x$ nedegenerativno, onda je tačno $n-m$ komponenti jednako 0,       pa je za nebazni dio komponenti $x_i + \lambda d_i = 0$, za $i \in N \setminus \{j\}$, dok je $x_j + \lambda d_j = 0$, pa imamo ispunjen uslov nenegativnosti. Za bazne komponente imamo $x_{p_i} \cdot d_{p_i} > 0 $ ako je $d_{p_i}>0$. U protivnom, možemo odabrati  malu vrijednost  $\lambda>0$ (pogledati definiciju dopustivog pravca $x +\lambda d$) tako da $x_{p_i} \cdot d_{p_i} >0$, pa imam zadovoljen uslov nenegativnosti.
     \item Ako je $x$ degenerativno bazno dopustivo rješenje, slijedi da više od $n-m$ kompomenti od $x$ je jednako 0. Za nebazni slučaj kao i u prvom slučaju pokazujemo uslov nenegativnosti. Za bazne kompomenete $x +\lambda d$,  postoji bazni indeks $i$ za koji je $x_{p_i} = 0$, pa   je $d_{p_i}< 0$, što povlači da u tom slučaju ne možemo naći $\lambda>0$ tako da $x_{p_i} + \lambda d_{p_i} >0$  što stvara problem (dopustivost narušena). Pojava ovog slučaja se na sreću može zaobići (pokazaćemo to u nastavku ove sekcije). 
 \end{itemize}
- Ostaje nam pitanje odabira nebazne varijable $x_j$. U pomoć pozivamo uslov optimalnosti $c^T ( x + \lambda d ) > c^T x $, odakle slijedi $c^T d < 0$.  Kako je $$c^T d = c_B^T d_B + c_j = c^T ( - B^{-1} A_j ) + c_j < 0.$$
- Prema tome, odaberimo (nebazni) indeks $j$ pri čemu je zadovoljeno $ \overline{c_j} = c_j - c_B^T B^{-1}A_j < 0$. Vektor $\overline{c_j}=[\overline{c_1}, \ldots, \overline{c_n}]^T$ se naziva \emph{vektor doprinosa}, dok vrijednost $\overline{c_j}$ \emph{doprinos nebazne varijable} $x_j$. 
+ Ostaje nam pitanje odabira nebazne varijable $x_j$. U pomoć pozivamo uslov optimalnosti $c^T ( x + \lambda d ) < c^T x $, odakle slijedi $c^T d < 0$.  Kako je $$c^T d = c_B^T d_B + c_j = c^T ( - B^{-1} A_j ) + c_j < 0.$$
+ Prema tome, odaberimo (nebazni) indeks $j$ pri čemu je zadovoljeno $ \overline{c_j} = c_j - c_B^T B^{-1}A_j < 0$. Vektor $\overline{c}=[\overline{c_1}, \ldots, \overline{c_n}]^T$ se naziva \emph{vektor doprinosa}, dok vrijednost $\overline{c_j}$ \emph{doprinos nebazne varijable} $x_j$. 
  
 Iz sljedeće teoreme dobijamo uslove optimalnosti rješenja.
 
@@ -1147,7 +1147,7 @@ Iz sljedeće teoreme dobijamo uslove optimalnosti rješenja.
 Ostalo nam je još odrediti dužinu koraka pravca $d$, tj. vrijednost $\lambda>0$. Ideja je da se krene nekim smjerom dok god se ne dođe do drugog vrha, tj. treba odrediti dužinu vektora $d$ koji je jednak $\max \{ \lambda \in \mathbb{R} \mid x + \lambda d \geq 0 \}$. Razlikujemo sljedeća dva slučaja:
 \begin{itemize}
     \item Ako $d >0$, onda je $  x + \lambda d \geq 0$, za sve $\lambda > 0$, pa je $\lambda^* = \infty$, tj. ciljna funkcija je neograničena.
-    \item Ako postoji $i$, td. $d_i < 0$, onda za dovoljno malo $\lambda>0$ tako da $x_i + \lambda d_i \geq 0$ imamo $\lambda \leq -\frac{x_i}{d_i}$. Prema tome 
+    \item Ako postoji $i$, td. $d_i < 0$, onda za dovoljno malo $\lambda>0$ tako da $x_i + \lambda d_i \geq 0$ dobijamo $\lambda \leq -\frac{x_i}{d_i}$. Prema tome 
     $$ \lambda^* = \min_{ \{i\in [m] \mid d_{p_i} < 0  \}} - \frac{x_{p_i}}{d_{p_i}} $$
 \end{itemize}
 Za indeks $l$ za koji se postiže ovaj minimum, vrijedi $x_{p_l} + \lambda^* d_{p_l}=0$.
