@@ -374,16 +374,17 @@ Ostatak ove knjige je fokusiran prvenstveno na razvoj matematičkih modela i odg
 \chapter{Linearno Programiranje} 
   
   Početak razvoja linearnog programiranja datira u period sredine dvadesetog vijeka. Sovjetski matematičar i ekonomista Leonid Kantorovič je tokom drugog svjetskog rata formulisao problem ekvivalentan problemu linearnog programiranja u cilju boljeg upravljanja resursima i smanjenja troškova u vojsci. Neposredno nakon drugog svjetskog rata, američki matematičar Džordž Dencig razvija čuveni simpleks algoritam, čime se otvara prostor za efikasno rješavanje problema linearnog programiranja. U periodu koji je uslijedio, pa sve do danas, linearno programiranje se koristi kao standardan alat za rješavanje raznih problema u industriji i ekonomiji uopšte, što je dovelo do uštedio milionskih ušteda ogromnom broju kompanija u raznim zemljama svijeta. Stoga se 
-razvoj linearnog programiranja  smatra jednim od najvažnijih naučnih dostignu\-ć XX vijeka.  Napisano je na desetine, pa i stotine udžbenika
+razvoj linearnog programiranja  smatra jednim od najvažnijih naučnih dostignu\-ća XX vijeka.  Napisano je na desetine, pa i stotine udžbenika
 o linearnom programiranju i objavljeno je na hiljade naučnih radova koji   ovu paradigmu primjenjuju na probleme iz raznih naučnih i praktičnih domena. 
 
-Linearno programiranje koristi matematički model za opisivanje problema. 
-Pridjev ``linearno'' podrazumijeva da su  matematičke funkcije korištene u modelu linearne funkcije. Riječ ``programiranje'' se ne odnosi na računarsko programiranje, već je to sinonim za planiranje i optimizaciju. Dakle, linearno programiranje uključuje planiranje aktivnosti u cilju postizanja optimalnog rezultata, tj. rezultata koji najbolje postiže navedeni cilj (prema matematičkom modelu) među svim izvedivim alternativama.  Za rješavanje problema linearnog programiranja razvijeno je dosta efikasnih metoda. Iako jedan od nastarijih,  \emph{simpleks metod} se i danas koristi za rješavanje problema velikih dimenzija te je zaslužan za ogroman uticaj linearnog  programiranja u raznim oblastima nauke i privrede.
+Linearno programiranje koristi matematički model za opisivanje problema; 
+pridjev ``linearno'' podrazumijeva da su  matematičke funkcije korištene u modelu linearne funkcije. Riječ ``programiranje'' se ne odnosi na računarsko programiranje, već je to sinonim za planiranje i optimizaciju. Dakle, linearno programiranje uključuje planiranje aktivnosti u cilju postizanja optimalnog rezultata, tj. rezultata koji najbolje postiže navedeni cilj (prema matematičkom modelu) među svim izvedivim alternativama.  Za rješavanje problema linearnog programiranja razvijeno je dosta efikasnih metoda. Iako jedan od nastarijih,  \emph{simpleks metod} se i danas koristi za rješavanje problema velikih dimenzija te je zaslužan za ogroman uticaj linearnog  programiranja u raznim oblastima nauke i privrede.
 
-\textbf{Primjer}. U ovom primjeru opisujemo jedan industrijski projekat -- {WYNDOR--GLASS CO projekat}, te kako OR može da riješi ozbiljne probleme jedne firme. 
+\textbf{Primjer}. U ovom primjeru opisujemo jedan industrijski projekat 
+-- {WYNDOR--GLASS CO projekat}, te kako OR može da riješi ozbiljne probleme jedne firme. 
   
 Firma \texttt{WYNDOR--GLASS} proizvodi visokokvalitetne staklene proizvode, uključujući prozore i staklena vrata. Postoje tri pogona. Aluminijski okviri i okovi izrađuju se u pogonu 1, drveni okviri izrađuju se u pogonu 2, a pogon 3 proizvodi staklo i sastavlja proizvode.
-Zbog pada zarade, rukovodstvo firme   odlučio je da obnovi liniju proizvoda. Neprofitabilni proizvodi se ukidaju, oslobađajući proizvodne kapacitete za lansiranje dva nova proizvoda sa velikim prodajnim potencijalom:
+Zbog pada zarade, rukovodstvo firme   odlučio je da obnovi liniju proizvoda koje nudi. Neprofitabilni proizvodi se ukidaju, oslobađajući proizvodne kapacitete za lansiranje dva nova proizvoda sa velikim prodajnim potencijalom:
 \begin{itemize}
     \item Proizvod 1: Staklena vrata od 2$m$ sa aluminijskim okvirom;
     \item Proizvod 2: Dvostruka drvena vrata s okvirom visine 1.5$m$.
@@ -432,18 +433,18 @@ Za dobijanje razumnih procjena, pomoć ključnog osoblja u raznim odjelima firme
     \label{tab:procjene-1}
 \end{table}
 
-U nastavku konstruišemo model problema. Uvedimo varijablu $x_1$ za broj serija proizvoda 1 proizvedenog na sedmičnom nivou, te $x_2$ broj serija proizvoda 2 proizvedenog na sedmičnom nivou. Funkcija profita je jednaka $f(x_1, x_2) = 3 x_1 + 5 x_2$ pod uslovima
+U nastavku konstruišemo model problema. Uvedimo varijablu $x_1$ za broj serija proizvoda 1 proizvedenog na sedmičnom nivou, te $x_2$ broj serija proizvoda 2 koji je proizveden na sedmičnom nivou. Funkcija profita je jednaka $f(x_1, x_2) = 3 x_1 + 5 x_2$ pod ograničenjima
 \begin{itemize}
     \item $x_1, x_2 \geq 0$
     \item  $x_1 \leq 4, 2 x_2 \leq 12$
     \item $3 x_1 + 2 x_2 \leq 18$
 \end{itemize}
 
-Dakle, na osnovu realnog problema, formirali smo odgovarajući matematički model koji sadrži funkciju dvije promjenljive i nekoliko ograničenja, koja su zapisana kao nejednačine. Cilj rješavanja ovog matematičkog modela je pronalaženje onih vrijednosti promjenljivih $x_1$ i $x_2$, za koje posmatrana funkcija ima maksimalnu vrijednost.
+Dakle, na osnovu realnog problema, formirali smo odgovarajući matematički model (idealizovanog problema) koji sadrži funkciju dvije promjenljive i nekoliko ograničenja, koja su zapisana kao nejednačine. Cilj rješavanja ovog matematičkog modela je pronalaženje onih vrijednosti promjenljivih $x_1$ i $x_2$, za koje posmatrana funkcija ima maksimalnu vrijednost.
 
 %https://www.desmos.com/calculator
 \section{Rješenje grafičkom metodom}
- Problem iz prethodne sekcije je malih dimenzija jer sadrži samo dvije varijable odluke i samim tim sva moguća (dopustiva) rješenja mogu biti predstavljene u dvije dimenzije. U ovom slučaju, možemo koristiti \emph{grafičku metodu} za rješavanje problema linearnog programiranja. Ovaj postupak uključuje dvodimenzionalni Dekartov koordinatni sistem sa osama $x_1$ i $x_2$.  Prvi korak je identifikovati vrijednosti ($x_1$, $x_2$) koje su dopuštene ograničenjima. Naglasimo još jednom da ona rješenja koja su dopuštena ograničenjima problema zovemo \emph{dopustivim rješenjima}. Uradimo to grafičkim predstavljanjem svakog od ograničenja sa njihovim  dopuštenim vrijednostima. Ograničimo prostor sastavljen od svih 6 uslova, što rezultuje Slikom~\ref{fig:fig1}.  Rezultujući region dopustivih rješenja $(x_1, x_2)$ se naziva \emph{dopustivi region} problema.
+ Problem iz prethodne sekcije je malih dimenzija jer sadrži samo dvije varijable odluke i samim tim sva moguća (dopustiva) rješenja mogu biti predstavljene u dvije dimenzije. U ovom slučaju, možemo koristiti \emph{grafičku metodu} za rješavanje problema linearnog programiranja. Ovaj postupak uključuje dvodimenzionalni Dekartov koordinatni sistem sa osama $x_1$ i $x_2$.  Prvi korak je identifikovati vrijednosti ($x_1$, $x_2$) koje zadovoljavaju ograničenja. Naglasimo još jednom da ona rješenja koja zadovoljavaju sva ograničenja modela  problema zovemo \emph{dopustivim rješenjima}. Grafički predstavimo svako od ograničenja, odakle dobijamo prostor koji uključuje svih 6 ograničenja; vidjeti Sliku~\ref{fig:fig1}.  Rezultujući region rješenja $(x_1, x_2)$ se naziva \emph{dopustivi region} problema.
  
  Posljednji korak se sastoji u odabiru tačke u ovom regionu  koja maksimizira vrijednost (ciljne) funkcije $f = 3x_1 + 5x_2$. 
 
@@ -454,9 +455,9 @@ Dakle, na osnovu realnog problema, formirali smo odgovarajući matematički mode
     \caption{Dopustiv region.}
     \label{fig:fig1}
 \end{figure}
-Pogledajmo sada niz (implicitnih) funkcija $3x_1 + 5 x_2 = c$, za $c \in \{10,20, 36\}$, kao na Slici~\ref{fig:fig2}. Jasno se vidi da prava $f = 36$ prolazi kroz tačku (vrh) regiona $(2,6)$ koja je svakako dopustiva. Jasno se vidi niti jedna druga funkcija $f=c, c > 36$ ne presijeca dopustiv region, te odatkle zaključujemo da je tačka $(2, 6)$ rješenje problema. Dakle, funkcija cilja ima maksimalnu vrijednost 36 i dostiže je u tački $(x_1, x_2)=(2,6)$.
+Pogledajmo sada niz (implicitnih) funkcija $3x_1 + 5 x_2 = c$, za $c \in \{10,20, 36\}$, kao na Slici~\ref{fig:fig2}. Jasno se vidi da prava $f = 36$ prolazi kroz tačku (vrh) regiona $(2,6)$ koja je svakako dopustiva. Takođe, vidimo da niti jedna druga funkcija $f=c, c > 36$ ne presijeca dopustiv region, odatkle zaključujemo da je tačka $(2, 6)$ rješenje problema. Dakle, funkcija cilja ima maksimalnu vrijednost 36 i dostiže se u tački $(x_1, x_2)=(2,6)$.
 
-Ovaj se postupak često naziva \emph{grafičkom metodom za linearno programiranje}. Ona se može koristiti za rješavanje bilo kojeg problema linearnog programiranja s dvije varijable. Uz znatan angažman, moguće je proširiti ovu metodu na problem sa tri varijable, što je krajnji domet grafičke metode. Za uopšten slučaj se koriste naprednije metode,  o kojima će biti riječi u narednim sekcijama.
+Ovaj se postupak često naziva \emph{grafičkom metodom za linearno programiranje}. Ona se može koristiti za rješavanje bilo kojeg problema linearnog programiranja sa dvije varijable. Uz znatan angažman, moguće je proširiti ovu metodu na problem sa tri varijable, što je krajnji domet grafičke metode. Za uopšten slučaj se koriste naprednije metode,  o kojima će biti riječi u narednim sekcijama.
 
 \section{Standardna Forma Linearnog Programiranja}
 
@@ -468,7 +469,9 @@ Ovaj se postupak često naziva \emph{grafičkom metodom za linearno programiranj
 \end{figure}
 
 U ovoj sekciji govorimo o opštoj formi modela linearnog programiranja. 
-Iako to sa matematičkog stanovišta nije neophodno, uvedimo neke ključne pojmove koji se standardno koriste u modelovanju i rješavanju problema linearnog programiranja. 
+%Iako to sa matematičkog stanovišta nije neophodno, 
+
+Uvedimo neke ključne pojmove koji se standardno koriste u modelovanju i rješavanju problema linearnog programiranja. 
 
 Pođimo od pojmova \textit{resursi} i \textit{aktivnosti}. Pretpostavimo da u našem razmatranju imamo $m$ resursa i $n$ aktivnosti. Standardni resursi su vrijeme, novac, oprema, mašine, radnici itd. Aktivnosti uključuju ulaganje novca u određene projekte, dodjelu posla nekoj mašini ili radniku,  dostavljanje robe iz jednog u drugo mjesto, itd. 
  Najčešći tip primjene linearnog programiranja uključuje povezivanje resursa i aktivnosti, odnosno dodjelu resursa određenim aktivnostima. Dostupna količina svakog resursa je najčešće ograničena, pa aktivnosti trebaju biti pažljivo raspoređene u odnosu na dostupne odgovarajuće resurse.  Utvrđivanje ove raspodjele uključuje odabir vrsta i nivoa aktivnosti za koje se postiženajbolja moguća vrijednost ukupne mjere učinka. Ukupna mjera učinka može biti mjerenje dobiti (profita), mjerenje vremena realizacije aktivnosti, mjerenje broja proizvedenih proizvoda itd.
@@ -550,7 +553,7 @@ programu postoji varijabla koja ne zadovoljava uslov nenegativnosti, ona se mož
 Uvedimo sada pojam \emph{ekstremalnih tačaka}, koje igraju bitnu ulogu u simpleks metodi. Za rješenje $x$ kažemo da je \emph{ekstremna tačka} ako se nalazi u vrhu dopustivog regiona (u presjeku granica dopustivog regiona).
 
 Postoji važne veze između ovih tačaka i optimalnog rješenja LP-a, o čemu će biti riječi u nastavku ove knjige.
-Prije toga, za početak, razmotrimo bilo koji problem LP-a sa dopustivim rješenjima i ograničenim dopustivim regionom. Tada će važiti, što ćemo uskoro i pokazati, da problem tada posjeduje barem jednu tačku koja je vrh tog regiona i barem jedno optimalno rješenje. Nadalje, jedan od vrhova mora biti optimalno rješenje. Dakle, ako problem ima tačno jedno optimalno rješenje, to rješenje je tačka u vrhu. Ako problem ima više optimalnih rješenja, barem dva moraju biti rješenja koja su tačke  vrhova dopustivog regiona.
+Prije toga, za početak, razmotrimo bilo koji problem LP-a sa dopustivim rješenjima i ograničenim dopustivim regionom. Tada će važiti, što ćemo uskoro i pokazati, da problem tada posjeduje barem jednu tačku koja je vrh tog regiona i barem jedno optimalno rješenje. Nadalje, jedan od vrhova mora biti optimalno rješenje. Dakle, ako problem ima tačno jedno optimalno rješenje, to rješenje je tačka koja je vrh regiona. Ako problem ima više optimalnih rješenja, barem dva moraju biti rješenja koja su tačke  vrhova dopustivog regiona.
 
 \textit{Napomena.} Imajte na umu da (optimalno) rješenje LP-a ne mora da bude cjelobrojno. Budući da svaka varijabla odluke predstavlja nivo odgovarajuće aktivnosti, pretpostavlja se da se aktivnosti mogu izvoditi na razlomljenim nivoima (aktivnost  se ne dijeli samo na diskretne dijelove), na osnovu nenegativnih ograničenja.  
 
@@ -563,19 +566,19 @@ u namirnici $N_j$ ima $a_{ij} \geq 0$ nutritivnog elementa $e_i$, $i = 1, \ldots
 jedinica nutritivnog elementa $e_i$. Potrebno je modelovati
 sljedeći problem: 
 
-\emph{Koliko treba konzumirati pojedinih namirnica da bi se zadovoljila dnevna
+\emph{Koliko je koje namirnice potrebno kupiti za (dnevnu) prehranu da bi se zadovoljila dnevna
 potreba za svim nutritivnim elementima, a da se pri tome minimizuje cijena prehrane?}
  
- \emph{Rješenje.}  Uvedimo prvo varijable $x_j \geq 0$ za količinu hrane namirnice $N_j$, $j = 1, \ldots, n$ koja treba da bude konzumirana. Funkcija cilja je da se minimizuje cijena prehrane, pa je, prema tome 
+ \emph{Rješenje.}  Uvedimo prvo varijable $x_j \geq 0$ za količinu hrane namirnice $N_j$, $j = 1, \ldots, n$ koja će da bude korištena za prehranu. Funkcija cilja je da se minimizuje cijena prehrane, pa je, prema tome 
  $$f(x) = c_1 x_1 + \cdots + c_n x_n.$$
  
  Dalje, ograničenja su sljedeća: treba da se zadovolje dnevne potrebe za unos svakog nutritivnog elementa, odakle slijedi da za $i$-ti element treba da bude zadovoljeno
  
  $$ a_{i,1} x_1 + \ldots + a_{i,n} x_n \geq b_i $$
  
- za svako $i=1,\ldots,n$. 
+ za svako $i=1,\ldots,m$. 
  
- Dodajući još uslove nenegativnosti, $x_i \geq 0$, formulisali smo model za ovaj problem.  
+ Dodajući još uslove nenegativnosti, $x_i \geq 0$, formulisali smo linearni model za ovaj problem.  
  
 \emph{Problem najboljeg pravca (problem linearne regresije)}. Zadani su podaci $(x_i, y_i), i = 1, \ldots , n$. Potrebno je odrediti pravu sa jednačinom $y = k x + l,
 k, l \in \mathbb{R}$ koja u smislu $l_1$ norme najbolje aproksimira date podatke. U prevodu, potrebno je minimizovati  funkcija cilja $$f(k, l) = \sum_{i=1}^n |k x_i + l - y_i|.$$
@@ -609,7 +612,7 @@ Kada je riječ o linearnim programima,  oni imaju nekoliko osnovnih implicitnih 
 
 \section{Teorija Linearnog Programiranja}
 U ovom poglavlju ćemo formalno izvesti načine rješavanja linearnog problema. U osnovi, pokazaćemo da ako je problem
-linearnog programiranja dopustiv i ograničen i postoje vrhovi, onda postoji i optimalno rješenje tog LP problema. Kako smo ranije neformalno pomenuli,  to rješenje je upravo jedan od vrhova poliedra. 
+linearnog programiranja dopustiv i ograničen i postoje vrhovi, onda postoji i optimalno rješenje tog LP problema. Kako smo ranije neformalno pomenuli,  to rješenje se nalazi upravo u jednom od vrhova poliedra. 
 
 Prije nego ovo formalno pokažemo, uvedimo nekoliko osnovnih definicija. 
 
