@@ -832,7 +832,7 @@ Pokažimo sada da su vrhovi, ekstremne tačke poliedra i bazna dopustiva rješen
      Iz toga vidimo da je $x^*$ rješenje LP problema minimizacije. Jednakost u (\ref{eq:3_impl_1}) vrijedi ako i samo ako je $a_i^T x = b_i$ za sve $i \in I$. Kako je $x^*$ BDR, broj linearno nezavisnih vektora $a_i, i \in I$ koji su  aktivni u $x^*$ je jednak $n$, pa sistem $a_i^T x = b_i, i \in I$ ima jedinstveno rješenje koje je upravo $x^*$. Prema tome, pokazano je da postoji vektor $c \in \mathbb{R}^n$ za koji vrijedi $c^T x > c^T x^*$ za sve $x \neq x^*$, $x \in P$, odake, na osnovu definicije vrha poliedra, slijedi tvrdnja. 
 \end{proof}\\
 
-U nastavku ćemo dqti uslove koji treba da vrijede za postojanje BDR-a, tj. 
+U nastavku ćemo dati uslove koji treba da vrijede za postojanje BDR-a, tj. 
  ekstremne tačke poliedra. Takođe, daćemo i postupak za konstrukciju BDR-a, te ćemo uvesti pojam degenerativnog rješenja.
 
 \begin{thm}
@@ -1093,6 +1093,25 @@ Pretpostavljajući radnu sedmicu dugu 35 sati, formulišite model proizvodnje ov
 
 Uputstvo. Varijable odluke se tiču količine proizvoda $i$ koje se proizvode na svakoj od mašina.  Dakle, 
 varijabla $x_i$ označava broj proizvoda $i$ proizvedeni na sedmičnom nivou na mašini $X$, dok je $y_j$ --   broj proizvoda $j$ proizvedeni na sedmičnom nivou na mašini $Y$, $i \in \{1,2,3,4\}$, $j \in \{2,3,4\}$. Varijablu $y_1$ ne definišemo jer se proizvod 1 izvršava na obje mašine.  
+
+	\item Grafičkom metodom riješiti sljedeći problem
+	\begin{align*}
+		&\max   x + 2 y \\
+		& s.t. \\
+		& x \leq 10 \\
+		& 2 x + x \geq 0 \\
+		& x,y \geq 0.
+	\end{align*}
+	\item Grafičkom metodom riješiti sljedeći problem 
+	\begin{align*}
+		& \max  8 x + y \\
+		& s.t. \\
+		&  x + y \leq 40 \\
+		& 2x + y \leq 60 \\
+		& x,y \geq 0.
+	\end{align*}
+\\
+
 \item Neka je dat poliedar $P= \{ (x_1,x_2,x_3, x_4)^T \in \mathbb{R}^4 \mid x_2 - x_1 = 0, x_4 - x_3 = 0,  x_1 + x_2 +   x_3 + x_4 = 2, x_1,x_2,x_3, x_4 \geq 0 \}$.  Pronaći bazna dopustiva rješenja i odrediti jesu li ona degenerativna.  
 \end{enumerate}
 
@@ -1634,22 +1653,6 @@ Primijetimo da ako bi u prvom koraku birali da mjesto varijable $x$ ubacujemo va
 \\
 \textbf{\Large Zadaci}.
 \begin{enumerate}
-	\item Grafičkom metodom riješiti sljedeći problem
-	\begin{align*}
-		 &\max   x + 2 y \\
-		 & s.t. \\
-		 & x \leq 10 \\
-		 & 2 x + x \geq 0 \\
-		 & x,y \geq 0.
-	\end{align*}
-\item Grafičkom metodom riješiti sljedeći problem 
-     \begin{align*}
-     	     & \max  8 x + y \\
-     	     & s.t. \\
-     	     &  x + y \leq 40 \\
-     	     & 2x + y \leq 60 \\
-     	     & x,y \geq 0.
-     \end{align*}
  \item Uz pomoć Simpleks metoda, riješiti sljedeći problem LP-a:%http://www.phpsimplex.com/en/simplex_method_example.htm (PHP simpleks: http://www.phpsimplex.com/simplex/simplex.htm?l=en)
  \begin{align*}
  	 &\max  3x + 2y \\
