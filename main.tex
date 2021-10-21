@@ -819,7 +819,7 @@ Pokažimo sada da su vrhovi, ekstremne tačke poliedra i bazna dopustiva rješen
        za neko $\epsilon > 0$, pa pokažimo da $y, z \in P$.
        
        Ako je $i \in I$, onda je $$a_i^T y = a_i^T (x^* + \epsilon d) = a_i^T x^* + \epsilon a_i^T d = a_i^T x^* = b_i. $$
-       Pokažimo još da za $i \not \in I$ vrijedi $a_i^T x^* > b_i$, odakle bi slijedilo da $y \in P$. Dakle, $a_i^T y = a_i^T (x^* + \epsilon d) = a_i^T x^* + \epsilon a_i^T d $. Ako je $a_i^T d \geq 0$, slijedi da je 
+       Pokažimo još da za $i \not \in I$ vrijedi $a_i^T x^* \geq b_i$, odakle bi slijedilo da $y \in P$. Dakle, $a_i^T y = a_i^T (x^* + \epsilon d) = a_i^T x^* + \epsilon a_i^T d $. Ako je $a_i^T d \geq 0$, slijedi da je 
        $a_i^T x^* > b_i$, odakle slijedi da je $y \in  P$. Ako je $a_i^T d < 0$, onda odaberimo takve $\epsilon$ za koje će vrijediti $a_i^T x^* + \epsilon a_i^T d > b_i$. Interval   vrijednosti za $\epsilon$ dobijemo iz sljedećeg računa:
        $$ a_i^T x^* + \epsilon a_i^T d > b_i \Rightarrow \epsilon < \frac{b_i - a_i^T x^*}{a_i^T d}  $$
        Za svaki $\epsilon \in (0,  \frac{b_i - a_i^T x^*}{a_i^T d} )$ vrijedi $a_i^T y > b_i$, odakle slijedi $y \in P$. Slično pokažemo i da vrijedi $z \in P$. 
@@ -829,10 +829,10 @@ Pokažimo sada da su vrhovi, ekstremne tačke poliedra i bazna dopustiva rješen
        \begin{equation}\label{eq:3_impl_1}
           c^T x = \sum_{i \in I} a_i^T x \geq c^T x^*  
        \end{equation}
-     Iz toga vidimo da je $x^*$ rješenje LP problema minimizacije. Jednakost u (\ref{eq:3_impl_1}) vrijedi ako i samo ako je $a_i^T x = b_i$ za sve $i \in I$. Kako je $x^*$ BDR, broj linearno nezavisnih vektora $a_i, i \in I$ koji su  aktivni u $x^*$ je jednak $n$, pa sistem $a_i^T x = b_i, i \in I$ ima jedinstveno rješenje koje je upravo $x^*$. Prema tome, pokazano je da postoji vektor $c \in \mathbb{R}^n$ za koji vrijedi $c^T x > c^T x^*$ za sve $x \neq x^*$, $x \in P$, odake na osnovu definicije vrha poliedra, slijedi tvrdnja. 
+     Iz toga vidimo da je $x^*$ rješenje LP problema minimizacije. Jednakost u (\ref{eq:3_impl_1}) vrijedi ako i samo ako je $a_i^T x = b_i$ za sve $i \in I$. Kako je $x^*$ BDR, broj linearno nezavisnih vektora $a_i, i \in I$ koji su  aktivni u $x^*$ je jednak $n$, pa sistem $a_i^T x = b_i, i \in I$ ima jedinstveno rješenje koje je upravo $x^*$. Prema tome, pokazano je da postoji vektor $c \in \mathbb{R}^n$ za koji vrijedi $c^T x > c^T x^*$ za sve $x \neq x^*$, $x \in P$, odake, na osnovu definicije vrha poliedra, slijedi tvrdnja. 
 \end{proof}\\
 
-U nastavku ćemo vidjeti koji uslovi treba da vrijede za postojanje BDR-a, tj. 
+U nastavku ćemo dqti uslove koji treba da vrijede za postojanje BDR-a, tj. 
  ekstremne tačke poliedra. Takođe, daćemo i postupak za konstrukciju BDR-a, te ćemo uvesti pojam degenerativnog rješenja.
 
 \begin{thm}
@@ -844,12 +844,12 @@ U nastavku ćemo vidjeti koji uslovi treba da vrijede za postojanje BDR-a, tj.
    \end{enumerate}
    
 \end{thm}
-Prema tome, da bismo  konstruisali bazno rješenje, radimo sljedeće:
+Prema tome, da bismo  konstruisali bazno rješenje, sljedeći koraci se izvršavaju:
 \begin{enumerate}
     \item Odaberemo $m$ linearno nezavisnih kolona $A_{p_1}, \ldots, A_{p_m}$ matrice $A$.
     %\item Postavimo $x_i = 0$, za sve $i \in \{p_1,\ldots, p_m \}$.
     \item Riješimo sistem $B x_B = b$, za $x_B = [x_{p_1}, \ldots, x_{p_m}]$ i $B= [A_{p_1}. \ldots, A_{p_m}]$
-    \item Dodjelimo $$x = (x_1,\ldots, x_n)= \begin{cases}
+    \item Dodjelimo $$x = (x_1,\ldots, x_n):= \begin{cases}
     	          0, j  \not \in \{p_1,\ldots, p_m \} \\
     	         x_{p_i} = (x_B)_i, j \in \{ p_1,\ldots, p_m \}
     \end{cases},$$  čime dobijamo bazno rješenje. 
@@ -908,7 +908,7 @@ Sljedeća teorema nam daje dovoljan uslov za postojanje optimalnog rješenja koj
          $O^* = \{ x \in \mathbb{R}^n \mid A x \geq b_i, c^T x = v  \}$ je takođe poliedar, $O^* \subset P$. Prethodna teorema nam kaže da $P$ ne sadrži pravac. Iz toga slijedi da ni $O^*$ nema pravac, odakle slijedi da $O^*$ ima barem jednu ekstremnu tačku (stavka 1 prethodne teoreme), označimo je sa $q^*$. Pokažimo da je to i ekstremna tačka od $P$.  Ako bismo pretpostavili da $q^*$ nije ekstremna tačka poliedra $P$, po definiciji slijedi da postoje $y, z \in P$ tako da $q^* = \lambda y + ( 1 - \lambda ) z $, $y \neq q^*, z \neq q^*, \lambda \in [0, 1]$. Kako je $q^* \in O^*$, imamo 
          $$ v = c^T q^* = c^T (  \lambda y + ( 1 - \lambda ) z ) = \lambda 
         \underbrace{ c^T y}_{ \geq v} + ( 1 - \lambda ) \underbrace{c^T z}_{\geq v} \geq \lambda v + (1 - \lambda) v = v,$$
-        odakle imamo $c^T y = v$ i $c^T z = v$, dakle $y, z \in O^*$. Prema tome, $q^*$ nije ekstremna tačka od $O^*$. Dakle, imamo kontradikciju, odakle slijedi da je $q^*$  ekstremna tačka poliedra  $P$.
+        odakle imamo $c^T y = v$ i $c^T z = v$, dakle $y, z \in O^*$. Prema tome, $q^*$ nije ekstremna tačka od $O^*$. Dakle, imamo kontradikciju, odakle zaključujemo da $q^*$ mora biti  ekstremna tačka od  $P$.
 \end{proof}
  
  Ova važna tvrđenja nam daju osnov za konstrukciju simpleks metoda koji je, kao što smo već pomenuli, jedna od najpoznatijih i najefikasnijih metoda za rješavanje problema LP.
