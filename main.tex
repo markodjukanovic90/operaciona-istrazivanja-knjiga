@@ -807,7 +807,7 @@ Pokažimo sada da su vrhovi, ekstremne tačke poliedra i bazna dopustiva rješen
       što je nemoguće, odakle slijedi tvrdnja. \\
       $2 \Rightarrow 3$.
        Ovu implikaciju ćemo dokazati kontrapozicijom. Pretpostavimo da tačka $x^*$ nije BDR i pokažimo da iz toga slijedi da ona nije ni ekstremna tačka.
-       Zapišimo poliedar $P$ sa 
+      Bez smanjenja opštosti, zapišimo poliedar $P$ sa 
        \begin{align}
             & a_i^T x \geq b_i, i \in C_1 \\
             & a_i^T x  = b_i, i \in C_2.
@@ -844,7 +844,7 @@ U nastavku ćemo dati uslove koji treba da vrijede za postojanje BDR-a, tj.
    \end{enumerate}
    
 \end{thm}
-Prema tome, da bismo  konstruisali bazno rješenje, sljedeći koraci se izvršavaju:
+Iz prethodne teoreme zaključujemo da bismo  konstruisali bazno rješenje, sljedeći koraci se izvršavaju:
 \begin{enumerate}
     \item Odaberemo $m$ linearno nezavisnih kolona $A_{p_1}, \ldots, A_{p_m}$ matrice $A$.
     %\item Postavimo $x_i = 0$, za sve $i \in \{p_1,\ldots, p_m \}$.
@@ -897,7 +897,7 @@ Sljedeću teoremu, koja daje vezu između ekstremnih tačaka poliedra i dopustiv
    \end{itemize}
 \end{thm}
 
-Sljedeća teorema nam daje dovoljan uslov za postojanje optimalnog rješenja koje je  ekstremna tačka poliedra.
+Sljedeća teorema nam daje dovoljan uslov za postojanje optimalnog rješenja koje je uvijek jedna od ekstremnih tačka poliedra (dopustivog regiona) problema linearnog programiranja.
 
 \begin{thm}
    Neka je zadan problem LP-a sa funkcijom cilja $c^Tx$ koju je potrebno minimizovati na poliedru $P$. Pretpostavimo da za poliedar $P$ postoji barem jedna ekstremna tačka i da za dati problem postoji optimalno rješenje. Tada postoji i optimalno rješenje koje je ekstremna tačka poliedra $P$.
@@ -905,13 +905,13 @@ Sljedeća teorema nam daje dovoljan uslov za postojanje optimalnog rješenja koj
 
 \begin{proof}
          Sa $O^* \not = \emptyset$ označimo skup svih optimalnih rješenja LP problema nad poliedrom $P= \{ x \in \mathbb{R}^n \mid A x \geq b \}$ te neka je $c^T x^* = v$, za sve $x^* \in O^*$. Vidimo da je 
-         $O^* = \{ x \in \mathbb{R}^n \mid A x \geq b_i, c^T x = v  \}$ je takođe poliedar, $O^* \subset P$. Prethodna teorema nam kaže da $P$ ne sadrži pravac. Iz toga slijedi da ni $O^*$ nema pravac, odakle slijedi da $O^*$ ima barem jednu ekstremnu tačku (stavka 1 prethodne teoreme), označimo je sa $q^*$. Pokažimo da je to i ekstremna tačka od $P$.  Ako bismo pretpostavili da $q^*$ nije ekstremna tačka poliedra $P$, po definiciji slijedi da postoje $y, z \in P$ tako da $q^* = \lambda y + ( 1 - \lambda ) z $, $y \neq q^*, z \neq q^*, \lambda \in [0, 1]$. Kako je $q^* \in O^*$, imamo 
+         $O^* = \{ x \in \mathbb{R}^n \mid A x \geq b_i, c^T x = v  \}$ je takođe poliedar, $O^* \subset P$. Prethodna teorema nam kaže da poliedar $P$ ne sadrži pravac. Iz toga zaključujemo da ni $O^*$ nema pravac, odakle slijedi da $O^*$ ima barem jednu ekstremnu tačku (stavka 1 prethodne teoreme), označimo je sa $q^*$. Pokažimo da je to ujedno i ekstremna tačka od $P$.  Ako bismo pretpostavili da $q^*$ nije ekstremna tačka poliedra $P$, po definiciji slijedi da postoje $y, z \in P$ tako da $q^* = \lambda y + ( 1 - \lambda ) z $, $y \neq q^*, z \neq q^*, \lambda \in [0, 1]$. Kako je $q^* \in O^*$, imamo 
          $$ v = c^T q^* = c^T (  \lambda y + ( 1 - \lambda ) z ) = \lambda 
         \underbrace{ c^T y}_{ \geq v} + ( 1 - \lambda ) \underbrace{c^T z}_{\geq v} \geq \lambda v + (1 - \lambda) v = v,$$
         odakle imamo $c^T y = v$ i $c^T z = v$, dakle $y, z \in O^*$. Prema tome, $q^*$ nije ekstremna tačka od $O^*$. Dakle, imamo kontradikciju, odakle zaključujemo da $q^*$ mora biti  ekstremna tačka od  $P$.
 \end{proof}
  
- Ova važna tvrđenja nam daju osnov za konstrukciju simpleks metoda koji je, kao što smo već pomenuli, jedna od najpoznatijih i najefikasnijih metoda za rješavanje problema LP.
+ Ova važna tvrđenja nam daju osnov za konstrukciju simpleks metoda koji je, kao što smo već pomenuli, jedna od najpoznatijih i najefikasnijih generalnih metoda za rješavanje problema LP.
  
 % \begin{thm}
  \emph{Posljedica.} Ako  rješavamo problem minimizacije LP-a na poliedru $P$ koji ima barem jednu ekstremnu tačku, tada vrijedi tačno jedna od sljedeće dvije tvrdnje:
@@ -920,7 +920,7 @@ Sljedeća teorema nam daje dovoljan uslov za postojanje optimalnog rješenja koj
        \item Postoji ekstremna tačka u kojoj funkcija cilja dostiže optimalno rješenje. 
    \end{enumerate}
 % \end{thm}
-Kako ćemo vidjeti u narednom poglavlju, upravo  ove tvrdnje opravdavaju ideju simpleks metode, koja je bazirana na posjećivanju vrhova poliedra 
+Kako ćemo vidjeti u narednom poglavlju, upravo  ove tvrdnje opravdavaju ideju simpleks metode, koja je bazirana na iterativnim posjećivanju vrhova poliedra 
 u cilju pronalaska optimalnog rješenja.
 
 \section{Neke tehnike u modelovanju problema Linearnog Programiranja}
@@ -966,7 +966,7 @@ Kada se $z$ minimizuje, ova ograničenja osiguravaju da je $z$ veće ili jednako
 	& \sum_{j \in J} a_{ij} x_j \leq b_i,  \forall i \in I \\
 	& x_j \geq 0, \forall j \in J.
 \end{align*}
-Ovdje je funkcija cilja data kao količnik dvije linearne funkcije. Potrebno je transformisati ovu funkciju u linearnu da bismo imali linearni program. Ovakvi modeli su česti u modelima financijskog planiranja. Pretpostavimo da je $\sum_{j \in J}d_j x_j + \beta \neq 0$ za sve tačke iz dopustivog regiona. Glavni trik u transformaciji je uvođenje nove varijable $y_j$ i $t$ tako da je $y_j = t x_j$. U objašnjenju dolje pretpostavljamo da je nazivnik u funkciji cilja pozitivan (slično je izvođenje i sa negativnim nazivnikom, stim da imamo znak ``-'' ispred, što će promijeniti znak nejednakosti u krajnjem modelu). Dakle, uvedemo $t = \frac{1}{\sum_{j \in J} d_j x_j + \beta }$. Time dobijamo model
+Ovdje je funkcija cilja data kao količnik dvije linearne funkcije. Potrebno je transformisati ovu funkciju u linearnu da bismo imali linearni program. Ovakvi modeli su česta pojava u modelovanju financijskog planiranja. Pretpostavimo da je $\sum_{j \in J}d_j x_j + \beta \neq 0$ za sve tačke iz dopustivog regiona. Glavni trik u transformaciji je uvođenje nove varijable $y_j$ i $t$ tako da je $y_j = t x_j$. U nastavku, pretpostavljamo da je nazivnik u funkciji cilja pozitivan (slično je izvođenje i sa negativnim nazivnikom, stim da imamo znak ``-'' ispred, što će promijeniti znak nejednakosti u krajnjem modelu). Dakle, uvedemo $t = \frac{1}{\sum_{j \in J} d_j x_j + \beta }$. Time dobijamo model
 \begin{align*}
 	&\min \sum_{j \in J} c_j x_j t + \alpha t \\
 	&\sum_{j \in J} a_{ij} x_j \leq b_i,  \forall i \in I \\
@@ -974,7 +974,7 @@ Ovdje je funkcija cilja data kao količnik dvije linearne funkcije. Potrebno je 
 	& t > 0 \\
 	& x \geq 0.
 \end{align*}
-Množeći prvo ograničenje sa $t>0$ te uvodeći smjenu $y_j = t x_j$, konačno dobijamo (ekvivalentan)  model:
+Množeći prvo ograničenje sa $t>0$ te uvodeći smjenu $y_j = t x_j$, dobijamo (ekvivalentan)  model:
 \begin{align*}
 	&\min \sum_{j \in J} c_j y_j + \alpha t \\
 	& \sum_{j \in J} a_{ij} y_j \leq b_i t,  \forall i \in I \\
@@ -983,7 +983,7 @@ Množeći prvo ograničenje sa $t>0$ te uvodeći smjenu $y_j = t x_j$, konačno 
 	& x \geq 0.
 \end{align*}
 Na kraju, potrebno je dozvoliti da $t \geq 0$, da bi dobili LP model. 
-Za optimalnu vrijednost od $t$ na kraju provjeriti da je $t>0$.   \\
+Za optimalnu vrijednost varijable $t$ na kraju se provjeri da li je $t>0$.   \\
 \emph{Domenske granice u ograničenjima}. Neka nam je dat model
 \begin{align*}
 	&\min_{j \in J } c_j x_j \\
