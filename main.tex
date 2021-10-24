@@ -1141,12 +1141,12 @@ gdje je $A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m, c \in \mathbb{R}^n, 
 
 \section{Konstrukcija simpleks metode}
 
- Neka je $x = [x_1,\ldots, x_n]^T$ bazno dopustivo rješenje problema (\ref{eq:lp_equality_constraint}), gdje je $B$ matrica baze, $x_B$ bazni dio vektora $x$, a gdje su na mjesto nebaznih indeksa $N$ postavljene 0.  Ideja simpleks metode je  ``šetanje'' po ivici poliedra  do drugog (baznog) dopustivog rješenja dok ne nađemo optimalno rješenje. Krenimo pravcem $d$ u  početnoj tački $x$  pri čemu trebamo obratiti  pažnju na to da je zadovoljen
+ Neka je $x = [x_1,\ldots, x_n]^T$ bazno dopustivo rješenje problema (\ref{eq:lp_equality_constraint}), gdje je $B$ matrica baze, $x_B$ bazni dio vektora $x$, a gdje su na mjesto nebaznih indeksa $N$ postavljene 0.  Ideja simpleks metode je  ``šetanje'' po vrhovima poliedra  dok ne nađemo optimalno rješenje. Krenimo pravcem $d$ u  početnom BDR $x$  pri čemu trebamo obratiti  pažnju na to da je zadovoljen
 \begin{itemize}
     \item \emph{uslov optimalnosti}, tj. $c^T (x + \lambda d) \leq c^T x, \lambda>0$, što znači da idemo u pravcu smanjenja vrijednosti funkcije cilja;
     \item \emph{uslov dopustivosti}, treba da je pravac $d$ dopustiv u tački $x$, tj. $ (x + \lambda d) \in P$, za neko $\lambda>0$. Dakle, uvijek se krećemo samo tačkama dopustivog regiona. 
 \end{itemize}
-Birajmo neku nebaznu koordinatu u $x$; neka je to $x_j, j \in N$. Definišemo $d=(d_B,  d_N)$, gdje su koordinate od (nebaznog dijela) $d_N$ svugdje 0, osim na koordinati $j$ za koju je postavljena vrijednost 1.   Bazni dio vektora $d$, koji je označen sa $d_B$, izvešćemo iz uslova dopustivosti i pretpostavke da ``šetamo'' po granici dopustivog regiona, tj. poliedra $P$: $Ax + \lambda Ad = b$, odakle je $Ad = 0$. Tada vrijedi
+Birajmo neku nebaznu koordinatu u $x$; neka je to $x_j, j \in N$. Definišemo $d=(d_B,  d_N)$, gdje su koordinate od (nebaznog dijela) $d_N$ svugdje 0, osim na koordinati $j$ za koju je postavljena vrijednost 1.   Bazni dio vektora $d$, koji je označen sa $d_B$, izvešćemo iz uslova dopustivosti i pretpostavke da ``šetamo'' pravcem koji je granica dopustivog regiona, tj. poliedra $P$: $Ax + \lambda Ad = b$, odakle je $Ad = 0$. Tada vrijedi
 $$ Ad = \sum_{i=1}^n A_i d_i = \sum_{i=1}^m A_{p_i} d_i + A_j = B d_B + A_j = 0$$ za one koordinate $p_i$ koje pripadaju baznom dijelu, 
 odakle je $d_B = -  B^{-1} \cdot A_j $.  Za ovako odabran $d$ imamo zadovoljen uslov dopustivosti jer $A( x + \lambda d )  =b$. Posmatrajmo sada uslov nenegativnosti, tj. $x + \lambda d \geq 0$:
 \begin{itemize}
@@ -1220,11 +1220,11 @@ Tabelarni simpleks prikaz se može vidjeti u Tabeli~\ref{tab:simplex_tabelau}.
 Na osnovu ovakve tabele, te koraka simpleks metode opisanih u prethodnoj sekciji, sljedeći koracu se izvršavaju u tabelarnom obliku simpleks metode:
 \begin{itemize}
     \item Konstruisati inicijalnu simpleks tabelu sa početnom bazom $B$ i odgovarajuće bazno dopustivo rješenje $x$.
-    \item Posmatrati koeficijente doprinosa $\overline{c_j}$ (posljednja vrsta tabele). Ako su svi $\overline{c_j} \geq 0$, rješenje se ne može dalje popraviti, pa smo našli optimalno rješenje. U protivnom, odabrati neki $j$ sa $\overline{c_j}<0$.
+    \item Posmatrati koeficijente doprinosa $\overline{c_j}$ (posljednja vrsta tabele). Ako su svi $\overline{c_j} \geq 0$, rješenje se ne može dalje popraviti, pa je nađeno optimalno rješenje. U protivnom, odabrati neki indeks $j$ za koji je $\overline{c_j}<0$.
     \item Pogledati vektor (kolonu) $u = B^{-1}A_j$. Ako su sve koordinate od $u$ negativne, rješenje LP-a je $-\infty$, algoritam se prekida.
     \item Za svaki $u_i > 0$, računati $x_{p_i}/u_i$, i neka je   omjer najmanji za indeks $l$. Kolona $A_{j}$ ulazi u bazu, dok kolona $A_{p_l}$ izlazi iz baze. 
     \item Svakom redu table dodati $l$--ti red (pivot red) kojeg množimo odgovarajućim
-         skalarom da bi pivot element postao 1 na kraju, a svi ostali elementi u pivot koloni budu 0.
+         skalarom da bi pivot element postao 1 na kraju, a svi ostali elementi u pivot koloni postanu 0.
 \end{itemize}
 
 U ovom postupku  može se desiti situacija da postoji dva ili više redova koji su kandidati za ulazak u bazu. Ako se odabere nepovoljan kandidat, postupak može da proizvede degenerativno BDR ili čak da dođe do ciklusa. 
@@ -1232,13 +1232,13 @@ Da bi se to spriječilo, Robert Bland (1977. godine) je uveo pravilo za pivotira
 nazivom \emph{Blandovo pravilo} koje:
 \begin{enumerate}
 	\item   Među svim nebaznim varijablama koje su pogodne za ulazak u bazu odaberemo onu najmanjeg indeksa. 
-    \item Među svim baznim varijablama koje su pogodne za izbacivanje iz baze odaberemo onu s najmanjim indeksom.
+    \item Među svim baznim varijablama koje su pogodne za izbacivanje iz baze odaberemo onu sa najmanjim indeksom.
 \end{enumerate}
 Može se pokazati da poštujući ovakva pravila, osigurava se da simpleks metoda  završava u konačno mnogo koraka. Blandovo pravilo nije jedino pravilo za izbjegavanje ciklusa, postoji i leksikografsko pravilo pivotiranja kojeg ne objašnjavamo ovdje.  
 
-Obratimo pažnju da se problem minimiziacije vrlo lako prevodi u problem maksimizacije sljedećom transformacijom
+Obratimo pažnju da se problem minimizacije vrlo lako prevodi u problem maksimizacije sljedećom transformacijom
 $$ \min_{ x \in P} f(x) = - \max_{x \in P}(-f(x)).$$ 
-Prema tome, ako imamo problem LP-a gdje treba da maksimizujemo vrijednost funkcije cilja, pa onda primijenimo simpleks metod, koraci metoda ostaju isti, uz malu izmijenu u koraku 2, gdje se mijenja znak nejednakosti (jer se mijenja znak koeficijenata u funkciji cilja). Dakle, za popravak rješenja u slučaju problema maksimizacije se posmatraju oni doprinosi za koje je $\overline{c_j} > 0$.
+Prema tome, ako imamo problem LP-a gdje treba da maksimizujemo vrijednost funkcije cilja, pa onda primijenimo simpleks metod, koraci metoda ostaju isti, uz malu izmijenu u koraku 2, gdje se mijenja znak nejednakosti (jer se mijenja znak koeficijenata u funkciji cilja).  Takođe, posmatraju se doprinosi za koje je $\overline{c_j} > 0$.
 
 \section{Primjena Simpleks Metode}
 %Kako je standardni poliedar LP-a dat sa svim onim $x \in \mathbb{R}^n$ tako da $Ax \leq (\geq) b$, 
@@ -1246,6 +1246,7 @@ Prvo transformišimo standardni oblik problema LP
  
   \begin{align*}
     & c^T x \rightarrow \max \\
+    & \mbox{s.t} \nonumber \\
     & Ax \leq b \\
     & x \geq 0\\
 \end{align*}
@@ -1332,19 +1333,20 @@ Bazne varijable prepoznjemo jer odgovarajući vektori (kolone) zajedno čine jed
      \label{fig:simplex_region} 
  \end{figure}
  
- \emph{Komentari na zadatak}. Na Slici~\ref{fig:simplex_region}, tačke $A, B, C$, i $D$ su bazna dopustva rješenja (BDR). Tačke $E$ i $F$ su takođe bazna rješenja, ali nisu dopustiva. Simpleks algoritam prvo kreće od tačke $A$, pa prema tački $D$, te završava u tački $C$ (optimum).
+ \emph{Komentari na zadatak}. Na Slici~\ref{fig:simplex_region}, tačke $A, B, C$, i $D$ su bazna dopustva rješenja (BDR). Tačke $E$ i $F$ su takođe bazna rješenja, ali nisu dopustiva. Simpleks algoritam prvo kreće od tačke $A$ prema tački $D$, te završava u tački $C$ (optimum).
  
  \emph{Komentari na simpleks tabelu}:
  \begin{itemize}
      \item Jedinična matrica $m \times m$   ugrađena u gornju lijevu podmatricu simpleks tabele (blok sa elementima $\overline{a}_{i,j}$) sadrži kolone koji čine vektore baznih varijabli.
      \item U odgovarajućim kolonama u posljednjoj vrsti (ciljna vrsta) se nalaze nule.
  \end{itemize}
- Prema tome, vektori $x_i$, koji su bazni vektori (kolone baze $B$), su napisani preko nebaznih vektora $x_i \in N$. Kako se stavljaju $x_i  = 0$, za sve $i \in N$, onda je trivijano dobiti vrijednosti baznih vektora $x_i$, tj. kolona baze $B$. 
+ Prema tome, vektori $x_i$, koji su bazni vektori (kolone baze $B$), su napisani preko nebaznih vektora $x_i \in N$. Kako se stavljaju $x_i  = 0$, za sve $i \in N$, onda se  vrijednosti baznih vektora $x_i$, tj. kolona baze $B$, mogu trivijano dobiti.
  \vspace{1cm}\\
  \emph{\textbf{Primjer.}} Navedimo primjer jednog linearnog programa koji je neograničen, te ga riješimo simpleks metodom. 
   Neka je dat problem LP-a:
   \begin{align*}
   	  &\max -x + 3y \\
+  	  & \mbox{s.t} \nonumber \\
   	  & -x + y \leq 3 \\
   	  & x - 2y \leq 2 
   \end{align*}
@@ -1433,7 +1435,7 @@ $-x+y=3$ i $x+6y=18$, što je opet ista tačka (i nema napretka vrijednosti funk
  \end{itemize}
  
  Parcijalni odgovor na prvo pitanje je kada postoji jedinična podmatrica $I_m$ u gornjoj lijevoj blok matrici simpleks tabele,  onda je bazu jednostavno odrediti (kako smo to i vidjeli u prethodnoj sekciji). 
- Linearnom programu koji sadrži ograničenja $Ax \leq b, x\geq 0$ se dodaju izjednačavajuće varijable da bi uslovi nejednakosti u ograničenjima postali potrebne jednakosti. Na taj način se i formira ova jedinična matrica. Međutim, šta ako je linearan program dat u kanonskom obliku, tj. sa ogarničenjima $Ax = b, x \geq 0$. Bez smanjenja opštosti, pretpostavimo da je $b \geq 0$. Ako ne postoji očigledno bazno dopustivo rješenje ovog problema, onda uvodimo \emph{umjetne} varijable $\omega = (\omega_1,\ldots, \omega_m)$ nakon čega treba da riješimo sljedeći problem LP-a:
+ Linearnom programu koji sadrži ograničenja $Ax \leq b, x\geq 0$ se dodaju izjednačavajuće varijable da bi uslovi nejednakosti u ograničenjima postali potrebne jednakosti. Na taj način se i formira ova jedinična matrica. Međutim, šta ako je linearan program direktno dat u kanonskom obliku, tj. sa ogarničenjima oblika $Ax = b, x \geq 0$? Bez smanjenja opštosti, pretpostavimo da je $b \geq 0$. Ako ne postoji očigledno bazno dopustivo rješenje ovog problema, onda uvodimo \emph{umjetne} varijable $\omega = (\omega_1,\ldots, \omega_m)$ nakon čega treba da riješimo sljedeći problem LP-a:
  \begin{align}
       &\sum_{i=1}^m \omega_i \rightarrow \min_{x,\omega} \nonumber \\
       &\mbox{ tako da } A x + \omega = b \nonumber \\
@@ -1530,9 +1532,9 @@ Iz ovih koraka, dobijamo simpleks tabelu
        1 & 1 & -1               & -1   & 0 \\
     \end{array}
 $$
-Radimo sada elementarne transformacije na ovoj tabeli, kandidata za pivota nađimo u 
-koloni 3. Jedini sa pozitivnom vrijednošću je element $\overline{a}_{2,3} = \frac{3}{5}$, koji je i pivot. 
-Vršeći opet elementarne transformacije oko pivota, dobijamo tabelu 
+Uradimo sada elementarne transformacije na ovoj tabeli; kandidata za pivota nađimo u 
+koloni 3. Jedini element sa pozitivnom vrijednošću je $\overline{a}_{2,3} = \frac{3}{5}$, koji je onda i traženi pivot. 
+Vršeći elementarne transformacije oko pivota, dobijamo tabelu 
 
 $$ \begin{array}{cccc|c}
        1   & \frac{1}{3}       & 0             &   -\frac{4}{3}             &   2  \\
@@ -1587,7 +1589,7 @@ Ova situacija odgovara sljedećoj geometrijskoj interpretaciji na Slici~\ref{fig
 	\label{fig:step-1}
 \end{figure}
 
-Izvršimo sada promjenu baznih vektora na osnovu simpleks koraka. Dakle, kako maksimizujemo 
+Izvršimo sada promjenu baznih vektora na osnovu simpleks koraka. Dakle, kako maksimizujemo, 
 tražimo one koeficijente dopirnosa koji su veći od 0. Biramo prvu kolonu koja odgovara varijabli $x$, te nađimo 
 pivot element: kandidati su $s_2$ i $s_3$. Kako je $\frac{26}{3} > \frac{2}{1}$, onda je  pivot $\overline{a}_{2, 1} = 1$. Pivotiramo oko ovog elementa i dobijemo tabelu:
 $$\begin{array}{cccccc| c}
@@ -1649,7 +1651,7 @@ hodu $A \rightarrow E \rightarrow D \rightarrow C$.
 \end{figure}
 
 
-Primijetimo da ako bi u prvom koraku birali da mjesto varijable $x$ ubacujemo varijablu $y$ u bazu, došli bi do optimuma tako što bi se pomjerili koracima simpleks metode prvo u tačku $B$, pa potom u $C$, koja je optimum. Takođe, u ovom slučaju je potrebno generisati samo dvije simpleks tabele (a ne tri, kao što smo mi generisali u ovom primjeru).\vspace{1cm}
+Primijetimo da ako bi u prvom koraku simpleks metode birali mjesto varijable $x$ ubacivanje varijable $y$ u bazu, došli bi do optimuma tako što bi se pomjerili   prvo u tačku $B$, pa potom u $C$, koja je optimum. Takođe, u ovom slučaju je potrebno generisati samo dvije simpleks tabele (a ne tri, kao što smo mi generisali u ovom primjeru).\vspace{1cm}
 \\
 \textbf{\Large Zadaci}.
 \begin{enumerate}
