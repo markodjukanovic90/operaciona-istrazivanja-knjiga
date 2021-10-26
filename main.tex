@@ -849,7 +849,7 @@ Iz prethodne teoreme zaključujemo da bismo  konstruisali bazno rješenje, sljed
     \item Odaberemo $m$ linearno nezavisnih kolona $A_{p_1}, \ldots, A_{p_m}$ matrice $A$.
     %\item Postavimo $x_i = 0$, za sve $i \in \{p_1,\ldots, p_m \}$.
     \item Riješimo sistem $B x_B = b$, za $x_B = [x_{p_1}, \ldots, x_{p_m}]$ i $B= [A_{p_1}. \ldots, A_{p_m}]$
-    \item Dodjelimo $$x = (x_1,\ldots, x_n):= \begin{cases}
+    \item Dodijelimo $$x = (x_1,\ldots, x_n):= \begin{cases}
     	          0, j  \not \in \{p_1,\ldots, p_m \} \\
     	         x_{p_i} = (x_B)_i, j \in \{ p_1,\ldots, p_m \}
     \end{cases},$$  čime dobijamo bazno rješenje. 
@@ -948,11 +948,11 @@ Ostavljamo čitaocu da pokaže da ova dva modela imaju jednaka optimalna rješen
 	& \sum_{j \in J} a_{ij} x_j \leq b_i\  \forall i \in I \\
 	& x_j \geq 0\ \forall j \in J.
 \end{align*}
-Ovaj  model se transformiše u model LP-a uvodeći varijablu $z=\max_{k \in K} \sum_{j \in J} a_{kj}x_j$ koja označava maksimalnu cijenu. Sljedeće dodatna ograničenja treba da budu dodana u početni model poslije smjene da bi ograničili vrijednost varijable $z$:
+Ovaj  model se transformiše u model LP-a uvodeći varijablu $$z=\max_{k \in K} \sum_{j \in J} a_{kj}x_j$$ koja označava maksimalnu cijenu. Ograničenja koja treba da budu dodana u početni model poslije smjene da bi ograničili vrijednost varijable $z$ su:
 \begin{eqnarray}
 	\sum_{j \in J} a_{kj} x_j \leq z\ \forall k \in K.
 \end{eqnarray}
-Kada se $z$ minimizuje, ova ograničenja osiguravaju da je $z$ veće ili jednako  $\sum_{j \in J} c_{kj}x_j$, za sve $k$. Optimalna vrijednost $z$ neće biti veća od makismuma svih $\sum_{j \in J} c_{kj}x_j$, jer je $z$ minimizovano. Prema tome, optimalna vrijednost varijable $z$ će težiti da bude što manja moguća i jednaka maksimalnoj cijeni nad skupom $K$. Prema tome, model se transformiše u:
+Kada se $z$ minimizuje, ova ograničenja osiguravaju da je $z$ veće ili jednako  $\sum_{j \in J} c_{kj}x_j$, za sve $k$. Optimalna vrijednost $z$ neće biti veća od maksimuma svih $\sum_{j \in J} c_{kj}x_j$, jer  $z$ minimizujemo. Prema tome, optimalna vrijednost varijable $z$ će težiti da bude što manja moguća i jednaka maksimalnoj cijeni nad skupom $K$. Prema tome, početni model se transformiše u:
 \begin{align*}
 	&\max z \\
 	&\sum_{j \in J} a_{ij} x_j \leq b_i\  \forall i \in I \\ 
@@ -966,7 +966,7 @@ Kada se $z$ minimizuje, ova ograničenja osiguravaju da je $z$ veće ili jednako
 	& \sum_{j \in J} a_{ij} x_j \leq b_i,  \forall i \in I \\
 	& x_j \geq 0, \forall j \in J.
 \end{align*}
-Ovdje je funkcija cilja data kao količnik dvije linearne funkcije. Potrebno je transformisati ovu funkciju u linearnu da bismo imali linearni program. Ovakvi modeli su česta pojava u modelovanju financijskog planiranja. Pretpostavimo da je $\sum_{j \in J}d_j x_j + \beta \neq 0$ za sve tačke iz dopustivog regiona. Glavni trik u transformaciji je uvođenje nove varijable $y_j$ i $t$ tako da je $y_j = t x_j$. U nastavku, pretpostavljamo da je nazivnik u funkciji cilja pozitivan (slično je izvođenje i sa negativnim nazivnikom, stim da imamo znak ``-'' ispred, što će promijeniti znak nejednakosti u krajnjem modelu). Dakle, uvedemo $t = \frac{1}{\sum_{j \in J} d_j x_j + \beta }$. Time dobijamo model
+Ovdje je funkcija cilja data kao količnik dvije linearne funkcije. Potrebno je transformisati ovu funkciju u linearnu da bismo imali linearni program. Ovakvi modeli su česta pojava u modelovanju financijskog planiranja. Pretpostavimo da je $\sum_{j \in J}d_j x_j + \beta \neq 0$ za sve tačke iz dopustivog regiona. Glavni trik u transformaciji je uvođenje nove varijable $y_j$ i $t$ tako da je $y_j = t x_j$. U nastavku, pretpostavljamo da je nazivnik u funkciji cilja pozitivan (slično je izvođenje i sa negativnim nazivnikom, s tim da imamo znak ``-'' ispred, što će promijeniti znak nejednakosti u ograničenjima krajnjeg modela). Dakle, uvedemo $t = \frac{1}{\sum_{j \in J} d_j x_j + \beta }$. Time dobijamo model
 \begin{align*}
 	&\min \sum_{j \in J} c_j x_j t + \alpha t \\
 	&\sum_{j \in J} a_{ij} x_j \leq b_i,  \forall i \in I \\
@@ -990,14 +990,14 @@ Za optimalnu vrijednost varijable $t$ na kraju se provjeri da li je $t>0$.   \\
 	& l_i \leq \sum_{j \in J} a_{ij} x_j \leq u_i, \forall i\in I \\
 	& x_j \geq 0, \forall j \in J.
 \end{align*} 
-Najlakše je transformisati ovaj model u sljedeći LP (konjunkcija ograničenja): 
+Direktnom transformacijom dobijamo sljedeći LP (konjunkcija ograničenja): 
 \begin{align*}
 	& \min_{j \in J } c_j x_j \\
 	&  l_i \leq \sum_{j \in J} a_{ij} x_j, \forall i\in I \\
 	&  \sum_{j \in J} a_{ij} x_j \leq u_i, \forall i\in I \\
 	&  x_j \geq 0, \forall j \in J.
 \end{align*}
-Kako sam se $\sum_{j \in J} a_{ij} x_j$ javlja u dva ograničenja (što utiče na performanse rješavača), ovaj model se dalje transformiše na (efikasniji) LP model uz transformaciju
+Kako    se $\sum_{j \in J} a_{ij} x_j$ javlja u dva ograničenja (što utiče na performanse rješavača), prethodni model se dalje transformiše na (efikasniji) LP model:
 \begin{align*}
 	&s_i + \sum_{j \in J} a_{ij} x_j = u_i, \forall i \in I \\
 	& 0 \leq s_i \leq  u_i - l_i, \forall i \in I.
@@ -1007,6 +1007,7 @@ Dakle, ako je $s_i = 0$, onda je  $\sum_{j \in J} a_{ij} x_j = u_i$, dok ako je 
 Konačno, dobijamo ekvivalentan LP model
 \begin{align*}
 	&\min_{j \in J } c_j x_j \\
+	& \mbox{s.t.} \nonumber \\
 	&s_i + \sum_{j \in J} a_{ij} x_j = u_i, \forall i \in I \\ 
 	&  0 \leq s_i \leq  u_i - l_i, \forall i \in I \\
 	& x_j \geq 0, \forall j \in J.
@@ -1099,7 +1100,7 @@ varijabla $x_i$ označava broj proizvoda $i$ proizvedeni na sedmičnom nivou na 
 		&\max   x + 2 y \\
 		& s.t. \\
 		& x \leq 10 \\
-		& 2 x + x \geq 0 \\
+		& 2 x + y\geq 0 \\
 		& x,y \geq 0.
 	\end{align*}
 	\item Grafičkom metodom riješiti sljedeći problem 
@@ -1113,6 +1114,7 @@ varijabla $x_i$ označava broj proizvoda $i$ proizvedeni na sedmičnom nivou na 
 \\
 
 \item Neka je dat poliedar $P= \{ (x_1,x_2,x_3, x_4)^T \in \mathbb{R}^4 \mid x_2 - x_1 = 0, x_4 - x_3 = 0,  x_1 + x_2 +   x_3 + x_4 = 2, x_1,x_2,x_3, x_4 \geq 0 \}$.  Pronaći bazna dopustiva rješenja i odrediti jesu li ona degenerativna.  
+  
 \end{enumerate}
 
 
@@ -1146,12 +1148,12 @@ gdje je $A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m, c \in \mathbb{R}^n, 
     \item \emph{uslov optimalnosti}, tj. $c^T (x + \lambda d) \leq c^T x, \lambda>0$, što znači da idemo u pravcu smanjenja vrijednosti funkcije cilja;
     \item \emph{uslov dopustivosti}, treba da je pravac $d$ dopustiv u tački $x$, tj. $ (x + \lambda d) \in P$, za neko $\lambda>0$. Dakle, uvijek se krećemo samo tačkama dopustivog regiona. 
 \end{itemize}
-Birajmo neku nebaznu koordinatu u $x$; neka je to $x_j, j \in N$. Definišemo $d=(d_B,  d_N)$, gdje su koordinate od (nebaznog dijela) $d_N$ svugdje 0, osim na koordinati $j$ za koju je postavljena vrijednost 1.   Bazni dio vektora $d$, koji je označen sa $d_B$, izvešćemo iz uslova dopustivosti i pretpostavke da ``šetamo'' pravcem koji je granica dopustivog regiona, tj. poliedra $P$: $Ax + \lambda Ad = b$, odakle je $Ad = 0$. Tada vrijedi
+Birajmo neku nebaznu koordinatu u $x$; neka je to $x_j, j \in N$. Definišemo $d=(d_B,  d_N)$, gdje su koordinate od (nebaznog dijela) $d_N$ svugdje 0, osim na koordinati $j$ za koju je postavljena vrijednost 1.   Bazni dio vektora $d$, koji je označen sa $d_B$, izvešćemo iz uslova dopustivosti i pretpostavke da ``šetamo'' pravcem koji se poklapa sa granicom dopustivog regiona, tj. poliedra $P$: $Ax + \lambda Ad = b$, odakle je $Ad = 0$. Tada vrijedi
 $$ Ad = \sum_{i=1}^n A_i d_i = \sum_{i=1}^m A_{p_i} d_i + A_j = B d_B + A_j = 0$$ za one koordinate $p_i$ koje pripadaju baznom dijelu, 
-odakle je $d_B = -  B^{-1} \cdot A_j $.  Za ovako odabran $d$ imamo zadovoljen uslov dopustivosti jer $A( x + \lambda d )  =b$. Posmatrajmo sada uslov nenegativnosti, tj. $x + \lambda d \geq 0$:
+odakle je $d_B = -  B^{-1} \cdot A_j $.  Za ovako odabran $d$ imamo zadovoljen uslov dopustivosti za ograničenje $A( x + \lambda d )  =b$. Posmatrajmo sada ograničenje nenegativnosti, tj. da li je zadovoljeno $x + \lambda d \geq 0$:
 \begin{itemize}
     \item Ako je $x$ nedegenerativno, onda je tačno $n-m$ komponenti jednako 0,       pa je za nebazni dio komponenti $x_i + \lambda d_i = 0$, za $i \in N \setminus \{j\}$, dok je $x_j + \lambda d_j = 0$, pa imamo ispunjen uslov nenegativnosti. Za bazne komponente imamo $x_{p_i} \cdot d_{p_i} > 0 $ ako je $d_{p_i}>0$. U protivnom, možemo odabrati  malu vrijednost  $\lambda>0$ (pogledati definiciju dopustivog pravca $x +\lambda d$) tako da $x_{p_i} \cdot d_{p_i} >0$, pa imam zadovoljen uslov nenegativnosti.
-    \item Ako je $x$ degenerativno bazno dopustivo rješenje, slijedi da više od $n-m$ kompomenti od $x$ je jednako 0. Za nebazni slučaj kao i u prvom slučaju pokazujemo uslov nenegativnosti. Tada za bazne kompomenete vektora $x +\lambda d$  postoji bazni indeks $i$ za koji je $x_{p_i} = 0$, pa   je $d_{p_i}< 0$, što povlači da u tom slučaju ne možemo naći $\lambda>0$ tako da $x_{p_i} + \lambda d_{p_i} >0$  što stvara problem (dopustivost narušena). Pojava ovog slučaja se na sreću može zaobići (pokazaćemo to u nastavku ove sekcije). 
+    \item Ako je $x$ degenerativno bazno dopustivo rješenje, slijedi da više od $n-m$ kompomenti od $x$ je jednako 0. Za nebazni slučaj kao i u prvom slučaju pokazujemo uslov nenegativnosti. Tada za bazne kompomenete vektora $x +\lambda d$  postoji bazni indeks $i$ za koji je $x_{p_i} = 0$, pa ako bi bilo $d_{p_i}< 0$, to bi slijedilo da ne postoji $\lambda>0$ tako da $x_{p_i} + \lambda d_{p_i} >0$  što stvara problem (dopustivost narušena). Pojava ovog slučaja se na sreću može zaobići primjenom određenih pravila izbora nove bazne koordinate (pokazaćemo to u nastavku ove sekcije). 
 \end{itemize}
  Ostaje nam pitanje odabira nebazne varijable $x_j$. U pomoć pozivamo uslov optimalnosti $c^T ( x + \lambda d ) < c^T x $, odakle slijedi $c^T d < 0$.  Dakle, $$c^T d = c_B^T d_B + c_j = c^T ( - B^{-1} A_j ) + c_j < 0.$$
  Prema tome, odaberimo (nebazni) indeks $j$ pri čemu je zadovoljeno $ \overline{c_j} = c_j - c_B^T B^{-1}A_j < 0$. Vektor $\overline{c}=[\overline{c_1}, \ldots, \overline{c_n}]^T$ se naziva \emph{vektor doprinosa}, dok vrijednost $\overline{c_j}$ \emph{doprinos nebazne varijable} $x_j$. 
@@ -1166,7 +1168,7 @@ Iz sljedeće teoreme dobijamo uslove optimalnosti rješenja.
   \end{itemize}
 \end{thm}
 
-Ostalo nam je još odrediti dužinu koraka pravca $d$, tj. vrijednost $\lambda>0$. Ideja je da se krene nekim smjerom dok god se ne dođe do drugog vrha, tj. treba odrediti dužinu vektora $d$ koji je jednak $\max \{ \lambda \in \mathbb{R} \mid x + \lambda d \geq 0 \}$. Razlikujemo sljedeća dva slučaja:
+Ostalo nam je još odrediti dužinu   pravca $d$, tj. vrijednost $\lambda>0$. Ideja je da se krene nekim smjerom dok god se ne dođe do drugog vrha, tj. treba odrediti dužinu vektora $d$ koji je jednak $\max \{ \lambda \in \mathbb{R} \mid x + \lambda d \geq 0 \}$. Razlikujemo sljedeća dva slučaja:
 \begin{itemize}
     \item Ako $d >0$, onda je $  x + \lambda d \geq 0$, za sve $\lambda > 0$, pa je $\lambda^* = \infty$, tj. ciljna funkcija je neograničena.
     \item Ako postoji $i$, td. $d_i < 0$, onda za dovoljno malo $\lambda>0$ tako da $x_i + \lambda d_i \geq 0$ dobijamo $\lambda \leq -\frac{x_i}{d_i}$. Prema tome 
@@ -1175,7 +1177,7 @@ Ostalo nam je još odrediti dužinu koraka pravca $d$, tj. vrijednost $\lambda>0
 Za indeks $l$ za koji se postiže ovaj minimum, vrijedi $x_{p_l} + \lambda^* d_{p_l}=0$.
 Da je ovo upravo bazno dopustivo rješenje problema, govori nam sljedeća teorema. 
 \begin{thm}
-    Kolone $A_{p_i}, i\not = l$, $i=1,\ldots,m$ i $A_{j}$ su linearno nezavisni, pa je matrica 
+    Kolone $A_{p_i}, i\not = l$, $i=1,\ldots,m$ i $A_{j}$ su linearno nezavisne, pa je matrica 
     $[A_{p_1},\ldots, A_{p_{l-1}}, A_j, A_{p_{l+1}}, \ldots, A_{p_m}]$
     regularna. Vektor $x + \lambda^* d$ predstavlja bazno dopustivo rješenje. 
 \end{thm}
@@ -1201,7 +1203,7 @@ Navedimo sada osnovne korake jedne iteracije simpleks metoda:
 
 \section{Tabelarni oblik Simpleks Metode}
 
-U osnovi, simpleks algoritam se sastoji od stalne izmjene jedne kolone baznih vektora u $B$ sa nekim nebaznim vektorom (i odgovarajućom kolonom) iterativno u cilju smanjenja trenutne vrijednosti cilje funkcije, dok god je to moguće. 
+U osnovi, simpleks algoritam se sastoji od stalne izmjene jedne kolone baze $B$ sa nekim nebaznim vektorom u iterativnoj šemi u cilju smanjenja trenutne vrijednosti cilje funkcije, dok god je to moguće. 
 U praktičnom računanju, rad sa tabelarnim prikazom koraka simpleks metoda je u mnogome lakše (kompaktnije i prirodnije) nego koristiti standardan oblik LP-a. 
 Tabelarni simpleks prikaz se može vidjeti u Tabeli~\ref{tab:simplex_tabelau}. 
 
@@ -1217,14 +1219,14 @@ Tabelarni simpleks prikaz se može vidjeti u Tabeli~\ref{tab:simplex_tabelau}.
     \label{tab:simplex_tabelau}
 \end{table}
 
-Na osnovu ovakve tabele, te koraka simpleks metode opisanih u prethodnoj sekciji, sljedeći koracu se izvršavaju u tabelarnom obliku simpleks metode:
+Na osnovu ovakve tabele, te koraka simpleks metode opisanih u prethodnoj sekciji, sljedeći koraci se izvršavaju u tabelarnoj simpleks formi:
 \begin{itemize}
     \item Konstruisati inicijalnu simpleks tabelu sa početnom bazom $B$ i odgovarajuće bazno dopustivo rješenje $x$.
     \item Posmatrati koeficijente doprinosa $\overline{c_j}$ (posljednja vrsta tabele). Ako su svi $\overline{c_j} \geq 0$, rješenje se ne može dalje popraviti, pa je nađeno optimalno rješenje. U protivnom, odabrati neki indeks $j$ za koji je $\overline{c_j}<0$.
-    \item Pogledati vektor (kolonu) $u = B^{-1}A_j$. Ako su sve koordinate od $u$ negativne, rješenje LP-a je $-\infty$, algoritam se prekida.
+    \item Posmatrati vektor (kolonu) $u = B^{-1}A_j$. Ako su sve koordinate vektora $u$ negativne, rješenje LP-a je $-\infty$, algoritam se prekida.
     \item Za svaki $u_i > 0$, računati $x_{p_i}/u_i$, i neka je   omjer najmanji za indeks $l$. Kolona $A_{j}$ ulazi u bazu, dok kolona $A_{p_l}$ izlazi iz baze. 
-    \item Svakom redu table dodati $l$--ti red (pivot red) kojeg množimo odgovarajućim
-         skalarom da bi pivot element postao 1 na kraju, a svi ostali elementi u pivot koloni postanu 0.
+    \item Svakom redu simpleks tabele dodati $l$--ti red (pivot red) kojeg množimo odgovarajućim
+         skalarom da bi pivot element postao 1 na kraju, a svi ostali elementi u pivot koloni budu 0.
 \end{itemize}
 
 U ovom postupku  može se desiti situacija da postoji dva ili više redova koji su kandidati za ulazak u bazu. Ako se odabere nepovoljan kandidat, postupak može da proizvede degenerativno BDR ili čak da dođe do ciklusa. 
