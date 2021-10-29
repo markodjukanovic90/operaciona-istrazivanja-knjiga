@@ -889,7 +889,7 @@ U nastavku govorimo o egzistenciji optimalnog rješenja problema LP-a. U naredno
 Sljedeću teoremu, koja daje vezu između ekstremnih tačaka poliedra i dopustivih pravaca, navodimo bez dokaza.
 
 \begin{thm}
-   Neka je dat poliedar $P=\{ x \in \mathbb{R}^n  \mid a_i^T x \geq b_i, i=1,\ldots,m\} $. Tada su sljedeće tri tvrdnje ekvivalentne:
+   Neka je dat poliedar $P=\{ x \in \mathbb{R}^n  \mid a_i^T x \geq b_i, i=1,\ldots,m\} \neq \emptyset$. Tada su sljedeće tri tvrdnje ekvivalentne:
    \begin{itemize}
        \item  Poliedar $P$ ima barem jednu ekstremnu tačku.
        \item Poliedar $P$ ne sadrži pravac.
@@ -1138,7 +1138,7 @@ gdje je $A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m, c \in \mathbb{R}^n, 
 %\end{definition}
 
 \begin{definition}
-      Za pravac $d\in \mathbb{R}^n$ kažemo da je dopustiv u tački $x \in P$ akko postoji $\lambda > 0$ tako da $x + \lambda d \in P$.
+      Za pravac $d\in \mathbb{R}^n$ kažemo da je dopustiv pravac u vektoru $x \in P$ akko postoji $\lambda > 0$ tako da $x + \lambda d \in P$.
 \end{definition}
 
 \section{Konstrukcija simpleks metode}
@@ -1428,7 +1428,7 @@ $-x+y=3$ i $x+6y=18$, što je opet ista tačka (i nema napretka vrijednosti funk
 	\label{fig:deg-sol}
 \end{figure}
 
- \section{Dvofazni simpleks algoritam}
+ \section{Dvofazni simpleks metod}
  Postoje dva pitanja koja se nameću u primjeni simpleks algoritma:
  \begin{itemize}
      \item Da li se uvijek može naći bazno dopustivo rješenje za inicijalni korak 
@@ -2022,8 +2022,7 @@ jedanog problema i varijabli u drugom problemu je data preko sljedeće tabele
 \end{table}
 
 
-\section{Metod Unutrašnje T
-	ačke}
+\section{Metod Unutrašnje Tačke}
 
 Simpleks metod ne garantuje   rješavanje proizvoljnog problema LP u polinomijalnom broju koraka u odnosu na veličinu ulaza. % V. Klee and G. Minty constructed an example LP: simplex method needs 2^n iterations to solve it 
 %Dakle, iz njega se ne može zaključiti da je problem rješavanja generalnog LP problema   polinomijalno rješiv. 
