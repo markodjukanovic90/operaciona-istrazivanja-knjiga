@@ -2027,11 +2027,11 @@ jedanog problema i varijabli u drugom problemu je data preko sljedeće tabele
 
 Simpleks metod ne garantuje   rješavanje proizvoljnog problema LP u polinomijalnom broju koraka u odnosu na veličinu ulaza. % V. Klee and G. Minty constructed an example LP: simplex method needs 2^n iterations to solve it 
 %Dakle, iz njega se ne može zaključiti da je problem rješavanja generalnog LP problema   polinomijalno rješiv. 
-\emph{Metod unutrašnje tačke} rješava bilo koji problem LP-a  u polinomijanom vremenu. U ovoj sekciji ćemo dati konstrukciju ovog metoda, koji pokazuje da rješavanje problema LP-a pripada klasi $\mathcal{P}$. Iako u praksi često ne postiže dobre  performanse kao i simpleks metod, te se uvijek prvo preporučuje korištenje simpleks metoda u rješavanju LP-a, ovaj metod je veoma važan sa teoretskog stanovišta.  \emph{Metod unutrašnje tačke} (eng. Interior point metod) je dizajniran 50-ih godina XX vijeka i sve do 80-ih godina nije bio smatran za algoritam koji se efikasno može primijeniti na probleme velikih dimenzija. Tek 1984.godine (N. Karmakar, inžinjer u IBM-u) je formalno dokazao da se ovaj algoritam izvršava u polinomijalnom broju koraka za probleme linearnog programiranja. U današnje vrijeme, usljed ekstremnog poboljšanja performansi mašina, pokazalo se da je \emph{metod unutrašnje tačke} kompetentan sa simpleks metodom kada je riječ o problemima LP-a  velikih dimenzija (sa matricom $A$ čiji je broj elemenata $10^9$ i više).
+\emph{Metod unutrašnje tačke} rješava bilo koji problem LP-a  u polinomijanom vremenu. U ovoj sekciji ćemo dati konstrukciju ovog metoda, koji pokazuje da rješavanje problema LP-a pripada klasi $\mathcal{P}$. Iako u praksi često ne postiže dobre  performanse kao i simpleks metod, te se  prvo  preporučuje korištenje simpleks metoda u rješavanju LP-a, ovaj metod je veoma važan sa teoretskog stanovišta.  \emph{Metod unutrašnje tačke} (eng. Interior point metod) je dizajniran 50-ih godina XX vijeka i sve do 80-ih godina nije bio smatran za algoritam koji se efikasno može primijeniti na probleme velikih dimenzija. Tek 1984.godine (N. Karmakar, inžinjer u IBM-u) je formalno dokazao da se ovaj algoritam izvršava u polinomijalnom broju koraka za unparijed zadatu preciznost za probleme linearnog programiranja. U današnje vrijeme, usljed ekstremnog poboljšanja performansi mašina, pokazalo se da je \emph{metod unutrašnje tačke} kompetentan sa simpleks metodom kada je riječ o problemima LP-a  velikih dimenzija (sa matricom $A$ čiji je broj elemenata $10^9$ i više).
 
-Za razliku od simpleks metoda, koji ``hoda'' po granicama poliedra (dopustivog regiona), \emph{metod unutrašnje tačke}, kako i samo ime kaže, se kreće po unutrašnjim tačkama poliedra  dok ne naiđe na optimalno rješenje problema. 
+Za razliku od simpleks metoda, koji ``hoda'' po granicama poliedra (dopustivog regiona) u potrazi za optimalnim rješenjem, \emph{metod unutrašnje tačke}, kako i samo ime kaže, se kreće po unutrašnjim tačkama poliedra  dok ne naiđe na optimalno rješenje problema. 
 
-Postoji nekoliko metoda ove vrste, kao što su: metod centralne putanje, redukcija potencijala, afino skaliranje, itd. Mi ćemo u ovoj sekciji obratiti pažnju na metod centralne putanje. Da ponovimo, ova sekcija se bavi rješavanjem problema LP-a u obliku (\ref{eq:lp_equality_constraint}). 
+Postoji nekoliko metoda ove vrste, kao što su: metod centralne putanje, redukcija potencijala, afino skaliranje, itd. Mi ćemo u ovoj sekciji obratiti pažnju na metod centralne putanje. Da ponovimo, ova sekcija se bavi rješavanjem problema LP-a koji je dat u obliku (\ref{eq:lp_equality_constraint}). 
 
 Neka je par Primal-dual linearnih programa dat sa
 
@@ -2049,7 +2049,7 @@ Lagranžijan primal-dual linearnih programa definišemo sa
 \end{equation}
 \end{definition}
 
-Vrijedi niz teorema koje obezbjeđuju dovoljne optimalne uslove za LP-a. U nastavku navodimo najvažnije od njih. 
+Postoji niz teorema koje obezbjeđuju dovoljne optimalne uslove za LP-a. U nastavku navodimo najvažnije od njih. 
 %http://www.optimization-online.org/DB_FILE/2008/06/2024.pdf
 \begin{thm}
 	 Pretpostavimo da postoje $y \in \mathbb{R}^m, s \in \mathbb{R}^n$ tako da je 
@@ -2070,7 +2070,7 @@ Vrijedi niz teorema koje obezbjeđuju dovoljne optimalne uslove za LP-a. U nasta
 	\begin{align}
 		  &A x= b \label{eq:oc1}\\
 		  & x \geq 0 \label{eq:oc2}\\
-		  & A^T y + s = 0 \label{eq:oc3}\\
+		  & A^T y + s =c \label{eq:oc3}\\
 		  & s \geq 0 \label{eq:oc4}\\
 		  & s^T x = 0. \label{eq:oc5} 
 	\end{align}
@@ -2135,9 +2135,9 @@ Uvedimo nenegativni vektor $s =\mu \cdot (\frac{1}{x_1}, \frac{1}{x_2}, \ldots, 
 	& x, s \geq 0. \nonumber
 \end{align}
 Primijetimo da ovaj uslov aproksimira iste uslove za primal-dual par.  
-interesantno je da parametar $\mu$ kontroliše udaljenost od optimalnosti, tj. 
+Interesantno je da parametar $\mu$ kontroliše udaljenost od optimalnosti, tj. 
 $$ c^T x - b^T y = c^T x - x^T A y = x^T(c- A^Ty ) = x^T s = n \mu.$$
- Uslovi~(\ref{eq:primal-dual-central-path-problem}) ne daju linearni sistem, jer treće ograničenje  nije linearno.
+ Problem u rješavanju leži u činjenici da uslovi~(\ref{eq:primal-dual-central-path-problem}) ne daju linearni sistem, jer treće ograničenje  nije linearno.
 
 \begin{definition}
 	Primal-dual centralni put $\{(x(\mu), y(\mu), s(\mu)) \in \mathbb{R}^{2n + m} \mid \mu > 0, x(\mu) >0, s(\mu)>0 \}$ je (jedinstveno) rješenje koje zadovoljava uslove (\ref{eq:primal-dual-central-path-problem}) parametrizovano sa $\mu$. 
@@ -2149,7 +2149,7 @@ Primijetimo sljedeće, ako se u problemu (\ref{eq:primal-dual-central-path-probl
 	&\Longleftrightarrow s^T x = 0  \Longleftrightarrow (A^T y - c)^T x = 0 \\
 	&\Longleftrightarrow y^T A x - c^T x = 0 \Longleftrightarrow y^T b = c^Tx
 \end{align*}
-jer je $Ax = b$. Takođe, primijetimo da   vrijednost (optimalnih) dualnih promjenjivih $y$ upravo odgovara vrijednosti Lagranžovih množitelja. Takođe, kako $\mu$ teži ka nuli,   (\ref{eq:primal-dual-central-path-problem}) sve preciznije aproksimira rješenja početnog problema (\ref{eq:lp_equality_constraint}). 
+jer je $Ax = b$. Takođe, primijetimo da   vrijednost (optimalnih) dualnih promjenjivih $y$ upravo odgovara vrijednosti Lagranžovih množitelja. Takođe, kako $\mu$ teži ka nuli,  rješenja (nelinearnog) sistema  (\ref{eq:primal-dual-central-path-problem}) će sve preciznije aproksimira rješenja početnog problema (\ref{eq:lp_equality_constraint}). 
 
 Da bi došli do koraka samog algoritma, uvedimo notaciju 
 $$ F(x, y, s) = \left (\begin{array}{c}
@@ -2159,11 +2159,11 @@ $$ F(x, y, s) = \left (\begin{array}{c}
 \end{array} \right ),$$
 gdje je  $X = diag (x_1, \ldots, x_n ), S = diag(s_1,\ldots, s_n)$ i 
 $\textbf{1} = diag (1,\ldots, 1)$. Primijetimo da je $X S \textbf{1}=\sum_{i} s_i x_i$. 
-Potrebno je riješiti $F(x, y, s ) = 0, x,s \geq 0$. Korjen ove (nelinearne) jednačine ćemo naći uz pomoć \emph{Njutnovog metoda}, tj. riješimo (\ref{eq:primal-dual-central-path-problem}) uz pomoć ovog metoda. 
+Potrebno je riješiti $F(x, y, s ) = 0, x,s \geq 0$. Ideja je korjen ove (nelinearne) jednačine ćemo naći uz pomoć \emph{Njutnovog metoda}.  %, tj. riješimo (\ref{eq:primal-dual-central-path-problem}) uz pomoć ovog metoda. 
 
-U nastavku u sažetom obliku izlažemo ideju Njutnovog metoda, jednog od najefikasnijih metoda za rješavanje ovakvih (nelinearnih sistema) jednačina. Neka je data diferencijalna funkcija $f: \mathbb{R}^n \mapsto \mathbb{R}$.   Tangentna linija 
+U nastavku u sažetom obliku izlažemo ideju Njutnovog metoda, jednog od najefikasnijih metoda za rješavanje ovakvih (nelinearnih) sistema jednačina. Neka je data diferencijalna funkcija $f: \mathbb{R}^n \mapsto \mathbb{R}$.   Tangentna linija 
 $$z - f(x^k) = \triangledown f(x^k) (x - x^k) $$
-je lokalna aproksimacija grafa funkcije $f(x)$ oko dte tačke. Mijenjajući $z=0$, definiše se nova tačka 
+je lokalna aproksimacija grafa funkcije $f(x)$ oko date tačke. Mijenjajući $z=0$, definiše se nova tačka 
 \begin{equation} \label{eq:newton-step}
 	x^{k+1} = x^k - (\triangledown f(x^k))^{-1} f(x^k).
 \end{equation}
@@ -2199,7 +2199,7 @@ Pokazuje se da niz $\{x^k\}_{k \in \mathbb{N}}$ definisan uz pomoć (\ref{eq:new
 %    \caption{Demonstracija njutnovog metoda u ravni.}
 %    \label{fig:newton}
 %\end{figure}
-Rješavanje nelinearnih sistema se može generalizovati na funkcije više promjenjivih, za  više informacija pogledati na \url{http://www.ohiouniversityfaculty.com/youngt/IntNumMeth/lecture13.pdf}. 
+Rješavanje nelinearnih sistema se može generalizovati na funkcije više promjenjivih, za  više informacija pogledati \url{http://www.ohiouniversityfaculty.com/youngt/IntNumMeth/lecture13.pdf}. 
 
 
 Primijenimo ovu metodu na nalaženje nule funkcije $F(x,y,s)$. Tada imamo
@@ -2239,7 +2239,7 @@ se izračunava rješavajući sistem linearnih jednačina:
 	\end{pmatrix} 
 \end{equation}
 iz koga se potom računaju tačke naredne  iteracije. 
-Njutnov metod će u nekoj iteracija obično narušiti uslove $x,s \geq 0$, ali to se može izbjeći (biće prikazano u nastavku).  
+Njutnov metod   u nekoj iteracija obično narušava uslove nenegativnosti $x,s \geq 0$, ali to se može izbjeći (biće prikazano u nastavku).  
 Prethodno izloženo se može lako proširiti i na slučaj kada ne vrijedi $s_ix_i = 0$, tj. kada je $\frac{1}{n}s_ix_i = \mu, \mu > 0$, $i=1,\ldots,n$. Na sličan način računamo Njutnov pravac u smijeru $s_i x_i \approx \mu \theta$, za  $\theta >0$, iz sistema 
 
 \begin{equation} \label{eq:newton-interior-system-k}    
@@ -2263,7 +2263,7 @@ Prethodno izloženo se može lako proširiti i na slučaj kada ne vrijedi $s_ix_
 \end{equation}
 
 %https://www.youtube.com/watch?v=Zf_bn3jJFKY&list=WL&index=9&t=647s
-\emph{Algoritam unutrašnje tačke} se sastoji od sljedećih koraka:
+Prema tome, \emph{algoritam unutrašnje tačke} se sastoji od sljedećih koraka:
 \begin{enumerate}
 	\item Inicijalizujemo $k=0$, te proizvoljno  $(x^k, y^k, s^k), x^k, s^k \geq 0$, $x^k,s^k \in \mathbb{R}^n, y^k \in \mathbb{R}^m$.
 	\item Izaberimo $ \theta^k \in [0, 1)$ te riješimo sistem (\ref{eq:newton-interior-system-k}) za $(x^k,y^k,s^k)$ i odabran $\theta = \theta_k$ te $\mu = \mu^k = (y^k)^T s^k $,  odakle   dobijamo
@@ -2311,6 +2311,7 @@ Može se pokazati sljedeća teorema koja karakteriše \emph{metod unutrašnje ta
 Da bi se uvidjele sličnosti i razlike između simpleks metode i Metode unutrašnje tačke, pogledajte Slike \ref{fig:optimality-approaching-simplex} i  \ref{fig:optimality-approaching-interior}. U njima možete vidjeti kako metod pristupa pretrazi optimalnih rješenja. 
 
 \begin{figure}
+	\centering
 	 	\begin{subfigure}{.45\textwidth}
 	 	\centering
 	 	% include first image
@@ -2327,6 +2328,7 @@ Da bi se uvidjele sličnosti i razlike između simpleks metode i Metode unutraš
 
 
 \begin{figure}
+	\centering
 	\begin{subfigure}{.45\textwidth}
 	\centering
 	% include first image
