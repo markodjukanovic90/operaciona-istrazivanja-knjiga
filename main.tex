@@ -1797,11 +1797,11 @@ Kako su svi koeficijenti doprinosa ($\overline{c}$ varijable) manje od 0, simple
  \chapter{Dualnost \& Dopustivost}
  
  %Dualnost je pojam koji je vezan za dobijanje gornjih granica optimalne vrijednosti funkcije cilja. 
- Teorija dualnosti povezuje dva vezana problema linearnog programiranja -- jedan od njih je problem linearnog programiranja koji maksimizuje funkciju cilja, dok je drugi problem linearnog programiranja onaj koji minimizuje (ne obavezno istu) funkciju cilja. Svaki problem LP-a se može navesti u drugom, ekvivalentnom obliku na osnovu istih ulaznih podataka. Ponekad rješavanje LP-a na jedan način može da bude puno lakše nego na drugi.  Dakle, dualnost implicira da svaki problem linearnog programiranja možemo analizirati na dva potpuno različita načina, ali sa ekvivalentnim (optimalnim) rješenjima. 
+ Teorija dualnosti povezuje dva vezana problema linearnog programiranja -- jedan od njih je problem linearnog programiranja koji maksimizuje funkciju cilja, dok je drugi linearan program  koji minimizuje (ne obavezno istu) funkciju cilja. Svaki problem LP-a se može navesti u drugom, ekvivalentnom obliku na osnovu istih ulaznih podataka. Ponekad rješavanje LP-a na ovaj način može da bude puno lakše nego rješavanje početnog LP-a.  Dualnost implicira da svaki problem linearnog programiranja možemo analizirati na dva potpuno različita načina, ali sa ekvivalentnim (optimalnim) rješenjima. 
  
  
  
- Prije nego uvedemo pojam dualnog problema, posmatrajmo jedan LP i probajmo naći što bolju gornju procjenu za optimalnu vrijednost ciljne funkcije na osnovu ograničenja u modelu.
+ Prije nego uvedemo pojam dualnog problema, objasnimo motivaciju koja stoji iza nastanka teorije dualnosti. Posmatrajmo jedan LP i probajmo naći što bolju gornju procjenu za optimalnu vrijednost ciljne funkcije na osnovu ograničenja u datom modelu.
  
 $$ 
 \begin{array}{lllll}
@@ -1824,7 +1824,7 @@ Sabirajući ove dvije nejednakosti i grupišući sabirke dobijamo
      x_1 ( 4 y_1 + y_2 ) + x_2 ( 3 y_1 + y_2 ) \leq 9 y_1 + 8 y_2 
 \end{equation}
 Posmatrajući funkciju cilja i koeficijente uz varijable u (\ref{eq:dual-1}), jasno je da treba vrijediti 
-$4 y_1 + y_2 \geq 1$ i $3 y_1 + y_2 \geq 1$. Da bi ocjena gornje granice bila što bolja u (\ref{eq:dual-1}), dakle koeficijent na desnoj strani što veći, potrebno je maksimizovati izraz $9y_1 + 8 y_2$, pod gore navedenim uslovima. Prema tome, početnom problemu, kojeg označavamo sa ($P$), odgovara dualni problem 
+$4 y_1 + y_2 \geq 1$ i $3 y_1 + y_2 \geq 1$. Da bi ocjena gornje granice bila što bolja u (\ref{eq:dual-1}), dakle koeficijent na desnoj strani što veći, potrebno je minimizovati izraz $9y_1 + 8 y_2$, pod gore navedenim uslovima. Prema tome, početnom problemu, kojeg označavamo sa ($P$), odgovara dualni problem 
 $$\begin{array}{cccc}
      \min                    &  9 y_1 &+& 8 y_2        \\
      {s.t. }     &  4 y_1 &+& y_2 \geq 1   \\
@@ -1833,13 +1833,14 @@ $$\begin{array}{cccc}
 Generalno posmatrajući, za problem LP-a~(\ref{eq:LP-o1})--(\ref{eq:LP-c2}) njegov dualni problem, označen sa ($D$), je dat sa 
 \begin{align}
      & b^T y \rightarrow \max \\
+     & \mbox{s.t.} \nonumber \\
      & A^T y \geq c \\
      & y \geq 0.
 \end{align}
 
 \section{Teoreme dualnosti}
 
-\begin{thm}[Teorema o slaboj dualnosti.]
+\begin{thm}[Teorema o slaboj dualnosti]
   Ako je x dopustivo rješenje za problem ($P$) i y dopustivo rješenje za problem  ($D$), onda je 
   $$ c^T x \leq b^T y.$$
 \end{thm}
@@ -1866,7 +1867,7 @@ Generalno posmatrajući, za problem LP-a~(\ref{eq:LP-o1})--(\ref{eq:LP-c2}) njeg
 \end{thm}
 \begin{proof}
          Napišimo ograničenja probema ($P$) kao $Ax + \omega = b, x, \omega \geq 0$.
-         Primijenimo simpleks metod, pa posmatrajmo posljednju (optimalnu) simpleks tabelu:
+         Primijenimo simpleks metod, pa posmatrajmo posljednju (optimalnu) simpleks tabelu (iz koje je dobijeno rješenje $x^*$):
          
          $$\begin{array}{c |c | c}
          \overbrace{\ \ \ \ \ \hspace{1.5cm}}_{x \mbox{ varijable}}     &  \overbrace{\ \ \ \ \ \hspace{1.5cm}}_{\omega \mbox{ varijable}} &   \\
@@ -1899,16 +1900,16 @@ Generalno posmatrajući, za problem LP-a~(\ref{eq:LP-o1})--(\ref{eq:LP-c2}) njeg
 \end{proof} \\
 Primijetimo da koeficijenti $y^*$ posljednje vrste završne simpleks tabele odgovaraju  ``izjednačavajućim''   varijablama i one nam daju rješenje problema  ($D$).  
 
-\emph{\textbf{Primjer.}} Potpuno je moguće da problem ($P$) i odgovarajući dual ($D$) nemaju dopustivo rješenje. Pogledajte sljedeći primjer:
+\emph{\textbf{Primjer.}} Moguće je da i problem ($P$) i odgovarajući dual ($D$) nemaju dopustivo rješenje. Pogledajte sljedeći primjer:
 $$\begin{array}{cc}
     \max                      & 2 x_1 - x_2 \\
      {s.t. }      & x_1 - x_1 \leq 1 \\
                               & -x_1 + x_2 \leq -2 \\
                              & x_1, x_2 \geq 0.
 \end{array}$$
-i pokažite da je to slučaj.
+i pokažite da je to slučaj.\\
 
-Pozabavimo se sada pojmom \emph{komplementarnosti} (eng. complementary slackness). 
+Pozabavimo se sada pojmom \emph{komplementarnosti} (eng. \emph{complementary slackness}). 
 \begin{thm}[Teorema komplementarnosti]
       Neka su x i y dopustiva rješenja problema ($P$) i  ($D$), redom. Vektori x i y su optimalna rješenja akko vrijedi 
       \begin{equation}\label{eq:slackness-1}
@@ -1958,7 +1959,7 @@ $$x_3 \geq 0 \Rightarrow  (A^T y)_3  = c_3, \mbox{ tj. } 0 \cdot y_1 + y_2 = 3$$
 
 \begin{figure}[!ht]
     \centering
-     \includegraphics[width=160pt, height=160pt]{fig5.eps}
+     \includegraphics[width=180pt, height=180pt]{fig5.eps}
     \caption{Dualni problem: dopustiv region}
     \label{fig:fig5}
 \end{figure}
@@ -1987,7 +1988,7 @@ $$\begin{array}{lll}
     &                        &  y_1, y_2 \geq 0.
 \end{array}$$
 Dopustiv region dualnog problema je dat na Slici~ \ref{fig:fig6-dual-region}. %gdje je dopustiv region označen plavom bojom. 
-Dalje, može se pokazati da je optimum duala u presjeku prave $12 y_1 + 3 y_2 = 10$ i prave $6y_1 + 12 y_2 = 20$. Na osnovu Slike \ref{fig:fig6-dual-region} takođe vidimo da se druga i četvrta prava ne dostižu u tački optimuma (vrijedi stroga nejednakost nakon uvrštavanja tačke optimuma u uslove). Dakle, iz uslova komplementarnosti slijedi da za optimum $x$ primala  ($P$)  vrijedi $x_2 = 0$ i $x_4 = 0$.  Kako je $y_1, y_2 > 0$, onda vrijedi 
+Dalje, može se pokazati da je optimum duala u presjeku prave $12 y_1 + 3 y_2 = 10$ i prave $6y_1 + 12 y_2 = 20$. Na osnovu Slike \ref{fig:fig6-dual-region} takođe vidimo da se druga i četvrta prava ne dostižu u tački optimuma (vrijedi stroga nejednakost nakon uvrštavanja tačke optimuma u ograničenja). Dakle, iz uslova komplementarnosti slijedi da za optimum $x$ primala  ($P$)  vrijedi $x_2 = 0$ i $x_4 = 0$.  Kako je $y_1, y_2 > 0$, onda vrijedi 
 
 \begin{align}
     &10 x_1 + 20 x_3 = 210 \nonumber \\
@@ -1995,7 +1996,7 @@ Dalje, može se pokazati da je optimum duala u presjeku prave $12 y_1 + 3 y_2 = 
 \end{align}
 odakle dobijamo rješenje $x_1 = 10, x_3 = 15$, pa je optimalno rješenje $x = (10, 0, 15, 0)$.
 
-\emph{Zadatak}. Vrijednost 210 u drugom ograničenju u prethodnom problemu  ($P$)  zamijenite sa 421 i diskutujte optimalna rješenja  ($P$)  i  ($D$)  na sličan način kako je izvedeno  u primjeru gore.
+\emph{Zadatak}. Vrijednost 210 u drugom ograničenju u prethodnom problemu  ($P$)  zamijenite sa 420 i diskutujte optimalna rješenja  ($P$)  i  ($D$)  na sličan način kako je izvedeno  u primjeru gore.
 
 \begin{figure}[!ht]
     \centering
@@ -2004,12 +2005,13 @@ odakle dobijamo rješenje $x_1 = 10, x_3 = 15$, pa je optimalno rješenje $x = (
     \label{fig:fig6-dual-region}
 \end{figure}
 
-Najlakše je opisati odnos dualnosti kao odnos između problema maksimizacije i problem minimizacije, bez obzira 
+Najlakše je opisati dualnost kao odnos između problema maksimizacije i problem minimizacije, bez obzira 
 koji je od njih bio problem ($P$) a koji od njih  dual ($D$). 
 U nastavku, kompletna lista mogućih odnosa između ograničenja
 jedanog problema i varijabli u drugom problemu je data preko sljedeće tabele
 \begin{table}[!ht]
-\begin{tabular}{l|l}
+	\centering
+    \begin{tabular}{l|l}
       ($P$) & ($D$) \\ \hline
       ograničenja $\leq$  & varijable $\geq 0$ \\
       ograničenja $=$     & varijable (neograničene) \\
@@ -2017,8 +2019,7 @@ jedanog problema i varijabli u drugom problemu je data preko sljedeće tabele
       varijable $\geq 0$    & ograničenja $\geq$ \\
       varijable (neograničene) & ograničenja $=$ \\
       varijable $\leq 0$         & ograničenja $\leq$ \\ \hline
- \end{tabular}
-
+    \end{tabular}
 \end{table}
 
 
