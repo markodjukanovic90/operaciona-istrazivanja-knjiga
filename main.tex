@@ -1019,7 +1019,7 @@ Konačno, dobijamo ekvivalentan LP model
 	kupiti samo do 300.000 kg mesa mjesečno za 0,50 \$ po kg. Osim toga, za proizvodnju Meatiesa potrebna je posebna mašina, a proizvodni kapacitet ove mašine je 90.000 paketa mjesečno. Varijabilni troškovi miješanja i pakovanja hrane za pse iznose 0,25 \$ po pakovanju za Meaties i 0,20 \$ po paketu za Yummies.  
 	Pretpostavimo da ste vođa odjela hrane za pse  ove kompanije. Na koji način bi trebali upravljati odjelom proizvodnje kako bi maksimizovali profit? 
 	\item  Kompanija proizvodi velike industrijske ključeve za cijevi u jednoj od svojih fabrika. Odjel za marketing procjenjuje potražnju za ovim proizvodom u sljedećih 6
-	mjeseci dat tabelom
+	mjeseci, koja je data tabelom
  \begin{center}
     \begin{tabular}{lc}\hline
 		 Januar  & 370 \\
@@ -1032,7 +1032,7 @@ Konačno, dobijamo ekvivalentan LP model
 	\end{tabular}  
 \end{center}	
 	
-	Sa trenutnom radnom snagom, firma vjeruje da može proizvesti približno 420 ključeva za cijevi mjesečno po cijeni od 40 \$ po ključu koristeći redovnu proizvodnju. Dodatnih 80 ključeva mjesečno može se izraditi prekovremenom proizvodnjom po cijeni od 45 \$ po ključu.
+	Sa trenutnom radnom snagom, firma vjeruje da može proizvesti približno 420 ključeva za cijevi mjesečno po cijeni od 40 \$ po ključu u standardnoj proizvodnji. Dodatnih 80 ključeva mjesečno može se izraditi prekovremenim radom po cijeni od 45 \$ po ključu.
 	Ključevi se mogu napraviti unaprijed i držati u zalihama za kasniju isporuku po cijeni od 3 \$ mjesečno po ključu. Mjesečna potražnja za ključevima mora biti zadovoljena svakog mjeseca. Pred kraj decembra (početak januara) firma ima 10 ključeva u inventaru. Ona 
 	želi planirati svoju proizvodnju, uključujući prekovremeni rad i zalihe za sljedećih 6 mjeseci, kako bi povećala profit. Pod pretpostavkom da je prihod od ovih ključeva stalan, uprava proizvodnje  će povećati  profit minimiziranjem ukupnih troškova nastalih u proizvodnji i isporuci ključeva. Modelovati ovaj problem.
 	\item %https://www.utc.fr/~dnace/dokuwiki/_media/fr/upt-cours-2012lp.pdf
@@ -1047,7 +1047,7 @@ Konačno, dobijamo ekvivalentan LP model
 	\end{tabular}  
 \end{center}	
 	
-	Proizvodni kapacitet kompanije je 30000 mjesečno. Moguće je proizvesti više proizvoda, ali po višoj cijeni, gdje se cijena plaća 300 \$ po komadu umjesto 250 \$. Na lageru je 2000 laptopa. Troškovi skladištenja su 25 \$ po jedinici za ono što ostaje na zalihama na kraju mjeseca. Pretpostavljamo da su skladišni kapaciteti neograničeni. Počinjemo 1. januara. Kakav je plan proizvodnje za sljedećih četiri mjeseca tako da se zadovolje svi zahtjevi, a troškovi sveli na minimum?
+	Proizvodni kapacitet kompanije je 30000 računara mjesečno. Moguće je proizvesti i više proizvoda, ali po višoj cijeni, gdje je tada cijena računara 300 \$ po komadu umjesto 250 \$. Na lageru je u startu 2000 računara. Troškovi skladištenja su 25 \$ po jedinici proizvoda koji ostanu na zalihi na kraju mjeseca. Pretpostavljamo da su skladišni kapaciteti neograničeni. Proizvodnja počinje 1. januara. Kako planirati proizvodnju za sljedeća četiri mjeseca tako da se zadovolje svi zahtjevi, a troškovi svedu na minimum?
 	%http://people.brunel.ac.uk/~mastjjb/jeb/or/lpmore.html
 	\item Teretni avion ima tri odjeljka za skladištenje tereta: prednji, središnji i stražnji. Ovi odjeljci imaju sljedeća ograničenja po težini i po prostoru: 
 \begin{table}[!ht]
@@ -1168,7 +1168,7 @@ Iz sljedeće teoreme dobijamo uslove optimalnosti rješenja.
   \end{itemize}
 \end{thm}
 
-Ostalo nam je još odrediti dužinu   pravca $d$, tj. vrijednost $\lambda>0$. Ideja je da se krene nekim smjerom dok god se ne dođe do drugog vrha, tj. treba odrediti dužinu vektora $d$ koji je jednak $\max \{ \lambda \in \mathbb{R} \mid x + \lambda d \geq 0 \}$. Razlikujemo sljedeća dva slučaja:
+Ostalo nam je još odrediti dužinu   pravca $d$, tj. vrijednost $\lambda>0$. Ideja je da se krene nekim smjerom dok god se ne dođe do drugog vrha, tj. treba odrediti dužinu vektora $d$ koji je jednak $\lambda^* = \max \{ \lambda \in \mathbb{R} \mid x + \lambda d \geq 0 \}$. Razlikujemo sljedeća dva slučaja:
 \begin{itemize}
     \item Ako $d >0$, onda je $  x + \lambda d \geq 0$, za sve $\lambda > 0$, pa je $\lambda^* = \infty$, tj. ciljna funkcija je neograničena.
     \item Ako postoji $i$, td. $d_i < 0$, onda za dovoljno malo $\lambda>0$ tako da $x_i + \lambda d_i \geq 0$ dobijamo $\lambda \leq -\frac{x_i}{d_i}$. Prema tome 
@@ -1281,11 +1281,12 @@ U primjeru kojeg rješavamo, neka je dat problem LP-a:
  
  Pretvorimo ga u kanonski oblik dodavajući izjednačavajuće varijable $s = (s_1, s_2)>0$, pa dobijamo 
 
-\begin{align*}
-    & x_1    & + 3x_2  &+ s_1& &= 9 \\
-    & 2 x_1 &   + x_2  & + s_2& &= 8 \\
-    & x_1   &   + x_2  &\  & &= f - 0 \\
-\end{align*}
+\begin{tabular}{llllll}
+	\centering
+    & $x_1$    & + $3x_2$  &+ $s_1$ & &= 9 \\
+    & $2 x_1$ &   + $x_2$  & + $s_2$ & &= 8 \\
+    & $x_1$   &   + $x_2$  &\  & &= $f - 0$ \\
+\end{tabular} \\
  Ovaj problem odgovara simpleks tabeli \\
  \begin{table}[H]
      \centering
@@ -1342,7 +1343,7 @@ Bazne varijable prepoznjemo jer odgovarajući vektori (kolone) zajedno čine jed
      \item Jedinična matrica $m \times m$   ugrađena u gornju lijevu podmatricu simpleks tabele (blok sa elementima $\overline{a}_{i,j}$) sadrži kolone koji čine vektore baznih varijabli.
      \item U odgovarajućim kolonama u posljednjoj vrsti (ciljna vrsta) se nalaze nule.
  \end{itemize}
- Prema tome, vektori $x_i$, koji su bazni vektori (kolone baze $B$), su napisani preko nebaznih vektora $x_i \in N$. Kako se stavljaju $x_i  = 0$, za sve $i \in N$, onda se  vrijednosti baznih vektora $x_i$, tj. kolona baze $B$, mogu trivijano dobiti.
+ Prema tome, vektori $x_i$, koji su bazni vektori (kolone baze $B$), su napisani preko nebaznih vektora $x_i \in N$. Kako se stavljaju $x_i  = 0$, za sve $i \in N$, onda se  vrijednosti baznih vektora $x_i$, tj. kolona baze $B$, trivijano izračunavaju.
  \vspace{1cm}\\
  \emph{\textbf{Primjer.}} Navedimo primjer jednog linearnog programa koji je neograničen, te ga riješimo simpleks metodom. 
   Neka je dat problem LP-a:
@@ -1355,6 +1356,7 @@ Bazne varijable prepoznjemo jer odgovarajući vektori (kolone) zajedno čine jed
  Prevedimo problem na kanonski oblik, dodavanjem izjednačavajućih varijabli, pa imamo 
  \begin{align*}
       &\max -x + 3y \\
+      & \mbox{s.t} \nonumber \\
      & -x + y + s_1 = 3 \\
      & x - 2y + s_2 = 2  
  \end{align*}
@@ -1859,7 +1861,7 @@ Generalno posmatrajući, za problem LP-a~(\ref{eq:LP-o1})--(\ref{eq:LP-c2}) njeg
 \end{prop}
 \begin{proof}
          Iz teoreme o slaboj dualnosti imamo: $c^T x  \leq b^T y^* = c^T x^*$, za bilo koje dopustivo rješenje $x$ od  ($P$), pa je $x^*$ upravo optimalno rješenje problema  ($P$).
-         Slično imamo da vrijedi za sva dopustiva rješenja od  ($D$): $b^T y^* = c^T x^* \geq b^T y$, odakle imamo da je $y^*$ optimalno rješenje za problem  ($D$). 
+         Slično imamo da vrijedi za sva dopustiva rješenja problema ($D$): $b^T y^* = c^T x^* \geq b^T y$, odakle imamo da je $y^*$ optimalno rješenje problema  ($D$). 
 \end{proof}
 
 \begin{thm}[Teorema o jakoj dualnosti]
@@ -1902,10 +1904,10 @@ Primijetimo da koeficijenti $y^*$ posljednje vrste završne simpleks tabele odgo
 
 \emph{\textbf{Primjer.}} Moguće je da i problem ($P$) i odgovarajući dual ($D$) nemaju dopustivo rješenje. Pogledajte sljedeći primjer:
 $$\begin{array}{cc}
-    \max                      & 2 x_1 - x_2 \\
+    \max          & 2 x_1 - x_2 \\
      {s.t. }      & x_1 - x_1 \leq 1 \\
-                              & -x_1 + x_2 \leq -2 \\
-                             & x_1, x_2 \geq 0.
+                  & -x_1 + x_2 \leq -2 \\
+                  & x_1, x_2 \geq 0.
 \end{array}$$
 i pokažite da je to slučaj.\\
 
@@ -1935,7 +1937,7 @@ Uslovi (\ref{eq:slackness-1}) i (\ref{eq:slackness-2}) se nazivaju \emph{uslovi 
          Kako je $A^Ty \geq c$, $\sum_i (A^T y - c)_i x_i$ je suma nenegativnih komponenti, odakle imamo ekvivalneciju da  da   $(A^T y - c)_i x_i= 0$ za sve $i$. Takođe slično vrijedi i za drugu sumu, jer $Ax - b \leq 0$, pa je svaki  $(Ax - b)_j y_j$ negativan, odakle imamo ekvivalenciju da je $(Ax - b)_j y_j = 0$ za sve $j$.
 \end{proof}
 
-\emph{Komentar}.  Nekada je lakse riješiti jedan od problema, ($P$)  ili  ($D$).  Recimo, lakše je riješiti dualni problem sa dvije varijable i 4 ograničenja (grafički metod), nego primalni  ($P$)  uslov sa 4 varijable i 2 ograničenja. 
+\emph{Komentar}.  Nekada je lakse riješiti jedan od problema, ($P$)  ili  ($D$).  Na primjer, lakše je riješiti dualni problem sa dvije varijable i 4 ograničenja (grafički metod), nego primalni  ($P$)  uslov sa 4 varijable i 2 ograničenja. 
 
 \emph{\textbf{Primjer.}} Posmatrajmo problem  ($P$)  i  ($D$)  gdje su:
  
@@ -1951,7 +1953,7 @@ $$      A = \left(\begin{array}{ccc}
            3
       \end{array} \right )
  $$
-Posmatrajmo jedno dopustivo rješenje problema  ($P$), $x = (0, \frac{1}{4}, \frac{13}{4})$. Da li je ono optimalno? Ako bi bilo optimalno, imali bi prema teoremi komplementarnosti sljedeće:
+Posmatrajmo jedno dopustivo rješenje problema  ($P$), $x = (0, \frac{1}{4}, \frac{13}{4})$. Da li je ono optimalno? Ako bi bilo optimalno,  prema teoremi komplementarnosti bi imali sljedeće:
 
 $$x_2 \geq 0 \Rightarrow  (A^T y)_2  = c_2, \mbox{ tj. } 4 \cdot y_1 - y_2 = 1$$
 $$x_3 \geq 0 \Rightarrow  (A^T y)_3  = c_3, \mbox{ tj. } 0 \cdot y_1 + y_2 = 3$$
@@ -1963,7 +1965,7 @@ $$x_3 \geq 0 \Rightarrow  (A^T y)_3  = c_3, \mbox{ tj. } 0 \cdot y_1 + y_2 = 3$$
     \caption{Dualni problem: dopustiv region}
     \label{fig:fig5}
 \end{figure}
-Optimalno rješenje je u presjeku $y_2 = 3$ i $4y_1 - y_2 = 1$, i ono odgovara $y = (1, 3)$. Ispitajmo na osnovu komplementarnosti šta je optimalno rješenje problema ($P$). Imamo 
+Optimalno rješenje je u presjeku $y_2 = 3$ i $4y_1 - y_2 = 1$, i ono odgovara $y = (1, 3)$. Ispitajmo na osnovu komplementarnosti koje je optimalno rješenje problema ($P$). Imamo 
 $$y_1 > 0 \Rightarrow (Ax - b)_1 y_1 = 0 \Rightarrow x_1 + 4 x_2 = 4 $$
 $$y_2 > 0 \Rightarrow (Ax - b)_2 y_2 = 0 \Rightarrow 3x_1 - x_2 + x_2 = 3 $$
 i kako je $y_1 + 3 y_2 > 4$, onda $(A^Ty)_1 > c_1$ i prema tome $x_1 =0$, 
