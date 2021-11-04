@@ -1836,7 +1836,7 @@ $$\begin{array}{cccc}
 \end{array}$$
 Generalno posmatrajući, za problem LP-a~(\ref{eq:LP-o1})--(\ref{eq:LP-c2}) njegov dualni problem, označen sa ($D$), je dat sa 
 \begin{align}
-     & b^T y \rightarrow \max \\
+     & \max b^T y  \\
      & \mbox{s.t.} \nonumber \\
      & A^T y \geq c \\
      & y \geq 0.
@@ -1969,7 +1969,7 @@ $$x_3 \geq 0 \Rightarrow  (A^T y)_3  = c_3, \mbox{ tj. } 0 \cdot y_1 + y_2 = 3$$
 \end{figure}
 Optimalno rješenje je u presjeku $y_2 = 3$ i $4y_1 - y_2 = 1$, i ono odgovara $y = (1, 3)$. Ispitajmo na osnovu komplementarnosti koje je optimalno rješenje problema ($P$). Imamo 
 $$y_1 > 0 \Rightarrow (Ax - b)_1 y_1 = 0 \Rightarrow x_1 + 4 x_2 = 4 $$
-$$y_2 > 0 \Rightarrow (Ax - b)_2 y_2 = 0 \Rightarrow 3x_1 - x_2 + x_2 = 3 $$
+$$y_2 > 0 \Rightarrow (Ax - b)_2 y_2 = 0 \Rightarrow 3x_1 - x_2 + x_3 = 3 $$
 i kako je $y_1 + 3 y_2 > 4$, onda $(A^Ty)_1 > c_1$ i prema tome $x_1 =0$, 
 odakle $x =(0, \frac{1}{4}, \frac{13}{4})$. 
 
@@ -2061,11 +2061,11 @@ Postoji niz teorema koje obezbjeđuju dovoljne optimalne uslove za LP-a. U nasta
 	 	    &A^Ty + s = c \\
 	 	    & s \geq 0.
 	 \end{align*}
- Tada, ako je $x$ dopustivo rješenje za Primal, vrijedi 
+ Ako je $x$ dopustivo rješenje za Primal, onda vrijedi 
  $$ c^T x - b^T y = s^T x \geq 0 .$$
 \end{thm}
 \begin{proof}
-	 Pretpostavimo da je $x$ dopustivo za Primal (P). Tada vrijedi
+	 Pretpostavimo da je $x$ dopustivo za Primal ($P$). Tada vrijedi
 	 $$ c^Tx = (A^Ty + s)^Tx = s^Tx + y^Tb \geq b^T y.$$
 	 Dakle, pokazali smo tvrdnju. Štaviše, vrijednost $b^Ty$ je donja granica na optimalnu vrijednost Primala. Takođe, ako je $s^T x = 0$ donja granica je dostignuta, i $x$ je optimalno rješenje Primala.
 \end{proof}
@@ -2304,7 +2304,7 @@ Primijetimo da $\mu \rightarrow 0$, kako $k \rightarrow \infty$. U praksi se če
 
 Može se pokazati sljedeća teorema koja karakteriše \emph{metod unutrašnje tačke}.
 
-\begin{thm}
+\begin{thm} Za algoritam unutrašnje tačke vrijedi sljedeće:
 	\begin{itemize}
 		\item Algoritam unutrašnje tačke konvergira ka optimalnom rješenju problema (\ref{eq:lp_equality_constraint}). %Dualna granica se smanjuje $1 - \frac{\beta}{n}$ pri svakom koraku.
 		\item U svim iteracijama, algoritam generiše dopustive tačke.
@@ -2312,7 +2312,7 @@ Može se pokazati sljedeća teorema koja karakteriše \emph{metod unutrašnje ta
 	\end{itemize}
 \end{thm}
 
-Da bi se uvidjele sličnosti i razlike između simpleks metode i Metode unutrašnje tačke, pogledajte Slike \ref{fig:optimality-approaching-simplex} i  \ref{fig:optimality-approaching-interior}. U njima možete vidjeti kako metod pristupa pretrazi optimalnih rješenja. 
+Da bi se uvidjele sličnosti i razlike između Simpleks metode i Metode unutrašnje tačke, pogledajte Slike \ref{fig:optimality-approaching-simplex} i  \ref{fig:optimality-approaching-interior}. U njima možete vidjeti kako ova dva metoda pristupaju pretrazi optimalnih rješenja. 
 
 \begin{figure}
 	\centering
