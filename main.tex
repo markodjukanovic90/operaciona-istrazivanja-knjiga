@@ -1018,7 +1018,8 @@ Konačno, dobijamo ekvivalentan LP model
 	\item  Kompanija Healthy Pet Food Company proizvodi dvije vrste hrane za pse: Meaties i Yummies. Svako pakovanje Meaties hrane sadrži 2 kilograma žitarica i 3 kilograma mesa; svako pakovanje Yummies -a sadrži 3 kilograma žitarica i 1,5 kilograma mesa. Healthy vjeruje da može prodati onoliko hrane za pse koliko može napraviti. Meaty se prodaje   2,80 \$ po paketu, a Yummies   2,00 \$ po paketu. Proizvodnja kompanije Healthy ograničena je na nekoliko načina. Prvo, Healthy može kupiti samo do 400.000 kg žitarica svakog mjeseca za 0,20 \$ po kg; može
 	kupiti samo do 300.000 kg mesa mjesečno za 0,50 \$ po kg. Osim toga, za proizvodnju Meatiesa potrebna je posebna mašina, a proizvodni kapacitet ove mašine je 90.000 paketa mjesečno. Varijabilni troškovi miješanja i pakovanja hrane za pse iznose 0,25 \$ po pakovanju za Meaties i 0,20 \$ po paketu za Yummies.  
 	Pretpostavimo da ste vođa odjela hrane za pse  ove kompanije. Na koji način bi trebali upravljati odjelom proizvodnje kako bi maksimizovali profit? 
-	\item  Kompanija proizvodi velike industrijske ključeve za cijevi u jednoj od svojih fabrika. Odjel za marketing procjenjuje potražnju za ovim proizvodom u sljedećih 6
+	\item %LP_zadaci_za_knjigu.pdf ==> pogledati 
+	 Kompanija proizvodi velike industrijske ključeve za cijevi u jednoj od svojih fabrika. Odjel za marketing procjenjuje potražnju za ovim proizvodom u sljedećih 6
 	mjeseci, koja je data tabelom
  \begin{center}
     \begin{tabular}{lc}\hline
@@ -1103,6 +1104,7 @@ varijabla $x_i$ označava broj proizvoda $i$ proizvedeni na sedmičnom nivou na 
 		& 2 x + y\geq 0 \\
 		& x,y \geq 0.
 	\end{align*}
+%file:///C:/Users/PC/Desktop/Predavanja/Operaciona_Istrazivanja/3.20.pdf ==> graficka metoda zadaci (str. 116)
 	\item Grafičkom metodom riješiti sljedeći problem 
 	\begin{align*}
 		& \max  8 x + y \\
@@ -1433,7 +1435,7 @@ $-x+y=3$ i $x+6y=18$, što je opet ista tačka (i nema napretka vrijednosti funk
  \section{Dvofazni simpleks metod}
  Postoje dva pitanja koja se nameću u primjeni simpleks algoritma:
  \begin{itemize}
-     \item Da li se uvijek može naći bazno dopustivo rješenje za inicijalni korak 
+     \item Da li se uvijek (kao i koliko lako)   može naći bazno dopustivo rješenje za inicijalni korak 
      simpleks algoritma?
      \item Da li se simpleks algoritam uvijek prekida sa nalaskom optimalnog rješenja ili je funkcija cilja neograničena?
  \end{itemize}
@@ -1913,7 +1915,7 @@ i pokažite da je to slučaj.\\
 
 Pozabavimo se sada pojmom \emph{komplementarnosti} (eng. \emph{complementary slackness}). 
 \begin{thm}[Teorema komplementarnosti]
-      Neka su x i y dopustiva rješenja problema ($P$) i  ($D$), redom. Vektori x i y su optimalna rješenja akko vrijedi 
+      Neka su x i y dopustiva rješenja problema ($P$) i  ($D$), redom. Vektori x i y su optimalna rješenja ova dva problema akko vrijedi 
       \begin{equation}\label{eq:slackness-1}
            (A^Ty - c)_j x_j = 0, j=1,\ldots,m
       \end{equation} i
