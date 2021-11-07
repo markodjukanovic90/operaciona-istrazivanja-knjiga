@@ -614,7 +614,7 @@ Kada je riječ o linearnim programima,  oni imaju nekoliko osnovnih implicitnih 
 U ovom poglavlju ćemo formalno izvesti načine rješavanja linearnog problema. U osnovi, pokazaćemo da ako je problem
 linearnog programiranja dopustiv i ograničen i postoje vrhovi, onda postoji i optimalno rješenje tog LP problema. Kako smo ranije neformalno pomenuli,  to rješenje se nalazi upravo u jednom od vrhova poliedra. 
 
-Prije nego ovo formalno pokažemo, uvedimo nekoliko osnovnih definicija. 
+Prije nego ovo formalno pokažemo, uvedimo nekoliko osnovnih definicija, te pratećih teorema, više pogledati u~\cite{cite_key6}. 
 
 \begin{definition}
   Za skup $S \in \mathbb{R}^n$ kažemo da je konveksan akko za sve $x,y\in S$ i $\lambda\in [0, 1]$ vrijedi $\lambda x + (1 - \lambda)y \in S$
@@ -1140,7 +1140,7 @@ gdje je $A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m, c \in \mathbb{R}^n, 
 %\end{definition}
 
 \begin{definition}
-      Za pravac $d\in \mathbb{R}^n$ kažemo da je dopustiv pravac u vektoru $x \in P$ akko postoji $\lambda > 0$ tako da $x + \lambda d \in P$.
+      Za pravac $d\in \mathbb{R}^n$ kažemo da je dopustiv pravac u vektoru $x \in P$ akko postoji skalar $\lambda > 0$ tako da $x + \lambda d \in P$.
 \end{definition}
 
 \section{Konstrukcija simpleks metode}
@@ -1282,13 +1282,15 @@ U primjeru kojeg rješavamo, neka je dat problem LP-a:
 \end{align*}
  
  Pretvorimo ga u kanonski oblik dodavajući izjednačavajuće varijable $s = (s_1, s_2)>0$, pa dobijamo 
-
+\begin{center}
 \begin{tabular}{llllll}
 	\centering
     & $x_1$    & + $3x_2$  &+ $s_1$ & &= 9 \\
     & $2 x_1$ &   + $x_2$  & + $s_2$ & &= 8 \\
     & $x_1$   &   + $x_2$  &\  & &= $f - 0$ \\
-\end{tabular} \\
+\end{tabular} 
+\end{center}
+  
  Ovaj problem odgovara simpleks tabeli \\
  \begin{table}[H]
      \centering
