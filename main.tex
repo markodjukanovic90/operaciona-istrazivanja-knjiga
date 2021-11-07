@@ -2013,7 +2013,7 @@ odakle dobijamo rješenje $x_1 = 10, x_3 = 15$, pa je optimalno rješenje $x = (
 
 \emph{Zadatak}. Vrijednost 210 u drugom ograničenju u prethodnom problemu  ($P$)  zamijenite sa 420 i diskutujte optimalna rješenja  ($P$)  i  ($D$)  na sličan način kako je izvedeno  u primjeru gore.
 
-\begin{figure}[!ht]
+\begin{figure}[H]
     \centering
     \includegraphics[width=190pt, height=190pt]{fig6.eps}
     \caption{Dopustiv region duala.}
@@ -2035,6 +2035,8 @@ jedanog problema i varijabli u drugom problemu je data preko sljedeće tabele
       varijable (neograničene) & ograničenja $=$ \\
       varijable $\leq 0$         & ograničenja $\leq$ \\ \hline
     \end{tabular}
+  
+    \caption{Odnos u varijablama i ograničenjima problema ($P$) i odgovarajućeg problema ($D$).}  \label{tab:primal-dual-relation}
 \end{table}
 
 
@@ -2568,8 +2570,9 @@ Tada, donje i gornje granice za $y$ postaju uslovi (pogledati gore): $y \leq 6, 
         & x_3 \in \mathbb{R}. 
   \end{align*}
 \item %http://www.nitjsr.ac.in/course_assignment/CA02CA3103%20RMTLPP:%20Duality.pdf
-Pokazati da je dual dualnog problema ponovo primalni problem (P).
-\item Ako je primalni problem (P) neograničen (ima neograničenu funkciju cilja), njegov dual nije dopustiv.
+Pokazati da je dual dualnog problema ponovo primalni problem ($P$).
+\item Ako je primalni problem ($P$) neograničen (ima neograničenu funkciju cilja), njegov dual nije dopustiv.
+\item Pokazati da vrijede odnosi dati u Tabeli~\ref{tab:primal-dual-relation}.
 \item Istražiti verziju simpleks metoda zvanu \emph{Dualni simpleks metod}.
 \item Koristeći Farkaš-ovu lemu, pokazati sljedeći rezultat. 
  
