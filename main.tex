@@ -1835,9 +1835,16 @@ $$\begin{array}{cccc}
                              &  3 y_1 &+& y_2 \geq 1 \\
                              & y \geq 0. & & 
 \end{array}$$
-Generalno posmatrajući, za problem ~(\ref{eq:LP-o1})--(\ref{eq:LP-c2}), njegov dualni problem, označen sa ($D$), je dat sa 
+Generalno posmatrajući,  za problem ($P$) %~(\ref{eq:LP-o1})--(\ref{eq:LP-c2}), 
 \begin{align}
-     & \max b^T y  \\
+	& \max c^T x  \\
+	& \mbox{s.t.} \nonumber \\
+	& A x \leq b \\
+	& x \geq 0.
+\end{align}
+njegov dualni problem, označen sa ($D$), je dat sa 
+\begin{align}
+     & \min b^T y  \\
      & \mbox{s.t.} \nonumber \\
      & A^T y \geq c \\
      & y \geq 0.
@@ -1885,7 +1892,7 @@ Generalno posmatrajući, za problem ~(\ref{eq:LP-o1})--(\ref{eq:LP-c2}), njegov 
    \begin{enumerate}
        \item    $c^*_i \leq 0, i = 1,\ldots, n$ 
        \item    $-y_i^* \leq 0$, $i = 1,\ldots, m$
-       \item  $c^T x - f^* = (c^*)^T x - (y^*)^T \omega$
+       \item  $c^T x - f^* = (c^*)^T x - (y^*)^T \omega$ (iz koeficijenata doprinosa simpleks metode)
     \end{enumerate}
     Prema tome, 
     \begin{align*}
@@ -1917,12 +1924,15 @@ i pokažite da je to slučaj.\\
 Pozabavimo se sada pojmom \emph{komplementarnosti} (eng. \emph{complementary slackness}). 
 \begin{thm}[Teorema komplementarnosti]
       Neka su x i y dopustiva rješenja problema ($P$) i  ($D$), redom. Vektori x i y su optimalna rješenja ova dva problema akko vrijedi 
+      
+            \begin{equation}\label{eq:slackness-2}
+      	(Ax - b)_i y_i = 0, i=1,\ldots,m
+      \end{equation}
+   i
       \begin{equation}\label{eq:slackness-1}
            (A^Ty - c)_j x_j = 0, j=1,\ldots,n
-      \end{equation} i
-      \begin{equation}\label{eq:slackness-2}
-           (Ax - b)_i y_i = 0, i=1,\ldots,m
-      \end{equation}
+      \end{equation}   
+
 \end{thm}
 Uslovi (\ref{eq:slackness-1}) i (\ref{eq:slackness-2}) se nazivaju \emph{uslovi komplementarnosti}.
 
