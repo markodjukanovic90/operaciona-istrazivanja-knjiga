@@ -1355,14 +1355,16 @@ Bazne varijable prepoznjemo jer odgovarajući vektori (kolone) zajedno čine jed
   	  &\max -x + 3y \\
   	  & \mbox{s.t} \nonumber \\
   	  & -x + y \leq 3 \\
-  	  & x - 2y \leq 2 
+  	  & x - 2y \leq 2 \\
+  	  & x,y \geq 0.
   \end{align*}
  Prevedimo problem na kanonski oblik, dodavanjem izjednačavajućih varijabli, pa imamo 
  \begin{align*}
       &\max -x + 3y \\
       & \mbox{s.t} \nonumber \\
      & -x + y + s_1 = 3 \\
-     & x - 2y + s_2 = 2  
+     & x - 2y + s_2 = 2  \\
+     & (x,s) \geq 0.
  \end{align*}
 Ovom programu odgovara simpleks tabela:
 $$\begin{array}{cccc| c} 
@@ -1397,7 +1399,8 @@ Posmatrajmo sljedeći linearni program:
     & s.t. \\
 	& -x + y \leq 3 \\
 	& x - 2y \leq 2 \\
-	& x + 6y \leq 18
+	& x + 6y \leq 18 \\
+	& x,y \geq 0. 
 \end{align*}
 Slično kao i u prethodnom primjeru, dodavanjem izjednačavajućih varijabli, dobijamo simpleks 
 tabelu 
@@ -1446,7 +1449,7 @@ $-x+y=3$ i $x+6y=18$, što je opet ista tačka (i nema napretka vrijednosti funk
  Linearnom programu koji sadrži ograničenja $Ax \leq b, x\geq 0$ se dodaju izjednačavajuće varijable da bi uslovi nejednakosti u ograničenjima postali potrebne jednakosti. Na taj način se i formira ova jedinična matrica. Međutim, šta ako je linearan program direktno dat u kanonskom obliku, tj. sa ogarničenjima oblika $Ax = b, x \geq 0$? Bez smanjenja opštosti, pretpostavimo da je $b \geq 0$. Ako ne postoji očigledno bazno dopustivo rješenje ovog problema, onda uvodimo \emph{umjetne} varijable $\omega = (\omega_1,\ldots, \omega_m)$ nakon čega treba da riješimo sljedeći problem LP-a:
  \begin{align}
       &\sum_{i=1}^m \omega_i \rightarrow \min_{x,\omega} \nonumber \\
-      &\mbox{ tako da } A x + \omega = b \nonumber \\
+      &\mbox{s.t.} A x + \omega = b \nonumber \\
       & \hspace{1.5cm} x, \omega \geq 0. \label{eq:artificial_lp_simplex}
  \end{align}
 Postoje dva moguća slučaja:
@@ -1999,20 +2002,20 @@ Ovaj problem ima 4 varijable i 2 ograničenja. Prema tome, ima smisla razmatrati
 
 $$\begin{array}{lll}
     &\min                    &  210 y_1 + 210 y_2      \\
-    &{s.t. }     &  12 y_1  + 3   y_2 \geq 10 \\
+    &{s.t. }     &  \\
+    &            &  12 y_1  + 3   y_2 \geq 10 \\
     &                        &  8  y_1 + 6    y_2 \geq 10 \\
     &                        &  6 y_1 + 12 y_2  \geq 20 \\
     &                        &  4 y_1 + 24 y_2  \geq 20 \\
     &                        &  y_1, y_2 \geq 0.
 \end{array}$$
 Dopustiv region dualnog problema je dat na Slici~ \ref{fig:fig6-dual-region}. %gdje je dopustiv region označen plavom bojom. 
-Dalje, može se pokazati da je optimum duala u presjeku prave $12 y_1 + 3 y_2 = 10$ i prave $6y_1 + 12 y_2 = 20$. Na osnovu Slike \ref{fig:fig6-dual-region} takođe vidimo da se druga i četvrta prava ne dostižu u tački optimuma (vrijedi stroga nejednakost nakon uvrštavanja tačke optimuma u ograničenja). Dakle, iz uslova komplementarnosti slijedi da za optimum $x$ primala  ($P$)  vrijedi $x_2 = 0$ i $x_4 = 0$.  Kako je $y_1, y_2 > 0$, onda vrijedi 
-
+Dalje, može se pokazati da je optimum duala u presjeku prave $12 y_1 + 3 y_2 = 10$ i prave $6y_1 + 12 y_2 = 20$. Na osnovu Slike \ref{fig:fig6-dual-region} takođe vidimo da se prava koja odgovara drugom i četvrtom ograničenju LP-a mimoilazi tačku optimuma (vrijedi stroga nejednakost nakon uvrštavanja tačke optimuma u ograničenja). Dakle, iz uslova komplementarnosti slijedi da za optimum $x$ primala  ($P$)  vrijedi $x_2 = 0$ i $x_4 = 0$.  Kako je $y_1, y_2 > 0$, onda vrijedi 
 \begin{align}
     &10 x_1 + 20 x_3 = 210 \nonumber \\
     & 3x_1 + 12 x_3  = 210 \nonumber
 \end{align}
-odakle dobijamo rješenje $x_1 = 10, x_3 = 15$, pa je optimalno rješenje $x = (10, 0, 15, 0)$.
+odakle dobijamo rješenje $x_1 = 10, x_3 = 15$, pa je optimalno rješenje $x^* = (10, 0, 15, 0)$.
 
 \emph{Zadatak}. Vrijednost 210 u drugom ograničenju u prethodnom problemu  ($P$)  zamijenite sa 420 i diskutujte optimalna rješenja  ($P$)  i  ($D$)  na sličan način kako je izvedeno  u primjeru gore.
 
