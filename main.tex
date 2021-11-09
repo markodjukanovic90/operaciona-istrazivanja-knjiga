@@ -1213,7 +1213,7 @@ Tabelarni simpleks prikaz se može vidjeti u Tabeli~\ref{tab:simplex_tabelau}.
     \centering
     \begin{tabular}{c c c | c} \\ \hline
             $\mid$          &       $\mid$ &  $\mid$             &    $x_{p_1} = \overline{b_1}$         \\
-          $B^{-1}A_1$       &    $\cdots$    &  $B^{-1}A_n$      &    $\cdots$          \\
+          $B^{-1}A_1$       &    $\cdots$    &  $B^{-1}A_n$      &    $\vdots$          \\
             $\mid$          &       $\mid$ &  $\mid$             &   $ x_{p_m} = \overline{b_m}$         \\ \hline
           $\overline{c_1}$  &    $\cdots$    & $\overline{c_n}$  &  $-c^T_B x_B$         \\ \hline
     \end{tabular}
@@ -1446,22 +1446,22 @@ $-x+y=3$ i $x+6y=18$, što je opet ista tačka (i nema napretka vrijednosti funk
  \end{itemize}
  
  Parcijalni odgovor na prvo pitanje je kada postoji jedinična podmatrica $I_m$ u gornjoj lijevoj blok matrici simpleks tabele,  onda je bazu jednostavno odrediti (kako smo to i vidjeli u prethodnoj sekciji). 
- Linearnom programu koji sadrži ograničenja $Ax \leq b, x\geq 0$ se dodaju izjednačavajuće varijable da bi uslovi nejednakosti u ograničenjima postali potrebne jednakosti. Na taj način se i formira ova jedinična matrica. Međutim, šta ako je linearan program direktno dat u kanonskom obliku, tj. sa ogarničenjima oblika $Ax = b, x \geq 0$? Bez smanjenja opštosti, pretpostavimo da je $b \geq 0$. Ako ne postoji očigledno bazno dopustivo rješenje ovog problema, onda uvodimo \emph{umjetne} varijable $\omega = (\omega_1,\ldots, \omega_m)$ nakon čega treba da riješimo sljedeći problem LP-a:
+ Linearnom programu koji sadrži ograničenja $Ax \leq b, x\geq 0$ se dodaju izjednačavajuće varijable da bi uslovi nejednakosti u ograničenjima postali potrebne jednakosti. Na taj način se i formira ova jedinična matrica. Međutim, šta ako je linearan program direktno dat u kanonskom obliku, tj. sa ogarničenjima oblika $Ax = b, x \geq 0$? Bez smanjenja opštosti, pretpostavimo da je $b \geq 0$. Ako ne postoji očigledno bazno dopustivo rješenje ovog problema, onda uvodimo \emph{umjetne} varijable $s = (s_1,\ldots, s_m)$ nakon čega treba da riješimo sljedeći problem LP-a:
  \begin{align}
-      &\sum_{i=1}^m \omega_i \rightarrow \min_{x,\omega} \nonumber \\
-      &\mbox{s.t.} A x + \omega = b \nonumber \\
+      &\sum_{i=1}^m s_i \rightarrow \min_{x,s} \nonumber \\
+      &\mbox{s.t.} A x + s = b \nonumber \\
       & \hspace{1.5cm} x, \omega \geq 0. \label{eq:artificial_lp_simplex}
  \end{align}
 Postoje dva moguća slučaja:
 \begin{enumerate}
     \item Ako početni problem LP-a sa jednakosnim ulovima (\ref{eq:lp_equality_constraint}) 
-          ima optimalno rješenje, onda   rješenje LP-a (\ref{eq:artificial_lp_simplex}) ima (optimalno) rješenje $\omega = 0$. 
-    \item Ako  (\ref{eq:lp_equality_constraint}) nema dopustivo rješenje, onda je barem jedan $\omega_i > 0$.
+          ima optimalno rješenje, onda   rješenje LP-a (\ref{eq:artificial_lp_simplex}) ima (optimalno) rješenje $s = 0$. 
+    \item Ako  (\ref{eq:lp_equality_constraint}) nema dopustivo rješenje, onda je barem jedan $s_i > 0$.
 \end{enumerate}
  Prema tome, rješimo prvo problem LP-a  (\ref{eq:artificial_lp_simplex}) simpleks metodom i zaključujemo:
  \begin{itemize}
       \item Ako se desi slučaj 2, odustanemo od daljeg rješavanja problema.
-      \item Ako se desi slučaj 1, optimalno rješenje problema (\ref{eq:artificial_lp_simplex}) sa $\omega_i=0$ nam daje početno bazno dopustivo rješenje problema (\ref{eq:lp_equality_constraint}) u prvom simpleks koraku a prema tome i bazne vektore. 
+      \item Ako se desi slučaj 1, optimalno rješenje problema (\ref{eq:artificial_lp_simplex}) sa $s_i=0$ nam daje početno bazno dopustivo rješenje problema (\ref{eq:lp_equality_constraint}) u prvom simpleks koraku a prema tome i bazne vektore. 
  \end{itemize} 
  Ovaj korak nas vodi ka \emph{dvofaznoj simpleks metodi}. U nastavku dajemo primjer rješavanja jednog problema LP-a pomoću ove metode.      
       
@@ -1482,16 +1482,16 @@ Dodajmo umjetne varijable na početni problem (uz prethodno množenje uslova 2 s
 
 \begin{align*}
 	&\min x_1 + x_2 - x_3 - x_4 \\
-	&\mbox{s.t.   } x_1 + 2x_2 + x_3 + x_4 + \omega_1 = 7 \\
-	&\mbox{\ \ \ \ \ \ \ } -2x_1 + x_2 + x_3 + 3x_4 + \omega_2 = -1 \\
-	&\mbox{\ \ \ \ \ \ \ }  x_1,x_2,x_3,x_4, \omega_1, \omega_2\geq 0.
+	&\mbox{s.t.   } x_1 + 2x_2 + x_3 + x_4 + s_1 = 7 \\
+	&\mbox{\ \ \ \ \ \ \ } -2x_1 + x_2 + x_3 + 3x_4 + s_2 = -1 \\
+	&\mbox{\ \ \ \ \ \ \ }  x_1,x_2,x_3,x_4, s_1, s_2\geq 0.
 \end{align*}
 Prva faza metoda je formirati problem 
 \begin{align*}
-	&\min \omega_1 + \omega_2 \\
-		&\mbox{s.t.   } x_1 + 2x_2 + x_3 + x_4 + \omega_1 = 7 \\
-	&\mbox{\ \ \ \ \ \ \ } -2x_1 + x_2 + x_3 + 3x_4 + \omega_2 = 1 \\
-	&\mbox{\ \ \ \ \ \ \ }  x_1,x_2,x_3,x_4, \omega_1, \omega_2\geq 0.
+	&\min s_1 + s_2 \\
+		& {s.t.\ } x_1 + 2x_2 + x_3 + x_4 + s_1 = 7 \\
+	&\mbox{\ \ \ \ \ \ \ } -2x_1 + x_2 + x_3 + 3x_4 + s_2 = 1 \\
+	&\mbox{\ \ \ \ \ \ \ }  x_1,x_2,x_3,x_4, s_1, s_2\geq 0.
 \end{align*}
 
 
@@ -1530,7 +1530,7 @@ $$ \begin{array}{cccccc|c}
     \end{array}
 $$
 Kako su koeficijenti doprinosa svi veći ili jednaki 0, našli smo minimum. 
-Prema tome, bazno dopustivo rješenje je jednako $(x, \omega)= (1,3, 0, 0)$. Dakle, nastavljamo dalje sa algoritmom, tj. drugom fazom metoda.  Posljednja simpleks tabela prve faze dvofaznog simpleks metoda se lako transformiše za početni problem: 
+Prema tome, bazno dopustivo rješenje je jednako $(x, s)= (1,3, 0, 0)$. Dakle, nastavljamo dalje sa algoritmom, tj. drugom fazom metoda.  Posljednja simpleks tabela prve faze dvofaznog simpleks metoda se lako transformiše za početni problem: 
 \begin{itemize}
 	\item posljednja vrsta dobija koeficijente originalne funkcije cilja razmatranog LP-a:
 	\item kolone koje odgovaraju varijablama $\omega$ izbrišemo iz simpleks tabele;
@@ -1884,11 +1884,11 @@ njegov dualni problem, označen sa ($D$), je dat sa
      Ako problem ($P$) ima optimalno rješenje $x^*$, onda i problem ($D$) ima optimalno rješenje $y^*$ i pri tome je $c^T x^* = b^T y^*$.
 \end{thm}
 \begin{proof}
-         Napišimo ograničenja probema ($P$) kao $Ax + \omega = b, x, \omega \geq 0$.
+         Napišimo ograničenja probema ($P$) kao $Ax + s = b, x, s \geq 0$.
          Primijenimo simpleks metod, pa posmatrajmo posljednju (optimalnu) simpleks tabelu (iz koje je dobijeno rješenje $x^*$):
          
          $$\begin{array}{c |c | c}
-         \overbrace{\ \ \ \ \ \hspace{1.5cm}}_{x \mbox{ varijable}}     &  \overbrace{\ \ \ \ \ \hspace{1.5cm}}_{\omega \mbox{ varijable}} &   \\
+         \overbrace{\ \ \ \ \ \hspace{1.5cm}}_{x \mbox{ varijable}}     &  \overbrace{\ \ \ \ \ \hspace{1.5cm}}_{s \mbox{ varijable}} &   \\
                                                            & &   \\
          \hline
              c_1^*\ c_2^* \ldots c_n^*            & -y_1^* -y_2^* \ldots -y_m^*  & -f^*
@@ -1898,11 +1898,11 @@ njegov dualni problem, označen sa ($D$), je dat sa
    \begin{enumerate}
        \item    $c^*_i \leq 0, i = 1,\ldots, n$ 
        \item    $-y_i^* \leq 0$, $i = 1,\ldots, m$
-       \item  $c^T x - f^* = (c^*)^T x - (y^*)^T \omega$ (iz koeficijenata doprinosa simpleks metode)
+       \item  $c^T x - f^* = (c^*)^T x - (y^*)^T s$ (iz koeficijenata doprinosa simpleks metode)
     \end{enumerate}
     Prema tome, 
     \begin{align*}
-           c^T x &=  f^* + (c^*)^T x - (y^*)^T \omega \\
+           c^T x &=  f^* + (c^*)^T x - (y^*)^T s \\
                  &=  f^* + (c^*)^T x - (y^*)^T (b - Ax) \\
                  &= f^*  - (y^*)^T b +   ((c^*)^T + (y^*)^T A ) x
     \end{align*}
