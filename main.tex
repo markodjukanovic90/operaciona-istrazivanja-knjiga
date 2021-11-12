@@ -2362,7 +2362,7 @@ Da bi se uvidjele sličnosti i razlike između Simpleks metode i Metode unutraš
 	% include first image
 	\includegraphics[width=.9\linewidth]{interior-4}  
 \end{subfigure}
-  \caption{Prilazak optimalnosti kod Metode unutrašnje tačke.}
+  \caption{Prilazak optimalnosti kod Metoda unutrašnje tačke.}
    \label{fig:optimality-approaching-interior}
 \end{figure}
 Paralelizovani objektno orjentisani optimizacioni siftver baziran na metodi unutrašnje tačke se može naći na 
@@ -2438,22 +2438,22 @@ Još jedna primjena teorije dualnosti u LP-u se ogleda u dokazivanju sljedeće t
   \end{itemize}
   Odgovorimo sada na pitanje kada je primal optimalan. Ono što vidimo je da ako bi $x$ bio dopustiv tako da je $c^Tx < 0$ to bi onda i bilo koje $kx$, za proizvoljno $k>0$ bilo takođe dopustivo. Iz toga bi slijedilo da vrijednost funkcije cilja nije ograničena odozdo, tj. teži ka -$\infty$. Dakle, u tom slučaju je problem neograničen. Zaključujemo da kad god je primal optimalan, ta vrijednost mora biti 0, i dostiže se za $x =0$; inače je problem neograničen. Dalje, ako je primal optimalan, to  je ekvivalentno sa tim da je sistem iz slučaja  \ref{case:1} ove teoreme nedopustiv (nema rješenja).  Ako sistem iz slučaja  \ref{case:1}  ima rješenje, primal je neograničen (vrijedi i obrnut smijer). Ako pogledamo   dualni problem, dual je optimalan akko sistem iz  slučaja  \ref{case:2}   ima rješenje. Slično, dual nije dopustiv akko je sistem iz  slučaja   \ref{case:2}  nedopustiv (nema rješenje). Iz niza prethodnih ekvivalencija, zaključujemo da vrijedi: 
   \begin{itemize}
-  	  \item Sistem iz  slučaja  \ref{case:1}  nema rješenja akko sistem iz  slučaja  \ref{case:2}   ima rješenje. 
-  	  \item Sistem iz  slučaja  \ref{case:1}  ima rješenja akko sistem iz  slučaja  \ref{case:2}  nema rješenje. 
+  	  \item Sistem iz  slučaja  \ref{case:1}  nema rješenje akko sistem iz  slučaja  \ref{case:2}   ima rješenje. 
+  	  \item Sistem iz  slučaja  \ref{case:1}  ima rješenje akko sistem iz  slučaja  \ref{case:2}  nema rješenje. 
    \end{itemize}
 \end{proof}\\
 
 \emph{Geometrijska interpretacija Farkašove leme.}
 Neka je dat sistem:
 \begin{align*}
-	&x_1 + 4 x_2  < 0: c^T x\\ \hline
+	& \underline{x_1 + 4 x_2  < 0: c^T x}\\  
 	& 2 x_1 + 3 x_2 \geq 0 \\
 	& 3 x_1 + 2 x_2 \geq 0 \\
 	& 4 x_1 + x_2 \geq 0 \\
 	& -x_1 + 3 x_2 \geq 0: Ax \geq 0.
 \end{align*}
 
-Pogledajmo kako izgleda sistem iz slučaja (\ref{case:2}). On je dat sa:
+Pogledajmo kako izgleda sistem iz slučaja \ref{case:2}. On je dat sa:
 \begin{align*}
 	&2 y_1 + 3 y_2 + 4 y_3 - y_4 = 1\\
 	&3y_1 + 2 y_2 + y_3 + 3 y_4 = 4 \\
@@ -2466,8 +2466,8 @@ Pogledajmo kako izgleda sistem iz slučaja (\ref{case:2}). On je dat sa:
 	\caption{Geometrijska interpretacija Farkašove leme.}
 	\label{fig:farkas-slika}
 \end{figure}
-U osnovi geometrijska interpretacija nam kaže da se vektor $c =(1,4)^T$ može predstaviti kao linearna kombinacija vekotora vrsta matrice $A$, kao što vidimo na Slici~\ref{fig:farkas-slika} jer se nalazi unutar prostora upregnutog   vektorima $a_1, \ldots, a_n$.  To implicira da početni sistem nema rješenje. 
-Kada bi postavili $c=(5,0)^T$, dobili bi da se on ne može izraziti preko vektora vrste matrice $A$ (jer je van prostora upregnutog sa vektrima vrste), pa prema tome postoji rješenje za početni problem za ovu konfiguraciju.  
+U osnovi geometrijska interpretacija nam kaže da se vektor $c =(1,4)^T$ može predstaviti kao linearna kombinacija vekotora vrsta matrice $A$, kao što vidimo na Slici~\ref{fig:farkas-slika}, jer se nalazi unutar prostora upregnutog   vektorima $a_1, \ldots, a_n$.  To implicira da početni sistem nema rješenje. 
+Kada bi posmatrali $c=(5,0)^T$, zaključili bi da se on ne može izraziti preko vektora vrste matrice $A$ (jer je van prostora upregnutog sa vektrima vrste), pa prema tome postoji rješenje za početni problem u slučaju ove konfiguracije.  
 
 %Fourier–Motzkin elimination ==> Problem dopustivosti...
 \section{Fourier–Motzkin-ova Eliminacija}
@@ -2477,9 +2477,9 @@ Pitanje vezano za problem  LP-a koji se rješava  je sljedeće:
 
 Problem dopustivosti može da služi i da odgovorimo sljedeće pitanje: 
 \emph{Da li je optimalna vrijednost funkcije cilja problema LP-a veća od neke unaprijed zadate  vrijednosti k?}
- Na ovo pitanje možemo odgovoriti pomoću \emph{Fourier–Motzkin}-ove eliminacije, koja je potpuno drugačija od simpleks metode te je zbog toga i navedena u ovoj knjizi. Ideja algoritma se sastoji od procedure koja će redukovati problem sa $n$ varijabli na ekvivalentan problem sa $n-1$ varijabli. Ekvivalentnost se podrazumijeva u pogledu da početi problem ima riješenje akko ima i redukovani problem. Ova procedura se iterativno izvršava, smanjujući broj varijabli u problemu u svakom koraku. Na kraju ćemo eventualno ostati sa sitemom od jedne varijable za koji se lako može provjeriti da li postoji barem jedna tačka između najveće gornje granice i najmanje donje granice koje zadovoljavaju uslove. 
+ Na ovo pitanje možemo odgovoriti pomoću \emph{Fourier–Motzkin}-ove eliminacije, koja je drugačija od simpleks metode pa je zbog toga i navedena u ovoj knjizi. Ideja algoritma se sastoji od procedure koja će redukovati problem sa $n$ varijabli na ekvivalentan problem sa $n-1$ varijabli. Ekvivalentnost se podrazumijeva u pogledu da početi problem ima riješenje akko  ga ima i redukovani problem. Ova procedura se iterativno izvršava, smanjujući broj varijabli u problemu u svakom koraku. Na kraju ćemo eventualno ostati sa sistemom od jedne varijable za koji se lako može provjeriti da li postoji barem jedna tačka između najveće gornje granice i najmanje donje granice koja zadovoljava  uslove. 
  
- Glavni korak ovog metoda je redukcija problema na ekvivalentan problem sa manjim brojem varijabli. Pretpostavimo da imamo varijable $x_1,\ldots, x_n$ i da želimo da eliminišemo varijablu $x_n$. Za svaku od ograničenja
+ Glavni korak ovog metoda je redukcija problema na ekvivalentan problem sa manjim brojem varijabli. Pretpostavimo da su ograničenja data u varijablama $x_1,\ldots, x_n$ i da želimo da eliminišemo varijablu $x_n$. Za svaku od ograničenja
  \begin{equation}\label{eq:inequality_i}
       a_{i,1} x_1 + \cdots + a_{i,n} x_n \leq b_i
  \end{equation}
@@ -2488,25 +2488,25 @@ Problem dopustivosti može da služi i da odgovorimo sljedeće pitanje:
  	 \item  $x_n \geq \frac{b_i - a_{i,1}x_1- \cdots - a_{i, n-1} x_{n-1} }{a_{i,n}}=U_i$ ili 
  	 \item   $x_n \leq \frac{b_i - a_{i,1}x_1- \cdots - a_{i, n-1} x_{n-1} }{a_{i,n}}=L_i$
  \end{itemize}
- $i=1,\ldots, m$, zavisno od toga da li je $a_{i,n} >0$ ili $a_{i,n} <0$. U slučaju da je $a_{i,n} = 0$,  ostavljamo  ogranjičenje (\ref{eq:inequality_i}) kakvo i jeste (jer $x_n$ ne učestvuje u datoj nejednakosti). Na ovaj način ćemo dobiti $m$ gornjih i donjih granica za $x_n$ koje se dobijaju preko $n-1$ varijabli, tj. 
- $$  x_n \geq L_1, \ldots, x_n\geq L_k \mbox{ te }  x_n \leq U_1, \ldots, x_n \leq U_l.$$
-  
- Moguće je izabrati $x_n$ koje zadovoljava ovih $k \cdot l$ ograničenja akko 
+ $i=1,\ldots, m$, zavisno od toga da li je $a_{i,n} >0$ ili $a_{i,n} <0$. U slučaju da je $a_{i,n} = 0$,  ostavljamo  ograničenje (\ref{eq:inequality_i}) kakvo i jeste (jer $x_n$ ne učestvuje u datom ograničenju). Na ovaj način ćemo dobiti (najviše) $m$ gornjih i donjih granica za $x_n$ koje se mogu izraziti preko $n-1$ varijabli, tj. 
+ $$  x_n \geq L_1, \ldots, x_n\geq L_k \mbox{ te }  x_n \leq U_1, \ldots, x_n \leq U_l,$$
+  za neke $k,l \in \mathbb{N}$, $k+l \leq m$.
+ Moguće je izabrati $x_n$ koje zadovoljava gornja ograničenja akko 
  \begin{equation}\label{eq:min_max_xi}
      \max\{L_1,\ldots, L_k \} \leq x_n \leq \min \{ U_1, \ldots, U_l \},
    \end{equation}
-   
- jer bi moralo da postoji nešto između najveće donje granice za vrijednost varijable $x_n$ te njegove najmanje gornje granice. Međutim, kako su sve donje i gornje granice izražene preko nepoznatih $x_1, \ldots, x_{n-1}$,  u (\ref{eq:min_max_xi}) jednakost se ne može samo tako napisati, pa napišemo sljedeće nejednakosti 
+   %https://faculty.math.illinois.edu/~mlavrov/docs/482-fall-2019/lecture19.pdf
+ jer bi tada postojalo nešto između najveće donje granice i najmanje gornje granice za za vrijednost varijable $x_n$. Međutim, kako su sve donje i gornje granice izražene preko nepoznatih varijabli $x_1, \ldots, x_{n-1}$, ne može se reći koje od njih su veće a koje manje. Kompromis postižemo dodavanjem  sljedećih nejednakosti 
  $$\begin{array}{cccc}
        L_1 \leq U_1 & L_1 \leq U_2   &  \cdots   & L_1 \leq U_l \\
        L_2 \leq U_1 & L_2  \leq U_2  &  \cdots   & L_2 \leq U_l \\
        \vdots       &     \vdots     &   \ddots  & \vdots       \\
-       L_k \leq U_m &  L_k \leq U_2  &   \cdots  & L_k \leq U_l \\
+       L_k \leq U_1 &  L_k \leq U_2  &   \cdots  & L_k \leq U_l \\
  \end{array}$$ 
-Ako postoji neka vrijednost  $x_n$ koja zadovoljava sva ograničenja, onda je za sve $i,j$, 
-$L_i \leq x_n \leq U_j$. Obrnuto, ako svi ovih $k \cdot l$ nejednakosti vrijede, onda vrijedi i (\ref{eq:min_max_xi}), pa se može izabrati neki $x_n$ između ove dvije ($\max$ i $\min$) vrijednosti. 
+Ako postoji neka vrijednost  $x_n$ koja zadovoljava sva ograničenja (\ref{eq:min_max_xi}), onda je za sve $i,j$, 
+$L_i \leq x_n \leq U_j$. Obrnuto, ako svih $k \cdot l$ nejednakosti vrijede, onda vrijedi i (\ref{eq:min_max_xi}), pa se može izabrati neki $x_n$ između $\max$ i $\min$ gornje granice. 
 
-Prema tome, početni problem je redukovan na sistem od $n-1$ varijabli sa dodatnih  $k \cdot l$ nejednakosti gore opisanih uz originalna ograničenja koja ne uključuju $x_n$ u sebi. Ovaj proces nastavimo iterativno, dok ne dobijemo samo jednu promjenjivu  i potom (trivijalno) riješimo sistem. 
+Prema tome, početni problem je redukovan na sistem od $n-1$ varijabli sa dodatnih  $k \cdot l$ nejednakosti izraženih gore, uz originalna ograničenja koja ne uključuju $x_n$ u sebi. Ovaj proces nastavimo iterativno, dok ne dobijemo samo jednu promjenjivu sa dodatnim ograničenjima  i potom (trivijalno) riješimo sistem. 
 
 \emph{\textbf{Primjer.}} Pretpostavimo da nam je dat sistem nejednačina:
 \begin{align*}
