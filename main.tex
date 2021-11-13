@@ -2642,7 +2642,7 @@ $$
 \chapter{Cjelobrojno Programiranje}
 
 %https://www.google.com/url?sa=t&source=web&rct=j&url=https://web.mit.edu/15.053/www/AMP-Chapter-09.pdf&ved=2ahUKEwiN0cef_f7xAhU0CRAIHWLqCw0QFjAfegQILBAC&usg=AOvVaw1cQCbZJQbc55Z0VLPue2ul
-Nije realno očekivati da varijable odluke mogu da dobiju neprekidne vrijednosti u svim problemima. Recimo, ograničenja u problemu rasporeda ljudskih resursa po smjenama koje se tiču minimalnog broja osoblja potrebnog u svakoj od smjenama zahtjevaju varijable koje su diskretnog tipa. U slučaju da su sve varijable odluke u modelu problema cjelobrojne, riječ je o problemu cjelobrojnog programiranja (eng. \emph{Integer programming}). 
+Nije realno očekivati da varijable odluke mogu da dobiju neprekidne vrijednosti u svim problemima. Recimo, ograničenja u problemu rasporeda ljudskih resursa po smjenama koje se tiču minimalnog broja osoblja potrebnog u svakoj od smjena  zahtjevaju varijable koje su diskretnog tipa. U slučaju da su sve varijable odluke u modelu problema cjelobrojne, riječ je o problemu \emph{cjelobrojnog programiranja} (eng. \emph{Integer programming}). 
 U ovom odjeljku ćemo se pozabaviti   \emph{cjelobrojnim linearnim programiranjem} (ILP) gdje se još pored integralnosti (cjelobrojnosti) varijabli zahtijeva da funkcija cilja kao i ograničenja u modelu budu linearni u svojim varijablama. Prema tome, ILP ima opšti oblik:
 \begin{align}
     & \max c^T x \nonumber\\
@@ -2654,8 +2654,8 @@ U nastavku modelujmo nekoliko poznatih problema uz pomoć paradigme ILP-a.
 
 \section{Modelovanje nekih problema}
 
-\emph{Problem ruksaka.} Neka je dato $n$ proizvoda i neka je težina $i$-tog proizvoda jednaka $w_i$, dok je vrijednost svakog od njih jednaka $c_i$, $i=1,\ldots,n$. Koje proizvode treba da stavimo u ruksak kapaciteta $C$ tako da je vrijednost proizvoda u ruksaku maksimalna. \\
-\emph{Rješenje}. Definišimo varijable $x_i$ koje dobijaju vrijednost 1 ako odaberemo $i$-ti proizvod kojeg stavimo u ruksak, u protivnom 0, $i=1,\ldots,n$. Kapacitet ruksaka se modeluje ograničenjem $\sum_{i=1}^n w_i x_i \leq C$, dok je funkcija cilja ona koja maksimizuje profit odabranih proizvoda, dakle modeluje se uz pomoć linearne kombinacije $f(x) = \sum_{i=1}^n c_i x_i$. Time je problem modelovan.
+\emph{Problem ruksaka.} Neka je dato $n$ proizvoda i neka je težina $i$-tog proizvoda jednaka $w_i$, dok je vrijednost svakog od njih jednaka $c_i$, $i=1,\ldots,n$. Koje proizvode treba da stavimo u ruksak  koji je kapaciteta $C$ tako da   vrijednost proizvoda u ruksaku bude maksimalna. \\
+\emph{Rješenje}. Definišimo varijable $x_i$ koje dobijaju vrijednost 1 ako odaberemo $i$-ti proizvod kojeg stavimo u ruksak, u protivnom 0, $i=1,\ldots,n$. Kapacitet ruksaka se modeluje ograničenjem $\sum_{i=1}^n w_i x_i \leq C$, dok je funkcija cilja ona koja maksimizuje profit odabranih proizvoda, dakle modeluje se uz pomoć linearne kombinacije $f(x) = \sum_{i=1}^n c_i x_i$. Time je ovaj problem modelovan.
 
 
 \emph{Problem rasporeda}. Uprava bolnice želi da napravi raspored dežurstva po sedmičnim noćnim smjenama za svoje medicinske sestre. Potrebno je da broj medicinskih sestara za noćnu smjenu na $j$--ti dan bude barem (cio broj) $d_j, j = 1,\ldots 7$. Svaka
@@ -2678,7 +2678,7 @@ uz nenegativne uslove
 \begin{itemize}
 	\item $x_i \geq 0, x_i \in \mathbb{Z}$, $j=1,\ldots,7.$
 \end{itemize}
-Primijetimo da su u ovom problemu varijable  cjelobrojne. Ovaj model pripada paradigmi cjelobrojnog linearnog programiranja.
+Primijetimo da su u ovom problemu varijable  cjelobrojne. %Ovaj model pripada paradigmi cjelobrojnog linearnog programiranja.
 
 \emph{Problem oglašavanja}. Kompanija želi da se oglašava u medijima. Postoji nekoliko alternativa oglašavanja:  televizijsko, novinsko i radio oglašavanje. Cijena svakog medija sa pokrivenošću publike navedena je u sljedećoj tabeli.
 
@@ -2693,9 +2693,9 @@ Primijetimo da su u ovom problemu varijable  cjelobrojne. Ovaj model pripada par
 	\label{tab:tab_model_advertising}
 \end{table}
 
-Novine ograničavaju broj oglasa za kompaniju na deset (po sedmici). Štaviše, kako bi se uravnotežilo oglašavanje između sve tri vrste medija, na radiju se ne smije pojaviti više od polovine ukupnog broja oglasa za kompaniju. Najmanje 10\% od svih oglasa bi se trebalo pojaviti na televiziji. Sedmični budžet za oglašavanje iznosi 18.200. 
+Novine ograničavaju broj oglasa za kompaniju na deset (po sedmici). Štaviše, kako bi se uravnotežilo oglašavanje između sve tri vrste medija, na radiju se ne smije pojaviti više od polovine ukupnog broja oglasa za kompaniju. Najmanje 10\% od svih oglasa bi se trebalo pojaviti na televiziji. Sedmični budžet za oglašavanje date kompanije iznosi 18.200. 
 
-\emph{Zadatak: Koliko oglasa treba zakupiti u svakoj od tri vrste medija u cilju povećavanja ukupnog broja gledalaca kompanije?}
+\emph{Zadatak: Koliko oglasa treba zakupiti u svakoj od tri vrste medija sa ciljem povećanja ukupnog broja gledalaca?}
 
 \emph{Rješenje}.   Označimo sa $x_1$ broj oglasa na televiziji, sa $x_2$ broj oglasa u novinama i $x_3$ broj oglasa na radiju. Potrebno je maksimizovati   uspješnost oglašavanja, tj. funkciju 
 $f(x) = 10 x_1 + 4 x_2 + 1.8 x_3.$ Uslovi pod kojima tražimo rješenja su modelovani na sljedeći način:
@@ -2712,7 +2712,7 @@ nisu korišteni egzaktni koeficijenti (za broj gledalaca) već brojevi koji su p
 
 
 %https://www.math.unipd.it/~luigi/courses/metmodoc1819/m01.modelli.00.en.pdf
-\emph{Problem pokrivanja}. Telefonska kompanija želi da instalira antene na neka mjesta kako bi pokrila šest oblasti. Postoji pet mjesta za antene. Nakon nekih simulacija, za svaku oblast utvrđen je intenzitet signala koji antena šalje, postavljena na određenom mjestu. Tabela~\ref{tab:tb-3} daje   primjer jedne instance problema sa nivoima intenziteta signala.
+\emph{Problem pokrivanja}. Telefonska kompanija želi da instalira antene na neka mjesta kako bi pokrila šest oblasti. Postoji pet mogućih mijesta za instaliranje antena. Nakon urađenih simulacija, za svaku oblast utvrđen je intenzitet signala koji antena šalje, kad je postavljena na određenom mjestu. Tabela~\ref{tab:tb-3} daje   primjer jedne instance problema sa nivoima intenziteta signala.
 
 \begin{table}[!ht]
 	\centering
@@ -2728,20 +2728,20 @@ nisu korišteni egzaktni koeficijenti (za broj gledalaca) već brojevi koji su p
 	\label{tab:tb-3}
 \end{table}
 
-Prijemnici prepoznaju samo signale čija je udaljenost najmanje   $d$. Nadalje, nije moguće imati više od jednog signala koji dostiže udaljenost $d$ u istoj oblasti, inače bi to moglo da prouzrokuje smetnje. %Na kraju, antena se može postaviti na mjesto $E$ samo ako je antena instalirana i na mjestu $D$ (ova antena bi služila kao most). 
+Prijemnici prepoznaju samo signale čija je jačina najmanje   $d>0$. Nadalje, ne može da se desi da više od jednog signala  dostiže jačinu signala $d$ u istoj oblasti, inače bi to prouzrokovalo smetnje u prijemu. %Na kraju, antena se može postaviti na mjesto $E$ samo ako je antena instalirana i na mjestu $D$ (ova antena bi služila kao most). 
 Kompanija želi da odredi gdje treba postaviti antene kako bi se pokrio maksimalanan broj oblasti sa signalom. 
 
 %https://www.math.unipd.it/~luigi/courses/metmodoc1920/m01.modelli.00.en.beamer.pdf
 \emph{Rješenje}. Posmatrajmo ovaj problem malo opštije i definišimo: 
 \begin{itemize}
-	\item $I$: skup mjesta;
+	\item $I$: skup mijesta;
 	\item $J$: skup oblasti;
 	\item $\sigma_{ij}$ : indikator nivoa signala antene   smještene u mjestu $i \in I$ u oblasti $j \in J$;
-	\item $d$: parametar koji označava minimalni nivo signala koji je neophodan;
+	\item $d$: parametar koji označava minimalnu jačinu signala;
 	\item $N$: parametar koji označava maksimalni broj signala iznad granice koju prijemnik može da prepozna (u našoj instanci imamo da je $N=1$);
 	\item $x_i$: binarna varijabla koja uzima vrijednost 1 ako je antena smještena u mjestu $i\in I$, 0 inače;
 	\item  $z_j$ : binarna varijabla koja uzima vrijednost 1 ako je oblast $j \in J$ pokrivena signalom, 0 inače;
-	\item $M_j$: dovoljno veliki parametar, npr. za svako mjesto $j \in J$, $M_j= card(\{ i \in I \mid \sigma_{ij} \geq d\})$.
+	\item $M_j$: dovoljno veliki parametar, npr. za svako mjesto $j \in J$, $M_j= |\{ i \in I \mid \sigma_{ij} \geq d\}|$.
 \end{itemize}
 Formulišimo sada (cjelobrojni) linearni program ovog problema. 
 Funkcija cilja je data sa:
@@ -2754,17 +2754,17 @@ pod sljedećim uslovima
 \end{itemize}
 %\printbibliography[heading=subbibliography,notkeyword=this]
 
-\emph{Problem lokacija}. Problemi s lokacijom često se postavljaju na sljedeći način: pretpostavimo da postoji $n$ postrojenja (prodavnica)  i  $m$ kupaca. Dva pitanja treba da budu riješena:
+\emph{Problem lokacija}. Problemi s lokacijom često se postavljaju na sljedeći način: pretpostavimo da postoji $n$ postrojenja (prodavnica)  i  $m$ kupaca. Dva pitanja koja treba da budu obuhvaćena riješenjem su:
 \begin{enumerate}
-	\item koji od $n$ postrojenja otvoriti i
+	\item koja od $n$ postrojenja otvoriti i
 	\item koje  postrojenje koristiti za opsluživanje kojeg od kupaca, kako bi se zadovoljila fiksna potražnja svakog od kupaca uz minimalni trošak otvaranja postrojenja.
 \end{enumerate}
-Uvedimo sljedeću notaciju.
+Prije nego što modelujemo ovaj problem, uvedimo sljedeću notaciju.
 \begin{itemize}
 	\item  $f_{i}$: označava (fiksni) trošak otvaranja postrojenja $i$, za  $ i = 1,  \ldots, n$;
-	\item $c_{ij}$: označava troškove zadovoljenja potražnje  kupca $j$ od strane postrojenja $j$ (cijena dostave, cijena proizvoda itd.), $i = 1, \ldots, n$, $j = 1,  \ldots, m$;
-	\item $d_{j}$: označava potražnju kupca $j$ za $j = 1, \ldots, m$;
-	\item $u_{i}$: označava maksimalnu količinu proizvoda koji se mogu proizvesti u postrojenju $i$, tj. $u_{i}$ označava kapacitet objekta $i$.
+	\item $c_{ij}$: označava troškove zadovoljenja potražnje  kupca $j$ od strane postrojenja $i$ (cijena dostave, cijena proizvoda,  itd.), $i = 1, \ldots, n$, $j = 1,  \ldots, m$;
+	\item $d_{j}$: označava potražnju kupca $j$, $j = 1, \ldots, m$;
+	\item $u_{i}$: označava maksimalnu količinu proizvoda koji se mogu nabaviti u postrojenju $i$, tj. $u_{i}$ je kapacitet postrojenja $i$.
 \end{itemize}
 
 \emph{Rješenje}. Funkcija cilja ima sljedeći oblik:
@@ -2782,7 +2782,7 @@ Ograničenja ovog modela su sljedeća:
 Ovaj model pripada modelu \emph{mješovitnog linearnog programiranja}, gdje postoje varijable koje su cjelobrojne i neprekidne za isti model.
 
 \emph{Problem postrojenja sa neograničenim kapacitetom.}
-Čest slučaj gornjeg problema lokacija je slučaj kada je  $ u_{i} = + \infty,i=1\ldots,m$. U ovom slučaju je optimalna strategija zadovoljiti svu (ne parcijalnu) potražnju kupca $j$ iz najbližeg otvorenog objekta. Zbog toga neprekidne varijable  $y_{ij}$ možemo zamijeniti binarnim varijablama $z_{ij}$, $i=1,\ldots,n, j=1,\ldots,m$ pri čemu varijabla dobija vrijednost 1 ako je kupac $j$ snabdjeven od strane postrojenja $i$. Prema tome, model izgleda ovako:
+Čest slučaj prethodnog problema lokacija je dat sa  $ u_{i} = + \infty,i=1\ldots,m$. U ovom slučaju optimalna strategija se sastoji u zadovoljenju kompletne (ne parcijalne) potražnje kupca $j$ iz najbližeg otvorenog objekta. Zbog toga neprekidne varijable  $y_{ij}$ možemo zamijeniti binarnim varijablama $z_{ij}$, $i=1,\ldots,n, j=1,\ldots,m$ pri čemu varijabla dobija vrijednost 1 ako je kupac $j$ snabdjeven od strane postrojenja $i$. Prema tome, model izgleda ovako:
 
 \begin{align*}
 	&\sum_{i=1}^n f_i x_i  + \sum_{i,j} c_{ij} z_{ij} d_j \rightarrow \min\\
@@ -2795,10 +2795,10 @@ Vrijednost $M$ je konstanta koja uzima neku veliku vrijednost (zbir količine po
 za $ i = 1, \ldots, n, j = 1,  \ldots, m$ koje osigurava bolje performanse jer se generišu preciznije linearne relaksacije o kojima će biti riječi u narednim sekcijama. Prethodni model spada u modele \emph{binarnog linearnog programiranja}. 
 
 \emph{Problem rasporeda}. Čitava klasa problema koja se naziva sekvenciranje, raspoređivanje i usmjeravanje u osnovi su predstavljeni modelima cjelobrojnog programiranja. Kao primjer, recimo da je potrebno rasporediti studenate u  učionicu na takav način
-da je minimizovan broj učenika koji ne mogu pohađati nastavu koja je njihov prvi izbor među svim ostalim izborima. Postoje ograničenja u pogledu broja i kapaciteta učionica dostupnih u bilo kom trenutku, dostupnosti predavača na fakultetu u određeno vrijeme i preferencijama studenata za određene rasporede. Jasno je da imamo varijablu $X_{i,j,n}$ za   $i$-tog studenta 
+da je minimizovan broj učenika koji ne mogu pohađati nastavu koja je njihov prvi izbor među   ostalim izborima. Postoje ograničenja u pogledu broja i kapaciteta učionica dostupnih u bilo kom trenutku, dostupnosti predavača na fakultetu u određeno vrijeme i preferencijama studenata za određene rasporede. Jasno je da imamo varijablu $X_{i,j,n}$ za   $i$-tog studenta 
 koji pohađa $j$-to predavanje tokom $n$-tog vremenskog perioda (recimo, vrijeme je diskretizovano po 45 min/čas) -- koja je jednaka 1 ako se student uklapa u takav raspored, inače 0. 
 
-Posmatrajmo ipak malo specifičniji problem u odnosu na ovaj generalni (koji je dosta težak i za modeovanje, a kamoli za rješavanje). 
+Posmatrajmo ipak malo specifičniji problem u odnosu na ovaj generalni problem (koji je dosta težak i za modeovanje, a kamoli za rješavanje). 
 Razmotrimo raspoređivanje osoblja zaduženog za upravljanje letom aviona. 
 Avionska kompanija mora rasporediti svoje osoblje na rutama koje pokrivaju sve letove. Treba paziti, na primjer, da jedna posada treba da upravlja letom iz  Beograda u Zagreb (u 10:00), a zatim letom iz Zagreba u Cirih (u 14:00). Dakle, jedna posada bi trebalo da je uključena u rutu na kojoj upravlja različitim letovima. Prema tome, raspoređujemo posadu na rutu $j$, modelovana uz pomoć binarne varijable 
 $$x_j = \begin{cases}
@@ -2812,7 +2812,7 @@ $$a_{ij}= \begin{cases}
              0,& \mbox{ inače}.
         \end{cases}
 $$
-Neka je $c_j$ cijena dodjeljivanja neke posade ruti $j$. Ovdje $a_{ij}$ definišu prihvatljive kombinacije letova sa rutama, uzimajući u obzir  karakteristike kao što su redoslijed krakova za uspostavljanje veza između letova sa uključenim vremenom  održavanja letova (iskrcavanje, istovaranje kofera, utovaranje novih kofera, ukrcavanje itd.) na istoj ruti leta posade.   
+Neka je $c_j$ cijena zaduživanja neke posade ruti $j$. Ovdje $a_{ij}$ definišu prihvatljive kombinacije letova sa rutama, uzimajući u obzir  karakteristike kao što su redoslijed krakova za uspostavljanje veza između letova sa uključenim vremenom  održavanja letova (iskrcavanje, istovar  kofera, utovar   novih kofera, ukrcavanje itd.) na istoj ruti leta posade.   
 
 Model ovakvog problema je dat sa 
 \begin{align}
@@ -2845,13 +2845,13 @@ $$  \sum_{j=1}^n x_{ij} = 1, \forall i =1,\ldots, n$$
  \end{align}
   %Postoje i druga ograničenja koja mogu da se dodaju za eliminaciju podruta, bez gore pomenutog iterativnog procesa, ali o njima će biti riječi u narednim sekcijama. 
  
- \section{Neke tehnike u konstrukciji modela Cjelobrojnog Programiranja}
+ \section{Tehnike u konstrukciji modela Cjelobrojnog Programiranja}
  
  \emph{Binarne varijable.} Pretpostavimo da je potrebno uključiti sljedeće aktivnosti: ($i$) izgraditi novo postrojenje ili
 ($ii$) poduzeti reklamnu kampanju ili ($iii$) razviti novi proizvod. Jasno je da su ove odluke korespondiraju ka logičkim odlukama da ili ne, pa ih, prema tome, modelujemo   uvodeći  (binarne) varijable $x_i \in \{0, 1 \}$, $i=1,2,3$. Često se nameće uslov da se najviše jedna od ovih odluka izvrši, što se modeluje sa $\sum_{i=1}^3 x_1 \leq 1$. Ovo ograničenje se obično naziva \emph{ograničenjem sa višestrukim izborom} (eng. \emph{multiple choice constraint}), jer se njime ograničava izbor odluka na najviše jednu od, u ovom slučaju, tri dostupne alternative. 
 
 
-Pretpostavimo da proizvođač lijekova treba da odluči hoće li koristiti spremnik za fermentaciju u proizvodnji. Ako koristi spremnik, tehnologija obrade zahtijeva da se napravi $K$ jedinica ljekova. Dakle, količina proizvodnja $y$ dobija vrijednosti 0 ili $K$, a problem se može modelovati binarnom varijablom $x_j \in \{ 0, 1\}$, pa zamjenom $Kx_j$ za $y_i$. 
+Pretpostavimo da proizvođač lijekova treba da odluči hoće li koristiti spremnik za fermentaciju u proizvodnji. Ako koristi spremnik, tehnologija obrade zahtijeva da se napravi $K$ jedinica ljekova. Dakle, količina proizvodnje $y$ dobija vrijednosti 0 ili $K$, a problem se može modelovati binarnom varijablom $x_j \in \{ 0, 1\}$, a potom zamjenom $Kx_j$ za $y_i$. 
 
 \emph{Logička ograničenja}. Jedno od najprostijih logičkih pitanja u matematičkom programiranju je da li dati izbor varijabli odluka zadovoljava ograničenje
 
@@ -2891,7 +2891,7 @@ Konstante $M_1$ i $M_2$ se odabiru da oba ograničenja u (\ref{ineq:f_leq_b2})  
 
 Ograničenje $y_1 + y_2 \leq 1$ implicira da barem jedna od $y$--varijabli mora da bude 0, tj. barem jedno ograničenje mora da bude zadovoljeno. 
 
-Pojednostavimo ovu formulaciju koristeći ograničenje $y_1 + y_2 = 1$ mjesto ograničenja sa nejednakosti (jer ovo povlači da ili $y_1$ ili $y_2$ je jednako 0), tj. uvrštanjem $y_2 =  1-y_1$, odakle dobijamo 
+Pojednostavimo ovu formulaciju koristeći ograničenje $y_1 + y_2 = 1$ mjesto ograničenja nejednakosti (jer ovo povlači da je ili $y_1$ ili $y_2$    jednako 0), tj. uvrštavanjem $y_2 =  1-y_1$, odakle dobijamo 
 \begin{align*}
       & f_1(x) - M_1 y_1       \leq b_1 \\
       & f_2(x) - M_2 (1-y_1)   \leq b_2  \\
@@ -2919,7 +2919,7 @@ barem $k$ od njih treba da budu zadovoljena. Modelovanje ovakvog scenarija vrši
 \end{align}
 Primijetimo da ako je $y_j = 1$, tada je $j$-to ograničenje zadovoljeno (za dato $x$). Dakle, barem $k$ ograničenja treba da budu zadovoljena da bi $x$ bilo dopustivo rješenje. 
 
-\emph{Složene alternative}. Pretpostavimo da se dopustiv region problema LP sastoji od tri disjunktna regiona kao na Slici~\ref{fig:compound_regions}. Ovakav scenario se može modelovati uz pomoć konstante veliko $M$, te  ograničenjem sa višestrukim izborom, odakle dobijamo:
+\emph{Složene alternative}. Pretpostavimo da se dopustiv region problema LP sastoji od tri disjunktna regiona kao na Slici~\ref{fig:compound_regions}. Ovakav scenario se može modelovati uz pomoć konstante veliko $M>0$, te  ograničenjem sa višestrukim izborom, odakle dobijamo:
 \begin{align*}
     &f_1(x) - M_1 y_1 \leq b_1 \\
     &f_2(x) - M_2 y_1 \leq b_2\ (\mbox{ region 1}) \\ \hline
@@ -2930,7 +2930,7 @@ Primijetimo da ako je $y_j = 1$, tada je $j$-to ograničenje zadovoljeno (za dat
     & f_7(x) - M_7 y_3 \leq b_7\ (\mbox{ region 3}) \\ \hline
     & y_1 + y_2 + y_3 \leq 2 \\
     & x_1, x_2 \geq 0 \\
-    & y_1, y_2, y_3 \geq 0.
+    & y_1, y_2, y_3 \in \mathbb{N}.
 \end{align*}
 
 \begin{figure}[!ht]
@@ -3027,7 +3027,7 @@ pa se ograničenja u (\ref{eq: piecewise-constraints}) mogu napisati u obliku
 Da bi primijenili veći broj gore navedenih transformacija ograničenja u praksi, posmatrajmo sljedeći primjer kojeg modelujemo. 
 
 
-\emph{Primjer}. Pretpostavimo da je stanovništvo koncentrirano u $I$ okruga  unutar grada i da u okrugu $i\in [I]$ stanuje $p_i$ ljudi. Preliminarna analiza (premjeri zemljišta, politika, socijalna situacija, itd.) ograničila je potencijalne lokacije vatrogasnih domova na $J$ lokacija. Neka $d_{ij} \geq 0$ predstavlja udaljenost   središta okruga (dijela grada) $i$  do lokacije $j$. 
+\emph{Primjer}. Pretpostavimo da je stanovništvo koncentrirano u $I$ okruga  unutar grada i da u okrugu $i\in [I]$ stanuje $p_i$ ljudi. Preliminarna analiza (premjeri zemljišta, politička, socijalna situacija, itd.) ograničila je potencijalne lokacije vatrogasnih domova na $J$ lokacija. Neka $d_{ij} \geq 0$ predstavlja udaljenost   središta okruga (dijela grada) $i$  do lokacije $j$. 
 
 Zadatak: \emph{Potrebno je odabrati lokacija gdje će se podići vatrogasni domovi za svaki od okruga. O funkciji cilja i dodatnim ograničenjima ćemo diskutovati u toku modelovanja samog problema.}
 
@@ -3057,14 +3057,14 @@ Udaljenost okruga $i$ ka pridruženom vatrogasnom domu je jednaka $d_i = \sum_{j
 \begin{equation}\label{eq:ex-constr-3}
     s_j = \sum_{i \in I} p_i x_{ij}. 
 \end{equation}
-Pretpostavimo da je središnji okrug posebno osjetljiv na požar i da lokacije za dom  1 i 2 ili lokacije 3 i 4 mogu biti iskorištena da zaštite okrug. Ovakva situacija se modeluje sa
+Pretpostavimo da je središnji okrug posebno osjetljiv na požar i da lokacije za dom  1 i 2 ili lokacije 3 i 4 treba  da budu iskorištene da zaštite okrug. Ovakva situacija se modeluje sa
 \begin{equation*} 
     y_1 + y_2 \geq 2 \mbox{ ili } y_3 + y_4 \geq 2
 \end{equation*}
 što je ekvivalentno ograničenjima 
 \begin{align}
     &y_1 + y_2 \geq 2 y \nonumber \\
-    &y_1 + y_2 \geq 2 (1-y) \nonumber \\
+    &y_3 + y_4 \geq 2 (1-y) \nonumber \\
     & y \in \{0, 1 \}.\label{eq:ex-constr-4}
 \end{align}
 Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može voditi brigu o $s_j$ ljudi košta $f_j(s_j)$. Pretpostavimo takođe da je budžet kojim raspolažemo jednak $B$. Prema tome, vrijedi ograničenje
@@ -3081,7 +3081,7 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
       &  {s.t. } \\ 
       &(\ref{eq:ex-constr-1})-(\ref{eq:ex-constr-5}).
  \end{align*}
- Još je ostalo zamijeniti svaku funkciju $f_j (s_j)$ aproksimacijom cjelobrojnog programiranja kako bismo izvršili cjelokupno modeliranje. Detalje ostavljamo citaocu kao zadatak. Ako bi funkcija $f_j (s_j)$ sadržala fiksne troškove, tada se ne bi trebale uvoditi nove varijable fiksnih troškova -- u tu svrhu služi već uvedena varijabla $y_j$. 
+ Još je ostalo zamijeniti svaku funkciju $f_j (s_j)$ aproksimacijom cjelobrojnog programiranja kako bismo izvršili cjelokupno modeliranje. Detalje ostavljamo čitaocu kao zadatak. Ako bi funkcija $f_j (s_j)$ sadržala fiksne troškove, tada se ne bi trebale uvoditi nove varijable fiksnih troškova -- u tu svrhu služi već uvedena varijabla $y_j$. 
  % jos neki trikovi u modelovanju: https://download.aimms.com/aimms/download/manuals/AIMMS3OM_LinearProgrammingTricks.pdf
  
  \section{Kompleksnost Cjelobrojnog Programiranja}
