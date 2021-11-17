@@ -2473,7 +2473,7 @@ Kada bi posmatrali $c=(5,0)^T$, zaključili bi da se on ne može izraziti preko 
 \section{Fourier–Motzkin-ova Eliminacija}
 %https://faculty.math.illinois.edu/~mlavrov/docs/482-fall-2019/lecture19.pdf
 Pitanje vezano za problem  LP-a koji se rješava  je sljedeće:
-\emph{Neka su date matrica $A$ i vektor $b$, da li je skup $P = \{x \in \mathbb{R} \colon A x \leq b\}$ neprazan?} Dakle, da li postoji barem jedno dopustivo rješenje linearnog programa? 
+\emph{Neka su date matrica $A$ i vektor $b$, da li je skup $P = \{x \in \mathbb{R}^n \colon A x \leq b\}$ neprazan?} Dakle, da li postoji barem jedno dopustivo rješenje linearnog programa? 
 
 Problem dopustivosti može da služi i da odgovorimo sljedeće pitanje: 
 \emph{Da li je optimalna vrijednost funkcije cilja problema LP-a veća od neke unaprijed zadate  vrijednosti k?}
@@ -2642,7 +2642,7 @@ $$
 \chapter{Cjelobrojno Programiranje}
 
 %https://www.google.com/url?sa=t&source=web&rct=j&url=https://web.mit.edu/15.053/www/AMP-Chapter-09.pdf&ved=2ahUKEwiN0cef_f7xAhU0CRAIHWLqCw0QFjAfegQILBAC&usg=AOvVaw1cQCbZJQbc55Z0VLPue2ul
-Nije realno očekivati da varijable odluke mogu da dobiju neprekidne vrijednosti u svim problemima. Recimo, ograničenja u problemu rasporeda ljudskih resursa po smjenama koje se tiču minimalnog broja osoblja potrebnog u svakoj od smjena  zahtjevaju varijable koje su diskretnog tipa. U slučaju da su sve varijable odluke u modelu problema cjelobrojne, riječ je o problemu \emph{cjelobrojnog programiranja} (eng. \emph{Integer programming}). 
+Ne može se uvijek očekivati da varijable odluke mogu da dobiju neprekidne vrijednosti u modelovanju problema. Recimo, ograničenja u problemu rasporeda ljudskih resursa po smjenama koje se tiču minimalnog broja osoblja potrebnog u svakoj od smjena pod određenim dodatnim uslovima zahtjevaju varijable koje su diskretnog tipa. U slučaju da su sve varijable odluke u modelu problema cjelobrojne, riječ je o problemu \emph{cjelobrojnog programiranja} (eng. \emph{Integer programming}). 
 U ovom odjeljku ćemo se pozabaviti   \emph{cjelobrojnim linearnim programiranjem} (ILP) gdje se još pored integralnosti (cjelobrojnosti) varijabli zahtijeva da funkcija cilja kao i ograničenja u modelu budu linearni u svojim varijablama. Prema tome, ILP ima opšti oblik:
 \begin{align}
     & \max c^T x \nonumber\\
@@ -2693,9 +2693,9 @@ Primijetimo da su u ovom problemu varijable  cjelobrojne. %Ovaj model pripada pa
 	\label{tab:tab_model_advertising}
 \end{table}
 
-Novine ograničavaju broj oglasa za kompaniju na deset (po sedmici). Štaviše, kako bi se uravnotežilo oglašavanje između sve tri vrste medija, na radiju se ne smije pojaviti više od polovine ukupnog broja oglasa za kompaniju. Najmanje 10\% od svih oglasa bi se trebalo pojaviti na televiziji. Sedmični budžet za oglašavanje date kompanije iznosi 18.200. 
+Novine ograničavaju broj oglasa za kompanije na deset (po sedmici). Štaviše, kako bi se uravnotežilo oglašavanje između sve tri vrste medija, na radiju se ne smije pojaviti više od polovine ukupnog broja oglasa za kompaniju. Najmanje 10\% od svih oglasa bi se trebalo pojaviti na televiziji. Sedmični budžet za oglašavanje date kompanije iznosi 18.200. 
 
-\emph{Zadatak: Koliko oglasa treba zakupiti u svakoj od tri vrste medija sa ciljem povećanja ukupnog broja gledalaca?}
+\emph{Zadatak: Koliko oglasa treba zakupiti za svaku od tri vrste medija sa ciljem povećanja ukupnog broja gledalaca?}
 
 \emph{Rješenje}.   Označimo sa $x_1$ broj oglasa na televiziji, sa $x_2$ broj oglasa u novinama i $x_3$ broj oglasa na radiju. Potrebno je maksimizovati   uspješnost oglašavanja, tj. funkciju 
 $f(x) = 10 x_1 + 4 x_2 + 1.8 x_3.$ Uslovi pod kojima tražimo rješenja su modelovani na sljedeći način:
@@ -2757,14 +2757,14 @@ pod sljedećim uslovima
 \emph{Problem lokacija}. Problemi s lokacijom često se postavljaju na sljedeći način: pretpostavimo da postoji $n$ postrojenja (prodavnica)  i  $m$ kupaca. Dva pitanja koja treba da budu obuhvaćena riješenjem su:
 \begin{enumerate}
 	\item koja od $n$ postrojenja otvoriti i
-	\item koje  postrojenje koristiti za opsluživanje kojeg od kupaca, kako bi se zadovoljila fiksna potražnja svakog od kupaca uz minimalni trošak otvaranja postrojenja.
+	\item koje  postrojenje koristiti za opsluživanje pojedinih kupaca, kako bi se zadovoljila fiksna potražnja svakog od kupaca uz minimalni trošak otvaranja postrojenja.
 \end{enumerate}
 Prije nego što modelujemo ovaj problem, uvedimo sljedeću notaciju.
 \begin{itemize}
 	\item  $f_{i}$: označava (fiksni) trošak otvaranja postrojenja $i$, za  $ i = 1,  \ldots, n$;
 	\item $c_{ij}$: označava troškove zadovoljenja potražnje  kupca $j$ od strane postrojenja $i$ (cijena dostave, cijena proizvoda,  itd.), $i = 1, \ldots, n$, $j = 1,  \ldots, m$;
 	\item $d_{j}$: označava potražnju kupca $j$, $j = 1, \ldots, m$;
-	\item $u_{i}$: označava maksimalnu količinu proizvoda koji se mogu nabaviti u postrojenju $i$, tj. $u_{i}$ je kapacitet postrojenja $i$.
+	\item $u_{i}$: označava maksimalnu količinu proizvoda (kapacitet zadovoljenja) koji se mogu nabaviti u postrojenju $i$, tj. $u_{i}$ je kapacitet postrojenja $i$.
 \end{itemize}
 
 \emph{Rješenje}. Funkcija cilja ima sljedeći oblik:
@@ -2779,7 +2779,7 @@ Ograničenja ovog modela su sljedeća:
 	\item $\sum_{i} y_{ij} = 1, \forall j\in\{1,\ldots,m\}$ (zahtjevi kupaca treba da budu ispunjeni)
 	\item $\sum_{j} d_j y_{ij} \leq u_i x_i, \forall i \in \{1,\ldots,n\}$
 \end{itemize}
-Ovaj model pripada modelu \emph{mješovitnog linearnog programiranja}, gdje postoje varijable koje su cjelobrojne i neprekidne za isti model.
+Ovaj model pripada modelu \emph{mješovitnog linearnog programiranja}, gdje postoje varijable koje su cjelobrojne i neprekidne u istom modelu.
 
 \emph{Problem postrojenja sa neograničenim kapacitetom.}
 Čest slučaj prethodnog problema lokacija je dat sa  $ u_{i} = + \infty,i=1\ldots,m$. U ovom slučaju optimalna strategija se sastoji u zadovoljenju kompletne (ne parcijalne) potražnje kupca $j$ iz najbližeg otvorenog objekta. Zbog toga neprekidne varijable  $y_{ij}$ možemo zamijeniti binarnim varijablama $z_{ij}$, $i=1,\ldots,n, j=1,\ldots,m$ pri čemu varijabla dobija vrijednost 1 ako je kupac $j$ snabdjeven od strane postrojenja $i$. Prema tome, model izgleda ovako:
@@ -2795,12 +2795,12 @@ Vrijednost $M$ je konstanta koja uzima neku veliku vrijednost (zbir količine po
 za $ i = 1, \ldots, n, j = 1,  \ldots, m$ koje osigurava bolje performanse jer se generišu preciznije linearne relaksacije o kojima će biti riječi u narednim sekcijama. Prethodni model spada u modele \emph{binarnog linearnog programiranja}. 
 
 \emph{Problem rasporeda}. Čitava klasa problema koja se naziva sekvenciranje, raspoređivanje i usmjeravanje u osnovi su predstavljeni modelima cjelobrojnog programiranja. Kao primjer, recimo da je potrebno rasporediti studenate u  učionicu na takav način
-da je minimizovan broj učenika koji ne mogu pohađati nastavu koja je njihov prvi izbor među   ostalim izborima. Postoje ograničenja u pogledu broja i kapaciteta učionica dostupnih u bilo kom trenutku, dostupnosti predavača na fakultetu u određeno vrijeme i preferencijama studenata za određene rasporede. Jasno je da imamo varijablu $X_{i,j,n}$ za   $i$-tog studenta 
+da je minimizovan broj učenika koji ne mogu pohađati nastavu koja je njihov prvi izbor među svim ostalim izborima. Postoje ograničenja u pogledu broja i kapaciteta učionica dostupnih u bilo kom trenutku, dostupnosti predavača na fakultetu u određeno vrijeme i preferencijama studenata za određene rasporede. Jasno je da imamo varijablu $X_{i,j,n}$ za   $i$-tog studenta 
 koji pohađa $j$-to predavanje tokom $n$-tog vremenskog perioda (recimo, vrijeme je diskretizovano po 45 min/čas) -- koja je jednaka 1 ako se student uklapa u takav raspored, inače 0. 
 
-Posmatrajmo ipak malo specifičniji problem u odnosu na ovaj generalni problem (koji je dosta težak i za modeovanje, a kamoli za rješavanje). 
+Posmatrajmo ipak malo specifičniji problem u odnosu na ovaj generalniji problem (koji je dosta težak i za modeovanje, a kamoli za rješavanje). 
 Razmotrimo raspoređivanje osoblja zaduženog za upravljanje letom aviona. 
-Avionska kompanija mora rasporediti svoje osoblje na rutama koje pokrivaju sve letove. Treba paziti, na primjer, da jedna posada treba da upravlja letom iz  Beograda u Zagreb (u 10:00), a zatim letom iz Zagreba u Cirih (u 14:00). Dakle, jedna posada bi trebalo da je uključena u rutu na kojoj upravlja različitim letovima. Prema tome, raspoređujemo posadu na rutu $j$, modelovana uz pomoć binarne varijable 
+Avionska kompanija mora rasporediti svoje osoblje na rutama koje pokrivaju letove. Treba paziti, na primjer, da jedna posada treba da upravlja letom iz  Beograda u Zagreb (u 10:00), a zatim letom iz Zagreba u Cirih (u 14:00). Dakle, jedna posada bi trebalo da je uključena u rutu na kojoj upravlja različitim letovima. Prema tome, raspoređujemo posadu na rutu $j$, modelovana uz pomoć binarne varijable 
 $$x_j = \begin{cases}
     &1, \mbox{ ako je barem jedna posada prodružena ruti } j \\
     &0, \mbox{ inače}. 
@@ -2824,7 +2824,7 @@ Model ovakvog problema je dat sa
 \end{align}
 Ograničenje (\ref{ineq:set_cover}) je poznato ograničenje koje se javlja u pokrivanju problema skupa (eng. \emph{set covering problem}).
 
-\emph{Problem trgovačkog putnika}. Problem je formulisan na slejdeći način. Krenuvši od svog mjesta, putnik želi da posjeti ostalih ($n-1$) gradova pod minimalnim troškovima i da se na kraju vrati na isto mjesto. U suštini, ovo je problem grafovske prirode gdje je ulaz (bez smanjenja opštosti) kompletan težinski graf, a potrebno je naći hamiltonovu konturu minimalne težine u datom grafu. Pod težinom konture se podrazumijeva zbir težina njenih grana. 
+\emph{Problem trgovačkog putnika}. Problem je formulisan na sljedeći način. Na ulazu je dato $n$ gradova. Krenuvši od svog mjesta, putnik želi da posjeti ostalih $n-1$ gradova pod minimalnim troškovima a da se na kraju vrati na isto mjesto. U suštini, ovo je problem grafovske prirode gdje je ulaz (bez smanjenja opštosti) kompletan težinski graf, a potrebno je naći hamiltonovu konturu minimalne težine u datom grafu. Pod težinom konture se podrazumijeva zbir težina njenih grana. 
 
 \emph{Rješenje}. Označimo težinu grane od grada $i$ do grada $j$ sa $c_{ij}$.  Definišimo (binarne) varijable 
 $$x_{ij} = \begin{cases}
