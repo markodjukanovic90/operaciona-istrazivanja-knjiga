@@ -2919,7 +2919,7 @@ barem $k$ od njih treba da budu zadovoljena. Modelovanje ovakvog scenarija vrši
 \end{align}
 Primijetimo da ako je $y_j = 1$, tada je $j$-to ograničenje zadovoljeno (za dato $x$). Dakle, barem $k$ ograničenja treba da budu zadovoljena da bi $x$ bilo dopustivo rješenje. 
 
-\emph{Složene alternative}. Pretpostavimo da se dopustiv region problema LP sastoji od tri disjunktna regiona kao na Slici~\ref{fig:compound_regions}. Ovakav scenario se može modelovati uz pomoć konstante veliko $M>0$, te  ograničenjem sa višestrukim izborom, odakle dobijamo:
+\emph{Složene alternative}. Pretpostavimo da se dopustiv region problema $LP$ sastoji od tri disjunktna regiona kao na Slici~\ref{fig:compound_regions}. Ovakav scenario se može modelovati uz pomoć konstante veliko $M>0$, te  ograničenjem sa višestrukim izborom, odakle dobijamo:
 \begin{align*}
     &f_1(x) - M_1 y_1 \leq b_1 \\
     &f_2(x) - M_2 y_1 \leq b_2\ (\mbox{ region 1}) \\ \hline
@@ -3000,7 +3000,7 @@ pa se ograničenja u (\ref{eq: piecewise-constraints}) mogu napisati u obliku
     \end{itemize}
  %https://download.aimms.com/aimms/download/manuals/AIMMS3OM_LinearProgrammingTricks.pdf
  %https://download.aimms.com/aimms/download/manuals/AIMMS3OM_IntegerProgrammingTricks.pdf
- \emph{Eliminacija proizvoda varijabli}. Generalno, proizvod dvije varijable se može zamijeniti sa jednom varijablom sa dodatnim ograničenjima. Metod prezentovan ovdje se na isti način može proširiti na roizvod više od dvije varijable. Razlikujemo nekoliko slučajeva:
+ \emph{Eliminacija proizvoda varijabli}. Generalno, proizvod dvije varijable se može zamijeniti sa jednom varijablom sa dodatnim ograničenjima. Metod prezentovan ovdje se na isti način može proširiti na proizvod više od dvije varijable. Razlikujemo nekoliko slučajeva:
  \begin{itemize}
  	\item $x_1$ i $x_2$ su binarne varijable. Uvedemo smjenu $y=x_1 x_2$. Sljedeći uslovi primoravaju da $y$ primi vrijednost proizvoda:
  	  \begin{align*}
