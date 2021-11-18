@@ -2845,7 +2845,7 @@ $$  \sum_{j=1}^n x_{ij} = 1, \forall i =1,\ldots, n$$
  \end{align}
   %Postoje i druga ograničenja koja mogu da se dodaju za eliminaciju podruta, bez gore pomenutog iterativnog procesa, ali o njima će biti riječi u narednim sekcijama. 
  
- \section{Tehnike u konstrukciji modela Cjelobrojnog Programiranja}
+ \section{Tehnike redukcije}
  
  \emph{Binarne varijable.} Pretpostavimo da je potrebno uključiti sljedeće aktivnosti: ($i$) izgraditi novo postrojenje ili
 ($ii$) poduzeti reklamnu kampanju ili ($iii$) razviti novi proizvod. Jasno je da su ove odluke korespondiraju ka logičkim odlukama da ili ne, pa ih, prema tome, modelujemo   uvodeći  (binarne) varijable $x_i \in \{0, 1 \}$, $i=1,2,3$. Često se nameće uslov da se najviše jedna od ovih odluka izvrši, što se modeluje sa $\sum_{i=1}^3 x_1 \leq 1$. Ovo ograničenje se obično naziva \emph{ograničenjem sa višestrukim izborom} (eng. \emph{multiple choice constraint}), jer se njime ograničava izbor odluka na najviše jednu od, u ovom slučaju, tri dostupne alternative. 
@@ -3282,13 +3282,13 @@ U osnovni model uključiti i sljedeća ograničenja:
 \end{enumerate}                                                       
 
 
- \chapter{Tehnike u rješavanju Cjelobrojnog programiranja}
+ \chapter{Algoritamske tehnike za rješavanje Cjelobrojnog programiranja}
  
- Dok je simpleks metoda učinkovita za rješavanje  problema LP-a, ne postoji jedinstvena tehnika za rješavanje problema Cjelobrojnog programiranja. Umjesto toga, razvijeni su mnogi metodi i njihova efikasnost
+ Dok je simpleks metoda učinkovita za rješavanje  problema LP-a, ne postoji generalna tehnika efikasna za rješavanje problema Cjelobrojnog programiranja. Umjesto toga, razvijeni su mnogi metodi i njihova efikasnost
  uvelike zavisi od karakteristika samog problema. Dosadašnje metode se generalno mogu klasifikovati na sljedeći način:
  \begin{enumerate}
-     \item Enumerativne tehnike -- Dinamičko programiranje, metoda otkidanja i ograničavanja (eng. \emph{branch-and-bound}), koju ćemo kratko nazvati B\&B;
-     \item Tehnike otkidajućih ravni.
+     \item \emph{Enumerativne tehnike} -- Dinamičko programiranje, metoda otkidanja i ograničavanja (eng. \emph{branch-and-bound}), koju ćemo kratko nazvati B\&B;
+     \item \emph{Tehnike otkidajućih ravni}.
      %\item Grupne-teoretske tehnike. 
  \end{enumerate}
 
