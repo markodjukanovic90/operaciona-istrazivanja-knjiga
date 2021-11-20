@@ -2772,7 +2772,7 @@ $$ f(x) = \sum_{i=1}^n f_i x_i  + \sum_{i,j} c_{ij} y_{ij} d_j,$$
 gdje je
 \begin{itemize}
 	\item $x_i$: binarna varijabla koja ozačava da li je (1) ili nije (0) otvoreno postrojenje $i$;
-	\item $y_{ij} \in \mathbb{R}^+$ realna varijabla, koja označava dio potražnje $d_j$ kupca $j$ ostvarena iz prodavnice $i$.
+	\item $y_{ij} \in \mathbb{R}^+$ realna varijabla, koja označava dio potražnje $d_j$ kupca $j$ koja je ostvarena u prodavnici $i$.
 \end{itemize}
 Ograničenja ovog modela su sljedeća:
 \begin{itemize}
@@ -2836,12 +2836,12 @@ $$  \sum_{i=1}^n x_{ij} = 1, \forall j =1,\ldots, n,$$
 što znači da se iz tačno jednog grada dolazi u svaki grad $j$, dok sličnim jednakostima nametnemo da se iz grada $j$ odlazi u tačno jedan drugi grad sa:
 
 $$  \sum_{j=1}^n x_{ij} = 1, \forall i =1,\ldots, n$$ 
- uz uslove $x_{ij}\geq 0$. Primijetimo sljedeće, ovakvi uslovi ne sprečavaju pojavu rješenja koja predstavljaju uniju disjunktnih podruta, što nije dopustivo u ovom slučaju. Ako pretpostavimo da je rješenje dato u obliku podruta $R_1, \ldots, R_k$, gdje je $R_i = \{ v_{i_1}, \ldots, v_{i_k} \}$, onda se može izbjeći pojava podruta dodavanjem dodatnih ograničenja u početni model problema, te ga takvog sukcesivno riješavati dodavanjem ograničenja dok god en dobijemo rješenje koje nije sastavljeno od više od jedne rute. Recimo, eliminacija pojave podrute $R_2$ (u odnosu na podrutu $R_1$) se vrši dodavanjem ograničenja:
+ uz uslove $x_{ij}\geq 0$. Primijetimo sljedeće, ovakvi uslovi ne sprečavaju pojavu rješenja koja predstavljaju uniju disjunktnih podruta, što nije dopustivo rješenje za TSP. Ako pretpostavimo da je rješenje dato u obliku podruta $R_1, \ldots, R_k$, gdje je $R_i = \{ v_{i_1}, \ldots, v_{i_k} \}$, onda se može izbjeći pojava podruta dodavanjem dodatnih ograničenja u početni model problema, te ga takvog sukcesivno riješavati dodavanjem ograničenja dok god ne dobijemo rješenje koje nije sastavljeno od više od jedne rute. Recimo, eliminacija pojave podrute $R_2$ (u odnosu na podrutu $R_1$) se vrši dodavanjem ograničenja:
  $$ \sum_{l=1}^{1_k}\sum_{t=1}^{2_k} x_{1_l, 2_t} \geq 1.$$
  U najgorem slučaju, potrebno je dodati $2^n-1$ ovakvih ograničenja da bi se dobilo dopustivo rješenje. 
  Generalno ograničenje koje služi za eliminaciju podtura u modelu TSP-a se može dodati sa:
  \begin{align}
- 	  \sum_{i \in S} \sum_{i \notin S} x_{ij} \geq 2, \forall S \subset [n].
+ 	  \sum_{i \in S} \sum_{j \notin S} x_{ij} \geq 2, \forall S \subset [n].
  \end{align}
   %Postoje i druga ograničenja koja mogu da se dodaju za eliminaciju podruta, bez gore pomenutog iterativnog procesa, ali o njima će biti riječi u narednim sekcijama. 
  
@@ -2911,7 +2911,7 @@ odakle slijedi da koristeći alternativna ograničenja možemo da modelujemo ova
 
 \emph{K-alternative}. Pokušajmo da modelujemo scenario da od $m$ ograničenja
 $$f_j(x) \leq  b_j, j=1,\ldots,m,$$
-barem $k$ od njih treba da budu zadovoljena. Modelovanje ovakvog scenarija vršimo na način da prvo odredimo konstante koje će ignorisati ograničenja, nazovimo ih $M_1, \ldots, M_m$, redom. Generalni problem u tom slučaju može biti definisan na sljedeći način:
+barem $k$ od njih treba da budu zadovoljena. Modelovanje ovakvog scenarija vršimo na način da prvo odredimo konstante koje će ignorisati ograničenja, nazovimo ih $M_1, \ldots, M_m>0$, redom. Generalni problem u tom slučaju može biti definisan na sljedeći način:
 \begin{align}
      &f_j(x) + (1-y_j) M_j \leq b_j, j=1,\ldots,m\\
      & \sum_{i=1}^m y_i \geq k \\
@@ -3002,23 +3002,23 @@ pa se ograničenja u (\ref{eq: piecewise-constraints}) mogu napisati u obliku
  %https://download.aimms.com/aimms/download/manuals/AIMMS3OM_IntegerProgrammingTricks.pdf
  \emph{Eliminacija proizvoda varijabli}. Generalno, proizvod dvije varijable se može zamijeniti sa jednom varijablom sa dodatnim ograničenjima. Metod prezentovan ovdje se na isti način može proširiti na proizvod više od dvije varijable. Razlikujemo nekoliko slučajeva:
  \begin{itemize}
- 	\item $x_1$ i $x_2$ su binarne varijable. Uvedemo smjenu $y=x_1 x_2$. Sljedeći uslovi primoravaju da $y$ primi vrijednost proizvoda:
+ 	\item $x_1$ i $x_2$ su binarne varijable. Uvedemo smjenu $y=x_1 x_2$. Sljedeći uslovi će primorati da $y$ primi vrijednost proizvoda:
  	  \begin{align*}
  		      &y \leq x_1 \\
  		      &y \leq x_2 \\
  		      & y \geq x_1 + x_2 - 1 \\
  		      & y \in \{0, 1\}.
  	  \end{align*}
-   \item $x_1$ je binarna, $x_2$ je realna (pozitivna) varijabla, $0 \leq x_2 \leq u$. opet uvodimo istu smjenu $y= x_1 x_2$ koja je neprekidna, te dodamo sljedeća ograničenja da primoramo $y$ da primi vrijednost proizvoda:
+   \item $x_1$ je binarna, $x_2$ je realna (pozitivna) varijabla, $0 \leq x_2 \leq u$. Opet uvodimo istu smjenu $y= x_1 x_2$ koja je neprekidna, te dodamo sljedeća ograničenja da primoramo $y$ da primi vrijednost proizvoda:
     \begin{align*}
     	 &y \leq u x_1 \\
     	 &y \leq x_2 \\
     	 & y \geq x_2 + u(1-x_1) \\
     	 & y \geq 0.
     \end{align*}
-  \item $x_1, x_2$ u obje neprekidne varijable, $0 \leq x_1 \leq u_1$, $0 \leq x_2 \leq u_2$. Uvedemo varijable $y_1 = \frac{1}{2}( x_1 + x_2) $ i  $y_2 =\frac{1}{2}(x_1 - x_2)$. Tada se izraz $x_1x_2$ može predstaviti u separabilnoj formi $y_1^2 - y_2^2$ koja se zatim može aproksimirati po-dijelovima-linearnim funkcijama. Granice za vrijednosti novih varijabli su 
+  \item $x_1, x_2$ u obje neprekidne varijable, $l_1 \leq x_1 \leq u_1$, $l_2 \leq x_2 \leq u_2$. Uvedemo varijable $y_1 = \frac{1}{2}( x_1 + x_2) $ i  $y_2 =\frac{1}{2}(x_1 - x_2)$. Tada se izraz $x_1x_2$ može predstaviti u separabilnoj formi $y_1^2 - y_2^2$ koja se zatim može aproksimirati po-dijelovima-linearnim funkcijama. Granice za vrijednosti novih varijabli su 
   $$ \frac{1}{2}(l_1 + l_2) \leq y_1 \leq \frac{1}{2}(u_1 + u_2)$$ i 
-  $$ \frac{1}{2}(l_1 - u_2) \leq y_1 \leq \frac{1}{2}(u_1 - l_2) $$
+  $$ \frac{1}{2}(l_1 - u_2) \leq y_2 \leq \frac{1}{2}(u_1 - l_2) $$
   
  \end{itemize} 
 
@@ -3081,17 +3081,17 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
       &  {s.t. } \\ 
       &(\ref{eq:ex-constr-1})-(\ref{eq:ex-constr-5}).
  \end{align*}
- Još je ostalo zamijeniti svaku funkciju $f_j (s_j)$ aproksimacijom cjelobrojnog programiranja kako bismo izvršili cjelokupno modeliranje. Detalje ostavljamo čitaocu kao zadatak. Ako bi funkcija $f_j (s_j)$ sadržala fiksne troškove, tada se ne bi trebale uvoditi nove varijable fiksnih troškova -- u tu svrhu služi već uvedena varijabla $y_j$. 
+ Još je ostalo zamijeniti svaku funkciju $f_j (s_j)$ aproksimacijom cjelobrojnog programiranja kako bismo izvršili cjelokupno modeliranje. Detalje ostavljamo čitaocu kao zadatak. Ako bi funkcija $f_j (s_j)$ sadržala fiksne troškove, tada se ne bi trebale uvoditi nove varijable fiksnih troškova -- u tu svrhu već služi ranije uvedena varijabla $y_j$. 
  % jos neki trikovi u modelovanju: https://download.aimms.com/aimms/download/manuals/AIMMS3OM_LinearProgrammingTricks.pdf
  
  \section{Kompleksnost Cjelobrojnog Programiranja}
    Što se tiče rješivosti problema cjelobrojnog programiranja, ona spada u NP--teške probleme, za razliku od LP-a koji je, kako smo pokazali, polinomijalno rješiv. U nastavku ove sekcije dajemo dokaz da je rješivost ILP-a zaista NP--težak problem.  Ideja je da  svedemo problem 3--SAT na ILP.\\ 
      %https://mediaspace.msu.edu/media/Proving+that+Integer+Programming+is+NP-Complete/1_0j1vkmvw
-   Iako je 3--SAT problem trebao biti poznat onome ko je slušao kurs iz osnova teorije algoritama, radi lakše čitljivosti ćemo ga ovdje definisati. 
+   Iako bi 3--SAT problem trebao biti poznat onome ko je slušao kurs iz osnova teorije algoritama, radi lakše čitljivosti ćemo ga i ovdje definisati. 
    
-   Neka su dati literali $x_1, \ldots, x_n$. Svaki literal može da bude pozitivan ($x_1$) ili negativan  ($\neg x_1$). Kažemo da je formula napisana u \emph{konjunktivnoj normalnoj formi} (CNF) akko je napisana kao konjunkcija klauzula (ili literala). Pod klauzulom podrazumijevamo formulu koja je sastavljena od literala povezanih disjunkcijama. Npr. formula $\phi(x_1, x_2, x_3)= (x_1 \vee  \neg x_2) \wedge (x_1 \vee x_3)$ je napisana u CNF; u njoj postoje dvije klauzule. CNF formula $\phi(x)$ je zadovoljiva akko postoji dodjela $\overline{x}$ literalima ($\overline{x}_i \in \{TRUE, FALSE\}$) tako da je $\phi(\overline{x})$ tačna (prema zakonima bulove algebre).  
+   Neka su dati literali $x_1, \ldots, x_n$. Svaki literal može da bude pozitivan ($x_1$) ili negativan  ($\neg x_1$). Kažemo da je formula napisana u \emph{konjunktivnoj normalnoj formi} (CNF) akko je napisana kao konjunkcija klauzula (ili literala). Pod klauzulom podrazumijevamo formulu koja je sastavljena od literala povezanih disjunkcijama. Npr. formula $\phi(x_1, x_2, x_3)= (x_1 \vee  \neg x_2) \wedge (x_1 \vee x_3)$ je napisana u CNF; u njoj postoje dvije klauzule sastavljena od po dva literala. CNF formula $\phi(x)$ je zadovoljiva akko postoji dodjela $\overline{x}$ literalima ($\overline{x}_i \in \{TRUE, FALSE\}$) tako da je $\phi(\overline{x})$ tačna (prema zakonima bulove algebre).  
    
-   Kažemo da je konjunktivna formula $\phi(x)$  napisana u 3--CNF  akko se u svakoj klauzuli nalazi najviše 3 različita literala. Napomenimo da se bilo koja formula može redukovati u 3--CNF, u smislu rješivosti. Dakle, svaka klauzula 
+   Kažemo da je konjunktivna formula $\phi(x)$  napisana u 3--CNF  akko se u svakoj klauzuli nalazi najviše 3 različita literala. Napomenimo da se proizvoljna klauzula može redukovati u 3--CNF, u smislu rješivosti. Dakle, svaka klauzula 
    $l_1 \vee l_2 \vee \cdots \vee l_n$ se prevodi u 3--CNF na sljedeći način:
    \begin{align*}
        &(l_1 \vee l_2 \vee x_2) \wedge ( \neg x_2 \vee l_3 \vee x_3) \wedge ( \neg x_3 \vee l_4 \vee x_4 ) \wedge \cdots \wedge (\neg x_{n-3} \vee l_{n-3} \\
@@ -3120,7 +3120,7 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
    \end{proof} \\
  Može se pokazati i sljedeća teorema.
  \begin{thm} Neka je $k\in \mathbb{Z}$.
- 	 Problem odlučivanja da li postoji cjelobrojno rješenje u ILP-u (pod uslovom da minimizujemo) koje je manje od $k$ je NP--kompletno. 
+ 	 Problem odlučivanja da li postoji cjelobrojno rješenje u ILP-u (pod uslovom da minimizujemo)   vrijednosti manje od $k$ je NP--kompletan. 
  \end{thm}
  
 \textbf{\large Zadaci}
