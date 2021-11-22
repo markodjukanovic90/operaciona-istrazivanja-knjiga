@@ -3013,7 +3013,7 @@ pa se ograničenja u (\ref{eq: piecewise-constraints}) mogu napisati u obliku
     \begin{align*}
     	 &y \leq u x_1 \\
     	 &y \leq x_2 \\
-    	 & y \geq x_2 + u(1-x_1) \\
+    	 & y \geq x_2 - u(1-x_1) \\
     	 & y \geq 0.
     \end{align*}
   \item $x_1, x_2$ u obje neprekidne varijable, $l_1 \leq x_1 \leq u_1$, $l_2 \leq x_2 \leq u_2$. Uvedemo varijable $y_1 = \frac{1}{2}( x_1 + x_2) $ i  $y_2 =\frac{1}{2}(x_1 - x_2)$. Tada se izraz $x_1x_2$ može predstaviti u separabilnoj formi $y_1^2 - y_2^2$ koja se zatim može aproksimirati po-dijelovima-linearnim funkcijama. Granice za vrijednosti novih varijabli su 
@@ -3135,9 +3135,10 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
 	proizvesti proizvoda A, a koliko B, da bi zarada bila najveća.
 	
 	\item Marko se sprema na planinarenje. Na raspolaganju ima samo jedan ruksak i pet namirnica, po jedan
-	komad svake od njih. Ruksak je kapaciteta 2.5 L i ne smije biti teži od 2 kg. U tabeli su
+	komad svake od njih. Ruksak je kapaciteta 2.5 $l$ i ne smije biti teži od 2 $kg$. U tabeli su
 	prikazani podaci o namirnicama
-	\begin{table}
+	\begin{table}[H]
+		\centering
 		\begin{tabular}{|c|c|c|c|}
 			\hline
 			Namirnica & Masa (g) & Zapremina (L) & Kalorijska vrijednost (kcal) \\
@@ -3162,7 +3163,10 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
 	\item Preduzeće  razmatra izvođenje 5 trogodišnjih projekata, ali u svakoj godini može u to uložiti najviše
 	25 000 KM. Procjena troškova za svaki projekat u tri godine dana je tabelom (u hiljadama maraka), kao i
 	očekivana dobit od projekta (čista dobit – troškovi su oduzeti):
-	
+%	\begin{table}
+%	\centering
+%\begin{center}
+
 	\begin{tabular}{|c|c|c|c|c|}
 		\hline
 		Projekat & 1. godina & 2. godina & 3. godina & Dobit \\
@@ -3178,6 +3182,8 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
 		5 & 8 & 6 & 10 & 30 \\
 		\hline
 	\end{tabular}  \\
+%\end{center}
+%	\end{table}
 	Odrediti koje od projekata treba realizovati da se maksimizuje ukupna dobit.
 	
 	\item Zadat je skup $S$ koji se sastoji od $n$ brojeva. Koristeći tehnike cjelobrojnog linearnog programiranja, podijeliti skup $S$ na dva podskupa, tako da se zbirovi elemenata u prvom i drugom podskupu što manje razlikuju.
@@ -3190,15 +3196,15 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
 	\item Problem totalnog pokrivanja. %Neka je dato $n$ mijesta, te $m$ zahtjeva koji treba da budu ispunjeni ($d_1,\ldots, d_m$).  
 	Sa $D_c$ označimo maksimalnu daljinu koja se može pokriti instalacijom (skladišta, antene). Pod ``pokrivanjem'' podrazumijevamo ispunjavanje zahtjeva klijenata (koji žive u nekom mjestu). Sa $c_i$ označimo cijenu instalacije (antene, skladišta isl.) na mjesto $i$. Sa $d_{ij}$ označimo udaljenost između mjesta $i$ i $j$. Zadatak ovog problema je koja mjesta odabrati (za instaliranje antene, skladišta isl.) tako da su sva mjesta pokrivena, ali da pri tome minimizujemo troškove instalacija. Sa jednog odabranog mjesta se pokrivaju sva susjedna koja su u njegovom radijusu od $D_c$. 
 	\item Problem maksimalnog pokrivanja (eng. \emph{maximum coverage problem}). Neka je u ulazu data kolekcija skupova  $S=\{ S_1, \ldots, S_m\}$ te broj $k \in \mathbb{N}$. Potrebno je naći podskup $S' \subseteq S$, tako da je $|S'|\leq k$, a broj pokrivenih elemenata $|\bigcup_{s' \in S'} s'|$ je maksimizovan. \\
-	Uputstvo. sa $x_j \in \{0, 1\}$ označimo varijablu koja dobija vrijednost 1 ako je $S_i$ selektovan u rješenje $S'$, inače 0. Dodatno, sa $y_j \in \{0, 1 \}$ definišemo varijablu koja dobija vrijednost 1 ako je   element $e_j$ pokriven rješenjem.  
+	Uputstvo. Sa $x_j \in \{0, 1\}$ označimo varijablu koja dobija vrijednost 1 ako je skup $S_i$ odabran u rješenje $S'$, inače 0. Dodatno, sa $y_j \in \{0, 1 \}$ definišemo varijablu koja dobija vrijednost 1 ako je   element $e_j$ pokriven rješenjem.  
 %http://courses.ieor.berkeley.edu/ieor151/lecture_notes/ieor151_lec14.pdf
-	\item $P$-center problem čvorova (eng. \emph{vertex p-center problem}). Formulacija problema je  predstavljena neusmjerenim grafom $G = (I, J, E)$, gdje su čvorovi potražnje predstavljeni skupom vrhova $i\in I$, a moguće lokacije objekata date su drugim skupom vrhova $j \in J$ , a grane $e_{i,j} \in E$ postoje samo između čvorova $i \in  I$ i čvorova $j \in J$. Nadalje, čvorovima $d_{i,j}\geq 0$ dodjeljujemo pozitivne težine, što predstavlja udaljenost između čvorova $i$ i $j$. Imajte na umu da je moguće imati i udaljenost 0 između čvora potražnje i moguće lokacije objekta. Za svaki čvor $i \in I$ pridružena je težina (zahtjeva) $h_i>0$, koja predstavlja količinu zahtjeva tog čvora. 
+	\item $P$-center problem čvorova (eng. \emph{vertex p-center problem}). Formulacija problema je  predstavljena neusmjerenim grafom $G = (I, J, E)$, gdje su čvorovi potražnje predstavljeni  vrhovima $i\in I$, moguće lokacije (servisnih) objekata date su drugim skupom vrhova $j \in J$ , a grane $e_{i,j} \in E$ postoje samo između čvorova $i \in  I$ i čvorova $j \in J$. Nadalje, čvorovima $d_{i,j}\geq 0$ dodjeljujemo pozitivne težine, što predstavlja udaljenost između čvorova $i$ i $j$. Imajte na umu da je moguće imati i udaljenost 0 između čvora potražnje i moguće lokacije objekta. Za svaki čvor $i \in I$ pridružena je težina (zahtjeva) $h_i>0$, koja predstavlja količinu zahtjeva tog čvora. 
 	
 	U ovom problemu želimo postaviti $p$ objekata kako bismo smanjili maksimalnu udaljenost između bilo kojeg čvora potražnje i	njegovog servisnog objekta. 
 	\item %https://personal.utdallas.edu/~metin/Or6302/Notes/integer.pdf
-	 Pretpostavimo da se selimo u novi stan i da imamo samo dva kofera u koje možemo spakovati svoje stvari. Prvi kofer može da spakuje 22 kg, a drugi 28 kg. Težina i vrijednosti stvari
-	su dati sa \\
- \begin{table}[!ht]
+	 Pretpostavimo da se selimo u novi stan i da imamo samo dva kofera u koje možemo spakovati svoje stvari. U prvi kofer može da se spakuje 22 kg, a drugi 28 kg. Težina i vrijednosti stvari
+	su dati sa tabelom:
+ \begin{table}[H]
  	\centering
 	\begin{tabular}{l|cccccccc}
 		Stavka & A & B & C & D & E & F & G & H \\ \hline
@@ -3207,17 +3213,18 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
 	\end{tabular} 
     
  \end{table}
-Konstruišite model koji maksimizuje vrijednost  predmeta koji će biti ubačeni u ova dva kofera. 
-\item Višedimenzionalni više-direkcioni problem particionisanja brojeva (eng. \emph{multidimensional multi-way number partitioning problem}). Neka je dat skup vektora $S$. Inače, vektori mogu da budu iz proizvoljneg prostora $\mathbb{R}^m, m \in \mathbb{N}$.   Zadatak je podijeliti skup $S$ na $p \geq 1$ particija tako da su sume vrijednosti  elemenata  po koordinatama za sve particije podjednake. 
+Konstruišite model koji maksimizuje vrijednost  predmeta koji mogu biti ubačeni u ova dva kofera. 
+\item Višedimenzionalni više-direkcioni problem particionisanja brojeva (eng. \emph{multidimensional multi-way number partitioning problem}). Neka je dat skup vektora $S$. Inače, vektori mogu da budu iz proizvoljneg prostora $\mathbb{R}^m, m \in \mathbb{N}$.   Zadatak je podijeliti skup $S$ na $p \geq 1$ particija tako da su sume vrijednosti  elemenata  po koordinatama po particijama podjednake (što manje moguće). 
 
-\item Problem maksimalnog nezavisnog skupa (eng. \emph{independent set problem}). U ulazu je dat graf $G = (V, E)$. Potrebno je naći podskup $V' \subseteq V$ maksimalne kardinalnosti u grafu $G$ tako da niti jedan od čvorova iz $V'$ nisu susjedni. 
+\item Problem maksimalnog nezavisnog skupa (eng. \emph{independent set problem}). U ulazu je dat graf $G = (V, E)$. Potrebno je naći podskup $V' \subseteq V$ maksimalne kardinalnosti tako da niti jedan par čvorova iz $V'$ nisu susjedni. 
 \item Problem maksimalne klike (eng. \emph{maximum clique problem}).   U ulazu je dat graf $G = (V, E)$. Potrebno je naći podskup $V' \subseteq V$ maksimalne kardinalnosti tako da je indukovani podgraf 
 $G[V']$ grafa $G$ kompletan graf (postoji grana između bilo koja dva čvora iz $V'$). 
 \item % http://people.brunel.ac.uk/~mastjjb/jeb/or/moreip.html
 Proizvođač igračaka planira proizvodnju novih igračaka. Troškovi pripreme proizvodnih pogona i jedinični profit za svaku igračku dati su u nastavku: 
  \begin{table}[H]
 	\centering
-	\begin{tabular}{l|cc}
+	\begin{tabular}{l|cc} 
+	  \hline
 	  Igračka &  Troškovi pripreme    & Profit \\ \hline
 	  1       &  45000     &  12     \\
 	  2       &  76000     &  16     \\	\hline
@@ -3229,13 +3236,13 @@ Proizvođač igračaka planira proizvodnju novih igračaka. Troškovi pripreme p
  Stope proizvodnje svake igračke date su u nastavku (u jedinicama/satu): 
   \begin{table}[H]
  	\centering
- 	\begin{tabular}{l|cc}
- 		         &  Igračka 1 & Igračka 2 \\ \hline
+ 	\begin{tabular}{l|cc} \hline
+ 		  \        &  Igračka 1 & Igračka 2 \\ \hline
  	Tvornica 1   &  52     &  38     \\
     Tvornica 2   &  42     &  23     \\	\hline
  	\end{tabular} 
  \end{table}
- Fabrika 1 i 2, imaju 480 i 720 sati radnog vremena za proizvodnju ovih igračaka, redom. Proizvođač želi znati koju će od novih igračaka proizvesti, gdje i koliko svake (ako uopšte) treba proizvesti kako bi se povećala ukupna zarada. 
+ Fabrika 1 i 2, imaju 480 i 720 sati radnog vremena za proizvodnju ovih igračaka, redom. Proizvođač želi znati koju će od novih igračaka proizvesti, u kojoj tvornici i koliko svake (ako uopšte) treba proizvesti kako bi se ukupna zarada maksimizovala. 
  \item %http://people.brunel.ac.uk/~mastjjb/jeb/or/moreip.html
  Hrana se proizvodi rafiniranjem sirovih ulja i njihovim miješanjem. Sirova ulja dolaze u dvije kategorije: 
  \begin{itemize}
@@ -3256,12 +3263,12 @@ Cijene za kupovinu svakog ulja date su u nastavku (u \$/toni)
  	\centering
  	\begin{tabular}{ccccc}
             VEG1 & VEG2 & Ulje1 & Ulje2 & Ulje3 \\ \hline
-            115  & 128  & 132   & 109   & 114 \\ 		
+            115  & 128  & 132   & 109   & 114 \\ 	\hline	
     \end{tabular} 
 \end{table}
-Finalni proizvod prodaje se po 180 funti po toni. Biljna ulja i ne-biljna ulja zahtijevaju različite proizvodne linije za rafinisanje. Nije moguće rafinisati više od 210 t biljnih ulja i više od 260 t ne-biljnih ulja. Pretpostavimo da u procesu rafinisanja nema gubitka težine, a troškovi prerade mogu se zanemariti. 
+Finalni proizvod prodaje se po 180 funti po toni. Biljna ulja i ne-biljna ulja zahtijevaju različite proizvodne linije za rafinisanje. Nije moguće rafinisati više od 210 $t$ biljnih ulja i više od 260 $t$ ne-biljnih ulja. Pretpostavimo da u procesu rafinisanja nema gubitka težine, a troškovi prerade mogu se zanemariti. 
 
-Postoji tehničko ograničenje koje se odnosi na tvrdoću konačnog proizvoda. U jedinicama u kojima se mjeri tvrdoća, dopušteno je da ona bude izmešđu 3.5 i 6.2. Pretpostavlja se da se tvrdoća odnosi linearno sa miješanjem vrsti ulja. Tvrdoća sirovog ulja je data sljedećom tabelom: 
+Postoji tehničko ograničenje koje se odnosi na tvrdoću konačnog proizvoda. U jedinicama u kojima se mjeri tvrdoća, dopušteno je da ona bude između 3.5 i 6.2. Pretpostavlja se da se tvrdoća odnosi linearno sa miješanjem vrsta ulja. Tvrdoća sirovog ulja je data sljedećom tabelom: 
 \begin{table}[H]
 	\centering
 	\begin{tabular}{ccccc}
@@ -3270,12 +3277,12 @@ Postoji tehničko ograničenje koje se odnosi na tvrdoću konačnog proizvoda. U
     \end{tabular} 
 \end{table}
 
-Potrebno je odrediti šta kupiti i kako miješati sirova ulja tako da kompanija maksimizira svoj profit. 
+Potrebno je odrediti šta kupiti i kako miješati sirova ulja tako da kompanija maksimizuje svoj profit. 
 
 U osnovni model uključiti i sljedeća ograničenja:
 \begin{itemize}
-	\item Hrana nikad ne smije biti napravljena od više od 3 vrste ulja. 
-	\item Ako je ulje korišteno, onda se mora iskoristiti barem 30 t ulja.
+	\item Hrana nikad ne smije biti napravljena miješanjem više od 3 vrste ulja. 
+	\item Ako je ulje korišteno, onda se mora iskoristiti barem 30 $t$ ulja.
 	\item Ako su ili VEG1 ili VEG2 ulja korištena, onda i Ulje2 mora biti korišteno.  
 \end{itemize}
 
