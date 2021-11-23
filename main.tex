@@ -3299,15 +3299,15 @@ U osnovni model uključiti i sljedeća ograničenja:
      %\item Grupne-teoretske tehnike. 
  \end{enumerate}
 
-Mi ćemo izložiti   obje vrste metoda. Za model ILP-a (\ref{ilp-formulation}), zanemarujući uslov da varijable treba da budu cjelobrojne (već da uzimaju realne, pozitivne vrijednosti), dobijamo tzv. odgovarajuću LP \emph{relaksaciju} ILP-a (\ref{ilp-formulation}). LP relaksacija se može vrlo lako riješiti uz pomoć simpleks metoda pri čemu dobijemo rješenje $x^*$. Posmatrajući vektor $\overline{x}$ koje se dobije zaokružujući svaku od vrijednosti koordinata vektora $x^*$ na njenu najbližu cjelobrojnu, dobijamo cjelobrojni vektor. Međutim, iako je uslov o cjelobrojnosti (kakav je u odgovarajućem ILP-u potreban) ispunjen, može se desiti da ovakvo rješenje izvedeno iz LP relaksacije problema (\ref{ilp-formulation}) ne mora da bude dopustivo. U osnovi, skaliranjem desnih strana ILP-a kao i koeficijenata funkcije cilja na odgovarajući način, moguće je konstruisati probem čije je optimalno cjelobrojno rješenje proizvoljno udaljeno od zaokruženog rješenja LP relaksacije. Ove postupke ćemo se izložiti u nastavku. 
+U nastavku ćemo se baviti objema vrstama (generalnih) metoda. Za model ILP-a (\ref{ilp-formulation}), zanemarujući uslov da varijable treba da budu cjelobrojne (već da uzimaju realne, pozitivne vrijednosti), dobijamo tzv. odgovarajuću LP \emph{relaksaciju} ILP-a (\ref{ilp-formulation}). LP relaksacija se može efikasno riješiti uz pomoć simpleks metoda; označimo dobijeno rješenje sa $x^*$. Posmatrajući vektor $\overline{x}$ koje se dobije zaokružujući svaku od vrijednosti koordinata vektora $x^*$ na njenu najbližu cjelobrojnu, dobijamo cjelobrojni vektor. Međutim, iako je uslov o cjelobrojnosti (kakav je u odgovarajućem ILP-u potreban) ispunjen, može se desiti da ovakvo rješenje izvedeno iz LP relaksacije problema (\ref{ilp-formulation}) ne mora da bude dopustivo za početni ILP. U osnovi, skaliranjem desnih strana ILP-a kao i koeficijenata funkcije cilja na odgovarajući način, moguće je konstruisati probem čije je optimalno cjelobrojno rješenje proizvoljno udaljeno od zaokruženog rješenja LP relaksacije. Ove postupke ćemo se izložiti u nastavku. 
 
 \section{Metoda grananja i ograničavanja (B\&B)}
-B\&B tehnika programiranja je zasnovana na principu ``zavadi pa vladaj'' gdje se problem rastavlja na manje dijelove, i tako rekurzivno po potrebi. Kasnije se (optimalna rješenja) manjih problema kombinuju za dobijanje optimalnog rješenja početnog problema.  U B\&B strategiji dodatak je da se 
+B\&B tehnika programiranja je zasnovana na principu ``zavadi pa vladaj'' gdje se problem rastavlja na manje dijelove, i tako rekurzivno, po potrebi. Kasnije se (optimalna rješenja) manjih problema kombinuju za dobijanje optimalnog rješenja početnog problema.  U B\&B strategiji dodatak je da se 
 problem ne rastavlja na manje potprobleme ako se uspostavi da je rješenje podoptimalno (lošije od trenutno najboljeg dopustivog rješenja). U rješavanju ILP-a, dopustiv skup se dijeli na manje skupove, i tako rekurzivno (ako je potrebno) dok se ne dobiju potproblemi čije relaksacije obezbjeđuju cjelobrojno rješenje ili se zaključi da nisu dopustivi. Svi ovakvi B\&B pristupi se razlikuju u načinu podjele dopustivog skupa i zbog toga   postoji nekoliko različitih B\&B procedura u literaturi. 
 
 \subsection{Bazni B\&B za rješavanje problema ILP-a}
 
-Navedimo sljedeće bitne činjenice u rješavanju problema  ILP-a:
+U rješavanju problema  ILP-a, sljedeće jednostavne činjenice nam mogu biti od pomoći:
 \begin{itemize}
     \item  U LP relaksaciji u problemu 
            maksimizacije, optimalna vrijednost funkcije cilja 
@@ -3319,14 +3319,14 @@ Navedimo sljedeće bitne činjenice u rješavanju problema  ILP-a:
 Na bazi ove dvije činjenice, uvedimo sada sistematičnu podjelu dopustivog regiona na niz podregiona:
 \begin{enumerate}
     \item U korjenom čvoru rješavamo LP relaksaciju početnog problema     (simpleks metodom), i dobijamo rješenje $x^*=(x^*_1, \ldots, x^*_n)$.   Postavimo $f(x^*)$ = LB.
-    \item Za sve koordinate $i$ za koje je $x^*_i \not \in \mathbb{Z}$ znamo da  mora biti ili $z_i \geq \lfloor x^*_i \rfloor + 1$ ili $z_i \leq \lfloor x^*_i \rfloor$ i to je upravo mjesto podjele dopustivog regiona. Ako ima više takvih koordinata, biramo onu koordinatu $i$ gdje je decimalni dio najveći.  Recimo da je to koordinata $k$.
+    \item Za sve koordinate $i$ za koje je $x^*_i \not \in \mathbb{Z}$ treba biti ili $z_i \geq \lfloor x^*_i \rfloor + 1$ ili $z_i \leq \lfloor x^*_i \rfloor$ i to je upravo mjesto podjele dopustivog regiona. Ako ima više takvih koordinata, biramo onu koordinatu $i$ gdje je decimalni dio najveći.  Recimo da je to koordinata $k$.
     \item Sada dijelimo region problema na dva podregiona (lijevi i desni) dodavajući 
           ograničenja $x_k \geq \lfloor x^*_k \rfloor + 1$ ili $x_k \leq \lfloor x^*_k \rfloor$, redom.
     \item Rješavamo relaksaciju oba (pot)problema. 
     \begin{itemize}
     	\item  Ako je neko od rješenja cjelobrojno, popravljamo LB (ako smo dobili bolje dopustivo rješenje) i odgovarajući potproblem (njegov region) se dalje ne dijeli. 
     	\item Ako rješenje $x$ nije cjelobrojno, i pri tome je vrijednost optimuma manja od $LB$, taj potproblem se dalje više ne dijeli (\emph{bound} procedura). 
-    	\item Dalje, ako je potproblem nedopustiv, problem se ne dijeli (i ne razmatra se više). 
+    	\item Dalje, ako je potproblem nedopustiv, problem se ne dijeli (i ne razmatra više). 
     	\item Inače, idemo na korak 2 dijeljeći podregion ovog potproblema na nove (manje) podregione.    
     \end{itemize}
 
@@ -3338,7 +3338,7 @@ Primijetimo da ovom metodom formiramo drvo enumeracije koje nam garantuje nalaza
   \begin{itemize}
   	\item Izabrati one aktivne čvorove koji su najdublje u drvetu da bi što prije stigli do listova i potencijalnih dopustivih rješenja.
   	\item Odabrati aktivne čvorove nivo po nivo. Dakle, sve aktivne čvorove (tj. odgovarajuće potprobleme) jednog nivoa   rješavati, pa onda preći na čvorove idućeg nivoa. 
-  	\item Koristiti heurističku funkciju u odlući koji aktivni čvor (tj. odgovarajući potproblem) prvo rješavati. 
+  	\item Koristiti heurističku funkciju u odluci koji aktivni čvor (tj. odgovarajući potproblem) prvo rješavati. 
   \end{itemize}
 
 Na Slici~\ref{fig:bnb_ilp} je prikazano B\&B drvo sljedećeg ILP-a:
@@ -3409,7 +3409,7 @@ Na Slici~\ref{fig:bnb_ilp} je prikazano B\&B drvo sljedećeg ILP-a:
 	\caption{Generalni B\&B za rješavanje ILP-a.}\label{bnb_algorithm_ilp}
 \end{algorithm}
 
-\emph{Napomene.} Da bi se granice čak i poboljšale, imajmo na umu sljedeće činjenice:
+\emph{Napomene.} Da bi se granice  poboljšale, imajmo na umu sljedeće činjenice:
 \begin{itemize}
 	\item Ako su koeficijenti ciljne funkcije cjelobrojni, onda $z^* \leq \lfloor z^* \rfloor$;
 	\item Dodavanjem važećih ograničenja u sam model (fokus sljedećeg poglavlja). 
@@ -3418,12 +3418,12 @@ Na Slici~\ref{fig:bnb_ilp} je prikazano B\&B drvo sljedećeg ILP-a:
 
 
 \section{Implicitna Enumeracija}
-Posmatrajmo sada specijalnu B\&B proceduru koja se može primijeniti na problem Binarnog cjelobrojnog programiranja, gdje    sve diskretne varijable u suštini modeluju logičke odlukame. Ovaj algoritam ne zahtjeva da se posmatraju rješenja LP-relaksacija, već radi se sa enumeracijom. Dakle, izlistaju se sve moguće kombinacije vrijednosti koje varijable mogu da prime, pa se izabere ona koja je dopustiva i daje najveću vrijednost za ciljnu funkciju. Ovaj pristup radi dobro na problemima malih dimenzija gdje postoji svega nekoliko binarnih varijabli u modelu. Primijetimo da u problemu sa $n$ binarnih varijabli,  broj kombinacija za varijable odluke je jednak $2^n$ (dakle, raste eksponencijalnom brzinom u odnosu na veličinu ulaza). 
+Posmatrajmo sada specijalnu B\&B proceduru koja se može primijeniti na problem Binarnog cjelobrojnog programiranja, gdje    sve diskretne varijable u suštini modeluju logičke odlukame. Ovaj algoritam ne zahtjeva da se posmatraju rješenja LP-relaksacija, već radi se sa enumeracijom. Dakle, izlistaju se sve moguće kombinacije vrijednosti koje varijable mogu da prime, pa se izabere ona koja je dopustiva i daje najveću vrijednost za ciljnu funkciju. Ovaj pristup radi dobro na problemima malih dimenzija gdje postoji svega nekoliko binarnih varijabli. Primijetimo da u problemu sa $n$ binarnih varijabli,  broj kombinacija za varijable odluke je jednak $2^n$ (dakle, raste eksponencijalnom brzinom u odnosu na veličinu ulaza). 
 
 Prisjetimo se da u standardnoj B\&B proceduri, podjela na manje probleme je izvedena dodavanjem dodatnih ograničenja i izbacujući ograničenja za integralnost (cjelobrojnost). U implicitnoj enumeraciji se primjenjuje suprotna taktika, zadržavajući 0-1 restrikcije, ali ignorišući linearne nejednakosti. 
-Ideja implicitne enumeracije je uključiti B\&B proces tako što se fiksiraju neke od varijabli na 0 ili 1. Varijable koje ostaju neodređene se nazivaju \emph{slobodne varijable}.  B\&B kreće od slučaja da ne postoje varijable koje nisu slobodne. U svakom koraku fiksiramo jednu od varijabli i rješavamo problem bez razmatranja ograničenja sa nejednakostima. Potom provjeravamo da li je to rješenje dopustovo (zadovoljava ograničenja sa nejednakostima). U narednim podjelama (fiksiranjima) prethodne (ne-slobodne) varijable ostaju fiksirane. 
+Ideja implicitne enumeracije je uključiti B\&B proces tako što se fiksiraju neke od varijabli na 0 ili 1. Varijable koje ostaju neodređene se nazivaju \emph{slobodne varijable}.  B\&B kreće od slučaja da ne postoje varijable koje nisu slobodne. U svakom koraku fiksiramo jednu od varijabli i rješavamo problem bez razmatranja ograničenja sa nejednakostima. Potom provjeravamo da li je to rješenje dopustivo (zadovoljava ograničenja sa nejednakostima). U narednim podjelama  prethodne (ne-slobodne) varijable ostaju fiksirane. 
 %, dobijajući dva nova potproblema koja treba da budu riješena te implicitno određivanje da li su neophodna dalja fiksiranja.  
-Pretpostavimo da je u pitanju problem makismizacije. Proces implicitne enumeracije se sastoji od sljedećih koraka. 
+Pretpostavimo da je u pitanju problem maksimizacije. Proces implicitne enumeracije se sastoji od sljedećih koraka. 
 
 Fiksiramo $i=1$ i $LB=-\infty$. 
 
@@ -3502,7 +3502,7 @@ Prodiskutujmo ovo rješenje po čvorovima dobijenog stabla:
       \item U čvoru 0 imamo da je rješenje $x_i = 0$, za sve $i$, koje  nije dopustivo, ali znamo da   tada za optimalno rješenje vrijedi $z^*=f(x^*) \leq 10$.
       \item  Dalje, granamo ovaj problem na dva (korak 2), jedan gdje je $x_i=1$ a drugi $x_1=0$, odakle dobijamo dva potproblema (odgovaraju čvorovima 1 i 2). U čvoru 2 imamo potproblem za koji je $x_1=1$. Jasno je da kada uvrstimo $(1,0, \ldots, 0)$ u početni problem, da je ono dopustivo. Prema tome, optimalna vrijednost problema neće biti manji od 2, odakle zaključujemo da je za ovaj potproblem $z^*=f(x^*) \geq 2$. Dakle, imamo $LB$=2. 
       \item Problem u čvoru 2 je isti kao problem u čvoru 1, pa nastavljamo dalje sa dijeljenjem problema fiksirajući slobodne varijable. 
-      \item Sada fiksiramo promjenjivu $x_2$ (uz već fiksiran $x_1=0$). 
+      \item Sada fiksiramo promjenjivu $x_2$ (uz već fiksiranu odluku $x_1=0$). 
             Za potproblem u čvoru 4, provjerimo da ne postoji dopuna do dopustivog rješenja za ovako fiksirane vrijednosti (narušeno ograničenje 1), pa tu stajemo sa njim. Za potproblem u čvoru 3, imamo sada podjelu na dva potproblema fiksirajući varijablu $x_3$, tj. dva   nova čvora 5 i 6. Za problem u čvoru 5, lako se vidi da za ovakve fiksirane varijable imamo dopustivo rješenje za koje je vrijednost funkcije cilja jednaka 4, pa zaključujemo da je $z^*=f(x^*) \leq 4$, odakle imamo $LB=4$. Problem u čvoru 6 dijelimo dalje (po varijabli $x_4$), odakle dobijamo dva nova potproblema, koji odgovaraju čvoru 7 i 8. Lako se zaključi da je $z^*<LB$ ka ovaj potproblem.  Za čvor 8, imamo novo grananje (po varijabli $x_5$). Kako su ovdje sve varijable kompletno fiksne, primijetimo da niti jedna od ovih tačaka  nije dopustiva.
             \item Prema tome, optimalno rješenje početnog problema je $LB=4$ i dostiže se u tački $x=(0, 1, 1, 0, 0)$. 
   \end{itemize}
@@ -3511,8 +3511,8 @@ Prodiskutujmo ovo rješenje po čvorovima dobijenog stabla:
 \section{Metoda odsjecajućih ravni}
   
 \emph{Metoda odsjecajućih ravni} rješava cjelobrojne programe mijenjanjem rješenja linearnog programiranja sve dok se ne dobije cjelobrojno rješenje. Metoda ne radi  na principu dijeljenja dopustivog regiona problema na podregione, kao u B\&B metodama, već radi sa samo jednim linearnim programom, kojeg poboljšava iterativnim dodavanjem novih ograničenja. Nova ograničenja sukcesivno smanjuju dopustiv region dok se ne pronađe cjelobrojno optimalno rješenje.   
- Istorijski gledano, to je prvi algoritam razvijen za probleme cjelobrojno programiranja za koji se dokazalo da konvergira u konačnom broju
-koraka. Iako se algoritam generalno smatra   neefikasnim, ovaj metod je dovelo do konstrukcije drugih, učinkovitijih algoritama.  
+ Istorijski gledano, to je prvi algoritam razvijen za probleme cjelobrojno programiranja za koji se formalno dokazalo da konvergira u konačnom broju
+koraka ka optimumu. Iako se algoritam generalno smatra   neefikasnim, ovaj metod je dovelo do konstrukcije drugih, učinkovitijih algoritama.  
   
  \begin{definition}{Validna nejednakost} za ILP je svako ograničenje koje ne eliminiše niti   jedno moguće cjelobrojno rješenje problema.
  \end{definition}
