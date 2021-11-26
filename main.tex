@@ -2845,7 +2845,7 @@ $$  \sum_{j=1}^n x_{ij} = 1, \forall i =1,\ldots, n$$
  \end{align}
   %Postoje i druga ograničenja koja mogu da se dodaju za eliminaciju podruta, bez gore pomenutog iterativnog procesa, ali o njima će biti riječi u narednim sekcijama. 
  
- \section{Tehnike redukcije}
+ \section{Tehnike redukcije za ILP}
  
  \emph{Binarne varijable.} Pretpostavimo da je potrebno uključiti sljedeće aktivnosti: ($i$) izgraditi novo postrojenje ili
 ($ii$) poduzeti reklamnu kampanju ili ($iii$) razviti novi proizvod. Jasno je da su ove odluke korespondiraju ka logičkim odlukama da ili ne, pa ih, prema tome, modelujemo   uvodeći  (binarne) varijable $x_i \in \{0, 1 \}$, $i=1,2,3$. Često se nameće uslov da se najviše jedna od ovih odluka izvrši, što se modeluje sa $\sum_{i=1}^3 x_1 \leq 1$. Ovo ograničenje se obično naziva \emph{ograničenjem sa višestrukim izborom} (eng. \emph{multiple choice constraint}), jer se njime ograničava izbor odluka na najviše jednu od, u ovom slučaju, tri dostupne alternative. 
@@ -3508,9 +3508,9 @@ Prodiskutujmo ovo rješenje po čvorovima dobijenog stabla:
   \end{itemize}
   Potpuna enumeracija bi generisala 32 čvora za gornji problem. Implicitna enumeracija generiše svega 11 čvorova. 
  
-\section{Metoda odsjecajućih ravni}
+\section{Metoda odsijecajućih ravni}
   
-\emph{Metoda odsjecajućih ravni} rješava cjelobrojne programe mijenjanjem rješenja linearnog programiranja sve dok se ne dobije cjelobrojno rješenje. Metoda ne radi  na principu dijeljenja dopustivog regiona problema na podregione, kao u B\&B metodama, već radi sa samo jednim linearnim programom, kojeg poboljšava iterativnim dodavanjem novih ograničenja. Nova ograničenja sukcesivno smanjuju dopustiv region dok se ne pronađe cjelobrojno optimalno rješenje.   
+\emph{Metoda odsijecajućih ravni} rješava cjelobrojne programe mijenjanjem rješenja linearnog programiranja sve dok se ne dobije cjelobrojno rješenje. Metoda ne radi  na principu dijeljenja dopustivog regiona problema na podregione, kao u B\&B metodama, već radi sa jednim linearnim programom, kojeg poboljšava iterativnim dodavanjem novih ograničenja. Nova ograničenja sukcesivno smanjuju dopustiv region dok se ne pronađe cjelobrojno optimalno rješenje.   
  Istorijski gledano, to je prvi algoritam razvijen za probleme cjelobrojno programiranja za koji se formalno dokazalo da konvergira u konačnom broju
 koraka ka optimumu. Iako se algoritam generalno smatra   neefikasnim, ovaj metod je dovelo do konstrukcije drugih, učinkovitijih algoritama.  
   
@@ -3529,28 +3529,28 @@ jedna njegova validna nejednakost je $z \leq 5$.
 \begin{definition}
       Konveksni omotač za problem  ~(\ref{ilp-formulation}) je najmanji (dopustivi) poliedar nekog LP-a koji sadrži sve cjelobrojne tačke tog problema.
 \end{definition}
-Ako riješimo LP problem čiji je dopustivi skup konveksni omotač cjelobrojnih tačaka, onda je to rješenje optimalno za odgovarajući ILP. Međutim ovaj problem je  NP-težak, pa prema tome nije očekivano da se takav konveksni omotač može naći u generalnom slučaju. Nalazak korisnih ograničenja (ne svih) koja učestvuju u izgradnji konveksnog omotača je takođe veoma težak zadatak, mada je ovo ponekad i moguće (kao u slučaju problema trgovačkog putnika). Prema tome, ostaje nam naći korisne odsjecajuće ravni neovisno od problema nalaska konveksnog omotača, što se najčeše  u praksi i radi. 
+Ako riješimo LP problem čiji je dopustivi skup konveksni omotač cjelobrojnih tačaka, onda je to rješenje optimalno za odgovarajući ILP. Međutim ovaj problem je takođe  NP-težak, pa prema tome nije očekivano da se takav konveksni omotač može naći u generalnom slučaju. Nalazak korisnih ograničenja (ne svih) koja učestvuju u izgradnji konveksnog omotača je takođe veoma težak zadatak, mada je ovo nekad i moguće (kao u slučaju problema trgovačkog putnika). Prema tome, ostaje nam naći korisne odsjecajuće ravni neovisno od problema nalaska konveksnog omotača, što se najčeše i radi  u praksi. 
 
 Posmatrajmo   \emph{problem pakovanja skupa} dat na sljedeći način. Neka je data kolekcija $D$ rombova (u $\mathbb{R}^2$). 
-Zadatak se sastoji od odabira maksimalnog broja rombova tako da se niti jedan od njih ne prepliće (presjeca).  Za rombove kažemo da se prepliću ako imaju barem jednu zajedničku tačku u presjeku. 
-Neka je $O$ skup svih parova rombova koji se prepliću. Sljedeći ILP odgovara ovom problemu:
+Zadatak se sastoji od odabira maksimalnog broja rombova tako da se niti jedan od njih ne presjeca.  Za rombove kažemo da se presijecaju ako imaju barem jednu zajedničku tačku u presjeku. 
+Neka je $O$ skup svih parova rombova koji se presijecaju. Sljedeći ILP odgovara ovom problemu:
 \begin{align*}
     &\max \sum_{d\in D}x_d\\
     & x_d + x_{d'} \leq 1, \forall (d, d^{'}) \in O \\
     & x_d \in \{0,1\}, \forall d \in D,
 \end{align*}
-gdje je $x_d$ binaran varijabla koja dobija vrijednost 1 ako je romb $d$ selektovan, inače 0. 
+gdje je $x_d$ binaran varijabla koja dobija vrijednost 1 ako je romb $d$ izabran u riješenju, inače 0. 
 Kao što vidimo, broj binarnih varijabli u praksi može biti veoma velik, što nas rješava mogućnosti efikasne primjene neke od B\&B tehnika.
 
-Pokušajmo dodati odsjecajuće ravni u prethodni ILP. Za svaku tačku $c$, enumerišimo sve one (moguće) rombove iz $D$ koji sadrže ovu tačku. Označimo takav skup sa $D(c)$. Prema tome, za svaki skup $D(c)$, najviše jedan romb može da bude selektovan. Sada dodajemo sljedeća ograničenja u prethodni model
+Pokušajmo dodati odsjecajuće ravni u prethodni ILP. Za svaku tačku $c$, enumerišimo sve one (moguće) rombove iz $D$ koji sadrže ovu tačku. Označimo takav skup sa $D(c)$. Prema tome, za svaki skup $D(c)$, najviše jedan romb može da bude odabran. Sada dodajemo sljedeća ograničenja u prethodni model
 \begin{equation}
      \sum_{d \in D(c)} x_d \leq 1, \forall c.
 \end{equation}
 Ove odsjecajuće ravni će ubrzati rješavanje ovog problema za   red veličine.
 
-Pozabavimo se sada \emph{Gomorijevim odsjecajućim ravnima}, generalnu metodu za dodavanje odsjecajućih ravni u ILP.  Ideja je dobiti ove ravni iz nekog od ograničenja optimalne tabele simpleks metode LP relaksacije problema. Neka simpleks metod generiše sljedeći skup jednakosti u formi:
+Pozabavimo se sada \emph{Gomorijevim odsjecajućim ravnima}, generalnu metodu za dodavanje odsijecajućih ravni za  ILP.  Ideja je dobiti ove ravni iz nekog od ograničenja optimalne tabele simpleks metode koja predstavlja LP relaksaciju problema. Neka simpleks metod generiše sljedeći skup jednakosti u formi:
 
-$$x_i + \sum_{ij} \overline{a}_{i,j} w_j= \overline{b}_i, i=1, \ldots,m$$
+$$x_i + \sum_{ j} \overline{a}_{i,j} w_j= \overline{b}_i, i=1, \ldots,m$$
 gdje su $x_i$ bazne promjenjive, a $w_j$ nebazne promjenjive. Napišimo ovu jednakost u drugačijem obliku tako da su na lijevoj strani cjelobrojni dijelovi, dok su na desnoj decimalni dijelovi, tj.
 $$x_i + \sum_{j} \lfloor \overline{a}_{i,j} \rfloor w_j - \lfloor \overline{b}_i \rfloor = \overline{b}_i - \lfloor \overline{b}_i  \rfloor    - \sum_{j} (\overline{a}_{i,j} - \lfloor \overline{a}_{i,j} \rfloor) w_j.$$
 
@@ -3574,7 +3574,7 @@ $$\begin{array}{ll}
     &x_1, x_2 \geq 0, \\
     &  x_1, x_1 \in \mathbb{Z}.
 \end{array}$$
-Riješimo ga uz pomoć gomorijevih odsjecajućih ravni. 
+Riješimo ga uz pomoć Gomorijevih odsijecajućih ravni. 
 
 \emph{Rješenje.}
 Inicijalna simpleks tabela je data sa 
@@ -3590,7 +3590,7 @@ $$\begin{array}{cccc|c}
    \frac{14}{25}         & 0               & \frac{2}{5} & 1 & \frac{11}{5}\\ \hline
    -\frac{7}{5}                  & 0               &4 & 0 & 12
 \end{array}$$
-Dalje, biramo pivot element u datoj simpleks tabeli, a to je elemet $\overline{a}_{2,1} = \frac{14}{25}$, pa dobijemo simpleks tabelu
+Dalje, biramo pivot element u datoj simpleks tabeli, a to je element $\overline{a}_{2,1} = \frac{14}{25}$, pa dobijemo simpleks tabelu
 $$
 \begin{array}{cccc|c}
     0    &  1  &  \frac{10}{14} &  -\frac{10}{14}  &  \frac{20}{14}                  \\
@@ -3599,7 +3599,7 @@ $$
 \end{array}
 $$
 Kako u posljednjoj vrsti nemamo negativnih vrijednosti, zaključujemo da je ovo optimalna simpleks tabela. Na osnovu (\ref{gomory_cplex}),   za prvi red simpleks tabele i odrogarajuće ogranjičenje generišemo odsjecajuću ravan:
-$$   \frac{5}{7}x_3 + \frac{2}{7} x_4 +      y_1   = \frac{6}{14}=\frac{3}{7}$$
+$$   \frac{5}{7}x_3 + \frac{2}{7} x_4 -      y_1   = \frac{6}{14}=\frac{3}{7}$$
 pa je dodajemo u (završnu) simpleks tabelu:
 $$
 \begin{array}{ccccc|c}
@@ -3671,7 +3671,7 @@ Na Slici~ \ref{fig:region_ilp_primjer_2} dat je skup tačaka koje su dopustive z
     \label{fig:region_ilp_primjer_2}
 \end{figure}
 
-Riješimo sada ovaj problem uz pomoć Gomorijevih odsjecajućih ravni. 
+Riješimo sada ovaj problem uz pomoć Gomorijevih odsijecajućih ravni. 
 Početna simpleks tabela je data sa 
 $$\begin{array}{ccc c| c}
     3  & -1 & 1 &  0  & 12  \\
@@ -3749,7 +3749,7 @@ gdje je lako uočiti da je optimalno bazno dopustivo rješenje $x=(5, 4, 1, 7, 0
 \section{B\&C algoritam za rješavanje ILP-a}
 %https://homepages.rpi.edu/~mitchj/handouts/bc_algo/
 % http://www.mi.fu-berlin.de/wiki/pub/Main/GunnarKlauP1winter0708/discMath_klau_ILP_I.pdf
-Za razliku od B\&B procedure koja rješava ILP, B\&C dodaje  i metod odsjecajućih ravni u rješavanju  potproblema koji odgovaraju čvorovima (drveta). Dakle, ako  uzimamo trenutno aktivni čvor i rješavamo njegov potproblem, dijelimo ga na nekoliko potproblema (podjelom dopustivog regiona na više disjunktnih -- dodavanjem ograničenja) ili ga rješavamo rekurzivnim dodavanjem (gomorijevih) odsjecajućih ravni. Dekonstrirajmo ovu ideju na rješavanje jednog ILP-a.
+Za razliku od B\&B procedure koja rješava ILP, B\&C dodaje  i metod odsijecajućih ravni u rješavanju  potproblema koji odgovaraju čvorovima (drveta). Dakle, ako  uzimamo trenutno aktivni čvor i rješavamo njegov potproblem, dijelimo ga na nekoliko potproblema (podjelom dopustivog regiona na više disjunktnih -- dodavanjem ograničenja) ili ga rješavamo rekurzivnim dodavanjem (gomorijevih) odsijecajućih ravni. Dekonstrirajmo ovu ideju na rješavanje jednog ILP-a.
 
 \emph{Primjer}.  Riješimo problem modelovan uz pomoć sljedećeg ILP-a:
 \begin{align*}
@@ -3784,7 +3784,7 @@ sa optimalnom vrijednošću $33\frac{1}{7}$. Nakon toga treba da se donese odluk
     & x_1, x_2 \in \mathbb{Z}
 \end{align*}
 
-Relaksacija problem ($P1$) daje riješenje $x^*=(3,2)$, koje je cjelobrojno, pa prema tome i dopustivo u početnom problemu. Njena vrijednost je 28, što je i donja granica ($LB$) početnog problema. Relaksacija problema ($P2$) nam daje rješenje $x^*=(2, \frac{7}{2})$, čija je optimalna vrijednost $\frac{29}{2}$.  Prema tome, rješenje nije cjelobrojno. Primjenjujući metod gomorijevih odsjecajućih ravni na problem ($P2$), konstruišemo odsjecajuću ravan $2x_1 + x_2 \leq 7$ koju dodajemo u problem ($P2$) pa dobijamo problem 
+Relaksacija problem ($P1$) daje riješenje $x^*=(3,2)$, koje je cjelobrojno, pa prema tome i dopustivo u početnom problemu. Njena vrijednost je 28, što je i donja granica ($LB$) početnog problema. Relaksacija problema ($P2$) nam daje rješenje $x^*=(2, \frac{7}{2})$, čija je optimalna vrijednost $\frac{29}{2}$.  Prema tome, rješenje nije cjelobrojno. Primjenjujući metod gomorijevih odsijecajućih ravni na problem ($P2$), konstruišemo odsjecajuću ravan $2x_1 + x_2 \leq 7$ koju dodajemo u problem ($P2$) pa dobijamo problem 
 \begin{align*}
     &\max 6 x_1 + 5 x_2 \\
     & {s.t. } \\
@@ -3799,10 +3799,10 @@ Relaksacija problem ($P1$) daje riješenje $x^*=(3,2)$, koje je cjelobrojno, pa 
 Rješavajući LP relaksaciju problema ($P3$), dobijamo rješenje $x^*=(\frac{9}{5}, \frac{17}{5})$, tj.  optimalna vrijednost je $27.8$. Kako je $LB \geq 28.8$, niti jedno cjelobrojno rješenje problema ($P3$) ne može biti bolje od trenutno najbolje donje granice ($LB=28$), pa zaključujemo da je optimalo rješenje početnog problema $x^*=(3,2)$. 
 
 \section{Lagranžova relaksacija}
-U rješavanju problema optimizacije, nalazak optimalnog rješenja je jedan od glavnih ciljeva. Međutim, za mnoge probleme nije realno očekivati da se garantuje optimalnost, već najbolje što se može učiniti za data ograničenja  je da se ponudi dobra donja granica za optimalnu vrijednost. Ako je ta ganica blizu optimuma, u mnogo slučajeva ona može da zamijeni optimum, štedeći resurse kojima raspolažemo. 
+U rješavanju problema optimizacije, nalazak optimalnog rješenja je jedan od glavnih ciljeva. Međutim, za mnoge probleme nije realno očekivati da se garantuje nalazak optimalnog rješenja u realnom vremenu, već najbolje što se može učiniti  je da se ponudi dobra donja granica za optimalnu vrijednost. Ako je ta ganica blizu optimuma, u mnogo slučajeva ona može da zamijeni optimum, štedeći resurse kojima raspolažemo. 
 
 Ideja \emph{Lagranžove relaksacije} se sastoji u tome da u modelu ILP-a  koji ima  ograničenja koja čine problem teškim (ova procjena je najčešće stvar praktičnog iskustva),  posmatramo kao dio ciljne funkcije koju penalizujemo nekim parametrom.  %parametrom $\lambda>0$. 
-Ovo ograničenje potom brišemo iz skupa ograničenja modela a zatim rješavamo novi problem. Na ovaj način, rješenje ovakvog problema je donja granica (za problem minimizacije) za optimalno rješenje datog problema. U praksi, ona je često jako blizu vrijednosti optimuma. 
+Ovo ograničenje potom brišemo iz skupa ograničenja modela, a zatim rješavamo novi problem. Na ovaj način, rješenje ovakvog problema je donja granica (za problem minimizacije) za optimalno rješenje inicijalnog problema. U praksi, ona je često jako blizu vrijednosti optimuma. 
 
 \emph{Primjer}. Posmatrajmo problem \emph{najkraćeg puta sa ogaraničenjem} (eng. \emph{Constrained Shortest Path Problem}). Neka je dat usmjeren neciklični graf $G=(V,E)$. Za svaku granu $(i,j) \in E$ dodijelimo cijenu puta $c_{i,j}$ i vrijeme putovanja $t_{i,j}$. Pretpostavimo da je čvor $i=1$ startni čvor (izvorišni čvor), a čvor $n = |V|$   završni čvor (terminalni čvor). Zadatak je da se nađe put  od izvorišnog do terminalnog čvora koji je najeftiniji ali tako da se čitav put pređe u vremenskom periodu $T$.
 
@@ -3820,7 +3820,7 @@ Ovaj problem se modeluje pomoću sljedećeg ILP-a:
 \end{align} 
 
 Binarna varijabla $x_{i,j}$ dobija vrijednost 1 ako je odabrana grana $(i,j)$ na   putu, a 0 inače.  
-Prvo ograničenje u modelu nam daje da je dopustivo rješenje upravo put od izvorišnog do terminalnog čvora. Drugo ograničenje nam kazuje da je vrijeme prelaska puta u granicama dopustivog. Ovo ograničenje spada pod ``komplikovanim'' ograničenjima jer, kao što znamo,  pronalazak najkraćeg puta u direktnim grafovima sa unaprijed definisanim izvorišnim čvorom je polinomijalno rješiv (Dajkstrin algoritam), dok dodavanjem ograničenja o vremenu taj problem postaje NP-težak problem. Ideja je sada relaksirati ovaj problem uz prebacivanje ograničenja za vrijeme u funkciji cilja koja se zatim penalizuje. 
+Prvo ograničenje u modelu nam daje da je dopustivo rješenje upravo put od izvorišnog do terminalnog čvora. Drugo ograničenje nam kazuje da je vrijeme prelaska puta u granicama dopustivog. Ovo ograničenje spada pod ``komplikovanim'' ograničenjima jer, kao što znamo,  pronalazak najkraćeg puta u direktnim grafovima sa unaprijed definisanim izvorišnim čvorom je polinomijalno rješiv (Dajkstrin algoritam), dok dodavanjem ograničenja o vremenu taj problem postaje NP-težak. Ideja je sada relaksirati ovaj problem uz prebacivanje ograničenja za vrijeme u funkciju cilja koja se zatim penalizuje. 
 Dakle, Lagranžova relaksacija problema je data sa:
 
 \begin{align*}
@@ -3835,15 +3835,17 @@ Dakle, Lagranžova relaksacija problema je data sa:
 \end{align*}
 Primijetimo da je $L(\lambda) \leq z(\lambda)  \leq z^*$, za sve $\lambda > 0$, gdje je $z(\lambda)$ problem koji ima funkciju cilja $L(\lambda)$ uz uključeno ograničenje o vremenu u skup ograničenja modela. Dakle, za $\lambda >0$, $L(\lambda)$ nam daje donju granicu za optimalno rješenje početnog problema. 
 
-Problem $L^* = \max \{ L(\lambda) \mid \lambda > 0  \}$ se naziva \emph{problem lagranžovog multiplikatora}. Može se pokazati da vrijedi 
+Problem $L^* = \max \{ L(\lambda) \mid \lambda > 0  \}$ se naziva \emph{problem Lagranžovog multiplikatora}. Može se pokazati da vrijedi 
 $$ L(\lambda) \leq L^* \leq z^*.$$
 
 U praksi se pokazalo da je Lagranžova relaksacija dobra tehnika za dobijanje granica za optimalnu vrijednost problema. Pokušajmo sada primijeniti ovu tehniku na \emph{problem trgovačkog putnika}.  
 
 Pogledajmo ovaj problem sa grafovske strane. Znamo da kolekcija grana formira rutu ako su svaka dva čvora grafa pokrivena sa dvije grane. Takođe, ako obrišemo grane incidentne sa čvorom 1, ostatak rute čini stablo koje pokriva graf  $G\setminus \{1\}$.  
-Definišimo sa $A(j)$ skup svih čvorova koji su incidentni sa čvorom $j$. Relaksacija: definišimo sa $T_1$ skup svih ruta koje nakon brisanja grana koje pokrivaju čvor $1$ formiraju drvo.  
+Definišimo sa $A(j)$ skup svih čvorova koji su incidentni sa čvorom $j$. 
 
-Shodno tome, konstruišemo model
+Relaksacija: definišimo sa $T_1$ skup svih ruta koje nakon brisanja grana koje pokrivaju čvor $1$ formiraju drvo.  
+
+Shodno tome, konstruišemo sljedeći model
 \begin{align*}
     &z^* = \min \sum_{(i,j)\in E} c_{i,j} x_{i,j}\\
     & \sum_{ \{ i \mid (i,j) \in E \} } x_{i,j} = 2, \forall i \in \{1,\ldots, n \} \\
@@ -3858,7 +3860,7 @@ Lagranžova relaksacija za ovaj problem može se zadati sa
 \end{align*}
 gdje je $\lambda=(\lambda_1, \ldots, \lambda_n)$ i $c^\lambda_{i,j} = c_{i,j} + \lambda_i + \lambda_j$. 
 
-Rješenje problema lagranžovog multiplikatora u praksi daje izvrsna rješenja i obično su rješenja blizu prave rute. Optimalno pokrivajuće stablo lagranžovog problema $L(\lambda^*)$ za optimalni $\lambda^*$ će nam često u praksi dati rješenje sa  nekoliko visećih čvorova. 
+Rješenje problema Lagranžovog multiplikatora u praksi daje izvrsna rješenja i obično su rješenja blizu prave rute. Optimalno pokrivajuće stablo Lagranžovog problema $L(\lambda^*)$ za optimalni $\lambda^*$ će nam često u praksi dati rješenje sa  nekoliko visećih čvorova. 
 
 Konstruišimo još jednu Lagranžovu relaksaciju za ovaj problem uvodeći \emph{ograničenja pokrivanja}, tj. da u svakoj ruti broj grana koje imaju oba kraja u skupu čvorova $S$ kardinalnosti $|S|$ je najviše $|S|-1$, pa imamo: 
 
@@ -4212,7 +4214,7 @@ Nakon primjene B\&B metode, riješiti metod grafički dijeljeći region na podre
 	 & x_1 + 10 x_2 + x_3 \leq 10 \\
 	 & x_1, x_2, x_3, x_4 \in \{0, 1\}.
 \end{align*}
-	\item Metodom gomorijevih odsjecajućih ravni, riješiti sljedeći ILP:% https://homepages.rpi.edu/~mitchj/handouts/gomorycuts/gomorycuts.html
+	\item Metodom gomorijevih odsijecajućih ravni, riješiti sljedeći ILP:% https://homepages.rpi.edu/~mitchj/handouts/gomorycuts/gomorycuts.html
 	\begin{align*}
 		 &\min -x_1 - x_2 \\
 		 &s.t.\\
@@ -4221,7 +4223,7 @@ Nakon primjene B\&B metode, riješiti metod grafički dijeljeći region na podre
 		 & x_1, x_2 \geq 0 \\
 		 & x_1, x_2 \in \mathbb{Z}.
 	\end{align*}
-\item Metodom gomorijevih odsjecajućih ravni, riješiti sljedeći ILP:% https://homepages.rpi.edu/~mitchj/handouts/gomorycuts/gomorycuts.html
+\item Metodom gomorijevih odsijecajućih ravni, riješiti sljedeći ILP:% https://homepages.rpi.edu/~mitchj/handouts/gomorycuts/gomorycuts.html
 \begin{align*}
 	& \max x_1 + 4 x_2 \\
 	& s.t. \\
@@ -4349,7 +4351,7 @@ U ovom slučaju, cilj je eliminisati ovaj zrak iz daljeg razmatranja (budućih r
 
 \end{itemize}
  
-Sada možemo definisati master problem koji nastaje dodavanjem svih odsjecajućih ravni generisanih u prethodnim koracima.
+Sada možemo definisati master problem koji nastaje dodavanjem svih odsijecajućih ravni generisanih u prethodnim koracima.
   \begin{equation}
 	\begin{aligned}\label{bender8}
 		\min\ &z\\
