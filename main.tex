@@ -4274,10 +4274,9 @@ Dekompozicione metode u matematičkom programiranju su tehnike pomoću kojih se 
 
 Široka primjena metoda linearnog, cjelobrojnog i mješovitog cjelobrojnog linearnog programiranja u modelovanju i rješavanju velikog broja različitih problema iz teorije i prakse, doveli su do porasta interesa i za primjenu i razvoj dekompozicionih metoda. Čak se i tradicionalne metode za rješavanje problema cjelobrojnog programiranja, kao što su B\&B, ili odsjecajuće ravni, takođe   mogu smatrati dekompozicionim metodama, jer one dijele polazni problem na LP relaksaciju i cjelobrojna ograničenja.
 
-Treba napomenuti da i savremeni MILP rješavači, o čemu će biti govora kasnije, takođe u svojim implementacijama koriste i dekompozicione algoritme, koji, u nekim slučajevima, lakše i brže dovode do rješenja.
+Treba napomenuti da i savremeni MILP rješavači, o čemu će biti govora kasnije, takođe u svojim implementacijama koriste i dekompozicione algoritme, koji, u nekim slučajevima, lakše i brže dovode do rješenja. U ovom poglavlju razmatraćemo dvije dekompozicione metode: Benderovu i Dantzig-Wolfe dekompoziciju.
  
- 
- \section{Benderova Dekompozicija}
+ \section{Benderova dekompozicija}
  
  Benderova metoda je uvedena šezdesetih godina dvadesetog vijeka, kao algoritam za rješavanje MILP programa. 
  Osnovna ideja Benderove dekompozicije primijenjenog na MILP program je podjela skupa promjenljivih na dva podskupa, od kojih se jedan skup promjenljivih (skup cjelobrojnih promjenljivih) smatra ``komplikovanim'', odnosno skupom promjenljivih čijim se fiksiranjem dolazi do značajnog pojednostavljenja polaznog problema. Prvi problem (koji se zove i master problem) se rješava nad prvim skupom promjenljivih, dok se vrijednosti promjenljivih iz drugog skupa,  za dato rješenje prvog potproblema, određuju rješavanjem drugog potproblema. Uspješnu primjenu Benderove dekompozicije, između ostalog, obezbjeđuje i teorija dualnosti, odnosno teoreme slabe i jake dualnosti.
@@ -4302,7 +4301,7 @@ Treba napomenuti da i savremeni MILP rješavači, o čemu će biti govora kasnij
   \end{aligned}
 \end{equation}
  
-Sada posmatrajmo dualni problem potproblema~\ref{bender2}, ignorišući term $g^T\overline{y}$ koji je konstantan.
+Posmatrajmo dualni problem potproblema~(\ref{bender2}), ignorišući term $g^T\overline{y}$ koji je konstantan.
   \begin{equation}
 	\begin{aligned}\label{bender3}
 	\max\ &u^T (c-B\overline{y})\\
@@ -4997,7 +4996,7 @@ $$x =\left(\begin{array}{c}
 
 
 
-  \section{Dantzig-Wolfe Dekompozicija}%https://www.maxwell.vrac.puc-rio.br/29077/29077_5.PDF
+  \section{Dantzig-Wolfe dekompozicija}%https://www.maxwell.vrac.puc-rio.br/29077/29077_5.PDF
  %https://www.youtube.com/watch?v=wxz0NJvKZNM
  %Glavni link: https://www.youtube.com/watch?v=IposxYVBUnY
  
