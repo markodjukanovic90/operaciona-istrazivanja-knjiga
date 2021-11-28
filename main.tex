@@ -3508,9 +3508,9 @@ Prodiskutujmo ovo rješenje po čvorovima dobijenog stabla:
   \end{itemize}
   Potpuna enumeracija bi generisala 32 čvora za gornji problem. Implicitna enumeracija generiše svega 11 čvorova. 
  
-\section{Metoda odsijecajućih ravni}
+\section{Metoda odsjecajućih ravni}
   
-\emph{Metoda odsijecajućih ravni} rješava cjelobrojne programe mijenjanjem rješenja linearnog programiranja sve dok se ne dobije cjelobrojno rješenje. Metoda ne radi  na principu dijeljenja dopustivog regiona problema na podregione, kao u B\&B metodama, već radi sa jednim linearnim programom, kojeg poboljšava iterativnim dodavanjem novih ograničenja. Nova ograničenja sukcesivno smanjuju dopustiv region dok se ne pronađe cjelobrojno optimalno rješenje.   
+\emph{Metoda odsjecajućih ravni} rješava cjelobrojne programe mijenjanjem rješenja linearnog programiranja sve dok se ne dobije cjelobrojno rješenje. Metoda ne radi  na principu dijeljenja dopustivog regiona problema na podregione, kao u B\&B metodama, već radi sa jednim linearnim programom, kojeg poboljšava iterativnim dodavanjem novih ograničenja. Nova ograničenja sukcesivno smanjuju dopustiv region dok se ne pronađe cjelobrojno optimalno rješenje.   
  Istorijski gledano, to je prvi algoritam razvijen za probleme cjelobrojno programiranja za koji se formalno dokazalo da konvergira u konačnom broju
 koraka ka optimumu. Iako se algoritam generalno smatra   neefikasnim, ovaj metod je dovelo do konstrukcije drugih, učinkovitijih algoritama.  
   
@@ -3548,7 +3548,7 @@ Pokušajmo dodati odsjecajuće ravni u prethodni ILP. Za svaku tačku $c$, enume
 \end{equation}
 Ove odsjecajuće ravni će ubrzati rješavanje ovog problema za   red veličine.
 
-Pozabavimo se sada \emph{Gomorijevim odsjecajućim ravnima}, generalnu metodu za dodavanje odsijecajućih ravni za  ILP.  Ideja je dobiti ove ravni iz nekog od ograničenja optimalne tabele simpleks metode koja predstavlja LP relaksaciju problema. Neka simpleks metod generiše sljedeći skup jednakosti u formi:
+Pozabavimo se sada \emph{Gomorijevim odsjecajućim ravnima}, generalnu metodu za dodavanje odsjecajućih ravni za  ILP.  Ideja je dobiti ove ravni iz nekog od ograničenja optimalne tabele simpleks metode koja predstavlja LP relaksaciju problema. Neka simpleks metod generiše sljedeći skup jednakosti u formi:
 
 $$x_i + \sum_{ j} \overline{a}_{i,j} w_j= \overline{b}_i, i=1, \ldots,m$$
 gdje su $x_i$ bazne promjenjive, a $w_j$ nebazne promjenjive. Napišimo ovu jednakost u drugačijem obliku tako da su na lijevoj strani cjelobrojni dijelovi, dok su na desnoj decimalni dijelovi, tj.
@@ -3574,7 +3574,7 @@ $$\begin{array}{ll}
     &x_1, x_2 \geq 0, \\
     &  x_1, x_1 \in \mathbb{Z}.
 \end{array}$$
-Riješimo ga uz pomoć Gomorijevih odsijecajućih ravni. 
+Riješimo ga uz pomoć Gomorijevih odsjecajućih ravni. 
 
 \emph{Rješenje.}
 Inicijalna simpleks tabela je data sa 
@@ -3671,7 +3671,7 @@ Na Slici~ \ref{fig:region_ilp_primjer_2} dat je skup tačaka koje su dopustive z
     \label{fig:region_ilp_primjer_2}
 \end{figure}
 
-Riješimo sada ovaj problem uz pomoć Gomorijevih odsijecajućih ravni. 
+Riješimo sada ovaj problem uz pomoć Gomorijevih odsjecajućih ravni. 
 Početna simpleks tabela je data sa 
 $$\begin{array}{ccc c| c}
     3  & -1 & 1 &  0  & 12  \\
@@ -3749,7 +3749,7 @@ gdje je lako uočiti da je optimalno bazno dopustivo rješenje $x=(5, 4, 1, 7, 0
 \section{B\&C algoritam za rješavanje ILP-a}
 %https://homepages.rpi.edu/~mitchj/handouts/bc_algo/
 % http://www.mi.fu-berlin.de/wiki/pub/Main/GunnarKlauP1winter0708/discMath_klau_ILP_I.pdf
-Za razliku od B\&B procedure koja rješava ILP, B\&C dodaje  i metod odsijecajućih ravni u rješavanju  potproblema koji odgovaraju čvorovima (drveta). Dakle, ako  uzimamo trenutno aktivni čvor i rješavamo njegov potproblem, dijelimo ga na nekoliko potproblema (podjelom dopustivog regiona na više disjunktnih -- dodavanjem ograničenja) ili ga rješavamo rekurzivnim dodavanjem (gomorijevih) odsijecajućih ravni. Dekonstrirajmo ovu ideju na rješavanje jednog ILP-a.
+Za razliku od B\&B procedure koja rješava ILP, B\&C dodaje  i metod odsjecajućih ravni u rješavanju  potproblema koji odgovaraju čvorovima (drveta). Dakle, ako  uzimamo trenutno aktivni čvor i rješavamo njegov potproblem, dijelimo ga na nekoliko potproblema (podjelom dopustivog regiona na više disjunktnih -- dodavanjem ograničenja) ili ga rješavamo rekurzivnim dodavanjem (gomorijevih) odsjecajućih ravni. Dekonstrirajmo ovu ideju na rješavanje jednog ILP-a.
 
 \emph{Primjer}.  Riješimo problem modelovan uz pomoć sljedećeg ILP-a:
 \begin{align*}
@@ -3784,7 +3784,7 @@ sa optimalnom vrijednošću $33\frac{1}{7}$. Nakon toga treba da se donese odluk
     & x_1, x_2 \in \mathbb{Z}
 \end{align*}
 
-Relaksacija problem ($P1$) daje riješenje $x^*=(3,2)$, koje je cjelobrojno, pa prema tome i dopustivo u početnom problemu. Njena vrijednost je 28, što je i donja granica ($LB$) početnog problema. Relaksacija problema ($P2$) nam daje rješenje $x^*=(2, \frac{7}{2})$, čija je optimalna vrijednost $\frac{29}{2}$.  Prema tome, rješenje nije cjelobrojno. Primjenjujući metod gomorijevih odsijecajućih ravni na problem ($P2$), konstruišemo odsjecajuću ravan $2x_1 + x_2 \leq 7$ koju dodajemo u problem ($P2$) pa dobijamo problem 
+Relaksacija problem ($P1$) daje riješenje $x^*=(3,2)$, koje je cjelobrojno, pa prema tome i dopustivo u početnom problemu. Njena vrijednost je 28, što je i donja granica ($LB$) početnog problema. Relaksacija problema ($P2$) nam daje rješenje $x^*=(2, \frac{7}{2})$, čija je optimalna vrijednost $\frac{29}{2}$.  Prema tome, rješenje nije cjelobrojno. Primjenjujući metod gomorijevih odsjecajućih ravni na problem ($P2$), konstruišemo odsjecajuću ravan $2x_1 + x_2 \leq 7$ koju dodajemo u problem ($P2$) pa dobijamo problem 
 \begin{align*}
     &\max 6 x_1 + 5 x_2 \\
     & {s.t. } \\
@@ -4214,7 +4214,7 @@ Nakon primjene B\&B metode, riješiti metod grafički dijeljeći region na podre
 	 & x_1 + 10 x_2 + x_3 \leq 10 \\
 	 & x_1, x_2, x_3, x_4 \in \{0, 1\}.
 \end{align*}
-	\item Metodom gomorijevih odsijecajućih ravni, riješiti sljedeći ILP:% https://homepages.rpi.edu/~mitchj/handouts/gomorycuts/gomorycuts.html
+	\item Metodom gomorijevih odsjecajućih ravni, riješiti sljedeći ILP:% https://homepages.rpi.edu/~mitchj/handouts/gomorycuts/gomorycuts.html
 	\begin{align*}
 		 &\min -x_1 - x_2 \\
 		 &s.t.\\
@@ -4223,7 +4223,7 @@ Nakon primjene B\&B metode, riješiti metod grafički dijeljeći region na podre
 		 & x_1, x_2 \geq 0 \\
 		 & x_1, x_2 \in \mathbb{Z}.
 	\end{align*}
-\item Metodom gomorijevih odsijecajućih ravni, riješiti sljedeći ILP:% https://homepages.rpi.edu/~mitchj/handouts/gomorycuts/gomorycuts.html
+\item Metodom gomorijevih odsjecajućih ravni, riješiti sljedeći ILP:% https://homepages.rpi.edu/~mitchj/handouts/gomorycuts/gomorycuts.html
 \begin{align*}
 	& \max x_1 + 4 x_2 \\
 	& s.t. \\
@@ -4312,7 +4312,7 @@ Posmatrajmo dualni problem potproblema~(\ref{bender2}), ignorišući term $g^T\o
 
 Sada uključujemo teoriju dualnosti i razmatramo sljedeće mogućnosti, koje mogu da se jave.
 \begin{itemize}
-\item Ako je optimalno rješenje problema~(\ref{bender2}) $z^*$, a optimalno rješenje duala~(\ref{bender3}) $u^*$, na osnovu teoreme o jakoj LP dualnosti imamo
+\item Ako je optimalno rješenje problema~(\ref{bender2}) $z^*$, a optimalno rješenje duala~(\ref{bender3}) $u^*$, na osnovu teoreme o jakoj  dualnosti imamo
   \begin{equation}
 	\begin{aligned}\label{bender4}
 z^*-g^Ty=(u^*)^T(c-B\overline{y})
@@ -4350,7 +4350,7 @@ U ovom slučaju, cilj je eliminisati ovaj zrak iz daljeg razmatranja (budućih r
 
 \end{itemize}
  
-Sada možemo definisati master problem koji nastaje dodavanjem svih odsijecajućih ravni generisanih u prethodnim koracima.
+Sada možemo definisati master problem koji nastaje dodavanjem svih odsjecajućih ravni generisanih u prethodnim koracima.
   \begin{equation}
 	\begin{aligned}\label{bender8}
 		\min\ &z\\
@@ -4368,7 +4368,7 @@ Sada možemo definisati master problem koji nastaje dodavanjem svih odsijecajuć
 
  
  
- \begin{algorithm}[!ht] \label{alg:bender}
+ \begin{algorithm}[H] \label{alg:bender}
  	\begin{algorithmic}[1] 
  		\STATE Postavi $\overline{y}\in\mathbb{Z}$ na inicijalnu vrijednost
  		\STATE 	$LB \gets$ $-\infty$;$UB \gets$ $+\infty$
@@ -4435,10 +4435,10 @@ $y$: iznos koji je oročen sa fiksnom kamatom u iznosi od 4.5\%. Sada se problem
 		\max\ 1.01x_1+1.02x_2+\ldots+1.10x_{10}+1.045y\\
 		s.t.\ x_1+x_2+\ldots+x_{10}+y\leqslant1000\\
 		x_1\leqslant 100\\
-		...\\
+		\vdots \\
 		x_{10}\leqslant 100\\
 		y\in \mathbb{Z}\\
-		x1,x_2,\ldots,x_{10},y\geqslant 0
+		x_1,x_2,\ldots,x_{10},y\geqslant 0
 	\end{aligned}
 \end{equation}
 
@@ -4456,7 +4456,7 @@ $x=\left(\begin{array}{c}
 	x_1 \\
 	x_2 \\
 	\vdots \\
-	x_10
+	x_{10}
 \end{array}\right)$,  
 $f = \left(\begin{array}{c}
 	1.01 \\
