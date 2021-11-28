@@ -3820,7 +3820,7 @@ Ovaj problem se modeluje pomoću sljedećeg ILP-a:
 \end{align} 
 
 Binarna varijabla $x_{i,j}$ dobija vrijednost 1 ako je odabrana grana $(i,j)$ na   putu, a 0 inače.  
-Prvo ograničenje u modelu nam daje da je dopustivo rješenje upravo put od izvorišnog do terminalnog čvora. Drugo ograničenje nam kazuje da je vrijeme prelaska puta u granicama dopustivog. Ovo ograničenje spada pod ``komplikovanim'' ograničenjima jer, kao što znamo,  pronalazak najkraćeg puta u direktnim grafovima sa unaprijed definisanim izvorišnim čvorom je polinomijalno rješiv (Dajkstrin algoritam), dok dodavanjem ograničenja o vremenu taj problem postaje NP-težak. Ideja je sada relaksirati ovaj problem uz prebacivanje ograničenja za vrijeme u funkciju cilja koja se zatim penalizuje. 
+Prvo ograničenje u modelu nam ograničava da je dopustivo rješenje upravo put od izvornog do terminalnog čvora. Drugo ograničenje nam kazuje da je vrijeme prelaska puta u granicama dopustivog. Ovo ograničenje spada pod ``komplikovanim'' ograničenjima jer, kao što znamo,  pronalazak najkraćeg puta u direktnim grafovima sa unaprijed definisanim izvorišnim čvorom je polinomijalno rješiv (Dajkstrin algoritam), dok dodavanjem ograničenja o vremenu taj problem postaje NP-težak. Ideja je sada relaksirati ovaj problem uz prebacivanje ograničenja za vrijeme u funkciju cilja koja se zatim penalizuje. 
 Dakle, Lagranžova relaksacija problema je data sa:
 
 \begin{align*}
@@ -3882,12 +3882,12 @@ gdje je $\lambda=(\lambda_1, \ldots, \lambda_n)$ i $c^\lambda_{i,j} = c_{i,j} + 
 \section{Metod Generisanja Kolona}% ovo je za LP probleme sa velikim brojem kolona, pogledati u https://coral.ise.lehigh.edu/~ted/files/ie418/lectures/Lecture18.pdf file:///C:/Users/PC/Downloads/ColumnGenerationTutorial.pdf
 
 %video: https://www.youtube.com/watch?v=O918V86Grhc
-Često se u praksi nalazi na situaciju da je u LP-u (ili ILP-u) broj varijabli puno (eksponencijalno) veći  u odnosu na broj ograničenja. U osnovi, riječ je o ekstremno velikim modelima sa matricom $A$ velikih dimenzija. Kada je riječ o rješavanju ovakvih problema, veliki dio matrice (tj. njene kolone) nam obično nikada i neće biti relevantan u rješavanju. Da bi se riješila specifična instanca problema, ono što nam je potrebno su:
+Često se u praksi nailazi na situaciju da je u LP-u (ili ILP-u) broj varijabli puno (eksponencijalno) veći  u odnosu na broj ograničenja. U osnovi, riječ je o ekstremno velikim modelima sa matricom $A$ velikih dimenzija. Kada je riječ o rješavanju ovakvih problema, veliki dio matrice (tj. njene kolone) nam obično nikada i neće biti relevantan u rješavanju. Da bi se riješila specifična instanca problema, ono što nam je potrebno su:
 \begin{itemize}
-    \item Ograničenja koja se vežu uz optimalnost.
+    \item Ograničenja koja se vezuju uz optimalnost.
     \item Varijable koje su bazne u optimalnom rješenju.
 \end{itemize}
-Dakle, ono što je potrebno su ograničenja čije su odgovarajuće dualne vrijednosti pozitivne, kao i varijable koje imaju pozitivne vrijednosti koeficijenata doprinosa za optimalno rješenje (tj. vektor  $\overline{c}$). Ako bismo imali ove varijable i ograničenja na raspolaganju od početka, problem bi riješili veoma brzo. Međutim, ovo nije  besplatna informacija.  U simpleks metodi, vektor doprinosa je potrebno računati u svakoj iteraciji, što nije efikasno ako je matrica $A$ velikih dimenzija. Takođe, vrijeme potrebno za generisanje simpleks tabele bi bilo ogromno.  Oba ova problema su rješiva uz pomoć \emph{metode generisanja kolona}.  Ideja ovog metoda se sastoji u sljedećem. 
+Dakle, ono što je potrebno su ograničenja čije su odgovarajuće dualne vrijednosti pozitivne, kao i varijable koje imaju pozitivne vrijednosti koeficijenata doprinosa za optimalno rješenje (tj. vektor  $\overline{c}$). Ako bismo imali ove varijable i ograničenja na raspolaganju od samog početka, problem bi bio riješen veoma brzo. Međutim, ovo nam nije  besplatna informacija.  U simpleks metodi, vektor doprinosa je potrebno računati u svakoj iteraciji, što nije efikasno ako je matrica $A$ velikih dimenzija. Takođe, vrijeme potrebno za generisanje simpleks tabele bi bilo ogromno.  Oba ova problema su rješiva uz pomoć \emph{metode generisanja kolona}.  Ideja ovog metoda se sastoji u sljedećem. 
 \begin{itemize}
     \item Krenimo sa ``obećavajućim'' podskupom $S$ kolona matrice $A$; 
     \item Riješimo restrikovani LP na odabrnom podskupu kolona $S$; 
@@ -3911,26 +3911,26 @@ gdje je $C$ skup kolona nad nekim globalnim skupom. Za LP problem možemo stavit
 Ako je rješenje problema kolona $a \in C$ za koju je $\overline{c_a}<0$, dodamo odgovarajuću $A_a$ u skup $S$, te riješimo  RMP na novom skupu kolona. Ako ne postoji takva kolona, onda je rješenje RMP takođe optimalno i za početni problem. %Ovaj metod se još naziva \emph{generički metod generisanja kolona}.   
  Proces dodavanja kolona se nastavlja sve dok postoji kolona $a\in C$ sa negativnom cijenom doprinosa. 
 
-Postoji mnogo pristupa kako ažurirati skup $S$ tokom iteracija. 
-Najjednostavniji se tiče zadržavanja svake kolone koja je do sada izgenerisana  u skup $S$ i dodati novu u postojeći skup. Naprednija strategija se tiče izbacivanja onih kolona iz skupa $S$ koje su nebazne u svakoj iteraciji. 
+Postoji mnogo pristupa koji se tiču ažuriranja skup $S$ tokom iteracija. 
+Najjednostavniji se tiče zadržavanja svake kolone koja je do sada izgenerisana  u skup $S$ i dodavanja  nove u postojeći skup. Naprednija strategija se tiče izbacivanja onih kolona iz skupa $S$ koje su nebazne u svakoj iteraciji. 
 
 \emph{Bazna column generation šema.} U osnovi, šema se sastoji od dva koraka:
 \begin{enumerate}
-	\item Prvo izaberemo za ulazne kolone one sa najvećim negativnim koeficijentom doprinosa među varijablama koje odgovaraju skupu $I$.
+	\item  Za ulazne kolone prvo izaberemo one sa najvećim negativnim koeficijentom doprinosa među varijablama koje odgovaraju skupu $I$.
 	\item Jednom kada su svi koeficijenti nenegativni (tj. kada smo našli optimalnu vrijednost za  RMP), tražimo nove varijable (kolone) van skupa $I$ (rješavajući CGSP) koje će biti ubačene u $I$. 
 \end{enumerate}
-Ako u koraku 1 za skup $I$ uzmemo bazne kolone, u svakom koraku pri rješavanju CGSP dobijamo kolonu koja ulazi kao bazna i zamjenjuje kolonu iz $I$. To znači da rješavanje RMP traje samo jednu iteraciju (simpleks metoda), jer uvijek imamo $m$ kolona i novu ulaznu kolonu $A_a$. Dakle, ovaj proces ne uzima mnogo memorije i rješavanje RMP je efikasno. Težište je ovdje prebačeno na korak 2 i rješavanje CGSP. Ako ne postoji efikasan način rješavanja ovog problema, onda efikasna primjena CG frejmvorka je nerealna.  
+Ako u koraku 1 za skup $I$ uzmemo bazne kolone, u svakom koraku pri rješavanju CGSP dobijamo kolonu koja ulazi kao bazna i zamjenjuje kolonu iz $I$. To znači da rješavanje RMP traje samo jednu iteraciju (simpleks metoda), jer uvijek imamo $m$ kolona i novu ulaznu kolonu $A_a$. Dakle, ovaj proces ne uzima mnogo memorije i rješavanje RMP je efikasno. Težište ovog pristupa je   prebačeno na korak 2 i rješavanje CGSP. Ako ne postoji efikasan način rješavanja ovog problema, onda efikasna primjena CG frejmvorka je teško ostvariva.  
  
 
-Iterativni proves rješavanja RMP problema se može prekinuti i ranije (bez dostizanja optimalnog rješenja početnog problema), usljed velikog broja iteracija,  iako je moguće da postoje kolona van RMP problema koje će eventualno ući u konstrukciju optimalne baze.  Takođe, ako RMP nije riješen do optimalnosti u nekoj iteraciji, ali CGSP jeste, i dalje se garantuje rješavanje početnog (LP) problema do optimalnosti kada se (master) iteracije prekinu. Prema tome, rješavanje RMP problema u svakoj iteraciji nije toliko bitno dok god rješavamo CGSP do optimalnosti u svakom koraku. Obruto ne vrijedi:   ako bi iskoristili neku heuristiku za rješavanje CGSP, onda se optimalnost početnog LP-a ne može garantovati. Razlog je vrlo jednostavan, heuristika treba da nađe bilo koju kolonu sa negativnim koeficijentom doprinosa koja će biti ubačena u RMP, čine se proces (uspješno) nastavlja. Ali, ako heuristika ne uspije u nalasku takve kolone, to ne znači da takva kolona ne postoji. 
+Iterativni proces rješavanja RMP problema se može prekinuti i ranije (bez dostizanja optimalnog rješenja početnog problema), usljed velikog broja iteracija,  iako je moguće da postoji kolona van RMP problema koja će eventualno ući u konstrukciju optimalne baze.  Takođe, ako RMP nije riješen do optimalnosti u nekoj iteraciji, ali CGSP jeste, i dalje se garantuje rješavanje početnog (LP) problema do optimalnosti kada se (master) iteracije prekinu. Prema tome, rješavanje RMP problema u svakoj iteraciji nije toliko bitno dok god rješavamo CGSP do optimalnosti u svakom koraku. Obruto ne vrijedi:   ako bi iskoristili neku heuristiku za rješavanje CGSP, onda se optimalnost početnog LP-a ne može garantovati. Razlog je vrlo jednostavan, heuristika treba da nađe bilo koju kolonu sa negativnim koeficijentom doprinosa koja će biti ubačena u RMP, čine se proces (uspješno) nastavlja. Ali, ako heuristika ne uspije u nalasku takve kolone, to ne znači da takva kolona ne postoji. 
 
 
  U nastavku dajemo primjenu \emph{metode generisanja kolona} na poznatom \emph{Cutting stock} problemu. 
  
  \emph{Problem}. Tvornica papira proizvodi rolne papira fiksne širine  $W$. 
- Kupci naručuju različit broj rolni različite širine $w \in \mathbb{R}^m$, dok je sa vektorom $b \in \mathbb{R}^m$ dat zahtjev (broj naručenih rolni).  Zadatak je pronaći optimalan način  rezanja velike rolne da bi se zahtjevi ispunili, a smanjio otpad.  
+ Kupci naručuju različit broj rolni različite širine $w \in \mathbb{R}^m$, dok je sa vektorom $b \in \mathbb{R}^m$ dat zahtjev (broj naručenih rolni).  Zadatak je pronaći optimalan način  rezanja velike rolne da bi se zahtjevi ispunili, a smanjila količina otpada nastala nakon rezanja.  
  
- \emph{Rješenje.} Na Slici~\ref{fig:cuting_stock_solutions} je dato rješenje jedne instance problema. 
+ \emph{Rješenje.} Na Slici~\ref{fig:cuting_stock_solutions} je dato rješenje jedne instance ovog problema. 
  Što se tiče kolona za ovom problemu, one predstavljaju dopustive obrasce (kombinacije rezanja). Jedan dio obrasca sa slike bi bio $1820$ x $2$ (rolne) u prvoj koloni.
  Primijetimo da broj različitih obrazaca raste eksponencijalno u odnosu na broj narudžbi.  Ako bismo izvršili enumeraciju svih mogućih obrazaca, trebali bi riješiti sljedeće ILP modele:
  \begin{align*}
@@ -3980,12 +3980,12 @@ $$ \begin{array}{lll}
  	\item stavka: $b_2=50$ rolni dužine 6;
  	\item stavka: $b_3=100$ rolni dužine 7. 
  \end{enumerate}
- Označimo sa $A_j = \begin{pmatrix}
+ Definišimo sa $A_j = \begin{pmatrix}
                           a_4 \\
                           a_6 \\
                           a_7
                    \end{pmatrix}$
-               je patern $j$, koji označava koliko   kojih ronli smo ugradili u veliku rolnu na jediničnu širinu. Enumerišimo sve paterne i otpad koji se generiše njime: 
+                 patern $j$, koji označava koliko   kojih ronli smo ugradili u veliku rolnu na jediničnu širinu. Enumerišimo sve paterne i otpad koji se generiše njime: 
                $$A_1 = 
                \begin{pmatrix}
                	     3 \\
@@ -4098,7 +4098,7 @@ $B^{-1} =\begin{pmatrix}
 	  $z$   &  $\frac{1}{3}$     &  $\frac{1}{2}$   &  $\frac{1}{2}$ & $\frac{305}{3}$ 
 \end{tabular}
 \end{center}
-Sljedeći korak je naći kolonu čija je koeficijent doprinosa negativan i upaciti je potom u restrikovani MP da bi se trenutno rješenje poboljšalo. Treba da riješimo column generating potproblem
+Sljedeći korak je naći kolonu čija je koeficijent doprinosa negativan i ubaciti je potom u restrikovani MP u cilju poboljšanja trenutnog rješenja. Dakle, treba da riješimo CGSP
 \begin{align}
 	\min_{i=1,\ldots,n} \overline{c_j} = \min_{i=1,\ldots,n} 1 - y^T N
 \end{align}
@@ -4120,7 +4120,7 @@ uz zadovoljenje uslova o maksimalnoj širini
    &	4 a_4 + 6 a_6 + 7 a_7 \leq 15 \\
    &	a_4, a_6, a_7 \geq 0, a_4, a_6, a_7 \in \mathbb{Z}.
 \end{align}
-kako smo to i ranije pomenuli, ovaj problem je klasični problem ruksaka koji se u praksi rješava veoma efikasno. Dakle, ako je rješenje problema ruksaka manje ili jednako od 1, trenutno najbolje rješenje je optimalno rješenje. U protivnom, optimalno rješenje $(a_4^*, a_6^*, a_7^*)^T$ ulazi kao nova kolona u RMP. Na osnovi prethodne simpleks tabele imamo: $y_1 = \frac{1}{3}, y_2 = y_3 = \frac{1}{2}$, pa treba da riješimo sljedeći CG problem:
+kako smo to i ranije pomenuli, ovaj problem je klasični problem ruksaka koji se u praksi rješava veoma efikasno. Dakle, ako je rješenje problema ruksaka manje ili jednako od 1, trenutno najbolje rješenje je optimalno rješenje. U protivnom, optimalno rješenje $(a_4^*, a_6^*, a_7^*)^T$ ulazi kao nova kolona u RMP. Na osnovu prethodne simpleks tabele imamo: $y_1 = \frac{1}{3}, y_2 = y_3 = \frac{1}{2}$, pa treba da riješimo sljedeći CG problem:
 \begin{align*}
       &\frac{1}{3} a_4 + \frac{1}{2} a_6 + \frac{1}{2} a_7 \\
       & 4 a_4 + 6 a_6 + 7 a_7 \leq 15 \\
