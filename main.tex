@@ -2845,7 +2845,7 @@ $$  \sum_{j=1}^n x_{ij} = 1, \forall i =1,\ldots, n$$
  \end{align}
   %Postoje i druga ograničenja koja mogu da se dodaju za eliminaciju podruta, bez gore pomenutog iterativnog procesa, ali o njima će biti riječi u narednim sekcijama. 
  
- \section{Tehnike redukcije za ILP}
+ \section{Tehnike transformacije za ILP}
  
  \emph{Binarne varijable.} Pretpostavimo da je potrebno uključiti sljedeće aktivnosti: ($i$) izgraditi novo postrojenje ili
 ($ii$) poduzeti reklamnu kampanju ili ($iii$) razviti novi proizvod. Jasno je da su ove odluke korespondiraju ka logičkim odlukama da ili ne, pa ih, prema tome, modelujemo   uvodeći  (binarne) varijable $x_i \in \{0, 1 \}$, $i=1,2,3$. Često se nameće uslov da se najviše jedna od ovih odluka izvrši, što se modeluje sa $\sum_{i=1}^3 x_1 \leq 1$. Ovo ograničenje se obično naziva \emph{ograničenjem sa višestrukim izborom} (eng. \emph{multiple choice constraint}), jer se njime ograničava izbor odluka na najviše jednu od, u ovom slučaju, tri dostupne alternative. 
@@ -5000,7 +5000,7 @@ $$x =\left(\begin{array}{c}
  %https://www.youtube.com/watch?v=wxz0NJvKZNM
  %Glavni link: https://www.youtube.com/watch?v=IposxYVBUnY
  
- U ovom odjeljku ćemo objasniti još jednu korisnu tehniku za rješavanje problema linearnog programiranja - Dantzig-Wolfe (DW) dekompoziciju. Ova tehnika je originalno dizajnirana za rješavanje problema linearnog programiranja velikih dimenzija. Osnovna ideja DW dekompozicije je da se na podskup ograničenja polaznog problema primijeni Teorema Minkovskog, odnosno Teorema o reprezentaciji za konveksne poliedre, te da se polazni problem razbije na rješavanje više manjih problema.
+ U ovom odjeljku ćemo objasniti još jednu korisnu tehniku za rješavanje problema linearnog programiranja -- \emph{Dantzig-Wolfe} (DW) dekompoziciju. Ova tehnika je originalno dizajnirana za rješavanje problema linearnog programiranja velikih dimenzija. Osnovna ideja DW dekompozicije je da se na podskup ograničenja polaznog problema primijeni Teorema Minkovskog, odnosno Teorema o reprezentaciji za konveksne poliedre, te da se polazni problem razbije na rješavanje više manjih problema.
  
  \begin{thm}
  	Neka je $P = \{ x \in \mathbb{R}^n \mid Ax \leq b\}$ ograničeni poliedar i neka je $\{x^{(1)}, \ldots, x^{(p)} \}$ skup ekstremnih tačaka od $P$. Tada za sve $x \in P$ vrijedi 
@@ -5025,7 +5025,7 @@ $$x =\left(\begin{array}{c}
  Posmatrajmo sada konfiguraciju za primjenu Teoreme o reprezentaciji na skup $X$.
  
  Neka su tačke $x^{(1)},x^{(2)},\dots,x^{(t)}$ vrhovi politopa $X$.  
- Prema Teoremi o reprezentaciji, za svaku tačku $x\in X$ važi da se ona može predstaviti kao konveksna kombinacija tačaka $x^{(1)},x^{(2)},\dots,x^{(t)}$.
+ Prema Teoremi o reprezentaciji, za svaku tačku $x\in X$ vrijedi da se ona može predstaviti kao konveksna kombinacija (ekstremnihh) tačaka $x^{(1)},x^{(2)},\dots,x^{(t)}$.
  
  Neka je  $x \in X$ proizvoljna tačka iz skupa $X$.  Tada postoje $\lambda_1,\lambda_2,\ldots,\lambda_t$, takvi da važi:
  
@@ -5060,13 +5060,13 @@ odnosno
  	\end{aligned}
  \end{equation}
  
- Sada se vidi da je početni problem~(\ref{dw1}) sada predstavljen ekvivalentnom reprezentacijom~(\ref{dw3}), u kojem se, umjesto polaznih promjenljivih (vektora $x$), sada posmatraju promjenljive $\lambda_j,\ j = 1,\ldots,t$ (skup ovih promjenljivih ćemo zvati $\lambda$ promjenljive), uz pretpostavku da su  vrhovi $x^{(1)},x^{(2)},\dots,x^{(t)}$ konveksnog politopa $X$ poznati. Variranjem vrijednosti $\lambda$ promjenljivih po dopustivom skupu iz formulacije~\ref{dw3}, generišu se tačke iz dopustivog skupa polazne formulacije~(\ref{dw1}). Sa druge strane, svaka tačka $x$ iz formulacije~(\ref{dw1}) ima svoju reprezentaciju preko odgovarajućih vrijednosti  $\lambda$ promjenljivih u dopustivom skupu formulacije~(\ref{dw3}). S obzirom na to da i funkcije cilja odgovaraju jedna drugoj, zaključujemo da je i optimalno rješenje polaznog problema~(\ref{dw1}) jednako optimalnom rješenju reformulisanog problema~(\ref{dw3}).
+ Vidimo da se početni problem~(\ref{dw1}) sada može predstaviti ekvivalentnom reprezentacijom~(\ref{dw3}), u kojem se, umjesto polaznih promjenljivih (vektora $x$), sada posmatraju promjenljive $\lambda_j,\ j = 1,\ldots,t$ (skup ovih promjenljivih ćemo zvati $\lambda$ promjenljive), uz pretpostavku da su  vrhovi $x^{(1)},x^{(2)},\dots,x^{(t)}$ konveksnog politopa $X$ poznati. Variranjem vrijednosti $\lambda$ promjenljivih po dopustivom skupu iz formulacije~(\ref{dw3}), generišu se tačke iz dopustivog skupa polazne formulacije~(\ref{dw1}). Sa druge strane, svaka tačka $x$ iz formulacije~(\ref{dw1}) ima svoju reprezentaciju preko odgovarajućih vrijednosti  $\lambda$ promjenljivih u dopustivom skupu formulacije~(\ref{dw3}). S obzirom na to da i funkcije cilja odgovaraju jedna drugoj, zaključujemo da je i optimalno rješenje polaznog problema~(\ref{dw1}) jednako optimalnom rješenju reformulisanog problema~(\ref{dw3}).
  
  Samom reformulacijom polaznog problema~(\ref{dw1}) u DW formulaciju~(\ref{dw3}) nismo postigli mnogo, jer broj vrhova politopa, a time i broj $\lambda$ promjenljivih može biti jako veliki.
  
- Međutim, pravi razlog za DW dekompoziciju leži u činjenici da za rješavanje problema~(\ref{dw3}) ne moramo eksplicitno da koristimo sve vrhove politopa $X$. Umjesto toga, krenućemo od jednog   manjeg podskupa (a samim tim i podskupom skupa $\lambda$ promjenljivih). Nakon toga, primijenićemo tehniku ``generisanja kolona'' (engl. \emph{column generation}), kako bismo u razmatranje uključili nove vrhove politopa $X$, koje će pomoći poboljšanju rješenja tzv. \emph{Restricted master problema}.
+ Međutim, pravi razlog za DW dekompoziciju leži u činjenici da za rješavanje problema~(\ref{dw3}) ne moramo eksplicitno da koristimo sve vrhove politopa $X$. Umjesto toga, krenućemo od jednog   manjeg podskupa (a samim tim i podskupom skupa $\lambda$ promjenljivih). Nakon toga, primijenićemo tehniku ``generisanja kolona'' (engl. \emph{column generation}), kako bismo u razmatranje uključili nove vrhove politopa $X$, koje će pomoći poboljšanju rješenja tzv. \emph{Restricted master problema} (RMP).
  
- Označimo sada problem formulisan  sa~(\ref{dw3}) kao \emph{Master problem} (MP). Na osnovu master problema formiramo tzv. Restricted master problem (RMP)  sa manjim brojem $\lambda$ promjenljivih.
+ Označimo sada problem formulisan  sa~(\ref{dw3}) kao \emph{Master problem} (MP). Na osnovu master problema formiramo RMP sa manjim brojem $\lambda$ promjenljivih.
  
      \begin{equation}
  	\begin{aligned}\label{dw4}
@@ -5082,7 +5082,7 @@ Označimo sa $\overline{z}$ optimalnu vrijednost funkcije cilja RMP, a sa $z^*$ 
 
 Primijetimo da je $\overline{z}$ jedna gornja granica za master problem, jer je svako dopustivo rješenje RMP takođe i dopustivo za master problem. Ova konstatacija će nam biti od koristi u razmatranju koje slijedi.
 
-Da bismo provjerili da li je optimalno rješenje RMP ujedno i optimalno rješenje master problema, potrebno je da provjerimo da li su koeficijenti doprinosa svih nebaznih promjenjivih nenegativni, tj. postoji li neka nebazna varijabla koja može doprinijeti dodatnom smanjenju funkcije cilja. Kao što znamo iz simpleks tablele i ranije sekcije o dualnosti linearnog programiranja, ove vrijednosti su ekvivalentne optimalnim vrijednostima dualnih promjenjivih (duala problema RMP).   
+Da bismo provjerili da li je optimalno rješenje RMP ujedno i optimalno rješenje master problema, potrebno je da provjerimo da li su koeficijenti doprinosa svih nebaznih promjenjivih nenegativni, tj. postoji li neka nebazna varijabla koja može doprinijeti dodatnom smanjenju vrijednosti funkcije cilja. Kao što znamo iz simpleks tablele i ranije sekcije o dualnosti linearnog programiranja, ove vrijednosti su ekvivalentne optimalnim vrijednostima dualnih promjenjivih (duala problema RMP).   
 %je reduced cost od svih nebazičnih promjenljivih NIJE JASNO...
 
 
@@ -5090,7 +5090,7 @@ Da bismo provjerili da li je optimalno rješenje RMP ujedno i optimalno rješenj
 
 Označimo vektorom $y$ optimalne vrijednosti dualnih promjenljih koje se odnose na ograničenja $\sum_{j\in I} (A x^{(j)})\lambda_j=b$ i skalarom $\alpha$ optimalnu vrijednost dualne promjenljive koja se odnosi na ograničenje $\sum_{j\in I}\lambda_j = 1$. 
 
-Da bi se odredili   koeficijenti doprinosa za $\lambda_j$, odredimo šta imamo u odgovarajućoj koloni: U funkciji cilja, imamo $c^Tx^{(j)}$, u ograničenjima $A x^{(j)} $ i još jednu jedinicu (na osnovu ograničenja $\sum_{j\in I}\lambda_j = 1$). Tako, kolona na koju se fokusiramo da bismo izračunali doprinose izgleda ovako
+Da bi se odredili   koeficijenti doprinosa za $\lambda_j$, odredimo šta se dobija u odgovarajućoj koloni: U funkciji cilja, imamo $c^Tx^{(j)}$, u ograničenjima $A x^{(j)} $ i još jednu jedinicu (na osnovu ograničenja $\sum_{j\in I}\lambda_j = 1$). Tako, kolona na koju se fokusiramo da bismo izračunali doprinose izgleda ovako
 
 
  $$\left(\begin{array}{c}
@@ -5099,13 +5099,13 @@ Da bi se odredili   koeficijenti doprinosa za $\lambda_j$, odredimo šta imamo u
  	1 
  \end{array}\right)$$
  
- i sada rješavamo \emph{Column generation potproblem}, čiji je cilj da se pronađe najmanji koeficijent doprinosa. Ukoliko je on manji od nule, dobija se nova kolona koja treba da se doda u potproblem RMP.  U slučaju da je on nenegativan, tada je optimalno rješenje RMP ujedmo i optimalno rješenje MP.
+ i sada rješavamo \emph{Column generation potproblem} (CG), čiji je cilj da se pronađe najmanji koeficijent doprinosa. Ukoliko je on manji od nule, dobija se nova kolona koja treba da se doda u potproblem RMP.  U slučaju da je on nenegativan, tada je optimalno rješenje RMP ujedmo i optimalno rješenje MP.
  
  Column generation potproblem se definiše kao
  
       \begin{equation}
  	\begin{aligned}\label{dw6}
- 		\min_{j=1,\ldots,t}\  & \{c^T x^{(j)} -y^T	Ax_j-\alpha\cdot 1\}=\min_{x\in X}\  & \{c^Tx-y^T	Ax-\alpha\}\\
+ 		\min_{j=1,\ldots,t}\  & \{c^T x^{(j)} -y^T	Ax^{(j)}-\alpha\cdot 1\}=\min_{x\in X}\  & \{c^Tx-y^T	Ax-\alpha\}\\
  	\end{aligned}
  \end{equation}
  
@@ -5113,7 +5113,7 @@ jer je rješenje problema na desnoj strani jednakosti upravo u nekom od vrhova p
 
 Prisjetimo se sada da smo za jednu od polaznih pretpostavki imali da je skup $X$ opisan kao skup sa ``jednostavnim'' ograničenjima, što znači da je problem na desnoj strani jednakosti (\ref{dw6}) jednostavan za rješavanje.
 
-Reformulišimo  Column generation potproblem sada kao problem maksimizacije, gdje ćemo za funkciju cilja uzeti negativnu vrijednost funkcije cilja minimizacije, tj.
+Reformulišimo  CG potproblem sada kao problem maksimizacije, gdje ćemo za funkciju cilja uzeti negativnu vrijednost funkcije cilja minimizacije, tj.
  
  
        \begin{equation}
@@ -5126,13 +5126,13 @@ Neka je $\hat{z}$ optimalna vrijednost funkcije cilja ovog problema maksimizacij
 Posmatrajmo sada jedno dopustivo rješenje $x$ polaznog problema. Za to rješenje važi 
 $x\in X$ i $Ax=b$, pa imamo da vrijedi %Za to rješenje $x$ važi 	
  
- $$y^T	Ax-c^Tx+\alpha\leqslant \hat{z} \Leftrightarrow c^Tx\geqslant y^T	Ax+\alpha-\hat{z} \Leftrightarrow  y^T b+\alpha-\hat{z}$$
+ $$y^T	Ax-c^Tx+\alpha\leqslant \hat{z} \Leftrightarrow c^Tx\geqslant y^T	Ax+\alpha-\hat{z} \Leftrightarrow  c^T x \geqslant y^T b+\alpha-\hat{z}$$
  
- Primijetimo sada da je  $y^T b+\alpha$ zapravo  optimalna vrijednost funkcije duala od RMP, koja je dalje, jednaka optimalnoj vrijednosti $\overline{z}$ RMP-a. 
+ Primijetimo sada da je  $y^T b+\alpha$ zapravo  optimalna vrijednost funkcije duala od RMP, koja je dalje, jednaka optimalnoj vrijednosti $\overline{z}$ od RMP-a. 
  
  $$ c^Tx\geqslant \overline{z}-\hat{z}$$
  
- Sada zaključujemo da je razlika između optimalne vrijednosti RMP-a i problema maksimizacije Column generation problema donja granica za originalni LP. Pošto ovo važi za proizvoljno rješenje $x$, zaključujemo da važi 
+ Sada zaključujemo da je razlika između optimalne vrijednosti RMP-a i problema maksimizacije CG  problema donja granica za originalni LP. Pošto ovo važi za proizvoljno rješenje $x$, zaključujemo da važi 
  $$z^*\geqslant \overline{z}-\hat{z}$$
  odnosno, razlika $\overline{z}-\hat{z}$ je donja granica za optimalnu vrijednost funkcije cilja polaznog problema.
  
@@ -5241,7 +5241,7 @@ $$\begin{aligned}
  Odnosno, nakon sređivanja 
       \begin{equation}
  	\begin{aligned}\label{primjer:dw4}
- 		\max  & \lambda_2+\lambda_4\\
+ 		\max  &\  \lambda_2+\lambda_4\\
  		s.t.\  &\left(\begin{array}{c}
  			1\\
  			2
@@ -5274,7 +5274,7 @@ Da bismo u ograničenjima izbjegli znak $\leqslant$ u prva dva ograničenja, dod
 
 Sada se može inicijalnizovati RMP, biranjem dopustive baze.
 
-Izabraćemo promjenljive $\lambda_1, s_1$ i $s_2$ kao inicijalne osnovne promjenljive. Pošto  promjenljive $\lambda_2,\lambda_3$ i $\lambda_4$ ne egzistiraju u potproblemu,  RMP izgleda ovako
+Izabraćemo promjenljive $\lambda_1, s_1$ i $s_2$ kao inicijalne bazne promjenljive. Pošto  promjenljive $\lambda_2,\lambda_3$ i $\lambda_4$ ne egzistiraju u potproblemu,  RMP izgleda ovako
       \begin{equation}
 	\begin{aligned}\label{primjer:dw6}
 		\max\  & 0\\
@@ -5284,7 +5284,7 @@ Izabraćemo promjenljive $\lambda_1, s_1$ i $s_2$ kao inicijalne osnovne promjen
 		&\lambda_1,s_1,s_2\geqslant 0
 	\end{aligned}
 \end{equation}
-Posljednji problem se trivijalno rješava (funkcija cilja ima vrijednost 0, a vrijednost promjenljivih se direktno očitavaju iz ograničenja). Ispitajmo sada optimalnu vrijednost dualnih promjenjivih, dakle $y$ i $\alpha$ uz pomoć simpleks tabele problema \ref{primjer:dw6}. Ona izgleda ovako
+Posljednji problem se trivijalno rješava (funkcija cilja ima vrijednost 0, a vrijednost promjenljivih se direktno očitavaju iz ograničenja). Ispitajmo sada optimalnu vrijednost dualnih promjenjivih, dakle $y$ i $\alpha$ uz pomoć simpleks tabele problema (\ref{primjer:dw6}). Ona izgleda ovako
 \begin{center}
 
 \begin{tabular}{c|cccc}
@@ -5296,7 +5296,7 @@ $\lambda_1$	  &  0  &    0     &   1         &  1   \\ \hline
 \end{tabular}
 \end{center}
  
-Posmatrajmo sada dualni problem problema~\ref{primjer:dw3}. Označimo sa $y_1$, $y_2$ i $\alpha$ promjenljive dualnog problema. Kako imamo optimalnu simpleks tabelu, vrijednost optimuma dualnih promjenjivih jednaka je odgovarajućim koeficijentima doprinosa (posljednji red tabele), pa je $y_1 = 0 = y_2 = \alpha$. 
+Posmatrajmo sada dualni problem problema~(\ref{primjer:dw3}). Označimo sa $y_1$, $y_2$ i $\alpha$ promjenljive dualnog problema. Kako imamo optimalnu simpleks tabelu, vrijednost optimuma dualnih promjenjivih jednaka je odgovarajućim koeficijentima doprinosa (posljednji red tabele), pa je $y_1 = 0 = y_2 = \alpha$. 
 
 %Za dalje razmatranje biće nam potrebna  Tabela~\ref{tbl:dw1}, koju ćemo popunjavati u iterativnom procesu.
 \begin{table}\centering
@@ -5378,7 +5378,7 @@ $B^{-1} =
 na osnovu prethodne simpleks tabele, dobijamo   vrijednosti dualnih varijabli iz koeficijenta doprinosa, tj. $y_1 = 0, y_2 = \frac{1}{2}, \alpha = 0$. \\
 \emph{Iteracija 2.} Iz prethodnog dobijamo column generation potproblem 
 \begin{align}
-	 \max_{x \in X} (1, 0)^T x - (0, \frac{1}{2})\left(\begin{array}{cc}
+	 \max_{x \in X} (1, 0)^T x - \left(0, \frac{1}{2}\right)\left(\begin{array}{cc}
 	 	1 & 3 \\
 	 	2 & -3
 	 \end{array}\right)  x   - 0 = \max_{x \in X}x_1 - x_1 + \frac{3}{2}x_2 = \max_{x \in X} \frac{3}{2}x_2.
@@ -5398,7 +5398,7 @@ Ova kolona (ako posmatramo problem (\ref{primjer:dw5})) je   data sa
 	\end{pmatrix}
 \end{align}
 
-Kada pogledamo prethodne vrijednosti kolone $V$ i master problem (\ref{primjer:dw5}), jasno je da ona odgovara koeficijentima varijable $\lambda_3$. Dakle, prethodna kolona je data u odnosu na varijablu $\lambda_3$ početnog problema, ali je sada izražavamo preko trenutne baze (potproblema) vektora $s_1, s_2$ i $\lambda_2$. Dakle, nakon množenja kolone sa inverzom baze $B^{-1}$, koraci opisani u Tabeli \ref{tbl:dw1}, sljedeća kolona je ulazna koja se dodaje u simpleks tabelu:
+Kada pogledamo prethodne vrijednosti kolone $V$ i master problem (\ref{primjer:dw5}), jasno je da ona odgovara koeficijentima varijable $\lambda_3$. Dakle, prethodna kolona je data u odnosu na varijablu $\lambda_3$ početnog problema, ali je sada izražavamo preko trenutne baze (potproblema) vektora $s_1, s_2$ i $\lambda_2$. Dakle, nakon množenja kolone sa inverzom baze $B^{-1}$, na osnovu koraka opisanih u Tabeli \ref{tbl:dw1}, sljedeća kolona je ulazna koja se dodaje u simpleks tabelu:
 
 \begin{center}
  
@@ -5421,7 +5421,7 @@ Dakle, dobijamo tabelu
 	\end{tabular}
  
 \end{center} 
-Sada nađimo pivota oko kolone koja je dodana. Kandidati za izlazak iz baze su ili $s_1$ ili $\lambda_2$ dok će mjesto njih ući varijabla $\lambda_3$. Kako je $\frac{9/4}{9/2}=\frac{1}{2} < \frac{1/2}{5/2}=\frac{1}{5}$, imamo da je $\frac{5}{2}$ pivot element. Sada pivotiramo oko tog elementa na način da se kolona transformiše elementarnim transformacijama po vrstama na kolonu sa svim nulama osim na poziciji pivota, gdje treba da stoji jedinica. Na taj način, simpleks tabela se transformiše u novu simpleks tabelu 
+Sada nađimo pivota oko kolone koja je dodana. Kandidati za izlazak iz baze su ili $s_1$ ili $\lambda_2$ dok će mjesto njih ući varijabla $\lambda_3$. Kako je $\frac{9/4}{9/2}=\frac{1}{2} > \frac{1}{5/2}=\frac{2}{5}$, imamo da je $\frac{5}{2}$ pivot element. Sada pivotiramo oko tog elementa na način da se kolona transformiše elementarnim transformacijama po vrstama na kolonu sa svim nulama osim na poziciji pivota, gdje treba da stoji jedinica. Na taj način, simpleks tabela se transformiše u novu simpleks tabelu 
 
 \begin{center}
 	
