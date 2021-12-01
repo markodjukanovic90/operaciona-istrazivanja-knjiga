@@ -3703,7 +3703,7 @@ $$\begin{array}{ccccc| c}
 Kako su svi koeficijenti u posljednjoj vrsti veći od 0, slijedi da je optimalno bazno rješenje jednako $x=(5, \frac{51}{11}, \frac{18}{11}, 0, 0)$, koje opet nije cjelobrojno. 
  Prema tome, dodajmo sljedeću gomorijevu odsjecajuću ravan za bazno rješenje $x^*_2 = \frac{51}{11}$ (posmatrajući vrstu 2 posljednje simpleks tabele):
  
- $$ \frac{1}{11} x_4 + \frac{8}{11} x_5 - y_2 = \frac{11}{18},$$
+ $$ \frac{1}{11} x_4 + \frac{8}{11} x_5 - y_2 = \frac{7}{11},$$
  odakle imamo tabelu 
  $$\begin{array}{cccccc| c}
  1   &   0   &  0  &   0             &   1  &   0              &   5 \\
@@ -3712,7 +3712,7 @@ Kako su svi koeficijenti u posljednjoj vrsti veći od 0, slijedi da je optimalno
  0   &   0   &  0  &  \frac{1}{11}    &  \frac{8}{11}   & -1 & \frac{7}{11} \\ \hline
  0   &   0   &  0  &   \frac{4}{11}   &   \frac{21}{11} & 0 & \frac{369}{11}
 \end{array} $$
-I dalje nije očigledno šta su bazne varijable, pa uradimo dvofazni simpleks metod, te dobijamo 
+I ovdje nije očigledno šta su bazne varijable, pa ovdje primijenimo dvofazni simpleks metod, te dobijamo 
  $$\begin{array}{cccccc| c}
 1    &   0   &   0   &  -\frac{1}{8}   &   0    &    \frac{11}{8}    &  \frac{33}{8} \\
 0    &   1   &   0   &   \frac{1}{8}   &   0    &    -\frac{3}{8}    & \frac{39}{8} \\
@@ -3730,10 +3730,10 @@ $$ \begin{array}{ccccccc| c}
 0    &   1   &   0   &   \frac{1}{8}   &   0    &    -\frac{3}{8}    & 0 & \frac{39}{8} \\
 0    &   0   &   1   &   \frac{1}{2}   &   0    &    - \frac{9}{2}   & 0 & \frac{9}{2} \\
 0    &   0   &   0   &   \frac{1}{8}   &   1    &    - \frac{11}{8}  & 0    & \frac{7}{8} \\ 
-0    &   0   &   0   &   \frac{1}{8}   &   0    &    \frac{5}{8}   & -1 & \frac{7}{8} \\ \hline
+0    &   0   &   0   &   \frac{1}{8}   &   0    &    \frac{5}{8}     & -1 & \frac{7}{8} \\ \hline
 0    &   0   &   0   &   \frac{1}{8}   &   0    &     \frac{21}{8}   & 0 & \frac{255}{8}   
 \end{array} $$
-I dalje nije jasno koju još varijablu treba dodati u bazne varijable (bazu), uradimo dvofazni simpleks metod, odakle dobijamo 
+I ovdje nije očigledno koju   varijablu treba dodati u bazne varijable (bazu), pa primijenimo dvofazni simpleks metod, odakle dobijamo 
 
 $$ \begin{array}{ccccccc| c}
     1    &   0   &   0   &  0 &  1  &   0    &    0    & 5  \\
@@ -3749,9 +3749,9 @@ gdje je lako uočiti da je optimalno bazno dopustivo rješenje $x=(5, 4, 1, 7, 0
 \section{B\&C algoritam za rješavanje ILP-a}
 %https://homepages.rpi.edu/~mitchj/handouts/bc_algo/
 % http://www.mi.fu-berlin.de/wiki/pub/Main/GunnarKlauP1winter0708/discMath_klau_ILP_I.pdf
-Za razliku od B\&B procedure koja rješava ILP, B\&C dodaje  i metod odsjecajućih ravni u rješavanju  potproblema koji odgovaraju čvorovima (drveta). Dakle, ako  uzimamo trenutno aktivni čvor i rješavamo njegov potproblem, dijelimo ga na nekoliko potproblema (podjelom dopustivog regiona na više disjunktnih -- dodavanjem ograničenja) ili ga rješavamo rekurzivnim dodavanjem (gomorijevih) odsjecajućih ravni. Dekonstrirajmo ovu ideju na rješavanje jednog ILP-a.
+Za razliku od B\&B procedure koja rješava ILP, B\&C dodaje  i metod odsjecajućih ravni u rješavanju  potproblema koji odgovaraju čvorovima (drveta). Dakle, ako  uzimamo trenutno aktivni čvor i rješavamo njegov potproblem, dijelimo ga na nekoliko potproblema (podjelom dopustivog regiona na više disjunktnih -- dodavanjem ograničenja) ili ga rješavamo rekurzivnim dodavanjem (gomorijevih) odsjecajućih ravni. Dekonstrirajmo ovu ideju na primjeru rješavanja jednog ILP-a.
 
-\emph{Primjer}.  Riješimo problem modelovan uz pomoć sljedećeg ILP-a:
+\emph{Primjer}.  Riješimo sljedeći ILP:
 \begin{align*}
     &\max 6 x_1 + 5 x_2 \\
     &  {s.t. } \\
@@ -3762,7 +3762,7 @@ Za razliku od B\&B procedure koja rješava ILP, B\&C dodaje  i metod odsjecajuć
 \end{align*}
 
 \emph{Rješenje}. B\&C procedura prvo rješava LP relaksaciju početnog problema (simpleks metodom), odakle dobijamo rješenje $x=(\frac{17}{7}, \frac{26}{7})$
-sa optimalnom vrijednošću $33\frac{1}{7}$. Nakon toga treba da se donese odluka, da li se problem rješava dodavanjem odsejcajućih ravni ili podjelom dopustivog regiona na manje (disjunktne) podregione. Podijelimo region po koordinati $x_1$, odakle ćemo dobiti dva potproblema 
+sa optimalnom vrijednošću $33\frac{1}{7}$. Nakon toga treba da se donese odluka, da li se problem rješava dodavanjem odsjecajućih ravni ili podjelom dopustivog regiona na manje (disjunktne) podregione. Podijelimo region po koordinati $x_1$, odakle ćemo dobiti dva potproblema 
 
 \begin{align*}
     &\max 6 x_1 + 5 x_2 \\
@@ -3784,7 +3784,7 @@ sa optimalnom vrijednošću $33\frac{1}{7}$. Nakon toga treba da se donese odluk
     & x_1, x_2 \in \mathbb{Z}
 \end{align*}
 
-Relaksacija problem ($P1$) daje riješenje $x^*=(3,2)$, koje je cjelobrojno, pa prema tome i dopustivo u početnom problemu. Njena vrijednost je 28, što je i donja granica ($LB$) početnog problema. Relaksacija problema ($P2$) nam daje rješenje $x^*=(2, \frac{7}{2})$, čija je optimalna vrijednost $\frac{29}{2}$.  Prema tome, rješenje nije cjelobrojno. Primjenjujući metod gomorijevih odsjecajućih ravni na problem ($P2$), konstruišemo odsjecajuću ravan $2x_1 + x_2 \leq 7$ koju dodajemo u problem ($P2$) pa dobijamo problem 
+Rješenje relaksacije problema ($P1$) daje riješenje $x^*=(3,2)$, koje je cjelobrojno, pa prema tome i dopustivo u početnom problemu. Njena vrijednost je 28, što je i donja granica ($LB$) početnog problema. Relaksacija problema ($P2$) nam daje rješenje $x^*=(2, \frac{7}{2})$, čija je optimalna vrijednost $\frac{29}{2}$.  Prema tome, rješenje nije cjelobrojno. Primjenjujući metod Gomorijevih odsjecajućih ravni na problem ($P2$), konstruišemo odsjecajuću ravan $2x_1 + x_2 \leq 7$ koju dodajemo u problem ($P2$) pa dobijamo problem 
 \begin{align*}
     &\max 6 x_1 + 5 x_2 \\
     & {s.t. } \\
