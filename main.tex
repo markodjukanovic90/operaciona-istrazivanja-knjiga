@@ -4315,7 +4315,7 @@ Sada uključujemo teoriju dualnosti i razmatramo sljedeće mogućnosti, koje mog
 \item Ako je optimalno rješenje problema~(\ref{bender2}) $z^*$, a optimalno rješenje duala~(\ref{bender3}) $u^*$, na osnovu teoreme o jakoj  dualnosti imamo
   \begin{equation}
 	\begin{aligned}\label{bender4}
-z^*-g^Ty=(u^*)^T(c-B\overline{y})
+z^*-g^T\overline{y}=(u^*)^T(c-B\overline{y})
 	\end{aligned}
 \end{equation}
 
@@ -4354,8 +4354,8 @@ Sada možemo definisati master problem koji nastaje dodavanjem svih odsjecajući
   \begin{equation}
 	\begin{aligned}\label{bender8}
 		\min\ &z\\
-		s.t.\ & g^Ty+(u^k)^T(c-By), \ k \in K\\
-		& (u^k)^T(c-By), \ k \in L\\
+		s.t.\ & z \geq g^Ty+(u^k)^T(c-By) , \ k \in K\\
+		& (u^k)^T(c-By) \leq, \ k \in L\\
 		&y \in \mathbb{Z}
 	\end{aligned}
 \end{equation}
@@ -4411,9 +4411,7 @@ U primjeru kojim ilustrujemo upotrebu Benderove dekompozicije posmatramo jedan j
 Iako je Algoritmom~\ref{alg:bender} opisan postupak rješavanja problema minimizacije, algoritam se vrlo lako može preformulisati tako da se on može primijeniti i na problem maksimizacije. Jasno je da će u tom slučaju, dualni problem, prikazan u liniji 4 algoritma tada postati problem minimizacije, te će se, rješavanjem dualnog potproblema dobijati donje granice.
 
 
-\emph{Primjer.} 
-
-Pretpostavimo da raspolažemo sumom od 1000KM, koju možemo iskoristiti za ostvarivanje dobiti prema dva različita kriterijuma:
+\emph{Primjer.} Pretpostavimo da raspolažemo sumom od 1000KM, koju možemo iskoristiti za ostvarivanje dobiti prema dva različita kriterijuma:
 \begin{itemize}
 	\item Oročenje novca sa fiksnom kamatom u iznosi od 4.5\%. Dodatno ograničenje je da se može oročiti samo cjelobrojan iznos novca.
 	
@@ -4996,7 +4994,7 @@ $$x =\left(\begin{array}{c}
 
 
 
-  \section{Dantzig-Wolfe dekompozicija}%https://www.maxwell.vrac.puc-rio.br/29077/29077_5.PDF
+  \section{Dantzig--Wolfe dekompozicija}%https://www.maxwell.vrac.puc-rio.br/29077/29077_5.PDF
  %https://www.youtube.com/watch?v=wxz0NJvKZNM
  %Glavni link: https://www.youtube.com/watch?v=IposxYVBUnY
  
