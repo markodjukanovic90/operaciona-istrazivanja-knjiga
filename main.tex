@@ -5698,7 +5698,7 @@ kompleksnost se redukuje na $O(|E| \cdot \log |V|)$.
 
 Napomenimo da Dajkstrin algoritam ne radi sa grafovima koji imaju negativne težine (pogledati  liniju 12).  Za ovakve grafove,  primjenjuje se Bellman–Ford algoritam koji je baziran na dinamičkom programiranju. Njega ne pominjemo   u ovoj knjizi.  %, o kojem ćemo nešto više reći u narednim sekcijama.
 
-\subsection{Problem Frakcionog Ruksaka}
+\subsection{Frakcioni Problem  Ruksaka}
 
 \begin{definition}
   Neka je dato $n$ proizvoda sa svojim  težinama i vrijednostima, 
@@ -5712,31 +5712,36 @@ U 0-1 problemu ruksaka se ne dopušta dijeljenje proizvoda, ili se uzima cijeli 
 Može se pokazati sljedeća teorema. 
 
 \begin{thm}
-      Pohlepni algoritam opisan prethodno za problem frakcionog ruksaka uvijek nalazi optimalno rješenje.
+      Pohlepni algoritam opisan prethodno za frakcioni problem ruksaka uvijek nalazi optimalno rješenje.
 \end{thm}
 \subsection{Pohlepni pristup za rješavanje LCS problema}
 
 String definišemo kao niz karaktera nad (konačnom) azbukom $\Sigma$. 
-Problem najdužeg podniza (eng. \emph{Longest common subsequence}), ili skraćeno LCS, je problem koji uzima u ulazu  $n$ stringova (označimo ovaj skup sa $S$) proizvoljne dužine. Njegov zadatak je da se nađe string makimalne dužine tako da je  zajednički podniz za sve stringove iz skupa $S$.  Neka su u ulazu data tri stringa dužine šest: $S = \{  \texttt{abbccb}, \texttt{abccab}, \texttt{abbbcb}   \}$. Rješenje problema je $s=\texttt{abcb}$. Primijetimo da je $s$ podniz za sva tri stringa iz $S$, a može se (direktno) provjeriti da je to najduži takav string. 
- Ovaj problem se može riješiti u $O(n^m)$ vremenu uz pomoć dinamičkog programiranja, gdje je $n$ dužina najdužeg stringa u ulazu, a $m$ broj stringova u ulazu. Specijalno, za  $m=2$, problem je rješiv u $O(n^2)$ vremenu. Za proizvoljan ulaz, problem je NP-težak.  
+Problem najdužeg podniza (eng. \emph{Longest common subsequence}), ili skraćeno LCS, je problem koji uzima u ulazu  $n$ stringova (označimo ovaj skup sa $S$) proizvoljne dužine. Njegov zadatak je da se nađe string maksimalne dužine tako da je  zajednički podniz za sve stringove iz skupa $S$. 
 
-
-Jedan od najjednostavnijih pristupa u rješavanu ovog problema je  \emph{pohlepni pristup}, tzv. \emph{Best-Next} (BN) heuristika. Prije nego navedemo detalje algoritma, uvedimo nekoliko definicija i oznaka koje će biti korištene u konstrukciji algoritma. Za cjelobrojni vektor $p^L = (p^L_1,\ldots, p^L_m)$, definišemo sa
-$S[p^L] = \{s_i[p^L_i, |s_i| \mid i=1,\ldots,m\}$, gdje $|s|$ označava dužinu stringa $s$, a $s[x,y]$ podstring (sufiks) stringa $s$ koji počinje od karaktera na poziciji $x$, a završava sa karakterom na poziciji $y$. Konvencija je da se indeksi u stringu numerišu krenuvši od 1. Dakle, $s= [1, |s|]$ za svaki string $s$. Primjera radi, za (pozicioni) vektor $p^L=(1,2,2)$ i skup $S$ sa početka ove podsekcije je $S[ (1,2,3)] = \{ s_1[1, |s_1|], s_2[2, |s_2|], s_3[3, |s_3|]  \}= \{ \texttt{bbccb}, \texttt{ccab}, \texttt{bcb}\}$. 
+ Neka su u ulazu data tri stringa dužine šest: $S = \{  \texttt{abbccb}, \texttt{abccab}, \texttt{abbbcb}   \}$. Rješenje problema je $s=\texttt{abcb}$. Primijetimo da je $s$ podniz za sva tri stringa iz $S$, a može se (direktno) provjeriti da je to najduži takav string. 
  
-Dalje, sa $p^L_{i,a}$ definišemo poziciju prvog pojavljivanja karaktera $\texttt{a}\in \Sigma$ koja je  $p^L_{i,a} \geq p^L_i$ (ukoliko karakter ne postoji, dodijelimo vrijednost $n+1$). Skup karaktera $\Sigma_{p^L}$ koji se pojavljuju u svakom od stringova u $S[p^L]$ se nazivaju dopustive ekstenzije u odnosu na pozicioni vektor $p^L$. 
+ 
+ Ovaj problem se može riješiti u $O(n^m)$ vremenu uz pomoć dinamičkog programiranja, gdje je $n$ dužina najdužeg stringa u ulazu, a $m$ broj stringova u ulazu. Specijalno, za  $m=2$, problem je rješiv u $O(n^2)$ vremenu. Za proizvoljan ulaz, za problem je poznato da je NP-težak.  
 
-U konstrukciji pohlepnog algoritma, odredimo  skup dopustivih komponenti te koji je kriterijum odabira komponenti u svakom od koraka algoritma. Inicijalno rješenje $s$ je prazan string, koji je, trivijalno, dopustivo rješenje za svaki LCS. Ideja je u svakom koraku proširiti rješenje za jedan karakter tako da spojimo taj karakter sa $s$ (sa desna) dok god je to moguće i pri tome da je prošireni string i dalje LCS. Prema tome, krenemo sa pozicijom $p^L = (1, \ldots, 1)$ koja odgovara čitavom skupu $S=S[p^L]$ i praznim stringom $s =\varepsilon$ kao inicijalno rješenje. Dalje, da bi očuvali dopustivost rješenja kada se rješenje proširi za jedan karakter, za komponente rješenja $\Sigma_{p^L}$ ćemo uzeti sve karaktere koji se nalaze u svim stringovima iz $S=S[p^L]$, jer na taj način  ekstenzija $s = s \cdot x$ za bilo koji $x \in \Sigma_{p^L}$ će dati dopustivo LCS rješenje. Među karakterima iz $\Sigma_{p^L}$ treba odabrati (lokalno) najboljeg kandidata za proširivanje rješenja. Treba imati na umu da se kandidat $x\in \Sigma_{p^L}$ može pojaviti na nekoliko pozicija u svakom stringu iz $S=S[p^L]$. Kako ne želimo ekstenzije koje vode ka podoptimalnim rješenjima, biramo karakter $x$ koji je najbliže početku u stringovima iz $S=S[p^L]$, dakle na pozicijama $p^L_{p^L_{i},a},i=1,\ldots,m$. 
-To je koncept pohlepne funkcije $g$ data u nastavku sekcije. Ideja konstrukcije funkcije $g$ se sastoji u odabiru onog karaktera za proširivanje rješenja $s$ koji preskače najmanji broj karaktera iz dalje pretrage. Sljedeći korak se sastoji u ažuriranju prostora pretrage za novi korak. Kako smo proširili rješenje za $x$, nove komponente rješenja koje su dopustive tražimo u skupu stringova $S[p^L_{1,x}+1,\ldots, p^L_{m, x}+1]$. Postupak nastavljamo dok god postoje komponente koje mogu proširiti rješenje. 
+
+Jedan od najjednostavnijih pristupa u rješavanu ovog problema je  \emph{pohlepni pristup}, tzv. \emph{Best-Next} (BN) heuristika. Prije nego navedemo detalje algoritma, uvedimo nekoliko definicija i oznaka koje će biti korištene u konstrukciji ovog algoritma. Za cjelobrojni vektor $p^L = (p^L_1,\ldots, p^L_m)$, definišemo sa
+$S[p^L] = \{s_i[p^L_i, |s_i| \mid i=1,\ldots,m\}$, gdje $|s|$ označava dužinu stringa $s$, a $s[x,y]$ podstring (sufiks) stringa $s$ koji počinje od karaktera na poziciji $x$, a završava sa karakterom na poziciji $y$. Konvencija je da se indeksi u stringu numerišu krenuvši od 1. Dakle, $s= [1, |s|]$ za svaki string $s$. Primjera radi, za (pozicioni) vektor $p^L=(1,2,2)$ i skup $S$ sa početka ove podsekcije imamo $S[ (1,2,3)] = \{ s_1[1, |s_1|], s_2[2, |s_2|], s_3[3, |s_3|]  \}= \{ \texttt{bbccb}, \texttt{ccab}, \texttt{bcb}\}$. 
+ 
+Dalje, sa $p^L_{i,a}$ definišemo poziciju prvog pojavljivanja karaktera $\texttt{a}\in \Sigma$ koja je  $p^L_{i,a} \geq p^L_i$ (ukoliko karakter ne postoji, dodijelimo vrijednost $n+1$). Skup karaktera $\Sigma_{p^L}$ koji se pojavljuju u svakom od stringova (u potproblemu) $S[p^L]$ se nazivaju dopustive ekstenzije u odnosu na pozicioni vektor $p^L$. 
+
+U konstrukciji pohlepnog algoritma, odredimo  skup dopustivih komponenti i (pohlepni) kriterijum odabira najbolje komponente u svakom od koraka algoritma. Inicijalno rješenje $s$ je prazan string, koji je, trivijalno, dopustivo rješenje za svaku instancu LCS problema. Ideja je u svakom koraku proširiti rješenje za jedan karakter tako da spojimo taj karakter (sa desna) sa $s$  dok god je to moguće i pri tome da je prošireni string i dalje LCS. Prema tome, krenemo sa pozicijom $p^L = (1, \ldots, 1)$ koja odgovara čitavom skupu $S=S[p^L]$ i praznim stringom $s =\varepsilon$ kao inicijalno rješenje. Dalje, da bi očuvali dopustivost rješenja kada se rješenje proširi za jedan karakter, za komponente rješenja $\Sigma_{p^L}$ ćemo uzeti sve karaktere koji se nalaze u svim stringovima iz $S=S[p^L]$, jer na taj način  ekstenzija $s = s \cdot x$ za bilo koji $x \in \Sigma_{p^L}$ će dati dopustivo LCS rješenje. Među karakterima iz $\Sigma_{p^L}$ treba odabrati (lokalno) najboljeg kandidata za proširivanje rješenja. Treba imati na umu da se kandidat $x\in \Sigma_{p^L}$ može pojaviti na nekoliko pozicija u svakom stringu iz $S=S[p^L]$. Kako ne želimo ekstenzije koje vode ka podoptimalnim rješenjima, biramo karakter $x$ koji je najbliže početku u stringovima iz $S=S[p^L]$, dakle na pozicijama $p^L_{i,a},i=1,\ldots,m$. 
+
+ Ideja konstrukcije pohlepne funkcije $g$ se sastoji u odabiru onog karaktera za proširivanje rješenja $s$ koji preskače najmanji broj karaktera iz dalje pretrage. Sljedeći korak se sastoji u ažuriranju prostora pretrage za novi korak. Kako smo proširili rješenje za $x$, nove komponente rješenja koje su dopustive tražimo u skupu stringova $S[p^L_{1,x}+1,\ldots, p^L_{m, x}+1]$. Postupak nastavljamo dok god postoje komponente koje mogu proširiti trenutno rješenje $s$. 
 
 
 \noindent Da sumiramo, pohlepni (BN) pristup za rješavanje LCS problema izvršava sljedeće korake:
 \begin{itemize}
 	\item Kreće se od (parcijalnog) rješenja koje je prazna niska, $s=\varepsilon$;
-	\item Iniciramo pozicione vektor $p^L \gets (1,\ldots, 1) $;
+	\item Iniciramo pozicioni vektor $p^L \gets (1,\ldots, 1) $;
 	\item Dok god jedan od $p^L_i$ nije jednak $n+1$, radimo sljedeće: 
 	\begin{itemize}
-   	     \item $\Sigma_{p^L} \gets$ naći dopustive ekstenzije u $S[\textrm{pL}]$
+   	     \item $\Sigma_{p^L} \gets$ naći dopustive ekstenzije u $S[p^L]$
 	      \item Od svih karaktera u $\Sigma_{p^L}$, odaberemo onaj koji minimizuje vrijednost funkcije 
 	      $$g( p^L,a) = \sum_{i=1}^m\frac{p^L_{i,a} - p^L_i + 1 }{|s_i| - p^L_i + 1 }, a \in \Sigma_{ p^L }.$$
 	      Neka je taj karakter označen sa $a^*$. 
@@ -5752,7 +5757,7 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje.
 \section{Aproksimativni Algoritmi}
   %https://home.cs.colorado.edu/~srirams/courses/csci5654-fall13/ilpLectures.pdf
   
-   Za veliki broj optimizacionih problema sa enormnom kompleksnošću u praksi jednostavno ne postoje efikasni egzaktni algoritmi, te je za  njihovo rješavanje potrebano izdvojiti ogromne vremenske/memorijske resurse; dakle, za  ovakve probleme ne postoji (egzaktan) algoritam koji se izvršava u polinomijalnom vremenu $O(|P|)$, gdje je $P \in {Poly}$ neki polinom iz vektorskog prostora polinoma \emph{Poly}. Sa druge strane, većina pohlepnih algoritama i naprednijih heuristika ne daje nikakvu garanciju na nađeno rješenje iako su ta rješenja u velikom broju slučajeva visokog kvaliteta. Negdje između egzaktnih i heurističkih algoritama se smiještaju \emph{aproksimativni algoritmi} koji su polinomijalni, daju dopustiva rješenja uz garanciju o njihovom kvalitetu. 
+   Za veliki broj optimizacionih problema sa enormnom kompleksnošću u praksi jednostavno ne postoje efikasni egzaktni algoritmi, te je za  njihovo rješavanje potrebano izdvojiti ogromne vremenske/memorijske resurse; dakle, za  ovakve probleme nije poznat (egzaktan) algoritam koji se izvršava u polinomijalnom vremenu $O(|P|)$, gdje je $P \in {Poly}$ neki polinom iz vektorskog prostora polinoma \emph{Poly}. Sa druge strane, većina pohlepnih algoritama i naprednijih heuristika ne daje nikakvu garanciju na nađeno rješenje iako su ta rješenja u velikom broju slučajeva visokog kvaliteta. Negdje između egzaktnih i heurističkih algoritama se smiještaju \emph{aproksimativni algoritmi} koji su polinomijalni, daju dopustiva rješenja uz garanciju o njihovom kvalitetu. 
   
   \noindent Algoritam pripada klasi \emph{aproksimativnih algoritma} ako:
   \begin{enumerate}
@@ -5778,14 +5783,15 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje.
   
   \subsection{Aproksimativni algoritmi za Problem Pokrivanja Čvorova}
   
-  Neka je dat graf $G=(V,E)$. Potrebno je naći podskup $C\subseteq V$ najmanje kardinalnosti td. barem jedan čvor svake grane pripada skupu $C$.  Dopustivo rješenje je svaki podskup $C$ koji zadovoljava uslov problema. Takav skup se naziva \emph{pokrivač} čvorova grafa $G$. Primjer pokrivača jednog grafa je dat na Slici~\ref{vertex-cover} gdje pokrivač uključuje sve čvorove crvene boje. 
-  
-  \begin{figure}
+    \begin{figure}
   	\centering
   	\includegraphics[width=50mm]{vertex-cover.eps}
-  	\caption{Primjer pokrivača čvora.} 
-  	\label{vertex-cover}
+
+  	\caption{Primjer pokrivača čvora.}   	\label{fig:vertex-cover}
   \end{figure}
+  Neka je dat graf $G=(V,E)$. Potrebno je naći podskup $C\subseteq V$ najmanje kardinalnosti td. barem jedan čvor svake grane pripada skupu $C$.  Dopustivo rješenje je svaki podskup $C$ koji zadovoljava uslov problema. Takav skup se naziva \emph{pokrivač} čvorova grafa $G$. Primjer pokrivača jednog grafa je dat na Slici~\ref{fig:vertex-cover} gdje pokrivač uključuje sve čvorove crvene boje. 
+  
+
   
   Posmatrajmo (pohlepni) algoritam za ovaj problem dat Algoritmom~\ref{alg:gridi-vc}. 
   
@@ -5825,14 +5831,14 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje.
         \label{alg:gridi-vc-2}
   \end{algorithm}
   
-  \noindent Izračunajmo aproksimativni faktor Algoritma~\ref{alg:gridi-vc-2} posmatrajući jedan specijalni graf sa Slike~\ref{vertex-cover}. 
+  \noindent Izračunajmo aproksimativni faktor Algoritma~\ref{alg:gridi-vc-2} posmatrajući jedan specijalni graf sa Slike~\ref{vertex-coverEx}. 
   
   
   \begin{figure}
   	\centering
-  	\includegraphics[width=120mm,height=80mm]{vc-2-example.eps}
+  	\includegraphics[width=135mm,height=90mm]{vc-2-example.eps}
   	%\caption{Graf (nacrtati ga).} 
-  	\label{vertex-cover}
+  	\label{vertex-coverEx}
  
   \end{figure}
   
@@ -5854,7 +5860,7 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje.
   Kažemo da grane grafa zadovoljavaju nejednakost trougla akko za sve različite čvorove $u,v, r$ grafa $G$ vrijedi
   $$ w(u,v) + w(v,r) \geq w(u,r),$$
   gdje su $w(\cdot, \cdot)$ težine grane koja spaja dva čvora. Ovaj problem je poznat 
-  pod nazivom \emph{Metrički} TSP. On je i dalje NP--težak, ali se aproksimativni algoritam ipak može konstruisati.  U nastavku algoritme izvodimo za metrički  TSP. Posmatrajmo \emph{algoritam najbližeg dodavanja} koji aproksimira TSP, dat u Algoritmu~\ref{alg:tsp-a1}. 
+  pod nazivom \emph{Metrički} TSP. On je i dalje NP--težak, ali se aproksimativni algoritam ipak može konstruisati.  U nastavku algoritme izvodimo za metrički  TSP. Posmatrajmo \emph{algoritam najbližeg dodavanja} koji aproksimira TSP, da Algoritmom~\ref{alg:tsp-a1}. 
   
    \begin{algorithm}[!t] 
   
@@ -5883,9 +5889,9 @@ proširuje za čvor $t$ koji se ubacuje između čvorova  $u$ i $q$. Povećanje 
 Na osnovu nejednakosti trougla imamo $ w({t,q}) \leq w({t,u}) + w({u,q})$. Prema tome, porast cijene konture $T$ u svakoj iteraciji je najviše $ w({t, u}) + w({u,t}) = 2\cdot w({u,t})$. 
 Dakle, završna kontura ima cijenu koja dostiže cijenu koja je barem dva puta veća od cijene MST. Prema tome, ovo je 2-aproksimativni algoritam. 
 
- \noindent Pokusajmo poboljšati 2--aproksimativni algoritam~\ref{alg:tsp-a1} uz pomoć \emph{Double tree algoritma}, kojeg objašnjavamo u nastavku. Prije toga uvodimo nekoliko definicija i teorema od bitnog uticaja u formiranju algoritma. 
+ \noindent Pokusajmo poboljšati 2--aproksimativni algoritam~\ref{alg:tsp-a1} uz pomoć \emph{Double tree algoritma}, kojeg objašnjavamo u nastavku. Prije toga ćemo uvesti nekoliko definicija i teorema od bitnog značaja u formiranju algoritma. 
  \begin{definition}
- 	  Neka je dat graf $G=(V,E)$. Ojlerova konturu $T^o$ grafa $G$ je kontura $e_1e_2...,e_me_1$ koja obilazi sve grane grafa $G$. 
+ 	  Neka je dat graf $G=(V,E)$. Ojlerova kontura $T^o$ grafa $G$ je kontura $e_1e_2...,e_me_1$ koja obilazi sve grane grafa $G$. 
  \end{definition}
 Vrijedi sljedeća karaketrizacija grafova koji imaju Ojlerovu konturu. 
 \begin{thm}
@@ -5947,13 +5953,13 @@ Vrijedi sljedeća karaketrizacija grafova koji imaju Ojlerovu konturu.
 
 
 
-Posmatrajmo sljedeći (aproksimativni) algoritam koji umanjuje aproksimativni faktor TSP sa $2$ na 1.5. Algoritam je poznat pod nazivom \emph{Kristofidesov} algoritam i dat je u Algoritmu~\ref{alg:tsp-a3}.
+Posmatrajmo sljedeći (aproksimativni) algoritam koji umanjuje aproksimativni faktor TSP sa $2$ na 1.5. Algoritam je poznat pod nazivom \emph{Kristofidjesov} algoritam i dat je u Algoritmu~\ref{alg:tsp-a3}.
 
 %pseudokod algoritma 
 \begin{algorithm}[H] 
 
 	\begin{algorithmic}[1]
-		\STATE \textbf{Ulaz}: Kompletan graf $G$
+		\STATE \textbf{Ulaz}: Graf $G$
 		\STATE \textbf{Izlaz}: Hamiltonova kontura $T$ 
 		\STATE $T \gets$ Naći MST grafa $G$
 		\STATE $M \gets$ Naći minimalan mečing svih čvorova u $T$ neparnog stepena
