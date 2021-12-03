@@ -32,7 +32,7 @@
 \usepackage{pgfplots}   
 
  
-
+\floatname{algorithm}{Algoritam}
 	
 \pgfplotsset{compat=newest}
 \pgfplotsset{plot coordinates/math parser=false}
@@ -5968,7 +5968,7 @@ Posmatrajmo sljedeći (aproksimativni) algoritam koji umanjuje aproksimativni fa
 		\STATE $T \gets$ Izbaciti duple čvorove iz $T^o$
 		\STATE \textbf{return} $T$
 	\end{algorithmic}	
-    \caption{Kristofidesov algoritam.}
+    \caption{Kristofidjesov algoritam.}
     \label{alg:tsp-a3}
 \end{algorithm}
   Lako je vidjeti da je ovaj algoritam polinomijalan i da je dobijeno rješenje dopustivo.
@@ -5998,12 +5998,12 @@ Posmatrajmo sljedeći (aproksimativni) algoritam koji umanjuje aproksimativni fa
 \end{itemize}
 
 
-\noindent Analiza algoritma. Ovo je polinomijalan algoritam koji vraća dopustivo rješenje.  Neka je $C^*$ optimalan broj pakovanja koji se otvara da bi se spakovalo svih $n$ stavki. Pretpostavimo da algoritam vraća rješenje $C$ (pakovanja). Iz toga je barem $C-1$ pakovanja više od polovine mjesta je iskorišteno. Odatle je
+\noindent \emph{Analiza algoritma}. Ovo je polinomijalan algoritam koji vraća dopustivo rješenje.  Neka je $C^*$ optimalan broj pakovanja koji se otvara da bi se spakovalo svih $n$ stavki. Pretpostavimo da algoritam vraća rješenje $C$ (pakovanja). Iz toga je barem $C-1$ pakovanja više od polovine mjesta je iskorišteno. Odatle je
 $$C^* \geq \sum_{i=1}^n a_i > \frac{C-1}{2}\ \Rightarrow\  2 \cdot C^* > C-1 \Rightarrow 2 \cdot C^* \geq C,$$
 pa slijedi da je algoritam 2--aproksimacioni. 
 
- Još jedan pohlepni algiritma za ovaj problem je \emph{Best fit}. Sljedeći proizvod se stavlja u pakovanje koje ostavlja najmanju prazninu od svih pakovanja kada se taj prizvod smjesti u odgovarajuće pakovanje. Ako takvo pakovanje ne postoji, otvoriti novo pakovanje. 
-Ovaj algoritam je takodje 2--aproksimacioni. Interesantno je napomenuti da za Problem binarnog pakovanja ne postoji aproksimativni algoritam čiji je faktor $c <\frac{3}{2}$ (osim ako je $P=NP$), kako je pokazano u literaturi. 
+ Još jedan pohlepni algiritma za ovaj problem je \emph{Best fit} koji radi na sljedeći princip. Sljedeći proizvod se stavlja u pakovanje koje ostavlja najmanju prazninu od svih pakovanja (koja su otvorena) kada se taj prizvod smjesti u odgovarajuće pakovanje. Ako takvo pakovanje ne postoji, otvoriti novo pakovanje. 
+Ovaj algoritam je takođe 2--aproksimacioni. Interesantno je napomenuti da za Problem binarnog pakovanja ne postoji aproksimativni algoritam čiji je faktor $c <\frac{3}{2}$ (osim ako je $P=NP$), kako je pokazano u literaturi. 
 
  \subsection{Aproksimativni algoritmi za Problem Pokrivanja Skupa}
 Ovaj problem predstavlja uopštenje Problema pokrivanja čvorova, i definisan je na sljedeci naćin.
@@ -6022,7 +6022,7 @@ Ovaj problem predstavlja uopštenje Problema pokrivanja čvorova, i definisan je
 \end{figure}
 
 Što se tice motivacije za ovaj problem, pretpostavimo da imamo skup karakteristika, te skup ljudi koji posjeduju pojedine karakeristike. Potrebno je formirati komisiju sa što manjim brojem osoba tako da se za svaku karakteristiku može naći osoba iz komisije da je stručna u tome. Pohlepni algoritam za ovaj problem je dat u Algoritmu~\ref{alg:set-cover-gridi}.  %objasnjenje algoritma.
-Skup $U$ predstavlja skup preostalih nepokrivenih elemenata dok skup $\mathcal{C}$ pedstavlja pokrivač koji se konstruiše kroz iteracije algoritma. U svakom koraku, algoritam nastoji da proširi pokrivač $\mathcal{C}$ na račun smanjenja skupa $U$. Kandidata za proširivanje pokrivača biramo na osnovu pohlepne funkcije datoj u liniji 6. U osnovi, biramo onaj $f' \in \mathcal{F}$ koji ima najviše  elementima iz $U$ sa kojim ima neprazan presjek sve dok je $U \neq \emptyset$. Algoritam se izvodi u $O(|\mathcal{F}| \cdot |X|)$ vremenu, dakle  polinomijalnom. Takođe, jasno je da je rješenje koje se vraća dopustivo. Izračunajmo još aproksimativni faktor algoritma. Prije toga, označimo $d$-ti harmonijski broj $=H_d = \sum_{i=1}^d 1/i$ sa $H(d)$. 
+Skup $U$ predstavlja skup preostalih nepokrivenih elemenata dok skup $\mathcal{C}$ pedstavlja pokrivač koji se konstruiše kroz iteracije algoritma. U svakom koraku, algoritam nastoji da proširi pokrivač $\mathcal{C}$ na račun smanjenja skupa $U$. Kandidata za proširivanje pokrivača biramo na osnovu pohlepne funkcije data u liniji 6. U osnovi, biramo onaj $f' \in \mathcal{F}$ koji ima najviše  elementima iz $U$ sa kojim ima neprazan presjek sve dok je $U \neq \emptyset$. Algoritam se izvodi u $O(|\mathcal{F}| \cdot |X|)$ vremenu, dakle  polinomijalnom. Takođe, jasno je da je rješenje koje se vraća dopustivo. Izračunajmo još aproksimativni faktor algoritma. Prije toga, označimo $d$-ti harmonijski broj $=H_d = \sum_{i=1}^d 1/i$ sa $H(d)$. 
 Vrijedi sljedeća teorema.
 
 %pseudokod algoritma 
@@ -6043,7 +6043,7 @@ Vrijedi sljedeća teorema.
 \end{algorithm}
 
 \begin{thm}
-	  GREEDY-SET-COVER algoritam ima aproksimacioni faktor 
+	  \mbox{GREEDY-SET-COVER} algoritam ima aproksimativni faktor 
 	$$ H(\max\{|f| \mid f \in \mathcal{F}\}).$$
 	
 \end{thm}
@@ -6074,7 +6074,7 @@ Vrijedi sljedeća teorema.
 	 Neka je $f\in \mathcal{F}$ tako da za $i=1,\ldots,|C|$
 	 $$u_i(f) = |f \setminus (f_1 \cup \cdots \cup f_{i} )|$$
 	 
-	 označava ostale elemente u $f \in \mathcal{F}$ koji su još uvijek nepokriveni nakon što je algoritam dodao skupove $f_1,\ldots, f_i$ u pokrivač $C$ do $i$-te iteracije. Definišimo $u_0(f)=|f|$ za broj elemenata skupa $f$ koji je inicijalno nepokriven. 
+	 označava ostale elemente u $f \in \mathcal{F}$ koji su još uvijek nepokriveni nakon što je algoritam dodao skupove $f_1,\ldots, f_i$ u pokrivač $C$, posmatrano do $i$-te iteracije. Definišimo $u_0(f)=|f|$ za broj elemenata skupa $f$ koji je inicijalno nepokriven. 
 	 Označimo sa $k$ prvi indeks tako da je $u_k(f)=0$  -- što znači da su svi elementi skupa $f$ u $k$-toj iteraciji
 	 pokriveni prvi put nekim skupovima %$S_1,\ldots,S_i$
 	 koji su odabranu u ranijim koracima algoritma. Primijetimo da vrijedi
@@ -6108,7 +6108,7 @@ Vrijedi sljedeća teorema.
  
 \end{proof}
 
-Napomenimo da postoji i težinska verzija Problema pokrivanja skupa. U ovoj verziji je svakom skupu iz $f \in\mathcal{F}$ data težina $w_f$. Zadatak je naći pokrivač $C \subseteq \mathcal{F}$ skupa $X$ sa najmanjom težinom. Ovaj problem na sličan način kao i ne-težinska varijanta može biti aproksimirana do na faktor $H_d= \log d+O(1)$, gdje je $d= \max\{|f|:f \in \mathcal{F}\}$ uz pomoć sličnog pohlepnog algoritma. U tom slučaju, pohlepni kriterij je određen funkcijom 
+Napomenimo da postoji i težinska verzija Problema pokrivanja skupa. U ovoj verziji je svakom skupu iz $f \in\mathcal{F}$ data težina $w_f$. Zadatak je naći pokrivač $C \subseteq \mathcal{F}$ skupa $X$ sa najmanjom težinom. Ovaj problem na sličan način kao i ne-težinska varijanta može aproksimirati do na faktor $H_d= \log d+O(1)$, gdje je $d= \max\{|f|:f \in \mathcal{F}\}$ uz pomoć sličnog pohlepnog algoritma. U tom slučaju, pohlepni kriterij je određen funkcijom 
 \begin{align}
 	g(f) = \frac{w_f}{|f \cap U|}, f \in \mathcal{F}\setminus C,
 \end{align}
@@ -6118,7 +6118,7 @@ gdje je $w_f$ težina skupa. U svakom koraku algoritma određuje skup $f^* \in \
 
 
 \begin{definition}
-   Neka je dat skup stringova $S=\{s_1,...,s_n\}$. Problem najkraćeg nadstringa se pita za pronalazak stringa $s$ minimalne dužine koji sadrži sve stringove iz $S$ kao njegove podstrigove. 
+   Neka je dat skup stringova $S=\{s_1,...,s_n\}$. Problem najkraćeg nadstringa traži string  $s$ minimalne dužine koji sadrži sve stringove iz $S$ kao njegove podstrigove. 
   \end{definition}
 Bez gubljenja opštosti, mozemo pretpostaviti da niti jedan string $s_i$ nije podstring stringa $s_j, i\neq j$.
 Ovaj problem je NP--težak. Ideja je riješiti ga koristeći Problem pokrivanja skupa i 
@@ -6128,7 +6128,7 @@ njegove algoritame iz prethodne sekcije. Pokazaćemo da postoji $2\cdot H_n$--ap
 je $s$ podstring od $\theta$. Prema tome 
 $$set(\theta) = \{ s \in S \mid s \mbox{  podstring od }\theta \}.$$
 
- Odatle bi pokrivač skupa bila familija takvih skupova $set(\theta)$, iz kojih se konstruiše nadstring skupa $S$ spajajući sve $\theta$ stringove u jedan string. U svakom slučaju familija  $\mathcal{F}$ se ne može definisanti kao skup skupova $set(\theta)$ jer bi u suprotnom $\mathcal{F}$ bio beskonačan. Sa druge strane, ne možemo ograničiti sve stringove $\theta$ samo na one iz $S$, jer bi u suprotnom dobili rješenje koje je jednako konkatenaciji svih stringova iz $S$, što je svakako nekorisno rješenje. Za uspostavljanje balansa, neka iz skupa $S=\{s_1,...,s_n\}$ uzmemo par stringova $s_i$ i $s_j$, nađemo $k>0$  tako da je posljednjih $k$ karaktera stringa $s_i$ jednaka prvih $k$ karakera stringa $s_j$ (poklapanje). Označimo sa $\theta_{ijk}$ string koji se 
+ Odatle bi pokrivač skupa bila familija takvih skupova $set(\theta)$, iz kojih se konstruiše nadstring skupa $S$ spajajući sve $\theta$ stringove u jedan string. U svakom slučaju familija  $\mathcal{F}$ se ne može definisanti kao skup skupova $set(\theta)$ jer bi u suprotnom $\mathcal{F}$ bio beskonačan. Sa druge strane, ne možemo ograničiti sve stringove $\theta$ samo na one iz $S$, jer bi u suprotnom dobili rješenje koje je jednako konkatenaciji svih stringova iz $S$, što je svakako  rješenje koji nije korisno. Za uspostavljanje balansa, neka iz skupa $S=\{s_1,...,s_n\}$ uzmemo par stringova $s_i$ i $s_j$, nađemo $k>0$  tako da je posljednjih $k$ karaktera stringa $s_i$ jednaka prvih $k$ karakera stringa $s_j$ (poklapanje). Označimo sa $\theta_{ijk}$ string koji se 
 dobije preklapanjem stringova $s_i$ i $s_j$ na $k$ karaktera. Oznacimo sa $I$ skup strinova $\theta_{ijk}$  za validne izbore $i,j$ i $k$. Zatim definišemo $\mathcal{F}=\{set(\theta) \mid  \theta \in S \cup I\}$. Dodijeljena cijena svakog skupa $set(\theta))$ je jednaka $|\theta|$. Na osnovu prethodnog, dobijamo algoritam za rješavanje problema Najkraćeg nadstriga Algoritmom~\ref{alg:ss}. 
 
   \begin{algorithm}[!t] 
