@@ -6416,10 +6416,10 @@ Na kraju ovog odjeljka treba pomenuti da je višedecenijska primjena genetskih a
  
 \subsection{Lokalna Pretraga}\label{sec: local_search}
 
-Lokalna pretrage je tehnika čija se strategija sastoji u izvođenju niza poboljšanja rješenja počevši od nekog unaprijed zadanog rješenja. Uvedimo prvo koncept okolina i lokalnih optimalnih rješenja kao baznih pojmova u algoritmu lokalne pretrage. Za dato rješenje $x$, definišimo skup (obično dopustivih) rješenja koja su ``blizu'' $x$ u odnosu na neku mjeru. Formalno, okolina predstavlja mapiranje  $\mathcal{N}$ gdje svakom (dopustivom) rješenju pridružujemo skup rješenja, koje zovemo okolina od $x$.  Funkcija okoline se takođe može definisati preko operatora  $\Delta$, koji predstavlja kolekciju   funkcija $\Delta:\Phi \mapsto \Phi$,  gdje je $\Phi$ prostor pretrage (rješenja) razmatrane instance, na sljedeći način:
+Lokalna pretraga je tehnika čija se strategija sastoji u izvođenju niza poboljšanja u rješenju počevši od nekog unaprijed zadanog rješenja. Uvedimo prvo koncept okolina i lokalnih rješenja kao baznih pojmova u algoritmu lokalne pretrage. Za dato rješenje $x$, definišimo skup (obično dopustivih) rješenja koja su ``blizu'' $x$ u odnosu na neku mjeru. Formalno, okolina predstavlja mapiranje  $\mathcal{N}$ gdje svakom (dopustivom) rješenju pridružujemo skup rješenja, koje zovemo okolina od $x$.  Funkcija okoline se takođe može definisati preko operatora  $\Delta$, koji predstavlja kolekciju   funkcija $\Delta:\Phi \mapsto \Phi$,  gdje je $\Phi$ prostor pretrage (rješenja) razmatrane instance:
 $$ x' \in \mathcal{N}(x) \Longleftrightarrow \exists \delta \in \Delta,\delta(x)=x'.$$
  
-Prirodan izbor u mnogim aplikacijama je $k$-promijenjena (eng. \emph{k-exchange}) okolina: $x$ i $x^{'}$ pripadaju istoj okolini akko se razlikuju na tačno $k$ komponenti rješenja. Npr. za TSP problem, 2-promijenjena okolina je prirodan izbor gdje su komponente rješenja grane datog grafa.  
+Prirodan izbor u mnogim aplikacijama je $k$-promijenjiva (eng. \emph{k-exchange}) okolina: $x$ i $x^{'}$ pripadaju istoj okolini akko se razlikuju na tačno $k$ komponenti rješenja. Npr. za TSP problem, 2-promijenjiva okolina je prirodan izbor gdje su komponente rješenja grane datog grafa.  
 
   
 Rješenje $x$ je \emph{lokalni optimum} u odnosu na okolinu $\mathcal{N}$ akko
@@ -6436,30 +6436,30 @@ $f(x) \leq f(x')$ ($f(x) \geq f(x')$), za sve $x' \in \mathcal{N}(x)$, ako minim
 \end{algorithm}
 
 Pseudokod lokalne pretrage je dat u Algoritmu~\ref{alg:ls}. Ulaz u algoritam je instanca probelam i jedna okolona. U svakoj iteraciji, lokalna pretraga poboljšava trenutno (najbolje) rješenje ako je rješenje u okolini  $\mathcal{N}(x)$ ima bolju vrijednost ciljne funkcije. Algoritam se prekida ako je trenutno rješenje lokalno najbolje u odnosu na okolinu   $\mathcal{N}$.
- Postoje dvije strategije za izbor rješenja koje će zamijeniti trenutno najbolje rješenje pod pretpostavkom da postoji više od jednog rješenja sa boljom vrijednosti ciljne funkcije u posmatranoj okolini. Te strategije su:
+ Postoje dvije strategije za izbor rješenja koje će zamijeniti trenutno najbolje rješenje, pod pretpostavkom da postoji više od jednog rješenja sa boljom vrijednosti ciljne funkcije u posmatranoj okolini. Te strategije su:
  \begin{itemize}
- 	\item \emph{prvo poboljšanje} (eng. the first imprvement) -- ova strategija prihvata prvo nađeno rješenje $x'$ u okolini $\mathcal{N}(x)$ koje poboljšava $x$. Pretraga se tada seli u tačku  $x = x'$, odakle se pokreće nova iteracija lokalne pretrage.
- 	\item \emph{najbolje poboljšanje} (eng. the best improvement) --   ova strategija provjerava sva rješenja iz okoline $\mathcal{N}(x)$ i za novo najbolje rješenje bira ono koje je lokalno najbolje u toj okolini. Nalazak ovog  najboljeg rješenja zahtjeva enumeraciju svih rješenja iz okoline pa često ovakav proces u praksi traje dosta dugo,  tako da ona nije uvijek primjenjiva. U praksi se ipak pokazalo da  je čest slučaj da strategija \emph{najboljeg poboljšanja} vodi ka lokalnom optimumu problema u svega nekoliko iteracija lokalne pretrage. 
+ 	\item \emph{prvo poboljšanje} (eng. \emph{the first imprvement strategy}) -- ova strategija prihvata prvo nađeno rješenje $x'$ u okolini $\mathcal{N}(x)$ koje poboljšava $x$. Pretraga se rekurzivno seli u tačku  $x = x'$, odakle se pokreće nova iteracija lokalne pretrage.
+ 	\item \emph{najbolje poboljšanje} (eng. \emph{the best improvement strategy}) --   ova strategija provjerava sva rješenja iz okoline $\mathcal{N}(x)$ i za novo najbolje rješenje bira ono koje je lokalno najbolje u toj okolini. Nalazak  najboljeg rješenja zahtjeva enumeraciju svih rješenja iz okoline pa često ovakav proces u praksi traje dosta dugo,  tako da ona nije uvijek primjenjiva. U praksi se ipak pokazalo da  je čest slučaj da strategija \emph{najboljeg poboljšanja} vodi ka lokalnom optimumu problema u svega nekoliko iteracija lokalne pretrage. 
  \end{itemize}
   
   \emph{Primjer.} U   problemu 0-1 ruksaka, za okolinu $\mathcal{N}$ bi mogli uzeti $1$-\emph{swap} okolina. Recimo, za $n=4$ i rješenje $x=1100$ imali  bismo $$\mathcal{N}(x)= \{ 0100, 1000, 1110, 1101 \}.$$ 
   
 \subsection{Metoda promjenljivih okolina}\label{intro:vns}
-Metoda promjenljivih okolina je metaheuristika uvedena od strane Nenada Mladenovića i Pjera Hansena devedesetih godina prošlog vijeka.
-Pretraga je zasnovana na sistematskoj promjeni okolina da bi se izbjegle situacije kada algoritam ``upada'' u suboptimalna rješenja. Efikasnost VNS algoritma je zasnovana na razmatranju da u mnogim praktičnim optimizacionim problemima postoji veza između lokalnih minimuma. Stoga metod promjenljivih okolina i ne prati unaprijed zadatu putanju, već ``skače'' na potencijalno bolja rješenja koja se nalaze u nekoj okolini trenutno najboljeg.
+Metoda promjenljivih okolina je metaheuristika uvedena od strane Nenada Mladenovića i Pjera Hansena u drugoj polovini devedesetih godina prošlog vijeka.
+Pretraga je zasnovana na sistematskoj promjeni okolina da bi se izbjegle situacije kada algoritam ``upada'' u podoptimalna rješenja. Efikasnost VNS algoritma je zasnovana na razmatranju da u mnogim praktičnim optimizacionim problemima postoji veza između lokalnih minimuma. Stoga metod promjenljivih okolina i ne prati unaprijed zadatu putanju, već ``skače'' na potencijalno bolja rješenja koja se nalaze u nekoj okolini trenutno najboljeg.
 Na ovaj se način očuvavaju dobre osobine trenutnog rješenja (ako su neke promjenljive već dostigle optimalne vrijednosti), dok se u novim okolinama pokušavaju poboljšati preostale promjenljive. Ovaj sistem je dodatno ojačan sistemom lokalnog pretraživanja, kojim se prelazi iz trenutnog rješenja u najkvalitetnije rješenje u nekoj njegovoj okolini.
 
 Ponovimo da algoritam zasnovan na metodi promjenljivih okolina raspolaže jednom tačkom u jednoj iteraciji (a ne populacijom tačaka kao što je to slučaj sa genetskim algoritmom).
 
 Tako, ideja da se pretraga usmjeri sa jednog na (moguće bolji) drugi minimum koji je smješten u nekoj okolini polaznog minimuma predstavlja razuman  i, kao što je to slučaj u velikom broju raznih optimizacionih problema, opravdan pristup.
-Da bi se postigli pomenuti efekti ``izlaska'' iz lokalnog suboptimuma, kao i detaljno pretraživanje nove okoline trenutnog najboljeg rješenja, metoda promjenljivih okolina se najčešće realizuje pomoću dvije važne procedure: procedure razmrdavanja (engl. shaking) i procedure lokalnog pretraživanja (engl. local search). Kao i što je to slučaj sa svim metaheurističkim metodama, dugogodišnja primjena metode promjenljivih okolina na rješavanje različitih problema dovela je do pojave velikog broja različitih varijanti, koje, pored osnovnih metoda razmrdavanja i lokalnog pretraživanja, uključuju u mnoge druge strategije.
+Da bi se postigli pomenuti efekti ``izlaska'' iz lokalnog podoptimuma, kao i detaljno pretraživanje nove okoline trenutnog najboljeg rješenja, metoda promjenljivih okolina se najčešće realizuje pomoću dvije važne procedure: procedure razmrdavanja (eng. \emph{shaking}) i procedure lokalnog pretraživanja (eng. \emph{local search}). Kao i što je to slučaj sa svim metaheurističkim metodama, dugogodišnja primjena metode promjenljivih okolina na rješavanje različitih problema dovela je do pojave velikog broja različitih varijanti, koje, pored osnovnih metoda razmrdavanja i lokalnog pretraživanja, uključuju u mnoge druge strategije.
 
 Da bi se proširila pretraga,  VNS u potrazi za boljim lokalnim minimumom obično koristi okoline rastuće kardinalnosti. Da bi se definisao skup okolina, pretpostavimo da je $x$ proizvoljno rješenje i $N_k$, za $k=k_{min},\ldots,k_{max}$, konačan skup struktura okolina. Tada se  $N_k(x)$ definiše kao skup rješenja u $k$-toj okolini tačke $x$. 
 Način funkcionisanja ove metode prikazan je Algoritmom~\ref{alg:vns}. 
 
 
 U svakom koraku algoritma, VNS započinje od nekog rješenja $x$ i cijelog broja $k$, $k_{min}\leqslant k\leqslant k_{max}$, koji označava trenutnu okolinu $N_k$. U proceduri razmrdavanja
-se na slučajan način bira rješenje  $x'$ iz okoline  $N_k(x)$. Zatim se na to rješenje primjenjuje procedura lokalnog pretraživanja. Najbolje rješenje koje se dobije u lokalnom pretraživanju se dalje poredi sa trenutno najboljim rješenjem i ukoliko je ono bolje od trenutno najboljeg rješenja, ono se proglašava najboljim rješenjem i algoritam nastavlja sa daljim izvršenjem. Postoje različite strategije kada algoritam prelazi u narednu okolinu (u proceduri razmrdavanja), kao i kada se okoline ``resetuju'', tj. kada se algoritam vraća na razmatranje najmanje okoline. 
+se na slučajan način bira rješenje  $x'$ iz okoline  $N_k(x)$. Zatim se na to rješenje primjenjuje procedura lokalnog pretraživanja. Najbolje rješenje koje se dobije u lokalnom pretraživanju se dalje poredi sa trenutno najboljim rješenjem i ukoliko je ono bolje od trenutno najboljeg rješenja, ono se proglašava novim najboljim rješenjem i algoritam nastavlja sa daljim izvršenjem. Postoje različite strategije kada algoritam prelazi u narednu okolinu (u proceduri razmrdavanja), kao i kada se okoline ``resetuju'', tj. kada se algoritam vraća na razmatranje najmanje okoline. 
 
 Najčešći kriterijumi za prekid algoritma algoritma su: dostignuto maksimalno  vrijeme, dostignut maksimalan broj iteracija, maksimalni broj iteracija između dva poboljšanja ili maksimalan broj ponavljanja najboljeg rješenja.
 
@@ -6504,7 +6504,7 @@ Praktično gledano, u našem primjeru u $k$-tom koraku izvršenja procedure razm
 1000111. Odnosno, vidimo da se ova dva rješenja razlikuju na tačno tri indeksa (indeksima 2, 6 i 7).
 
 \emph{Lokalno pretraživanje}. 
-Za rješenje  $x'$ dobijeno u  proceduri razmrdavanja poziva se lokalno pretraživanje. Ova procedura podrazumijeva temeljno (ispcrpno) pretraživanje svih (ili skoro svih) rješenja, koja se blago razlikuju od rješenja  $x'$. Lokalno pretraživanje u ovom problemu bi moglo biti zasnovano na sličnim razmatranjima kao mutacije kod genetskog algoritma. Na primjer, jedno lokalno pretraživanje bi moglo da bude zasnovano na tzv. 1-swap pristupu (razmjena vrijednosti parova koordinata). Preciznije, lokalno pretraživanje razmatra sva rješenja nastala od rješenja $x'$ na način da je jedan proizvod koji je bio uključen u ruksak sada izbačen, a neki drugi proizvod, koji prvobitno nije bio u ruksaku, sada jeste.
+Za rješenje  $x'$ dobijeno u  proceduri razmrdavanja poziva se lokalno pretraživanje. Ova procedura podrazumijeva temeljno (ispcrpno) pretraživanje svih (ili skoro svih) rješenja, koja se blago razlikuju od rješenja  $x'$. Lokalno pretraživanje u ovom problemu bi moglo biti zasnovano na sličnim razmatranjima kao mutacije kod genetskog algoritma. Na primjer, jedno lokalno pretraživanje bi moglo da bude zasnovano na tzv. 1-\emph{swap} pristupu (razmjena vrijednosti parova koordinata). Preciznije, lokalno pretraživanje razmatra sva rješenja nastala od rješenja $x'$ na način da je jedan proizvod koji je bio uključen u ruksak sada izbačen, a neki drugi proizvod, koji prvobitno nije bio u ruksaku, sada jeste.
 
 Postoje različite strategije koliko dugo se izvršava lokalna pretraga. U opštem slučaju, potrebno je napraviti balans između utrošenog vremena pretraživanja i potrebe za lokalnim poboljšanjem rješenja. Stoga je generalno dobar pristup kostrukcija  procedura lokalnog pretraživanja koje se brzo izvršavaju (u idealnom slučaju u $O(1)$ vremenu), kako bi se omogućilo što iscrpnije pretraživanje okoline datog rješenja. Takođe, nekada se kombinuje više metoda lokalnog pretraživanja (ovo važi za većinu heurističkih metoda), koje, manje ili više temeljno, pretražuju okoline datog rješenja, u zavisnosti od brzine ili drugih parametara.
 
@@ -6544,18 +6544,18 @@ Postoje različite strategije koliko dugo se izvršava lokalna pretraga. U opšt
 		\item Osmisliti genetski algoritam i metodu promjenljivih okolina kojima se rješava problem određivanja maksimalnog nezavisnog skupa čvorova u grafu.
 		\item %https://www.mpi-inf.mpg.de/fileadmin/inf/d1/teaching/winter15/ApproxAlg/ex01.pdf
 		   Neka je dat ruksak čija je veličina jednaka $C$ i skup proizvoda $I = \{1,\ldots, n\}$, gdje proizvod $i$ ima svoju cijenu $c_i>0$ i veličinu $s_i>0$. Pokrivač ruksaka je skup proizvoda $I' \subseteq I$ tako da je $\sum_{i \in I'} s_i > C$.  Problem pokrivača ruksaka traži podskup proizvoda koji je pokrivač ruksaka sa minimalnom    cijenom.   Pretpostavimo da ne postoji proizvod čija je cijena veća od    cijene optimalnog rješenja. Konstruisati 2--aproksimativni algoritam za ovaj problem pod prethodnom pretpostavkom. 
-		   \item Pokazali smo da postoji 2--aproksimativni algoritam za problem pokrivanja čvora. Da li se može konstruisati instanca na kojoj (jedan od dva algoritma) ne daje bolju aproksimaciju od faktora 2? 
+		   \item Pokazali smo da postoji 2--aproksimativni algoritam za problem pokrivanja čvora. Da li se može konstruisati instanca na kojoj (jedan od dva aproksimativna algoritma koja su obrađena) ne daje bolju aproksimaciju od faktora 2? 
 		   \item %https://massivedatasets.files.wordpress.com/2011/04/approx1-exercisesf114.pdf
-		   Neka je dat kompletan nedirektan graf $G = (V, E)$ u kojem težine grana zadovoljavaju nejednakost trougla i neka je $k$ pozitivan prirodan broj. Probem se sastoji u particionisanju skupa $V$ na $k$ disjunktnih skupova $V_1, \ldots, V_k$ da bi se minimizirala grana najveće cijene između dva čvora u istom skupu, ili simbolički 
+		   Neka je dat kompletan nedirektan graf $G = (V, E)$ u kojem težine grana zadovoljavaju nejednakost trougla i neka je $k$ pozitivan prirodan broj. Probem se sastoji u particionisanju skupa $V$ na $k$ disjunktnih skupova $V_1, \ldots, V_k$ da bi se minimizirala grana najveće cijene između dva čvora u istom skupu,  simbolički zapisano sa
 		   $$ \max_{1 \leq i \leq k, u,v \in V_i} c(uv).$$
 		   Konstruisati 2--aproksimativni algoritam za ovaj problem (metričko $k$--klasterovanje). 
 		\item %https://www.ibr.cs.tu-bs.de/courses/ws1920/aa/exercises/exercise_03.pdf
-		 Neka je dat netežinski graf $G=(V,E)$. Problem koji se razmatra je naći particiju $V$ na $k$ skupova $V_1,\ldots, V_k$ tako da je broj grana koje su između dvije različite particije minimizovan. Konstruisati (gridi) algoritam koji je 1-$\frac{1}{k}$--aproksimativni. 
-		 \item U problemu bojanja grafa, u ulazu nam je dat neusmjeren graf $G = (V,E)$. Kažemo da je funkcija $f:V \mapsto \{1,\ldots, k\}$ $k$-bojenje akko ne postoje susjedni čvorovi grafa kojima je pridružen isti broj, tj. $f(u) \neq f(v)$, za $uv \in E$. Problem bojenja grafa traži za $k$-funkciju na grafu $G$, gdje je $k$ minimalan. Konstrusaiti pohlepni algoritam za koji je $k = \Delta + 1$, gdje je $\Delta$ maksimalni stepen čvora u $G$. 
+		 Neka je dat netežinski graf $G=(V,E)$. Naći particiju $V$ na $k$ skupova $V_1,\ldots, V_k$ tako da je broj grana koje su između dvije različite particije minimizovan. Konstruisati (pohlepni) algoritam koji je 1-$\frac{1}{k}$--aproksimativni. 
+		 \item U problemu bojanja grafa, u ulazu nam je dat neusmjeren graf $G = (V,E)$. Kažemo da je funkcija $f:V \mapsto \{1,\ldots, k\}$ $k$-bojenje akko ne postoje susjedni čvorovi grafa kojima je pridružen isti broj, tj. $f(u) \neq f(v)$, za $uv \in E$. Problem bojenja grafa traži za $k$-funkciju na grafu $G$, gdje je $k$ minimalan. Konstruisati pohlepni algoritam za koji je $k = \Delta + 1$, gdje je $\Delta$ maksimalni stepen čvora u $G$. 
 		 \item %https://www.ibr.cs.tu-bs.de/courses/ws1920/aa/exercises/exercise_05.pdf
 		 Problem obilaska segmenata (eng. \emph{Segment tour problem}). Neka je dat skup segmenata $S = \{s_0 = (p_0, p_1), s_1 =(p_2, p_3),\ldots\}$ u $\mathbb{R}^2$. Problem traži da se nađe (geometrijski) obilazak minimalne dužine koji sadrži sve segmente iz skupa $S$. Konstruisati 3--aproksimativni algoritam.  
 		 \item Neka je dat kompletan težinski graf $G=(V,E)$ čije grane zadovoljavaju nejednakost trougla. $ k$ poštara treba da prođu grafom tako da svaka grana u datom podskupu grana $E' \subseteq E$ bude pređena barem od strane jednog poštara. Startni i završni čvor za svakog od poštara je izabran po slobodnoj volji. Zadatak ovog problema je naći šetnju u grafu sa minimalnom dužinom (za sve poštare). 
-		 Konstruisati 2--aproksimativni graf ovog problema. 
+		 Konstruisati 2--aproksimativni algoritam za ovaj problem. 
 		 \item %https://www.ibr.cs.tu-bs.de/courses/ws1920/aa/exercises/exercise_03.pdf
 		 Neka je dat usmjereni graf $G = (V,E) $ sa nenegativnim težinama grana $w:E\mapsto\mathbb{R}$. Zadatak je naći  podskup čvorova $S \subseteq V$ tako da je suma grana iz $S$ u $V\setminus S$ najveća moguća, tj. 
 		  $$ \sum_{s \in S, t \notin S, st \in E }w(st)$$
@@ -6566,7 +6566,7 @@ Postoje različite strategije koliko dugo se izvršava lokalna pretraga. U opšt
 		 Neka je data instanca problema sa pozitivnim prirodnim  brojem $k$ i multi-skupom 
 		 $T = \{t_1,\ldots, t_n\}$ vremena (procesiranja poslova), $t_i \in \mathbb{Q}$ za sve $i=1,\ldots, n$. 
 		 Zadatak je da se nađe dodjela poslova svakoj od $k$ mašina (dakle, funkcija $f:\{1,\ldots, n\} \mapsto \{1,\ldots, k\}$) tako da je vrijeme završetka svih poslova na mašinama minimizovano, pod uslovom da one mogu izvršavati poslove paralelno, tj. funkcija cilja koja se minimizuje je data sa 
-		 $$\max \{  \sum_{i: f(i) = j } t_i \mid j=1,\ldots, k \}$$
+		 $$\max \{\sum_{i: f(i) = j } t_i \mid j=1,\ldots, k \}$$
 		 Konstruisati 2--aproksimativni algoritam.
 \end{enumerate}
 
