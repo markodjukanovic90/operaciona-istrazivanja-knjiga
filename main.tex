@@ -78,12 +78,12 @@
 \def\textC{$L_1$:\\
 	 $x^*=(1.8,  4)$\\
 	 $z=41$ \\
-	$LB=41$ 
+	$z^* \leq 41$ 
 }
 
 \def\textD{$L_2$\\
 	$x^*=(3, 3)$ \\
-	$z^* = 39 < LB$
+	$z = 39 = LB$
 }
 
 \def\textE{$L_3$:\\
@@ -92,17 +92,18 @@
 
 \def\textF{ $L_4$:\\
     $x^*=(1, 4\frac{4}{9})$ \\
-    $z^*=40\frac{5}{9}$ 
+    $z=40\frac{5}{9}$  \\
+    $z^* \leq 40$
 }
 
 \def\textG{$L_5$: \\
 	$x^*=(1, 4)$ \\
-	$z^*=37<LB$
+	$z=37<LB$
 }
 
 \def\textH{$L_6$: \\
 	$x^*=(0, 5)$ \\
-	$z^*=40<LB$
+	$z=LB = 40 $
 }
 
 \tikzset{>=stealth,parent node/.style={rectangle split, rectangle split parts=2,align=left,text width=2.5cm,draw,node distance=1cm and 1cm}}
@@ -3418,7 +3419,7 @@ Na Slici~\ref{fig:bnb_ilp} je prikazano B\&B drvo sljedećeg ILP-a:
 
 
 \section{Implicitna Enumeracija}
-Posmatrajmo sada specijalnu B\&B proceduru koja se može primijeniti na problem Binarnog cjelobrojnog programiranja, gdje    sve diskretne varijable u suštini modeluju logičke odlukame. Ovaj algoritam ne zahtjeva da se posmatraju rješenja LP-relaksacija, već radi se sa enumeracijom. Dakle, izlistaju se sve moguće kombinacije vrijednosti koje varijable mogu da prime, pa se izabere ona koja je dopustiva i daje najveću vrijednost za ciljnu funkciju. Ovaj pristup radi dobro na problemima malih dimenzija gdje postoji svega nekoliko binarnih varijabli. Primijetimo da u problemu sa $n$ binarnih varijabli,  broj kombinacija za varijable odluke je jednak $2^n$ (dakle, raste eksponencijalnom brzinom u odnosu na veličinu ulaza). 
+Posmatrajmo sada specijalnu B\&B proceduru koja se može primijeniti na problem Binarnog cjelobrojnog programiranja, gdje    sve diskretne varijable u suštini modeluju logičke odlukame. Ovaj algoritam ne zahtjeva da se posmatraju rješenja LP-relaksacija, već se radi sa enumeracijom. Dakle, izlistaju se sve moguće kombinacije vrijednosti koje varijable mogu da prime, pa se izabere ona koja je dopustiva i daje najveću vrijednost za ciljnu funkciju. Ovaj pristup radi dobro na problemima malih dimenzija gdje postoji svega nekoliko binarnih varijabli. Primijetimo da u problemu sa $n$ binarnih varijabli,  broj kombinacija za varijable odluke je jednak $2^n$ (dakle, raste eksponencijalnom brzinom u odnosu na veličinu ulaza). 
 
 Prisjetimo se da u standardnoj B\&B proceduri, podjela na manje probleme je izvedena dodavanjem dodatnih ograničenja i izbacujući ograničenja za integralnost (cjelobrojnost). U implicitnoj enumeraciji se primjenjuje suprotna taktika, zadržavaju se 0-1 restrikcije za varijable, ali ignorišu se linearna ograničenja u modelu. 
 Ideja implicitne enumeracije je uključiti B\&B proces tako što se fiksiraju neke od varijabli na 0 ili 1. Varijable koje ostaju neodređene se nazivaju \emph{slobodne varijable}.  B\&B kreće od slučaja da ne postoje varijable koje nisu slobodne. U svakom koraku fiksiramo jednu od varijabli i rješavamo problem bez razmatranja ograničenja sa nejednakostima. Potom provjeravamo da li je to rješenje dopustivo (zadovoljava ograničenja sa nejednakostima). U narednim podjelama  prethodne (ne-slobodne) varijable ostaju i dalje fiksirane. 
@@ -6597,14 +6598,14 @@ Postoje različite strategije koliko dugo se izvršava lokalna pretraga. U opšt
  	#include<ilcplex/ilocplex.h>
  	ILOSTLBEGIN
  \end{verbatim}
- Da bi se inicijalizovao LP model, neophodno je prvo inicijalizovati okrizenje za modelovanje. Dakle, konstruišemo instancu klase \emph{IloEnv} sa: 
+ Da bi se inicijalizovao LP model, neophodno je prvo inicijalizovati okrizenje za modelovanje. Dakle, konstruišemo objekat klase \emph{IloEnv} sa: 
  \begin{verbatim}
  	IloEnv env;
  	try{
  		//ovdje se deklarise model
  	}
  	catch(IloException& e){
- 		cer >> "Greska: " >> e >> endl;
+ 		    cer >> "Greska: " >> e >> endl;
  	}
  \end{verbatim}
  
