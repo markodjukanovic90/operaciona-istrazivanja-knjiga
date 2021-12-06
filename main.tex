@@ -3319,7 +3319,7 @@ U rješavanju problema  ILP-a, sljedeće jednostavne činjenice će nam biti od 
 %Definišimo $LB = - \infty$. 
 Na bazi ove dvije činjenice, uvedimo sada sistematičnu podjelu dopustivog regiona na niz podregiona:
 \begin{enumerate}
-    \item U korjenom čvoru B\&B stabla rješavamo LP relaksaciju početnog problema     (simpleks metodom), i dobijamo rješenje $x^*=(x^*_1, \ldots, x^*_n)$.   Ako je rješenje cjelobrojno, prekidamo dalje izvršavanje i stavimo $LB=UB=f(x^*)$. U protivnom, postavimo $f(x^*)=UB$.
+    \item U korjenom čvoru B\&B stabla rješavamo LP relaksaciju početnog problema     (simpleks metodom), i dobijamo rješenje $x^*=(x^*_1, \ldots, x^*_n)$.   Ako je rješenje cjelobrojno, prekidamo dalje izvršavanje i stavimo $LB=f(x^*)$, koje je optimalno. %U protivnom, postavimo $f(x^*)=UB$.
     \item Za sve koordinate $i$ za koje je $x^*_i \not \in \mathbb{Z}$ treba biti ili $z_i \geq \lfloor x^*_i \rfloor + 1$ ili $z_i \leq \lfloor x^*_i \rfloor$ i to je upravo mjesto podjele dopustivog regiona. Ako ima više takvih koordinata, biramo onu koordinatu $i$ gdje je decimalni dio najveći.  Recimo da je to koordinata $k$.
     \item Sada dijelimo region problema na dva podregiona (lijevi i desni) dodavajući 
           ograničenja $x_k \geq \lfloor x^*_k \rfloor + 1$ ili $x_k \leq \lfloor x^*_k \rfloor$, redom.
@@ -3600,7 +3600,7 @@ $$
 \end{array}
 $$
 Kako u posljednjoj vrsti nemamo negativnih vrijednosti, zaključujemo da je ovo optimalna simpleks tabela. Na osnovu (\ref{gomory_cplex}),   za prvi red simpleks tabele i odrogarajuće ogranjičenje generišemo odsjecajuću ravan:
-$$   \frac{5}{7}x_3 + \frac{2}{7} x_4 -      y_1   = \frac{6}{14}=\frac{3}{7}$$
+$$   \frac{5}{7}s_1 + \frac{2}{7} s_2 -      y_1   = \frac{6}{14}=\frac{3}{7}$$
 pa je dodajemo u (završnu) simpleks tabelu:
 $$
 \begin{array}{ccccc|c}
@@ -3611,7 +3611,7 @@ $$
     0    &  0  &  5             &    \frac{5}{2}   &  0 &    \frac{35}{2}
 \end{array}
 $$
-Načinimo sada jediničnu podmatricu u gornjoj lijevoj matrici $\overline{A}$, za treću kolonu (i odgovarajuću varijablu $x_3$), pivotirajući oko elementa $\overline{a}_{3,3}$, čime dobijamo 
+Načinimo sada jediničnu podmatricu u gornjoj lijevoj matrici $\overline{A}$, za treću kolonu (i odgovarajuću varijablu $s_1$), pivotirajući oko elementa $\overline{a}_{3,3}$, čime dobijamo 
 
 $$
 \begin{array}{ccccc|c}
@@ -3623,7 +3623,7 @@ $$
 \end{array}
 $$
 Kao što vidimo, rješenje problema je $(\frac{7}{2}, 1, 0, 0, \frac{3}{5})$, što i dalje nije cjelobrojno rješenje. Dalje, dodajemo novu odsjecajuću ravan, koja se izvodi iz drugog ograničenja (drugi red simpleks tabele): 
-$$ \frac{1}{2} x_4 - y_2 = \frac{1}{2}.$$
+$$ \frac{1}{2} s_2 - y_2 = \frac{1}{2}.$$
 Dodajmo ovo ograničenje u posljednju simpleks tabelu:
 
 $$
@@ -3650,7 +3650,7 @@ $$
 
 
 Iz tabele zaključujemo da je bazno rješenje problema 
-$x=(2,2, \frac{1}{5}, 1)$, a optimalno $(2, 2)$, što je i optimalno rješenje početnog problema. 
+$x=(2,2, \frac{1}{5}, 1)$, a optimalno $x^* = (2, 2)$, odakle dobijamo i optimalno rješenje početnog problema. 
 
 Rješenje ILP problema gdje su svi koeficijenti u ograničenjima cjelobrojni, je prikazano sljedećim primjerom. \\
 %https://www.math10.com/en/geometry/geogebra/geogebra.html
@@ -3686,7 +3686,7 @@ $$\begin{array}{ccc c| c}
 0 & 0 &  \frac{7}{12}   &  \frac{5}{12}  &  \frac{69}{2}
 \end{array} $$
 Optimalno rješenje je $x^* = (\frac{11}{2}, \frac{9}{2}, 0, 0)$ koje nije cjelobrojno. Dodajmo gomorijevu odsjecajuću ravan generisanu iz ograničenja u prvoj vrsti simpleks tabele (za prvu baznu komponentu $x_1^* = \frac{11}{2}$):
-$$  \frac{11}{36} x_2 + \frac{1}{36} x_3 - y_1 = \frac{1}{2},$$
+$$  \frac{11}{36} x_2 + \frac{1}{36} s_1 - y_1 = \frac{1}{2},$$
 pa dobijamo tabelu 
 $$\begin{array}{ccccc| c}
 1 &  0 &   \frac{11}{36}  & \frac{1}{36}   &  0 & \frac{11}{2} \\
@@ -3704,7 +3704,7 @@ $$\begin{array}{ccccc| c}
 Kako su svi koeficijenti u posljednjoj vrsti veći od 0, slijedi da je optimalno bazno rješenje jednako $x=(5, \frac{51}{11}, \frac{18}{11}, 0, 0)$, koje opet nije cjelobrojno. 
  Prema tome, dodajmo sljedeću gomorijevu odsjecajuću ravan za bazno rješenje $x^*_2 = \frac{51}{11}$ (posmatrajući vrstu 2 posljednje simpleks tabele):
  
- $$ \frac{1}{11} x_4 + \frac{8}{11} x_5 - y_2 = \frac{7}{11},$$
+ $$ \frac{1}{11} s_2 + \frac{8}{11} y_1 - y_2 = \frac{7}{11},$$
  odakle imamo tabelu 
  $$\begin{array}{cccccc| c}
  1   &   0   &  0  &   0             &   1  &   0              &   5 \\
@@ -3724,7 +3724,7 @@ I ovdje nije očigledno šta su bazne varijable, pa ovdje primijenimo dvofazni s
 Odgovarajuće optimalno bazno dopustivo rješenje i dalje nije cjelobrojno -- niti jedna komponenta nije cjelobrojna. 
 
 Prema tome, dodajemo gomorijevu odsjecajuću ravan za vrstu 2 prethodne simpleks tabele, koja je oblika
-$$  \frac{1}{8}x_4 + \frac{5}{8} y_2 - y_3 = \frac{7}{8},$$
+$$  \frac{1}{8}s_2 + \frac{5}{8} y_2 - y_3 = \frac{7}{8},$$
 te dobijamo tabelu
 $$ \begin{array}{ccccccc| c}
 1    &   0   &   0   &  -\frac{1}{8}   &   0    &    \frac{11}{8}    & 0 & \frac{33}{8} \\
