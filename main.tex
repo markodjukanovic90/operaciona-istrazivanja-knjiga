@@ -2789,7 +2789,7 @@ Ovaj model pripada modelu \emph{mješovitnog linearnog programiranja}, gdje post
 	&\sum_{i=1}^n f_i x_i  + \sum_{i,j} c_{ij} z_{ij} d_j \rightarrow \min\\
 	& s.t. \nonumber \\
 	& \sum_{i} z_{ij} = 1, \forall j\in\{1,\ldots,m\} \\
-	& \sum_{i,j} d_j z_{ij} \leq M x_i, \forall i \in \{1,\ldots,n\} \\
+	& \sum_{j} d_j z_{ij} \leq M x_i, \forall i \in \{1,\ldots,n\} \\
 	& x_i, z_{ij} \in \{0,1\} \mbox{ za } i = 1, \ldots, n, j = 1,  \ldots, m.
 \end{align*}
 Vrijednost $M$ je konstanta koja uzima neku veliku vrijednost (zbir količine potražnji svih kupaca). Međutim, u praksi se često izbjegava upotreba $M$-konstante, te se tako ovo ograničenje zamjenjuje sa $ z_{ij} \leq x_i$ 
@@ -3295,7 +3295,7 @@ U osnovni model uključiti i sljedeća ograničenja:
  Dok je simpleks metoda učinkovita za rješavanje  problema LP-a, ne postoji generalna tehnika efikasna za rješavanje problema Cjelobrojnog programiranja. Umjesto toga, razvijeni su mnogi metodi i njihova efikasnost
  uvelike zavisi od karakteristika samog problema. Dosadašnje metode se generalno mogu klasifikovati na sljedeći način:
  \begin{enumerate}
-     \item \emph{Enumerativne tehnike} -- Dinamičko programiranje, metoda otkidanja i ograničavanja (eng. \emph{branch-and-bound}), koju ćemo kratko nazvati B\&B;
+     \item \emph{Enumerativne tehnike} -- Dinamičko programiranje, metoda otkidanja i ograničavanja (eng. \emph{branch-and-bound} -- B\&B), metoda implicitne enumeracije i druge;
      \item \emph{Tehnike odsjecajućih ravni}.
      %\item Grupne-teoretske tehnike. 
  \end{enumerate}
@@ -3320,22 +3320,22 @@ U rješavanju problema  ILP-a, sljedeće jednostavne činjenice će nam biti od 
 Na bazi ove dvije činjenice, uvedimo sada sistematičnu podjelu dopustivog regiona na niz podregiona:
 \begin{enumerate}
     \item U korjenom čvoru B\&B stabla rješavamo LP relaksaciju početnog problema     (simpleks metodom), i dobijamo rješenje $x^*=(x^*_1, \ldots, x^*_n)$.   Ako je rješenje cjelobrojno, prekidamo dalje izvršavanje i stavimo $LB=f(x^*)$, koje je optimalno. %U protivnom, postavimo $f(x^*)=UB$.
-    \item Za sve koordinate $i$ za koje je $x^*_i \not \in \mathbb{Z}$ treba biti ili $z_i \geq \lfloor x^*_i \rfloor + 1$ ili $z_i \leq \lfloor x^*_i \rfloor$ i to je upravo mjesto podjele dopustivog regiona. Ako ima više takvih koordinata, biramo onu koordinatu $i$ gdje je decimalni dio najveći.  Recimo da je to koordinata $k$.
-    \item Sada dijelimo region problema na dva podregiona (lijevi i desni) dodavajući 
-          ograničenja $x_k \geq \lfloor x^*_k \rfloor + 1$ ili $x_k \leq \lfloor x^*_k \rfloor$, redom.
+    \item Za sve koordinate $i$ za koje je $x^*_i \not \in \mathbb{Z}$, dopustiv region se može podijeliti na dva (disjunktna) podskupa uvodeći ograničenja: $z_i \geq \lfloor x^*_i \rfloor + 1$ ili $z_i \leq \lfloor x^*_i \rfloor$ i to je upravo mjesto podjele dopustivog regiona. Ako ima više takvih koordinata, biramo onu koordinatu $i$ gdje je decimalni dio najveći.  Recimo da je to koordinata $k$.
+    \item Sada dijelimo region problema na dva podregiona (lijevi i desni dijete čvor) dodavajući 
+          ograničenja $x_k \geq \lfloor x^*_k \rfloor + 1$ i $x_k \leq \lfloor x^*_k \rfloor$, redom
     \item Rješavamo relaksaciju oba (pot)problema. 
     \begin{itemize}
     	\item  Ako je neko od rješenja cjelobrojno, popravljamo $LB$ (ako smo dobili bolje dopustivo rješenje) i odgovarajući potproblem (njegov region) se dalje ne dijeli. 
     	\item Ako rješenje $x$ nije cjelobrojno, i pri tome je vrijednost optimuma manja od $LB$, taj potproblem se dalje više ne dijeli (\emph{bound} procedura). 
     	\item Dalje, ako je potproblem nedopustiv, problem se ne dijeli (i ne razmatra više). 
-    	\item Inače, idemo na korak 2 dijeljeći podregion ovog potproblema na nove (manje) podregione.    
+    	\item Inače, idemo na korak 2 dijeljeći podregion   na nove (manje) podregione nekog od potproblema za koje to nije urađeno.    
     \end{itemize}
 
 \end{enumerate}
 
 Primijetimo da ovom metodom formiramo drvo enumeracije koje nam garantuje nalazak optimalnog rješenja početnog ILP-a. Takođe, primijetimo da ovo drvo raste eksponencijalno u odnosu na veličinu ulaznog problema. 
 
-  Ovo je samo okvirna shema B\&B procedure. Ono što je ostalo nerazjašnjeno je koji od neriješenih potproblema prvo rješavati. Kažemo da se čvorovi čiji je odgovarajući problem podijeljen na podregione naziva \emph{neaktivan}, a inače \emph{aktivan}. Generalni B\&B metod za rješavanje problema ILP-a je dat   pseudokodom~(\ref{bnb_algorithm_ilp}).  Neki od kriterijuma su sljedeći:
+  Ovo je samo okvirna shema B\&B procedure. Ono što je ostalo nerazjašnjeno je koji od neriješenih potproblema prvo rješavati. Kažemo da se čvorovi čiji je odgovarajući problem podijeljen na podregione naziva \emph{neaktivan}, a inače \emph{aktivan}. Generalni B\&B metod za rješavanje problema ILP-a je dat   Algoritmom~\ref{bnb_algorithm_ilp}.  Neki od kriterijuma su sljedeći:
   \begin{itemize}
   	\item Izabrati one aktivne čvorove koji su najdublje u drvetu da bi što prije stigli do listova i potencijalnih dopustivih rješenja.
   	\item Odabrati aktivne čvorove nivo po nivo. Dakle, sve aktivne čvorove (tj. odgovarajuće potprobleme) jednog nivoa   rješavati, pa onda preći na čvorove idućeg nivoa. 
