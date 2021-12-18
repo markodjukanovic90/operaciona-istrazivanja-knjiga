@@ -6845,7 +6845,7 @@ Upisivanje modela u .$lp$ format se vrši pozivom funkcije \emph{writeLP()}, či
         model += lpSum( y[ (i, j) ] for i in locations ) == 1
     for i in locations: 
         model += lpSum( y[ (i, j) ] * d[ j ] for j in customers ) \ 
-                 <= u[ i ] * x[ i ]
+               <= u[ i ] * x[ i ]
     # solve:
     model.solve()
     # rješenja:
@@ -6859,8 +6859,8 @@ Upisivanje modela u .$lp$ format se vrši pozivom funkcije \emph{writeLP()}, či
              print(y[ (i, j) ].varValue)
     print("Vrijednost: ", value(model.objective))    
  \end{verbatim}
- Optimalna vrijednost ove instance je 202.0 a dostiže se za vrijednost varijabli $x = (1, 0, 0)$, te $y_{11}= y_{12}= y_{13} = 1$, dok su ostale vrijednosti 0.
- \section{Primjena Cplex rješavača na jedan problem stringova}
+ Optimalna vrijednost ove instance je 202.0, a dostiže se za vrijednost varijabli $x = (1, 0, 0)$, te $y_{11}= y_{12}= y_{13} = 1$, dok su ostale vrijednosti 0.
+ \section{Primjena CPLEX rješavača na problem stringova}
  
  % opisati RFLCS problem, modelovati ga:
  U ovoj sekciji modelujemo problem \emph{najdužeg zajedničkog podniza bez ponavljanja}. Ovaj problem kao ulaz prihvata dva (proizvoljna) stringa $s_1$ i $s_2$ nad proizvoljnom abecedom, a kao izlaz vraća string $s$ maksimalne dužine sa sljedećim karakteristikama:  
@@ -6868,14 +6868,16 @@ Upisivanje modela u .$lp$ format se vrši pozivom funkcije \emph{writeLP()}, či
  	\item $s$ je zajednički podniz oba stringa; 
  	\item $s$ ne sadrži karakter koji se u njemu pojavljuje dva ili više puta.
  \end{itemize}
-Za ovaj problem je poznato da je NP-težak. 
+Za ovaj problem je poznato da je NP-težak, ili preciznije pripada APX klasi.  
 
-Za primjer, neka su data dva stringa $s_1 = \texttt{abdcccab}$ i $s_2=\texttt{abccacd}$, rješenje ovog problema je $s=\texttt{abc}$. Primijetimo da je $s$ zajednički podniz za oba ulazna stringa te da ispunjava uslov o ``neponavljajućim'' karakterima u sebi. Takođe, može se provjeriti da ne postoji duži zajednički podniz sa takvim svojstvom za ove ulazne stringove, što znači da je ovo rješenje optimalno. Konstruišimo sada jedan Binarni cjelobrojni model za ovaj problem. Nazovimo par $(a, b), 1 \leq i \leq |s_1|, 1 \leq j \leq |s_2|$ \emph{mečing} akko je $s_1[a]=s_2[b], a < b$. Dalje, sa $\mathcal{M}$ označimo skup svih mečinga za dati ulaz $S=\{s_1, s_2\}$. Takođe, označimo sa  $\mathcal{M}_{\texttt{a}}$, skup svih mečinga koji pokrivaju isto slovo, tj. 
-$\mathcal{M}_{\texttt{a}} = \{ (i, j) \mid s_1[i]=s_2[j]=\texttt{a}\}$, $\texttt{a} \in \Sigma$. Za svaki mečing $p=(p(a),p(b))$, pridružimo jednu binarnu varijablu $z_{p} \in \{0, 1\}$. Označimo $l(z_p)= s_1[ p(a) ], Z_{\texttt{a}} = \{ z_p \mid p \in \mathcal{M} \ \wedge\  l(z_p) = \texttt{a}\}, \texttt{a}\in \Sigma$, te skup svih varijabli sa $Z = \cup_{\texttt{a} \in \Sigma} Z_{\texttt{a}}$. 
+Za primjer, neka su data dva stringa $s_1 = \texttt{abdcccab}$ i $s_2=\texttt{abccacd}$, rješenje ovog problema je $s=\texttt{abc}$. Primijetimo da je $s$ zajednički podniz za oba ulazna stringa te da ispunjava uslov o ``neponavljajućim'' karakterima u sebi. Takođe, može se provjeriti da ne postoji duži zajednički podniz sa takvim svojstvom za ove ulazne stringove, što znači da je ovo rješenje optimalno. Konstruišimo sada jedan model binarnog cjelobrojnog programiranja za ovaj problem. 
 
-Za svake dvije binarne varijable $z_{p_1}$ i $z_{p_2}$ kažemo da su u \emph{konflitu} akko vrijedi $$ p_1(a) \geq p_1(a) \mbox{ i } p_1(b) \leq p_2(b)     $$ 
+Nazovimo par $(a, b), 1 \leq i \leq |s_1|, 1 \leq j \leq |s_2|$ \emph{mečing} akko je $s_1[a]=s_2[b], a < b$. Dalje, sa $\mathcal{M}$ označimo skup svih mečinga za dati ulaz $S=\{s_1, s_2\}$. Takođe, označimo sa  $\mathcal{M}_{\texttt{a}} \subseteq \mathcal{M}$  skup svih mečinga koji pokrivaju isto slovo, tj. 
+$\mathcal{M}_{\texttt{a}} = \{ (i, j) \mid s_1[i]=s_2[j]=\texttt{a}\}$, $\texttt{a} \in \Sigma$. Za svaki mečing $p=(p_1(a),p_2(a))$, pridružimo jednu binarnu varijablu $z_{p} \in \{0, 1\}$. Označimo $l(z_p)= s_1[ p_1(a) ], Z_{\texttt{a}} = \{ z_p \mid p \in \mathcal{M} \ \wedge\  l(z_p) = \texttt{a}\}, \texttt{a}\in \Sigma$, te skup svih varijabli sa $Z = \cup_{\texttt{a} \in \Sigma} Z_{\texttt{a}}$. 
+
+Za svake dvije binarne varijable $z_{q}$ i $z_{r}$ kažemo da su u \emph{konflitu} akko vrijedi sljedeće: $$ q_1(a) \geq r_1(b) \mbox{ i } q_2(b) \leq r_2(a)     $$ 
 ili 
- $$ p_1(a) \leq p_1(a) \mbox{ i } p_1(b) \geq p_2(b).$$ 
+ $$ q_1(a) \leq r_1(b) \mbox{ i } q_2(b) \geq r_2(a)$$ 
 ili 
 $$ l(z_{p_1}) = l(z_{p_2}).$$
 
@@ -6887,15 +6889,15 @@ Takođe, s obzirom da rješenje problema odgovara nalasku skupa (međusobno) nek
 \begin{equation}\label{eq:rflce-non-conflict}
 	 z_{p} + z_q \leq 1, \forall p,q \in Z, p\neq q, p\mbox{ je u konfliktu sa } q.
 \end{equation}
-Kako tražimo skup maksimalne kardinalnosti, imamo funkciju cilja 
+Kako tražimo skup maksimalne kardinalnosti, funkciju cilja (koja se maksimizuje) je data sa:
 \begin{equation}\label{eq:rflcs-objective}
 	 \max \sum_{z \in Z } z 
 \end{equation}
 Dakle, uz funkciju cilja (\ref{eq:rflcs-objective}), ograničenja (\ref{eq:rflcs-max-1})--(\ref{eq:rflce-non-conflict}) sa uslovom $z \in \{0, 1\}, z \in Z$, dobili smo model problema najdužeg stringa bez ponavljanja. 
 
- Implementirajmo ovaj model, uz pretpostavku da je svaki string u ulazu narednog programa dat svojom numeričkom prezentacijom. To znači da je svakom karakteru stringa pridružen jedinstven broj i kao takav se importuje u program. Primjera rad, za string $s_1=\texttt{abbcba}$, pridružen je numerički niz (vektor) 011210. Naravno, ovo je moguće riješiti i na drugačiji način, bez ovakve konverzije stringa u vektor prezentaciju. 
+ Implementirajmo ovaj model, uz pretpostavku da je svaki string u ulazu narednog programa dat svojom numeričkom reprezentacijom. To znači da je svakom karakteru stringa pridružen jedinstven broj i kao takav se importuje i koristi u programu. Primjera radi, za string $s_1=\texttt{abbcba}$, pridružen je numerički niz (vektor) 011210. kao što i pretpostavljate, ovo je moguće riješiti i na drugačiji način, bez korištenja konverzije stringa. 
  
- Model je implementiran u programskom jeziku C++, a riješen uz pomoć Cplex rješavača. 
+ Model je implementiran u programskom jeziku C++, a riješen uz pomoć CPLEX rješavača. 
  
 \begin{verbatim}
 #include <string>
@@ -7048,7 +7050,7 @@ int main( int argc, char **argv )
 \begin{enumerate}
 	\item Istraži na internetu dostupne optimizacione  rješavače za probleme linearnog, cjelobrojnog (i mješovitog cjelobrojno--linearnog) programiranja. Procijeni njihov kvalitet, upotrebnu vrijednost i prepoznaj njihove prednosti i nedostatke u svakog od njih u odnosu na ostale.
 	
-	\item Koristeći neki od rješavača, provjeri ispravnost rješenja zadataka iz Glave 4 i Glave 6.
+	\item Koristeći neki od rješavača, provjeri ispravnost rješenja zadataka iz Glave 4 i 6.
 	
 	\item Neka je u ulazu dat graf  $G = (V, E)$ kao instanca problema. Implementirati sljedeći ILP model:
 	\begin{align*}
@@ -7057,11 +7059,11 @@ int main( int argc, char **argv )
 		& x_{v'} + x_{v''} \leq 1, \forall (v' v'')\in E \\
 		& x_v \in \{0, 1 \}, \forall v \in  V.
 	\end{align*}
-Izbaciti rješenje problema u obliku skupa odabranih čvorova koji su komponeneta optimalnog rješenja. Riješiti relaksaciju datog ILP-a. Zaokružiti dobijeno rješenje, tj. transformisati ga u najbliže cjelobrojno rješenje (gledajući po koordinatama).  Model implementirati:
+Izbaciti rješenje problema u obliku skupa odabranih čvorova koji su komponeneta (optimalnog) rješenja. Riješiti relaksaciju datog ILP-a. Zaokružiti dobijeno rješenje, tj. transformisati ga u najbliže cjelobrojno rješenje (gledajući po koordinatama).  Model implementirati:
 
- ($a$) uz pomoć Cplex-a; ($b$) uz pomoć PuLP modula.
+ ($a$) uz pomoć CPLEX-a; ($b$) uz pomoć PuLP modula.
 \item % http://courses.ieor.berkeley.edu/ieor151/lecture_notes/ieor151_lec13.pdf
-     Neka je instanca modela sljedećeg problema data sa usmjerenim težinskim grafom $G= (V_1 \cup V_2, E)$, gdje su $V_1$ i $V_2$ disjunktni skupovi, te prirodan broj $p\geq 1$. Težine grane između čvorova $i$ i $j$ je data sa $d_{i,j}\geq 0 $ i postoje samo grane između čvorova iz skupa $V_1$ u skup $V_2$. Svakom čvoru iz skupa $V_1$ pridružena je težina $h_{i}$. 
+     Neka je dat usmjerenim težinskim grafom $G= (V_1 \cup V_2, E)$ kao instanca problema modelovan sljedećim modelom, gdje su $V_1$ i $V_2$ disjunktni skupovi. Neka je dat prirodan broj $p\geq 1$. Težine grana između čvorova $i$ i $j$ je data sa $d_{i,j}\geq 0 $ i postoje samo grane između čvorova iz skupa $V_1$ u skup $V_2$. Svakom čvoru iz skupa $V_1$ pridružena je težina $h_{i}$. 
      Neka je MILP model dat  sa:
      \begin{align*}
      	 &\min \sum_{j \in V_2}\sum_{i \in V_1} h_i d_{i,j} Y_{i,j} \\
@@ -7074,10 +7076,11 @@ Izbaciti rješenje problema u obliku skupa odabranih čvorova koji su komponenet
      \end{align*}
       Model implementirati:
       
-      ($a$) uz pomoć Cplex-a; ($b$) uz pomoć PuLP modula. 
+      ($a$) uz pomoć CPLEX-a; ($b$) uz pomoć PuLP modula. 
    \item   %https://www.researchgate.net/publication/220316431_An_efficient_ILP_formulation_for_the_single_machine_scheduling_problem
-   Neka je data instanca koja se sastoji od skupa $V$ poslova koji treba da budu urađeni na mašini. Svaki posao $j$ je dat intervalom $[r_j, d_j]$, $r_j < d_j$, gdje $r_j$ označava dopustivo vrijeme puštanja posla u rad (na mašini) dok $d_j$ označava vrijeme do kada se posao mora završiti.  Vrijeme procesiranja posla $j$ je dato sa $d_j$. 
-   Potrebno je za sve poslove $j  \in V$ naći dopustiv redosljed izvršavanja (na mašini) tako što su nađena startna vremena izvršenja $s_j$ ($s_j \geq r_j \wedge s_j + p_j \leq d_j$). Ovaj problem je modelovan iz pomoć sljedećeg modela:
+   Neka je u ulazu dat skup $V$ poslova koji treba da budu urađeni na mašini. Svaki posao $j$ je dat intervalom $[r_j, d_j]$, $r_j < d_j$, gdje $r_j$ označava dopustivo vrijeme puštanja posla u rad (na mašini) dok $d_j$ označava vrijeme do kada se posao mora završiti.  
+   Vrijeme procesiranja posla $j$ je dato sa $p_j$. 
+   Odrediti za sve poslove $j  \in V$ dopustiv redosljed njihovog izvršavanja (na mašini) tako što ćete odrediti startna vremena izvršenja $s_j$ ($s_j \geq r_j \wedge s_j + p_j \leq d_j$) za sve $j \in V$. Ovaj problem je modelovan iz pomoć sljedećeg modela:
    \begin{align*}
           &\max D - R \\
           & s.t. \\
@@ -7091,7 +7094,7 @@ Izbaciti rješenje problema u obliku skupa odabranih čvorova koji su komponenet
    \end{align*} 
           Model implementirati:
     
-    ($a$) uz pomoć Cplex-a; ($b$) uz pomoć PuLP modula. 
+    ($a$) uz pomoć CPLEX-a; ($b$) uz pomoć PuLP modula. 
     \item Neka je data instanca koja se sastoji  $n$ brojeva iz skupa $\mathbb{R}^p$, $p\in \mathbb{N}$. Sa $w_{i}=(w_{i1},\ldots, w_{ip})$ označimo $i$-ti element u skupu $S$. 
     Neka je $s_j = \sum_{i=1}^n w_{ij}, j=1,\ldots, p$ i neka je dat model:
     \begin{align*}
@@ -7103,19 +7106,22 @@ Izbaciti rješenje problema u obliku skupa odabranih čvorova koji su komponenet
     \end{align*}
              Model implementirati:
      
-     ($a$) uz pomoć Cplex-a; ($b$) uz pomoć PuLP modula.
+     ($a$) uz pomoć CPLEX-a; ($b$) uz pomoć PuLP modula.
     \item %http://elib.mi.sanu.ac.rs/files/journals/publ/119/publn119p51-58.pdf
-    Neka je data instanca koja se sastoji od grafa $G=(V,E)$ pri čemu je svakom od čvorova grafa data težina $f(v)  \in \{0, 1, 2\}, v \in V$. Neka je dat model:
+    Neka je data instanca koja se sastoji od grafa $G=(V,E)$ %pri čemu je svakom od čvorova grafa data težina $f(v)  \in \{0, 1, 2\}, v \in V$. 
+    Neka je dat ILP model:
     \begin{align*}
           &\min \sum_{i \in V} x_i + \sum_{i \in V} y_i \\
           &s.t. \\
-          & x_i + \sum_{j \in N_i } y_j  \geq 1 \\
+          & x_i + \sum_{j \in N_i } y_j  \geq 1, i \in V \\
           & y_i \leq x_i, i \in V \\
-          &x_i, y_i \in \{0, 1\}, i \in V.
+          &x_i, y_i \in \{0, 1\}, i \in V,
     \end{align*}
-     Model implementirati:
+gdje $N_i$ označava susjede čvora $i$ u grafu $G$. 
 
-($a$) uz pomoć Cplex-a; ($b$) uz pomoć PuLP modula. 
+Model implementirati:
+
+($a$) uz pomoć CPLEX-a; ($b$) uz pomoć PuLP modula. 
 \end{enumerate}
 \begin{thebibliography}{widest entry}
 	\bibitem[1]{cite_key1}  {https://towardsdatascience.com/the-big-picture-of-operations-research-8652d5153aad}
