@@ -6574,9 +6574,9 @@ Postoje različite strategije koliko dugo se izvršava lokalna pretraga. U opšt
 
  \chapter{Optimizacioni rješavači}
  
- Kao što smo i pomenuli u uvodnoj sekciji, modelovanje problema koji odgovara rješenju problema je 
- dio koji uzima najveći dio vremena. Kada dođemo do modela koji približno odgovara potrebama menadžmenta 
- koja naručuje sistem zasnovan na OR istraživanju, rješavanje modela se svodi na pozivanje odgovarajućih rješavača. Neki od najpoznatijih su 
+ Kao što smo i pomenuli u uvodnoj sekciji, modelovanje problema koji odgovara (idealizivanoj verziji) problema je 
+ dio koji uzima najveći dio vremena u operacinim istraživanjima. Kada dođemo do modela koji približno odgovara potrebama uprave  
+ koja naručuje sistem, rješavanje modela se svodi na pozivanje odgovarajućih rješavača. Neki od najpoznatijih su 
  CPLEX koji može biti pozivan u Javi, $C$++ i Python-u uz pomoć odgovarajućih API-ja, zatim Lindo, Gurobi te modul PuLP u Python-u, među ostalima.  
  
  U nastavku opisujemo korištenje CPLEX i PuLP rješavača za implementaciji modela i njihovog rješavanja. 
@@ -6585,18 +6585,20 @@ Postoje različite strategije koliko dugo se izvršava lokalna pretraga. U opšt
  %https://www.youtube.com/watch?v=J7tNzCsYgy8
  
  \section{Optimizacioni rješavač Cplex}
- CPLEX alat je generalni rješavač za rješavanje optimizacionih problema, a među njima  LP, ILP i MILP. Konstruisan je od strane IBM-a, i može da se preuzme sa linka 
+ CPLEX alat je generalni rješavač za rješavanje optimizacionih problema, a među njima izdvajamo LP, ILP i MILP. Konstruisan je od strane IBM-a, i može da se potpuno besplatno preuzme sa linka 
  
  \url{https://www.ibm.com/products/ilog-cplex-optimization-studio}. 
  
  On je dio \emph{IBM ILOG CPLEX Optimization Studio}-a koji uključuje i druge opcije poput \emph{Constraint Programming} (CP) solvera itd.
  
- U nastavku opisujemo proces same implementacije modela u CPLEX-u, preko programskog jezika $C$++.
+ U nastavku opisujemo proces same implementacije modela u CPLEX-u; odabran je programski jezik $C$++.
  Da bismo ukljucili CPLEX u $C$++ kod, nepohodno ga je uključiti sa sljedećom linijom koda:
  \begin{verbatim}
  	#include<ilcplex/ilocplex.h>
  	ILOSTLBEGIN
  \end{verbatim}
+ili mjesto prve linije uključiti (pomoću \#include) ilocplex.h fajl sa apsolutnom putanjom do njega samoga. 
+
  Da bi se inicijalizovao LP model, neophodno je prvo inicijalizovati okrizenje za modelovanje. Dakle, konstruišemo objekat klase \emph{IloEnv} sa: 
  \begin{verbatim}
  	IloEnv env;
@@ -6608,8 +6610,8 @@ Postoje različite strategije koliko dugo se izvršava lokalna pretraga. U opšt
  	}
  \end{verbatim}
  
- \noindent Unutar \emph{try-catch} bloka implementiramo prvo objekat modela (instanca klase \emph{IloModel}), a zatim se model uvlači u rješavač CPLEX (kreira se objekat klase \emph{IloColex}) i rješava pozivanjem odgovarajuće metode (\emph{solve}).
- Model je instanca klase \emph{IloModel} čiji konstruktor uzima objekat klase \emph{IloEnv} kao parameter dok je model koji se rješava pomoću CPLEX-a instanca klase \emph{IloCplex} koji uzima instancu klase \emph{IloModel} kao vrijednost svog parametra.  Ako bismo željeli da riješimo model pomoću CP slovera, mjesto \emph{IloCplex} bismo koristili klasu \emph{IloCP}. 
+ \noindent Unutar \emph{try-catch} bloka deklarišemo prvo objekat modela (instanca klase \emph{IloModel}), a zatim se model uvlači u rješavač CPLEX (kreira se objekat klase \emph{IloColex}) i rješava pozivanjem odgovarajuće metode (\emph{solve}).
+ Model je instanca klase \emph{IloModel} čiji konstruktor uzima objekat klase \emph{IloEnv} kao parameter dok je model koji se rješava pomoću CPLEX-a instanca klase \emph{IloCplex} koji uzima instancu klase \emph{IloModel} kao vrijednost svog parametra.  Ako bismo željeli da riješimo model pomoću CP solvera, mjesto \emph{IloCplex} bismo pozvali klasu \emph{IloCP}. 
  
 
  \begin{verbatim}
@@ -6617,7 +6619,7 @@ Postoje različite strategije koliko dugo se izvršava lokalna pretraga. U opšt
  	// potrebno deklarisati ciljnu funkciju, varijable i ogranjčenja
  	IloCplex cplex(model);
  	if(!cplex.solve()){ // poziv cplex  solver-a
- 		    env.error() << " Nije optimizovan." << endl;
+ 		    env.error() << " Problem nije optimizovana." << endl;
  		    throw(-1);
  	}
  	//cplex zavrsio sa optimizovanjem problema ... ispis rjesenja
@@ -6625,27 +6627,27 @@ Postoje različite strategije koliko dugo se izvršava lokalna pretraga. U opšt
  
  \noindent Sljedeći korak je implementacija varijabli, funkcije cilja i ograničenja u modelu. 
  
- \noindent \textbf{\emph{Deklarisanje varijabli}}. Ako želimo da deklarisemo (realnu) varijablu $x$ gdje je $0 \leq x \leq 40$, koristimo klasu \emph{IloNumVar}, što odgovara sljedećoj liniji koda:
+ \noindent \textbf{\emph{Implementacija varijabli u modelu}}. Ako želimo da deklarisemo (realnu) varijablu $x$ gdje je $0 \leq x \leq 40$, koristimo klasu \emph{IloNumVar}, što odgovara sljedećoj liniji koda:
  \begin{verbatim}
- 	IloNumVar x = IloNumVar(env,0.0,40.0);
+ 	IloNumVar x = IloNumVar(env, 0.0, 40.0);
  \end{verbatim}
- Ova definicija je ekvivalentna sa time ako bi dodali u prethodnom konstruktoru ILOFLOAT kao četvrti argument. 
+ Ova definicija je ekvivalentna dodavanjem u prethodnom konstruktoru \texttt{ILOFLOAT} konstante kao četvrti argument. 
 Ako je potrebno implementirati varijablu za koju je $x \geq 0$ to radimo kao u prethodnom primjeru uz korištenje  \emph{IloInfinity} konstante.
  
- Ako želimo da implementiramo varijablu koja je cjelobrojna, recimo binarna varijabla, to radimo sa:
+ Ako želimo da implementiramo varijablu koja je cjelobrojna, recimo binarna varijabla, imamo sljedeći kod:
  \begin{verbatim}
- 	IloNumVar x = IloNumVar(env,0.0, 1.0, ILOINT);
+ 	IloNumVar x = IloNumVar(env, 0.0, 1.0, ILOINT);
  \end{verbatim}
  
  \noindent Ako je potrebno definisati vektor promjenjivih $x=(x_1,...,x_n)$, gdje je recimo $x_i \geq 1$, onda se definiše objekat klase \emph{IloNumVarArray}, tj.:
  \begin{verbatim}
  	IloNumVarArray x(env);
- 	for(int i=0; i<n; i++){
+ 	for(int i = 0; i < n; ++i){
  		   x.add(IloNumVar(env, 1.0, IloInfinity));
  	}
  \end{verbatim}
  
- \noindent Ako želimo da deklarišemo visedimenzionalne promjenjive kao što je $x_{i,j}, i=1,...,n$ i $j=1,...,m$, onda pozivamo templejt klasu $\textbf{IloArray}<>$.
+ \noindent Ako želimo da deklarišemo visedimenzionalne promjenjive kao što je $x_{i,j}, i=1,...,n$ i $j=1,...,m$, onda pozivamo templejt klasu $\textbf{IloArray}<>$ na sljedeći način:
  
  \begin{verbatim}
  	typedef IloArray<IloNumVarArray> FloatMatrix; // x_ij 
@@ -6654,14 +6656,14 @@ Ako je potrebno implementirati varijablu za koju je $x \geq 0$ to radimo kao u p
  	FloatMatrix x(env, n);
  	for(int i = 0; i < n; i++){
  		     x[i] = IloNumVarArray(env, m);
- 		for(int j = 0; j < m; j++){
- 		  	  x[i][j] = IloNumVar(env, 0.0) // x_ij>=0
- 		}
+ 		     for(int j = 0; j < m; j++){
+ 		  	       x[i][j] = IloNumVar(env, 0.0) // x_ij>=0
+ 		     }
  	}
  \end{verbatim}
  
- \noindent \textbf{\emph{Funkcija cilja}}. 
- Postoje dvije klase koje služe za deklarisanje funkcija cilja: \emph{IloMaximize} i \emph{IloMinimize}, zavisno od toga da li maksimizujemo ili minimizujemo. \emph{IloMaximize} se prosljeđuju dva parametra: objekat IloEnv okruženja, te objekat klase \emph{IloExpr} gdje se definiše  izraz koji odgovara funkciji cilja. 
+ \noindent \textbf{\emph{Implementiranje funkcije cilja u modelu}}. 
+ Postoje dvije klase koje služe za deklarisanje funkcija cilja: \emph{IloMaximize} i \emph{IloMinimize}, zavisno od toga da li riječ maksimizaciji ili minimizaciji funkcije cilja.  \emph{IloMaximize} objektu se prosljeđuju dva parametra: objekat \emph{IloEnv} okruženja, te objekat klase \emph{IloExpr} čime se definiše  izraz koji odgovara funkciji cilja. 
  
  \begin{verbatim}
  	IloExpr expr(env);
@@ -6670,7 +6672,7 @@ Ako je potrebno implementirati varijablu za koju je $x \geq 0$ to radimo kao u p
  	model.add(obj);
  \end{verbatim}
  
- \noindent Za deklarisanje izraza $expr$ možemo koristiti operatora ``+='', gdje se na desnoj strani nalazi objekat IloNumVar koji predstavlja varijablu (eventualno pomnožena sa nekim koeficijentom). 
+ \noindent Za deklarisanje izraza $expr$ možemo koristiti operator  ``+='', gdje se trenutni izraz sabira sa nekim objektom \emph{IloNumVar} klase -- dakle varijablom (eventualno pomnoženom sa nekim koeficijentom). 
  Recimo, ako želimo da implementiramo funkciju cilja $\sum_{i=1}^n c_i x_i$, implementacija bi bila ovakva:
  
  \begin{verbatim}
@@ -6684,40 +6686,38 @@ Ako je potrebno implementirati varijablu za koju je $x \geq 0$ to radimo kao u p
  	model.add(obj); // dodavanje funkcije cilja u model
  \end{verbatim}
  
- \noindent \textbf{\emph{Dodavanje ograničenja u model}}. Ograničenja se direktno mogu dodati  u model sa funkcijom \emph{add}, dakle kao 
- model.add($expr1 <= expr2$), gdje mjesto ``$<=$'' mogu biti ``=='' ili ``$>=$''. Umjesto izraza $expr1$ ili $expr2$ može da stoji i skalar. Recimo da treba da modelujemo sljedeće ograničenje:
- $$s_j = \sum_{t=1}^n t \cdot x_{jt}, \forall j.$$ 
- Sljedeća implementacija odgovara ovom ograničenju: 
+ \noindent \textbf{\emph{Implementacija ograničenja u modelu}}. Ograničenja se direktno mogu dodati  u model uz pomoć funkcije \emph{add}, tj. kao 
+ model.add($expr1 <= expr2$). Umjesto relacije ``$<=$'' mogu biti ravnopravno korištene i relacije ``=='' ili ``$>=$''. Umjesto izraza $expr1$ ili $expr2$ takođe može da stoji i skalar. Pretpostavimo da želimo implementirati sljedeće ograničenje:
+ $$s_j = \sum_{t=1}^n t \cdot x_{jt}, \forall j \in \{1,\ldots,N\}.$$ 
+ Sljedeća implementacija odgovara ovim ograničenjima: 
  \begin{verbatim}
- 	// neka je definisan niz s[]
+ 	// neka je prethodno definisan i popunjen niz s[]
+ 	// neka su prethodno deklarisane varaijble x_ij
  	for (j = 0; j < N; j++) {
- 		  IloExpr expr(env);
- 		  for (t = 1; t <= n; t++)
- 	  	     expr += t * x[j][t];            
- 		  model.add(s[j] == expr);
- 		  expr.end();
+ 		    IloExpr expr(env);
+ 		    for (t = 1; t <= n; t++)
+ 	  	       expr += t * x[j][t];            
+ 		    model.add(s[j] == expr);
+ 		    expr.end();
  	}
  \end{verbatim}
- Još jedan od načina dodavanja ograničenja u model je implementacija preko kontejnera \emph{IloRangeArray} u koji se ograničenja dodaju preko funkcije \emph{add}.   
+ Još jedan od načina dodavanja ograničenja u model je implementacija preko kontejnera \emph{IloRangeArray} u koji dodajemo ograničenja preko funkcije \emph{add}.   
  Recimo da je potrebno dodati ograničenja $x_i + x_j \leq 1$ za sve $i<j, i.j \in [n]$ u IloCplex model
  
  \begin{verbatim}
  	     IloRangeArray constr(env);
- 	     // neka su definisane varijable x (IloNumVarArray) 
- 	     for (i=0; i<n-1; ++i)
- 	          for(j=i+1; i<n; ++j)
+ 	     // neka su prethodno definisane varijable x (IloNumVarArray) 
+ 	     for (i = 0; i < n-1; ++i)
+ 	          for(j = i+1; i < n; ++j)
  	               constr.add( x[i] + x[j] <= 1)     
       	 model.add(constr); //dodavanje ograničenja u model
  \end{verbatim}
  
- \noindent \textbf{\emph{Metode za eksport rješenja (statistike) iz modela}}. Metod \emph{getStatus} (koji se poziva na instancu klase \emph{IloCplex})  pokazuje da li je rješenje koje je nađeno dopustivo, ograničeno ili optimalno ili je CPLEX pokazao da je model nedopustiv ili neograničen.
+ \noindent \textbf{\emph{Metode za eksport rješenja (statistike) iz modela}}. Metod \emph{getStatus()} (koji se poziva na instancu klase \emph{IloCplex})  pokazuje da li je rješenje koje je nađeno dopustivo, ograničeno ili optimalno ili je CPLEX pokazao da je model nedopustiv ili neograničen.
  
  \begin{verbatim}
- 	// kreiranje modela 
- 	timer.start();
- 	// pokretanje cplex-a (.solve)
- 	// Output
- 	timer.end();
+ 	// prethodno: kreiranje modela i poziv metoda solve()
+    env.out << cplex.getStatus() << endl;
  	IloNumArray xval(env); // ovdje ce se cuvati rjesenje
  	env.out() << "Status rjesenja = " << cplex.getStatus() << endl;
  	env.out() << "Vrijednost = " << cplex.getObjValue() << endl;
@@ -6725,25 +6725,25 @@ Ako je potrebno implementirati varijablu za koju je $x \geq 0$ to radimo kao u p
  	cplex.getValues(xval, x);
  	env.out() << "x vrijednosti = " << xval << endl;
  	env.out() << "gap vrijednost: " << cplex.getMIPRelativeGap() << endl; 
- 	// vraca gap (ako nije rijeseno do optimalnosti onda > 0)
+ 	// vraca gap (ako nije rijeseno do optimalnosti, onda > 0)
  \end{verbatim}
 \begin{itemize}
-	\item Metod \emph{getObjValue} vraća optimalnu vrijednost funkcije cilja (ili najbolju vrijdnost nađenu u toku unaprijed definisanog vremena).
-	\item Metod \emph{getStatus}: vraća status rješenja koje je CPLEX našao u zadanom vremenu (dopustivo, optimalno, nedopustivo).
-	\item Metod \emph{getValues}(\emph{vals, var}) gdje je 
+	\item Metod \emph{getObjValue}: vraća optimalnu vrijednost funkcije cilja (ili najbolju vrijednost nađenu u toku unaprijed definisanog intervala vremena).
+	\item Metod \emph{getStatus}: vraća status rješenja koje je CPLEX našao u zadanom vremenu (dopustivo, optimalno, nedopustivo itd.).
+	\item Metod \emph{getValues}(\emph{vals, var}): 
 	\begin{itemize}
-	 	  \item \emph{vals} -- numerički niz (najčešće instanca klase \emph{IloNumArray}) u koju će se kopirati krajnja rješenja koje je Cplex našao;    
+	 	  \item \emph{vals} -- numerički niz (najčešće instanca klase \emph{IloNumArray}) u koju će se kopirati krajnja rješenja koje je CPLEX našao;    
           \item \emph{var} -- varijable u modelu.
     \end{itemize}
      \item Metod \emph{getDuals(vals, con)}:
      \begin{itemize}
-     	\item \emph{vals} -- numerički niz (najčešće instanca klase \emph{IloNumArray}) u koju će se kopirati rješenja duala;
-     	\item \emph{con} -- ograničenja u modelu (instanca klase \emph{IloRangeArray}) za koje se računaju koeficijenti koji odgovaraju dualu. 
-     	\item \emph{getMIPRelativeGap()}: vraća vrijednost relativne razdaljine (u procentima) između najboljeg dopustivog rješenja (nađenog od strane CPLEX-a) i dokazane gornje granice optmalnog rješenja.
+     	\item \emph{vals} -- numerički niz (najčešće instanca klase \emph{IloNumArray}) u koju će se kopirati rješenja odgovarajućih dualnih promjenjivih;
+     	\item \emph{con} -- ograničenja u modelu (instanca klase \emph{IloRangeArray}) za koje se računaju koeficijenti odgovarajućih dualnih promjenjivih;
+     	\item \emph{getMIPRelativeGap()}: vraća vrijednost relativne razdaljine (u procentima) između najboljeg dopustivog rješenja (nađenog od strane CPLEX-a) i dokazane gornje granice optmalnog rješenja (koje su rezultat raznih internih tehnika -- kao što su B\&B -- pozvane od strane rješavača).
      \end{itemize}
 \end{itemize}
-Eksportovanje modela za eventualno ponovno korištenje se može dobiti pozivom metoda \emph{exportModel}, čiji je argument naziv fajla (.$lp$ ekstenzija).  
- \section{ PuLP alat}
+Eksportovanje modela za eventualno ponovno korištenje se može dobiti pozivom metoda \emph{exportModel}, čiji je očekivani argument naziv fajla u koji će se model upisati (.$lp$ ekstenzija).  
+ \section{PuLP alat}
  % http://www.optimization-online.org/DB_FILE/2011/09/3178.pdf
  % https://coin-or.github.io/pulp/main/the_optimisation_process.html
  PuLP je biblioteka visokog nivoa za implementaciju modela i njihovo rješavanje, izgrađena u programskom jeziku Python.  
