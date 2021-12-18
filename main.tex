@@ -6468,7 +6468,7 @@ Najčešći kriterijumi za prekid algoritma algoritma su: dostignuto maksimalno 
 	\begin{algorithmic}[1]
 		\STATE \textbf{Ulaz:} inicijalno rješenje $s$, okoline $\mathcal{N}_1,\ldots, \mathcal{N}_{k_{\max}}$ 
 		\STATE \textbf{Izlaz:} (poboljšano) rješenje $s$
-		\WHILE{$\neg$ (\emph{IspunjenKriterijzaustavljanja()})}
+		\WHILE{$\neg$ (\emph{IspunjenKriterijZaustavljanja()})}
 		\STATE $k \gets  k_{\min}$
 		\WHILE{$k \leq k_{\max}$}
 		\STATE  $s' \gets$ izabrati random rješenje iz $\mathcal{N}_k(s)$ \hspace{0.3cm}//\,shaking phase 
@@ -6723,7 +6723,9 @@ Ako je potrebno implementirati varijablu za koju je $x \geq 0$ to radimo kao u p
  	env.out() << "Vrijednost = " << cplex.getObjValue() << endl;
  	env.out() << "Vrijeme = " << timer.getTime() << endl;
  	cplex.getValues(xval, x);
- 	env.out() << "sj vrijednosti = " << xval << endl;
+ 	env.out() << "x vrijednosti = " << xval << endl;
+ 	env.out() << "gap vrijednost: " << cplex.getMIPRelativeGap() << endl; 
+ 	// vraca gap (ako nije rijeseno do optimalnosti onda > 0)
  \end{verbatim}
 \begin{itemize}
 	\item Metod \emph{getObjValue} vraća optimalnu vrijednost funkcije cilja (ili najbolju vrijdnost nađenu u toku unaprijed definisanog vremena).
@@ -6737,6 +6739,7 @@ Ako je potrebno implementirati varijablu za koju je $x \geq 0$ to radimo kao u p
      \begin{itemize}
      	\item \emph{vals} -- numerički niz (najčešće instanca klase \emph{IloNumArray}) u koju će se kopirati rješenja duala;
      	\item \emph{con} -- ograničenja u modelu (instanca klase \emph{IloRangeArray}) za koje se računaju koeficijenti koji odgovaraju dualu. 
+     	\item \emph{getMIPRelativeGap()}: vraća vrijednost relativne razdaljine (u procentima) između najboljeg dopustivog rješenja (nađenog od strane CPLEX-a) i dokazane gornje granice optmalnog rješenja.
      \end{itemize}
 \end{itemize}
 Eksportovanje modela za eventualno ponovno korištenje se može dobiti pozivom metoda \emph{exportModel}, čiji je argument naziv fajla (.$lp$ ekstenzija).  
