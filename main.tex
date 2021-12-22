@@ -3283,7 +3283,7 @@ U osnovni model uključiti i sljedeća ograničenja:
 \end{enumerate}                                                       
 
 
- \chapter{Algoritamske tehnike za rješavanje ILP-a}
+ \chapter{Algoritamske Tehnike za Rješavanje ILP-a}
  
  Dok je simpleks metoda učinkovita za rješavanje  problema LP-a, ne postoji generalna tehnika efikasna za rješavanje problema Cjelobrojnog programiranja. Umjesto toga, razvijeni su mnogi metodi i njihova efikasnost
  uvelike zavisi od karakteristika samog problema. Dosadašnje metode se generalno mogu klasifikovati na sljedeći način:
@@ -5591,7 +5591,7 @@ Uz pomoć DW dekompozicije riješiti sljedeći MILP problem:
 
  \chapter{Metode za Nalaženje Dopustivih Rješenja}
 
-\section{Pohlepni Algoritmi}
+\section{Pohlepni algoritmi}
  
 Pohlepni algoritmi su programska paradigma koja gradi riješenje komponentu po komponentu tako da  naredna komponenta rješenja koja se dodaje po nekom (pohlepnom) kriterijumu donosi veće benefite u odnosu na sve ostale komponente koje se razmatraju za proširenje   parcijalnog riješenja. Dakle, u svakom trenutku bira se komponenta koja je lokalno najbolji kandidat za proširivanje rješenja.  Ovi algoritmi se često koriste u rješavanju teških optimizacionih problema i najčešće su prva strategija koja se primjenjuje prije 
 upotrebe neke složenije paradigme. Optimizacioni problem se rijetko može riješiti do optimalnosti  pomoću pohlepnih algoritma ali se   njim mogu obezbijediti dobra aproksimaciona rješenja u kratkom vremenskom periodu koja često služe kao osnov za konstrukciju naprednijih algoritama koja nalaze  rješenja boljeg kvaliteta. Pohlepni algoritmi nekad mogu riješiti problem do optimalnosti, kao što je, recimo, Frakcioni problem ruksaka, ali ne i 0-1 Problem ruksaka. 
@@ -5692,7 +5692,7 @@ kompleksnost se redukuje na $O(|E| \cdot \log |V|)$.
 
 Napomenimo da Dajkstrin algoritam ne radi sa grafovima koji imaju negativne težine (pogledati  liniju 12).  Za ovakve grafove,  primjenjuje se Bellman–Ford algoritam koji je baziran na dinamičkom programiranju. Njega ne pominjemo   u ovoj knjizi.  %, o kojem ćemo nešto više reći u narednim sekcijama.
 
-\subsection{Frakcioni Problem  Ruksaka}
+\subsection{Frakcioni problem ruksaka}
 
 \begin{definition}
   Neka je dato $n$ proizvoda sa svojim  težinama i vrijednostima, 
@@ -5748,7 +5748,7 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje.
 
 \noindent \emph{Primjer}.  Neka su data dva stringa: $s_1 = \texttt{acb}, s_2 = \texttt{bac}$. Ako uzmemo  $ b$ kao prvi karakter, rješenje koje dobijamo je \texttt{b}. Medjutim, optimalno rješenje je string $s=\texttt{ac}$. 
 
-\section{Aproksimativni Algoritmi}
+\section{Aproksimativni algoritmi}
   %https://home.cs.colorado.edu/~srirams/courses/csci5654-fall13/ilpLectures.pdf
   
    Za veliki broj optimizacionih problema sa enormnom kompleksnošću u praksi jednostavno ne postoje efikasni egzaktni algoritmi, te je za  njihovo rješavanje potrebano izdvojiti ogromne vremenske/memorijske resurse; dakle, za  ovakve probleme nije poznat (egzaktan) algoritam koji se izvršava u polinomijalnom vremenu $O(|P|)$, gdje je $P \in {Poly}$ neki polinom iz vektorskog prostora polinoma \emph{Poly}. Sa druge strane, većina pohlepnih algoritama i naprednijih heuristika ne daje nikakvu garanciju na nađeno rješenje iako su ta rješenja u velikom broju slučajeva visokog kvaliteta. Negdje između egzaktnih i heurističkih algoritama se smiještaju \emph{aproksimativni algoritmi} koji su polinomijalni, daju dopustiva rješenja uz garanciju o njihovom kvalitetu. 
@@ -5775,7 +5775,7 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje.
   \noindent U tom slučaju kažemo da je algoritma $\mathcal{A}$ $c$--aproksimativni algoritam.
   Primjer problema za koji postoji apsolutni apriksimativni algoritam je bojanje planarnog grafa (eng. \emph{Planar Graph Coloring}). Primjer problema za koji postoji relativni apriksimativni algoritam je pokrivanje čvorova. 
   
-  \subsection{Aproksimativni algoritmi za Problem Pokrivanja Čvorova}
+  \subsection{Aproksimativni algoritmi za problem pokrivanja čvorova}
   
     \begin{figure}
   	\centering
@@ -5844,7 +5844,7 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje.
   Ono sto se takođe zna (Hastad, 2001) je da ne postoji aproksimativni faktor 
   koji garantuje da je $c < \frac{7}{6}$ (osim ako $P \neq NP$). 
   
-  \subsection{Aproksimativni algoritmi za Problem Trgovačkog Putnika}
+  \subsection{Aproksimativni algoritmi za problem trgovačkog putnika}
   
   Ovaj problem je jako težak kada je u pitanju konstrukcija aproksimativnog algoritma. Tome svjedoči sljedeća teorema.
  \begin{thm}
@@ -5970,7 +5970,7 @@ Posmatrajmo sljedeći (aproksimativni) algoritam koji umanjuje aproksimativni fa
  $2 cost(M) \leq cost(T) \leq C^*$, odakle dobijamo tvrđenje.  U literaturi je pokazano da ne postoji  aproksimacioni algoritam sa faktorom  $c < \frac{220}{219} \approx 1.0045$ (osim ako je $P=NP$). 
  
  
- \subsection{Aproksimativni algoritmi za Problem Binarnog Pakovanja}
+ \subsection{Aproksimativni algoritmi za problem binarnog pakovanja}
 % Zadatak: https://scipbook.readthedocs.io/en/latest/bpp.html
 \begin{definition}
     Neka je dato $n$ proizvoda veličine $a_1,a_2,\ldots,a_n$ ($0<a_i<1$). Potrebno je spakovati sve proizvode u jedinična pakovanja, tako da je broj korištenih pakovanja minimalan.  
@@ -5998,7 +5998,7 @@ pa slijedi da je algoritam 2--aproksimacioni.
  Još jedan pohlepni algiritma za ovaj problem je \emph{Best fit} koji radi na sljedeći princip. Sljedeći proizvod se stavlja u pakovanje koje ostavlja najmanju prazninu od svih pakovanja (koja su otvorena) kada se taj prizvod smjesti u odgovarajuće pakovanje. Ako takvo pakovanje ne postoji, otvoriti novo pakovanje. 
 Ovaj algoritam je takođe 2--aproksimacioni. Interesantno je napomenuti da za Problem binarnog pakovanja ne postoji aproksimativni algoritam čiji je faktor $c <\frac{3}{2}$ (osim ako je $P=NP$), kako je pokazano u literaturi. 
 
- \subsection{Aproksimativni algoritmi za Problem Pokrivanja Skupa}
+ \subsection{Aproksimativni algoritmi za problem pokrivanja skupa}
 Ovaj problem predstavlja uopštenje Problema pokrivanja čvorova, i definisan je na sljedeci naćin.
 \begin{definition}
 	    Neka je dat skup elemenata $X$ te familija podskupova $\mathcal{F}$ skupa $X$ tako da je za svaki $f\in \mathcal{F}$, $|f \cap X| \geq 1$ i $\bigcup_{f \in \mathcal{F}} f = X$. 
@@ -6107,7 +6107,7 @@ Napomenimo da postoji i težinska verzija Problema pokrivanja skupa. U ovoj verz
 \end{align}
 gdje je $w_f$ težina skupa. U svakom koraku algoritma određuje skup $f^* \in \mathcal{F}$ koji minimizuje vrijednost funkcije $g$, koji se zatim dodaje u trenutni (parcijalni) pokrivač $C$.
 
-\subsection{Aproksimativni algoritam za Problem Najkraćeg Nadstringa}
+\subsection{Aproksimativni algoritam za problem najkraćeg nadstringa}
 
 
 \begin{definition}
@@ -6184,7 +6184,7 @@ Iz prethodnog bi slijedilo da Algoritam~\ref{alg:ss} daje $2H_n$--aproksimaciju.
   
  \end{comment} 
   
-\section{Heurističke Metode}
+\section{Heurističke metode}
  U prethodnom odjeljku smo vidjeli da za aproksimativne algoritme vrijedi važna osobina da se rješavanjem problema ne garantuje pronalazak optimalnog rješenja, ali postoji garancija da se rješenje nalazi unutar nekog faktora kvaliteta ($c$), u odnosu na optimalno rješenje. \fxnote{nije dobar izraz unutar faktora - ispraviti i gore}
  Drugim riječima, za rješenja dobijena aproksimativnim algoritmima se zna koliko maksimalno mogu da odstupaju od optimalnog rješenja, a to odstupanje je određeno faktorom kvaliteta.
  
@@ -6407,9 +6407,9 @@ Treba napomenuti da, iako se rulet selekcija na prvi pogled čini pogodnom za od
 Na kraju ovog odjeljka treba pomenuti da je višedecenijska primjena genetskih algoritama u rješavanju velikog broja problema kombinatorne optimizacije dovela je do pojave velikog broja različitih varijanti algoritma, koje se, između ostalog, razlikuju po operatorima koji se primjenjuju, načinu formiranja početne populacije, primjenama različitih strategija lokalnog pretraživanja, tehnike keširanja međurezultata itd. 
 
  
-\subsection{Lokalna Pretraga}\label{sec: local_search}
+\subsection{Metoda lokalne pretrage}\label{sec: local_search}
 
-Lokalna pretraga je tehnika čija se strategija sastoji u izvođenju niza poboljšanja u rješenju počevši od nekog unaprijed zadanog rješenja. Uvedimo prvo koncept okolina i lokalnih rješenja kao baznih pojmova u algoritmu lokalne pretrage. Za dato rješenje $x$, definišimo skup (obično dopustivih) rješenja koja su ``blizu'' $x$ u odnosu na neku mjeru. Formalno, okolina predstavlja preslikavanje  $\mathcal{N}$ gdje svakom (dopustivom) rješenju pridružujemo skup rješenja, koje zovemo okolina od $x$.  Funkcija okoline se takođe može definisati preko operatora  $\Delta$, koji predstavlja kolekciju   funkcija $\Delta:\Phi \mapsto \Phi$,  gdje je $\Phi$ prostor pretrage (rješenja) razmatrane instance problema:
+Metoda lokalne pretrage je tehnika čija se strategija sastoji u izvođenju niza poboljšanja  rješenja počevši od nekog unaprijed zadanog rješenja radeći male promjene u trenutno najboljem rješenju. Uvedimo prvo koncept okolina i lokalnih rješenja kao baznih pojmova u metodi lokalne pretrage. Za dato rješenje $x$, definišimo skup (obično dopustivih) rješenja koja su ``blizu'' $x$ u odnosu na neku mjeru. Formalno, okolina predstavlja preslikavanje  $\mathcal{N}$ gdje svakom (dopustivom) rješenju pridružujemo skup rješenja, koje zovemo okolina od $x$.  Funkcija okoline se takođe može definisati preko operatora  $\Delta$, koji predstavlja kolekciju   funkcija $\Delta:\Phi \mapsto \Phi$,  gdje je $\Phi$ prostor pretrage (rješenja) razmatrane instance problema:
 $$ x' \in \mathcal{N}(x) \Longleftrightarrow \exists \delta \in \Delta,\delta(x)=x'.$$
  
 Prirodan izbor u mnogim aplikacijama je $k$-promijenjiva (eng. \emph{k-exchange}) okolina: $x$ i $x^{'}$ pripadaju istoj okolini akko se razlikuju na tačno $k$ komponenti rješenja. Npr. za TSP problem, 2-promijenjiva okolina je prirodan izbor gdje su komponente rješenja grane datog grafa.  
@@ -6565,7 +6565,7 @@ Postoje različite strategije koliko dugo se izvršava lokalna pretraga. U opšt
 
 
 
- \chapter{Optimizacioni rješavači}
+ \chapter{Optimizacioni Rješavači}
  
  Kao što smo i pomenuli u uvodnoj sekciji, modelovanje problema koji odgovara (idealizivanoj verziji) problema je 
  dio koji uzima najveći dio vremena u operacinim istraživanjima. Kada dođemo do modela koji približno odgovara potrebama uprave  
@@ -6577,7 +6577,7 @@ Postoje različite strategije koliko dugo se izvršava lokalna pretraga. U opšt
  %https://www.ibm.com/products/ilog-cplex-optimization-studio
  %https://www.youtube.com/watch?v=J7tNzCsYgy8
  
- \section{Optimizacioni rješavač Cplex}
+ \section{Optimizacioni rješavač CPLEX}
  CPLEX alat je generalni rješavač za rješavanje optimizacionih problema, a među njima izdvajamo LP, ILP i MILP. Konstruisan je od strane IBM-a, i može da se potpuno besplatno preuzme sa linka 
  
  \url{https://www.ibm.com/products/ilog-cplex-optimization-studio}. 
