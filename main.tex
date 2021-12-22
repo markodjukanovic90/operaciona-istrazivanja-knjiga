@@ -238,7 +238,7 @@ na razvoj kompjuterizovanog sistema za optimalno raspoređivanje i postavljanje 
 \end{enumerate}
 Da bi se postigao prvi cilj, policijska uprava i gradska vlada  su zajednički radili na uspostavljanju željenog nivoa zaštite.  Matematički model koji je razvijen je nametnuo uslov da će se postići potreban nivo zaštite preko funkcije cilja.  Da bi se postigao drugi cilj, u samom modelu je uključen i uslov o ravnopravno uravnotežnim radnim satima među policajcima. Treći cilj je ugrađen u model usvajanjem dugoročnog cilja smanjenja broja policajaca potrebnih za postizanje prva dva cilja. 
 
-\section{Proces Formulisanja Matematičkog Modela}
+\section{Proces formulisanja matematičkog modela}
 
 Nakon što se definiše problem odlučivanja, sljedeća faza je formulisanje tog problema u obliku koji je odgovarajući za dalju analizu. Konvencionalni OR pristup se sastoji od konstrukcije matematičkog modela koji obuhvata suštinu problema. Prije nego što objasnimo kako konstruisati takav model, recimo nešto o modelima u opštem slučaju, a posebno o matematičkim modelima.
 
@@ -293,7 +293,7 @@ Varijable odluke: $x_1$ i $x_2$ koje označavaju koliko litara gustog soka i kol
 \item Ograničenja: $0 \leq x_1 \leq 5, 0 \leq x_2 \leq 4$,   $3 x_1 + 6 x_2 \leq 30$, $8 x_1 + 4 x_2 \leq 44.$
 \end{itemize}
 
-\section{Izvođenje Rješenja iz Modela}
+\section{Izvođenje rješenja iz modela}
 
 Nakon formulacije matematičkog modela za definisani problem, sljedeća faza u OR procesu je razvoj postupka (algoritma) za
 izvođenje rješenja na osnovu konstruisanog modela. Nekada je to relativno jednostavan korak, u kojem neki od standardnih algoritama biva pokrenut na računaru pomoću nekog od   odgovarajućih računarskih paketa/rješavača modela.
@@ -319,7 +319,7 @@ Prepoznavanjem osjetljivih parametara pronalazimo one parametre čija se vrijedn
 %\textbf{Primjer.}  Posmatrajmo OR studiju o nacionalnom upravljanja vodama.
 
 
-\section{Testiranje Modela}
+\section{Testiranje modela}
 Razvoj velikih matematičkih modela je analogan razvoju velikih softvera. U praksi se često dešava da se, po završetku izrade prve verzije softvera, javi i određen broj grešaka (bagova). Zbog toga se pristupa raznim procedurama testiranja proizvoda, kako bi se pokušalo pronaći i
 ispraviti što više grešaka. Na kraju, nakon niza iteracija poboljšanja programa, programeri zaključuju da trenutni program sada generalno
 daje  valjane rezultate. Može se dediti da neke manje pogreške ostaju skrivene u programu te se možda   nikada i neće ukloniti. Slično tome, prva verzija matematičkog modela neizbježno sadrži određene
@@ -344,7 +344,7 @@ Važno je još dokumentovati postupke koji se koriste u testiranju valjanosti mo
 Ovom studijom je dobijen  novi inventarni sistem koji je poboljšao korisničku uslugu kroz koju se uštedilo dodatnih 20 milijuna USD po godini kroz poboljšanu operativnu efikasnost. Posebno zanimljiv aspekt faze provjere validnosti modela ove studije bio je način na koji su  budući korisnici inventarnog sistema ugrađeni u postupak ispitivanja. Prvo su odabrani predstavnici koji su činili korisnički tim čija je uloga bila  savjetovati OR tim. Nakon što je razvijena preliminarna verzija novog sistema izvršeno je njgovo testiranje. Opsežne povratne informacije korisničkog tima dovele su do glavnih poboljšanja u predloženom sistemu.  
 \end{comment}
 
-\section{Priprema za primjenu modela}
+\section{Pripremanje modela za primjenu}
 Ako želimo da model bude iskorišten više puta, sljedeći  korak je instaliranje dobro dokumentovanog sistema za primjenu modela po propisima naručioca (uprave). Ovaj sistem uključuje implementaciju samog modela, postupak dobijanja rješenja (uključujući analizu postoptimalnosti), operativne postupke za izvođenje, itd. %Tada, čak i kad se osoblje mijenja, sistem se može pozvati na regularnoj bazi da se ponudi određeno numeričko rješenje
 Svaki put pri korištenju sistema, baze podataka i informacioni sistem za upravljanje treba da omoguće ažuran unos podataka u model, te je zbog toga potrebno obezbijediti i odgovarajući interfejs. Nakon što se na model primijeni postupak rješavanja (drugi program), dodatni  programi mogu automatski pokrenuti implementaciju rezultata kako bi ih korisnici mogli odmah primijeniti u realnoj situaciji. U drugim slučajevima, može se instalirati i interaktivni računarski sistem  za podršku odlučivanju, koji pomaže upravi da koriste podatke i modele kako bi, po potrebi, podržali (a ne zamijenili)   donošenje odluka. Drugi program može generisati menadžerske izvještaje (na jeziku upravljanja) koji tumače izlazne podatke modela i njegove implikacije na primjenu u realnom okruženju.  U velikim OR studijama potrebno je nekoliko mjeseci (a nekada čak i duže) za razvoj, testiranje i instaliranje ovakvog računarskog sistema. Dio ovog napora uključuje razvoj i izvođenje postupka održavanja sistema  tokom njegove buduće upotrebe. Kako se uslovi mijenjaju tokom vremena, potrebno je obezbijediti i mogućnost za  izmjene sistema, uključujući i izmjene samog modela, u skladu sa tim uslovima.  
 
@@ -439,7 +439,7 @@ U nastavku konstruišemo model problema. Uvedimo varijablu $x_1$ za broj serija 
 Dakle, na osnovu realnog problema, formirali smo odgovarajući matematički model (idealizovanog problema) koji sadrži funkciju dvije promjenljive i nekoliko ograničenja, koja su zapisana kao nejednačine. Cilj rješavanja ovog matematičkog modela je pronalaženje onih vrijednosti promjenljivih $x_1$ i $x_2$, za koje posmatrana funkcija ima maksimalnu vrijednost.
 
 %https://www.desmos.com/calculator
-\section{Rješenje grafičkom metodom}
+\section{Grafički metod}
  Problem iz prethodne sekcije je malih dimenzija jer sadrži samo dvije varijable odluke i samim tim sva moguća (dopustiva) rješenja mogu biti predstavljene u dvije dimenzije. U ovom slučaju, možemo koristiti \emph{grafičku metodu} za rješavanje problema linearnog programiranja. Ovaj postupak uključuje dvodimenzionalni Dekartov koordinatni sistem sa osama $x_1$ i $x_2$.  Prvi korak je identifikovati vrijednosti ($x_1$, $x_2$) koje zadovoljavaju ograničenja. Naglasimo još jednom da ona rješenja koja zadovoljavaju sva ograničenja modela  problema zovemo \emph{dopustivim rješenjima}. Grafički predstavimo svako od ograničenja, odakle dobijamo prostor koji uključuje svih 6 ograničenja; vidjeti Sliku~\ref{fig:fig1}.  Rezultujući region rješenja $(x_1, x_2)$ se naziva \emph{dopustivi region} problema.
  
  Posljednji korak se sastoji u odabiru tačke u ovom regionu  koja maksimizira vrijednost (ciljne) funkcije $f = 3x_1 + 5x_2$. 
@@ -455,7 +455,7 @@ Pogledajmo sada niz (implicitnih) funkcija $3x_1 + 5 x_2 = c$, za $c \in \{10,20
 
 Ovaj se postupak često naziva \emph{grafičkom metodom za linearno programiranje}. Ona se može koristiti za rješavanje bilo kojeg problema linearnog programiranja sa dvije varijable. Uz znatan angažman, moguće je proširiti ovu metodu na problem sa tri varijable, što je krajnji domet grafičke metode. Za uopšten slučaj se koriste naprednije metode,  o kojima će biti riječi u narednim sekcijama.
 
-\section{Standardna Forma Linearnog Programiranja}
+\section{Standardna forma linearnog programiranja}
 
 \begin{figure}[!ht]
     \centering
@@ -555,7 +555,7 @@ Prije toga, za početak, razmotrimo bilo koji problem LP-a sa dopustivim rješen
 
 Ako su sve varijable u problemu LP-a cjelobrojne, riječ je o problemima \emph{Cjelobrojnog programiranja}. Ako pored cjelobrojnih, postoje i neke varijable koje su neprekidne, riječ je o problemima \emph{Mješovitog--cjelobrojnog linearnog programiranja}. Veliki broj realnih problema koji dolaze iz prakse su upravo problemi Mješovitog--cjelobrojnog linearnog programiranja.
 
-\section{Modelovanje nekih Problema paradigmom Linearnog Programiranja}\label{sec:modeli_lp}
+\section{Modelovanje nekih problema paradigmom linearnog programiranja}\label{sec:modeli_lp}
 
 \emph{Problem optimalne prehrane.} Pretpostavimo da su nam na raspolaganju namirnice $N_1, \ldots, N_n$. Cijena namirnice $N_j$ po jedinici je $c_j, j = 1, \ldots, n$. U namirnicama su prisutni nutritivni elementi $e_j,j=1,\ldots,m$ pri čemu
 u namirnici $N_j$ ima $a_{ij} \geq 0$ nutritivnog elementa $e_i$, $i = 1, \ldots, n$, $j = 1, \ldots, m$. Svaka osoba u toku dana treba da unese barem $b_i$
@@ -606,7 +606,7 @@ Kada je riječ o linearnim programima,  oni imaju nekoliko osnovnih implicitnih 
 \end{enumerate}
 %Ako model zadovoljava prethodne 4 pretpostavke, onda je riješ o modelu linearnog programiranja. 
 
-\section{Teorija Linearnog Programiranja}
+\section{Teorija linearnog programiranja}
 U ovom poglavlju ćemo formalno izvesti načine rješavanja linearnog problema. U osnovi, pokazaćemo da ako je problem
 linearnog programiranja dopustiv i ograničen i postoje vrhovi, onda postoji i optimalno rješenje tog LP problema. Kako smo ranije neformalno pomenuli,  to rješenje se nalazi upravo u jednom od vrhova poliedra. 
 
@@ -707,7 +707,7 @@ U sljedeće dvije definicije definišimo pojmove poliedra, hiperravni i polupros
 \end{definition}
 Pokažimo sada da je poliedar konveksan skup. To je važna karakteristika jer se uslovima problema LP-a formira odgovarajući poliedar, a kako je on konveksan skup, prethodna teorema nam garantuje da, uz pretpostavku da postoji lokalni minimum (maksimum), postoji  i globalni minimum (maksimum), tj. optimalno rješenje zadanog problema LP-a.
 
-\begin{prop}Vrijede sljedeće tvrdnje: \\
+\begin{prop} Vrijede sljedeće tvrdnje: \\
   ($i$)  Poluprostor u $\mathbb{R}^n$ je konveksan skup.  \\
   ($ii$) Presjek konačno mnogo konveksnih skupova je konveksan skup. 
 \end{prop}
@@ -919,7 +919,7 @@ Sljedeća teorema nam daje dovoljan uslov za postojanje optimalnog rješenja koj
 Kako ćemo vidjeti u narednom poglavlju, upravo  ove tvrdnje opravdavaju ideju simpleks metode, koja je bazirana na iterativnim posjećivanju vrhova poliedra 
 u cilju pronalaska optimalnog rješenja.
 
-\section{Neke tehnike u modelovanju problema Linearnog Programiranja}
+\section{Neke tehnike u modelovanju problema linearnog programiranja}
 
 \emph{Apsolutna funkcija}.   Pretpostavimo da imamo model dat sa 
 \begin{align*}
@@ -1199,7 +1199,7 @@ Navedimo sada osnovne korake jedne iteracije simpleks metoda:
     \label{fig:simpleks-visuelisation}
 \end{figure}
 
-\section{Tabelarni oblik Simpleks Metode}
+\section{Tabelarni oblik simpleks metoda}
 
 U osnovi, simpleks algoritam se sastoji od stalne izmjene jedne kolone baze $B$ sa nekim nebaznim vektorom u iterativnoj šemi u cilju smanjenja trenutne vrijednosti cilje funkcije, dok god je to moguće. 
 U praktičnom računanju, rad sa tabelarnim prikazom koraka simpleks metoda je u mnogome lakše (kompaktnije i prirodnije) nego koristiti standardan oblik LP-a. 
@@ -1240,7 +1240,7 @@ Obratimo pažnju da se problem minimizacije vrlo lako prevodi u problem maksimiz
 $$ \min_{ x \in P} f(x) = - \max_{x \in P}(-f(x)).$$ 
 Prema tome, ako imamo problem LP-a gdje treba da maksimizujemo vrijednost funkcije cilja, pa onda primijenimo simpleks metod, koraci metoda ostaju isti, uz malu izmijenu u koraku 2, gdje se mijenja znak nejednakosti (jer se mijenja znak koeficijenata u funkciji cilja).  Takođe, posmatraju se doprinosi za koje je $\overline{c_j} > 0$.
 
-\section{Primjena Simpleks Metode}
+\section{Primjena simpleks metoda}
 %Kako je standardni poliedar LP-a dat sa svim onim $x \in \mathbb{R}^n$ tako da $Ax \leq (\geq) b$, 
 Prvo transformišimo standardni oblik problema LP
  
@@ -1805,8 +1805,6 @@ Kako su svi koeficijenti doprinosa ($\overline{c}$ varijable) manje od 0, simple
  %Dualnost je pojam koji je vezan za dobijanje gornjih granica optimalne vrijednosti funkcije cilja. 
  Teorija dualnosti povezuje dva vezana problema linearnog programiranja -- jedan od njih je problem linearnog programiranja koji maksimizuje funkciju cilja, dok je drugi linearan program  koji minimizuje (ne obavezno istu) funkciju cilja. Svaki problem LP-a se može navesti u drugom, ekvivalentnom obliku na osnovu istih ulaznih podataka. Ponekad rješavanje LP-a na ovaj način može da bude puno lakše nego rješavanje početnog LP-a.  Dualnost implicira da svaki problem linearnog programiranja možemo analizirati na dva potpuno različita načina, ali sa ekvivalentnim (optimalnim) rješenjima. 
  
- 
- 
  Prije nego uvedemo pojam dualnog problema, objasnimo motivaciju koja stoji iza nastanka teorije dualnosti. Posmatrajmo jedan LP i probajmo naći što bolju gornju procjenu za optimalnu vrijednost ciljne funkcije na osnovu ograničenja u datom modelu.
  
 $$ 
@@ -2042,7 +2040,7 @@ jedanog problema i varijabli u drugom problemu je data preko sljedeće tabele
 \end{table}
 
 
-\section{Metod Unutrašnje Tačke}
+\section{Metod unutrašnje tačke}
 
 Simpleks metod ne garantuje   rješavanje proizvoljnog problema LP u polinomijalnom broju koraka u odnosu na veličinu ulaza. % V. Klee and G. Minty constructed an example LP: simplex method needs 2^n iterations to solve it 
 %Dakle, iz njega se ne može zaključiti da je problem rješavanja generalnog LP problema   polinomijalno rješiv. 
@@ -2466,7 +2464,7 @@ U osnovi geometrijska interpretacija nam kaže da se vektor $c =(1,4)^T$ može p
 Kada bi posmatrali $c=(5,0)^T$, zaključili bi da se on ne može izraziti preko vektora vrste matrice $A$ (jer je van prostora upregnutog sa vektrima vrste), pa prema tome postoji rješenje za početni problem u slučaju ove konfiguracije.  
 
 %Fourier–Motzkin elimination ==> Problem dopustivosti...
-\section{Fourier–Motzkin-ova Eliminacija}
+\section{Fourier–Motzkin-ova eliminacija}
 %https://faculty.math.illinois.edu/~mlavrov/docs/482-fall-2019/lecture19.pdf
 Pitanje vezano za problem  LP-a koji se rješava  je sljedeće:
 \emph{Neka su date matrica $A$ i vektor $b$, da li je skup $P = \{x \in \mathbb{R}^n \colon A x \leq b\}$ neprazan?} Dakle, da li postoji barem jedno dopustivo rješenje linearnog programa? 
@@ -2841,7 +2839,7 @@ $$  \sum_{j=1}^n x_{ij} = 1, \forall i =1,\ldots, n$$
  \end{align}
   %Postoje i druga ograničenja koja mogu da se dodaju za eliminaciju podruta, bez gore pomenutog iterativnog procesa, ali o njima će biti riječi u narednim sekcijama. 
  
- \section{Tehnike transformacije za ILP}
+ \section{Tehnike transformacija u ILP-u}
  
  \emph{Binarne varijable.} Pretpostavimo da je potrebno uključiti sljedeće aktivnosti: ($i$) izgraditi novo postrojenje ili
 ($ii$) poduzeti reklamnu kampanju ili ($iii$) razviti novi proizvod. Jasno je da su ove odluke korespondiraju ka logičkim odlukama da ili ne, pa ih, prema tome, modelujemo   uvodeći  (binarne) varijable $x_i \in \{0, 1 \}$, $i=1,2,3$. Često se nameće uslov da se najviše jedna od ovih odluka izvrši, što se modeluje sa $\sum_{i=1}^3 x_1 \leq 1$. Ovo ograničenje se obično naziva \emph{ograničenjem sa višestrukim izborom} (eng. \emph{multiple choice constraint}), jer se njime ograničava izbor odluka na najviše jednu od, u ovom slučaju, tri dostupne alternative. 
@@ -3080,7 +3078,7 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
  Još je ostalo zamijeniti svaku funkciju $f_j (s_j)$ aproksimacijom cjelobrojnog programiranja kako bismo izvršili cjelokupno modeliranje. Detalje ostavljamo čitaocu kao zadatak. Ako bi funkcija $f_j (s_j)$ sadržala fiksne troškove, tada se ne bi trebale uvoditi nove varijable fiksnih troškova -- u tu svrhu već služi ranije uvedena varijabla $y_j$. 
  % jos neki trikovi u modelovanju: https://download.aimms.com/aimms/download/manuals/AIMMS3OM_LinearProgrammingTricks.pdf
  
- \section{Kompleksnost Cjelobrojnog Programiranja}
+ \section{Kompleksnost cjelobrojnog programiranja}
    Što se tiče rješivosti problema cjelobrojnog programiranja, ona spada u NP--teške probleme, za razliku od LP-a koji je, kako smo pokazali, polinomijalno rješiv. U nastavku ove sekcije dajemo dokaz da je rješivost ILP-a zaista NP--težak problem.  Ideja je da  svedemo problem 3--SAT na ILP.\\ 
      %https://mediaspace.msu.edu/media/Proving+that+Integer+Programming+is+NP-Complete/1_0j1vkmvw
    Iako bi 3--SAT problem trebao biti poznat onome ko je slušao kurs iz osnova teorije algoritama, radi lakše čitljivosti ćemo ga i ovdje definisati. 
@@ -3413,7 +3411,7 @@ Na Slici~\ref{fig:bnb_ilp} je prikazano B\&B drvo sljedećeg ILP-a:
 
 
 
-\section{Implicitna Enumeracija}
+\section{Implicitna enumeracija}
 Posmatrajmo sada specijalnu B\&B proceduru koja se može primijeniti na problem Binarnog cjelobrojnog programiranja, gdje    sve diskretne varijable u suštini modeluju logičke odlukame. Ovaj algoritam ne zahtjeva da se posmatraju rješenja LP-relaksacija, već se radi sa enumeracijom. Dakle, izlistaju se sve moguće kombinacije vrijednosti koje varijable mogu da prime, pa se izabere ona koja je dopustiva i daje najveću vrijednost za ciljnu funkciju. Ovaj pristup radi dobro na problemima malih dimenzija gdje postoji svega nekoliko binarnih varijabli. Primijetimo da u problemu sa $n$ binarnih varijabli,  broj kombinacija za varijable odluke je jednak $2^n$ (dakle, raste eksponencijalnom brzinom u odnosu na veličinu ulaza). 
 
 Prisjetimo se da u standardnoj B\&B proceduri, podjela na manje probleme je izvedena dodavanjem dodatnih ograničenja i izbacujući ograničenja za integralnost (cjelobrojnost). U implicitnoj enumeraciji se primjenjuje suprotna taktika, zadržavaju se 0-1 restrikcije za varijable, ali ignorišu se linearna ograničenja u modelu. 
@@ -3875,7 +3873,7 @@ Lagranživa relaksacija prethodnog ILP-a ima oblik
 gdje je $\lambda=(\lambda_1, \ldots, \lambda_n)$ i $c^\lambda_{i,j} = c_{i,j} + \lambda_i + \lambda_j$. 
 
 % interior point method (dodati)...
-\section{Metod Generisanja Kolona}% ovo je za LP probleme sa velikim brojem kolona, pogledati u https://coral.ise.lehigh.edu/~ted/files/ie418/lectures/Lecture18.pdf file:///C:/Users/PC/Downloads/ColumnGenerationTutorial.pdf
+\section{Metod generisanja kolona}% ovo je za LP probleme sa velikim brojem kolona, pogledati u https://coral.ise.lehigh.edu/~ted/files/ie418/lectures/Lecture18.pdf file:///C:/Users/PC/Downloads/ColumnGenerationTutorial.pdf
 
 %video: https://www.youtube.com/watch?v=O918V86Grhc
 Često se u praksi nailazi na situaciju da je u LP-u (ili ILP-u) broj varijabli puno (eksponencijalno) veći  u odnosu na broj ograničenja. U osnovi, riječ je o ekstremno velikim modelima sa matricom $A$ velikih dimenzija. Kada je riječ o rješavanju ovakvih problema, veliki dio matrice (tj. njene kolone) nam obično nikada i neće biti relevantan u rješavanju. Da bi se riješila specifična instanca problema, ono što nam je potrebno su:
