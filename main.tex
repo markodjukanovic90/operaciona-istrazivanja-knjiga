@@ -6725,7 +6725,7 @@ Ako je potrebno implementirati varijablu za koju je $x \geq 0$ to radimo kao u p
      \begin{itemize}
      	\item \emph{vals} -- numerički niz (najčešće instanca klase \emph{IloNumArray}) u koju će se kopirati rješenja odgovarajućih dualnih promjenjivih;
      	\item \emph{con} -- ograničenja u modelu (instanca klase \emph{IloRangeArray}) za koje se računaju koeficijenti odgovarajućih dualnih promjenjivih;
-     	\item \emph{getMIPRelativeGap()}: vraća vrijednost relativne razdaljine (u procentima) između najboljeg dopustivog rješenja (nađenog od strane CPLEX-a) i dokazane gornje granice optmalnog rješenja (koje su rezultat raznih internih tehnika -- kao što su B\&B -- pozvane od strane rješavača).
+     	\item \emph{getMIPRelativeGap()}: vraća vrijednost relativne udaljenost ($\in [0, 1]$) između najboljeg dopustivog rješenja (nađenog od strane CPLEX-a) i dokazane gornje granice optmalnog rješenja (koje su rezultat raznih internih tehnika -- kao što su B\&B -- pozvane od strane rješavača).
      \end{itemize}
 \end{itemize}
 Eksportovanje modela za eventualno ponovno korištenje se može dobiti pozivom metoda \emph{exportModel}, čiji je očekivani argument naziv fajla u koji će se model upisati (.$lp$ ekstenzija).  
@@ -6783,7 +6783,7 @@ koji kontroliše maksimalno vrijeme izvršavanja rješavača, poruke o napretku 
  	for v in prob.variables():
  	print(v.name, "=", v.varValue)
  	print("Vrijednost funkcije cilja: ", value(prob.objective))
- 	print("Status rješenja: ", prob.status)
+  
  \end{verbatim}
  \section{Primjena alata PuLP na rješavanje jednog problema lokacija sa ograničenim kapacitetima}%Capacitated Facility Location
  Posmatrajmo već modelovan problem lokacija iz Sekcije~\ref{sec:modeli_lp} uz pomoć PuLP rješavača. Model ovog problema je dat sa:
