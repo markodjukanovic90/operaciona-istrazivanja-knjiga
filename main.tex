@@ -554,7 +554,7 @@ Ako su sve varijable u LP-u cjelobrojne, riječ je o modelu \emph{Cjelobrojnog p
 
 \section{Modelovanje nekih problema paradigmom linearnog programiranja}\label{sec:modeli_lp}
 
-\emph{Problem optimalne prehrane.} Pretpostavimo da su nam na raspolaganju namirnice $N_1, \ldots, N_n$. Cijena namirnice $N_j$ po jedinici je $c_j, j = 1, \ldots, n$. U namirnicama su prisutni nutritivni elementi $e_j,j=1,\ldots,m$ pri čemu
+\emph{Problem optimalne prehrane.} Pretpostavimo da su nam na raspolaganju namirnice $N_1, \ldots, N_n$. Cijena namirnice $N_j$ po jedinici je $c_j>0, j = 1, \ldots, n$. U namirnicama su prisutni nutritivni elementi $e_j,j=1,\ldots,m$ pri čemu
 u namirnici $N_j$ ima $a_{ij} \geq 0$ nutritivnog elementa $e_i$, $i = 1, \ldots, n$, $j = 1, \ldots, m$. Svaka osoba u toku dana treba da unese barem $b_i$
 jedinica nutritivnog elementa $e_i$. Potrebno je modelovati
 sljedeći problem: 
@@ -569,17 +569,15 @@ potreba za svim nutritivnim elementima, a da se pri tome minimizuje cijena prehr
  
  $$ a_{i,1} x_1 + \ldots + a_{i,n} x_n \geq b_i $$
  
- za svako $i=1,\ldots,m$. 
- 
- Dodajući još uslove nenegativnosti, $x_i \geq 0$, formulisali smo linearni model za ovaj problem.  
+ za svako $i=1,\ldots,m$. Dodajući još uslove nenegativnosti, $x_i \geq 0$, formulisali smo linearni model za ovaj problem.  
  
 \emph{Problem najboljeg pravca (problem linearne regresije)}. Zadani su podaci $(x_i, y_i), i = 1, \ldots , n$. Potrebno je odrediti pravu sa jednačinom $y = k x + l,
 k, l \in \mathbb{R}$ koja u smislu $l_1$ norme najbolje aproksimira date podatke. U prevodu, potrebno je minimizovati  funkcija cilja $$f(k, l) = \sum_{i=1}^n |k x_i + l - y_i|.$$
 
 \emph{Rješenje}.
-Označimo $z_i = |k x_i + l - y_i| = \max\{k x_i + l - y_i, y_i - k x_i - l \}$, $i=1,\ldots,n$. 
+Označimo sa $z_i = |k x_i + l - y_i| = \max\{k x_i + l - y_i, y_i - k x_i - l \}$, $i=1,\ldots,n$. 
 
-Primijetimo da apsolutna vrijednost ne odgovara direktno problemu LP-a bilo da je prisutna u funkciji cilja ili ograničenjima, jer ona sama po sebi nije linearna funkcija. Međutim, elementarnim transformacijama, polazni problem možemo da preformulišemo na sljedeći  problem linearnog programiranja: % ogranizenje |kx_i + l - y_i | <= z_i <=> dalje se svodi na dva ogranicenja...
+Primijetimo da apsolutna vrijednost ne odgovara direktno problemu LP-a bilo da je prisutna u funkciji cilja ili ograničenjima, jer ona ne predstavlja linearnu funkciju (već je po--dijelovima linearna). Međutim, elementarnim transformacijama, polazni problem možemo da preformulišemo na sljedeći  problem linearnog programiranja: % ogranizenje |kx_i + l - y_i | <= z_i <=> dalje se svodi na dva ogranicenja...
 
 $f(x) = c^T w$, pod uslovima
 \begin{itemize}
@@ -604,10 +602,10 @@ Kada je riječ o linearnim programima,  oni imaju nekoliko osnovnih implicitnih 
 %Ako model zadovoljava prethodne 4 pretpostavke, onda je riješ o modelu linearnog programiranja. 
 
 \section{Teorija linearnog programiranja}
-U ovom poglavlju ćemo formalno izvesti načine rješavanja linearnog problema. U osnovi, pokazaćemo da ako je problem
-linearnog programiranja dopustiv i ograničen i postoje vrhovi, onda postoji i optimalno rješenje tog LP problema. Kako smo ranije neformalno pomenuli,  to rješenje se nalazi upravo u jednom od vrhova poliedra. 
+U ovom poglavlju ćemo formalno izvesti generalne uslove pod kojima se problem linearnog programiranja može riješiti. U osnovi, pokazaćemo da ako je problem
+linearnog programiranja dopustiv i ograničen i postoje vrhovi, onda postoji i optimalno rješenje  problema LP-a. Kako smo ranije neformalno pomenuli,  to rješenje se nalazi upravo u jednom od vrhova poliedra. 
 
-Prije nego ovo formalno pokažemo, uvedimo nekoliko osnovnih definicija, te pratećih teorema, više pogledati u~\cite{cite_key6}. 
+Prije nego ovo formalno pokažemo, uvedimo nekoliko osnovnih definicija i pratećih teorema, više pogledati u~\cite{cite_key6}. 
 
 \begin{definition}
   Za skup $S \in \mathbb{R}^n$ kažemo da je konveksan akko za sve $x,y\in S$ i $\lambda\in [0, 1]$ vrijedi $\lambda x + (1 - \lambda)y \in S$
@@ -666,9 +664,7 @@ Primijetimo da je svaka funkcija data u obliku $f(x_1, \ldots, x_n) = \sum_{i=1}
    Neka su dati vektori $z^i \in \mathbb{R}^n$,  te $\lambda_i \in [0,1]$ $i=1,\ldots,m$ tako da je $\sum_{i=1}^m \lambda_i = 1.$ Vektor $x =  \sum_{i=1}^m \lambda_i z^i$ se naziva konveksna kombinacija vektora $z^i$.
 \end{definition}
 
-Konveksne funkcije imaju lijepa svojstva sa stanovišta teorije i u kombinaciji sa konveksnim skupovima čine osnov  teorije optimalnosti. 
-
-Inače, vrijedi sljedeća teorema.
+Konveksne funkcije imaju lijepa svojstva sa stanovišta teorije i u kombinaciji sa konveksnim skupovima čine osnov  teorije optimalnosti. Inače, vrijedi sljedeća teorema.
 \begin{thm}
   Neka je $f : S \mapsto \mathbb{R}$ konveksna funkcija definisana na konveksnom skupu $S \subseteq \mathbb{R}^n$. Ako funkcija $f$ u tački $x^* \in S$
  postiže lokalni minimum, onda je ta tačka predstavlja i tačku globalnog minimuma.
@@ -702,7 +698,7 @@ U sljedeće dvije definicije definišimo pojmove poliedra, hiperravni i polupros
 \begin{definition}
    Neka je $a\in \mathbb{R}^n $ i $b \in \mathbb{R}$. Skup $\{ x \in \mathbb{R}^n \mid a^T x = b \}$ se naziva hiperravan u $\mathbb{R}^n$ čiji je vektor  normale $a$, dok se $\{ x \in \mathbb{R}^n \mid a^T x \geq b \}$ naziva poluprostor. 
 \end{definition}
-Pokažimo sada da je poliedar konveksan skup. To je važna karakteristika jer se uslovima problema LP-a formira odgovarajući poliedar, a kako je on konveksan skup, prethodna teorema nam garantuje da, uz pretpostavku da postoji lokalni minimum (maksimum), postoji  i globalni minimum (maksimum), tj. optimalno rješenje zadanog problema LP-a.
+Pokažimo sada da je poliedar konveksan skup. To je važna karakteristika jer se uslovima problema LP-a formira odgovarajući poliedar, a kako je on konveksan skup, prethodna teorema nam garantuje da, uz pretpostavku da postoji lokalni minimum (maksimum), onda postoji  i globalni minimum (maksimum), tj. optimalno rješenje zadanog problema LP-a.
 
 \begin{prop} Vrijede sljedeće tvrdnje: \\
   ($i$)  Poluprostor u $\mathbb{R}^n$ je konveksan skup.  \\
@@ -710,8 +706,8 @@ Pokažimo sada da je poliedar konveksan skup. To je važna karakteristika jer se
 \end{prop}
 
 \begin{proof}
-  ($i$) Neka je dat poluprostor $P = \{ x \in \mathbb{R}^n \mid a^T x \geq b \}$. Uzmimo $x, y \in P$, te neko $\lambda \in [0, 1]$. Treba da pokažemo da konveksna kombinacija ova dva vektora takođe pripada $P$. Iz $x \in P$, slijedi  $a^T x \geq b$. Takođe, kako je $y \in P$, to je  $a^T y \geq b$. 
-  Sada jednostavno slijedi sljedeće:
+  ($i$) Neka je dat poluprostor $P = \{ x \in \mathbb{R}^n \mid a^T x \geq b \}$. Uzmimo $x, y \in P$, te neko $\lambda \in [0, 1]$. Treba da pokažemo da konveksna kombinacija ova dva vektora   pripada $P$. Iz $x \in P$, slijedi  $a^T x \geq b$. Takođe, kako je $y \in P$, to je  $a^T y \geq b$. 
+  Sada  imamo sljedeće:
   \begin{align}
       a^T (\lambda x) \geq \lambda b \\
       a^T ((1-\lambda) y) \geq (1-\lambda) b 
@@ -720,25 +716,25 @@ Pokažimo sada da je poliedar konveksan skup. To je važna karakteristika jer se
   \begin{equation}
       a^T( \lambda x + (1 - \lambda) y ) \geq b,
   \end{equation}
-  odakle slijedi da $\lambda x + (1-\lambda) y \in P$, odakle slijedi tvrdnja. 
+  odakle slijedi da $\lambda x + (1-\lambda) y \in P$, pa imamo tvrdnju. 
   
   ($ii$) Neka su $S_1,\ldots, S_n$ konveksni skupovi. Ako $x,y \in \cap_{i=1}^n S_i$, onda slijedi da $x,y \in S_i$ za svaki $i=1,\ldots,n$. Zbog konveksnosti svakog od skupova,  
   $\lambda x + (1 - \lambda) y \in S_i$, za svaki $i=1,\ldots,n$. Prema tome, vrijedi $ \lambda x + (1-\lambda) y \in \cap_{i=1}^n S_i$, odakle slijedi da je $\cap_{i=1}^n S_i$ konveksan. 
 \end{proof}
 
-Iz prethodne teoreme slijedi sljedeća posljedica.
+Iz prethodne teoreme vrijedi sljedeća posljedica.
 
 \begin{poslje}
 Poliedar $P$ nekog problema LP-a je konveksan skup.	
 \end{poslje}
  
 \begin{proof}
-  Definišimo $S_i:= \{ (x_1,\ldots, x_n) \in \mathbb{R}^n \mid c^T x \geq b_i \}$, za  $c = (a_{i,1}, \ldots, a_{i, n}),$  $ i=1,\ldots, m$. Kako je $\cap_{i=1}^m S_i$ poliedar koji odgovara problemu LP-a, na osnovu prethodne propozicije ($ii$), slijedi tvrdnja. 
+  Definišimo $S_i:= \{ (x_1,\ldots, x_n) \in \mathbb{R}^n \mid c^T x \geq b_i \}$, gdje je  $c = (a_{i,1}, \ldots, a_{i, n}),$  $ i=1,\ldots, m$. Kako je $\cap_{i=1}^m S_i$ poliedar koji odgovara problemu LP-a, na osnovu prethodne propozicije ($ii$), slijedi tvrdnja. 
 \end{proof}
 
 
 
-Nadalje, formalno definišimo ekstremne tačke, vrhove i bazna dopustiva rješenja koja su već ranije pomenuta u ne tako strogom obliku. 
+Nadalje, formalno definišimo ekstremne tačke, vrhove i bazna dopustiva rješenja koja su već ranije pomenuta u ne tako strogom kontekstu. 
 
 
 \begin{definition}
@@ -751,7 +747,7 @@ Možemo reći i ovako: One tačke koje se ne mogu napisati kao netrivijalna konv
  
  
 \begin{definition}
-   Neka je dat poliedar $P$ u $\mathbb{R}^n$. Tačku $x \in P$ nazivamo vrh (poliedra) ako postoji linearna funkcija  $c^T x$ koja je strogo minimizovana u toj tački, tj. za sve  $y\in P, y \neq x$, vrijedi $c^T x < c^T y$. 
+   Neka je dat poliedar $P \subseteq \mathbb{R}^n$. Tačku $x \in P$ nazivamo vrh (poliedra) ako postoji linearna funkcija  $c^T x$ koja je strogo minimizovana u toj tački, tj. za sve  $y\in P, y \neq x$, vrijedi $c^T x < c^T y$. 
 \end{definition}
 Geometrijski posmatrano,  vrh poliedra $P$ je ona tačka poliedra  kroz koju možemo provući poluravan sa svojstvom da se sve tačke iz $P$ (izuzev vrha) nalaze sa iste strane te poluravni.
 
@@ -850,7 +846,7 @@ Iz prethodne teoreme zaključujemo da bismo  konstruisali bazno rješenje, sljed
 Varijable $x_{p_1},\ldots, x_{p_m}$ nazivamo \emph{bazne varijable}, a vektore  $A_{p_1}, \ldots, A_{p_m}$ \emph{bazni vektori}, indekse $p_1,\ldots, p_m$ \emph{bazni indeksi}, dok matricu $B$ matrica baze. 
 
 
-Definišimo sada pojam \emph{degenerativnog} rješenje i degenerativnog baznog rješenja. Pokazaćemo kako se na primjeru pronalazi bazno rješenje te kako izgleda degenerativno bazno rješenje.
+Definišimo sada pojam \emph{degenerativnog} rješenja i degenerativnog baznog rješenja. Pokazaćemo kako se na primjeru pronalazi bazno rješenje te kako izgleda degenerativno bazno rješenje.
 
 \begin{definition}
       Neka je dat poliedar $P = \{ x \in \mathbb{R}^n \mid a_i^T x \geq b_i, x_i \geq 0, i=1,\ldots,m \}$. Za bazno rješenje $x^*\in \mathbb{R}^n$ kažemo da je degenerativno ako je više od $n$  ograničenja aktivno u $x^*$. 
@@ -866,7 +862,7 @@ Definišimo sada pojam \emph{degenerativnog} rješenje i degenerativnog baznog r
 $A=\left (\begin{array}{ccc}
    -1  &  1 & 0  \\
    1  &  1 & 1 \\
-\end{array} \right )$ te $b = [0\ 2]^T$. Prateći postupak konstrukcije baznog rješenja, pronađimo dve linearno nezavisne kolone matrice $A$, recimo prve dvije, odakle je matica $B=\left (\begin{array}{cc}
+\end{array} \right )$ te $b = [0\ 2]^T$. Prateći postupak konstrukcije baznog rješenja, pronađimo dvije linearno nezavisne kolone matrice $A$, recimo prve dvije, odakle je matica $B=\left (\begin{array}{cc}
    -1  & 1    \\
    1  &  1   \\
 \end{array} \right ) .$ Riješimo sistem jednačina (stavka 3), odakle je rješenje $x_B = [1\ 1]^T$, a krajnje rješenje je $x^* = [1\ 1\ 0]^T$. Kako je 
@@ -897,14 +893,14 @@ Sljedeća teorema nam daje dovoljan uslov za postojanje optimalnog rješenja koj
 \end{thm}
 
 \begin{proof}
-         Sa $O^* \not = \emptyset$ označimo skup svih optimalnih rješenja LP problema nad poliedrom $P= \{ x \in \mathbb{R}^n \mid A x \geq b \}$ te neka je $c^T x^* = v$, za sve $x^* \in O^*$. Vidimo da je 
-         $O^* = \{ x \in \mathbb{R}^n \mid A x \geq b_i, c^T x = v  \}$ je takođe poliedar, $O^* \subset P$. Prethodna teorema nam kaže da poliedar $P$ ne sadrži pravac. Iz toga zaključujemo da ni $O^*$ nema pravac, odakle slijedi da $O^*$ ima barem jednu ekstremnu tačku (stavka 1 prethodne teoreme), označimo je sa $q^*$. Pokažimo da je to ujedno i ekstremna tačka od $P$.  Ako bismo pretpostavili da $q^*$ nije ekstremna tačka poliedra $P$, po definiciji slijedi da postoje $y, z \in P$ tako da $q^* = \lambda y + ( 1 - \lambda ) z $, $y \neq q^*, z \neq q^*, \lambda \in [0, 1]$. Kako je $q^* \in O^*$, imamo 
+         Sa $O^* \not = \emptyset$ označimo skup svih optimalnih rješenja  nad poliedrom $P= \{ x \in \mathbb{R}^n \mid A x \geq b \}$ te neka je $c^T x^* = v$, za sve $x^* \in O^*$. Vidimo da je 
+         $O^* = \{ x \in \mathbb{R}^n \mid A x \geq b, c^T x = v  \}$ je takođe poliedar, $O^* \subset P$. Prethodna teorema nam kaže da poliedar $P$ ne sadrži pravac. Iz toga zaključujemo da ni $O^*$ nema pravac, odakle slijedi da $O^*$ ima barem jednu ekstremnu tačku (stavka 1 prethodne teoreme), označimo je sa $q^*$. Pokažimo da je to ujedno i ekstremna tačka od $P$.  Ako bismo pretpostavili da $q^*$ nije ekstremna tačka poliedra $P$, po definiciji slijedi da postoje $y, z \in P$ tako da $q^* = \lambda y + ( 1 - \lambda ) z $, $y \neq q^*, z \neq q^*, \lambda \in [0, 1]$. Kako je $q^* \in O^*$, imamo 
          $$ v = c^T q^* = c^T (  \lambda y + ( 1 - \lambda ) z ) = \lambda 
         \underbrace{ c^T y}_{ \geq v} + ( 1 - \lambda ) \underbrace{c^T z}_{\geq v} \geq \lambda v + (1 - \lambda) v = v,$$
         odakle imamo $c^T y = v$ i $c^T z = v$, dakle $y, z \in O^*$. Prema tome, $q^*$ nije ekstremna tačka od $O^*$. Dakle, imamo kontradikciju, odakle zaključujemo da $q^*$ mora biti  ekstremna tačka od  $P$.
 \end{proof}
  
- Ova važna tvrđenja nam daju osnov za konstrukciju simpleks metoda koji je, kao što smo već pomenuli, jedna od najpoznatijih i najefikasnijih generalnih metoda za rješavanje problema LP.
+ Ova važna tvrđenja nam daju bazu za konstrukciju simpleks metoda koji je, kao što smo već pomenuli, jedna od najpoznatijih i najefikasnijih generalnih metoda za rješavanje LP problema.
  
 % \begin{thm}
  \emph{Posljedica.} Ako  rješavamo problem minimizacije LP-a na poliedru $P$ koji ima barem jednu ekstremnu tačku, tada vrijedi tačno jedna od sljedeće dvije tvrdnje:
@@ -913,7 +909,7 @@ Sljedeća teorema nam daje dovoljan uslov za postojanje optimalnog rješenja koj
        \item Postoji ekstremna tačka u kojoj funkcija cilja dostiže optimalno rješenje. 
    \end{enumerate}
 % \end{thm}
-Kako ćemo vidjeti u narednom poglavlju, upravo  ove tvrdnje opravdavaju ideju simpleks metode, koja je bazirana na iterativnim posjećivanju vrhova poliedra 
+Kako ćemo vidjeti u narednom poglavlju, upravo  ove tvrdnje motivišu konstrukciju simpleks metode, koja je bazirana na iterativnim posjećivanju vrhova poliedra 
 u cilju pronalaska optimalnog rješenja.
 
 \section{Neke tehnike u modelovanju problema linearnog programiranja}
@@ -1012,7 +1008,7 @@ Konačno, dobijamo ekvivalentan LP model
 	kupiti samo do 300.000 kg mesa mjesečno za 0,50 \$ po kg. Osim toga, za proizvodnju Meatiesa potrebna je posebna mašina, a proizvodni kapacitet ove mašine je 90.000 paketa mjesečno. Varijabilni troškovi miješanja i pakovanja hrane za pse iznose 0,25 \$ po pakovanju za Meaties i 0,20 \$ po paketu za Yummies.  
 	Pretpostavimo da ste vođa odjela hrane za pse  ove kompanije. Na koji način bi trebali upravljati odjelom proizvodnje kako bi maksimizovali profit? 
 	\item %LP_zadaci_za_knjigu.pdf ==> pogledati 
-	 Kompanija proizvodi velike industrijske ključeve za cijevi u jednoj od svojih fabrika. Odjel za marketing procjenjuje potražnju za ovim proizvodom u sljedećih 6
+	 Kompanija proizvodi velike industrijske ključeve za cijevi u jednoj od svojih fabrika. Odjel za marketing procjenjuje potražnju za ovim proizvodom za sljedećih 6
 	mjeseci, koja je data tabelom
  \begin{center}
     \begin{tabular}{lc}\hline
@@ -1026,7 +1022,7 @@ Konačno, dobijamo ekvivalentan LP model
 	\end{tabular}  
 \end{center}	
 	
-	Sa trenutnom radnom snagom, firma vjeruje da može proizvesti približno 420 ključeva za cijevi mjesečno po cijeni od 40 \$ po ključu u standardnoj proizvodnji. Dodatnih 80 ključeva mjesečno može se izraditi prekovremenim radom po cijeni od 45 \$ po ključu.
+	Sa trenutnom radnom snagom, firma vjeruje da može proizvesti približno 420 ključeva za cijevi mjesečno po cijeni od 40 \$ po ključu u standardnom režimu proizvodnje. Dodatnih 80 ključeva mjesečno može se izraditi prekovremenim radom po cijeni od 45 \$ po ključu.
 	Ključevi se mogu napraviti unaprijed i držati u zalihama za kasniju isporuku po cijeni od 3 \$ mjesečno po ključu. Mjesečna potražnja za ključevima mora biti zadovoljena svakog mjeseca. Pred kraj decembra (početak januara) firma ima 10 ključeva u inventaru. Ona 
 	želi planirati svoju proizvodnju, uključujući prekovremeni rad i zalihe za sljedećih 6 mjeseci, kako bi povećala profit. Pod pretpostavkom da je prihod od ovih ključeva stalan, uprava proizvodnje  će povećati  profit minimiziranjem ukupnih troškova nastalih u proizvodnji i isporuci ključeva. Modelovati ovaj problem.
 	\item %https://www.utc.fr/~dnace/dokuwiki/_media/fr/upt-cours-2012lp.pdf
@@ -1041,7 +1037,7 @@ Konačno, dobijamo ekvivalentan LP model
 	\end{tabular}  
 \end{center}	
 	
-	Proizvodni kapacitet kompanije je 30000 računara mjesečno. Moguće je proizvesti i više proizvoda, ali po višoj cijeni, gdje je tada cijena računara 300 \$ po komadu umjesto 250 \$. Na lageru je u startu 2000 računara. Troškovi skladištenja su 25 \$ po jedinici proizvoda koji ostanu na zalihi na kraju mjeseca. Pretpostavljamo da su skladišni kapaciteti neograničeni. Proizvodnja počinje 1. januara. Kako planirati proizvodnju za sljedeća četiri mjeseca tako da se zadovolje svi zahtjevi, a troškovi svedu na minimum?
+	Proizvodni kapacitet kompanije je 30000 računara mjesečno. Moguće je proizvesti i više proizvoda, ali po višoj cijeni, gdje je tada cijena računara 300 \$ po komadu umjesto 250 \$. U startu na lageru je 2000 računara. Troškovi skladištenja su 25 \$ po jedinici proizvoda koji ostanu na zalihi na kraju mjeseca. Pretpostavljamo da su skladišni kapaciteti neograničeni. Proizvodnja počinje 1. januara. Kako planirati proizvodnju za sljedeća četiri mjeseca tako da se zadovolje svi zahtjevi, a troškovi svedu na minimum?
 	%http://people.brunel.ac.uk/~mastjjb/jeb/or/lpmore.html
 	\item Teretni avion ima tri odjeljka za skladištenje tereta: prednji, središnji i stražnji. Ovi odjeljci imaju sljedeća ograničenja po težini i po prostoru: 
 \begin{table}[!ht]
@@ -1066,8 +1062,8 @@ Osim toga, težine tereta koji su smješteni u odgovarajućim pregradama moraju 
 	    $C_4$  & 12     & 390       & 285    \\ \hline
 	\end{tabular}
 \end{table}
-Bilo koji dio ovih tereta se može   prihvatiti. Cilj je utvrditi koliko (ako postoji i jedan) svakog tereta $C_1$, $C_2$, $C_3$ i $C_4$ treba prihvatiti i kako ga rasporediti po odjeljcima da bi ukupna dobit na letu bila maksimalna. \\
-Uputstvo. Definisati varijable odluke $x_{i,j}$ kao broj (tona) tereta $i$   (za $C_i, i=1, \ldots,4$,  respektivno) koji je stavljen  u odjeljak $j$, $j=1,2,3$ (prednji, središnji, stražnji).  % http://people.brunel.ac.uk/~mastjjb/jeb/or/lpmore.html 
+Bilo koji dio ovih tereta se može   prihvatiti (za transport). Cilj je utvrditi koliko (ako postoji i jedan) svakog tereta $C_1$, $C_2$, $C_3$ i $C_4$ treba prihvatiti i kako ga rasporediti po odjeljcima da bi ukupna dobit na letu bila maksimalna. \\
+Uputstvo. Definisati varijable odluke $x_{i,j}$ kao broj (tona) tereta $i$   (za $C_i, i=1, \ldots,4$,  respektivno) koji se skladišti  u odjeljak $j$, $j=1,2,3$ (prednji, središnji, stražnji).  % http://people.brunel.ac.uk/~mastjjb/jeb/or/lpmore.html 
 \item Kompanija proizvodi četiri proizvoda ($1,2,3,4$) na dvije mašine ($X$ i $Y$). Vrijeme (u minutama) za obradu jedinice svakog proizvoda na svakoj mašini prikazano je ispod: 
 \begin{table}[!ht]
 	\centering	
@@ -1084,7 +1080,7 @@ Profiti po jedinici proizvoda za proizvod $i=1,2,3,4$, su 10, 12, 17 i 8 \$, res
 Tvornica je vrlo mala i to znači da je podni prostor vrlo ograničen. Proizvodnja na nivou sedmice se skladišti na $50 m^2$ podne površine pri čemu svaki proizvod zauzima 0.1, 0.15, 0.5 i 0.05 (kvadratnih metara) proizvoda $1, 2, 3$ i $4$,  respektivno. 
 
 Zahtjevi kupaca su da količina proizvedenog proizvoda 3 treba biti povezana s količinom proizvedenog proizvoda 2. Preciznije, tokom sedmice trebalo bi se proizvesti približno dvostruko više jedinica proizvoda 2 nego proizvoda 3. Mašina $X$ je van pogona (zbog održavanja/zbog kvara) 5\% vremena, a za mašinu $Y$ je to 7\% vremena.
-Pretpostavljajući radnu sedmicu dugu 35 sati, formulišite model proizvodnje ovih proizvoda kao linearni program da bi se maksimizovao profit. \\
+Pretpostavljajući radnu sedmicu koja iznosi 35 sati, formulišite model proizvodnje ovih proizvoda preko linearnog programa da bi se maksimizovao profit. \\
 
 Uputstvo. Varijable odluke se tiču količine proizvoda $i$ koje se proizvode na svakoj od mašina.  Dakle, 
 varijabla $x_i$ označava broj proizvoda $i$ proizvedeni na sedmičnom nivou na mašini $X$, dok je $y_j$ --   broj proizvoda $j$ proizvedeni na sedmičnom nivou na mašini $Y$, $i \in \{1,2,3,4\}$, $j \in \{2,3,4\}$. Varijablu $y_1$ ne definišemo jer se proizvod 1 izvršava na obje mašine.  
