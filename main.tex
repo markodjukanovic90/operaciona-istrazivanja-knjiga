@@ -369,7 +369,7 @@ Ostatak ove knjige je fokusiran prvenstveno na razvoj matematičkih modela i odg
 
 \chapter{Linearno Programiranje} 
   
-  Početak razvoja linearnog programiranja datira u period sredine dvadesetog vijeka. Sovjetski matematičar i ekonomista Leonid Kantorovič je tokom drugog svjetskog rata formulisao problem ekvivalentan problemu linearnog programiranja u cilju boljeg upravljanja resursima i smanjenja troškova u vojsci. Neposredno nakon drugog svjetskog rata, američki matematičar Džordž Dencig razvija čuveni simpleks algoritam, čime se otvara prostor za efikasno rješavanje problema linearnog programiranja. U periodu koji je uslijedio, pa sve do danas, linearno programiranje se koristi kao standardan alat za rješavanje raznih problema u industriji i ekonomiji uopšte, što je dovelo do uštedio milionskih ušteda ogromnom broju kompanija u raznim zemljama svijeta. Stoga se 
+  Početak razvoja linearnog programiranja počinje od sredine dvadesetog vijeka. Sovjetski matematičar i ekonomista Leonid Kantorovič je tokom drugog svjetskog rata formulisao problem ekvivalentan problemu linearnog programiranja u cilju boljeg upravljanja resursima i smanjenja troškova u vojsci. Neposredno nakon drugog svjetskog rata, američki matematičar Džordž Dencig razvija čuveni simpleks algoritam, čime se otvara prostor za efikasno rješavanje problema linearnog programiranja. U periodu koji je uslijedio, pa sve do danas, linearno programiranje se koristi kao standardan alat za rješavanje raznih problema u industriji i ekonomiji uopšte, što je dovelo do   milionskih ušteda ogromnom broju kompanija u raznim zemljama svijeta. Stoga se 
 razvoj linearnog programiranja  smatra jednim od najvažnijih naučnih dostignu\-ća XX vijeka.  Napisano je na desetine, pa i stotine udžbenika
 o linearnom programiranju i objavljeno je na hiljade naučnih radova koji   ovu paradigmu primjenjuju na probleme iz raznih naučnih i praktičnih domena. 
 
@@ -377,39 +377,39 @@ Linearno programiranje koristi matematički model za opisivanje problema;
 pridjev ``linearno'' podrazumijeva da su  matematičke funkcije korištene u modelu linearne funkcije. Riječ ``programiranje'' se ne odnosi na računarsko programiranje, već je to sinonim za planiranje i optimizaciju. Dakle, linearno programiranje uključuje planiranje aktivnosti u cilju postizanja optimalnog rezultata, tj. rezultata koji najbolje postiže navedeni cilj (prema matematičkom modelu) među svim izvedivim alternativama.  Za rješavanje problema linearnog programiranja razvijeno je dosta efikasnih metoda. Iako jedan od nastarijih,  \emph{simpleks metod} se i danas koristi za rješavanje problema velikih dimenzija te je zaslužan za ogroman uticaj linearnog  programiranja u raznim oblastima nauke i privrede.
 
 \textbf{Primjer}. U ovom primjeru opisujemo jedan industrijski projekat 
--- {WYNDOR--GLASS CO projekat}, te kako OR može da riješi ozbiljne probleme jedne firme. 
+naziva {WYNDOR--GLASS CO projekat}, prikazujući kako OR može da riješi ozbiljne probleme u industriji. 
   
 Firma \texttt{WYNDOR--GLASS} proizvodi visokokvalitetne staklene proizvode, uključujući prozore i staklena vrata. Postoje tri pogona. Aluminijski okviri i okovi izrađuju se u pogonu 1, drveni okviri izrađuju se u pogonu 2, a pogon 3 proizvodi staklo i sastavlja proizvode.
 Zbog pada zarade, rukovodstvo firme   odlučio je da obnovi liniju proizvoda koje nudi. Neprofitabilni proizvodi se ukidaju, oslobađajući proizvodne kapacitete za lansiranje dva nova proizvoda sa velikim prodajnim potencijalom:
 \begin{itemize}
     \item Proizvod 1: Staklena vrata od 2$m$ sa aluminijskim okvirom;
-    \item Proizvod 2: Dvostruka drvena vrata s okvirom visine 1.5$m$.
+    \item Proizvod 2: Dvostruka drvena vrata sa okvirom visine 1.5$m$.
 \end{itemize}
 Uslovi i zahtjevi proizvodnje su sljedeći:
 \begin{itemize}
-    \item Proizvod 1 zahtijeva   korištenje proizvodnih kapaciteta u postrojenjima 1 i 3, ali ne korisiti pogon 2; 
-    \item Proizvod 2 treba   postrojenja 2 i 3 za proizvodnju. 
+    \item Proizvod 1 zahtijeva   korištenje proizvodnih kapaciteta u postrojenjima 1 i 3, ali ne korisiti postrojenje 2; 
+    \item Proizvod 2 za proizvodnju koristi   postrojenja 2 i 3 . 
 \end{itemize}
-    Rukovodstvo kompanije je zaključilo da bi kompanija mogla prodati sve proizvode koje bi mogla proizvesti u postrojenjima. Međutim, budući da   oba proizvoda koriste proizvodni kapacitet u pogonu 3, nije bilo jasno koja bi kombinacija proizvodnje dva proizvoda bila najisplativija. %Stoga je formiran tim za proučavanje ovog pitanja, te davanja adekvatnog odgovora.
+    Rukovodstvo kompanije je zaključilo da bi kompanija mogla prodati sve proizvode koje bi mogla proizvesti u postrojenjima. Međutim, budući da   oba proizvoda koriste proizvodni kapacitet u postrojenju 3, nije očigledno jasno koja bi kombinacija proizvodnje dva proizvoda bila najisplativija. %Stoga je formiran tim za proučavanje ovog pitanja, te davanja adekvatnog odgovora.
 
-Nakon razgovora, glavni ciljevi istraživanja su utvrđeni, te se došlo se do definicije (idealizovanog) problema koji treba da se riješi:
+Nakon razgovora sa upravom, glavni ciljevi istraživanja su utvrđeni, gdje se utvrdila definicija  (idealizovanog) problema koji treba da se riješi:
 \begin{itemize}
-    \item Utvrditi  stope proizvodnje  ova dva proizvoda kako bi se maksimizovala ukupna dobit, koja je podložna ograničenjima nametnuta od strane   proizvodnih kapaciteta koji su dostupni u sva tri pogona. 
+    \item Utvrditi  stope proizvodnje  ova dva proizvoda kako bi se maksimizovala ukupna dobit, koja je podložna ograničenjima u  proizvodnim kapacitetima koji su dostupni u sva tri pogona. 
     \item Svaki proizvod se proizvodi u serijama od po 20 komada, tako da se stopa proizvodnje definiše kao broj serija proizvedenih na nivou jedne sedmice. 
-    \item Dopuštena je bilo koja kombinacija stope proizvodnje koja zadovoljava ograničenja, uključujući i slučaj da se ne proizvede niti jedan od (dva) proizvoda kao i slučaj da se proizvede maksimalan broj drugog proizvoda. 
+    \item Dopuštena je bilo koja kombinacija stope proizvodnje koja zadovoljava ograničenja, uključujući i slučaj da se ne proizvede niti jedan od (dva) proizvoda kao i slučaj da se proizvede maksimalan broj drugog proizvoda na osnovu utvrđenih kapaciteta.
 \end{itemize}
 
 Da bi se razvio model, informacije koje je bilo neophodno prikupiti prije modelovanja su:
 \begin{itemize}
 	\item[($i$)]   Broj radnih sati u sedmici dostupan u svakom pogonu za nove proizvode;  
-	\item[($ii$)]   Broj radnih sati korištenih u svakom pogonu za svaku proizvedenu seriju svakog novog proizvoda;
-	\item[($iii$)] Dobit po proizvedenoj seriji svakog novog proizvoda. Dobit po proizvedenoj seriji je  odabrana   kao odgovarajuća mjera jer je zaključeno da   dobit svake dodatne proizvedene serije  raste približno konstantno bez obzira na ukupan broj proizvedenih serija.
+	\item[($ii$)]   Broj radnih sati koji je neophodno utrošiti  za proizvodnju jedne serije proizvoda u svakom pogonu;
+	\item[($iii$)] Dobit po proizvedenoj seriji svakog novog proizvoda. Odlučeno je da dobit po proizvedenoj seriji bude kao odgovarajuća mjera -- zaključeno je da   dobit svake dodatne proizvedene serije  raste približno konstantno bez obzira na ukupan broj proizvedenih serija.
 \end{itemize} 
 
 Budući da značajniji troškovi za pokretanje proizvodnje i promovisanje novih proizvoda nisu postojali, ukupna dobit je aproksimirana dobiti po proizvedenoj seriji koja je pomnožena sa brojem serija proizvodnje.  
 
-Dalje, trebalo je procijeniti konstante (parametre)  u modelu. Ovo je ostvareno u komunikaciji između uprave firme i tima zadužen za rješavanje problema. 
-Za dobijanje razumnih procjena, pomoć ključnog osoblja u raznim odjelima firme je odigrala bitnu ulogu. Osoblje u proizvodnom odjelu informisalo  je o podacima za stavku ($i$). Za procjenu slučaja ($ii$) ključna je bila analiza proizvodnih inženjera uključenih u dizajniranje proizvodnih procesa novih proizvoda. Analizirajući podatke o resursima te uključivanje  marketinškog odjela firme,  data je procjena za slučaj ($iii$). Tabela~\ref{tab:procjene-1} daje sve ove procjene. 
+Dalje, treba procijeniti konstante (parametre)  u modelu. Ovo je ostvareno u komunikaciji između uprave firme i tima zadužen za rješavanje problema. 
+Za dobijanje razumnih procjena, pomoć ključnog osoblja u raznim odjelima firme je odigrala ključnu ulogu. Osoblje u proizvodnom odjelu informisalo  je o podacima za stavku ($i$). Za procjenu slučaja ($ii$), ključna je bila analiza proizvodnih inženjera uključenih u dizajniranje proizvodnih procesa novih proizvoda. Analizirajući podatke o resursima i uključivanjem  marketinškog odjela firme,  data je procjena za slučaj ($iii$). Tabela~\ref{tab:procjene-1} pokazuje sve ove procjene. 
 
 
 \begin{table}[!ht]
@@ -429,18 +429,18 @@ Za dobijanje razumnih procjena, pomoć ključnog osoblja u raznim odjelima firme
     \label{tab:procjene-1}
 \end{table}
 
-U nastavku konstruišemo model problema. Uvedimo varijablu $x_1$ za broj serija proizvoda 1 proizvedenog na sedmičnom nivou, te $x_2$ broj serija proizvoda 2 koji je proizveden na sedmičnom nivou. Funkcija profita je jednaka $f(x_1, x_2) = 3 x_1 + 5 x_2$ pod ograničenjima
+U nastavku konstruišemo model problema. Uvedimo varijablu $x_1$ za broj serija proizvoda 1 proizvedenog na sedmičnom nivou, te $x_2$ broj serija proizvoda 2 koji je proizveden na sedmičnom nivou. Funkcija profita je jednaka $f(x_1, x_2) = 3 x_1 + 5 x_2$, dok se rješenja traže pod ograničenjima
 \begin{itemize}
     \item $x_1, x_2 \geq 0$
     \item  $x_1 \leq 4, 2 x_2 \leq 12$
     \item $3 x_1 + 2 x_2 \leq 18$
 \end{itemize}
 
-Dakle, na osnovu realnog problema, formirali smo odgovarajući matematički model (idealizovanog problema) koji sadrži funkciju dvije promjenljive i nekoliko ograničenja, koja su zapisana kao nejednačine. Cilj rješavanja ovog matematičkog modela je pronalaženje onih vrijednosti promjenljivih $x_1$ i $x_2$, za koje posmatrana funkcija ima maksimalnu vrijednost.
+Dakle, na osnovu realnog problema, formirali smo odgovarajući matematički model (idealizovanog problema) koji sadrži funkciju dvije promjenljive i nekoliko ograničenja, koja su zapisana preko nejednakosti. Cilj rješavanja ovog matematičkog modela je pronalaženje onih vrijednosti promjenljivih $x_1$ i $x_2$ koji se uklapaju u ograničenja i za koje posmatrana funkcija ima maksimalnu vrijednost.
 
 %https://www.desmos.com/calculator
 \section{Grafički metod}
- Problem iz prethodne sekcije je malih dimenzija jer sadrži samo dvije varijable odluke i samim tim sva moguća (dopustiva) rješenja mogu biti predstavljene u dvije dimenzije. U ovom slučaju, možemo koristiti \emph{grafičku metodu} za rješavanje problema linearnog programiranja. Ovaj postupak uključuje dvodimenzionalni Dekartov koordinatni sistem sa osama $x_1$ i $x_2$.  Prvi korak je identifikovati vrijednosti ($x_1$, $x_2$) koje zadovoljavaju ograničenja. Naglasimo još jednom da ona rješenja koja zadovoljavaju sva ograničenja modela  problema zovemo \emph{dopustivim rješenjima}. Grafički predstavimo svako od ograničenja, odakle dobijamo prostor koji uključuje svih 6 ograničenja; vidjeti Sliku~\ref{fig:fig1}.  Rezultujući region rješenja $(x_1, x_2)$ se naziva \emph{dopustivi region} problema.
+ Problem iz prethodne sekcije je malih dimenzija jer sadrži samo dvije varijable odluke i samim tim sva moguća (dopustiva) rješenja mogu biti predstavljena u dvije dimenzije. U ovom slučaju, možemo koristiti \emph{grafički metod} za rješavanje problema. Ovaj postupak uključuje rad u dvodimenzionalnom Dekartovom koordinatnom sistemu sa osama $x_1$ i $x_2$.  Prvi korak je identifikovati vrijednosti ($x_1$, $x_2$) koje zadovoljavaju ograničenja. Naglasimo još jednom da ona rješenja koja zadovoljavaju sva ograničenja modela  problema zovemo \emph{dopustivim rješenjima}. Grafički predstavimo svako od ograničenja, odakle dobijamo prostor koji uključuje svih 5 ograničenja; vidjeti Sliku~\ref{fig:fig1}.  Rezultujući region rješenja $(x_1, x_2)$ se naziva \emph{dopustivi region} problema.
  
  Posljednji korak se sastoji u odabiru tačke u ovom regionu  koja maksimizira vrijednost (ciljne) funkcije $f = 3x_1 + 5x_2$. 
 
@@ -451,9 +451,9 @@ Dakle, na osnovu realnog problema, formirali smo odgovarajući matematički mode
     \caption{Dopustiv region.}
     \label{fig:fig1}
 \end{figure}
-Pogledajmo sada niz (implicitnih) funkcija $3x_1 + 5 x_2 = c$, za $c \in \{10,20, 36\}$, kao na Slici~\ref{fig:fig2}. Jasno se vidi da prava $f = 36$ prolazi kroz tačku (vrh) regiona $(2,6)$ koja je svakako dopustiva. Takođe, vidimo da niti jedna druga funkcija $f=c, c > 36$ ne presijeca dopustiv region, odatkle zaključujemo da je tačka $(2, 6)$ rješenje problema. Dakle, funkcija cilja ima maksimalnu vrijednost 36 i dostiže se u tački $(x_1, x_2)=(2,6)$.
+Pogledajmo sada niz (implicitnih) funkcija $3x_1 + 5 x_2 = c$, za $c \in \{10,20, 36\}$, kao na Slici~\ref{fig:fig2}. Jasno se vidi da prava $f = 36$ prolazi kroz tačku (vrh) regiona $(2,6)$, koja je svakako dopustiva. Takođe, vidimo da niti jedna druga funkcija $f=c, c > 36$ ne presijeca dopustiv region, odatkle zaključujemo da je tačka $(2, 6)$ rješenje problema. Dakle, funkcija cilja ima maksimalnu vrijednost 36 i dostiže se u tački $(x_1, x_2)=(2,6)$.
 
-Ovaj se postupak često naziva \emph{grafičkom metodom za linearno programiranje}. Ona se može koristiti za rješavanje bilo kojeg problema linearnog programiranja sa dvije varijable. Uz znatan angažman, moguće je proširiti ovu metodu na problem sa tri varijable, što je krajnji domet grafičke metode. Za uopšten slučaj se koriste naprednije metode,  o kojima će biti riječi u narednim sekcijama.
+Ovaj se postupak često naziva \emph{grafičkom metodom za linearno programiranje}. Ona se može koristiti za rješavanje bilo kojeg problema linearnog programiranja sa dvije varijable. Uz znatan angažman,  ovu metodu je moguće   proširiti na problem sa tri varijable, što je krajnji domet grafičke metode. Za uopšten slučaj se koriste naprednije metode,  o kojima će biti riječi u narednim sekcijama.
 
 \section{Standardna forma linearnog programiranja}
 
@@ -464,15 +464,12 @@ Ovaj se postupak često naziva \emph{grafičkom metodom za linearno programiranj
     \label{fig:fig2}
 \end{figure}
 
-U ovoj sekciji govorimo o opštoj formi modela linearnog programiranja. 
-%Iako to sa matematičkog stanovišta nije neophodno, 
-
-Uvedimo neke ključne pojmove koji se standardno koriste u modelovanju i rješavanju problema linearnog programiranja. 
+U ovoj sekciji govorimo o opštoj formi modela linearnog programiranja. Uvedimo neke ključne pojmove koji se standardno koriste u modelovanju i rješavanju problema linearnog programiranja. 
 
 Pođimo od pojmova \textit{resursi} i \textit{aktivnosti}. Pretpostavimo da u našem razmatranju imamo $m$ resursa i $n$ aktivnosti. Standardni resursi su vrijeme, novac, oprema, mašine, radnici itd. Aktivnosti uključuju ulaganje novca u određene projekte, dodjelu posla nekoj mašini ili radniku,  dostavljanje robe iz jednog u drugo mjesto, itd. 
- Najčešći tip primjene linearnog programiranja uključuje povezivanje resursa i aktivnosti, odnosno dodjelu resursa određenim aktivnostima. Dostupna količina svakog resursa je najčešće ograničena, pa aktivnosti trebaju biti pažljivo raspoređene u odnosu na dostupne odgovarajuće resurse.  Utvrđivanje ove raspodjele uključuje odabir vrsta i nivoa aktivnosti za koje se postiženajbolja moguća vrijednost ukupne mjere učinka. Ukupna mjera učinka može biti mjerenje dobiti (profita), mjerenje vremena realizacije aktivnosti, mjerenje broja proizvedenih proizvoda itd.
+ Najčešći tip primjene linearnog programiranja uključuje povezivanje resursa i aktivnosti, odnosno dodjelu resursa određenim aktivnostima. Dostupna količina svakog resursa je najčešće ograničena, pa aktivnosti trebaju biti pažljivo raspoređene u odnosu na odgovarajuće resurse.  Utvrđivanje ove raspodjele uključuje odabir vrsta i nivoa aktivnosti za koje se postiže najbolja moguća vrijednost ukupne mjere učinka. Ukupna mjera učinka može biti mjerenje dobiti (profita), mjerenje vremena realizacije aktivnosti, mjerenje broja proizvedenih proizvoda itd.
 
-U nastavku navodimo notaciju koja se najčešće koriste u formiranju opšteg oblika modela linearnog programiranja:
+U nastavku navodimo notaciju koja se najčešće koriste u formiranju opšteg oblika modela linearnog programiranja (LP):
 
 \begin{itemize}
     \item $f$: funkcija cilja (dobiti) 
@@ -510,7 +507,7 @@ Treba imati na umu da ograničenja (\ref{eq:LP-c1}) mogu da imaju i oblike:
     \item $Ax = b$;
     \item neke od varijabli $x_i\leqslant 0$.
 \end{itemize}
-Bilo koji problem koji koristi neke od prethodna tri ograničenja predstavlja i dalje problem linearnog programiranja. Dodavajući tzv. \emph{izravnavajuće varijabe} $s \in \mathbb{R}^m$ u linearni program sa ograničenjima $Ax \leq b$, dobijamo linearni program sa ograničenjia $Ax + s = b, s \geq 0$. Isto tako, linearni program sa ograničenja $Ax \leq b$ se može izmijeniti u ograničenja sa jednakostima dodavanjem izravnavajućih varijabli kao $Ax - s = b, s\geq 0$.
+Bilo koji problem koji koristi neke od prethodna tri ograničenja predstavlja i dalje problem linearnog programiranja. Dodavajući tzv. \emph{izravnavajuće varijabe} $s \in \mathbb{R}^m$ u linearni program sa ograničenjima $Ax \leq b$, dobijamo linearni program sa ograničenjima $Ax + s = b, s \geq 0$. Isto tako, linearni program sa ograničenja $Ax \leq b$ se može transformisati u ograničenja sa jednakostima dodavanjem izravnavajućih varijabli kao $Ax - s = b, s\geq 0$.
 
  Forma linearnog programa sa ograničenjima $Ax = b$ se naziva \emph{kanonska} forma linearnog programiranja. 
  
@@ -519,7 +516,7 @@ programu postoji varijabla koja ne zadovoljava uslov nenegativnosti, ona se mož
 
  U nastavku pratimo sljedeću terminologiju u vezi linearnog programiranja (LP):
 \begin{itemize}
-    \item \emph{Rješenje} u standardnom matematičkom značenju najčešće označava krajnje rješenje   (u LP-u bi to bilo najbolje rješenje). Međutim, u rješavanju problema LP-a to  nije slučaj. Bilo koja specifikacija vrijednosti varijabli  $(x_1,\ldots, x_n)$ se smatra rješenjem bez obzira da li je riječ o željenom rješenju ili čak o nekom rješenju koje i ne zadovoljava kriterijume. U zavisnosti od toga, rješenja  možemo podijeliti na:
+    \item \emph{Rješenje} u standardnom matematičkom značenju najčešće označava krajnje rješenje   (u LP-u bi to bilo najbolje rješenje). Međutim, u rješavanju problema LP-a to  nije slučaj. Bilo koja specifikacija vrijednosti varijabli  $(x_1,\ldots, x_n)$ se smatra rješenjem bez obzira da li je riječ o željenom rješenju ili čak o nekom rješenju koje i ne zadovoljava sva organičenja. U zavisnosti od toga, rješenja  možemo podijeliti na:
     \begin{itemize}
         \item \emph{dopustiva rješenja} (eng. \emph{feasible solution}) -- podrazumijevanju ona rješenja koja zadovoljavaju sva ograničenja u modelu;
         \item \emph{nedopustiva rješenja} (eng. \emph{infreasible solution}) -- ona rješenja koja ne zadovoljavaju barem jedno od ograničenja u modelu. 
@@ -546,14 +543,14 @@ programu postoji varijabla koja ne zadovoljava uslov nenegativnosti, ona se mož
      \label{fig:unbounded_solution}
  \end{figure}
  
-Uvedimo sada pojam \emph{ekstremalnih tačaka}, koje igraju bitnu ulogu u simpleks metodi. Za rješenje $x$ kažemo da je \emph{ekstremna tačka} ako se nalazi u vrhu dopustivog regiona (u presjeku granica dopustivog regiona).
+Uvedimo sada pojam \emph{ekstremnih tačaka}, koje igraju bitnu ulogu u simpleks metodi. Za rješenje $x$ kažemo da je \emph{ekstremna tačka} ako se nalazi u vrhu dopustivog regiona (u presjeku granica dopustivog regiona).
 
 Postoji važne veze između ovih tačaka i optimalnog rješenja LP-a, o čemu će biti riječi u nastavku ove knjige.
-Prije toga, za početak, razmotrimo bilo koji problem LP-a sa dopustivim rješenjima i ograničenim dopustivim regionom. Tada će važiti, što ćemo uskoro i pokazati, da problem tada posjeduje barem jednu tačku koja je vrh tog regiona i barem jedno optimalno rješenje. Nadalje, jedan od vrhova mora biti optimalno rješenje. Dakle, ako problem ima tačno jedno optimalno rješenje, to rješenje je tačka koja je vrh regiona. Ako problem ima više optimalnih rješenja, barem dva moraju biti rješenja koja su tačke  vrhova dopustivog regiona.
+Prije toga, za početak, razmotrimo bilo koji problem LP-a sa dopustivim rješenjima i ograničenim dopustivim regionom. Tada će važiti, što ćemo uskoro i pokazati, da problem u tom slučaju posjeduje barem jednu tačku koja je vrh tog regiona i barem jedno optimalno rješenje. Nadalje, jedan od vrhova mora biti optimalno rješenje. Dakle, ako problem ima tačno jedno optimalno rješenje, to rješenje je tačka koja je vrh regiona. Ako problem ima više optimalnih rješenja, barem dva moraju biti rješenja koja su tačke  vrhova dopustivog regiona.
 
 \textit{Napomena.} Imajte na umu da (optimalno) rješenje LP-a ne mora da bude cjelobrojno. Budući da svaka varijabla odluke predstavlja nivo odgovarajuće aktivnosti, pretpostavlja se da se aktivnosti mogu izvoditi na razlomljenim nivoima (aktivnost  se ne dijeli samo na diskretne dijelove), na osnovu nenegativnih ograničenja.  
 
-Ako su sve varijable u problemu LP-a cjelobrojne, riječ je o problemima \emph{Cjelobrojnog programiranja}. Ako pored cjelobrojnih, postoje i neke varijable koje su neprekidne, riječ je o problemima \emph{Mješovitog--cjelobrojnog linearnog programiranja}. Veliki broj realnih problema koji dolaze iz prakse su upravo problemi Mješovitog--cjelobrojnog linearnog programiranja.
+Ako su sve varijable u LP-u cjelobrojne, riječ je o modelu \emph{Cjelobrojnog programiranja}. Ako pored cjelobrojnih, postoje i neke varijable koje su neprekidne, riječ je o modelima \emph{Mješovitog--cjelobrojnog linearnog programiranja}. Veliki broj realnih problema koji dolaze iz prakse su upravo problemi Mješovitog--cjelobrojnog linearnog programiranja.
 
 \section{Modelovanje nekih problema paradigmom linearnog programiranja}\label{sec:modeli_lp}
 
