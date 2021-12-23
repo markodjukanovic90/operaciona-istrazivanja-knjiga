@@ -6762,7 +6762,7 @@ Ako želimo deklarisati varijablu $x_1\geq 0$, koja je neprekidna, to radimo slj
 	 x1 = LpVariable("x1", 0, None)
 	 x2 = LpVariable("x2", 0, None) 
 	 prob += (x1 + x2) # dodavanje funkcije cilja x1+x2 
-\end{verbatim}  
+\end{verbatim} \\ \vspace{-1.5cm}
 \textbf{\emph{Implementacija ograničenja u modelu}}.  Na sličan način kao i za funkciju cilja, ograničenja se  u model dodaju pomoću operatora +=. Implementacija ograničenja je bliska ograničenjima u modelu, dakle prvo se konstruišu izrazi koji su vezani nekim operatorom poređenja. Primjera radi, ako bi željeli dodati ograničenja $x_1 + 2 x_2 \leq 2$ i $x_1-x_2 \geq 0$   u prethodni model, imamo sljedeće:
 \begin{verbatim}
 	 prob +=  x1 + 2 * x2 <=2, "Ogranicenje 1"
@@ -6770,7 +6770,13 @@ Ako želimo deklarisati varijablu $x_1\geq 0$, koja je neprekidna, to radimo slj
 \end{verbatim}
 Upisivanje modela u .$lp$ format se vrši pozivom funkcije \emph{writeLP()}, čiji je očekivani argument naziv fajla. 
 
- \noindent \textbf{\emph{Metode za eksport rješenja (statistike) iz modela}}. Rješavanje modela se inicira pozivom funkcije \emph{solve}() na instancu modela. Čitanje svih varijabli iz modela ide pomoću funkcije $variables()$. Svaka varijabla kao atribute ima svoj naziv (atribut name), te vrijednost koju je dobila pri rješavanju modela (atribut \emph{varValue}). Atribut \emph{objective} instance modela nosi (najbolju) vrijednost funkcije cilja dobijene rješavanjem modela. Status rješavanja se dobija iz atributa \emph{status} objekta modela. 
+ \noindent \textbf{\emph{Metode za eksport rješenja (statistike) iz modela}}. Rješavanje modela se inicira pozivom funkcije \emph{solve}() na instancu modela. Kriterijumi za zaustavljanje izvršavanja rješavača postavljamo koa parametar metoda \emph{solve}()  uz pomoć sljedećeg koda:
+ \begin{verbatim}
+    PULP_CBC_CMD(maxSeconds=1000, msg=1, fracGap=0) 
+\end{verbatim}
+koji kontroliše maksimalno vrijeme izvršavanja rješavača, poruke o napretku rješavača u nalasku novih najboljih rješenja, te maksimalni željeni \emph{gap} nakon koga rješavač prekida izvršavanje. Napomenimo da je po defaultu \emph{The COIN Branch and Cut} (CBC) rješavač izabran za rješavanje u PuLP modulu. Više o podešavanju solvera pročitati na \url{https://coin-or.github.io/pulp/guides/how_to_configure_solvers.html}.  %https://coin-or.github.io/pulp/technical/solvers.html
+ %which controls the maximum time (in seconds), the level of messaging (to see the progress CBC makes) and the max GAP you desire to have (another stop condition in addition to maxSeconds).
+ Čitanje svih varijabli iz modela ide pomoću funkcije \emph{variables()}. Svaka varijabla za atribute ima svoj naziv (atribut \emph{name}), te vrijednost koju je dobila pri rješavanju modela nekim od rješavača (atribut \emph{varValue}). Atribut \emph{objective} instance modela nosi (najbolju) vrijednost funkcije cilja dobijene rješavanjem modela. Status rješavanja se dobija iz atributa \emph{status} objekta modela. 
  
  \begin{verbatim}
  	print "Status:", LpStatus[prob.status]
@@ -6833,7 +6839,7 @@ Upisivanje modela u .$lp$ format se vrši pozivom funkcije \emph{writeLP()}, či
         model += lpSum( y[ (i, j) ] * d[ j ] for j in customers ) \ 
                <= u[ i ] * x[ i ]
     # solve:
-    model.solve()
+    model.solve(PULP_CBC_CMD(maxSeconds=1000, msg=1, fracGap=0))
     # rješenja:
     print("Otvorene lokacije su \n:")
     for i in locations:
