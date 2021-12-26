@@ -1235,7 +1235,7 @@ Prema tome, ako imamo problem LP-a gdje treba da maksimizujemo vrijednost funkci
 
 \section{Primjena simpleks metoda}
 %Kako je standardni poliedar LP-a dat sa svim onim $x \in \mathbb{R}^n$ tako da $Ax \leq (\geq) b$, 
-Prvo transformišimo standardni oblik problema LP
+Transformišimo standardni oblik problema LP-a
  
   \begin{align*}
     & c^T x \rightarrow \max \\
@@ -1251,7 +1251,7 @@ na kanonski oblik pogodan simpleks metodi $(A {x} = b)$ dodavanjem ``izjednačav
     & Ax + s =  b \\
     & x \geq 0, s \geq 0. \\
 \end{align}
-što u matričnom obliku odgovara 
+što u matričnom obliku odgovara zapisu
 
 \begin{align}
     & c^T x \rightarrow \max \\
@@ -1262,7 +1262,7 @@ na kanonski oblik pogodan simpleks metodi $(A {x} = b)$ dodavanjem ``izjednačav
     & (x, s) \geq 0. \\
 \end{align} 
 
-U primjeru kojeg rješavamo, neka je dat problem LP-a:
+\emph{Primjer.} Neka je dat problem LP-a:
 \begin{align*}
     &f= x_1 + x_2 \rightarrow \max \nonumber \\
     & x_1 + 3 x_2 \leq 9 \nonumber \\
@@ -1293,7 +1293,7 @@ U primjeru kojeg rješavamo, neka je dat problem LP-a:
      \label{tab:simpleks_tabela1}
  \end{table} 
  Na početku uzmemo za bazu vektore $s_1$ i $s_2$. Prema tome, bazno dopustivo rješenje je $x = (0, 0, 9, 8)$, za koji je $f =0$. Sada ažiriramo simpleks tabelu izvodeći pivotiranje. Izaberimo indeks $j$ td. $\overline{c_j}>0$. Neka je $j=1$, što odgovara varijabli $x_1$ čiji doprinos želimo da povećamo (jer maksimizujemo) u funkciji cilja. Izaberimo pivot vrstu tako što posmatramo odnos $\overline{b_i}/\overline{a}_{1,j}$, za sve $\overline{a}_{1,j} > 0$,  $B^{-1} A_1 = \overline{a}_{1,j}$
- i tražimo onaj indeks koji minimizuje datu vrijednost. Imamo dvije mogućnosti, $9/1$ i $8/2$, pa dobijamo da je $i = 2$ traženi indeks. Prema tome, pivot je dat elementom $\overline{a}_{1,2}=2$. Sada radimo standardne operacije pivotiranja oko ovog elementa,  tako da sve elemente u koloni 1 simpleks matrice načinimo nulama, dok element u drugoj vrsti postaje 1 (Gausove eliminacije u rješavanju sistema jednačina). Primjera radi, vrsti 1 se dodaje druga vrsta pomnožena sa -$\frac{1}{2}$. Druga vrsta se dijeli sa $\frac{1}{2}$. Dok trećoj vrsti se dodaje takođe druga vrsta pomnožena sa -$\frac{1}{2}$. 
+ i tražimo onaj indeks koji minimizuje datu vrijednost. Imamo dvije mogućnosti, $9/1$ i $8/2$, pa dobijamo da je $i = 2$ traženi indeks. Prema tome, pivot je dat elementom $\overline{a}_{1,2}=2$. Sada izvršimo elementarne operacije pivotiranja oko ovog elementa,  tako da sve elemente u koloni 1 simpleks matrice načinimo nulama, dok element u drugoj vrsti postaje 1 (Gausove eliminacije u rješavanju sistema jednačina). Primjera radi, vrsti 1 se dodaje druga vrsta pomnožena sa -$\frac{1}{2}$. Druga vrsta se dijeli sa $\frac{1}{2}$. Dok trećoj vrsti se dodaje takođe druga vrsta pomnožena sa -$\frac{1}{2}$. 
  Primjenjujući ove transformacije, dobijamo simpleks tabelu:
  
   \begin{table}[!ht]
@@ -1370,7 +1370,7 @@ $$\begin{array}{cccc| c}
 		   2  & 0  & -3 &  0 & -9 \\
 \end{array}$$
 Kandidata za pivota tražimo u prvoj koloni, ali kako su svi negativni, to znači da se 
-vrijednost  varijable $x$  može povećavati do te mjere da funkcija cilja nikad ne bude ograničena. 
+vrijednost  varijable $x$  može povećavati proizvoljno, što znači da nije ograničena. 
 Ovo se može vidjeti i na osnovu grafičke reprezentacije dopustivog regiona na Slici~\ref{fig:unbounded-example-solve} (koji je neograničen). 
 
 
@@ -1399,7 +1399,7 @@ $$\begin{array}{ccccc|c}
       1 & 6 & 0 & 0 & 1 & 18 \\ \hline
       2 & 3 & 0 & 0 & 0 & 0 \\
 \end{array}$$
-Recimo da iz nekog razloga biramo varijablu $y$ za baznu, tj. pivotiramo oko nekog od elemenata u koloni 2. za pivota odaberemo $\overline{a}_{1,2}=1$ element, te nakon pivotiranja dobijamo novu simpleks tabelu:
+Recimo da iz nekog razloga biramo varijablu $y$ za baznu, tj. pivotiramo oko nekog od elemenata u koloni 2. Za pivota odaberemo $\overline{a}_{1,2}=1$ element, te nakon pivotiranja dobijamo novu simpleks tabelu:
 $$\begin{array}{ccccc|c}
 	-1 & 1 & 1 & 0 & 0 & 3 \\
     -1 & 0 & 2 & 1 & 0 & 8 \\
@@ -1413,9 +1413,9 @@ $$\begin{array}{ccccc|c}
      1 & 0 & -\frac{6}{7} & 0 & \frac{1}{7} & 0 \\ \hline
      0 & 0 & \frac{9}{7}  & 0 & -\frac{5}{7} & -9 \\
 \end{array}$$
-Razlog za to je jer se tri linije $x=0$, $-x+y=3$ i $x+6y=18$ susreću u tački $(0,3)$ (Slika~\ref{fig:deg-sol}). U prošlom koraku, kada su $x$ i $s_1$ bile nebazne varijable, tačka (0,3) je posmatrana kao presjek $x=0$ i $-x +y =3$. Nakon sljedećeg koraka $s_1$ i $s_3$ postaju nebazne, pa se pomjeramo u presjeku 
+Razlog za to je jer se tri prave $x=0$, $-x+y=3$ i $x+6y=18$ susreću u tački $(0,3)$ (Slika~\ref{fig:deg-sol}). U prošlom koraku, kada su $x$ i $s_1$ bile nebazne varijable, tačka (0,3) je posmatrana kao presjek $x=0$ i $-x +y =3$. Nakon sljedećeg koraka $s_1$ i $s_3$ postaju nebazne, pa se pomjeramo u presjeku 
 $-x+y=3$ i $x+6y=18$, što je opet ista tačka (i nema napretka vrijednosti funkcije cilja). 
- Ovo pivotiranje se naziva \emph{degenerativno pivotiranje}. u ovom primjeru, napustićemo vrh $(0,3)$ nakon sljedećeg pivotiranja. U komplikovanijim primjerima, kada se mnoga ograničenja mogu sresti u jednom vrhu, ostajanje u tom vrhu je velika opasnost. Ovo se može izbjeći poštovanjem 
+ Ovo pivotiranje se naziva \emph{degenerativno pivotiranje}. U ovom primjeru, napustićemo vrh $(0,3)$ nakon sljedećeg pivotiranja. U komplikovanijim primjerima, kada se mnoga ograničenja mogu sresti u jednom vrhu, ostajanje u istom vrhu na nrednim simpleks koracima je velika opasnost. Ovaj slučaj se može izbjeći poštovanjem 
  Bladovog pravila. Primijetimo da koristeći Bladovo pravilo u prvom koraku simpleks metode (uzimajući za pivota elemente iz kolone 1, a ne kolone 2), degenerativno pivotiranje se ne bi pojavilo.  
 
 
@@ -1434,7 +1434,7 @@ $-x+y=3$ i $x+6y=18$, što je opet ista tačka (i nema napretka vrijednosti funk
      \item Da li se simpleks algoritam uvijek prekida sa nalaskom optimalnog rješenja ili je funkcija cilja neograničena?
  \end{itemize}
  
- Parcijalni odgovor na prvo pitanje je kada postoji jedinična podmatrica $I_m$ u gornjoj lijevoj blok matrici simpleks tabele,  onda je bazu jednostavno odrediti (kako smo to i vidjeli u prethodnoj sekciji). 
+ Odgovor na prvo pitanje se može posmatrati u ekvivalentnom obliku: da li postoji jedinična podmatrica $I_m$ u gornjoj lijevoj blok matrici simpleks tabele? Ako je odgovor da,  onda je bazu jednostavno odrediti (kako smo to i vidjeli u prethodnoj sekciji). 
  Linearnom programu koji sadrži ograničenja $Ax \leq b, x\geq 0$ se dodaju izjednačavajuće varijable da bi uslovi nejednakosti u ograničenjima postali potrebne jednakosti. Na taj način se i formira ova jedinična matrica. Međutim, šta ako je linearan program direktno dat u kanonskom obliku, tj. sa ogarničenjima oblika $Ax = b, x \geq 0$? Bez smanjenja opštosti, pretpostavimo da je $b \geq 0$. Ako ne postoji očigledno bazno dopustivo rješenje ovog problema, onda uvodimo \emph{umjetne} varijable $s = (s_1,\ldots, s_m)$ nakon čega treba da riješimo sljedeći problem LP-a:
  \begin{align}
       &\sum_{i=1}^m s_i \rightarrow \min_{x,s} \nonumber \\
@@ -1467,7 +1467,7 @@ Riješimo sljedeći problem LP-a:
 	 &\mbox{\ \ \ \ \ \ \ }  x_1,x_2,x_3,x_4 \geq 0.
 \end{align*}
 
-Dodajmo umjetne varijable na početni problem (uz prethodno množenje uslova 2 sa (-1)), odakle dobijamo:
+Dodajmo umjetne varijable na početni problem (uz prethodno množenje ograničenja 2 sa (-1)), odakle dobijamo:
 
 \begin{align*}
 	&\min x_1 + x_2 - x_3 - x_4 \\
@@ -1498,7 +1498,7 @@ $$\begin{array}{cccccc|c}
 	1 & -3 & -2 & -4 & 0 & 0 & -8 \\ 
 \end{array}
  $$
- Iz prethodne tabele, kako minimizujemo, tražimo varijablu 
+ Iz prethodne tabele, kako minimizujemo, potražimo varijablu 
  sa negativnim koeficijentom doprinosa, a prva takva je varijabla u koloni 2 u kojoj 
  i tražimo pivota.  Kako je $\frac{7}{2} > \frac{1}{1}$, slijedi da je 
  pivot $\overline{a}_{2,2} = 1$. Izvršimo transformacije, tako što napravimo sve nule u datoj koloni, odakle dobijamo tabelu:
@@ -1543,8 +1543,8 @@ $$ \begin{array}{cccc|c}
        1   & \frac{8}{3}       & 0             &  \frac{2}{3}               &   3  
    \end{array}
  $$
- iz koje vidimo pošto su doprinosi svi veći od 0, da smo našli optimalnu simpleks tabelu.  Optimalna rješenja su 
- $x_1=2, x_3=5$, pa je prema tome optimum jednak -3.
+Pošto su svi doprinosi svi veći od 0,  našli smo optimalnu simpleks tabelu.  Optimalna rješenja su 
+ $x_1=2, x_3=5$, pa je  optimum jednak -3.
  
  \section{Geometrija i simpleks metod}
  
@@ -1582,7 +1582,7 @@ $$\begin{array}{cccccc| c}
     -z  & 2 & 3 & 0 & 0 & 0 & 0 \\
 \end{array}
 $$ 
-Ova situacija odgovara sljedećoj geometrijskoj interpretaciji na Slici~\ref{fig:step-1}, što znači da se nalazimo u tački $A=(0,0)$, koja je dopustiva, te je optimalna vrijednost za sada jednaka 0. 
+Ova situacija odgovara   geometrijskoj interpretaciji na Slici~\ref{fig:step-1}, što znači da se nalazimo u tački $A=(0,0)$, koja je dopustiva, te je najbolja vrijednost za sada jednaka 0. 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=170pt, height=170pt]{simpleks-primjer-2-sl1.eps}
@@ -1627,7 +1627,7 @@ $$
 	\label{fig:step-3}
 \end{figure}
 
-Ova tabela odgovara hodu od tačke $E=(2,0)$ do tačke $D=(6,2)$, kao što vidimo na Slici~\ref{fig:step-3}.
+Ova tabela odgovara kretanju od tačke $E=(2,0)$ do tačke $D=(6,2)$, kao što vidimo na Slici~\ref{fig:step-3}.
 Zaključujemo da je jedina koordinata koja odgovara pozitivnom doprinosu kolona 
 4 simpleks tabele. Pivotiranje radimo oko elementa $\overline{a}_{1,4} = \frac{7}{10}$, pa dobijamo simpleks tabelu 
 
@@ -1652,7 +1652,7 @@ hodu $A \rightarrow E \rightarrow D \rightarrow C$.
 \end{figure}
 
 
-Primijetimo da ako bi u prvom koraku simpleks metode birali mjesto varijable $x$ ubacivanje varijable $y$ u bazu, došli bi do optimuma tako što bi se pomjerili   prvo u tačku $B$, pa potom u $C$, koja je optimum. Takođe, u ovom slučaju je potrebno generisati samo dvije simpleks tabele (a ne tri, kao što smo mi imali u ovom primjeru).\vspace{1cm}
+Primijetimo da ako bi u prvom koraku simpleks metode birali mjesto varijable $x$ ubacivanje varijable $y$ u bazu, došli bi do optimuma tako što bi se pomijerili   prvo u tačku $B$, pa potom u $C$, koja je optimum. Takođe, u ovom slučaju je potrebno generisati samo dvije simpleks tabele (a ne tri, kao što smo mi imali u ovom primjeru).\vspace{1cm}
 \\
 \textbf{\Large Zadaci}.
 \begin{enumerate}
