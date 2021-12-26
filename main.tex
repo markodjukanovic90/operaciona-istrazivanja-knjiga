@@ -1796,7 +1796,7 @@ Kako su svi koeficijenti doprinosa ($\overline{c}$ varijable) manje od 0, simple
  \chapter{Dualnost \& Dopustivost}
  
  %Dualnost je pojam koji je vezan za dobijanje gornjih granica optimalne vrijednosti funkcije cilja. 
- Teorija dualnosti povezuje dva vezana problema linearnog programiranja -- jedan od njih je problem linearnog programiranja koji maksimizuje funkciju cilja, dok je drugi linearan program  koji minimizuje (ne obavezno istu) funkciju cilja. Svaki problem LP-a se može navesti u drugom, ekvivalentnom obliku na osnovu istih ulaznih podataka. Ponekad rješavanje LP-a na ovaj način može da bude puno lakše nego rješavanje početnog LP-a.  Dualnost implicira da svaki problem linearnog programiranja možemo analizirati na dva potpuno različita načina, ali sa ekvivalentnim (optimalnim) rješenjima. 
+ Teorija dualnosti povezuje dva problema linearnog programiranja -- jedan od njih je problem linearnog programiranja koji maksimizuje funkciju cilja, dok je drugi linearan program  koji minimizuje (ne obavezno istu) funkciju cilja. Svaki problem LP-a se može navesti u drugom, ekvivalentnom obliku na osnovu istih ulaznih podataka. Ponekad rješavanje LP-a na drugi način može da bude puno lakše nego rješavanje početnog LP-a.  Dualnost implicira da svaki problem linearnog programiranja možemo analizirati na dva potpuno različita načina, ali sa ekvivalentnim (optimalnim) rješenjima. 
  
  Prije nego uvedemo pojam dualnog problema, objasnimo motivaciju koja stoji iza nastanka teorije dualnosti. Posmatrajmo jedan LP i probajmo naći što bolju gornju procjenu za optimalnu vrijednost ciljne funkcije na osnovu ograničenja u datom modelu.
  
@@ -1811,7 +1811,7 @@ $$
 Iz uslova je jasno da su gornje granice date sa: $f(x) = x_1 + x_2 \leq 4 x_1 + 3 x_2 \leq 9$, kao i 
 $f(x) \leq x_1 + x_2 \leq 8$. One se mogu i poboljšati na osnovu sljedećeg niza nejednakosti:
 $$f(x) \leq \frac{1}{4}(  4 x_1 + 3 x_2  ) + \frac{1}{4}(    x_1 +   x_2 ) = \frac{5}{4}x_1 + x_2 \leq  \frac{9}{4} + 2 = \frac{17}{4},$$ kao jedna (bolja) gornja granica optimalne vrijednosti ciljne funkcije. 
-Uradimo sada slično izvođenje na generalniji način, tj. iskoristimo ograničenja data u modelu zajedno u kombinaciji sa koeficijentima funkcije cilja. Neka su $y_1, y_2 \geq 0$ koeficijenti sa kojima množimo ograničenja u početnom modelu, odakle dobijamo 
+Uradimo sada slično izvođenje u generalnijem obliku, tj. iskoristimo ograničenja data u modelu zajedno u kombinaciji sa koeficijentima funkcije cilja. Neka su $y_1, y_2 \geq 0$ koeficijenti sa kojima množimo ograničenja u početnom modelu, odakle dobijamo 
 \begin{align*}
     &y_1 \cdot (4x_1 + 3x_2) \leq 9 y_1 \\
     &y_2 \cdot (x_1 + x_2 ) \leq 8 y_2 
@@ -1824,9 +1824,9 @@ Posmatrajući funkciju cilja i koeficijente uz varijable u (\ref{eq:dual-1}), ja
 $4 y_1 + y_2 \geq 1$ i $3 y_1 + y_2 \geq 1$. Da bi ocjena gornje granice bila što bolja u (\ref{eq:dual-1}), dakle koeficijent na desnoj strani što veći, potrebno je minimizovati izraz $9y_1 + 8 y_2$, pod gore navedenim uslovima. Prema tome, početnom problemu, kojeg označavamo sa ($P$), odgovara dualni problem 
 $$\begin{array}{cccc}
      \min                    &  9 y_1 &+& 8 y_2        \\
-     {s.t. }     &  4 y_1 &+& y_2 \geq 1   \\
+     {s.t. }     &  4 y_1    & +  & y_2 \geq 1   \\
                              &  3 y_1 &+& y_2 \geq 1 \\
-                             & y \geq 0. & & 
+                 &           &y=(y_1,y_2) \geq 0.  & 
 \end{array}$$
 Generalno posmatrajući,  za problem ($P$) %~(\ref{eq:LP-o1})--(\ref{eq:LP-c2}), 
 \begin{align}
@@ -1853,7 +1853,7 @@ njegov dualni problem, označen sa ($D$), je dat sa
          Kako je $x \geq 0$ i $A^T y \geq c $,  transponovanjem obje strane dobijemo 
          $y^T A \geq c^T$. Množenjem obje strane posljednje nejednakosti sa $x$, dobijamo 
          $$y^TAx \geq c^T x.$$ Kako je $Ax \leq b$ i $y \geq 0$,  tada dobijamo 
-         $ y^T b = b^T y  \leq c^T x$
+         $ y^T b = b^T y  \geq c^T x$
 \end{proof}
 
 \emph{Posljedica.} Ako je $y$ dopustivo rješenje problema  ($D$),  onda bilo koje dopustivo rješenje $x$ problema ($P$) je ograničeno odozgo sa $b^T y$. Prema tome, ako je problem ($D$) dopustiv, onda je ($P$) ograničen. Slično se može pokazati da ovo vrijedi kada problemi ($P$) i ($D$) zamijene uloge.
@@ -1940,7 +1940,7 @@ Uslovi (\ref{eq:slackness-1}) i (\ref{eq:slackness-2}) se nazivaju \emph{uslovi 
              &\Longleftrightarrow (y^T A - c^T) x = 0 \wedge y^T(Ax - b )  = 0\\
              & \Longleftrightarrow \sum_i (A^T y - c)_i x_i = 0 \wedge \sum_j (Ax - b)_j y_j = 0
          \end{align*}
-         Kako je $A^Ty \geq c$, $\sum_i (A^T y - c)_i x_i$ je suma nenegativnih komponenti, odakle imamo ekvivalneciju da  da   $(A^T y - c)_i x_i= 0$ za sve $i$. Takođe slično vrijedi i za drugu sumu, jer $Ax - b \leq 0$, pa je svaki  $(Ax - b)_j y_j$ negativan, odakle imamo ekvivalenciju da je $(Ax - b)_j y_j = 0$ za sve $j$.
+         Kako je $A^Ty \geq c$, $\sum_i (A^T y - c)_i x_i$ je suma nenegativnih komponenti, odakle imamo ekvivalneciju da  da   $(A^T y - c)_i x_i= 0$ za sve $i$. Takođe, slično vrijedi i za drugu sumu, jer $Ax - b \leq 0$, pa je svaki  $(Ax - b)_j y_j$ negativan, odakle imamo ekvivalenciju da je $(Ax - b)_j y_j = 0$ za sve $j$.
 \end{proof}
 
 \emph{Komentar}.  Nekada je lakse riješiti jedan od problema, ($P$)  ili  ($D$).  Na primjer, lakše je riješiti dualni problem sa dvije varijable i 4 ograničenja (grafički metod), nego primalni  ($P$)  uslov sa 4 varijable i 2 ograničenja. 
@@ -1971,7 +1971,7 @@ $$x_3 \geq 0 \Rightarrow  (A^T y)_3  = c_3, \mbox{ tj. } 0 \cdot y_1 + y_2 = 3$$
     \caption{Dualni problem: dopustiv region}
     \label{fig:fig5}
 \end{figure}
-Optimalno rješenje je u presjeku $y_2 = 3$ i $4y_1 - y_2 = 1$, i ono odgovara $y = (1, 3)$. Ispitajmo na osnovu komplementarnosti koje je optimalno rješenje problema ($P$). Imamo 
+Optimalno rješenje je u presjeku pravih $y_2 = 3$ i $4y_1 - y_2 = 1$, i ono odgovara $y = (1, 3)$. Ispitajmo na osnovu komplementarnosti šta je optimalno rješenje problema ($P$). Imamo 
 $$y_1 > 0 \Rightarrow (Ax - b)_1 y_1 = 0 \Rightarrow x_1 + 4 x_2 = 4 $$
 $$y_2 > 0 \Rightarrow (Ax - b)_2 y_2 = 0 \Rightarrow 3x_1 - x_2 + x_3 = 3 $$
 i kako je $y_1 + 3 y_2 > 4$, onda $(A^Ty)_1 > c_1$ i prema tome $x_1 =0$, 
@@ -1997,7 +1997,7 @@ $$\begin{array}{lll}
     &                        &  y_1, y_2 \geq 0.
 \end{array}$$
 Dopustiv region dualnog problema je dat na Slici~ \ref{fig:fig6-dual-region}. %gdje je dopustiv region označen plavom bojom. 
-Dalje, može se pokazati da je optimum duala u presjeku prave $12 y_1 + 3 y_2 = 10$ i prave $6y_1 + 12 y_2 = 20$. Na osnovu Slike \ref{fig:fig6-dual-region} takođe vidimo da se prava koja odgovara drugom i četvrtom ograničenju LP-a mimoilazi tačku optimuma (vrijedi stroga nejednakost nakon uvrštavanja tačke optimuma u ograničenja). Dakle, iz uslova komplementarnosti slijedi da za optimum $x$ primala  ($P$)  vrijedi $x_2 = 0$ i $x_4 = 0$.  Kako je $y_1, y_2 > 0$, onda vrijedi 
+Dalje, može se pokazati da je optimum duala u presjeku prave $12 y_1 + 3 y_2 = 10$ i prave $6y_1 + 12 y_2 = 20$. Na osnovu Slike \ref{fig:fig6-dual-region} vidimo da   prava koja odgovara drugom i četvrtom ograničenju LP-a mimoilazi tačku optimuma (vrijedi stroga nejednakost nakon uvrštavanja tačke optimuma u ograničenja). Dakle, iz uslova komplementarnosti slijedi da za optimum $x$ primala  ($P$)  vrijedi $x_2 = 0$ i $x_4 = 0$.  Kako je $y_1, y_2 > 0$, onda vrijedi 
 \begin{align}
     &10 x_1 + 20 x_3 = 210 \nonumber \\
     & 3x_1 + 12 x_3  = 210 \nonumber
@@ -2013,8 +2013,7 @@ odakle dobijamo rješenje $x_1 = 10, x_3 = 15$, pa je optimalno rješenje $x^* =
     \label{fig:fig6-dual-region}
 \end{figure}
 
-Najlakše je opisati dualnost kao odnos između problema maksimizacije i problem minimizacije, bez obzira 
-koji je od njih bio problem ($P$) a koji od njih  dual ($D$). 
+Najlakše je opisati dualnost kao odnos između problema maksimizacije i problem minimizacije, bez obzira koji je od njih bio problem ($P$) a koji od njih  dual ($D$). 
 U nastavku, kompletna lista mogućih odnosa između ograničenja
 jedanog problema i varijabli u drugom problemu je data preko sljedeće tabele
 \begin{table}[!ht]
