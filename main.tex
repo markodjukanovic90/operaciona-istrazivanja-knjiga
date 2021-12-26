@@ -6710,7 +6710,7 @@ Ako je potrebno implementirati varijablu za koju je $x \geq 0$ to radimo kao u p
  	env.out() << "Vrijeme = " << timer.getTime() << endl;
  	cplex.getValues(xval, x);
  	env.out() << "x vrijednosti = " << xval << endl;
- 	env.out() << "gap vrijednost: " << cplex.getMIPRelativeGap() << endl; 
+ 	env.out() << "gap vrijednost: " << cplex.getMIPRelativeGap() * 100 << endl; 
  	// vraca gap (ako nije rijeseno do optimalnosti, onda > 0)
  \end{verbatim}
 \begin{itemize}
