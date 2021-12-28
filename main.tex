@@ -2391,7 +2391,7 @@ Iz trečeg uslova   $x_1(\mu)=x_2(\mu)=2$, što je i optimum. Primijetimo da ovd
 % Ako bi uzeli $\mu = 1$, rješenje koje se dobije je 
  \end{comment}
 \section{Farkašova lema}
-Još jedna primjena teorije dualnosti u LP-u se ogleda u dokazivanju sljedeće teoreme alternativnosti.
+Još jedna primjena teorije dualnosti u LP-u se ogleda u dokazivanju sljedeće teoreme alternative.
 
 \begin{thm}
 	Neka je $A\in \mathbb{R}^{m \times n}$ matica i $c\in \mathbb{R}^n$. Onda jedan i samo jedan od dva sljedeća sistema ima rješenje:
@@ -2401,7 +2401,7 @@ Još jedna primjena teorije dualnosti u LP-u se ogleda u dokazivanju sljedeće t
 	\end{enumerate}
 \end{thm}
 \begin{proof}
-	  Pogledajmo prvi sistem. Uočimo sličnosti sa primalnim problemom, tj. sljedećim LP-om:
+	  Pogledajmo prvi sistem. Uočimo sličnosti sa   sljedećim LP-om:
 	  \begin{align*}
 	  	 &\min c^T x \\
 	  	 &s.t. \\
@@ -2415,14 +2415,14 @@ Još jedna primjena teorije dualnosti u LP-u se ogleda u dokazivanju sljedeće t
   	   & A^T y  = c \\
   	   & y \geq 0.
   \end{align*}
-  Primijetimo da ako postoji barem jedno dopustivo rješenje za prethodni dual, optimalno rješenje je 0. Ako ne postoji niti jedno dopustivo rješenje, problem nije dopustiv. 
+  Primijetimo da ako postoji barem jedno dopustivo rješenje za prethodni dual, optimalno rješenje je 0. Ako ne postoji niti jedno dopustivo rješenje, problem je nedopustiv. 
   
   Ono što zaključujemo iz odnosa definisanog primala i njegovog duala je:
   \begin{itemize}
   	\item primal je optimalan akko je dual optimalan; 
-  	\item primal je neograničen  akko je njegov dual nije dopustiv.  
+  	\item primal je neograničen  akko je njegov dual nedopustiv.  
   \end{itemize}
-  Odgovorimo sada na pitanje kada je primal optimalan. Ono što vidimo je da ako bi $x$ bio dopustiv tako da je $c^Tx < 0$ to bi onda i bilo koje $kx$, za proizvoljno $k>0$ bilo takođe dopustivo. Iz toga bi slijedilo da vrijednost funkcije cilja nije ograničena odozdo, tj. teži ka -$\infty$. Dakle, u tom slučaju je problem neograničen. Zaključujemo da kad god je primal optimalan, ta vrijednost mora biti 0, i dostiže se za $x =0$; inače je problem neograničen. Dalje, ako je primal optimalan, to  je ekvivalentno sa tim da je sistem iz slučaja  \ref{case:1} ove teoreme nedopustiv (nema rješenja).  Ako sistem iz slučaja  \ref{case:1}  ima rješenje, primal je neograničen (vrijedi i obrnut smijer). Ako pogledamo   dualni problem, dual je optimalan akko sistem iz  slučaja  \ref{case:2}   ima rješenje. Slično, dual nije dopustiv akko je sistem iz  slučaja   \ref{case:2}  nedopustiv (nema rješenje). Iz niza prethodnih ekvivalencija, zaključujemo da vrijedi: 
+  Odgovorimo sada na pitanje kada je primal optimalan. Ono što vidimo je da ako bi $x$ bio dopustiv tako da je $c^Tx < 0$ to bi onda i bilo koje $kx$, za proizvoljno $k>0$ bilo takođe dopustivo. Iz toga bi slijedilo da vrijednost funkcije cilja nije ograničena odozdo, tj. teži ka -$\infty$. Dakle, u tom slučaju je problem neograničen. Zaključujemo da kad god je primal optimalan, ta vrijednost mora biti 0, i dostiže se za $x =0$; inače je problem neograničen. Dalje, ako je primal optimalan, to  je ekvivalentno sa tim da je sistem iz slučaja  \ref{case:1} ove teoreme nedopustiv (nema rješenja).  Ako sistem iz slučaja  \ref{case:1}  ima rješenje, primal je neograničen (vrijedi i obrnut smjer). Ako pogledamo   dualni problem, dual je optimalan akko sistem iz  slučaja  \ref{case:2}   ima rješenje. Slično, dual nije dopustiv akko je sistem iz  slučaja   \ref{case:2}  nedopustiv (nema rješenje). Iz niza prethodnih ekvivalencija, zaključujemo da vrijedi: 
   \begin{itemize}
   	  \item Sistem iz  slučaja  \ref{case:1}  nema rješenje akko sistem iz  slučaja  \ref{case:2}   ima rješenje. 
   	  \item Sistem iz  slučaja  \ref{case:1}  ima rješenje akko sistem iz  slučaja  \ref{case:2}  nema rješenje. 
@@ -2458,12 +2458,12 @@ Kada bi posmatrali $c=(5,0)^T$, zaključili bi da se on ne može izraziti preko 
 %Fourier–Motzkin elimination ==> Problem dopustivosti...
 \section{Fourier–Motzkin-ova eliminacija}
 %https://faculty.math.illinois.edu/~mlavrov/docs/482-fall-2019/lecture19.pdf
-Pitanje vezano za problem  LP-a koji se rješava  je sljedeće:
+Jedno od važnih pitanja vezano za problem  LP-a je sljedeće. 
 \emph{Neka su date matrica $A$ i vektor $b$, da li je skup $P = \{x \in \mathbb{R}^n \colon A x \leq b\}$ neprazan?} Dakle, da li postoji barem jedno dopustivo rješenje linearnog programa? 
 
-Problem dopustivosti može da služi i da odgovorimo sljedeće pitanje: 
+Problem dopustivosti može da služi i da odgovorimo na sljedeće pitanje: 
 \emph{Da li je optimalna vrijednost funkcije cilja problema LP-a veća od neke unaprijed zadate  vrijednosti k?}
- Na ovo pitanje možemo odgovoriti pomoću \emph{Fourier–Motzkin}-ove eliminacije, koja je drugačija od simpleks metode pa je zbog toga i navedena u ovoj knjizi. Ideja algoritma se sastoji od procedure koja će redukovati problem sa $n$ varijabli na ekvivalentan problem sa $n-1$ varijabli. Ekvivalentnost se podrazumijeva u pogledu da početi problem ima riješenje akko  ga ima i redukovani problem. Ova procedura se iterativno izvršava, smanjujući broj varijabli u problemu u svakom koraku. Na kraju ćemo eventualno ostati sa sistemom od jedne varijable za koji se lako može provjeriti da li postoji barem jedna tačka između najveće gornje granice i najmanje donje granice koja zadovoljava  uslove. 
+ Na ovo pitanje možemo odgovoriti pomoću \emph{Fourier–Motzkin}-ove eliminacije, koja je strukturalno drugačija metoda od simpleks metode pa je zbog toga i navedena u ovoj knjizi. Ideja algoritma se sastoji od procedure koja će redukovati problem sa $n$ varijabli na ekvivalentan problem sa $n-1$ varijabli. Ekvivalentnost se podrazumijeva u pogledu da početi problem ima riješenje akko  ga ima i redukovani problem. Ideja procedure se sastoji u iterativnom izvršavanju, smanjujući broj varijabli u problemu u svakom koraku. Na kraju ćemo eventualno ostati sa sistemom od jedne varijable za koji se lako može provjeriti da li postoji barem jedna tačka između najveće gornje granice i najmanje donje granice koja zadovoljava  uslove. 
  
  Glavni korak ovog metoda je redukcija problema na ekvivalentan problem sa manjim brojem varijabli. Pretpostavimo da su ograničenja data u varijablama $x_1,\ldots, x_n$ i da želimo da eliminišemo varijablu $x_n$. Za svaku od ograničenja
  \begin{equation}\label{eq:inequality_i}
