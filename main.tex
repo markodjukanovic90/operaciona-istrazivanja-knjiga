@@ -2628,7 +2628,7 @@ $$
 \chapter{Cjelobrojno Programiranje}
 
 %https://www.google.com/url?sa=t&source=web&rct=j&url=https://web.mit.edu/15.053/www/AMP-Chapter-09.pdf&ved=2ahUKEwiN0cef_f7xAhU0CRAIHWLqCw0QFjAfegQILBAC&usg=AOvVaw1cQCbZJQbc55Z0VLPue2ul
-Ne može se uvijek očekivati da varijable odluke mogu da dobiju neprekidne vrijednosti u modelovanju problema. Recimo, ograničenja u problemu rasporeda ljudskih resursa po smjenama koje se tiču minimalnog broja osoblja potrebnog u svakoj od smjena pod određenim dodatnim uslovima zahtjevaju varijable koje su diskretnog tipa. U slučaju da su sve varijable odluke u modelu problema cjelobrojne, riječ je o problemu \emph{cjelobrojnog programiranja} (eng. \emph{Integer programming}). 
+ Varijable odluke u mnogim realnim problemima ne dobijaju neprekidne vrijednosti. Recimo, ograničenja u problemu rasporeda ljudskih resursa po smjenama koje se tiču minimizacije  broja osoblja potrebnog u svakoj od smjena pod određenim dodatnim uslovima, zahtijevaju varijable koje su diskretnog tipa. U slučaju da su sve varijable odluke u modelu problema cjelobrojne, riječ je o problemu \emph{cjelobrojnog programiranja} (eng. \emph{Integer programming}). 
 U ovom odjeljku ćemo se pozabaviti   \emph{cjelobrojnim linearnim programiranjem} (ILP) gdje se još pored integralnosti (cjelobrojnosti) varijabli zahtijeva da funkcija cilja kao i ograničenja u modelu budu linearni u svojim varijablama. Prema tome, ILP ima opšti oblik:
 \begin{align}
     & \max c^T x \nonumber\\
@@ -2640,8 +2640,8 @@ U nastavku modelujmo nekoliko poznatih problema uz pomoć paradigme ILP-a.
 
 \section{Modelovanje nekih problema}
 
-\emph{Problem ruksaka.} Neka je dato $n$ proizvoda i neka je težina $i$-tog proizvoda jednaka $w_i$, dok je vrijednost svakog od njih jednaka $c_i$, $i=1,\ldots,n$. Koje proizvode treba da stavimo u ruksak  koji je kapaciteta $C$ tako da   vrijednost proizvoda u ruksaku bude maksimalna. \\
-\emph{Rješenje}. Definišimo varijable $x_i$ koje dobijaju vrijednost 1 ako odaberemo $i$-ti proizvod kojeg stavimo u ruksak, u protivnom 0, $i=1,\ldots,n$. Kapacitet ruksaka se modeluje ograničenjem $\sum_{i=1}^n w_i x_i \leq C$, dok je funkcija cilja ona koja maksimizuje profit odabranih proizvoda, dakle modeluje se uz pomoć linearne kombinacije $f(x) = \sum_{i=1}^n c_i x_i$. Time je ovaj problem modelovan.
+\emph{Problem ruksaka.} Neka je dato $n$ proizvoda i neka je težina $i$-tog proizvoda jednaka $w_i$, dok je vrijednost $i$-tog proizvoda jednaka $c_i$, $i=1,\ldots,n$. Koje proizvode treba da stavimo u ruksak  čiji je kapacitet $C>0$ tako da   vrijednost proizvoda u ruksaku bude maksimalna? \\
+\emph{Rješenje}. Definišimo varijable $x_i$ koje dobijaju vrijednost 1 ako odaberemo $i$-ti proizvod kojeg stavimo u ruksak, u protivnom 0, za $i=1,\ldots,n$. Ograničenje kapaciteta ruksaka se modeluje ograničenjem $\sum_{i=1}^n w_i x_i \leq C$, dok je funkcija cilja ona koja maksimizuje profit odabranih proizvoda, dakle modeluje se uz pomoć linearne kombinacije $f(x) = \sum_{i=1}^n c_i x_i$. Time je ovaj problem modelovan.
 
 
 \emph{Problem rasporeda}. Uprava bolnice želi da napravi raspored dežurstva po sedmičnim noćnim smjenama za svoje medicinske sestre. Potrebno je da broj medicinskih sestara za noćnu smjenu na $j$--ti dan bude barem (cio broj) $d_j, j = 1,\ldots 7$. Svaka
@@ -2656,9 +2656,9 @@ $f = \sum_{i=1}^7 x_i$ pod uslovima da su ispunjeni zahtjevi za brojem medicinsk
 	\item $x_2 + x_3 + x_4 + x_5 + x_6 \geq d_6$
 	\item $x_3 + x_4 + x_5 + x_6 + x_7 \geq d_7$
 	\item $x_4 + x_5 + x_6 + x_7 + x_1 \geq d_1 $
-	\item $x_5 + x_6 + x_7 + x_1 + x_2 + x_3 \geq d_2$
-	\item $x_6 + x_7 + x_1 + x_2 + x_3 + x_4 \geq d_3$
-	\item $x_6 + x_7 + x_1 + x_2 + x_3 + x_4 \geq d_4$
+	\item $x_5 + x_6 + x_7 + x_1 + x_2   \geq d_2$
+	\item $x_6 + x_7 + x_1 + x_2 + x_3  \geq d_3$
+	\item $  x_7 + x_1 + x_2 + x_3 + x_4 \geq d_4$
 \end{itemize}
 uz nenegativne uslove 
 \begin{itemize}
@@ -2694,7 +2694,7 @@ $f(x) = 10 x_1 + 4 x_2 + 1.8 x_3.$ Uslovi pod kojima tražimo rješenja su model
 \end{itemize}
 
 U ovom problemu možemo još primijetiti da u funkciji cilja   
-nisu korišteni egzaktni koeficijenti (za broj gledalaca) već brojevi koji su proporcionalni nekoj vrijednosti (1000). Takve transformacije su invarijantne i ne utiču na potragu za optimalnim rješenjem  problema, a doprinose čitljivosti modela.
+nisu korišteni egzaktni koeficijenti (za broj gledalaca) već brojevi koji su proporcionalni nekoj vrijednosti (1000). Takve transformacije su invarijantne i ne utiču na potragu za optimalnim rješenjem  problema, a doprinose većoj čitljivosti modela.
 
 
 %https://www.math.unipd.it/~luigi/courses/metmodoc1819/m01.modelli.00.en.pdf
@@ -2762,13 +2762,13 @@ gdje je
 \end{itemize}
 Ograničenja ovog modela su sljedeća:
 \begin{itemize}
-	\item $\sum_{i} y_{ij} = 1, \forall j\in\{1,\ldots,m\}$ (zahtjevi kupaca treba da budu ispunjeni)
-	\item $\sum_{j} d_j y_{ij} \leq u_i x_i, \forall i \in \{1,\ldots,n\}$
+	\item $\sum_{i} y_{ij} = 1, \forall j\in\{1,\ldots,m\}$ (zahtjevi kupaca treba da se ispune);
+	\item $\sum_{j} d_j y_{ij} \leq u_i x_i, \forall i \in \{1,\ldots,n\}$.
 \end{itemize}
 Ovaj model pripada modelu \emph{mješovitnog linearnog programiranja}, gdje postoje varijable koje su cjelobrojne i neprekidne u istom modelu.
 
 \emph{Problem postrojenja sa neograničenim kapacitetom.}
-Čest slučaj prethodnog problema lokacija je dat sa  $ u_{i} = + \infty,i=1\ldots,m$. U ovom slučaju optimalna strategija se sastoji u zadovoljenju kompletne (ne parcijalne) potražnje kupca $j$ iz najbližeg otvorenog objekta. Zbog toga neprekidne varijable  $y_{ij}$ možemo zamijeniti binarnim varijablama $z_{ij}$, $i=1,\ldots,n, j=1,\ldots,m$ pri čemu varijabla dobija vrijednost 1 ako je kupac $j$ snabdjeven od strane postrojenja $i$. Prema tome, model izgleda ovako:
+Čest slučaj prethodnog problema lokacija je dat sa  $ u_{i} = + \infty,i=1\ldots,m$. U ovom slučaju optimalna strategija se sastoji u zadovoljenju kompletne (neparcijalne) potražnje kupca $j$ iz najbližeg otvorenog objekta. Zbog toga neprekidne varijable  $y_{ij}$ možemo zamijeniti binarnim varijablama $z_{ij}$, $i=1,\ldots,n, j=1,\ldots,m$ pri čemu varijabla dobija vrijednost 1 ako je kupac $j$ snabdjeven od strane postrojenja $i$. Prema tome, model izgleda ovako:
 
 \begin{align*}
 	&\sum_{i=1}^n f_i x_i  + \sum_{i,j} c_{ij} z_{ij} d_j \rightarrow \min\\
@@ -2777,16 +2777,16 @@ Ovaj model pripada modelu \emph{mješovitnog linearnog programiranja}, gdje post
 	& \sum_{j} d_j z_{ij} \leq M x_i, \forall i \in \{1,\ldots,n\} \\
 	& x_i, z_{ij} \in \{0,1\} \mbox{ za } i = 1, \ldots, n, j = 1,  \ldots, m.
 \end{align*}
-Vrijednost $M$ je konstanta koja uzima neku veliku vrijednost (zbir količine potražnji svih kupaca). Međutim, u praksi se često izbjegava upotreba $M$-konstante, te se tako ovo ograničenje zamjenjuje sa $ z_{ij} \leq x_i$ 
+Vrijednost $M>0$ je konstanta koja uzima neku veliku vrijednost (zbir količine potražnji svih kupaca). Međutim, u praksi se često izbjegava upotreba $M$-konstante, te se tako ovo ograničenje zamjenjuje sa $ z_{ij} \leq x_i$ 
 za $ i = 1, \ldots, n, j = 1,  \ldots, m$ koje osigurava bolje performanse jer se generišu preciznije linearne relaksacije o kojima će biti riječi u narednim sekcijama. Prethodni model spada u modele \emph{binarnog linearnog programiranja}. 
 
-\emph{Problem rasporeda}. Čitava klasa problema koja se naziva sekvenciranje, raspoređivanje i usmjeravanje u osnovi su predstavljeni modelima cjelobrojnog programiranja. Kao primjer, recimo da je potrebno rasporediti studenate u  učionicu na takav način
-da je minimizovan broj učenika koji ne mogu pohađati nastavu koja je njihov prvi izbor među svim ostalim izborima. Postoje ograničenja u pogledu broja i kapaciteta učionica dostupnih u bilo kom trenutku, dostupnosti predavača na fakultetu u određeno vrijeme i preferencijama studenata za određene rasporede. Jasno je da imamo varijablu $X_{i,j,n}$ za   $i$-tog studenta 
+\emph{Problem rasporeda}. Čitava klasa problema koja se naziva sekvenciranje, raspoređivanje i usmjeravanje u osnovi su predstavljeni modelima cjelobrojnog programiranja. Kao primjer, recimo da je potrebno rasporediti studente u  učionicu na takav način
+da se minimizuje broj učenika koji ne mogu pohađati nastavu koja je njihov prvi izbor među svim ostalim izborima. Postoje ograničenja u pogledu broja i kapaciteta učionica dostupnih u bilo kom trenutku, dostupnosti predavača na fakultetu u određeno vrijeme i preferencijama studenata za određene rasporede. Jasno je da imamo varijablu $X_{i,j,n}$ za   $i$-tog studenta 
 koji pohađa $j$-to predavanje tokom $n$-tog vremenskog perioda (recimo, vrijeme je diskretizovano po 45 min/čas) -- koja je jednaka 1 ako se student uklapa u takav raspored, inače 0. 
 
 Posmatrajmo ipak malo specifičniji problem u odnosu na ovaj generalniji problem (koji je dosta težak i za modeovanje, a kamoli za rješavanje). 
 Razmotrimo raspoređivanje osoblja zaduženog za upravljanje letom aviona. 
-Avionska kompanija mora rasporediti svoje osoblje na rutama koje pokrivaju letove. Treba paziti, na primjer, da jedna posada treba da upravlja letom iz  Beograda u Zagreb (u 10:00), a zatim letom iz Zagreba u Cirih (u 14:00). Dakle, jedna posada bi trebalo da je uključena u rutu na kojoj upravlja različitim letovima. Prema tome, raspoređujemo posadu na rutu $j$, modelovana uz pomoć binarne varijable 
+Avionska kompanija treba da rasporedi svoje osoblje na rutama koje pokrivaju letove. Treba paziti, na primjer, da jedna posada treba da upravlja letom iz  Beograda u Zagreb (u 10:00), a zatim letom iz Zagreba u Cirih (u 14:00). Dakle, jedna posada bi trebalo da je uključena u rutu na kojoj upravlja različitim letovima. Prema tome, raspoređivanje posade na rutu $j$ se modeluje uz pomoć binarne varijable 
 $$x_j = \begin{cases}
     &1, \mbox{ ako je barem jedna posada prodružena ruti } j \\
     &0, \mbox{ inače}. 
@@ -2889,7 +2889,7 @@ Pretpostavimo da želimo modelovati sljedeći scenario sa ograničenjima
 \begin{align*}
     f(x) > b_1 \Rightarrow f(x) \leq b_2 
 \end{align*}
-Kako je implikacija $p \Rightarrow q$ ekvivalentna sa $\neg p \wedge q$, pa prema tome imamo da je ovaj scenario  ekvivalentan sa
+Kako je implikacija $p \Rightarrow q$ ekvivalentna sa $\neg p \wedge q$, imamo da je ovaj scenario  ekvivalentan sa
 \begin{align*}
     f(x) \leq b_1 \vee f(x) \leq b_2 
 \end{align*}
@@ -2934,7 +2934,7 @@ $$ yB + c x $$ pod uslovima:
      & x \geq 0 \\
      & y \in \{0, 1\}.
 \end{align}
-Primijetimo da je ovaj model pripada modelima \emph{Mješovitog-cjelobrojnog programiranja} (gdje postoje obje vrste varijabli, neprekidne i cjelobrojne). O ovoj paradigmi će biti više riječi u narednim sekcijama. \\
+Primijetimo da je ovaj model pripada \emph{Mješovitom-cjelobrojnom programiranju} (gdje postoje obje vrste varijabli, neprekidne i cjelobrojne). O ovoj paradigmi će biti više riječi u narednim sekcijama. \\
 ($ii$) \underline{{Po dijelovima linearna funkcija}}. Druga vrsta nelinearne funkcije koja se može predstaviti cjelobrojnim varijablama je po-dijelovima-linearna funkcija. Radi jednostavnosti, posmatramo takve funkcije u ravni. To znači da funkcija sama po sebi nije linearna, ali kada joj se domen rastavi na komade (intervale), ona postaje linearna na svakom od tih komada. Recimo da se ova funkcija sastoji od tri po dijelovima (nezavisne) linearne funkcije, tj. 
 $$f(x) = \begin{cases}
           c_1 x, \mbox{ za } x \in I_1 = [\delta^1_1, \delta^1_2] \\
@@ -3013,7 +3013,7 @@ pa se ograničenja u (\ref{eq: piecewise-constraints}) mogu napisati u obliku
 Da bi primijenili veći broj gore navedenih transformacija ograničenja u praksi, posmatrajmo sljedeći primjer kojeg modelujemo. 
 
 
-\emph{Primjer}. Pretpostavimo da je stanovništvo koncentrirano u $I$ okruga  unutar grada i da u okrugu $i\in [I]$ stanuje $p_i$ ljudi. Preliminarna analiza (premjeri zemljišta, politička, socijalna situacija, itd.) ograničila je potencijalne lokacije vatrogasnih domova na $J$ lokacija. Neka $d_{ij} \geq 0$ predstavlja udaljenost   središta okruga (dijela grada) $i$  do lokacije $j$. 
+\emph{Primjer}. Pretpostavimo da je stanovništvo koncentrirano u $I$ okruga  unutar grada i da u okrugu $i\in [I]$ stanuje $p_i$ ljudi. Preliminarna analiza (premjeri zemljišta, politička, socijalna situacija, itd.) ograničila je potencijalne lokacije za izgradnju vatrogasnih domova na $J$ lokacija. Neka $d_{ij} \geq 0$ predstavlja udaljenost   središta okruga (dijela grada) $i$  do lokacije $j$. 
 
 Zadatak: \emph{Potrebno je odabrati lokacija gdje će se podići vatrogasni domovi za svaki od okruga. O funkciji cilja i dodatnim ograničenjima ćemo diskutovati u toku modelovanja samog problema.}
 
@@ -3071,7 +3071,7 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
  % jos neki trikovi u modelovanju: https://download.aimms.com/aimms/download/manuals/AIMMS3OM_LinearProgrammingTricks.pdf
  
  \section{Kompleksnost cjelobrojnog programiranja}
-   Što se tiče rješivosti problema cjelobrojnog programiranja, ona spada u NP--teške probleme, za razliku od LP-a koji je, kako smo pokazali, polinomijalno rješiv. U nastavku ove sekcije dajemo dokaz da je rješivost ILP-a zaista NP--težak problem.  Ideja je da  svedemo problem 3--SAT na ILP.\\ 
+   Što se tiče rješivosti problema cjelobrojnog programiranja, ona spada u NP--teške probleme, za razliku od LP-a koji je, kako smo pokazali, polinomijalno rješiv. U nastavku ove sekcije dajemo dokaz da je rješivost ILP-a zaista NP--težak problem.  Ideja je da (polinomijalno) svedemo problem 3--SAT na ILP.\\ 
      %https://mediaspace.msu.edu/media/Proving+that+Integer+Programming+is+NP-Complete/1_0j1vkmvw
    Iako bi 3--SAT problem trebao biti poznat onome ko je slušao kurs iz osnova teorije algoritama, radi lakše čitljivosti ćemo ga i ovdje definisati. 
    
