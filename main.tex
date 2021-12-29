@@ -3277,19 +3277,19 @@ U osnovni model uključiti i sljedeća ograničenja:
 
  \chapter{Algoritamske Tehnike za Rješavanje ILP-a}
  
- Dok je simpleks metoda učinkovita za rješavanje  problema LP-a, ne postoji generalna tehnika efikasna za rješavanje problema Cjelobrojnog programiranja. Umjesto toga, razvijeni su mnogi metodi i njihova efikasnost
- uvelike zavisi od karakteristika samog problema. Dosadašnje metode prisutne u literaturi se generalno mogu klasifikovati na sljedeći način:
+ Dok je simpleks metoda generalno učinkovita za rješavanje  problema LP-a, ne postoji generalno efikasna tehnika  za rješavanje problema Cjelobrojnog programiranja. Umjesto toga, razvijeni su mnogi metodi i njihova efikasnost
+ uvelike zavisi od karakteristika samog problema. Dosadašnje metode prisutne u literaturi se mogu klasifikovati na sljedeći način:
  \begin{enumerate}
      \item \emph{Enumerativne tehnike} -- Dinamičko programiranje, metoda otkidanja i ograničavanja (eng. \emph{branch-and-bound} -- B\&B), metoda implicitne enumeracije i druge;
      \item \emph{Tehnike odsjecajućih ravni}.
      %\item Grupne-teoretske tehnike. 
  \end{enumerate}
 
-U nastavku ćemo se baviti objema vrstama (generalnih) metoda. Za model ILP-a (\ref{ilp-formulation}), zanemarujući uslov da varijable treba da budu cjelobrojne (već da uzimaju realne, pozitivne vrijednosti), dobijamo tzv. odgovarajuću LP \emph{relaksaciju} ILP-a (\ref{ilp-formulation}). LP relaksacija se može efikasno riješiti uz pomoć simpleks metoda; označimo dobijeno rješenje sa $x^*$. Posmatrajući vektor $\overline{x}$ koje se dobije zaokružujući svaku od vrijednosti koordinata vektora $x^*$ na njenu najbližu cjelobrojnu, dobijamo cjelobrojni vektor. Međutim, iako je uslov o cjelobrojnosti (kakav je u odgovarajućem ILP-u potreban) ispunjen, može se desiti da ovakvo rješenje izvedeno iz LP relaksacije problema (\ref{ilp-formulation}) ne mora da bude dopustivo za početni ILP. U osnovi, skaliranjem desnih strana ILP-a kao i koeficijenata funkcije cilja na odgovarajući način, moguće je konstruisati probem čije je optimalno cjelobrojno rješenje proizvoljno udaljeno od zaokruženog rješenja LP relaksacije. Ove postupke ćemo se izložiti u nastavku. 
+U nastavku ćemo se baviti objema vrstama (generalnih) metoda. Za model ILP-a (\ref{ilp-formulation}) zanemarujući uslov da varijable treba da budu cjelobrojne (već da uzimaju realne, pozitivne vrijednosti), dobijamo tzv. odgovarajuću LP \emph{relaksaciju} ILP-a (\ref{ilp-formulation}). LP relaksacija se može efikasno riješiti uz pomoć simpleks metoda; označimo dobijeno rješenje sa $x^*$. Posmatrajući vektor $\overline{x}$ koje se dobije zaokružujući svaku od vrijednosti koordinata vektora $x^*$ na njenu najbližu cjelobrojnu, dobijamo cjelobrojni vektor. Međutim, iako je uslov o cjelobrojnosti (kakav je u odgovarajućem ILP-u potreban) ispunjen, može se desiti da ovakvo rješenje izvedeno iz LP relaksacije problema (\ref{ilp-formulation}) ne mora da bude dopustivo za početni ILP. U osnovi, skaliranjem desnih strana ILP-a kao i koeficijenata funkcije cilja na odgovarajući način, moguće je konstruisati probem čije je optimalno cjelobrojno rješenje proizvoljno udaljeno od zaokruženog rješenja LP relaksacije. Ove postupke ćemo se izložiti u nastavku. 
 
 \section{Metoda grananja i ograničavanja (B\&B)}
-B\&B tehnika programiranja je zasnovana na principu ``zavadi pa vladaj'' gdje se problem rastavlja na manje dijelove, i tako rekurzivno, po potrebi. Kasnije se (optimalna rješenja) manjih problema kombinuju za dobijanje optimalnog rješenja početnog problema.  U B\&B strategiji dodatak je da se 
-problem ne rastavlja na manje potprobleme ako se uspostavi da će rješenje biti podoptimalno (lošije od trenutno najboljeg dopustivog rješenja razmatranog problema). U rješavanju ILP-a, dopustiv skup se dijeli na manje skupove, i tako rekurzivno (ako je potrebno) dok se ne dobiju potproblemi čije relaksacije obezbjeđuju cjelobrojno rješenje ili se zaključi da potproblemi nisu dopustivi. Svi ovakvi B\&B pristupi se razlikuju u načinu podjele dopustivog skupa i zbog toga   postoji nekoliko različitih B\&B procedura u literaturi. 
+B\&B tehnika je zasnovana na principu ``zavadi pa vladaj'' gdje se problem rastavlja na manje dijelove, i tako rekurzivno, po potrebi. Kasnije se (optimalna rješenja) manjih problema kombinuju za dobijanje optimalnog rješenja početnog problema.  U B\&B strategiji dodatak je da se 
+problem ne rastavlja na manje potprobleme ako se uspostavi da će rješenje biti podoptimalno (lošije od trenutno najboljeg dopustivog rješenja razmatranog problema). U rješavanju ILP-a, dopustiv skup se dijeli na manje skupove (dodavanjem specijalnih ograničenja u model), i tako rekurzivno  dok se ne dobiju potproblemi čije relaksacije obezbjeđuju cjelobrojno rješenje ili se zaključi da potproblemi nisu dopustivi. Svi ovakvi B\&B pristupi se razlikuju u načinu podjele dopustivog skupa i zbog toga   postoji nekoliko različitih B\&B procedura u literaturi. 
 
 \subsection{Bazni B\&B za rješavanje problema ILP-a}
 
@@ -3305,7 +3305,7 @@ Na bazi ove dvije činjenice, uvedimo sada sistematičnu podjelu dopustivog regi
 \begin{enumerate}
     \item U korjenom čvoru B\&B stabla rješavamo LP relaksaciju početnog problema     (simpleks metodom), i dobijamo rješenje $x^*=(x^*_1, \ldots, x^*_n)$.   Ako je rješenje cjelobrojno, prekidamo dalje izvršavanje i stavimo $LB=f(x^*)$, koje je optimalno. %U protivnom, postavimo $f(x^*)=UB$.
     \item Za sve koordinate $i$ za koje je $x^*_i \not \in \mathbb{Z}$, dopustiv region se može podijeliti na dva (disjunktna) podskupa uvodeći ograničenja: $z_i \geq \lfloor x^*_i \rfloor + 1$ ili $z_i \leq \lfloor x^*_i \rfloor$ i to je upravo mjesto podjele dopustivog regiona. Ako ima više takvih koordinata, biramo onu koordinatu $i$ gdje je decimalni dio najveći.  Recimo da je to koordinata $k$.
-    \item Sada dijelimo region problema na dva podregiona (lijevi i desni dijete čvor) dodavajući 
+    \item Sada dijelimo region problema na dva podregiona (lijevo i desni dijete čvor u B\&B drvetu) dodavajući 
           ograničenja $x_k \geq \lfloor x^*_k \rfloor + 1$ i $x_k \leq \lfloor x^*_k \rfloor$, redom
     \item Rješavamo relaksaciju oba (pot)problema. 
     \begin{itemize}
