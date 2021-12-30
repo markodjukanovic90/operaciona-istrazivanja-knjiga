@@ -3878,7 +3878,7 @@ gdje je $\lambda=(\lambda_1, \ldots, \lambda_n)$ i $c^\lambda_{i,j} = c_{i,j} + 
     \item Ograničenja koja se vezuju uz optimalnost.
     \item Varijable koje su bazne u optimalnom rješenju.
 \end{itemize}
-Dakle, ono što je potrebno su ograničenja čije su odgovarajuće dualne vrijednosti pozitivne, kao i varijable koje imaju pozitivne vrijednosti koeficijenata doprinosa za optimalno rješenje (tj. vektor  $\overline{c}$). Ako bismo imali ove varijable i ograničenja na raspolaganju od samog početka, problem bi bio riješen veoma brzo. Međutim, ovo nam nije  besplatna informacija.  U simpleks metodi, vektor doprinosa je potrebno računati u svakoj iteraciji, što nije efikasno ako je matrica $A$ velikih dimenzija. Takođe, vrijeme potrebno za generisanje simpleks tabele bi bilo ogromno.  Oba ova problema su rješiva uz pomoć \emph{metode generisanja kolona}.  Ideja ovog metoda se sastoji u sljedećem. 
+Dakle, ono što je potrebno su ograničenja čije su odgovarajuće dualne vrijednosti pozitivne, kao i varijable koje imaju pozitivne vrijednosti koeficijenata doprinosa za optimalno rješenje (tj. vektor  $\overline{c}$ iz simpleks tabele). Ako bismo imali ove varijable i ograničenja na raspolaganju od samog početka, problem bi bio riješen veoma brzo. Međutim, ova informacija nam nije besplatna.  U simpleks metodi, vektor doprinosa je potrebno računati u svakoj iteraciji, što nije efikasno ako je matrica $A$ velikih dimenzija. Takođe, vrijeme potrebno za generisanje simpleks tabele bi bilo ogromno.  Oba ova problema su rješiva uz pomoć \emph{metode generisanja kolona}.  Ideja ovog metoda se sastoji u sljedećem. 
 \begin{itemize}
     \item Krenimo sa ``obećavajućim'' podskupom $S$ kolona matrice $A$; 
     \item Riješimo restrikovani LP na odabrnom podskupu kolona $S$; 
@@ -3893,9 +3893,9 @@ Tehnički zapisano, krećemo od \emph{restrikovanog master problema} (RMP)
     & \sum_{i \in I} A_i x_i  \leq b \hspace{2cm} (RMP)\\
     & x \geq 0. 
 \end{align*}
-gdje $I$ inicijalizujemo kao skup kolona kojie čine inicijalno BDR za RMP (i po mogućnosti neke druge kolone za koje mislimo da su ``bitne'' u kontekstu problema).  Riješimo RMP,  te izračunamo odgovarajuće optimalno dualno rješenje. Sada je potrebno naći varaijblu $x_j$ i odgovarajuću kolonu $A_j$ za koju je koeficijent doprinosa negativan, tj. $\overline{c_j} = c_j - c_B^T B^{-1}A_j < 0$.
+gdje $I$ inicijalizujemo kao skup kolona koje čine inicijalno BDR za RMP (i po mogućnosti neke druge kolone za koje smatramo da su ``bitne'' u kontekstu problema).  Riješimo RMP,  te izračunamo odgovarajuće optimalno dualno rješenje. Sada je potrebno naći varijablu $x_j$ i odgovarajuću kolonu $A_j$ za koju je koeficijent doprinosa negativan, tj. $\overline{c_j} = c_j - c_B^T B^{-1}A_j < 0$.
 %Pogledati: https://www.youtube.com/watch?v=0SV99VJaGzw
-Ovo se može uraditi rješavanjem \emph{column generating potproblema} (CGSP):
+Ovo se može uraditi rješavanjem tzv. potproblema generisan kolonama (eng. \emph{column generating subproblem}) (CGSP):
 $$\min_{a \in C} \overline{c_j} = \min_{a \in C} c_a - c_B^T B^{-1} a,$$
 gdje je $C$ skup kolona nad nekim globalnim skupom. Za LP problem možemo staviti $C = \{1,\ldots,n\}$. 
 
@@ -3903,7 +3903,7 @@ Ako je rješenje problema kolona $a \in C$ za koju je $\overline{c_a}<0$, dodamo
  Proces dodavanja kolona se nastavlja sve dok postoji kolona $a\in C$ sa negativnom cijenom doprinosa. 
 
 Postoji mnogo pristupa koji se tiču ažuriranja skup $S$ tokom iteracija. 
-Najjednostavniji se tiče zadržavanja svake kolone koja je do sada izgenerisana  u skup $S$ i dodavanja  nove u postojeći skup. Naprednija strategija se tiče izbacivanja onih kolona iz skupa $S$ koje su nebazne u svakoj iteraciji. 
+Najjednostavniji se tiče zadržavanja svake kolone koja je do sada izgenerisana  u skup $S$ i dodavanja  nove u postojeći skup. Naprednija strategija se tiče izbacivanja onih kolona iz skupa $S$ koje su nebazne u svakoj iteraciji. \\
 
 \emph{Bazna column generation šema.} U osnovi, šema se sastoji od dva koraka:
 \begin{enumerate}
@@ -3919,7 +3919,7 @@ Iterativni proces rješavanja RMP problema se može prekinuti i ranije (bez dost
  U nastavku dajemo primjenu \emph{metode generisanja kolona} na poznatom \emph{Cutting stock} problemu. 
  
  \emph{Problem}. Tvornica papira proizvodi rolne papira fiksne širine  $W$. 
- Kupci naručuju različit broj rolni različite širine $w \in \mathbb{R}^m$, dok je sa vektorom $b \in \mathbb{R}^m$ dat zahtjev (broj naručenih rolni).  Zadatak je pronaći optimalan način  rezanja velike rolne da bi se zahtjevi ispunili, a smanjila količina otpada nastala nakon rezanja.  
+ Kupci naručuju različit broj rolni različite širine $w \in \mathbb{R}^m$, dok je sa vektorom $b \in \mathbb{R}^m$ dat zahtjev (broj naručenih rolni).  Zadatak je pronaći optimalan način  rezanja velike rolne da bi se zahtjevi ispunili, a smanjila količina otpada nastala nakon rezanja.  \\ 
  
  \emph{Rješenje.} Na Slici~\ref{fig:cuting_stock_solutions} je dato rješenje jedne instance ovog problema. 
  Što se tiče kolona za ovom problemu, one predstavljaju dopustive obrasce (kombinacije rezanja). Jedan dio obrasca sa slike bi bio $1820$ x $2$ (rolne) u prvoj koloni.
@@ -3963,7 +3963,7 @@ $$ \begin{array}{lll}
      \item Ako je vrijednost optimalnog rješenja negativna, ubaciti novu kolonu $a$ (koja je rješenje potproblema) u skup $S$. Inače, prekidamo proces jer je optimalno rješenje nađeno. 
      \item Riješiti relaksaciju ($CSILP$) na novom skupu kolona $S$.
  \end{enumerate}
- Primijetimo da je dodavanje nove kolone u $S$ odgovara dodavanju novog obrasca (u rješenje). 
+ Primijetimo da je dodavanje nove kolone u $S$ odgovara dodavanju novog obrasca (u rješenje). \\
  
  \emph{Primjer.} Riješimo sada jednu instancu ovog problema pomocu CG frejmvorka. Recimo da imamo $W = 15$, te tri narudžbe za sječenje:
  \begin{enumerate}
@@ -4113,7 +4113,7 @@ uz zadovoljenje uslova o maksimalnoj širini
 \end{align}
 kako smo to i ranije pomenuli, ovaj problem je klasični problem ruksaka koji se u praksi rješava veoma efikasno. Dakle, ako je rješenje problema ruksaka manje ili jednako od 1, trenutno najbolje rješenje je optimalno rješenje. U protivnom, optimalno rješenje $(a_4^*, a_6^*, a_7^*)^T$ ulazi kao nova kolona u RMP. Na osnovu prethodne simpleks tabele imamo: $y_1 = \frac{1}{3}, y_2 = y_3 = \frac{1}{2}$, pa treba da riješimo sljedeći CG problem:
 \begin{align*}
-      &\frac{1}{3} a_4 + \frac{1}{2} a_6 + \frac{1}{2} a_7 \\
+      &\max \frac{1}{3} a_4 + \frac{1}{2} a_6 + \frac{1}{2} a_7 \\
       & 4 a_4 + 6 a_6 + 7 a_7 \leq 15 \\
       & 	a_4, a_6, a_7 \geq 0, a_4, a_6, a_7 \in \mathbb{Z}.
 \end{align*}
@@ -4252,7 +4252,7 @@ Neka je dad problem ILP-a:
 	& x_1, x_2 \in \mathbb{Z}.
 \end{align*}
 Definisati Lagranžovu relaksaciju za ovaj problem (npr. uzeti prvo ograničenje za ``teško''). Riješiti početni problem sa jednom od tehnika za rješavanje ILP-a. Potom, riješiti Lagranžovu relaksaciju problema za $\lambda=0.25$. Šta možemo zaključiti na osnovu rješenja Lagranžove relaksacije i pročetnog problema? 
-\item   Pomoću Column generation frejmvorka, riješiti jedni instancu Cutting stock problema gdje je  
+\item   Pomoću Column generation frejmvorka, riješiti jedni instancu \emph{Cutting stock} problema gdje je  
 $W = 20$, te postoje tri narudžbe za sječenje: 1. stavka: $b_1=60$ rolni dužine 7; 2. stavka: $b_2=40$ rolni dužine 8; 3. stavka: $b_3=70$ rolni dužine 10. 
 
  \end{enumerate}
