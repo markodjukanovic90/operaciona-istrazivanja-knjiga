@@ -3403,10 +3403,11 @@ Na Slici~\ref{fig:bnb_ilp} je prikazano B\&B drvo sljedećeg ILP-a:
 
 
 \section{Implicitna enumeracija}
-Posmatrajmo sada specijalnu B\&B proceduru koja se može primijeniti na problem Binarnog cjelobrojnog programiranja, gdje    sve diskretne varijable u suštini modeluju logičke odlukame. Ovaj algoritam ne zahtjeva da se posmatraju rješenja LP-relaksacija, već se radi sa enumeracijom. Dakle, izlistaju se sve moguće kombinacije vrijednosti koje varijable mogu da prime, pa se izabere ona koja je dopustiva i daje najveću vrijednost za ciljnu funkciju. Ovaj pristup radi dobro na problemima malih dimenzija gdje postoji svega nekoliko binarnih varijabli. Primijetimo da u problemu sa $n$ binarnih varijabli,  broj kombinacija za varijable odluke je jednak $2^n$ (dakle, raste eksponencijalnom brzinom u odnosu na veličinu ulaza). 
+Posmatrajmo sada specijalnu B\&B proceduru koja se može primijeniti na rješavanje problema binarnog cjelobrojnog programiranja, gdje diskretne varijable u suštini modeluju logičke odluke (da ili ne). Ovaj algoritam ne zahtjeva da se posmatraju rješenja LP-relaksacija, već se radi sa enumeracijom. U naivnoj enumeraciji bi izlistali sve moguće kombinacije vrijednosti koje varijable mogu da prime, pa bi se izabrala ona koja je dopustiva i daje najveću vrijednost za ciljnu funkciju. Ovaj pristup radi dobro na problemima malih dimenzija, gdje postoji svega nekoliko binarnih varijabli. Primijetimo da je u problemu sa $n$ binarnih varijabli broj kombinacija za varijable jednak $2^n$ (dakle, raste eksponencijalno u odnosu na veličinu ulaza). 
 
-Prisjetimo se da u standardnoj B\&B proceduri, podjela na manje probleme je izvedena dodavanjem dodatnih ograničenja i izbacujući ograničenja za integralnost (cjelobrojnost). U implicitnoj enumeraciji se primjenjuje suprotna taktika, zadržavaju se 0-1 restrikcije za varijable, ali ignorišu se linearna ograničenja u modelu. 
-Ideja implicitne enumeracije je uključiti B\&B proces tako što se fiksiraju neke od varijabli na 0 ili 1. Varijable koje ostaju neodređene se nazivaju \emph{slobodne varijable}.  B\&B kreće od slučaja da ne postoje varijable koje nisu slobodne. U svakom koraku fiksiramo jednu od varijabli i rješavamo problem bez razmatranja ograničenja sa nejednakostima. Potom provjeravamo da li je to rješenje dopustivo (zadovoljava ograničenja sa nejednakostima). U narednim podjelama  prethodne (ne-slobodne) varijable ostaju i dalje fiksirane. 
+Prisjetimo se da u standardnoj B\&B proceduri, podjela na manje probleme je izvedena dodavanjem dodatnih ograničenja u početni model i izbacuju se potom ograničenja za integralnost (cjelobrojnost). 
+U implicitnoj enumeraciji se primjenjuje suprotna taktika, zadržavaju se 0-1 restrikcije za varijable, ali ignorišu se linearna ograničenja u modelu. 
+Ideja implicitne enumeracije je uključiti B\&B proces tako što se fiksiraju neke od varijabli na 0 ili 1; varijable koje su još neodređene se nazivaju \emph{slobodne varijable}.  B\&B kreće od slučaja da ne postoje varijable koje nisu slobodne. U svakom koraku fiksiramo jednu od varijabli i rješavamo problem bez razmatranja ograničenja sa nejednakostima. Potom provjeravamo da li je to rješenje dopustivo (zadovoljava ograničenja sa nejednakostima). U narednim podjelama  prethodne (ne-slobodne) varijable ostaju i dalje fiksirane. 
 %, dobijajući dva nova potproblema koja treba da budu riješena te implicitno određivanje da li su neophodna dalja fiksiranja.  
 
 
@@ -3415,14 +3416,17 @@ Pretpostavimo da je u pitanju problem maksimizacije. Proces implicitne enumeraci
 Fiksiramo $i=1$ i $LB=-\infty$. 
 
 \begin{enumerate}
-    \item U početnom problemu  stavimo $x_j=1$ za sve $j$ (kažemo da je svaka varijabla \emph{slobodna}) za koje je $c_j > 0$, a inače 0. Ako je dobijeno rješenje dopustivo, ažuriramo vrijednost za $LB$.
+    \item U početnom problemu  biramo $x_j=1$ za sve $j$ (kažemo da je svaka varijabla \emph{slobodna}) za koje je $c_j > 0$, a inače 0. Ako je dobijeno rješenje dopustivo, ažuriramo vrijednost za $LB$, algoritam se prekida.
     \item Fiksiramo sada $x_i=0$ za jedan potproblem, te $x_i=1$, za drugi potproblem koji treba da se riješe.
     
-    \item  Provjerimo za oba potproblema da li je rješenje (sa fiksnim dijelom) koje maksimizuje rješenje potproblema (kao u koraku 1) dopustivo. U slučaju da jeste,   ovaj protproblem se više ne dijeli; po mogućnosti ažuriramo $LB$, ako je nađeno novo najbolje rješenje.   %Inače, idemo na korak 4. Primijetimo da  potproblem sa fiksnim $x_i=0$ ne mora da provjeravamo, jer je on isti kao i korjeni (korjeni) problem.
-    \item Ažuriramo $i = i+1$ i idemo na korak 3 sa potproblemima koji mogu dalje da se dijele, dok god je $i \leq n$. Inače, izlazimo iz petlje sa optimalnim rješenjem ($LB$). 
+    \item  Provjerimo za oba potproblema da li je rješenje (sa fiksnim dijelom) koje maksimizuje rješenje potproblema (kao u koraku 1) dopustivo. U slučaju da jeste,   odgovarajući protproblem se više ne dijeli; po mogućnosti ažuriramo $LB$, ako je nađeno novo najbolje rješenje.  Ukoliko fiksiranje dijela rješenja vodi narušavanju nekog od ograničenja bez obzira na vrijednosti ostalih varijabli, potproblem je nedopustiv i više se ne dijeli. 
+    
+    
+     %Inače, idemo na korak 4. Primijetimo da  potproblem sa fiksnim $x_i=0$ ne mora da provjeravamo, jer je on isti kao i korjeni (korjeni) problem.
+    \item U protivnom, ažuriramo $i = i+1$ i idemo na korak 3 sa potproblemima koji mogu dalje da se dijele, dok god je $i \leq n$. Inače, izlazimo iz petlje sa optimalnim rješenjem ($LB$). 
 \end{enumerate}
- Primijetimo da i u ovom slučaju dobijamo drvo odluke (binarno drvo) gdje su na granama koje spajaju čvor na dubini $i$ sa čvorom na dubini $i+1$  ugrađene odluke da li je varijabla $x_i$ fiksirana na 0 ili 1.
-
+ Primijetimo da i u ovom slučaju dobijamo drvo odluke (binarno drvo) gdje su na granama koje spajaju čvor na dubini $i$ sa čvorom na dubini $i+1$  ugrađene odluke o tome da li je varijabla $x_i$ fiksirana na 0 ili 1.\\
+\vspace{0.4cm} \\
 \emph{Primjer.} Na Slici~\ref{fig:bnb_binary} je dato drvo odlučivanja za problem 
 \begin{align*}
    &\max -8 x_1 - 2x_2 - 4x_3 - 7x_4 -5x_5 + 10 \\
@@ -3486,18 +3490,18 @@ Fiksiramo $i=1$ i $LB=-\infty$.
 
 Prodiskutujmo ovo rješenje po čvorovima dobijenog stabla:
   \begin{itemize}
-      \item U čvoru 0 imamo da je rješenje $x_i = 0$, za sve $i$, koje  nije dopustivo, ali znamo da   tada za optimalno rješenje vrijedi $z^*=f(x^*) \leq 10$.
+      \item U čvoru 0 imamo  rješenje $x_i = 0$, za sve $i$, koje  nije dopustivo, ali  tada za optimalno rješenje vrijedi $z^*=f(x^*) \leq 10$.
       \item  Dalje, granamo ovaj problem na dva (korak 2), jedan gdje je $x_i=1$ a drugi $x_1=0$, odakle dobijamo dva potproblema (odgovaraju čvorovima 1 i 2). U čvoru 2 imamo potproblem za koji je $x_1=1$. Jasno je da kada uvrstimo $(1,0, \ldots, 0)$ u početni problem, da je ono dopustivo. Prema tome, optimalna vrijednost problema neće biti manji od 2, odakle zaključujemo da je za ovaj potproblem $z^*=f(x^*) \geq 2$. Dakle, imamo $LB$=2. 
       \item Problem u čvoru 2 je isti kao problem u čvoru 1, pa nastavljamo dalje sa dijeljenjem problema fiksirajući slobodne varijable. 
       \item Sada fiksiramo promjenjivu $x_2$ (uz već fiksiranu odluku $x_1=0$). 
-            Za potproblem u čvoru 4, provjerimo da ne postoji dopuna do dopustivog rješenja za ovako fiksirane vrijednosti (narušeno ograničenje 1), pa tu stajemo sa njim. Za potproblem u čvoru 3, imamo sada podjelu na dva potproblema fiksirajući varijablu $x_3$, tj. dva   nova čvora 5 i 6. Za problem u čvoru 5, lako se vidi da za ovakve fiksirane varijable imamo dopustivo rješenje za koje je vrijednost funkcije cilja jednaka 4, pa zaključujemo da je $z^*=f(x^*) \leq 4$, odakle imamo $LB=4$. Problem u čvoru 6 dijelimo dalje (po varijabli $x_4$), odakle dobijamo dva nova potproblema, koji odgovaraju čvoru 7 i 8. Lako se zaključi da je $z^*<LB$ ka ovaj potproblem.  Za čvor 8, imamo novo grananje (po varijabli $x_5$). Kako su ovdje sve varijable kompletno fiksne, primijetimo da niti jedna od ovih tačaka  nije dopustiva.
+            Za potproblem u čvoru 4, provjerimo da ne postoji dopuna do dopustivog rješenja za ovako fiksirane vrijednosti (narušeno ograničenje 1), pa tu stajemo sa njim. Za potproblem u čvoru 3, imamo sada podjelu na dva potproblema fiksirajući varijablu $x_3$, tj. dva   nova čvora 5 i 6. Za problem u čvoru 5, lako se vidi da za ovakve fiksirane varijable imamo dopustivo rješenje za koje je vrijednost funkcije cilja jednaka 4, pa zaključujemo da je $z^*=f(x^*) \leq 4$, odakle imamo $LB=4$. Problem u čvoru 6 dijelimo dalje (po varijabli $x_4$), odakle dobijamo dva nova potproblema, koji odgovaraju čvoru 7 i 8. Lako se zaključi da je $z^*<LB$ za   potproblem u čvoru 7.  Za čvor 8, imamo novo grananje (po varijabli $x_5$). Kako su ovdje sve varijable kompletno fiksne, primijetimo da niti jedna od ovih tačaka  nije dopustiva.
             \item Prema tome, optimalno rješenje početnog problema je $LB=4$ i dostiže se u tački $x=(0, 1, 1, 0, 0)$. 
   \end{itemize}
   Potpuna enumeracija bi generisala 32 čvora za gornji problem. Implicitna enumeracija generiše svega 11 čvorova. 
  
 \section{Metoda odsjecajućih ravni}
   
-\emph{Metoda odsjecajućih ravni} rješava cjelobrojne programe mijenjanjem rješenja linearnog programiranja sve dok se ne dobije cjelobrojno rješenje. Metoda ne radi  na principu dijeljenja dopustivog regiona problema na podregione, kao u B\&B metodama, već radi sa jednim linearnim programom, kojeg poboljšava iterativnim dodavanjem novih ograničenja. Nova ograničenja sukcesivno smanjuju dopustiv region dok se ne pronađe cjelobrojno optimalno rješenje.   
+\emph{Metoda odsjecajućih ravni} rješava cjelobrojne programe mijenjanjem rješenja njegove relaksacije sve dok se ne dobije model čije je optimalno rješenje cjelobrojno. Metoda ne radi  na principu dijeljenja dopustivog regiona problema na podregione, kao u B\&B metodama, već radi sa jednim linearnim programom, kojeg poboljšava iterativnim dodavanjem novih ograničenja. Nova ograničenja sukcesivno smanjuju dopustiv region dok se ne pronađe cjelobrojno optimalno rješenje.   
  Istorijski gledano, to je prvi algoritam razvijen za probleme cjelobrojno programiranja za koji se formalno dokazalo da konvergira u konačnom broju
 koraka ka optimumu. Iako se algoritam generalno smatra   neefikasnim, ovaj metod je dovelo do konstrukcije drugih, učinkovitijih algoritama.  
   
@@ -3533,7 +3537,7 @@ Pokušajmo dodati odsjecajuće ravni u prethodni ILP. Za svaku tačku $c$, enume
 \begin{equation}
      \sum_{d \in D(c)} x_d \leq 1, \forall c.
 \end{equation}
-Ove odsjecajuće ravni će ubrzati rješavanje ovog problema za   red veličine.
+Ove odsjecajuće ravni će ubrzati rješavanje ovog problema za   red veličine.\\ \vspace{0.2cm} \\
 
 Pozabavimo se sada \emph{Gomorijevim odsjecajućim ravnima}, generalnu metodu za dodavanje odsjecajućih ravni za  ILP.  Ideja je dobiti ove ravni iz nekog od ograničenja optimalne tabele simpleks metode koja predstavlja LP relaksaciju problema. Neka simpleks metod generiše sljedeći skup jednakosti u formi:
 
