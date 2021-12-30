@@ -3790,10 +3790,10 @@ Rješenje relaksacije problema ($P1$) daje riješenje $x^*=(3,2)$, koje je cjelo
 Rješavajući LP relaksaciju problema ($P3$), dobijamo rješenje $x^*=(\frac{9}{5}, \frac{17}{5})$, tj.  optimalna vrijednost je $27.8$. Kako je $LB \geq 28.8$, niti jedno cjelobrojno rješenje problema ($P3$) ne može biti bolje od trenutno najbolje donje granice ($LB=28$), pa zaključujemo da je optimalo rješenje početnog problema $x^*=(3,2)$. 
 
 \section{Lagranžova relaksacija}
-U rješavanju problema optimizacije, nalazak optimalnog rješenja je jedan od glavnih ciljeva. Međutim, za mnoge probleme nije realno očekivati da se garantuje nalazak optimalnog rješenja u realnom vremenu, već najbolje što se može učiniti  je da se ponudi dobra donja granica za optimalnu vrijednost. Ako je ta ganica blizu optimuma, u mnogo slučajeva ona može da zamijeni optimum, štedeći resurse kojima raspolažemo. 
+U rješavanju problema optimizacije, nalazak optimalnog rješenja je primarni cilj. Međutim, za mnoge probleme nije realno očekivati da se garantuje nalazak optimalnog rješenja u realnom vremenu za realne instance problema, već najbolje što se može učiniti  je da se ponudi dobra donja granica za optimalnu vrijednost. Ako je ta granica blizu optimuma, u mnogo slučajeva ona može da zamijeni optimum, štedeći resurse kojima raspolažemo. 
 
 Ideja \emph{Lagranžove relaksacije} se sastoji u tome da u modelu ILP-a  koji ima  ograničenja koja čine problem teškim (ova procjena je najčešće stvar praktičnog iskustva),  posmatramo kao dio ciljne funkcije koju penalizujemo nekim parametrom.  %parametrom $\lambda>0$. 
-Ovo ograničenje potom brišemo iz skupa ograničenja modela, a zatim rješavamo novi problem. Na ovaj način, rješenje ovakvog problema je donja granica (za problem minimizacije) za optimalno rješenje inicijalnog problema. U praksi, ona je često jako blizu vrijednosti optimuma. 
+Ovo ograničenje potom brišemo iz skupa ograničenja modela, a zatim rješavamo novi problem. Na ovaj način, rješenje ovakvog problema je donja granica (za problem minimizacije)  optimalnog rješenja inicijalnog problema. U praksi, ona je često jako blizu vrijednosti optimuma. \\
 
 \emph{Primjer}. Posmatrajmo problem \emph{najkraćeg puta sa ogaraničenjem} (eng. \emph{Constrained Shortest Path Problem}). Neka je dat usmjeren neciklični graf $G=(V,E)$. Za svaku granu $(i,j) \in E$ dodijelimo cijenu puta $c_{i,j}$ i vrijeme putovanja $t_{i,j}$. Pretpostavimo da je čvor $i=1$ startni čvor (izvorišni čvor), a čvor $n = |V|$   završni čvor (terminalni čvor). Zadatak je da se nađe put  od izvorišnog do terminalnog čvora koji je najeftiniji ali tako da se čitav put pređe u vremenskom periodu $T$.
 
@@ -3811,7 +3811,7 @@ Ovaj problem se modeluje pomoću sljedećeg ILP-a:
 \end{align} 
 
 Binarna varijabla $x_{i,j}$ dobija vrijednost 1 ako je odabrana grana $(i,j)$ na   putu, a 0 inače.  
-Prvo ograničenje u modelu nam ograničava da je dopustivo rješenje upravo put od izvornog do terminalnog čvora. Drugo ograničenje nam kazuje da je vrijeme prelaska puta u granicama dopustivog. Ovo ograničenje spada pod ``komplikovanim'' ograničenjima jer, kao što znamo,  pronalazak najkraćeg puta u direktnim grafovima sa unaprijed definisanim izvorišnim čvorom je polinomijalno rješiv (Dajkstrin algoritam), dok dodavanjem ograničenja o vremenu taj problem postaje NP-težak. Ideja je sada relaksirati ovaj problem uz prebacivanje ograničenja za vrijeme u funkciju cilja koja se zatim penalizuje. 
+Prvo ograničenje u modelu nam ograničava da je dopustivo rješenje upravo put od izvornog do terminalnog čvora. Drugo ograničenje nam modeluje uslov da vrijeme prelaska puta treba da bude u  granicama dopustivog. Ovo ograničenje spada pod ``komplikovanim'' ograničenjima jer, kao što znamo,  pronalazak najkraćeg puta u direktnim grafovima sa unaprijed definisanim izvorišnim čvorom je polinomijalno rješiv (uz pomoć Dajkstrinog algoritma), dok dodavanjem ograničenja o vremenu taj problem postaje NP-težak. Ideja je sada relaksirati ovaj problem uz prebacivanje ograničenja za vrijeme u funkciju cilja koja se zatim penalizuje. 
 Dakle, Lagranžova relaksacija problema je data sa:
 
 \begin{align*}
@@ -3829,9 +3829,9 @@ Primijetimo da je $L(\lambda) \leq z(\lambda)  \leq z^*$, za sve $\lambda > 0$, 
 Problem $L^* = \max \{ L(\lambda) \mid \lambda > 0  \}$ se naziva \emph{problem Lagranžovog multiplikatora}. Može se pokazati da vrijedi 
 $$ L(\lambda) \leq L^* \leq z^*.$$
 
-U praksi se pokazalo da je Lagranžova relaksacija dobra tehnika za dobijanje granica za optimalnu vrijednost problema. Pokušajmo sada primijeniti ovu tehniku na \emph{problem trgovačkog putnika}.  
+U praksi se pokazalo da je Lagranžova relaksacija dobra tehnika za dobijanje granica za optimalnu vrijednost problema. 
 
-Pogledajmo ovaj problem sa grafovske strane. Znamo da kolekcija grana formira rutu ako su svaka dva čvora grafa pokrivena sa dvije grane. Takođe, ako obrišemo grane incidentne sa čvorom 1, ostatak rute čini stablo koje pokriva graf  $G\setminus \{1\}$.  
+Pokušajmo sada primijeniti ovu tehniku na \emph{problem trgovačkog putnika}.  Pogledajmo ovaj problem sa grafovske strane. Znamo da kolekcija grana formira rutu ako su svaka dva čvora grafa pokrivena sa dvije grane. Takođe, ako obrišemo grane incidentne sa čvorom 1, ostatak rute čini stablo koje pokriva graf  $G\setminus \{1\}$.  
 Definišimo sa $A(j)$ skup svih čvorova koji su incidentni sa čvorom $j$. 
 
 Relaksacija: definišimo sa $T_1$ skup svih ruta koje nakon brisanja grana koje pokrivaju čvor $1$ formiraju drvo.  
