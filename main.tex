@@ -4263,7 +4263,7 @@ $W = 20$, te postoje tri narudžbe za sječenje: 1. stavka: $b_1=60$ rolni duži
  
 Dekompozicione metode u matematičkom programiranju su tehnike pomoću kojih se polazni problem (na primjer, problem linearnog programiranja) razbija u više manjih problema, te se, rješavanjem tih manjih problema, na kraju dolazi i do rješenja polaznog.
 
-Široka primjena metoda linearnog, cjelobrojnog i mješovitog cjelobrojnog linearnog programiranja u modelovanju i rješavanju velikog broja različitih problema iz teorije i prakse, doveli su do porasta interesa i za primjenu i razvoj dekompozicionih metoda. Čak se i tradicionalne metode za rješavanje problema cjelobrojnog programiranja, kao što su B\&B, ili odsjecajuće ravni, takođe   mogu smatrati dekompozicionim metodama, jer one dijele polazni problem na LP relaksaciju i cjelobrojna ograničenja.
+Široka primjena metoda linearnog, cjelobrojnog i mješovitog cjelobrojnog linearnog programiranja (MILP) u modelovanju i rješavanju velikog broja različitih problema iz teorije i prakse, doveli su do porasta interesa i za primjenu i razvoj dekompozicionih metoda. Čak se i tradicionalne metode za rješavanje problema cjelobrojnog programiranja, kao što su B\&B  ili odsjecajuće ravni, takođe   mogu smatrati dekompozicionim metodama, jer one dijele polazni problem na LP relaksaciju i cjelobrojna ograničenja.
 
 Treba napomenuti da i savremeni MILP rješavači, o čemu će biti govora kasnije, takođe u svojim implementacijama koriste i dekompozicione algoritme, koji, u nekim slučajevima, lakše i brže dovode do rješenja. U ovom poglavlju razmatraćemo dvije dekompozicione metode: Benderovu i Dantzig-Wolfe dekompoziciju.
  
@@ -4302,8 +4302,8 @@ Posmatrajmo dualni problem potproblema~(\ref{bender2}), ignorišući term $g^T\o
 \end{equation}
 
 Sada uključujemo teoriju dualnosti i razmatramo sljedeće mogućnosti, koje mogu da se jave.
-\begin{itemize}
-\item Ako je optimalno rješenje problema~(\ref{bender2}) $z^*$, a optimalno rješenje duala~(\ref{bender3}) $u^*$, na osnovu teoreme o jakoj  dualnosti imamo
+ 
+1. Ako je optimalno rješenje problema~(\ref{bender2}) $z^*$, a optimalno rješenje duala~(\ref{bender3}) $u^*$, na osnovu teoreme o jakoj  dualnosti imamo
   \begin{equation}
 	\begin{aligned}\label{bender4}
 z^*-g^T\overline{y}=(u^*)^T(c-B\overline{y})
@@ -4311,7 +4311,7 @@ z^*-g^T\overline{y}=(u^*)^T(c-B\overline{y})
 \end{equation}
 
 
-Dalje, uočiomo da oblast dopustivih rješenja dualnog problema~(\ref{bender3}) ne zavisi od vrijednosti $\overline{y}$. Stoga, $u^*$ je uvijek dopustivo rješenje problema~(\ref{bender3}), bez obzira na vrijednost $\overline{y}$. Odavde, na osnovu slabe LP dualnosti dobijamo
+Dalje, uočiomo da oblast dopustivih rješenja dualnog problema~(\ref{bender3}) ne zavisi od vrijednosti $\overline{y}$. Stoga, $u^*$ je uvijek dopustivo rješenje problema~(\ref{bender3}), bez obzira na vrijednost $\overline{y}$. Odavde, na osnovu teoreme o slaboj LP dualnosti dobijamo
 
   \begin{equation}
 \label{bender5}
@@ -4323,14 +4323,11 @@ Posljednja nejednakost propisuje jednju donju granicu funkcije cilja polaznog pr
 
 Ovo takođe daje i donju granicu za druge vrijednosti $y$ koje bismo mogli probati u narednim iteracijama.
 
-\item Posmatrajmo sada slučaj da je dualni potproblem neograničen. U toj situaciji važi nejednakost
-
-
+2. Posmatrajmo sada slučaj da je dualni potproblem neograničen. U toj situaciji važi nejednakost
 \begin{equation}
 	\label{bender6}
 	(u^*)^T(c-By)>0
 \end{equation}
-
 gdje je ${(u^*)}^T$ zrak mogućih rješenja duž kog funkcija neograničeno raste (ekstremni zrak).
 
 U ovom slučaju, cilj je eliminisati ovaj zrak iz daljeg razmatranja (budućih rješenja). Da bismo to uradili, potrebno je osigurati da izraz $(u^*)^T(c-By)$ bude manji ili jednak od nule u svim narednim koracima. Tako, master problemu dodajemo novu odsjecajuću ravan, definisanu sa
@@ -4338,19 +4335,17 @@ U ovom slučaju, cilj je eliminisati ovaj zrak iz daljeg razmatranja (budućih r
 	\label{bender7}
 	(u^*)^T(c-By)\leqslant 0
 \end{equation}
-
-\end{itemize}
  
 Sada možemo definisati master problem koji nastaje dodavanjem svih odsjecajućih ravni generisanih u prethodnim koracima.
   \begin{equation}
 	\begin{aligned}\label{bender8}
-		\min\ &z\\
-		s.t.\ & z \geq g^Ty+(u^k)^T(c-By) , \ k \in K\\
+		&\min\ z\\
+		&s.t.\  \\
+		&z \geq g^Ty+(u^k)^T(c-By) , \ k \in K\\
 		& (u^k)^T(c-By) \leq, \ k \in L\\
-		&y \in \mathbb{Z}
+		&y \in \mathbb{Z},
 	\end{aligned}
 \end{equation}
- 
  gdje je $K$ skup ekstremnih tačaka, a $L$ skup ekstremnih zrakova od potproblema. Rješavanjem master problema (koji je obično puno lakši od početnog problema) dobijamo novu vrijednost za $y$, koju koristimo u sljedećoj iteraciji.
  
  Treba napomenuti da je potproblem~(\ref{bender2}) restrikcija originalnog problema~(\ref{bender1}), pa je njegova optimalna vrijednost $z^*$ jedna gornja granica za funkciju cilja polaznog problema. Takođe je master problem~(\ref{bender8}) relaksacija polaznog problema, jer se pri rješavanju master problema ne posmatraju sva ograničenja. Stoga je optimalna vrijednost master problema donja granica za funkciju cilja originalnog problema.
