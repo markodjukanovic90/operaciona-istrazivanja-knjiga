@@ -4984,7 +4984,7 @@ $$x =\left(\begin{array}{c}
  %https://www.youtube.com/watch?v=wxz0NJvKZNM
  %Glavni link: https://www.youtube.com/watch?v=IposxYVBUnY
  
- U ovom odjeljku ćemo objasniti još jednu korisnu tehniku za rješavanje problema linearnog programiranja -- \emph{Dantzig-Wolfe} (DW) dekompoziciju. Ova tehnika je originalno dizajnirana za rješavanje problema linearnog programiranja velikih dimenzija. Osnovna ideja DW dekompozicije je da se na podskup ograničenja polaznog problema primijeni Teorema Minkovskog, odnosno Teorema o reprezentaciji za konveksne poliedre, te da se polazni problem razbije na rješavanje više manjih problema.
+ U ovom odjeljku ćemo objasniti još jednu korisnu dekompozicionu tehniku za rješavanje problema linearnog programiranja -- \emph{Dantzig-Wolfe} (DW) dekompoziciju. Ova tehnika je originalno dizajnirana za rješavanje problema linearnog programiranja velikih dimenzija. Osnovna ideja DW dekompozicije je da se na podskup ograničenja polaznog problema primijeni \emph{Teorema Minkovskog}, odnosno \emph{Teorema o reprezentaciji za konveksne poliedre}, te da se polazni problem razbije na   više manjih problema.
  
  \begin{thm}
  	Neka je $P = \{ x \in \mathbb{R}^n \mid Ax \leq b\}$ ograničeni poliedar i neka je $\{x^{(1)}, \ldots, x^{(p)} \}$ skup ekstremnih tačaka od $P$. Tada za sve $x \in P$ vrijedi 
@@ -5023,7 +5023,7 @@ $$x =\left(\begin{array}{c}
  
  Ponovimo da Teorema o reprezentaciji ima svoju formulaciju i u slučaju da poliedar nije ograničen, ali zbog pojednostavljenja daljeg objašnjenja DW dekompozicije, ovaj slučaj nećemo razmatrati.
  
- Uzimajući u obzir prikazanu reprezentaciju proizvoljne tačke $x\in X$, početni problem~(\ref{dw1}) sada možemo preformulisati 
+ Uzimajući u obzir prikazanu reprezentaciju proizvoljne tačke $x\in X$, početni problem~(\ref{dw1}) sada možemo preformulisati na
  
  
    \begin{equation}
@@ -5048,7 +5048,7 @@ odnosno
  
  Samom reformulacijom polaznog problema~(\ref{dw1}) u DW formulaciju~(\ref{dw3}) nismo postigli mnogo, jer broj vrhova politopa, a time i broj $\lambda$ promjenljivih može biti jako veliki.
  
- Međutim, pravi razlog za DW dekompoziciju leži u činjenici da za rješavanje problema~(\ref{dw3}) ne moramo eksplicitno da koristimo sve vrhove politopa $X$. Umjesto toga, krenućemo od jednog   manjeg podskupa (a samim tim i podskupom skupa $\lambda$ promjenljivih). Nakon toga, primijenićemo tehniku ``generisanja kolona'' (engl. \emph{column generation}), kako bismo u razmatranje uključili nove vrhove politopa $X$, koje će pomoći poboljšanju rješenja tzv. \emph{Restricted master problema} (RMP).
+ Međutim, pravi razlog za DW dekompoziciju leži u činjenici da za rješavanje problema~(\ref{dw3}) ne moramo eksplicitno da koristimo sve vrhove politopa $X$. Umjesto toga, krenućemo od jednog   manjeg podskupa (a samim tim i podskupom skupa $\lambda$ promjenljivih). Nakon toga, primijenićemo tehniku ``generisanja kolona'' (eng. \emph{column generation}), kako bismo u razmatranje uključili nove vrhove politopa $X$, koje će pomoći poboljšanju rješenja tzv. ograničenog master problema (eng. \emph{Restricted master problema}) (RMP).
  
  Označimo sada problem formulisan  sa~(\ref{dw3}) kao \emph{Master problem} (MP). Na osnovu master problema formiramo RMP sa manjim brojem $\lambda$ promjenljivih.
  
@@ -5085,7 +5085,7 @@ Da bi se odredili   koeficijenti doprinosa za $\lambda_j$, odredimo šta se dobi
  
  i sada rješavamo \emph{Column generation potproblem} (CG), čiji je cilj da se pronađe najmanji koeficijent doprinosa. Ukoliko je on manji od nule, dobija se nova kolona koja treba da se doda u potproblem RMP.  U slučaju da je on nenegativan, tada je optimalno rješenje RMP ujedmo i optimalno rješenje MP.
  
- Column generation potproblem se definiše kao
+ CG potproblem se definiše kao
  
       \begin{equation}
  	\begin{aligned}\label{dw6}
@@ -5118,9 +5118,7 @@ $x\in X$ i $Ax=b$, pa imamo da vrijedi %Za to rješenje $x$ važi
  
  Sada zaključujemo da je razlika između optimalne vrijednosti RMP-a i problema maksimizacije CG  problema donja granica za originalni LP. Pošto ovo važi za proizvoljno rješenje $x$, zaključujemo da važi 
  $$z^*\geqslant \overline{z}-\hat{z}$$
- odnosno, razlika $\overline{z}-\hat{z}$ je donja granica za optimalnu vrijednost funkcije cilja polaznog problema.
- 
- Dalje, prisjetimo se da je $\overline{z}$ gornja granica za $z^*$, odnosno važi 
+ odnosno, razlika $\overline{z}-\hat{z}$ je donja granica za optimalnu vrijednost funkcije cilja polaznog problema. Dalje, prisjetimo se da je $\overline{z}$ gornja granica za $z^*$, odnosno važi 
 \begin{equation}\label{dw8}
 	  \overline{z}\geqslant z^*\geqslant \overline{z}-\hat{z}
 \end{equation}
@@ -5293,14 +5291,14 @@ Posmatrajmo sada dualni problem problema~(\ref{primjer:dw3}). Označimo sa $y_1$
 \end{table}
 
 \emph{Iteracija 1.} 
-Konstruišemo column generation problem sa
+Konstruišemo CG problem sa
 \begin{align}\label{eq:cg-1}
 	 \max_{x \in X} (1, 0)^T x + 0 - (0, 0) \left(\begin{array}{cc}
 	 	1 & 3 \\
 	 	2 & -3
 	 \end{array}\right)  x = \max_{x \in X} x_1. 
 \end{align} 
-Optimalna vrijednost problema (\ref{eq:cg-1}) je jednaka $\hat{z}=1$, i dostiže se, recimo, u ekstremnoj tački $ x^{(2)}= (1, 0)^T.$ Kako je optimalna vrijednost pozitivna, ulazna kolona za prethodni potproblem postoji te je treba da odaberemo. Ova kolona (ako posmatramo problem (\ref{primjer:dw5})) će biti data sa 
+Optimalna vrijednost problema (\ref{eq:cg-1}) je jednaka $\hat{z}=1$, i dostiže se, recimo, u ekstremnoj tački $ x^{(2)}= (1, 0)^T.$ Kako je optimalna vrijednost pozitivna, ulazna kolona za prethodni potproblem postoji, te je treba da odaberemo. Ova kolona (ako posmatramo problem (\ref{primjer:dw5})) će biti data sa 
 \begin{align}
      \begin{pmatrix}
      	    c^T  x^{(2)} \\
@@ -5340,7 +5338,7 @@ Ubacimo za trenutak ovu kolonu u prethodnu simpleks tabelu, odakle imamo tabelu:
  		$z$         &   0      &    0         &   0         &    -1         &  0
  	\end{tabular}
  \end{center}
-Primijetimo da je cijena doprinosa dodate kolone promijenjena sa 1 na -1 (zbog korištenja tabelarne forme simpleks metoda, optimalna vrijednost problema je -$\hat{z}$, jer se u stvari minimizuje CG potproblem). Sada koristimo novu kolonu kao ulaznu kolonu za transformacije -- u njoj tražimo kandidata za pivota kako smo to i vidjeli u simpleks metodi. Odaberemo element čija je vrijednost $2$, pa pivotirajmo oko njega. Prvo sve elemente u koloni 2 podijelimo sa 2, te potom izvršimo elementarne transformacije u kojima načinimo nule u ostalim elementima novododate kolone. Varijabla $s_2$ izlazi iz baze, dok $\lambda_2$ ulazi u bazu. Na kraju dobijamo transformisanu tabelu:
+Primijetimo da je cijena doprinosa dodate kolone promijenjena sa 1 na -1 (zbog korištenja tabelarne forme simpleks metoda, optimalna vrijednost problema je -$\hat{z}$, jer se CG potproblem u stvari minimizuje). Sada koristimo novu kolonu kao ulaznu kolonu za transformacije -- u njoj tražimo kandidata za pivota kako smo to i vidjeli u simpleks metodi. Odaberemo element čija je vrijednost $2$, pa pivotirajmo oko njega. Prvo sve elemente u koloni 2 podijelimo sa 2, te potom izvršimo elementarne transformacije u kojima načinimo nule u ostalim elementima novododate kolone. Varijabla $s_2$ izlazi iz baze, dok $\lambda_2$ ulazi u bazu. Na kraju dobijamo transformisanu tabelu:
 
 \begin{center}
 	
@@ -5360,7 +5358,7 @@ $B^{-1} =
 	   0 & -\frac{1}{2}    &  1  \\
 \end{pmatrix}$
 na osnovu prethodne simpleks tabele, dobijamo   vrijednosti dualnih varijabli iz koeficijenta doprinosa, tj. $y_1 = 0, y_2 = \frac{1}{2}, \alpha = 0$. \\
-\emph{Iteracija 2.} Iz prethodnog dobijamo column generation potproblem 
+\emph{Iteracija 2.} Iz prethodnog dobijamo CG potproblem 
 \begin{align}
 	 \max_{x \in X} (1, 0)^T x - \left(0, \frac{1}{2}\right)\left(\begin{array}{cc}
 	 	1 & 3 \\
