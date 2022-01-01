@@ -33,6 +33,8 @@
 \usetikzlibrary{intersections,calc}
 \usepackage{pgfplots}   
 
+\usepackage{fancyhdr}
+
  
 \floatname{algorithm}{Algoritam}
 	
@@ -124,9 +126,39 @@
 
 
 %\department{Prirodno-matematički fakultet}
+\pagestyle{empty}
+ \begin{tikzpicture}
+ 	\node (img) {\includegraphics[width=15cm, height=20cm]{Operations-Management.jpg}};
+ 	\node [ text width=12cm,align=center] at (img.center){ 	{\bfseries{\huge
+ 				Uvod u Operaciona Istraživanja}\\
+ 		       \vskip 2cm
+ 			\Large Marko Đukanović  \& Dragan Matić   \\  
+ 			\vskip 1cm
+ 			{Univerzitet u Banjoj Luci} \\  
+ 			Prirodno-matematički fakultet \\
+ 			\vskip 9cm
+ 			$\today$
+ 		}
+};
+ \end{tikzpicture}
+\newpage
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot[C]{\thepage}
+%\fancyhead[R]{\thepage}
+
+\fancypagestyle{plain}{%
+	\fancyhead{}
+	\fancyfoot{}
+	\fancyhead[R]{\thepage}
+}
+
+\pagenumbering{roman}
+\begin{comment}
 \begin{titlepage}
 	\centering
 	\vfill
+ \includegraphics[width=\textwidth]{Operations-Management.jpg}
 	{\bfseries{\huge
 		Uvod u Operaciona Istraživanja}\\
 		\vskip 1cm
@@ -135,20 +167,21 @@
   {Univerzitet u Banjoj Luci} \\ \vspace{5cm}
   $\today$
 	}    
-	\vfill
-%\titlepic{\includegraphics[width=\textwidth]{cover_page.png}}
+	\vfill  \frontmatter
+ 
 
 	\vfill
-	\vfill
-\end{titlepage}
-
+	\end{comment}
 
 %\maketitle
  
 \newpage
+ 
 \tableofcontents
 
 \newpage
+\pagenumbering{arabic}
+
 
 \chapter{Predmet izučavanja Operacionih istraživanja}
 
