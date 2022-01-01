@@ -16,6 +16,8 @@
 \usepackage{algorithmic}
 \usepackage{dot2texi}
 \usepackage{subcaption}
+\usepackage{titlepic}
+
 %\usetikzlibrary{arrows,shapes}
 %\usepackage{epstopdf}
 \newenvironment{proof}{{Dokaz:}}{\hfill$\square$}
@@ -113,17 +115,36 @@
 \newdimen\nodeDist
 \nodeDist=25mm
 % \ChapterDOI{} %will be filled in at production
+\begin{document}
+\title{Uvod u Operaciona Istraživanja}
 \author{
- Marko Đukanović  \& Dragan Matić
+ Marko Đukanović  \& Dragan Matić \\ \vspace{1cm} \\ {Univerzitet u Banjoj Luci}}
 % Noam Chimpsky\affiliation{University of Pluto}\lastand 
 % Jane Wilson\affiliation{National Institute for Language}
-}
-%\university{Univerzitet u Banjoj Luci}
-%\department{Prirodno-matematički fakultet}
-\title{Uvod u Operaciona Istraživanja}
 
-\begin{document}
-\maketitle
+
+%\department{Prirodno-matematički fakultet}
+\begin{titlepage}
+	\centering
+	\vfill
+	{\bfseries{\huge
+		Uvod u Operaciona Istraživanja}\\
+		\vskip 1cm
+	\large Marko Đukanović  \& Dragan Matić   \\ \vspace{1cm} 
+	 
+  {Univerzitet u Banjoj Luci} \\ \vspace{5cm}
+  $\today$
+	}    
+	\vfill
+%\titlepic{\includegraphics[width=\textwidth]{cover_page.png}}
+
+	\vfill
+	\vfill
+\end{titlepage}
+
+
+%\maketitle
+ 
 \newpage
 \tableofcontents
 
@@ -1002,7 +1023,7 @@ Konačno, dobijamo ekvivalentan LP model
 	& x_j \geq 0, \forall j \in J.
 \end{align*}
 
-\textbf{\Large Zadaci.}
+\section{Zadaci}
 \begin{enumerate}
 	\item  Kompanija Healthy Pet Food Company proizvodi dvije vrste hrane za pse: Meaties i Yummies. Svako pakovanje Meaties hrane sadrži 2 kilograma žitarica i 3 kilograma mesa; svako pakovanje Yummies -a sadrži 3 kilograma žitarica i 1,5 kilograma mesa. Healthy vjeruje da može prodati onoliko hrane za pse koliko može napraviti. Meaty se prodaje   2,80 \$ po paketu, a Yummies   2,00 \$ po paketu. Proizvodnja kompanije Healthy ograničena je na nekoliko načina. Prvo, Healthy može kupiti samo do 400.000 kg žitarica svakog mjeseca za 0,20 \$ po kg; može
 	kupiti samo do 300.000 kg mesa mjesečno za 0,50 \$ po kg. Osim toga, za proizvodnju Meatiesa potrebna je posebna mašina, a proizvodni kapacitet ove mašine je 90.000 paketa mjesečno. Varijabilni troškovi miješanja i pakovanja hrane za pse iznose 0,25 \$ po pakovanju za Meaties i 0,20 \$ po paketu za Yummies.  
@@ -1654,7 +1675,7 @@ hodu $A \rightarrow E \rightarrow D \rightarrow C$.
 
 Primijetimo da ako bi u prvom koraku simpleks metode birali mjesto varijable $x$ ubacivanje varijable $y$ u bazu, došli bi do optimuma tako što bi se pomijerili   prvo u tačku $B$, pa potom u $C$, koja je optimum. Takođe, u ovom slučaju je potrebno generisati samo dvije simpleks tabele (a ne tri, kao što smo mi imali u ovom primjeru).\vspace{1cm}
 \\
-\textbf{\Large Zadaci}.
+\section{Zadaci}
 \begin{enumerate}
  \item Uz pomoć Simpleks metoda, riješiti sljedeći problem LP-a:%http://www.phpsimplex.com/en/simplex_method_example.htm (PHP simpleks: http://www.phpsimplex.com/simplex/simplex.htm?l=en)
  \begin{align*}
@@ -2528,7 +2549,7 @@ Tada, donje i gornje granice za $y$ postaju uslovi (pogledati gore): $y \leq 6, 
 %kompleksnost i Farkasova lema...
 %  dualna simpleks metoda ? https://www.youtube.com/watch?v=lyNHVnT9zVk&list=PLY9yf2-4yyeT0Jh80w5yuevm0o9lAAUJg&index=40
 \vspace{1.5cm}
-\textbf{\large Zadaci}
+\section{Zadaci}
 \begin{enumerate}
 	\item %http://www.nitjsr.ac.in/course_assignment/CA02CA3103%20RMTLPP:%20Duality.pdf
 	Napišite odgovarajući dual linearnog programa:
@@ -3109,7 +3130,7 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
  	 Problem odlučivanja da li postoji cjelobrojno rješenje u ILP-u (pod uslovom da minimizujemo)   vrijednosti manje od $k$ je NP--kompletan. 
  \end{thm}
  
-\textbf{\large Zadaci}
+\section{Zadaci}
 \begin{enumerate}
 	
 	\item Preduzeće za prikupljanje reciklažnog otpada raspolaže sa dvije deponije, koje su označene sa A i B. Dnevni troškovi održavanja deponije A su 300KM dnevno, a deponije B 45KM dnevno.  U deponiji A se dnevno prikupi 250 flaša i 100 limenki, dok se u deponiji B prikupi 160 flaša i 350 limenki. Da bi se isplatio rad deponija mjesečno treba prikupiti barem 5200 flaša i 4000 limenki.
@@ -4157,7 +4178,7 @@ uz uslove nenegativnosti i kapaciteta i integralnosti (cjelobrojnosti). Rješava
 \\ \vspace{1cm}
  %Za uraditi:  https://ocw.mit.edu/courses/sloan-school-of-management/15-083j-integer-programming-and-combinatorial-optimization-fall-2009/lecture-notes/ (Lekcija 19-25)
   
- \textbf{\large Zadaci}
+ \section{Zadaci}
  \begin{enumerate}
  	\item %http://web.tecnico.ulisboa.pt/mcasquilho/compute/_linpro/TaylorB_module_c.pdf
  	Pomoću metode grananja i ograničavanja (B\&B) riješiti sljedeći problem ILP-a:
@@ -5478,7 +5499,7 @@ Nađimo sada pivota u dodanoj koloni. Kako je $\frac{9/20}{9/5} < \frac{2/5}{3/5
 	
 \end{center} 
 Iz prethodne tabele pročitamo vrijednost dualnih varijabli: $y_1 =  \frac{1}{3}=y_2$, dok je $\lambda=0$. \\
-\emph{Iteracija 4.} Na osnovu vrijednosti dualnih varijabli, formira se novi column generation potproblem:
+\emph{Iteracija 4.} Na osnovu vrijednosti dualnih varijabli, formira se novi CG potproblem:
  
 	 \begin{align*}
 		\max_{x \in X} (1, 0)^T x - (\frac{1}{3}, \frac{1}{3})\left(\begin{array}{cc}
@@ -5511,7 +5532,7 @@ Iz prethodne tabele pročitamo vrijednost dualnih varijabli: $y_1 =  \frac{1}{3}
 \end{align*}
 \vspace{1cm} \\
 
-\textbf{Zadaci}
+\section{Zadaci}
 \begin{enumerate}
 	\item % http://motor.ece.iit.edu/ms/benders.pdf
 	  	Uz pomoć Benderove dekompozicije riješiti sljedeći MILP problem:
@@ -7048,7 +7069,7 @@ int main( int argc, char **argv )
 \end{verbatim}
 
 %\vspace{1cm} \\
-\textbf{\large Zadaci}
+\section{Zadaci}
 \begin{enumerate}
 	\item Istraži na internetu dostupne optimizacione  rješavače za probleme linearnog, cjelobrojnog (i mješovitog cjelobrojno--linearnog) programiranja. Procijeni njihov kvalitet, upotrebnu vrijednost i prepoznaj njihove prednosti i nedostatke u svakog od njih u odnosu na ostale.
 	
