@@ -6620,9 +6620,8 @@ Postoje različite strategije koliko dugo se izvršava lokalna pretraga. U opšt
 
  \chapter{Optimizacioni Rješavači}
  
- Kao što smo i pomenuli u uvodnoj sekciji, modelovanje problema koji odgovara (idealizivanoj verziji) problema je 
- dio koji uzima najveći dio vremena u operacinim istraživanjima. Kada dođemo do modela koji približno odgovara potrebama uprave  
- koja naručuje sistem, rješavanje modela se svodi na pozivanje odgovarajućih rješavača. Neki od najpoznatijih su 
+ Kao što smo i pomenuli u uvodnoj sekciji, konstrukcija modela koji (najčešće) odgovara idealizivanoj verziji realnog problema je 
+ dio koji uzima najveći dio vremena u operacinim istraživanjima. Kada dođemo do modela koji približno odgovara potrebama uprave koja naručuje sistem, rješavanje modela se svodi na pozivanje odgovarajućih rješavača. Neki od najpoznatijih su 
  CPLEX koji može biti pozivan u Javi, $C$++ i Python-u uz pomoć odgovarajućih API-ja, zatim Lindo, Gurobi te modul PuLP u Python-u, među ostalima.  
  
  U nastavku opisujemo korištenje CPLEX i PuLP rješavača za implementaciji modela i njihovog rješavanja. 
@@ -6631,14 +6630,14 @@ Postoje različite strategije koliko dugo se izvršava lokalna pretraga. U opšt
  %https://www.youtube.com/watch?v=J7tNzCsYgy8
  
  \section{Optimizacioni rješavač CPLEX}
- CPLEX alat je generalni rješavač za rješavanje optimizacionih problema, a među njima izdvajamo LP, ILP i MILP. Konstruisan je od strane IBM-a, i može da se potpuno besplatno preuzme sa linka 
+ CPLEX alat je generalni rješavač za rješavanje optimizacionih problema, a među njima izdvajamo klase problema LP, ILP i MILP-a. Konstruisan je od strane IBM-a, i može se potpuno besplatno preuzeti sa linka 
  
  \url{https://www.ibm.com/products/ilog-cplex-optimization-studio}. 
  
  On je dio \emph{IBM ILOG CPLEX Optimization Studio}-a koji uključuje i druge opcije poput \emph{Constraint Programming} (CP) solvera itd.
  
- U nastavku opisujemo proces same implementacije modela u CPLEX-u; odabran je programski jezik $C$++.
- Da bismo ukljucili CPLEX u $C$++ kod, nepohodno ga je uključiti sa sljedećom linijom koda:
+ U nastavku opisujemo proces same implementacije modela u CPLEX-u kroz programski jezik $C$++.
+ Da bismo ukljucili CPLEX u $C$++ kod, nepohodno je koristiti sljedeći kod:
  \begin{verbatim}
  	#include<ilcplex/ilocplex.h>
  	ILOSTLBEGIN
@@ -6790,7 +6789,7 @@ Ako je potrebno implementirati varijablu za koju je $x \geq 0$ to radimo kao u p
 \end{itemize}
 Eksportovanje modela za eventualno ponovno korištenje se može dobiti pozivom metoda \emph{exportModel}, čiji je očekivani argument naziv fajla u koji će se model upisati (.$lp$ ekstenzija).  
 
-\emph{\textbf{Podešavanje parametara rješavača CPLEX}}. Podešavanje limita za vrijeme izvršavanja rješavača (recimo, na 2h) se definiše na sljedeći način
+\emph{\textbf{Podešavanje parametara rješavača}} \textrm{CPLEX}. Podešavanje limita za vrijeme izvršavanja rješavača (recimo, na 2h) se definiše na sljedeći način
 \begin{verbatim}
 cplex.setParam(IloCplex::Param::TimeLimit, 7200)
 \end{verbatim}
