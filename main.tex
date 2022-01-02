@@ -5797,7 +5797,7 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje.
 \section{Aproksimativni algoritmi}
   %https://home.cs.colorado.edu/~srirams/courses/csci5654-fall13/ilpLectures.pdf
   
-   Za veliki broj optimizacionih problema sa enormnom kompleksnošću u praksi jednostavno ne postoje efikasni egzaktni algoritmi, te je za  njihovo rješavanje potrebano izdvojiti ogromne vremenske/memorijske resurse; dakle, za  ovakve probleme nije poznat (egzaktan) algoritam koji se izvršava u polinomijalnom vremenu $O(|P|)$, gdje je $P \in {Poly}$ neki polinom iz vektorskog prostora polinoma \emph{Poly}. Sa druge strane, većina pohlepnih algoritama i naprednijih heuristika ne daje nikakvu garanciju na nađeno rješenje iako su ta rješenja u velikom broju slučajeva visokog kvaliteta. Negdje između egzaktnih i heurističkih algoritama se smiještaju \emph{aproksimativni algoritmi} koji su polinomijalni, daju dopustiva rješenja uz garanciju o njihovom kvalitetu. 
+   Za veliki broj kompleksnih optimizacionih problema u praksi jednostavno ne postoje efikasni egzaktni algoritmi, te je za  njihovo rješavanje potrebano izdvojiti ogromne vremenske/memorijske resurse; dakle, za  ovakve probleme nije poznat (egzaktan) algoritam koji se izvršava u polinomijalnom vremenu $O(|P|)$, gdje je $P \in \emph{Poly}$ neki polinom iz vektorskog prostora polinoma \emph{Poly}. Sa druge strane, većina pohlepnih algoritama i naprednijih heuristika ne daje nikakvu garanciju na nađeno rješenje iako su ta rješenja u velikom broju slučajeva visokog kvaliteta. Negdje između egzaktnih i heurističkih algoritama se smiještaju \emph{aproksimativni algoritmi} koji su polinomijalni, daju dopustiva rješenja uz garanciju o njihovom kvalitetu. 
   
   \noindent Algoritam pripada klasi \emph{aproksimativnih algoritma} ako:
   \begin{enumerate}
@@ -5807,8 +5807,8 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje.
   \end{enumerate}
   Neka je dat algoritam $\mathcal{A}$, problem $P$ i instanca problema $I$. Sa $\mathcal{A}(I)$ označimo (dopustivo) rješenje koje se dobija kao izlaz algoritma $\mathcal{A}$, dok sa $\mathcal{A}^*(I)$ označimo optimalno rješenje za ulaz $I$. Pretpostavimo da je riječ o problemu maksimizacije. 
   
-  $\mathcal{A}$ se naziva aproksimativni algoritam problema $P$ ako 
-  za bilo koji ulaz (instancu) $I$, $\mathcal{A}$ vraća aproksimativno rješenje $\mathcal{A}(I)$ u polinomijalnom vremenu. 
+  $\mathcal{A}$ se naziva \emph{aproksimativni algoritam} problema $P$ ako 
+  za bilo koji ulaz (instancu) $I$, $\mathcal{A}$ vraća aproksimativno rješenje $\mathcal{A}(I)$ za $A^*(I)$ u polinomijalnom vremenu. 
   
   Postoji dvije vrste aproksimativnih algoritama:
   \begin{itemize}
@@ -5819,7 +5819,7 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje.
   \end{itemize}
   
   \noindent U tom slučaju kažemo da je algoritma $\mathcal{A}$ $c$--aproksimativni algoritam.
-  Primjer problema za koji postoji apsolutni apriksimativni algoritam je bojanje planarnog grafa (eng. \emph{Planar Graph Coloring}). Primjer problema za koji postoji relativni apriksimativni algoritam je pokrivanje čvorova. 
+  Primjer problema za koji postoji apsolutni apriksimativni algoritam je bojenje planarnog grafa (eng. \emph{Planar Graph Coloring}). Primjer problema za koji postoji relativni apriksimativni algoritam je pokrivanje čvorova. 
   
   \subsection{Aproksimativni algoritmi za problem pokrivanja čvorova}
   
@@ -5876,7 +5876,7 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje.
   
   \begin{figure}
   	\centering
-  	\includegraphics[width=135mm,height=90mm]{vc-2-example.eps}
+  	\includegraphics[width=140mm,height=90mm]{vc-2-example.eps}
   	\caption{Specijalan bipartitan graf.} 
   	\label{vertex-coverEx}
   \end{figure}
@@ -5892,14 +5892,14 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje.
   
   \subsection{Aproksimativni algoritmi za problem trgovačkog putnika}
   
-  Ovaj problem je jako težak kada je u pitanju konstrukcija aproksimativnog algoritma. Tome svjedoči sljedeća teorema.
+  Ovaj problem je težak kada je u pitanju konstrukcija aproksimativnog algoritma. Tome svjedoči sljedeća teorema.
  \begin{thm}
     Ne postoji polinomijalan algoritam koji može aproksimirati TSP sa  faktorom $c > 1$, osim ako je $P = NP$. 
 \end{thm}
   Kažemo da grane grafa zadovoljavaju nejednakost trougla akko za sve različite čvorove $u,v, r$ grafa $G$ vrijedi
   $$ w(u,v) + w(v,r) \geq w(u,r),$$
   gdje su $w(\cdot, \cdot)$ težine grane koja spaja dva čvora. Ovaj problem je poznat 
-  pod nazivom \emph{Metrički} TSP. On je i dalje NP--težak, ali se aproksimativni algoritam ipak može konstruisati.  U nastavku algoritme izvodimo za metrički  TSP. Posmatrajmo \emph{algoritam najbližeg dodavanja} koji aproksimira TSP, da Algoritmom~\ref{alg:tsp-a1}. 
+  pod nazivom \emph{Metrički} TSP. On je i dalje NP--težak, ali se aproksimativni algoritam ipak može konstruisati.  U nastavku aproksimativne algoritme izvodimo za metrički  TSP. Posmatrajmo \emph{algoritam najbližeg dodavanja} koji aproksimira TSP, dat u Algoritmu~\ref{alg:tsp-a1}. 
   
    \begin{algorithm}[!t] 
   
@@ -5922,19 +5922,19 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje.
   \end{algorithm}
 
  Ovo je očigledno polinomijalan algoritam. Ispitajmo koji aproksimacioni faktor se 
-njime postiže. Primijetimo da algoritam podsjeća na Primov algoritam. Grane koje se identifikuju algoritmom 
+njegovim izvršavanjem garantuje. Primijetimo da algoritam podsjeća na Primov algoritam. Grane koje se identifikuju algoritmom 
 konstruišu MST. Zaključujemo da je cijena konture $T$ barem jednaka koliko i cijena MST u odnosu na iste ulazne podatke. Cijena konture za dva čvora $v_i$ i $v_j$ je $2 \cdot w({v_i,v_j})$ (jer računamo i povratnu granu). Posmatrajmo jednu iteraciju Algoritma~\ref{alg:tsp-a1}, gdje se $T$
 proširuje za čvor $t$ koji se ubacuje između čvorova  $u$ i $q$. Povećanje cijene (trenutne) konture $T$ u svakoj iteraciji je $$w({u,t}) + w({t,q})-w({u,q}).$$
 Na osnovu nejednakosti trougla imamo $ w({t,q}) \leq w({t,u}) + w({u,q})$. Prema tome, porast cijene konture $T$ u svakoj iteraciji je najviše $ w({t, u}) + w({u,t}) = 2\cdot w({u,t})$. 
 Dakle, završna kontura ima cijenu koja dostiže cijenu koja je barem dva puta veća od cijene MST. Prema tome, ovo je 2-aproksimativni algoritam. 
 
- \noindent Pokusajmo poboljšati 2--aproksimativni algoritam~\ref{alg:tsp-a1} uz pomoć \emph{Double tree algoritma}, kojeg objašnjavamo u nastavku. Prije toga ćemo uvesti nekoliko definicija i teorema od bitnog značaja u formiranju algoritma. 
+ \noindent Pokušajmo poboljšati 2--aproksimativni Algoritam~\ref{alg:tsp-a1} uz pomoć \emph{Double tree algoritma}, čije detalje objašnjavamo u nastavku. Prije toga ćemo uvesti nekoliko definicija i teorema od bitnog značaja u konstrukciji algoritma. 
  \begin{definition}
  	  Neka je dat graf $G=(V,E)$. Ojlerova kontura $T^o$ grafa $G$ je kontura $e_1e_2...,e_me_1$ koja obilazi sve grane grafa $G$. 
  \end{definition}
 Vrijedi sljedeća karaketrizacija grafova koji imaju Ojlerovu konturu. 
 \begin{thm}
-	 Graf $G$ sadrži Ojlerovu konturu akko je povezan i svaki njegov čvor je paran. Takva klasa grafova se naziva Ojlerova klasa grafova.
+	 Graf $G$ sadrži Ojlerovu konturu akko je povezan i svaki njegov čvor je paran. Takva klasa grafova se naziva Ojlerovom klasom grafova.
 \end{thm}
 
  %pseudokod algoritma 
@@ -5953,7 +5953,7 @@ Vrijedi sljedeća karaketrizacija grafova koji imaju Ojlerovu konturu.
 \end{algorithm}
   Pokažimo da ovim algoritmom dobijamo 2--aproksimaciju. Jasno je da je algoritam polinomijalan i da je dobijeno rješenje dopustivo. Pokažimo sada da ovim ostvarujemo faktor $2$.  
   Neka je $C^*$ cijena optimalne Hamiltonove konture. Tada je MST $\leq C^*$. 
-  Lako se vidi da je cijena Ojlerove konture  $\leq 2 \cdot C^*$. Na osnovu nejednakosti trougla skraćivanje Ojlerove konture (linija 6 u algoritmu) da bi se dobila Hamiltonova kontura $T$ ne može da bude veća od 2$C^*$. Dakle, slijedi da je cijena Hamiltonove konture $\leq 2 C^*$, pa je ovaj algoritam 2--aprokimativni.
+  Lako se vidi da je cijena Ojlerove konture  $\leq 2 \cdot C^*$. Na osnovu nejednakosti trougla skraćivanje Ojlerove konture (linija 6 u algoritmu) u svrhu dobijanja Hamiltonove kontura $T$ ne može da bude veća od 2$C^*$. Dakle, slijedi da je cijena Hamiltonove konture $\leq 2 C^*$, pa je ovaj algoritam 2--aprokimativni.
   
  
    \begin{figure}[!ht]
@@ -6011,9 +6011,16 @@ Posmatrajmo sljedeći (aproksimativni) algoritam koji umanjuje aproksimativni fa
     \label{alg:tsp-a3}
 \end{algorithm}
   Lako je vidjeti da je ovaj algoritam polinomijalan i da je dobijeno rješenje dopustivo.
- Pokažimo da algoritam ima faktor aproksimacije $c=1.5$.  Cijena TSP $C^*$ dostiže najviše cijenu Ojlerove konture, tj.  $C^*\leq cost(T^o) = cost(T) + cost(M)$.  Takođe vrijedi $cost(T) \leq C^*$. Pokažimo da je $cost(M) \leq  \frac{C^*}{2}$, odakle bi slijedila tvrdnja. Primijetimo da u optimalnoj konturi $T$ postoje dva mečinga: prvi sa čvorovima iz $M$, a drugi za ostale čvorove kojeg označavamo sa $M'$. 
- Kako je $C^* \geq cost(M) \leq cost(M')$ i $cost(M) + cost(M') = cost(T)$, slijedi 
- $2 cost(M) \leq cost(T) \leq C^*$, odakle dobijamo tvrđenje.  U literaturi je pokazano da ne postoji  aproksimacioni algoritam sa faktorom  $c < \frac{220}{219} \approx 1.0045$ (osim ako je $P=NP$). 
+  \begin{thm}
+  	  Kristofidesov algoritam ima faktor aproksimacije $c=1.5$.
+  \end{thm}
+\begin{proof}
+  Cijena TSP $C^*$ dostiže najviše cijenu Ojlerove konture, tj.  $C^*\leq cost(T^o) = cost(T) + cost(M)$.  Takođe jasno je da vrijedi $cost(T) \leq C^*$. Pokažimo da je $cost(M) \leq  \frac{C^*}{2}$, odakle bi slijedila tvrdnja. Primijetimo da u optimalnoj konturi $T$ postoje dva mečinga: prvi sa čvorovima iz $M$, a drugi za ostale čvorove kojeg označavamo sa $M'$. 
+  Kako je $C^* \geq cost(M) \leq cost(M')$ i $cost(M) + cost(M') = cost(T)$, slijedi 
+  $2 cost(M) \leq cost(T) \leq C^*$, odakle dobijamo tvrđenje.  
+\end{proof} 
+
+U literaturi je pokazano da ne postoji  aproksimacioni algoritam sa faktorom  $c < \frac{220}{219} \approx 1.0045$ (osim ako je $P=NP$). 
  
  
  \subsection{Aproksimativni algoritmi za problem binarnog pakovanja}
@@ -6024,13 +6031,13 @@ Posmatrajmo sljedeći (aproksimativni) algoritam koji umanjuje aproksimativni fa
 
   Primjer jedne instance problema pakovanja je dat na Slici~\ref{fig:bin-packing}.
 
-\begin{figure}
+\begin{figure}[H] 
 	\centering
 	\includegraphics[width=100mm]{maxresdefault.eps}% bin-packing
 	\caption{Primjer Binarnog Pakovanja.}
     \label{fig:bin-packing}
 \end{figure}
- \emph{First-fit} algoritam. Ovo je pohlepni algoritam, koji se sastoji do sljedećih koraka:
+ \emph{First-fit} algoritam. Ovaj  pohlepni algoritam se sastoji do sljedećih koraka:
 \begin{itemize}
 	\item Stavljamo proizvode u redu u kojem su poredani za pakovanje, tj. $a_i$ se pakuje prije $a_j$ akko $i < j$;
 	\item Stavljamo sljedeći proizvod u pakovanje sa najmanjim indeksom u koji može da stane. \item Ako ne odgovara niti jednom od otvorenih pakovanja, otvoriti novo pakovanje i smjestiti taj proizvod u novo pakovanje.
@@ -6157,7 +6164,7 @@ gdje je $w_f$ težina skupa. U svakom koraku algoritma određuje skup $f^* \in \
 
 
 \begin{definition}
-   Neka je dat skup stringova $S=\{s_1,...,s_n\}$. Problem najkraćeg nadstringa traži string  $s$ minimalne dužine koji sadrži sve stringove iz $S$ kao njegove podstrigove. 
+   Neka je dat skup stringova $S=\{s_1,...,s_n\}$. Problem najkraćeg nadstringa traži string  $s$ minimalne dužine koji sadrži sve stringove iz $S$ za njegove podstrigove. 
   \end{definition}
 Bez gubljenja opštosti, mozemo pretpostaviti da niti jedan string $s_i$ nije podstring stringa $s_j, i\neq j$.
 Ovaj problem je NP--težak. Ideja je riješiti ga koristeći Problem pokrivanja skupa i 
