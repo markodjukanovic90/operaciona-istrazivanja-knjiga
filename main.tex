@@ -5640,8 +5640,9 @@ Uz pomoć DW dekompozicije riješiti sljedeći MILP problem:
 
 \section{Pohlepni algoritmi}
  
-Pohlepni algoritmi su programska paradigma koja gradi riješenje komponentu po komponentu tako da  naredna komponenta rješenja koja se dodaje po nekom (pohlepnom) kriterijumu donosi veće benefite u odnosu na sve ostale komponente koje se razmatraju za proširenje   parcijalnog riješenja. Dakle, u svakom trenutku bira se komponenta koja je lokalno najbolji kandidat za proširivanje rješenja.  Ovi algoritmi se često koriste u rješavanju teških optimizacionih problema i najčešće su prva strategija koja se primjenjuje prije 
-upotrebe neke složenije paradigme. Optimizacioni problem se rijetko može riješiti do optimalnosti  pomoću pohlepnih algoritma ali se   njim mogu obezbijediti dobra aproksimaciona rješenja u kratkom vremenskom periodu koja često služe kao osnov za konstrukciju naprednijih algoritama koja nalaze  rješenja boljeg kvaliteta. Pohlepni algoritmi nekad mogu riješiti problem do optimalnosti, kao što je, recimo, Frakcioni problem ruksaka, ali ne i 0-1 Problem ruksaka. 
+Pohlepni algoritmi su programska paradigma koja gradi riješenje komponentu po komponentu tako da se naredna komponenta, koja se dodaje u postojeće rješenje, bira po nekom (pohlepnom) kriterijumu.  %donosi veće benefite u odnosu na sve ostale komponente koje se razmatraju za proširenje  parcijalnog riješenja. 
+U osnovi, u svakom koraku bira se komponenta koja je lokalno najbolji kandidat za proširivanje (parcijalnog) rješenja.  Ovi algoritmi se često koriste u rješavanju teških optimizacionih problema i najčešće su prva strategija koja se primjenjuje prije 
+upotrebe neke složenije paradigme. Optimizacioni problemi se tek u neznatnoj mjeri mogu riješiti do optimalnosti pomoću pohlepnih algoritma. Uz pomoć njih se često mogu obezbijediti dobra aproksimaciona rješenja u kratkom vremenskom periodu koja služe kao osnov za konstrukciju naprednijih algoritama  u svrhu nalaska rješenja boljeg kvaliteta. Pohlepni algoritmi nekad mogu svojim rješenjem garantovati optimalnost. Primjer takvog problema je \emph{frakcioni problem ruksaka}, ali za 0-1 problem ruksaka to nije slučaj. 
 
 U ovoj sekciji razmatramo nekoliko poznatih pohlepnih algoritama koji se mogu naći u literaturi, kao što su:
 \begin{itemize}
@@ -5658,16 +5659,14 @@ Definšimo prvo pojam pokrivajućeg stabla, pa potom i minimalnog pokrivajućeg 
   $V_1 = V$ i $E_1 \subseteq E$. Pokrivajuće stablo $T$ grafa $G$ sa minimalnom težinom 
   $\sum_{e \in E(T)=E_1} w(e)$ se naziva minimalno pokrivajuće stablo (MST) grafa $G$. 
 \end{definition}
-Postoji nekoliko efikasnih algoritama za pronalazak MST, koje u nastavku i opisujemo. 
+Postoji nekoliko efikasnih algoritama za pronalazak MST, koje u narednim sekcijama i opisujemo. 
 
 
 \subsection{Primov algoritam}
-Ovo je jedan od osnovnih algoritama koji se izučava u teoriji algoritama. Ovdje navodimo korake algoritma, bez ulaženja u detalje o njegovoj validnosti.
-
-Algoritam se sastoji od sljedećih koraka:
+Ovo je jedan od osnovnih algoritama koji se izučava u teoriji algoritama. Ovdje navodimo korake algoritma, bez ulaženja u detalje o njegovoj validnosti. Algoritam se sastoji od sljedećih koraka:
 
 \begin{itemize}
-	\item Kreirati skup \emph{mstSkup} da bi se pratili svi čvorovi koji su već uključeni u MST.
+	\item Kreirati skup \emph{mstSkup}=$\emptyset$ da bi se pratili svi čvorovi koji su već uključeni u MST.
 	\item Dodijeliti vrijednosti svakom čvoru u ulaznom grafu: inicijalizovati vrijednosti na +$\infty$. 
 	      Dodijeli vrijednosti 0 za čvor koji je izabran prvi za MST;
 	\item Dok god \emph{mstSkup} ne uključi sve čvorove iz $V$, radimo sljedeće korake:
@@ -5682,7 +5681,7 @@ Algoritam se sastoji od sljedećih koraka:
 	\end{itemize}
 \end{itemize}
 
-Ideja dodjele vrijednosti čvorovima koji još nisu prisutni u MST je u tome da se efikasno izabere grana minimalne težine koja treba da se doda u trenutni MST. Dakle, ove vrijednosti ukazuju na grane minimalne težine koje su povezane sa skupom čvorova koji su već uključeni u MST.
+Ideja dodjele vrijednosti čvorovima koji još nisu prisutni u MST je u tome da se efikasno izabere grana minimalne težine koja treba da se doda u trenutni parcijalno rješenje. Dakle, ove vrijednosti ukazuju na grane minimalne težine koje su povezane sa skupom čvorova koji su već uključeni u MST.
 
 \emph{Kompleksnost algoritma}. Lista susjedstva i pretraga: $O(|V|^2)$. Ako  koristimo prioritetni red za nalaženje grane minimalne težine, imamo kompleksnost od $O( |E| \log(|V|))$. 
 
@@ -5700,13 +5699,13 @@ grana na osnovu njihove težine. Neka je $\emph{mst} = \emptyset$. U detalje, sl
 	\item Ponoviti korak 2, dok se ne doda tačno $|V|-1$ grana u \emph{mst}.
 \end{enumerate} 
 
-\noindent Vremenska kompleksnost algoritma je $O(|E|\log |E|)$ ili $O(|E|\log |V|)$. Sortiranje grana uzima $O(|E| \log|E|)$ vremena. Potom, za svaku granu 
+\noindent \emph{vremenska Kompleksnost}. Algoritam se izvršava u $O(|E|\log |E|)$ ili $O(|E|\log |V|)$ vremenu. Sortiranje grana uzima $O(|E| \log|E|)$ vremena. Potom, za svaku granu 
 se primjenjuje operacija nalaženja i dodavanja grane u skup \emph{mst}. Ove dvije operacije se izvršavaju u $O(\log |V|)$ vremenu. Dakle, za izvršavanje algoritma treba $O(|E|\log |E| + |E|\log |V|)$ vremena. Kako je $|E|=O(|V|^2)$, dobijamo kompleksnost $O(|E| \cdot \mathrm{log}(|V|))$. 
 
 \subsection{Dajkstrin algoritam}
 
-Ovaj algoritam je dosta sličan \emph{Primovom} algoritmu koji služi za nalaženje najkraćih puteva u grafu. Ovaj algoritam generiše tzv. SPT (eng. \emph{shortest path tree}) sa datim korjenim čvorom $s$ tako  što se formiraju dva disjunktna skupa čvorova, jedan koji sadrži čvorove uključene u SPT, a na drugoj strani svi ostali čvorovi. Inicijalno, svim čvorovima je dodjeljena vrijednost, tj. $dist[u]=\ +\infty, \forall u \in V\setminus \{s\}$, $dist[s]=0$. Neka je $Q = V$. 
-U svakom koraku algoritma nalazimo čvor $u$ koji je u skupu $Q$ sa minimalnom udaljenosti \emph{dist} od korjenog čvora $s$. Zatim se posmatraju njegovi susjedi te težine grana koje polaze od čvora $u$. U slučaju da je zbirna vrijednost $dist[u]$  i težine grane $w(uv)$ manja od trenutne vrijednosti $dist[v]$, vrijednost $dist[v]$ se ažurira jer je nađen novi najkraći put od $s$ od $v$.  Čvor $u$ se zatim izbacuje iz skupa $Q$. Algoritam nastavlja sa istim koracima dok god $Q \neq \emptyset$. 
+Ovaj algoritam je dosta sličan \emph{Primovom} algoritmu koji služi za nalaženje najkraćih puteva u grafu. Ovaj algoritam generiše tzv. SPT (eng. \emph{shortest path tree}) sa datim korjenim čvorom $s$ tako  što se formiraju dva disjunktna skupa čvorova, jedan koji sadrži čvorove uključene u SPT, a na drugoj strani svi ostali čvorovi. Inicijalno, svim čvorovima je dodjeljena vrijednost, tj. $dist[u]=\ +\infty, \forall u \in V\setminus \{s\}$, $dist[s]=0$. Neka je $Q = V$.  
+U svakom koraku algoritma nalazimo čvor $u$ koji je u skupu $Q$ sa minimalnom udaljenosti \emph{dist} od korjenog čvora $s$. Zatim se posmatraju njegovi susjedi, te težine grana koje polaze od čvora $u$. U slučaju da je zbirna vrijednost $dist[u]$  i težine grane $w(uv)$ manja od trenutne vrijednosti $dist[v]$, vrijednost $dist[v]$ se ažurira jer je nađen novi najkraći put od $s$ od $v$.  Čvor $u$ se zatim izbacuje iz skupa $Q$. Algoritam nastavlja sa istim koracima dok god $Q \neq \emptyset$. 
 Svi koraci algoritma su dati u Algoritmu~\ref{alg:dijkstra-algorithm}. Nakon završetka algoritma, vrijednosti $dist$[$u$] odgovaraju težini najkraćeg puta od korjenog čvora $s$ do čvora $u$. 
 
 
@@ -5734,18 +5733,18 @@ Svi koraci algoritma su dati u Algoritmu~\ref{alg:dijkstra-algorithm}. Nakon zav
     		\caption{Dajkstra($G,s $)}\label{alg:dijkstra-algorithm}
 \end{algorithm}
 
-Vremenska kompleksnost gornje implementacije algoritma je $O(|V|^2)$. Ako je graf predstavljem listom susjedstva, i skup $Q$ (linija 6, Algoritam \ref{alg:dijkstra-algorithm}) je implementiran kao binarni hip, 
+\emph{Vremenska kompleksnost}.  Gornja implementacija algoritma ima vremensku kompleksnost $O(|V|^2)$. Ako je graf predstavljem listom susjedstva, i skup $Q$ (linija 6, Algoritam \ref{alg:dijkstra-algorithm}) je implementiran kao binarni hip, 
 kompleksnost se redukuje na $O(|E| \cdot \log |V|)$.
 
-Napomenimo da Dajkstrin algoritam ne radi sa grafovima koji imaju negativne težine (pogledati  liniju 12).  Za ovakve grafove,  primjenjuje se Bellman–Ford algoritam koji je baziran na dinamičkom programiranju. Njega ne pominjemo   u ovoj knjizi.  %, o kojem ćemo nešto više reći u narednim sekcijama.
+Napomenimo da Dajkstrin algoritam ne radi sa grafovima koji imaju negativne težine (pogledati  liniju 12).  Za ovakve grafove,  primjenjuje se Bellman–Ford-ov algoritam koji je baziran na dinamičkom programiranju. Njega ne pominjemo   u ovoj knjizi.  %, o kojem ćemo nešto više reći u narednim sekcijama.
 
 \subsection{Frakcioni problem ruksaka}
 
 \begin{definition}
   Neka je dato $n$ proizvoda sa svojim  težinama i vrijednostima, 
-  te ruksak čiji je kapacitet $W$. Frakcioni problem ruksaka traži da se odaberu dijelovi od (nekih) proizvoda i stave u ruksak a da vrijednost u ruksaku bude što veća gdje se pri tom ne narušava kapacitet ruksaka.
+  te ruksak čiji je kapacitet $W$. Frakcioni problem ruksaka traži da se odaberu dijelovi   (nekih) proizvoda i stave u ruksak a da vrijednost proizvoda u ruksaku bude što veća ali da se pri tom ne naruši kapacitet ruksaka.
 \end{definition}
-U 0-1 problemu ruksaka se ne dopušta dijeljenje proizvoda. Dakle, ili se uzima cijeli proizvod (1) i stavlja u ruksak, ili se uopšte ne uzima (0). U  problemu frakcionog ruksaka, svaki proizvod posjeduje težinu i vrijednost, te se kao takav može podijeliti na dijelove (recimo dopušteno je da se uzme   pola od ukupne količine proizvoda). Efikasno riješavanje ovog problema se izvodi primjenom pohlepnog algoritma kako je u nastavku i opisano.
+U 0-1 problemu ruksaka se ne dopušta dijeljenje proizvoda. Dakle, ili se uzima cijeli proizvod (1) i stavlja u ruksak, ili se uopšte ne uzima (0). U  problemu frakcionog ruksaka, svaki proizvod posjeduje težinu i vrijednost, te se kao takav može podijeliti na dijelove (recimo dopušteno je da se uzme   pola od ukupne količine proizvoda). Primjer takvih proizvoda bi bili mlijeko, so, šećer itd. Efikasno riješavanje ovog problema se izvodi primjenom pohlepnog algoritma kako je u nastavku i opisano.
 \begin{itemize}
 	\item Računajmo podjele količina/vrijednost za svaki proizvod, te se proizvodi  sortiraju na osnovu tih vrijednosti.   \item Uzmemo proizvod sa najvećom količničkom vrijednošću te ga dodamo u ruksak. 
 	\item Nastavljamo proces dodavanja sa sljedećim proizvodom dok ga ne budemo mogli da dodamo cijeli proizvod u ruksak.    Ako je to slučaj, dodamo dio njega (onoliko koliko god je moguće, a da se pri tome kapacitet ruksaka ne naruši). 
