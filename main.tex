@@ -435,7 +435,7 @@ pridjev ``linearno'' podrazumijeva da su  matematičke funkcije korištene u mod
 naziva {WYNDOR--GLASS CO projekat}, prikazujući kako OR može da riješi ozbiljne probleme u industriji. 
   
 Firma \texttt{WYNDOR--GLASS} proizvodi visokokvalitetne staklene proizvode, uključujući prozore i staklena vrata. Postoje tri pogona. Aluminijski okviri i okovi izrađuju se u pogonu 1, drveni okviri izrađuju se u pogonu 2, a pogon 3 proizvodi staklo i sastavlja proizvode.
-Zbog pada zarade, rukovodstvo firme   odlučio je da obnovi liniju proizvoda koje nudi. Neprofitabilni proizvodi se ukidaju, oslobađajući proizvodne kapacitete za lansiranje dva nova proizvoda sa velikim prodajnim potencijalom:
+Zbog pada zarade, rukovodstvo firme   odlučilo je da obnovi liniju proizvoda koje nudi. Neprofitabilni proizvodi se ukidaju, oslobađajući proizvodne kapacitete za lansiranje dva nova proizvoda sa velikim prodajnim potencijalom:
 \begin{itemize}
     \item Proizvod 1: Staklena vrata od 2$m$ sa aluminijskim okvirom;
     \item Proizvod 2: Dvostruka drvena vrata sa okvirom visine 1.5$m$.
@@ -491,7 +491,7 @@ U nastavku konstruišemo model problema. Uvedimo varijablu $x_1$ za broj serija 
     \item $3 x_1 + 2 x_2 \leq 18$
 \end{itemize}
 
-Dakle, na osnovu realnog problema, formirali smo odgovarajući matematički model (idealizovanog problema) koji sadrži funkciju dvije promjenljive i nekoliko ograničenja, koja su zapisana preko nejednakosti. Cilj rješavanja ovog matematičkog modela je pronalaženje onih vrijednosti promjenljivih $x_1$ i $x_2$ koji se uklapaju u ograničenja i za koje posmatrana funkcija ima maksimalnu vrijednost.
+Dakle, na osnovu realnog problema, formirali smo odgovarajući matematički model (idealizovanog problema) koji sadrži  linearnu funkciju dvije promjenljive i nekoliko ograničenja, koja su zapisana preko linearnih nejednačina. Cilj rješavanja ovog matematičkog modela je pronalaženje onih vrijednosti promjenljivih $x_1$ i $x_2$ koji se uklapaju u ograničenja i za koje posmatrana funkcija ima maksimalnu vrijednost.
 
 %https://www.desmos.com/calculator
 \section{Grafički metod}
@@ -562,9 +562,9 @@ Treba imati na umu da ograničenja (\ref{eq:LP-c1}) mogu da imaju i oblike:
     \item $Ax = b$;
     \item neke od varijabli $x_i\leqslant 0$.
 \end{itemize}
-Bilo koji problem koji koristi neke od prethodna tri ograničenja predstavlja i dalje problem linearnog programiranja. Dodavajući tzv. \emph{izravnavajuće varijabe} $s \in \mathbb{R}^m$ u linearni program sa ograničenjima $Ax \leq b$, dobijamo linearni program sa ograničenjima $Ax + s = b, s \geq 0$. Isto tako, linearni program sa ograničenja $Ax \leq b$ se može transformisati u ograničenja sa jednakostima dodavanjem izravnavajućih varijabli kao $Ax - s = b, s\geq 0$.
+Bilo koji problem koji koristi neke od prethodna tri ograničenja predstavlja i dalje problem linearnog programiranja. Dodavajući tzv. \emph{izravnavajuće varijabe} $s \in \mathbb{R}^m$ u linearni program sa ograničenjima $Ax \leq b$, dobijamo linearni program sa ograničenjima $Ax + s = b, s \geq 0$. Isto tako, linearni program sa ograničenja $Ax \geq b$ se može transformisati u ograničenja sa jednakostima dodavanjem izravnavajućih varijabli kao $Ax - s = b, s\geq 0$.
 
- Forma linearnog programa sa ograničenjima $Ax = b$ se naziva \emph{kanonska} forma linearnog programiranja. 
+ Forma linearnog programa sa ograničenjima $Ax = b$ se naziva \emph{kanonska forma} linearnog programiranja. 
  
  Takođe, ako u linearnom
 programu postoji varijabla koja ne zadovoljava uslov nenegativnosti, ona se može zamijeniti razlikom dve nove nenegativne promenljive. Kanonski oblik linearnog programiranja je pogodan za efikasno izvođenje Gausovih transformacija  nad matricom problema, što će biti od koristi u konstrukciji simpleks metoda.   %, jer je svaki broj razlika dva nenegativna broja.
@@ -603,7 +603,7 @@ Uvedimo sada pojam \emph{ekstremnih tačaka}, koje igraju bitnu ulogu u simpleks
 Postoji važne veze između ovih tačaka i optimalnog rješenja LP-a, o čemu će biti riječi u nastavku ove knjige.
 Prije toga, za početak, razmotrimo bilo koji problem LP-a sa dopustivim rješenjima i ograničenim dopustivim regionom. Tada će važiti, što ćemo uskoro i pokazati, da problem u tom slučaju posjeduje barem jednu tačku koja je vrh tog regiona i barem jedno optimalno rješenje. Nadalje, jedan od vrhova mora biti optimalno rješenje. Dakle, ako problem ima tačno jedno optimalno rješenje, to rješenje je tačka koja je vrh regiona. Ako problem ima više optimalnih rješenja, barem dva moraju biti rješenja koja su tačke  vrhova dopustivog regiona.
 
-\textit{Napomena.} Imajte na umu da (optimalno) rješenje LP-a ne mora da bude cjelobrojno. Budući da svaka varijabla odluke predstavlja nivo odgovarajuće aktivnosti, pretpostavlja se da se aktivnosti mogu izvoditi na razlomljenim nivoima (aktivnost  se ne dijeli samo na diskretne dijelove), na osnovu nenegativnih ograničenja.  
+\textit{Napomena.} Treba imati na umu da (optimalno) rješenje LP-a ne mora da bude cjelobrojno. Budući da svaka varijabla odluke predstavlja nivo odgovarajuće aktivnosti, pretpostavlja se da se aktivnosti mogu izvoditi na razlomljenim nivoima (aktivnost  se ne dijeli samo na diskretne dijelove), na osnovu nenegativnih ograničenja.  
 
 Ako su sve varijable u LP-u cjelobrojne, riječ je o modelu \emph{Cjelobrojnog programiranja}. Ako pored cjelobrojnih, postoje i neke varijable koje su neprekidne, riječ je o modelima \emph{Mješovitog--cjelobrojnog linearnog programiranja}. Veliki broj realnih problema koji dolaze iz prakse su upravo problemi Mješovitog--cjelobrojnog linearnog programiranja.
 
@@ -617,7 +617,7 @@ sljedeći problem:
 \emph{Koliko je koje namirnice potrebno kupiti za (dnevnu) prehranu da bi se zadovoljila dnevna
 potreba za svim nutritivnim elementima, a da se pri tome minimizuje cijena prehrane?}
  
- \emph{Rješenje.}  Uvedimo prvo varijable $x_j \geq 0$ za količinu hrane namirnice $N_j$, $j = 1, \ldots, n$ koja će da bude korištena za prehranu. Funkcija cilja je da se minimizuje cijena prehrane, pa je, prema tome 
+ \emph{Rješenje.}  Uvedimo prvo varijable $x_j \geq 0$ za količinu hrane namirnice $N_j$, $j = 1, \ldots, n$ koja će da bude korištena za prehranu. Funkcija cilja treba da odgovara minimizaciji cijene prehrane, pa je, prema tome 
  $$f(x) = c_1 x_1 + \cdots + c_n x_n.$$
  
  Dalje, ograničenja su sljedeća: treba da se zadovolje dnevne potrebe za unos svakog nutritivnog elementa, odakle slijedi da za $i$-ti element treba da bude zadovoljeno
@@ -627,12 +627,12 @@ potreba za svim nutritivnim elementima, a da se pri tome minimizuje cijena prehr
  za svako $i=1,\ldots,m$. Dodajući još uslove nenegativnosti, $x_i \geq 0$, formulisali smo linearni model za ovaj problem.  
  
 \emph{Problem najboljeg pravca (problem linearne regresije)}. Zadani su podaci $(x_i, y_i), i = 1, \ldots , n$. Potrebno je odrediti pravu sa jednačinom $y = k x + l,
-k, l \in \mathbb{R}$ koja u smislu $l_1$ norme najbolje aproksimira date podatke. U prevodu, potrebno je minimizovati  funkcija cilja $$f(k, l) = \sum_{i=1}^n |k x_i + l - y_i|.$$
+k, l \in \mathbb{R}$ koja u smislu $l_1$ norme najbolje aproksimira date podatke. U prevodu, potrebno je minimizovati  funkciju cilja $$f(k, l) = \sum_{i=1}^n |k x_i + l - y_i|.$$
 
 \emph{Rješenje}.
 Označimo sa $z_i = |k x_i + l - y_i| = \max\{k x_i + l - y_i, y_i - k x_i - l \}$, $i=1,\ldots,n$. 
 
-Primijetimo da apsolutna vrijednost ne odgovara direktno problemu LP-a bilo da je prisutna u funkciji cilja ili ograničenjima, jer ona ne predstavlja linearnu funkciju (već je po--dijelovima linearna). Međutim, elementarnim transformacijama, polazni problem možemo da preformulišemo na sljedeći  problem linearnog programiranja: % ogranizenje |kx_i + l - y_i | <= z_i <=> dalje se svodi na dva ogranicenja...
+Primijetimo da apsolutna vrijednost ne odgovara direktno problemu LP-a, bilo da je prisutna u funkciji cilja ili ograničenjima, jer ona ne predstavlja linearnu funkciju (već je  linearna po dijelovima). Međutim, elementarnim transformacijama, polazni problem možemo da preformulišemo na sljedeći  problem linearnog programiranja: % ogranizenje |kx_i + l - y_i | <= z_i <=> dalje se svodi na dva ogranicenja...
 
 $f(x) = c^T w$, pod uslovima
 \begin{itemize}
@@ -660,7 +660,7 @@ Kada je riječ o linearnim programima,  oni imaju nekoliko osnovnih implicitnih 
 U ovom poglavlju ćemo formalno izvesti generalne uslove pod kojima se problem linearnog programiranja može riješiti. U osnovi, pokazaćemo da ako je problem
 linearnog programiranja dopustiv i ograničen i postoje vrhovi, onda postoji i optimalno rješenje  problema LP-a. Kako smo ranije neformalno pomenuli,  to rješenje se nalazi upravo u jednom od vrhova poliedra. 
 
-Prije nego ovo formalno pokažemo, uvedimo nekoliko osnovnih definicija i pratećih teorema, više pogledati u~\cite{cite_key6}. 
+Prije nego što ovo i formalno pokažemo, uvedimo nekoliko osnovnih definicija i pratećih teorema. 
 
 \begin{definition}
   Za skup $S \in \mathbb{R}^n$ kažemo da je konveksan akko za sve $x,y\in S$ i $\lambda\in [0, 1]$ vrijedi $\lambda x + (1 - \lambda)y \in S$
@@ -753,7 +753,7 @@ U sljedeće dvije definicije definišimo pojmove poliedra, hiperravni i polupros
 \begin{definition}
    Neka je $a\in \mathbb{R}^n $ i $b \in \mathbb{R}$. Skup $\{ x \in \mathbb{R}^n \mid a^T x = b \}$ se naziva hiperravan u $\mathbb{R}^n$ čiji je vektor  normale $a$, dok se $\{ x \in \mathbb{R}^n \mid a^T x \geq b \}$ naziva poluprostor. 
 \end{definition}
-Pokažimo sada da je poliedar konveksan skup. To je važna karakteristika jer se uslovima problema LP-a formira odgovarajući poliedar, a kako je on konveksan skup, prethodna teorema nam garantuje da, uz pretpostavku da postoji lokalni minimum (maksimum), onda postoji  i globalni minimum (maksimum), tj. optimalno rješenje zadanog problema LP-a.
+Pokažimo sada da je poliedar konveksan skup. To je važna karakteristika, jer se uslovima problema LP-a formira odgovarajući poliedar, a kako je on konveksan skup, prethodna teorema nam garantuje da, uz pretpostavku da postoji lokalni minimum (maksimum), onda postoji  i globalni minimum (maksimum), tj. optimalno rješenje zadanog problema LP-a.
 
 \begin{prop} Vrijede sljedeće tvrdnje: \\
   ($i$)  Poluprostor u $\mathbb{R}^n$ je konveksan skup.  \\
@@ -969,7 +969,7 @@ u cilju pronalaska optimalnog rješenja.
 
 \section{Neke tehnike u modelovanju problema linearnog programiranja}
 
-\emph{Apsolutna funkcija}.   Pretpostavimo da imamo model dat sa 
+\emph{Funkcija apsolutna vrijednost}.   Pretpostavimo da imamo model dat sa 
 \begin{align*}
 	&\min \sum_{j \in J} c_j |x_j| \\
 	& \sum_{j\in J} a_{ij} x_j \leq b_i, \forall i\in I \\
@@ -1010,7 +1010,7 @@ Kada se $z$ minimizuje, ova ograničenja osiguravaju da je $z$ veće ili jednako
 	& \sum_{j \in J} a_{ij} x_j \leq b_i,  \forall i \in I \\
 	& x_j \geq 0, \forall j \in J.
 \end{align*}
-Ovdje je funkcija cilja data kao količnik dvije linearne funkcije. Potrebno je transformisati ovu funkciju u linearnu da bismo imali linearni program. Ovakvi modeli su česta pojava u modelovanju financijskog planiranja. Pretpostavimo da je $\sum_{j \in J}d_j x_j + \beta \neq 0$ za sve tačke iz dopustivog regiona. Glavni trik u transformaciji je uvođenje nove varijable $y_j$ i $t$ tako da je $y_j = t x_j$. U nastavku, pretpostavljamo da je nazivnik u funkciji cilja pozitivan (slično je izvođenje i sa negativnim nazivnikom, s tim da imamo znak ``-'' ispred, što će promijeniti znak nejednakosti u ograničenjima krajnjeg modela). Dakle, uvedemo $t = \frac{1}{\sum_{j \in J} d_j x_j + \beta }$. Time dobijamo model
+Ovdje je funkcija cilja data kao količnik dvije linearne funkcije. Potrebno je transformisati ovu funkciju u linearnu da bismo imali linearni program. Ovakvi modeli su česta pojava u modelovanju financijskog planiranja. Pretpostavimo da je $\sum_{j \in J}d_j x_j + \beta \neq 0$ za sve tačke iz dopustivog regiona. Glavni trik u transformaciji je uvođenje nove varijable $y_j$ i parametra $t$, tako da je $y_j = t x_j$. U nastavku, pretpostavljamo da je imenilac u funkciji cilja pozitivan (slično je izvođenje i sa negativnim imeniocem, s tim da imamo znak ``-'' ispred, što će promijeniti znak nejednakosti u ograničenjima krajnjeg modela). Dakle, uvedemo $t = \frac{1}{\sum_{j \in J} d_j x_j + \beta }$. Time dobijamo model
 \begin{align*}
 	&\min \sum_{j \in J} c_j x_j t + \alpha t \\
 	&\sum_{j \in J} a_{ij} x_j \leq b_i,  \forall i \in I \\
@@ -1026,9 +1026,8 @@ Množeći prvo ograničenje sa $t>0$ te uvodeći smjenu $y_j = t x_j$, dobijamo 
 	& t > 0 \\
 	& x \geq 0.
 \end{align*}
-Na kraju, potrebno je dozvoliti da $t \geq 0$, da bi dobili LP model. 
-Za optimalnu vrijednost varijable $t$ na kraju se provjeri da li je $t>0$.   \\
-\emph{Domenske granice u ograničenjima}. Neka nam je dat model
+Da bi LP model bio validan, potrebno je staviti $t \geq 0$ i na kraju provjeriti optimalnu vrijednost varijable $t$, odnosno, da li je $t>0$.   \\
+\emph{Domenske granice u ograničenjima}. Neka je dat model
 \begin{align*}
 	&\min_{j \in J } c_j x_j \\
 	& l_i \leq \sum_{j \in J} a_{ij} x_j \leq u_i, \forall i\in I \\
@@ -1041,7 +1040,7 @@ Direktnom transformacijom dobijamo sljedeći LP (konjunkcija ograničenja):
 	&  \sum_{j \in J} a_{ij} x_j \leq u_i, \forall i\in I \\
 	&  x_j \geq 0, \forall j \in J.
 \end{align*}
-Kako    se $\sum_{j \in J} a_{ij} x_j$ javlja u dva ograničenja (što utiče na performanse rješavača), prethodni model se dalje transformiše na (efikasniji) LP model:
+Kako    se $\sum_{j \in J} a_{ij} x_j$ javlja u dva ograničenja (što utiče na performanse rješavača), prethodni model se dalje transformiše u (efikasniji) LP model:
 \begin{align*}
 	&s_i + \sum_{j \in J} a_{ij} x_j = u_i, \forall i \in I \\
 	& 0 \leq s_i \leq  u_i - l_i, \forall i \in I.
@@ -1059,7 +1058,7 @@ Konačno, dobijamo ekvivalentan LP model
 
 \section{Zadaci}
 \begin{enumerate}
-	\item  Kompanija Healthy Pet Food Company proizvodi dvije vrste hrane za pse: Meaties i Yummies. Svako pakovanje Meaties hrane sadrži 2 kilograma žitarica i 3 kilograma mesa; svako pakovanje Yummies -a sadrži 3 kilograma žitarica i 1,5 kilograma mesa. Healthy vjeruje da može prodati onoliko hrane za pse koliko može napraviti. Meaty se prodaje   2,80 \$ po paketu, a Yummies   2,00 \$ po paketu. Proizvodnja kompanije Healthy ograničena je na nekoliko načina. Prvo, Healthy može kupiti samo do 400.000 kg žitarica svakog mjeseca za 0,20 \$ po kg; može
+	\item  Kompanija Healthy Pet Food Company proizvodi dvije vrste hrane za pse: Meaties i Yummies. Svako pakovanje Meaties hrane sadrži 2 kilograma žitarica i 3 kilograma mesa; svako pakovanje Yummies -a sadrži 3 kilograma žitarica i 1,5 kilograma mesa. Kompanija vjeruje da može prodati onoliko hrane za pse koliko može napraviti. Meaty se prodaje   2,80 \$ po paketu, a Yummies   2,00 \$ po paketu. Proizvodnja kompanije Healthy ograničena je na nekoliko načina. Prvo, kompanija može kupiti samo do 400.000 kg žitarica svakog mjeseca za 0,20 \$ po kg; može
 	kupiti samo do 300.000 kg mesa mjesečno za 0,50 \$ po kg. Osim toga, za proizvodnju Meatiesa potrebna je posebna mašina, a proizvodni kapacitet ove mašine je 90.000 paketa mjesečno. Varijabilni troškovi miješanja i pakovanja hrane za pse iznose 0,25 \$ po pakovanju za Meaties i 0,20 \$ po paketu za Yummies.  
 	Pretpostavimo da ste vođa odjela hrane za pse  ove kompanije. Na koji način bi trebali upravljati odjelom proizvodnje kako bi maksimizovali profit? 
 	\item %LP_zadaci_za_knjigu.pdf ==> pogledati 
