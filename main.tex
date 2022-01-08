@@ -1167,7 +1167,7 @@ varijabla $x_i$ označava broj proizvoda $i$ proizvedeni na sedmičnom nivou na 
 \newpage 
 \chapter{Simpleks Metod}
 
-Simpleks metod je jedan od najpoznatijih algoritama za rješavanje problema linearnog programiranja. Njena ideja je tražiti rješenje LP-a posjećujući vrhove dopustivog regiona problema na način da se posjećuju oni vrhovi za koje se vrijednosti funkcije cilja smanjuje (ako je dat zadatak minimizacije). Razvio ju je George Dantzig 1947. godine i spada među najznačajnije algoritme XX vijeka.
+Simpleks metod je jedan od najpoznatijih i najefikasnijih algoritama za rješavanje problema linearnog programiranja. Osnovna ideja leži u traženju optimalnog rješenja LP-a posjećivanjem vrhova dopustivog regiona problema, na način da se vrhovi sukcesivno posjećuju tako da se, prelaskom u novi vrh, vrijednost funkcije cilja smanjuje (ako je dat zadatak minimizacije). Simpleks metod je razvio George Dantzig 1947. godine, a s obzirom na njegovu važnost u rješavanju problema linearnog programiranja, spada među najznačajnije algoritme XX vijeka.
 
 Neka je dat problem LP-a u kanonskom obliku:
 
@@ -1188,7 +1188,7 @@ gdje je $A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m, c \in \mathbb{R}^n, 
 
 \section{Konstrukcija simpleks metode}
 
- Neka je $x = [x_1,\ldots, x_n]^T$ bazno dopustivo rješenje problema (\ref{eq:lp_equality_constraint}), gdje je $B$ matrica baze, $x_B$ bazni dio vektora $x$, a gdje su na mjesto nebaznih indeksa $N$ postavljene 0.  Ideja simpleks metode je  ``šetanje'' po vrhovima poliedra  dok ne nađemo optimalno rješenje. Krenimo pravcem $d$ u  početnom BDR $x$  pri čemu trebamo obratiti  pažnju na to da je zadovoljen
+ Neka je $x = [x_1,\ldots, x_n]^T$ bazno dopustivo rješenje problema (\ref{eq:lp_equality_constraint}), gdje je $B$ matrica baze, $x_B$ bazni dio vektora $x$, a gdje su na mjesto nebaznih indeksa $N$ postavljene 0.  Kao što je rečeno, ideja simpleks metode je  ``šetanje'' po vrhovima poliedra  dok ne nađemo optimalno rješenje. Krenimo pravcem $d$ u  početnom BDR $x$  pri čemu trebamo obratiti  pažnju na to da je zadovoljeno sljedeće:
 \begin{itemize}
     \item \emph{uslov optimalnosti}, tj. $c^T (x + \lambda d) \leq c^T x, \lambda>0$, što znači da idemo u pravcu smanjenja vrijednosti funkcije cilja;
     \item \emph{uslov dopustivosti}, treba da je pravac $d$ dopustiv u tački $x$, tj. $ (x + \lambda d) \in P$, za neko $\lambda>0$. Dakle, uvijek se krećemo samo tačkama dopustivog regiona. 
@@ -1213,7 +1213,7 @@ Iz sljedeće teoreme dobijamo uslove optimalnosti rješenja.
   \end{itemize}
 \end{thm}
 
-Ostalo nam je još odrediti dužinu   pravca $d$, tj. vrijednost $\lambda>0$. Ideja je da se krene nekim smjerom dok god se ne dođe do drugog vrha, tj. treba odrediti dužinu vektora $d$ koji je jednak $\lambda^* = \max \{ \lambda \in \mathbb{R} \mid x + \lambda d \geq 0 \}$. Razlikujemo sljedeća dva slučaja:
+Ostalo nam je još da odredimo dužinu   pravca $d$, tj. vrijednost $\lambda>0$. Ideja je da se krene nekim smjerom dok god se ne dođe do drugog vrha, tj. treba odrediti dužinu vektora $d$ koji je jednak $\lambda^* = \max \{ \lambda \in \mathbb{R} \mid x + \lambda d \geq 0 \}$. Razlikujemo sljedeća dva slučaja:
 \begin{itemize}
     \item Ako $d >0$, onda je $  x + \lambda d \geq 0$, za sve $\lambda > 0$, pa je $\lambda^* = \infty$, tj. ciljna funkcija je neograničena.
     \item Ako postoji indeks $i$, td. $d_i < 0$, onda za dovoljno malo $\lambda>0$ tako da $x_i + \lambda d_i \geq 0$ dobijamo $\lambda \leq -\frac{x_i}{d_i}$. Prema tome 
@@ -1850,9 +1850,9 @@ Kako su svi koeficijenti doprinosa ($\overline{c}$ varijable) manje od 0, simple
  \chapter{Dualnost \& Dopustivost}
  
  %Dualnost je pojam koji je vezan za dobijanje gornjih granica optimalne vrijednosti funkcije cilja. 
- Teorija dualnosti povezuje dva problema linearnog programiranja -- jedan od njih je problem linearnog programiranja koji maksimizuje funkciju cilja, dok je drugi linearan program  koji minimizuje (ne obavezno istu) funkciju cilja. Svaki problem LP-a se može navesti u drugom, ekvivalentnom obliku na osnovu istih ulaznih podataka. Ponekad rješavanje LP-a na drugi način može da bude puno lakše nego rješavanje početnog LP-a.  Dualnost implicira da svaki problem linearnog programiranja možemo analizirati na dva potpuno različita načina, ali sa ekvivalentnim (optimalnim) rješenjima. 
+ Teorija dualnosti povezuje dva problema linearnog programiranja -- jedan od njih je problem linearnog programiranja koji maksimizuje funkciju cilja, dok je drugi linearan program  koji minimizuje (ne obavezno istu) funkciju cilja. Svaki problem LP-a se može navesti u drugom, ekvivalentnom obliku na osnovu istih ulaznih podataka. Ponekad rješavanje dualnog problema može da bude puno lakše nego rješavanje početnog LP-a.  Dualnost implicira da svaki problem linearnog programiranja možemo analizirati na dva potpuno različita načina, ali sa ekvivalentnim (optimalnim) rješenjima. 
  
- Prije nego uvedemo pojam dualnog problema, objasnimo motivaciju koja stoji iza nastanka teorije dualnosti. Posmatrajmo jedan LP i probajmo naći što bolju gornju procjenu za optimalnu vrijednost ciljne funkcije na osnovu ograničenja u datom modelu.
+ Prije nego što uvedemo pojam dualnog problema, objasnimo motivaciju koja stoji iza nastanka teorije dualnosti. Posmatrajmo jedan LP i probajmo naći što bolju gornju procjenu za optimalnu vrijednost ciljne funkcije na osnovu ograničenja u datom modelu.
  
 $$ 
 \begin{array}{lllll}
@@ -1865,7 +1865,7 @@ $$
 Iz uslova je jasno da su gornje granice date sa: $f(x) = x_1 + x_2 \leq 4 x_1 + 3 x_2 \leq 9$, kao i 
 $f(x) \leq x_1 + x_2 \leq 8$. One se mogu i poboljšati na osnovu sljedećeg niza nejednakosti:
 $$f(x) \leq \frac{1}{4}(  4 x_1 + 3 x_2  ) + \frac{1}{4}(    x_1 +   x_2 ) = \frac{5}{4}x_1 + x_2 \leq  \frac{9}{4} + 2 = \frac{17}{4},$$ kao jedna (bolja) gornja granica optimalne vrijednosti ciljne funkcije. 
-Uradimo sada slično izvođenje u generalnijem obliku, tj. iskoristimo ograničenja data u modelu zajedno u kombinaciji sa koeficijentima funkcije cilja. Neka su $y_1, y_2 \geq 0$ koeficijenti sa kojima množimo ograničenja u početnom modelu, odakle dobijamo 
+Uradimo sada slično izvođenje u opštijem obliku, tj. iskoristimo ograničenja data u modelu zajedno u kombinaciji sa koeficijentima funkcije cilja. Neka su $y_1, y_2 \geq 0$ koeficijenti sa kojima množimo ograničenja u početnom modelu, odakle dobijamo 
 \begin{align*}
     &y_1 \cdot (4x_1 + 3x_2) \leq 9 y_1 \\
     &y_2 \cdot (x_1 + x_2 ) \leq 8 y_2 
@@ -1874,7 +1874,7 @@ Sabirajući ove dvije nejednakosti i grupišući sabirke dobijamo
 \begin{equation}\label{eq:dual-1}
      x_1 ( 4 y_1 + y_2 ) + x_2 ( 3 y_1 + y_2 ) \leq 9 y_1 + 8 y_2 
 \end{equation}
-Posmatrajući funkciju cilja i koeficijente uz varijable u (\ref{eq:dual-1}), jasno je da treba vrijediti 
+Posmatrajući funkciju cilja i koeficijente uz varijable u (\ref{eq:dual-1}), jasno je da treba da vrijedi 
 $4 y_1 + y_2 \geq 1$ i $3 y_1 + y_2 \geq 1$. Da bi ocjena gornje granice bila što bolja u (\ref{eq:dual-1}), dakle koeficijent na desnoj strani što veći, potrebno je minimizovati izraz $9y_1 + 8 y_2$, pod gore navedenim uslovima. Prema tome, početnom problemu, kojeg označavamo sa ($P$), odgovara dualni problem 
 $$\begin{array}{cccc}
      \min                    &  9 y_1 &+& 8 y_2        \\
