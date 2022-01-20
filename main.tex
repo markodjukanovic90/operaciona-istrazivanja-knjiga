@@ -5643,11 +5643,11 @@ Uz pomoć DW dekompozicije riješiti sljedeći MILP problem:
 \section{Pohlepni algoritmi}
  
 Pohlepni algoritmi su programska paradigma zasnovana na pristupu da se  rješenje iterativno formira dio po dio (komponenta po komponenta) tako da se naredna komponenta, koja se dodaje u postojeće rješenje, bira 
- po nekom (pohlepnom) kriterijumu. Preciznije, u svakoj iteraciji se u rješenje uključuje ona komponenta koja donosi najveći benefit u odnosu na sve ostale komponente koje se razmatraju za proširenje  trenutnog (parcijalnog) rješenja, u nadi da će takvi izbori na kraju dovesti i do kvalitetnog globalnog rješenja.
+ po nekom razumnom (pohlepnom) kriterijumu. Preciznije, u svakoj iteraciji se u rješenje uključuje ona komponenta koja donosi najveći benefit u odnosu na sve ostale komponente koje se razmatraju za proširenje  trenutnog (parcijalnog) rješenja, u nadi da će takvi izbori na kraju dovesti i do kvalitetnog globalnog rješenja.
  
  %Kod ovakve strategije, u svakom koraku bira se komponenta koja je lokalno najbolji kandidat za proširivanje (parcijalnog) rješenja, u nadi da će takvi izbori na kraju dovesti i do kvalitetnog globalnog rješenja.
  
- Strategija pohlepnih algoritama isključuje ``vraćanje'' na neko prethodno (parcijalno) rješenje, odnosno ne vodi se računa o ``lošim'' odlukama, koje su eventualno napravljene u prethodnim iteracijama. Zbog toga se podrazumijeva da pohlepni algoritmi imaju polinomsku vremensku složenost.
+ Strategija pohlepnih algoritama isključuje ``vraćanje'' na neko prethodno (parcijalno) rješenje, odnosno ne vodi se računa o ``lošim'' odlukama, koje su eventualno napravljene u prethodnim iteracijama. Zbog toga se podrazumijeva da pohlepni algoritmi imaju polinomijalnu vremensku složenost.
  
  Zbog relativno jednostavne strategije na kojoj su zasnovani, ali i brzine izvršenja, ovi algoritmi se često koriste i u rješavanju teških optimizacionih problema i najčešće su prva strategija koja se primjenjuje prije 
 upotrebe neke složenije paradigme. 
@@ -5663,14 +5663,14 @@ U ovoj sekciji razmatramo nekoliko poznatih pohlepnih algoritama koji se mogu na
 	\item  Pohlepni algoritam za problem \emph{najdužeg zajedničkog podniza} za proizvoljan skup stringova u ulazu.
 \end{itemize}
 
-Definšimo prvo pojam pokrivajućeg stabla, pa potom i minimalnog pokrivajućeg stabla (engl. minimum spanning tree - MST).
+Definšimo prvo pojam pokrivajućeg stabla, pa potom i minimalnog pokrivajućeg stabla (eng. \emph{minimum spanning tree} - MST).
 
 Neka je dat težinski graf $G=(V,E)$. Svaku težinu grane $uv \in E $ u grafu $G$, označimo sa $w(uv)$. 
  
 \begin{definition}
   Stablo $T =(V_1, E_1)$ je pokrivajuće za graf $G=(V,E)$ akko
-  $V_1 = V$ i $E_1 \subseteq E$. Pokrivajuće stablo $T$ grafa $G$ sa minimalnom težinom 
-  $\sum_{e \in E_1} w(e)$ se naziva minimalno pokrivajuće stablo (MST) grafa $G$. 
+  $V_1 = V$ i $E_1 \subseteq E$. Pokrivajuće stablo $T$ grafa $G$ sa minimalnim zbirom težina svojih grana, tj. 
+  $\sum_{e \in E_1} w(e)$, se naziva minimalno pokrivajuće stablo (MST) grafa $G$. 
 \end{definition}
 Postoji nekoliko efikasnih algoritama za pronalazak MST, koje u narednim sekcijama i opisujemo. 
 
@@ -5698,18 +5698,18 @@ Ideja dodjele vrijednosti čvorovima koji još nisu prisutni u MST je u tome da 
 
 \emph{Kompleksnost algoritma}. Lista susjedstva i pretraga: $O(|V|^2)$. Ako  koristimo prioritetni red za nalaženje grane minimalne težine, imamo kompleksnost od $O( |E| \log(|V|))$. 
 
-MST ima primjene u ($i$) dizajniranju mreža (na primjer, telefonske mreže), gdje je do svakog domaćinstva (koje je predstavljeno jednim čvorom) potrebno obezbijediti liniju, tako da se u mrežu povežu sva domaćinstva, uz potrošnju što manje materijala za infrastrukturu mreže; ($ii$) aproksimaciji drugih teških optimizacionih problema kao što je problem trgovačkog putnika (TSP). Ponovimo, u problemu TSP je potrebno naći najkraću konturu koji posjećuje u (težinskom) grafu. Primijetimo da su takvi putevi takođe MST. Težina MST je manja nego težina TSP, jer minimizujemo nad većim skupom rješenja, tako da se može pokazati da je nalazak MST-a u težinskom grafu aproksimira nalazak TSP-a (nad euklidskim težinskim grafovima); ($iii$) Klaster analiza. $k$-klaster problem  se može posmatrati kao problem nalaženja MST-a, a potom brisanja $k-1$ najskupljih grana iz MST. 
+MST ima primjene u ($i$) dizajniranju mreža (na primjer, telefonske mreže), gdje je do svakog domaćinstva (koje je predstavljeno jednim čvorom) potrebno obezbijediti liniju, tako da se u mrežu povežu sva domaćinstva, uz potrošnju što manje materijala za infrastrukturu mreže; ($ii$) aproksimaciji drugih teških optimizacionih problema kao što je problem trgovačkog putnika (TSP). Ponovimo, u problemu TSP je potrebno naći najkraću konturu koja posjećuje sve čvorove u (težinskom) grafu. Primijetimo da su takvi putevi takođe MST. Težina MST je manja nego težina TSP, jer minimizujemo nad većim skupom rješenja, tako da se može pokazati da je nalazak MST-a u težinskom grafu aproksimira nalazak TSP-a (nad euklidskim težinskim grafovima); ($iii$) Klaster analiza. $k$-klaster problem  se može posmatrati kao problem nalaženja MST-a, a potom brisanja $k-1$ najskupljih grana iz MST. 
 
 \subsection{Kruskalov algoritam}
 
-Ovo je još jedan pohlepni algoritam za nalaženje MST-a. Radi na principu izbora grana na osnovu njihove težine, gdje se u svakom koraku koristi pohlepna strategija da se bira odgovarajuća graa najmanje težine.
+Ovo je još jedan pohlepni algoritam za nalaženje MST-a. Radi na principu izbora grana na osnovu njihove težine, gdje se u svakom koraku koristi pohlepna strategija da se bira odgovarajuća grana najmanje težine.
 
  Neka je $\emph{mst} = \emptyset$. U detalje, sljedeći koraci se izvršavaju ovim algoritmom:
 
 \begin{enumerate}
 	\item Sortiranje svih grana u neopadajućem poretku;
 	\item Odabir najlakše grane i provjera da li se formira ciklus ako se ova 
-	grana doda u skup grana koje su do sada ubačene u skup \emph{mst}; Ako to nije slučaj, ubaciti granu u trenutni skup \emph{mst}. Inače, uzeti granu koja je sljedeća u sortiranom nizu (pohlepni korak);
+	grana doda u skup grana koje su do sada ubačene u skup \emph{mst}; Ako to nije slučaj, ubaciti granu u trenutni skup \emph{mst}. Inače, provjeriti  granu koja je sljedeća u sortiranom nizu grana (pohlepni korak);
 	\item Ponoviti korak 2, dok se ne doda tačno $|V|-1$ grana u \emph{mst}.
 \end{enumerate} 
 
@@ -5720,7 +5720,7 @@ se primjenjuje operacija nalaženja i dodavanja grane u skup \emph{mst}. Ove dvi
 
 Ovaj algoritam se koristi za nalaženje najkraćih puteva u grafu i sličan je Primovom algoritmu. Generiše se tzv. SPT (eng. \emph{shortest path tree}) sa datim korjenim čvorom $s$, tako  što se formiraju dva disjunktna skupa čvorova, jedan koji sadrži čvorove uključene u SPT, dok su u drugom svi ostali čvorovi. 
 
-Inicijalno, svim čvorovima, osim korijenog, je dodijeljena vrijednost beskonačno, tj. $dist[u]=\ +\infty, \forall u \in V\setminus \{s\}$, $dist[s]=0$. 
+Inicijalno, svim čvorovima, osim korjenog, je dodijeljena vrijednost beskonačno, tj. $dist[u]=\ +\infty, \forall u \in V\setminus \{s\}$, $dist[s]=0$. 
 
 Neka je $Q = V$.  
 U svakom koraku algoritma nalazimo čvor $u$ koji je u skupu $Q$ sa minimalnom udaljenošću \emph{dist} od korjenog čvora $s$. Zatim se posmatraju njegovi susjedi, te težine grana koje polaze od čvora $u$. U slučaju da je zbirna vrijednost $dist[u]$  i težine grane $w(uv)$ manja od trenutne vrijednosti $dist[v]$, vrijednost $dist[v]$ se ažurira jer je nađen novi najkraći put od $s$ od $v$.  Čvor $u$ se zatim izbacuje iz skupa $Q$. Algoritam nastavlja sa istim koracima dok god $Q \neq \emptyset$. 
@@ -5751,7 +5751,7 @@ Svi koraci algoritma su dati u Algoritmu~\ref{alg:dijkstra-algorithm}. Nakon zav
     		\caption{Dajkstra($G,s $)}\label{alg:dijkstra-algorithm}
 \end{algorithm}
 
-\emph{Vremenska kompleksnost}.  Gornja implementacija algoritma ima vremensku kompleksnost $O(|V|^2)$. Ako je graf predstavljem listom susjedstva, i skup $Q$ (linija 6, Algoritam \ref{alg:dijkstra-algorithm}) je implementiran kao binarni hip, 
+\emph{Vremenska kompleksnost}.  Implementacija Algoritma~\ref{alg:dijkstra-algorithm} ima vremensku kompleksnost $O(|V|^2)$. Ako je graf predstavljem listom susjedstva, i skup $Q$ (linija 6, Algoritam \ref{alg:dijkstra-algorithm}) je implementiran kao binarni hip, 
 kompleksnost se redukuje na $O(|E| \cdot \log |V|)$.
 
 Napomenimo da Dajkstrin algoritam ne radi sa grafovima koji imaju negativne težine (pogledati  liniju 12).  Za ovakve grafove,  primjenjuje se Bellman–Ford-ov algoritam koji je baziran na dinamičkom programiranju. Njega ne pominjemo   u ovoj knjizi, ali čitaocu preporučujemo da se, koristeći se literaturom ili internetom, upozna i sa ovim važnim algoritmom.  %, o kojem ćemo nešto više reći u narednim sekcijama.
@@ -5836,7 +5836,7 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje.
   	$$\frac{\mathcal{A}(I)}{\mathcal{A}^*(I)} \geq c,$$ za neko $c\in \mathbb{R}^+$.
   \end{itemize}
   
-  \noindent U tom slučaju kažemo da je algoritma $\mathcal{A}$ $c$--aproksimativni algoritam. U literaturi ili na internetu, čitalac može pronaći primjere problema za koji postoji apsolutni apriksimativni algoritam (na primjer, bojenje planarnog grafa, eng. \emph{Planar Graph Coloring}), odnosno primjer problema za koji postoji relativni apriksimativni algoritam. U sljedećoj sekciji će biti prikazan jedan takav, problem,  problem pokrivanja čvorova. 
+  \noindent U tom slučaju kažemo da je algoritma $\mathcal{A}$ $c$--aproksimativni algoritam. U literaturi ili na internetu, čitalac može pronaći primjere problema za koji postoji apsolutni apriksimativni algoritam (na primjer, bojenje planarnog grafa, eng. \emph{Planar graph coloring}), odnosno primjer problema za koji postoji relativni apriksimativni algoritam. U sljedećoj sekciji će biti prikazan jedan takav, problem,  problem pokrivanja čvorova. 
   
   \subsection{Aproksimativni algoritmi za problem pokrivanja čvorova}
   
