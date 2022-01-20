@@ -5815,7 +5815,7 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje.
 \section{Aproksimativni algoritmi}
   %https://home.cs.colorado.edu/~srirams/courses/csci5654-fall13/ilpLectures.pdf
   
-   Za veliki broj kompleksnih optimizacionih problema u praksi jednostavno ne postoje efikasni egzaktni algoritmi, te je za  njihovo rješavanje potrebano izdvojiti ogromne vremenske/memorijske resurse; dakle, za  ovakve probleme nije poznat (egzaktan) algoritam koji se izvršava u polinomijalnom vremenu $O(|P|)$, gdje je $P \in \emph{Poly}$ neki polinom iz vektorskog prostora polinoma \emph{Poly}. Sa druge strane, većina pohlepnih algoritama i naprednijih heuristika ne daje nikakvu garanciju na nađeno rješenje iako su ta rješenja u velikom broju slučajeva visokog kvaliteta. Negdje između egzaktnih i heurističkih algoritama se smiještaju \emph{aproksimativni algoritmi} koji su polinomijalni, daju dopustiva rješenja uz garanciju o njihovom kvalitetu. 
+   Za veliki broj kompleksnih optimizacionih problema u praksi jednostavno ne postoje efikasni egzaktni algoritmi, te je za  njihovo rješavanje potrebano izdvojiti ogromne vremenske/memorijske resurse. Možemo reći da za  ovakve probleme nije poznat (egzaktan) algoritam koji se izvršava u polinomijalnom vremenu $O(|P|)$, gdje je $P \in \emph{Poly}$ neki polinom iz vektorskog prostora polinoma \emph{Poly}. Sa druge strane, većina pohlepnih algoritama, ali i naprednijih heuristika, ne daje nikakvu garanciju na kvalitet nađenog rješenja. Negdje između egzaktnih i heurističkih algoritama su se pozicionirali \emph{aproksimativni algoritmi}, koji su polinomijalni, daju dopustiva rješenja uz garanciju o njihovom kvalitetu. 
   
   \noindent Algoritam pripada klasi \emph{aproksimativnih algoritma} ako:
   \begin{enumerate}
@@ -5836,8 +5836,7 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje.
   	$$\frac{\mathcal{A}(I)}{\mathcal{A}^*(I)} \geq c,$$ za neko $c\in \mathbb{R}^+$.
   \end{itemize}
   
-  \noindent U tom slučaju kažemo da je algoritma $\mathcal{A}$ $c$--aproksimativni algoritam.
-  Primjer problema za koji postoji apsolutni apriksimativni algoritam je bojenje planarnog grafa (eng. \emph{Planar Graph Coloring}). Primjer problema za koji postoji relativni apriksimativni algoritam je pokrivanje čvorova. 
+  \noindent U tom slučaju kažemo da je algoritma $\mathcal{A}$ $c$--aproksimativni algoritam. U literaturi ili na internetu, čitalac može pronaći primjere problema za koji postoji apsolutni apriksimativni algoritam (na primjer, bojenje planarnog grafa, eng. \emph{Planar Graph Coloring}), odnosno primjer problema za koji postoji relativni apriksimativni algoritam. U sljedećoj sekciji će biti prikazan jedan takav, problem,  problem pokrivanja čvorova. 
   
   \subsection{Aproksimativni algoritmi za problem pokrivanja čvorova}
   
@@ -5847,7 +5846,7 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje.
 
   	\caption{Primjer pokrivača čvora.}   	\label{fig:vertex-cover}
   \end{figure}
-  Neka je dat graf $G=(V,E)$. Potrebno je naći podskup $C\subseteq V$ najmanje kardinalnosti td. barem jedan čvor svake grane pripada skupu $C$.  Dopustivo rješenje je svaki podskup $C$ koji zadovoljava uslov problema. Takav skup se naziva \emph{pokrivač} čvorova grafa $G$. Primjer pokrivača jednog grafa je dat na Slici~\ref{fig:vertex-cover} gdje pokrivač uključuje sve čvorove crvene boje. 
+  Neka je dat graf $G=(V,E)$. Potrebno je naći podskup $C\subseteq V$ najmanje kardinalnosti, takad da barem jedan čvor svake grane pripada skupu $C$.  Dopustivo rješenje je svaki podskup $C$ koji zadovoljava uslov problema. Takav skup se naziva \emph{pokrivač} čvorova grafa $G$. Primjer pokrivača jednog grafa je dat na Slici~\ref{fig:vertex-cover} gdje pokrivač uključuje sve čvorove crvene boje. 
   
 
   
