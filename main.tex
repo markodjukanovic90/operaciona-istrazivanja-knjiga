@@ -6308,6 +6308,8 @@ Iz prethodnog bi slijedilo da Algoritam~\ref{alg:ss} daje $2H_n$--aproksimaciju.
  	\item upravljano lokalno pretraživanje (eng. \emph{Guided Local Search})  -- GLS.
  \end{itemize}
 
+U nastavku ovog poglavlja, detaljnije će biti objašnjena po jedna metaheuristika iz grupe populacionih metoda (genetski algoritam) i iz grupe metoda koje u procesu pretrage raspolažu samo jednom tačkom (metoda promjenljivih okolina). Pored ove dvije metode, biće objašnjen i princip lokalnog pretraživanja. Čitaocu preporučujemo da se, koristeći se internet izvorima, manje ili više detaljno upozna i sa drugim metaheuristikama, koje su nabrojane u ovom odjeljku.
+
 
 \subsection{Genetski algoritmi}\label{intro:ga}
 
@@ -6317,9 +6319,9 @@ Kao što je već rečeno, u osnovi se podrazumijeva rad sa populacijom jedinki, 
 
 Osnovni okvir za funkcionisanje genetskih algoritama je prezentovan jo 175. godine od strane Džona Holanda, u čuvenoj knjizi ``Adaptation in natural and artificial system''.
 
-Svakoj jedinki se dodjeljuje brojevna vrijednost, tzv. prilagođenost (engl.  \emph{fitness}), koja ocjenjuje kvalitet posmatrane jedinke. Cilj genetskog algoritma je da se iz iteracije u iteraciju pronalaze jedinke sa sve boljom prilagođenošću, pod čime se smatra i pojedinačno poboljšanje svake jedinke, ali i prosječna prilagođenost kompletne populacije, što se postiže standardnim genetskim operatorima: selekcijom, ukrštanjem i mutacijom.
+Svakoj jedinki se dodjeljuje brojevna vrijednost, tzv. prilagođenost (engl.  \emph{fitness}), koja ocjenjuje kvalitet posmatrane jedinke. Cilj genetskog algoritma je da se, iz iteracije u iteraciju, pronalaze jedinke sa sve boljom prilagođenošću, pod čime se smatra i pojedinačno poboljšanje svake jedinke, ali i prosječna prilagođenost kompletne populacije, što se postiže standardnim genetskim operatorima: \textit{selekcijom}, \textit{ukrštanjem} i \textit{mutacijom}.
 
-Populacija je centralna struktura kod genetskog algoritma i ona  obično broji od nekoliko, pa do nekoliko stotina jedinki (u rijetkim situacijama i do hiljadu). Svaka jedinka se predstavlja genetskim kodom, koji se zapisuje nad nekom konačnom azbukom (najčešće binarnoj ili pak cjelobrojnoj).
+Populacija je centralna struktura kod genetskog algoritma i ona  obično broji od nekoliko, pa do nekoliko stotina jedinki (u rijetkim situacijama i do hiljadu). Svaka jedinka se predstavlja genetskim kodom, koji se zapisuje nad nekom konačnom azbukom (najčešće binarnom ili pak cjelobrojnom).
 
 
 Početna populacija se obično kreira na slučajan način, čime se omogućava kreiranje raznovrsnog genetskog materijala, korisnog za kasnije faze algoritma i raznovrsnost samih jedinki. U nekim slučajevima se za generisanje polaznih jedinki koristi i neka druga heuristika, čime se pretraga od početka usmjerava ka onim oblastima pretraživanja za koje se pretpostavlja da sadrže kvalitetnija rješenja.
@@ -6639,7 +6641,7 @@ Postoje različite strategije koliko dugo se izvršava lokalna pretraga. U opšt
  \chapter{Optimizacioni Rješavači}
  
  Kao što smo i pomenuli u uvodnoj sekciji, konstrukcija modela koji (najčešće) odgovara idealizivanoj verziji realnog problema je 
- dio koji uzima najveći dio vremena u operacinim istraživanjima. Kada dođemo do modela koji približno odgovara potrebama uprave koja naručuje sistem, rješavanje modela se svodi na pozivanje odgovarajućih rješavača. Neki od najpoznatijih su 
+ dio koji uzima najveći dio vremena u operacionim istraživanjima. Kada dođemo do modela koji približno odgovara potrebama uprave koja naručuje sistem, rješavanje modela se svodi na pozivanje odgovarajućih rješavača. Neki od najpoznatijih su 
  CPLEX koji može biti pozivan u Javi, $C$++ i Python-u uz pomoć odgovarajućih API-ja, zatim Lindo, Gurobi te modul PuLP u Python-u, među ostalima.  
  
  U nastavku opisujemo korištenje CPLEX i PuLP rješavača za implementaciji modela i njihovog rješavanja. 
@@ -6648,19 +6650,19 @@ Postoje različite strategije koliko dugo se izvršava lokalna pretraga. U opšt
  %https://www.youtube.com/watch?v=J7tNzCsYgy8
  
  \section{Optimizacioni rješavač CPLEX}
- CPLEX alat je generalni rješavač za rješavanje optimizacionih problema, a među njima izdvajamo klase problema LP, ILP i MILP-a. Konstruisan je od strane IBM-a, i može se potpuno besplatno preuzeti sa linka 
+ CPLEX alat je generalni rješavač za rješavanje optimizacionih problema, a među njima izdvajamo klase problema LP, ILP i MILP-a. Konstruisan je za komercijalnu upotrebu od strane kompanije IBM. Različite verzije ovog programa, uključujući i besplatnu verziju koja sadrži određena ograničenja u mogućnostima, mogu se preuzeti preko linka 
  
  \url{https://www.ibm.com/products/ilog-cplex-optimization-studio}. 
  
- On je dio \emph{IBM ILOG CPLEX Optimization Studio}-a koji uključuje i druge opcije poput \emph{Constraint Programming} (CP) solvera itd.
+Dio \emph{IBM ILOG CPLEX Optimization Studio}-a koji uključuje i druge opcije poput \emph{Constraint Programming} (CP) solvera itd.
  
- U nastavku opisujemo proces same implementacije modela u CPLEX-u kroz programski jezik $C$++.
+ U nastavku opisujemo proces same implementacije modela u CPLEX-u kroz programski jezik $C$++ u Linux okruženju.
  Da bismo ukljucili CPLEX u $C$++ kod, nepohodno je koristiti sljedeći kod:
  \begin{verbatim}
  	#include<ilcplex/ilocplex.h>
  	ILOSTLBEGIN
  \end{verbatim}
-ili mjesto prve linije uključiti (pomoću \#include) ilocplex.h fajl sa apsolutnom putanjom do njega samoga. 
+ili umjesto prve linije uključiti (pomoću \#include) ilocplex.h fajl sa apsolutnom putanjom do njega samoga. 
 
  Da bi se inicijalizovao LP model, neophodno je prvo inicijalizovati okrizenje za modelovanje. Dakle, konstruišemo objekat klase \emph{IloEnv} sa: 
  \begin{verbatim}
@@ -6690,11 +6692,11 @@ ili mjesto prve linije uključiti (pomoću \#include) ilocplex.h fajl sa apsolut
  
  \noindent Sljedeći korak je implementacija varijabli, funkcije cilja i ograničenja u modelu. 
  
- \noindent \textbf{\emph{Implementacija varijabli u modelu}}. Ako želimo da deklarisemo (realnu) varijablu $x$ gdje je $0 \leq x \leq 40$, koristimo klasu \emph{IloNumVar}, što odgovara sljedećoj liniji koda:
+ \noindent \textbf{\emph{Implementacija varijabli u modelu}}. Ako želimo da deklarisemo (realnu) varijablu $x$ gdje je, na primjer, $0 \leq x \leq 40$, koristimo klasu \emph{IloNumVar}, što odgovara sljedećoj liniji koda:
  \begin{verbatim}
  	IloNumVar x = IloNumVar(env, 0.0, 40.0);
  \end{verbatim}
- Ova definicija je ekvivalentna dodavanjem u prethodnom konstruktoru \texttt{ILOFLOAT} konstante kao četvrti argument. 
+ Ova definicija je ekvivalentna dodavanjem  \texttt{ILOFLOAT} konstante kao četvrti argument u prethodnom konstruktoru. 
 Ako je potrebno implementirati varijablu za koju je $x \geq 0$ to radimo kao u prethodnom primjeru uz korištenje  \emph{IloInfinity} konstante.
  
  Ako želimo da implementiramo varijablu koja je cjelobrojna, recimo binarna varijabla, imamo sljedeći kod:
@@ -6702,7 +6704,7 @@ Ako je potrebno implementirati varijablu za koju je $x \geq 0$ to radimo kao u p
  	IloNumVar x = IloNumVar(env, 0.0, 1.0, ILOINT);
  \end{verbatim}
  
- \noindent Ako je potrebno definisati vektor promjenjivih $x=(x_1,...,x_n)$, gdje je recimo $x_i \geq 1$, onda se definiše objekat klase \emph{IloNumVarArray}, tj.:
+ \noindent Ako je potrebno definisati vektor promjenjivih $x=(x_1,...,x_n)$, gdje je, recimo, $x_i \geq 1$, onda se definiše objekat klase \emph{IloNumVarArray}, tj.:
  \begin{verbatim}
  	IloNumVarArray x(env);
  	for(int i = 0; i < n; ++i){
@@ -6725,7 +6727,7 @@ Ako je potrebno implementirati varijablu za koju je $x \geq 0$ to radimo kao u p
  	}
  \end{verbatim}
  
- \noindent \textbf{\emph{Implementiranje funkcije cilja u modelu}}. 
+ \noindent \textbf{\emph{Implementacija funkcije cilja u modelu}}. 
  Postoje dvije klase koje služe za deklarisanje funkcija cilja: \emph{IloMaximize} i \emph{IloMinimize}, zavisno od toga da li riječ maksimizaciji ili minimizaciji funkcije cilja.  \emph{IloMaximize} objektu se prosljeđuju dva parametra: objekat \emph{IloEnv} okruženja, te objekat klase \emph{IloExpr} čime se definiše  izraz koji odgovara funkciji cilja. 
  
  \begin{verbatim}
@@ -6802,7 +6804,7 @@ Ako je potrebno implementirati varijablu za koju je $x \geq 0$ to radimo kao u p
      \begin{itemize}
      	\item \emph{vals} -- numerički niz (najčešće instanca klase \emph{IloNumArray}) u koju će se kopirati rješenja odgovarajućih dualnih promjenjivih;
      	\item \emph{con} -- ograničenja u modelu (instanca klase \emph{IloRangeArray}) za koje se računaju koeficijenti odgovarajućih dualnih promjenjivih;
-     	\item \emph{getMIPRelativeGap()}: vraća vrijednost relativne udaljenost ($\in [0, 1]$) između najboljeg dopustivog rješenja (nađenog od strane CPLEX-a) i dokazane gornje granice optmalnog rješenja (koje su rezultat raznih internih tehnika -- kao što su B\&B -- pozvane od strane rješavača).
+     	\item \emph{getMIPRelativeGap()}: vraća vrijednost relativne udaljenosti (realna vrijednost iz intervala $[0, 1]$) između najboljeg dopustivog rješenja (nađenog od strane CPLEX-a) i dokazane gornje granice optimalnog rješenja (koje su rezultat raznih internih tehnika -- kao što je na primjer B\&B -- pozvane od strane rješavača).
      \end{itemize}
 \end{itemize}
 Eksportovanje modela za eventualno ponovno korištenje se može dobiti pozivom metoda \emph{exportModel}, čiji je očekivani argument naziv fajla u koji će se model upisati (.$lp$ ekstenzija).  
@@ -6822,8 +6824,8 @@ O ostalim parametrima kojima podešavamo rješavač može se pročitati na
  % https://coin-or.github.io/pulp/main/the_optimisation_process.html
  PuLP je biblioteka visokog nivoa za implementaciju modela i njihovo rješavanje, izgrađena u programskom jeziku Python.  
  Ona omogućava korisniku da kreira programe koristeći izraze prirodne za ovaj programski jezik,  
- pri tome izbjegavajući pojavljivanje specijalne sintakse gdje god je to moguće. Biblioteka PuLP je fokusirana na podršci modelovanju i rješavanju LP i MILP modela. Interesantno je da PuLP 
- ne zavisi od nekih drugih softverskih paketa.   Podržava mnogo komercijalnih i nekomercijalnih rješavača, te može biti proširena da podržava dodatne rješavače. 
+ pri tome izbjegavajući pojavljivanje specijalne sintakse gdje god je to moguće. Biblioteka PuLP je fokusirana na podršku modelovanju i rješavanju LP i MILP modela. Interesantno je da PuLP 
+ ne zavisi od nekih drugih softverskih paketa.   Podržava veći broj komercijalnih i nekomercijalnih rješavača, te može biti proširena da podržava i dodatne rješavače. 
  
  PuLP radi na principu modularnog pristupa prevođenja modela napisanog prema definisanim pravilima na njegovu vektorsku prezentaciju (koja koristi vektore, rijetke matrice itd.), nakon čega je tako konvertovani model proslijeđen u interfejs klase nekog od rješavača. Kako je interfejs mnogih rješavača sličan, ili se sa njima rukuje tako što se model napiše u standardnim .$lp$ ili .$mps$  formatima  datoteka, generičke klase rješavača su uključene  u PuLP biblioteku, pored njenih specifičnih interfejsa.  %popularnih rješavača. 
  Ove generičke klase se mogu proširiti od strane korisnika koji žele koristiti nove rješavače, uz minimalan trud.   
