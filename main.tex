@@ -6823,14 +6823,13 @@ O ostalim parametrima kojima podešavamo rješavač može se pročitati na
  % http://www.optimization-online.org/DB_FILE/2011/09/3178.pdf
  % https://coin-or.github.io/pulp/main/the_optimisation_process.html
  PuLP je biblioteka visokog nivoa za implementaciju modela i njihovo rješavanje, izgrađena u programskom jeziku Python.  
- Ona omogućava korisniku da kreira programe koristeći izraze prirodne za ovaj programski jezik,  
- pri tome izbjegavajući pojavljivanje specijalne sintakse gdje god je to moguće. Biblioteka PuLP je fokusirana na podršku modelovanju i rješavanju LP i MILP modela. Interesantno je da PuLP 
- ne zavisi od nekih drugih softverskih paketa.   Podržava veći broj komercijalnih i nekomercijalnih rješavača, te može biti proširena da podržava i dodatne rješavače. 
+ Ona omogućava korisniku da kreira programe koristeći izraze prirodne za ovaj programski jezik. Biblioteka PuLP je fokusirana na podršku modelovanju i rješavanju LP i MILP modela. Interesantno je da PuLP 
+ ne zavisi od  drugih softverskih paketa.   Podržava veći broj komercijalnih i nekomercijalnih rješavača, te može biti proširena da podržava i dodatne rješavače. 
  
  PuLP radi na principu modularnog pristupa prevođenja modela napisanog prema definisanim pravilima na njegovu vektorsku prezentaciju (koja koristi vektore, rijetke matrice itd.), nakon čega je tako konvertovani model proslijeđen u interfejs klase nekog od rješavača. Kako je interfejs mnogih rješavača sličan, ili se sa njima rukuje tako što se model napiše u standardnim .$lp$ ili .$mps$  formatima  datoteka, generičke klase rješavača su uključene  u PuLP biblioteku, pored njenih specifičnih interfejsa.  %popularnih rješavača. 
- Ove generičke klase se mogu proširiti od strane korisnika koji žele koristiti nove rješavače, uz minimalan trud.   
+ Ove generičke klase se, uz minimalan trud, mogu proširiti od strane korisnika koji žele da koristi nove rješavače.   
  
- Da bismo koristili PuLP biblioteku, treba da ga importujemo na sljedeći način:
+ Da bismo koristili PuLP biblioteku, treba da je importujemo na sljedeći način:
  \begin{verbatim}
  	  from pulp import *
  \end{verbatim}
@@ -6842,12 +6841,12 @@ O ostalim parametrima kojima podešavamo rješavač može se pročitati na
  \end{verbatim}
 Ovdje znači da je riječ o modelu čija se funkcija cilja minimizuje. Ako bi bilo potrebno da maksimizujemo, drugi argument bi tada bio \texttt{LpMaximize}. 
 
-\textbf{\emph{Implementiranje varijabli u modelu}}.  Za inicijalizaciju varijabli koristi se klasa \emph{LpVariable}. Ona ima četiri atributa: prvi je naziv varijable, drugi označava donju granica vrijednosti varijable, treći označava gornju granicu vrijednosti varijable, dok četvrti označava tip varijable. Tip varijable koji je se može odabrati je \texttt{LpContinuous} ili \texttt{LpInteger}, označavajući neprekidnu (realnu) i diskretnu varijablu, redom.  
+\textbf{\emph{Implementacija varijabli u modelu}}.  Za inicijalizaciju varijabli koristi se klasa \emph{LpVariable}. Ona ima četiri atributa: prvi je naziv varijable, drugi označava donju granicu vrijednosti varijable, treći označava gornju granicu vrijednosti varijable, dok četvrti označava tip varijable. Tip varijable, koji je se može odabrati je \texttt{LpContinuous} ili \texttt{LpInteger}, označavajući neprekidnu (realnu) i diskretnu varijablu, redom.  
 Ako želimo deklarisati varijablu $x_1\geq 0$, koja je neprekidna, to radimo sljedećom linijom koda:
 \begin{verbatim}
 	 x1 = LpVariable( "x1", 0, None, LpContinuous)
 \end{verbatim}
-\textbf{\emph{Implementacija funkcije cilja u modelu}}. Uz pomoć definisanih varijabli, koristeći operatore iz skupa $\{+,-, \cdot \}$, dodajemo takvu funkciju na instancu problema (koristeći operator +=). Primjera radi, ako želimo da modelujemo funkciju cilja $x_1 + x_2$ (neprekidnih, pozitivnih varijabili), to bi uradili na sljedeći način:
+\textbf{\emph{Implementacija funkcije cilja u modelu}}. Uz pomoć definisanih varijabli, koristeći operatore iz skupa $\{+,-, \cdot \}$, dodajemo takvu funkciju na instancu problema (koristeći operator +=). Primjera radi, ako želimo da modelujemo funkciju cilja $x_1 + x_2$, gdje su obje varijable neprekidne i pozitivne, to bi uradili na sljedeći način:
 \begin{verbatim}
 	 x1 = LpVariable("x1", 0, None)
 	 x2 = LpVariable("x2", 0, None) 
@@ -6860,13 +6859,15 @@ Ako želimo deklarisati varijablu $x_1\geq 0$, koja je neprekidna, to radimo slj
 \end{verbatim}
 Upisivanje modela u .$lp$ format se vrši pozivom funkcije \emph{writeLP()}, čiji je očekivani argument naziv fajla. 
 
- \noindent \textbf{\emph{Metode za eksport rješenja (statistike) iz modela}}. Rješavanje modela se inicira pozivom funkcije \emph{solve}() na instancu modela. Kriterijumi za zaustavljanje izvršavanja rješavača postavljamo koa parametar metoda \emph{solve}()  uz pomoć sljedećeg koda:
+ \noindent \textbf{\emph{Metode za eksport rješenja (statistike) iz modela}}. Rješavanje modela se inicira pozivom funkcije \emph{solve}() na instancu modela. Kriterijumi za zaustavljanje izvršavanja rješavača postavljamo kao parametar metoda \emph{solve}()  uz pomoć sljedećeg koda:
  \begin{verbatim}
     PULP_CBC_CMD(maxSeconds=1000, msg=1, fracGap=0) 
 \end{verbatim}
-koji kontroliše maksimalno vrijeme izvršavanja rješavača, poruke o napretku rješavača u nalasku novih najboljih rješenja, te maksimalni željeni \emph{gap} nakon koga rješavač prekida izvršavanje. Napomenimo da je po defaultu \emph{The COIN Branch and Cut} (CBC) rješavač izabran za rješavanje u PuLP modulu. Više o podešavanju solvera pročitati na \url{https://coin-or.github.io/pulp/guides/how_to_configure_solvers.html}.  %https://coin-or.github.io/pulp/technical/solvers.html
+koji kontroliše maksimalno vrijeme izvršavanja rješavača, poruke o napretku rješavača prilikom pronalaženja novih najboljih rješenja, te maksimalni željeni \emph{gap} nakon koga rješavač prekida izvršavanje.
+
+ Napomenimo da je po defaultu \emph{The COIN Branch and Cut} (CBC) rješavač izabran za rješavanje u PuLP modulu. Više o podešavanju solvera pročitati na \url{https://coin-or.github.io/pulp/guides/how_to_configure_solvers.html}.  %https://coin-or.github.io/pulp/technical/solvers.html
  %which controls the maximum time (in seconds), the level of messaging (to see the progress CBC makes) and the max GAP you desire to have (another stop condition in addition to maxSeconds).
- Čitanje svih varijabli iz modela ide pomoću funkcije \emph{variables()}. Svaka varijabla za atribute ima svoj naziv (atribut \emph{name}), te vrijednost koju je dobila pri rješavanju modela nekim od rješavača (atribut \emph{varValue}). Atribut \emph{objective} instance modela nosi (najbolju) vrijednost funkcije cilja dobijene rješavanjem modela. Status rješavanja se dobija iz atributa \emph{status} objekta modela. 
+ Čitanje svih varijabli iz modela se postiže pomoću funkcije \emph{variables()}. Svaka varijabla za atribute ima svoj naziv (atribut \emph{name}), te vrijednost, koju je dobila pri rješavanju modela nekim od rješavača (atribut \emph{varValue}). Atribut \emph{objective} instance modela nosi (najbolju) vrijednost funkcije cilja dobijene rješavanjem modela. Status rješavanja se dobija iz atributa \emph{status} objekta modela. 
  
  \begin{verbatim}
  	print "Status:", LpStatus[prob.status]
@@ -6943,7 +6944,9 @@ koji kontroliše maksimalno vrijeme izvršavanja rješavača, poruke o napretku 
  \end{verbatim}
  Optimalna vrijednost ove instance je 202.0, a dostiže se za vrijednost varijabli $x = (1, 0, 0)$, te $y_{11}= y_{12}= y_{13} = 1$, dok su ostale vrijednosti 0.
  
- Još neke probleme riješene uz pomoć PuLp modula nađite na \url{https://www.programcreek.com/python/example/96845/pulp.LpProblem}. 
+Preporučujemo da na linku \url{https://www.programcreek.com/python/example/96845/pulp.LpProblem}
+pronađete još nekoliko problema, koji su riješeni uz pomoć PuLp modula.
+ . 
  \section{Primjena CPLEX rješavača na problem stringova}
  
  % opisati RFLCS problem, modelovati ga:
@@ -6952,7 +6955,7 @@ koji kontroliše maksimalno vrijeme izvršavanja rješavača, poruke o napretku 
  	\item $s$ je zajednički podniz oba stringa; 
  	\item $s$ ne sadrži karakter koji se u njemu pojavljuje dva ili više puta.
  \end{itemize}
-Za ovaj problem je poznato da je NP-težak, ili preciznije pripada APX klasi.  
+Za ovaj problem je poznato da je NP-težak, ili preciznije pripada APX klasi. Zainteresovanom čitaocu preporučujemo da se, koristeći se internet resursima, upozna sa specifičnostima APX klase problema.
 
 Za primjer, neka su data dva stringa $s_1 = \texttt{abdcccab}$ i $s_2=\texttt{abccacd}$, rješenje ovog problema je $s=\texttt{abc}$. Primijetimo da je $s$ zajednički podniz za oba ulazna stringa te da ispunjava uslov o ``neponavljajućim'' karakterima u sebi. Takođe, može se provjeriti da ne postoji duži zajednički podniz sa takvim svojstvom za ove ulazne stringove, što znači da je ovo rješenje optimalno. Konstruišimo sada jedan model binarnog cjelobrojnog programiranja za ovaj problem. 
 
