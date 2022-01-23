@@ -2406,7 +2406,7 @@ Da bi se uvidjele sličnosti i razlike između Simpleks metode i Metode unutraš
    \label{fig:optimality-approaching-interior}
 \end{figure}
 Paralelizovani objektno orjentisani optimizacioni siftver baziran na metodi unutrašnje tačke se može naći na 
-\url{https://www.maths.ed.ac.uk/~gondzio/parallel/solver.html}.  \\
+linku koji je dat pod referencom~\cite{cite_key25}. %\url{https://www.maths.ed.ac.uk/~gondzio/parallel/solver.html}.  \\
 
 %https://optimization.cbe.cornell.edu/index.php?title=Interior-point_method_for_LP
 \begin{comment}
@@ -5812,7 +5812,7 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje.
 
 \noindent \emph{Primjer}.  Neka su data dva stringa: $s_1 = \texttt{acb}, s_2 = \texttt{bac}$. Ako uzmemo  $ b$ kao prvi karakter, rješenje koje dobijamo je \texttt{b}. Medjutim, optimalno rješenje je string $s=\texttt{ac}$. 
 
-\section{Aproksimativni algoritmi}
+\section{Aproksimativni algoritmi} 
   %https://home.cs.colorado.edu/~srirams/courses/csci5654-fall13/ilpLectures.pdf
   
    Za veliki broj kompleksnih optimizacionih problema u praksi jednostavno ne postoje efikasni egzaktni algoritmi, te je za  njihovo rješavanje potrebano izdvojiti ogromne vremenske/memorijske resurse. Možemo reći da za  ovakve probleme nije poznat (egzaktan) algoritam koji se izvršava u polinomijalnom vremenu $O(|P|)$, gdje je $P \in \emph{Poly}$ neki polinom iz vektorskog prostora polinoma \emph{Poly}. Sa druge strane, većina pohlepnih algoritama, ali i naprednijih heuristika, ne daje nikakvu garanciju na kvalitet nađenog rješenja. Negdje između egzaktnih i heurističkih algoritama su se pozicionirali \emph{aproksimativni algoritmi}, koji su polinomijalni, daju dopustiva rješenja uz garanciju o njihovom kvalitetu. 
@@ -6255,7 +6255,7 @@ Iz prethodnog bi slijedilo da Algoritam~\ref{alg:ss} daje $2H_n$--aproksimaciju.
  \end{comment} 
   
 \section{Heurističke metode}
- U prethodnom odjeljku smo vidjeli da za aproksimativne algoritme vrijedi važna osobina da se rješavanjem problema ne garantuje pronalazak optimalnog rješenja, ali postoji garancija da se rješenje nalazi unutar nekog faktora kvaliteta ($c$), u odnosu na optimalno rješenje. \fxnote{nije dobar izraz unutar faktora - ispraviti i gore}
+ U prethodnom odjeljku smo vidjeli da za aproksimativne algoritme vrijedi važna osobina da se rješavanjem problema ne garantuje pronalazak optimalnog rješenja, ali postoji garancija da se rješenje nalazi unutar nekog faktora kvaliteta ($c$), u odnosu na optimalno rješenje.  
  Drugim riječima, za rješenja dobijena aproksimativnim algoritmima se zna koliko maksimalno mogu da odstupaju od optimalnog rješenja, a to odstupanje je određeno faktorom kvaliteta.
  
  Posebna vrsta približnih metoda (metoda koje ne daju i/ili ne garantuju pronalazak optimalnog rješenja pri smo završetku) su tzv. heurističke metode. 
@@ -6650,19 +6650,17 @@ Postoje različite strategije koliko dugo se izvršava lokalna pretraga. U opšt
  %https://www.youtube.com/watch?v=J7tNzCsYgy8
  
  \section{Optimizacioni rješavač CPLEX}
- CPLEX alat je generalni rješavač za rješavanje optimizacionih problema, a među njima izdvajamo klase problema LP, ILP i MILP-a. Konstruisan je za komercijalnu upotrebu od strane kompanije IBM. Različite verzije ovog programa, uključujući i besplatnu verziju koja sadrži određena ograničenja u mogućnostima, mogu se preuzeti preko linka 
+ CPLEX alat je generalni rješavač za rješavanje optimizacionih problema, a među njima izdvajamo klase problema LP, ILP i MILP-a. Konstruisan je za komercijalnu upotrebu od strane kompanije IBM. Različite verzije ovog programa, uključujući i besplatnu verziju koja sadrži određena ograničenja u mogućnostima, mogu se preuzeti preko linka koji je dat u referenci~\cite{cite_key24}. 
  
- \url{https://www.ibm.com/products/ilog-cplex-optimization-studio}. 
- 
-Dio \emph{IBM ILOG CPLEX Optimization Studio}-a koji uključuje i druge opcije poput \emph{Constraint Programming} (CP) solvera itd.
+\emph{IBM ILOG CPLEX Optimization Studio} uključuje i druge opcije poput \emph{Constraint Programming} (CP) solver.
  
  U nastavku opisujemo proces same implementacije modela u CPLEX-u kroz programski jezik $C$++ u Linux okruženju.
- Da bismo ukljucili CPLEX u $C$++ kod, nepohodno je koristiti sljedeći kod:
+ Da bismo uključili CPLEX u $C$++ kod, nepohodno je koristiti sljedeći kod:
  \begin{verbatim}
  	#include<ilcplex/ilocplex.h>
  	ILOSTLBEGIN
  \end{verbatim}
-ili umjesto prve linije uključiti (pomoću \#include) ilocplex.h fajl sa apsolutnom putanjom do njega samoga. 
+ili umjesto prve linije uključiti (pomoću \#include) ilocplex.h fajl sa apsolutnom putanjom do njega. 
 
  Da bi se inicijalizovao LP model, neophodno je prvo inicijalizovati okrizenje za modelovanje. Dakle, konstruišemo objekat klase \emph{IloEnv} sa: 
  \begin{verbatim}
@@ -6817,8 +6815,8 @@ dok recimo podešavanje broja jezgara pri izvršavanju CPLEX-a
 \begin{verbatim}
 	cplex.setParam(IloCplex::Param::Threads, 1);
 \end{verbatim}
-O ostalim parametrima kojima podešavamo rješavač može se pročitati na 
-\url{https://www.tu-chemnitz.de/mathematik/discrete/manuals/cplex/doc/userman/html/cpxUserAppendixA.html}. 
+O ostalim parametrima kojima podešavamo rješavač može se pročitati iz \textrm{CPLEX} manuala čiji je link dat  među referencama na kraju knjige.
+%\url{https://www.tu-chemnitz.de/mathematik/discrete/manuals/cplex/doc/userman/html/cpxUserAppendixA.html}. 
  \section{PuLP alat}
  % http://www.optimization-online.org/DB_FILE/2011/09/3178.pdf
  % https://coin-or.github.io/pulp/main/the_optimisation_process.html
@@ -6852,22 +6850,22 @@ Ako želimo deklarisati varijablu $x_1\geq 0$, koja je neprekidna, to radimo slj
 	 x2 = LpVariable("x2", 0, None) 
 	 prob += (x1 + x2) # dodavanje funkcije cilja x1+x2 
 \end{verbatim} \\ \vspace{-1.5cm}
-\textbf{\emph{Implementacija ograničenja u modelu}}.  Na sličan način kao i za funkciju cilja, ograničenja se  u model dodaju pomoću operatora +=. Implementacija ograničenja je bliska ograničenjima u modelu, dakle prvo se konstruišu izrazi koji su vezani nekim operatorom poređenja. Primjera radi, ako bi željeli dodati ograničenja $x_1 + 2 x_2 \leq 2$ i $x_1-x_2 \geq 0$   u prethodni model, imamo sljedeće:
+\textbf{\emph{Implementacija ograničenja u modelu}}.  Na sličan način kao i za funkciju cilja, ograničenja se  u model dodaju pomoću operatora +=. Implementacija ograničenja je bliska ograničenjima u modelu, dakle prvo se konstruišu izrazi koji su vezani nekim operatorom poređenja. Primjera radi, ako bi željeli dodati ograničenja $x_1 + 2 x_2 \leq 2$ i $x_1-x_2 \geq 0$   u prethodni model, imamo sljedeći kod:
 \begin{verbatim}
 	 prob +=  x1 + 2 * x2 <=2, "Ogranicenje 1"
 	 prob +=  x1 - x2 >= 0, "Ogranicenje 2" 
 \end{verbatim}
 Upisivanje modela u .$lp$ format se vrši pozivom funkcije \emph{writeLP()}, čiji je očekivani argument naziv fajla. 
 
- \noindent \textbf{\emph{Metode za eksport rješenja (statistike) iz modela}}. Rješavanje modela se inicira pozivom funkcije \emph{solve}() na instancu modela. Kriterijumi za zaustavljanje izvršavanja rješavača postavljamo kao parametar metoda \emph{solve}()  uz pomoć sljedećeg koda:
+ \noindent \textbf{\emph{Metode za eksport rješenja (statistike) iz modela}}. Rješavanje modela se inicira pozivom funkcije \emph{solve}() na instancu modela. Kriterijumi za zaustavljanje izvršavanja rješavača postavljamo kao parametar metoda \emph{solve}()  uz pomoć sljedeće linije koda:
  \begin{verbatim}
     PULP_CBC_CMD(maxSeconds=1000, msg=1, fracGap=0) 
 \end{verbatim}
-koji kontroliše maksimalno vrijeme izvršavanja rješavača, poruke o napretku rješavača prilikom pronalaženja novih najboljih rješenja, te maksimalni željeni \emph{gap} nakon koga rješavač prekida izvršavanje.
+koji kontroliše maksimalno vrijeme izvršavanja rješavača, poruke o napretku rješavača prilikom pronalaženja novih najboljih rješenja, te maksimalni željeni \emph{gap} -- nakon čijeg dostizanja rješavač prekida izvršavanje.
 
- Napomenimo da je po defaultu \emph{The COIN Branch and Cut} (CBC) rješavač izabran za rješavanje u PuLP modulu. Više o podešavanju solvera pročitati na \url{https://coin-or.github.io/pulp/guides/how_to_configure_solvers.html}.  %https://coin-or.github.io/pulp/technical/solvers.html
+ Napomenimo da je po defaultu \emph{COIN Branch and Cut} (CBC) rješavač izabran za rješavanje u PuLP modulu. Više o podešavanju solvera pročitati na linku \cite{cite_key19}.   %https://coin-or.github.io/pulp/technical/solvers.html
  %which controls the maximum time (in seconds), the level of messaging (to see the progress CBC makes) and the max GAP you desire to have (another stop condition in addition to maxSeconds).
- Čitanje svih varijabli iz modela se postiže pomoću funkcije \emph{variables()}. Svaka varijabla za atribute ima svoj naziv (atribut \emph{name}), te vrijednost, koju je dobila pri rješavanju modela nekim od rješavača (atribut \emph{varValue}). Atribut \emph{objective} instance modela nosi (najbolju) vrijednost funkcije cilja dobijene rješavanjem modela. Status rješavanja se dobija iz atributa \emph{status} objekta modela. 
+ Čitanje svih varijabli iz modela se postiže pomoću funkcije \emph{variables()}. Svaka varijabla za atribute ima svoj naziv (atribut \emph{name}), te vrijednost, koju je dobila pri rješavanju modela nekim od rješavača (atribut \emph{varValue}). Atribut \emph{objective} instance modela čuva (najbolju) vrijednost funkcije cilja dobijene rješavanjem modela. Status rješavanja se dobija na osnovu atributa \emph{status} objekta modela. 
  
  \begin{verbatim}
  	print "Status:", LpStatus[prob.status]
@@ -6955,7 +6953,7 @@ pronađete još nekoliko problema, koji su riješeni uz pomoć PuLp modula.
  	\item $s$ je zajednički podniz oba stringa; 
  	\item $s$ ne sadrži karakter koji se u njemu pojavljuje dva ili više puta.
  \end{itemize}
-Za ovaj problem je poznato da je NP-težak, ili preciznije pripada APX klasi. Zainteresovanom čitaocu preporučujemo da se, koristeći se internet resursima, upozna sa specifičnostima APX klase problema.
+Za ovaj problem je poznato da je NP-težak, ili preciznije pripada $\mathcal{APX}$ klasi. Zainteresovanom čitaocu preporučujemo da se, koristeći se internet resursima, upozna sa specifičnostima $\mathcal{APX}$ klase problema.
 
 Za primjer, neka su data dva stringa $s_1 = \texttt{abdcccab}$ i $s_2=\texttt{abccacd}$, rješenje ovog problema je $s=\texttt{abc}$. Primijetimo da je $s$ zajednički podniz za oba ulazna stringa te da ispunjava uslov o ``neponavljajućim'' karakterima u sebi. Takođe, može se provjeriti da ne postoji duži zajednički podniz sa takvim svojstvom za ove ulazne stringove, što znači da je ovo rješenje optimalno. Konstruišimo sada jedan model binarnog cjelobrojnog programiranja za ovaj problem. 
 
@@ -7211,9 +7209,9 @@ Model implementirati:
 ($a$) uz pomoć CPLEX-a; ($b$) uz pomoć PuLP modula. 
 \end{enumerate}
 \begin{thebibliography}{widest entry}
-	\bibitem[1]{cite_key1}  {https://towardsdatascience.com/the-big-picture-of-operations-research-8652d5153aad}
+	\bibitem[1]{cite_key1}  \url{https://towardsdatascience.com/the-big-picture-of-operations-research-8652d5153aad}
 	\bibitem[2]{cite_key2} Hillier, Frederick S. Introduction to operations research. Tata McGraw-Hill Education, 2012.
-	\bibitem[3]{cite_key3}  https://faculty.math.illinois.edu/~mlavrov/
+	\bibitem[3]{cite_key3}  \url{https://faculty.math.illinois.edu/~mlavrov/}
 	 \bibitem[4]{cite_key4}  Bisschop, Johannes. AIMMS optimization modeling. Lulu. com, 2006.
 	  \bibitem[5]{cite_key5} Feillet, Dominique. ``A tutorial on column generation and branch-and-price for vehicle routing problems.'' 4or 8.4 (2010): 407-424.
 	  \bibitem[6]{cite_key6}  Rebeka Čordaš. Linearno programiranje i primjene. Sveu\v cili\v ste J.J.Strossmayera u Osijeku, diplomski rad (2012)
@@ -7224,9 +7222,26 @@ Model implementirati:
 	   \bibitem[11]{cite_key11}     Blum, Christian, Maria J. Blesa, and Manuel Lopez-Ibanez. ``Beam search for the longest common subsequence problem.'' Computers \& Operations Research 36.12 (2009): 3178-3186.
 	 % Odjel za matematiku
 	   \bibitem[12]{cite_key12}   Raidl, Günther R., and Jakob Puchinger. ``Combining (integer) linear programming techniques and metaheuristics for combinatorial optimization.'' Hybrid metaheuristics (2008): 31-62.
-	     \bibitem[13]{cite_key13}      Rahmaniani, Ragheb, et al. "The Benders decomposition algorithm: A literature review." European Journal of Operational Research 259.3 (2017): 801-817.
+	     \bibitem[13]{cite_key13}      Rahmaniani, Ragheb, et al. "The Benders decomposition algorithm: A literature review." European Journal of Operational Research 259.3 (2017): 801--817.
 	     \bibitem[14]{cite_key14}    Raidl, Günther R. ``Decomposition based hybrid metaheuristics.'' European journal of operational research 244.1 (2015): 66-76.
-	      \bibitem[15]{cite_key15}  Hansen, Pierre, Nenad Mladenović, and José A. Moreno Pérez. ``Variable neighbourhood search: methods and applications.'' 4OR 6.4 (2008): 319-360.
+	      \bibitem[15]{cite_key15}  Hansen, Pierre, Nenad Mladenović, and José A. Moreno Pérez. ``Variable neighbourhood search: methods and applications.'' 4OR 6.4 (2008): 319--360.
+	      \bibitem[16]{cite_key15} \url{https://www.tu-chemnitz.de/mathematik/discrete/manuals/cplex/doc/}%userman/html/cpxUserAppendixA.html
+	      \bibitem[17]{cite_key17} \url{https://coin-or.github.io/pulp/main/the\_optimisation\_process.html}
+	      \bibitem[18]{cite_key18} \url{https://www.coin-or.org/PuLP/CaseStudies/index.html}
+	      \bibitem[19]{cite_key19}  \url{https://coin-or.github.io/pulp/guides/how\_to\_configure\_solvers.html}
+          \bibitem[20]{cite_key20}  \url{https://www.youtube.com/watch?v=wxz0NJvKZNM}
+           \bibitem[21]{cite_key21} \url{https://www.youtube.com/watch?v=IposxYVBUnY}
+            \bibitem[22]{cite_key22} \url{http://motor.ece.iit.edu/ms/benders.pdf}
+            \bibitem[23]{cite_key23} \url{https://home.cs.colorado.edu/\~srirams/courses/csci5654-fall13/ilpLectures.pdf}
+  \bibitem[24]{cite_key24}  \url{https://www.ibm.com/products/ilog-cplex-optimization-studio}
+  
+   \bibitem[25]{cite_key25}   \url{https://www.maths.ed.ac.uk/~gondzio/parallel/solver.html}
+   
+    \bibitem[26]{cite_key26} \url{https://homepages.rpi.edu/~mitchj/handouts/gomorycuts/gomorycuts.html}
+   \bibitem[27]{cite_key27}  Williamson, David P., and David B. Shmoys. ``The design of approximation algorithms.'' Cambridge university press, 2011.
+    \bibitem[28]{cite_key28} Adi, Said S., et al. ``Repetition-free longest common subsequence.'' Discrete Applied Mathematics 158.12 (2010): 1315--1324.
+     \bibitem[29]{cite_key29}  Cornuéjols, Gérard, George Nemhauser, and Laurence Wolsey. ``The uncapicitated facility location problem.'' Cornell University Operations Research and Industrial Engineering, 1983.
+    
 \end{thebibliography}
 
 \end{document}
