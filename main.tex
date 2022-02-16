@@ -1779,7 +1779,7 @@ koristeći grafičku metodu.
 	 & 4 x_1 + 2 x_2 \leq 8 \\
 	 & x_1, x_2 \geq 0.
 \end{align*}
-U ovom primjeru detektovati degenerativno bazno rješenje koje je nađeno simpleks metodom. Diskutovati zašto je ono degenerativno. 
+U ovom primjeru detektovati degenerativno bazno rješenje koje je nađeno u nekom koraku simpleks metode. Diskutovati zašto je ono degenerativno. 
 
 \end{enumerate}
 
@@ -3258,7 +3258,7 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
 	\item Problem maksimalnog pokrivanja (eng. \emph{maximum coverage problem}). Neka je u ulazu data kolekcija skupova  $S=\{ S_1, \ldots, S_m\}$ te broj $k \in \mathbb{N}$. Potrebno je naći podskup $S' \subseteq S$, tako da je $|S'|\leq k$, a broj pokrivenih elemenata $|\bigcup_{s' \in S'} s'|$ je maksimizovan. \\
 	Uputstvo. Sa $x_j \in \{0, 1\}$ označimo varijablu koja dobija vrijednost 1 ako je skup $S_i$ odabran u rješenje $S'$, inače 0. Dodatno, sa $y_j \in \{0, 1 \}$ definišemo varijablu koja dobija vrijednost 1 ako je   element $e_j$ pokriven rješenjem.  
 %http://courses.ieor.berkeley.edu/ieor151/lecture_notes/ieor151_lec14.pdf
-	\item $P$-center problem čvorova (eng. \emph{vertex p-center problem}). Formulacija problema je  predstavljena neusmjerenim grafom $G = (I, J, E)$, gdje su čvorovi potražnje predstavljeni  vrhovima $i\in I$, moguće lokacije (servisnih) objekata date su drugim skupom vrhova $j \in J$ , a grane $e_{i,j} \in E$ postoje samo između čvorova $i \in  I$ i čvorova $j \in J$. Nadalje, čvorovima $d_{i,j}\geq 0$ dodjeljujemo pozitivne težine, što predstavlja udaljenost između čvorova $i$ i $j$. Imajte na umu da je moguće imati i udaljenost 0 između čvora potražnje i moguće lokacije objekta. Za svaki čvor $i \in I$ pridružena je težina (zahtjeva) $h_i>0$, koja predstavlja količinu zahtjeva tog čvora. 
+	\item $P$-center problem čvorova (eng. \emph{vertex p-center problem}). Formulacija problema je  predstavljena neusmjerenim grafom $G = (I, J, E)$, gdje su čvorovi potražnje predstavljeni  vrhovima $i\in I$, moguće lokacije (servisnih) objekata date su drugim skupom vrhova $j \in J$ , a grane $e_{i,j} \in E$ postoje samo između čvorova $i \in  I$ i čvorova $j \in J$. Nadalje, čvorovima $d_{i,j}\geq 0$ dodjeljujemo pozitivne težine, što predstavlja udaljenost između čvorova $i$ i $j$. Imajte na umu da je moguće imati i udaljenost 0 između čvora potražnje i moguće lokacije objekta. Za svaki čvor $i \in I$ pridružena je težina (zahtjeva) $h_i>0$, koja predstavlja količinu zahtjeva tog čvora koja je može ispuniti u tom čvoru. 
 	
 	U ovom problemu želimo postaviti $p$ objekata kako bismo smanjili maksimalnu udaljenost između bilo kojeg čvora potražnje i	njegovog servisnog objekta. 
 	\item %https://personal.utdallas.edu/~metin/Or6302/Notes/integer.pdf
