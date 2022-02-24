@@ -2905,7 +2905,7 @@ $$  \sum_{j=1}^n x_{ij} = 1, \forall i =1,\ldots, n$$
  \end{align}
   %Postoje i druga ograničenja koja mogu da se dodaju za eliminaciju podruta, bez gore pomenutog iterativnog procesa, ali o njima će biti riječi u narednim sekcijama. 
  
- \section{Tehnike transformacija u ILP-u}
+ \section{Tehnike transformacija nekih nelinearnih izraza u ILP-u}
  
  \emph{Binarne varijable.} Pretpostavimo da je potrebno uključiti sljedeće aktivnosti: ($i$) izgraditi novo postrojenje ili
 ($ii$) poduzeti reklamnu kampanju ili ($iii$) razviti novi proizvod. Jasno je da su ove odluke korespondiraju ka logičkim odlukama da ili ne, pa ih, prema tome, modelujemo   uvodeći  (binarne) varijable $x_i \in \{0, 1 \}$, $i=1,2,3$. Često se nameće uslov da se najviše jedna od ovih odluka izvrši, što se modeluje sa $\sum_{i=1}^3 x_1 \leq 1$. Ovo ograničenje se obično naziva \emph{ograničenjem sa višestrukim izborom} (eng. \emph{multiple choice constraint}), jer se njime ograničava izbor odluka na najviše jednu od, u ovom slučaju, tri dostupne alternative. 
@@ -3062,20 +3062,31 @@ pa se ograničenja u (\ref{eq: piecewise-constraints}) mogu napisati u obliku
  %https://download.aimms.com/aimms/download/manuals/AIMMS3OM_IntegerProgrammingTricks.pdf
  \emph{Eliminacija proizvoda varijabli}. Generalno, proizvod dvije varijable se može zamijeniti sa jednom varijablom sa dodatnim ograničenjima. Metod prezentovan ovdje se na isti način može proširiti na proizvod više od dvije varijable. Razlikujemo nekoliko slučajeva:
  \begin{itemize}
- 	\item $x_1$ i $x_2$ su binarne varijable. Uvedemo smjenu $y=x_1 x_2$. Sljedeći uslovi će primorati da $y$ primi vrijednost proizvoda:
+ 	\item $x_1$ i $x_2$ su binarne varijable. Uvedemo smjenu $y=x_1 x_2$. Sljedeći uslovi će nametnuti da $y$ dobije vrijednost proizvoda ove dvije binarne varijable:
  	  \begin{align*}
  		      &y \leq x_1 \\
  		      &y \leq x_2 \\
  		      & y \geq x_1 + x_2 - 1 \\
  		      & y \in \{0, 1\}.
  	  \end{align*}
-   \item $x_1$ je binarna, $x_2$ je realna (pozitivna) varijabla, $0 \leq x_2 \leq u$. Opet uvodimo istu smjenu $y= x_1 x_2$ koja je neprekidna, te dodamo sljedeća ograničenja da primoramo $y$ da primi vrijednost proizvoda:
+   
+   Napomenimo da se ova tehnika može generalizovati na slučaj proizvoda $n$ binarnih varijabli, tj. $y = x_1 \cdot \ldots \cdot x_n$, $x_i\in\{0,1\}, i=1,\ldots ,n$ sa sljedećom linearizacijom 
+   \begin{align*}
+   	&y \leq x_1 \\
+   	& \vdots \\
+   	&y \leq x_n \\
+   	& y \geq \sum_{i=1}^n x_i - (n-1) \\
+   	& y \in \{0, 1\}.
+   \end{align*}
+
+   \item $x_1$ je binarna, $x_2$ je realna (pozitivna) varijabla, $0 \leq x_2 \leq u$. Opet uvodimo istu smjenu $y= x_1 x_2$ koja je neprekidna, te dodamo sljedeća ograničenja da primoramo $y$ da dobije vrijednost proizvoda:
     \begin{align*}
     	 &y \leq u x_1 \\
     	 &y \leq x_2 \\
     	 & y \geq x_2 - u(1-x_1) \\
     	 & y \geq 0.
     \end{align*}
+ 
   \item $x_1, x_2$ u obje neprekidne varijable, $l_1 \leq x_1 \leq u_1$, $l_2 \leq x_2 \leq u_2$. Uvedemo varijable $y_1 = \frac{1}{2}( x_1 + x_2) $ i  $y_2 =\frac{1}{2}(x_1 - x_2)$. Tada se izraz $x_1x_2$ može predstaviti u separabilnoj formi $y_1^2 - y_2^2$ koja se zatim može aproksimirati po-dijelovima-linearnim funkcijama. Granice za vrijednosti novih varijabli su 
   $$ \frac{1}{2}(l_1 + l_2) \leq y_1 \leq \frac{1}{2}(u_1 + u_2)$$ i 
   $$ \frac{1}{2}(l_1 - u_2) \leq y_2 \leq \frac{1}{2}(u_1 - l_2) $$
@@ -7260,7 +7271,7 @@ Model implementirati:
    \bibitem[27]{cite_key27}  Williamson, David P., and David B. Shmoys. ``The design of approximation algorithms.'' Cambridge university press, 2011.
     \bibitem[28]{cite_key28} Adi, Said S., et al. ``Repetition-free longest common subsequence.'' Discrete Applied Mathematics 158.12 (2010): 1315--1324.
      \bibitem[29]{cite_key29}  Cornuéjols, Gérard, George Nemhauser, and Laurence Wolsey. ``The uncapicitated facility location problem.'' Cornell University Operations Research and Industrial Engineering, 1983.
-    
+    \bibitem[30]{cite_key30} Asghari, M., Fathollahi-Fard, A. M., Mirzapour Al-e-hashem, S. M. J., \& Dulebenets, M. A. (2022). Transformation and Linearization Techniques in Optimization: A State-of-the-Art Survey. Mathematics, 10(2), 283.
 \end{thebibliography}
 
 \end{document}
