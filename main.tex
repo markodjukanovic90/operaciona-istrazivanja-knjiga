@@ -25,6 +25,10 @@
 % redefinicija nekih konstanti: 
 \renewcommand{\figurename}{Slika}
 \renewcommand{\tablename}{Tabela}
+\newtheorem{primjer}{Primjer}[chapter]
+\renewcommand{\contentsname}{Sadržaj}
+%\renewcommand{\chaptername}{Poglavlje}
+
 \usepackage{url}
 
 \usepackage{fixme}
@@ -160,7 +164,7 @@
 	\vfill
  \includegraphics[width=\textwidth]{Operations-Management.jpg}
 	{\bfseries{\huge
-		Uvod u Operaciona Istraživanja}\\
+		Uvod u operaciona istraživanja}\\
 		\vskip 1cm
 	\large Marko Đukanović  \& Dragan Matić   \\ \vspace{1cm} 
 	 
@@ -181,7 +185,7 @@
 
 \newpage
 \chapter*{Predgovor}
-Ovaj udžbenik je namijenjen studentima koji slušaju uvodni kurs iz Operacionih istraživanja. Po svojoj strukturi i sadržaju udžbenik najviše prati nastavni plan i program za predmet Uvod u operaciona istraživanja, za studente treće godine informatičkog smjera na Prirodno-matematičkog fakulteta Univerziteta u Banjoj Luci.
+Ovaj udžbenik je namijenjen studentima koji slušaju uvodni kurs iz Opera\-cionih istraživanja. Po svojoj strukturi i sadržaju udžbenik najviše prati nastavni plan i program za Operaciona istraživanja, za studente treće godine informatičkog smjera Prirodno-matematičkog fakulteta Univerziteta u Banjoj Luci.
 
 Pretpostavljamo da čitaoci ovog udžbenika u dovoljnoj mjeri vladaju solidnim znanjem iz matematike i programiranja, koje uključuje osnovne linearne algebre (manipulacija vektorima i matricama), teorije grafova, kombinatorike, kalkulusa, teorije algoritama i struktura podataka. Za implementaciju programa linearnog programiranja, podrazumijeva se posjedovanje osnovnih programerskih vještina, koje se stiču u uvodnim kursevima iz programiranja, te poznavanje rada u  programskim jezicima C/C++ i/ili Python. 
 
@@ -200,14 +204,14 @@ Stoga je preporuka da se ovaj udžbenik ne čita isključivo redom, već da se, 
 
 Za uspješno savladavanje gradiva iznesenog u udžbeniku potreban je strpljiv i studiozan rad. Čitaocu se preporučuje i da sve prezentovane primjere detaljno razradi i po potrebi testira na svom računaru, da dodatno analizira ponuđena rješenja, formira svoje mišljenje o rješenjima u udžbeniku i predloži svoja rješenja. Neki zadaci podrazumijevaju i dodatni angažman, koji uključuje prikupljanje potrebnih informacija i iz drugih izvora (na primjer iz pouzdanih internet izvora),  što je u praksi standardan i uobičajen metod za učenje i napredovanje u struci.
 
-Na kraju, želimo da se zahvalimo recenzentima, doc. dr Milani Grbić i doc. dr Aleksandru Kartelju, koji su svojim sugestijama i komentarima poboljšali kvalitet ovog udžbenika. Takođe, zahvaljujemo se na podršci i kolegama sa Katedre za računarstvo i informatiku Prirodno-matematičkog fakulteta Univerziteta u Banjoj Luci.
+Na kraju, želimo da se zahvalimo recenzentima, doc. dr Milani Grbić i doc. dr Aleksandru Kartelju, koji su svojim sugestijama i komentarima poboljšali kvalitet ovog udžbenika. Takođe, zahvaljujemo se na podršci i kolegama sa Katedre za računarske i informatičke nauke Prirodno-matematičkog fakulteta Univerziteta u Banjoj Luci.
 
 \pagenumbering{arabic}
 
 
 \chapter{Predmet izučavanja Operacionih istraživanja}
 
-Operaciona istraživanja su oblast koja pripada matematičkim disciplinama. Ona predstavlja osnovnu disciplinu u menadžmentu, a naziv joj potiče iz njene osnovne uloge, a to je istraživanje  operacija u organizacionim sistemima (logistika, problem raspoređivanja, dodjeljivanja zadataka itd.) gdje je svrha optimizacija (troškova, vremena, ljudskih resursa, opreme itd.). Operaciona istraživanja u osnovi predstavljaju analitički metod rješavanja problema i donošenja odluka koje se primjenjuju u organizaciji raznih sistema i procesa. Metodologija ovih istraživanja  najčešće obuhvata razbijanje problema na bazne komponente te potom njihovo rješavanje u definisanim koracima uz pomoć matematičkog aparata. 
+Operaciona istraživanja su oblast koja pripada matematičkim disciplinama. Ona predstavlja osnovnu disciplinu u menadžmentu, a naziv joj potiče iz njene osnovne uloge, a to je istraživanje  operacija u organizacionim sistemima (logistika, problem raspoređivanja, dodjeljivanja zadataka itd.) gdje je svrha optimizacija (troškova, vremena, ljudskih resursa, opreme itd.). Operaciona istraživanja u osnovi predstavljaju analitički metod rješavanja problema i donošenja odluka koje se primjenjuju u organizaciji raznih sistema i procesa. Metodologija ovih istraživanja  najčešće obuhvata razbijanje problema na bazne komponente, te potom njihovo rješavanje u definisanim koracima uz pomoć matematičkog aparata. 
 
 Koncept operacionih istraživanja potiče iz vremena Drugog svjetskog rata, gdje su vojni planeri razvijali strategiju postavljanja vojske i vojne opreme sa ciljem što veće mobilnosti i efikasnosti. Od tog vremena, pa sve do danas, ove tehnike se primjenjuju u rješavanju velikog broja problema u poslovnom svijetu, industriji, društvenim pitanjima i mnogim drugim aspektima savremenog društva. 
 
@@ -221,17 +225,17 @@ Proces u operacionom istraživanju se ugrubo može predstaviti sljedećim koraci
 \end{itemize}
 Detaljima ovih koraka ćemo se baviti  u narednoj sekciji.
  
-Glavne karakteristike operacionih istraživanja su
+Glavne karakteristike operacionih istraživanja su:
 \begin{itemize}
     \item \emph{Optimizacija:} %Uloga operacionih istraživanja je dohvatiti najbolje performanse pod unaprijed zadanim resursima (limit u vremenu, memoriji, itd.). 
      uključuje poređenja i navođenje pretrage prema potencijalno boljim opcijama.
-    \item \emph{Simulacija}:  podrazumijeva izgradnju modela problema iz koga se dobijaju rješenja koja se akon toga provjeravaju prije nego se implementiraju u realnoj situaciji.
-    \item \emph{Vjerovatnoća i statistika}:  podrazumijeva ($i$) upotreba matematičkih algoritama i podataka u smislu otkrivanja korisnih informacija koje služe u davanju pouzdanih predviđanja u realnom svijetu; ($ii$) testiranja kvaliteta i upotrebljivosti rješenja.
+    \item \emph{Simulacija}:  podrazumijeva izgradnju modela problema iz koga se dobijaju rješenja, koja se nakon toga provjeravaju prije nego što se implementiraju u realnoj situaciji.
+    \item \emph{Vjerovatnoća i statistika}:  podrazumijeva ($i$) upotrebu matematičkih algoritama i podataka u smislu otkrivanja korisnih informacija koje služe za dobijanje pouzdanih predviđanja u realnom svijetu; ($ii$) testiranje kvaliteta i upotrebljivosti rješenja.
 \end{itemize}
  
  Operaciona istraživanja imaju nezamjenjivu ulogu u nizu obasti kao što su problemi raspoređivanja, urbanog planiranja, optimizacije na mrežama i inženjeringu, rutiranja paketa, upravljanja rizicima, upravljanja lancem snabdjevanja i mnogim drugim. 
 
-Pojam Operacionih istraživanja nije jednostavno opisati. U osnovi, Operacona istraživanja su nauka koja se bavi ispitivanjem kako doći do niza efikasnih odluka za skup operacija koje se provode. Operaciona istraživanja rješavaju probleme iz prakse (nazovimo ih biznis problemi) koje ljudima štede novac i vrijeme. Ovi problemi mogu biti raznoliki i po pravilu ne izgledaju naročito povezani jedni sa drugim. Gledajući šire, osnov  im je uvijek isti, donošenje niza odluka da bi se došlo do cilja na što efikasniji način.
+ Operaciona istraživanja rješavaju probleme iz prakse (nazovimo ih biznis problemi), koji ljudima štede novac i vrijeme. Ovi problemi mogu biti raznoliki i po pravilu ne izgledaju naročito povezani jedni sa drugim. Gledajući šire, osnov  im je uvijek isti, donošenje niza odluka da bi se došlo do cilja na što efikasniji način.
 Jedna od najmoćnijih tehnika koje se mogu koristiti u Operacionim istraživanjima je \emph{Matematičko programiranje}. Treba imati na umu da riječ ``programiranje'' nema standardno značenje na koje smo i navikli, već ono u ovom kontekstu označava optimizaciju.   %Diskretna optimizacija 
 
   Put od učenja o problemu kojeg klijent izlaže do pronalaska rješenja može biti jako izazovan. Ovaj proces rješavanja se  dijeli u četiri osnovna nivoa apstrakcije:
@@ -242,24 +246,25 @@ Jedna od najmoćnijih tehnika koje se mogu koristiti u Operacionim istraživanji
       \item Algoritamska rješenja. 
   \end{enumerate}
   
- Pod \emph{biznis problemima}  se ne podrazumijevaju samo problemi iz domena ekonomije, već svi problemi koji imaju primjenu u stvarnom svijetu. Pojam ``biznis'' više odgovara tome da problem nema svoju preciznu matematičku formulaciju, nego je neformalno definisan kroz jezički (deskriptivan) opis.  Najčešće, ovi problemi proizilaze iz problem u industriji i kao takvi se i opisuju. Na primjer, u neformalnom opisu problema raspoređivanja medicinskog osoblja u (tri) smjene, navode se uslovi poput toga da svaki radnik mora da odradi 40 sati sedmično ili da niti jedan radnik ne smije da radi više od dvije noćne smjene u toku sedmice. Nakon opisnog, neformalnog definisanja, naredni korak 
- je formalno definisanje problema, odnosno, spuštanje (opisa) problema na niži nivo apstrakcije. U praksi se ovaj proces odvija iterativno i povezuje se sa terminom \emph{Generički problemi}. 
+ Pod \emph{biznis problemima}  se ne podrazumijevaju samo problemi iz domena ekonomije, već svi problemi koji imaju primjenu u stvarnom svijetu. Pojam ``biznis'' više odgovara tome da problem nema svoju preciznu matematičku formulaciju, nego je neformalno definisan kroz jezički (deskriptivan) opis.  Najčešće, ovi problemi proizilaze iz problema u ekonomiji ili industriji i kao takvi se i opisuju. Na primjer, u neformalnom opisu problema raspoređivanja medicinskog osoblja u (tri) smjene, navode se uslovi poput toga da svaki radnik mora da odradi 40 sati sedmično ili da niti jedan radnik ne smije da radi više od dvije noćne smjene u toku sedmice. Nakon opisnog, neformalnog definisanja, naredni korak 
+ je formalno definisanje problema, odnosno, spuštanje (opisa) problema na niži nivo apstrakcije. U praksi se ovaj proces odvija iterativno i povezuje se sa terminom \emph{Generički problemi}. Na primjer, problem pravljenja rasporeda časova, koji je biznis problem, se može prevesti u generički OR problem bojenja grafa.
 
-Na početku razvoja Operacionih istraživanja kao nauke, pri konceptualizaciji u pozadini nije bilo jakog matematičkog formalizma. Matematičari su prepoznali da se većina biznis problema može  mapirati u generičke familije problema nižeg nivoa. Ovom mapiranju je posvećeno dosta vremena, da bi se na kraju završilo sa nekoliko standardnih generičkih klasa na koje se mapira gotovo svaki problem iz operacionih istraživanja. U praksi, najveći dio vremena se provodi u konvertovanju biznis problema u jedan od poznatih generičkih problema. Nakon toga, rješavanje problema je manje-više standardna procedura. Generički problemi operacionih istraživanja su dovoljno koncizni da se mogu predstaviti preko matematičke notacije. Međutim, u svrhu boljeg razumijevanja, u praksi se koristi jezik modelovanja koji je na višem nivou apstrakcije od njih; tako npr. problemi raspoređivanja se obično opisuju upotrebom "stvarnih" termina, kao što su resursi, aktivnosti, prioriteti, uslovi raspoređivanja i sl. 
+Na početku razvoja Operacionih istraživanja kao naučne discipline nije bilo jakog matematičkog formalizma. Matematičari su prepoznali da se većina biznis problema može  mapirati u generičke familije problema nižeg nivoa. Ovom mapiranju je posvećeno dosta vremena, da bi se na kraju završilo sa nekoliko standardnih generičkih klasa na koje se mapira gotovo svaki biznis problem. U praksi, najveći dio vremena se provodi u prevođenju biznis problema u jedan od poznatih generičkih problema. Nakon toga, rješavanje problema je manje-više standardna procedura. Generički problemi operacionih istraživanja su dovoljno koncizni da se mogu predstaviti  matematičkom notacijom. Međutim, u svrhu boljeg razumijevanja, u praksi se koristi jezik modelovanja koji je na višem nivou apstrakcije. Na primjer, problemi raspoređivanja se obično opisuju upotrebom ``stvarnih'' termina, kao što su resursi, aktivnosti, prioriteti, uslovi raspoređivanja i sl.  
 
-\emph{Paradigma modelovanja}. Kod generičkih operacinih problema koji su definisani jezikom višeg nivoa, notacija je najčešće vezana uz problem koji se razmatra.
-Na primjer, resursi i aktivnosti nisu nešto što se može definisati u, recimo, poznatom problemu trgovačkog putnika. U osnovi, svaki od ovih generičkih problema se može opisati nekom od paradigmi modelovanja. Paradigma modelovanja predstavlja skup pravila koja omogućuju da predstavimo probleme višeg nivoa, koristeći strukture nižeg nivoa, kao što su, recimo, matrice. Kada se primjenjuje ova paradigma, problem se izražava upotrebom matematičke notacije ili algebarskog jezika modelovanja (eng. \emph{Algebraic Modelling Language} (AML)), koji konvertuje matematičku notaciju u matrice koje su proslijeđene sljedećem nivou (\emph{algoritamska rješenja}), koji je sposoban za generisanje rješenja. Najpoznatije paradigme modelovanja su sljedeće: Linearno, Cjelobrojno i Mješovito-cjelobrojno programiranje. Postoje i druge paradigme poput Modelovanje ograničenjima (eng. \emph{Constraint Programming}) i mrežno modelovanje (eng. \emph{Network models}). 
+\emph{Paradigma modelovanja}. Kod generičkih problema koji su definisani jezikom višeg nivoa, notacija je najčešće vezana za problem koji se razmatra.
+Na primjer, resursi i aktivnosti nisu nešto što se može definisati u poznatom problemu trgovačkog putnika. U osnovi, svaki od ovih generičkih problema se može opisati nekom od paradigmi modelovanja. Paradigma modelovanja predstavlja skup pravila koja omogućuju da predstavimo probleme višeg nivoa, koristeći strukture nižeg nivoa, kao što su, na primjer, matrice. Kada se primjenjuje ova paradigma, problem se izražava upotrebom matematičke notacije ili algebarskog jezika modelovanja (eng. \emph{Algebraic Modelling Language} (AML)), koji konvertuje matematičku notaciju u matrice koje su proslijeđene sljedećem nivou (\emph{algoritamska rješenja}), koji generiše rješenja. Najpoznatije paradigme modelovanja su sljedeće: Linearno, Cjelobrojno i Mješovito-cjelobrojno programiranje. Postoje i druge paradigme poput Modelovanje ograničenjima (eng. \emph{Constraint Programming}) i mrežno modelovanje (eng. \emph{Network models}). 
 
 \emph{Algoritamska rješenja}. Algoritam je procedura ili konačan niz instrukcija čijim izvršavanjem možemo riješiti problem. Neki algoritmi su opšti, kao, na primjer, sortiranje ili pretraživanje,  dok su drugi vezani uz specifične probleme. Algoritmi pretrage su izuzetno važni u rješavanju problema operacionih istraživanja. Među njima se izdvajaju ``Branch \& X''-tip algoritama koji rješavaju Cjelobrojne, Mješovito-cjelobrojne probleme kao i probleme zasnovane na modelovanju ograničenjima. Specifično, među ove algoritme spadaju Branch \& Bound (za rješavanje problema cjelobrojnog programiranja), Branch \& Cut, Branch \& Price (tj. metod generisanja kolona), itd.
 
-\emph{Dinamičko programiranje} je još jedna značajna programska paradigmama  u operacionim istraživanjima. Ova familija algoritama rješava probleme tako što eksploatiše optimalnu pod-strukturu problema. Drugim riječima, polazni problem razbijemo na manje potprobleme, koje rješavamo rekurzivno. U rješavanju glavnog problema, koristimo pronađena optimalna rješenja potproblema, izbjegavajući da potprobleme koji se ponavljaju rješavamo više puta. Ova programska paradigma ima značajnu ulogu u rješavanju grafovskih problema. Jedan od najpoznatijih takvih algoritama je \emph{Bellman-Ford}-ov algoritam, nazvan po izumitelju  paradigme dinamičkog programiranja, Ričardu Belmanu. 
+\emph{Dinamičko programiranje} je još jedna značajna programska paradigmama  u operacionim istraživanjima. Ova familija algoritama rješava probleme tako što eksploatiše optimalnu pod-strukturu problema. Drugim riječima, polazni problem razbijemo na manje potprobleme, koje rješavamo rekurzivno. U rješavanju glavnog problema, koristimo pronađena optimalna rješenja potproblema, izbjegavajući da potprobleme koji se ponavljaju rješavamo više puta. Ova programska paradigma ima značajnu ulogu u rješavanju grafovskih problema. 
+%Jedan od najpoznatijih takvih algoritama je \emph{Bellman-Ford}-ov algoritam, nazvan po izumitelju  paradigme dinamičkog programiranja, Ričardu Belmanu. 
 
-U praksi, problemi iz oblasti operacionih istraživanja mogu biti prilično teški za egzaktno rješavanje, što podrazumijeva da je za dobijanje optimalnog rješenja potrebno jako puno vremena i memorijskih resursa. Za potrebe dobijanja brzog (ne obavezno optimalnog) rješenja nam koriste \emph{pohlepni algoritmi}. Oni obično ne mogu 
+U praksi, problemi iz oblasti operacionih istraživanja mogu biti prilično teški za egzaktno rješavanje, što podrazumijeva da je za dobijanje optimalnog rješenja potrebno jako puno vremena i memorijskih resursa. Za potrebe dobijanja brzog (ne obavezno optimalnog) rješenja  koriste se \emph{pohlepni algoritmi}. Oni obično ne mogu 
 da garantuju optimalnost, ali su   po svojoj prirodi jako brzi u nalaženju dovoljno dobrog rješenja. Jedan od najpoznatijih pohlepnih algoritama je \emph{Dajkstrin} algoritam za problem pronalaska najkraćeg puta koji, pri određenim uslovima, nalazi i optimalno rješenje. 
 
 \begin{figure}
     \centering
-    \includegraphics[width=300, height=230pt]{overview.eps}
+    \includegraphics[width=\textwidth]{overview.eps}
     \caption{Četiri nivoa apstrakcije pri rješavanu problema operacionih istraživanja.}
     \label{fig:OR_four_levels}
 \end{figure}
@@ -304,7 +309,9 @@ Postoji nekoliko strana kojih se direktno tiču poslovi firme: (1) vlasnici (dio
  Timovi zaduženi za modelovanje obično provode veliku količinu vremena prikupljajući relevantne podatke o problemu. Mnogo podataka je potrebno prikupiti kako bi se došlo do tačnog razumijevanja problema i dolaska do potrebnih ulaznih podataka za matematički model, koji se konstruiše u narednoj fazi.  Mnogi  podaci često nisu dostupni, bilo zbog toga što informacije nikada nisu sačuvane ili su zastarjele ili su pak sačuvane u pogrešnom formatu.   Članovi tima komuniciraju sa ključnim osobama u upravi, kako bi pronašli sve podatke značajne za projekat. Međutim, mnogi podaci mogu biti prilično ``neprecizni'', tj. mogu biti grube procjene zasnovane na iskustvenim pretpostavkama. Tada se izdvaja značajna količina vremena da bi se poboljšala  
 preciznost podataka, a zatim se proces nastavlja sa najboljim mogućim resursima koji su prikupljeni. 
 
-\textbf{\textit{Primjer.}}  OR studija je urađena za policijsku upravu jednog grada %San Francisca 
+%\textbf{\textit{Primjer.}}
+\begin{primjer}
+ OR studija je urađena za policijsku upravu jednog grada %San Francisca 
 na razvoj računarskog sistema za optimalno raspoređivanje i postavljanje patrolnih službenika. U procjeni   ove studije, identifikovani su sljedeći glavni ciljevi:
 \begin{enumerate}
     \item  Održavati visok nivo sigurnosti građana.
@@ -312,7 +319,7 @@ na razvoj računarskog sistema za optimalno raspoređivanje i postavljanje patro
      \item Minimizovati troškove operacija.
 \end{enumerate}
 Da bi se postigao prvi cilj, policijska uprava i gradska vlada  su zajednički radili na uspostavljanju željenog nivoa zaštite.  Matematički model koji je razvijen je nametnuo uslov da će se postići potreban nivo zaštite preko funkcije cilja.  Da bi se postigao drugi cilj, u samom modelu je uključen i uslov o ravnopravno uravnotežnim radnim satima među policajcima. Treći cilj je ugrađen u model usvajanjem dugoročnog cilja smanjenja broja policajaca potrebnih za postizanje prva dva cilja. 
-
+\end{primjer}
 \section{Proces formulisanja matematičkog modela}
 
 Nakon što se definiše problem odlučivanja, sljedeća faza je formulisanje tog problema u obliku koji je odgovarajući za dalju analizu. Konvencionalni OR pristup se sastoji od konstrukcije matematičkog modela koji na najbolji način odgovara realnom problemu. Prije nego što objasnimo kako konstruisati takav model, recimo nešto o modelima u opštem slučaju, a posebno o matematičkim modelima.
@@ -352,18 +359,20 @@ i kombinuju u jednu složenu mjeru.  Ukupna mjera može biti nešto opipljivo (n
 organizacije.  Nakon što se razvije cjelokupna mjera,  ciljna funkcija se izražava kao matematička funkcija čiji su argumenti varijable odluke. 
 
 % primjer preuzet iz: http://www.mathos.unios.hr/~mdjumic/uploads/diplomski/ČOR03.pdf
-\textbf{\emph{Primjer.}}  Uzmimo jednog proizvođa\v ca negaziranih pi\'ca. On pravi dvije vrste soka: multivitaminski gusti i multivitaminski bistri sok, od sastojaka $A$ i $B$, te vode. Da bi se napravilo 100$l$ multimitaminskog gustog soka potrebno je 3$l$
+\begin{primjer}
+Uzmimo jednog proizvođa\v ca negaziranih pi\'ca. On pravi dvije vrste soka: multivitaminski gusti i multivitaminski bistri sok, od sastojaka $A$ i $B$, te vode. Da bi se napravilo 100$l$ multimitaminskog gustog soka potrebno je 3$l$
 sastojka $A$ i 8$l$ sastojka $B$, a za bistri sok je potrebno 6$l$ sastojka $A$ i 4$l$ sastojka $B$. Sto litara gustog soka nosi zaradu od 100KM, a 100$l$ bistrog zaradu od 125KM. Proizvođa\v c u skladi\v stu
 ima na raspolaganju 30$l$ sastojka $A$ i 44$l$ sastojka $B.$ Napravljene sokove sipa u burad. Za
 gusti sok ima bure u koje stane 500$l$ teku\' cine, a za bistri sok bure kapaciteta 400$l$. Na kraju dana dolazi preprodava\v c koji kupuje sok. Cilj proizvođa\v ca sokova je da napravi koliko god
 mo\v ze soka, uzimaju\' ci u obzir data ograni\v cenja, kako bi maksimizovao svoj profit. Drugim
 rije\v cima, treba napraviti plan proizvodnje koji \' ce maksimizovati profit.
-
+	
+\end{primjer}
 Model za ovakav problem bi išao ovako:
 \begin{itemize}
     \item 
 Varijable odluke: $x_1$ i $x_2$ koje označavaju koliko litara gustog soka i koliko litara bistrog soka proizvođač treba da napravi.  
-\item Funkcija cilja: $f(x_1, x_2) = c_1x_1 + c_2 x_2$, gdje su $c_1 = 100$ i  $c_2 = 125$ koeficijenti. Funkciju $f$ treba maksimizovati. \\
+\item Funkcija cilja: $f(x_1, x_2) = c_1x_1 + c_2 x_2$, gdje su $c_1 = 100$ i  $c_2 = 125$ koeficijenti. Funkciju $f$ treba maksimizovati. 
 \item Ograničenja: $0 \leq x_1 \leq 5, 0 \leq x_2 \leq 4$,   $3 x_1 + 6 x_2 \leq 30$, $8 x_1 + 4 x_2 \leq 44.$
 \end{itemize}
 
@@ -424,18 +433,20 @@ Svaki put pri korištenju sistema, baze podataka i informacioni sistem za upravl
 
 Sljedeći primjer nam opisuje sistem u IBM-u za kontrolu usluga i zaliha rezervi da bi se dobio osjećaj o kompleksnosti ovakvih sistema.  
 
-\textbf{\emph{Primjer.}}
+\begin{primjer}
 %OR studija  za IBM predstavljena na kraju prošle sekcije je primjer   velikog sistema koji integriše model.
 Sistem nazvan \emph{Optimizer} pruža optimalnu kontrolu usluga i zaliha rezervnih dijelova u cijeloj IBM-ovoj mreži za distribuciju dijelova u SAD-u, koja uključuje dva središnja
 automatizovana skladišta, desetine terenskih distribucijskih centara i stanica za dijelove, te nekoliko hiljada vanjskih (povezanih) lokacija. Inventar dijelova koji se održava u ovoj mreži se procijenjuje u milijardama dolara. \emph{Optimizer} se sastoji od četiri glavna modula. Modul sistema predviđanja sadrži nekoliko programa za procjenu stope kvara pojedinih vrsta dijelova. Modul sistema za dostavljanje podataka sastoji se od otprilike 100 programa koji    obrađuju
-preko 15 Gb podataka kako bi se osigurali ulazni podaci za model. Sistem odlučivanja potom rješava model koji traje i  sedmicu dana kako bi se optimizovala kontrola zaliha. Četvrti modul uključuje šest programa koji integrišu \emph{Optimizer} u IBM-ov sistem upravljanja zalihama dijelova. %PIMS je sofisticirani informacijski i kontrolni sustav koji sadrži milijune redaka koda 
+preko 15 Gb podataka kako bi se osigurali ulazni podaci za model. Sistem odlučivanja potom rješava model koji traje i  sedmicu dana kako bi se optimizovala kontrola zaliha. Četvrti modul uključuje šest programa koji integrišu \emph{Optimizer} u IBM-ov sistem upravljanja zalihama dijelova. %PIMS je sofisticirani informacijski i kontrolni sustav koji sadrži milijune redaka koda
+\end{primjer} 
 \section{Implementacija}
 Nakon što se razvije sistem za primjenu modela, posljednja faza  podrazumijeva upotrebu ovog sistema  na način kako je to propisala uprava (koja naručuje razvoj sistema). Ova faza je ključna jer se ovdje ``ubiru plodovi rada'' obje strane. Stoga je važno da OR tim  učestvuje u  realizaciji ove faze, kako bi se osiguralo da se rješenja modela precizno prevedu u operativni postupak, ali i da bi se ispravili svi nedostaci u rješenjima koja se otkriju. Uspjeh faze implementacije uveliko zavisi i od podrške vrha uprave (firme). Mnogo je vjerovatnije da će OR tim dobiti podršku ako je dobro informisao upravu i podsticao  njeno aktivno učestvovanje tokom razvoja rješenja. Dobra komunikacija pomaže da istraživanje postigne ono što je uprava željela.  Faza implementacije uključuje nekoliko koraka. Prvo, OR tim daje operativnom rukovodstvu opis novog sistema koji treba da bude usvojen. Dalje, ove dvije strane dijele odgovornost za razvijanje koraka potrebnih za pokretanje ovog sistema. Operativno rukovodstvo zatim nadgleda  osoblje koje je uključeno u proces implementacije, te mu daje detaljna uputstva za korištenje sistema. Time počinje proces primjene sistema u realnim uslovima. Nakon uspješnog uvođenja sistema, očekuje se njegovo aktivno korištenje u narednim godinama. Imajući to na umu, razvojni tim nadgleda iskustva korisnika sistema i nastoji da utvrdi koje izmjene u budućnosti bi trebalo uraditi na sistemu  u cilju što lakšeg korištenja istog.  Tokom vremena u kojem se koristi novi sistem, važno je i dalje dobijati povratne informacije o funkcionisanju sistema, te da li su pretpostavke o modelu i dalje zadovoljene. Kada se pojave značajna odstupanja od originalnih pretpostavki modela, model treba ponovno pregledati i eventualno izvršiti korekcije. Nakon završetka projekta, potrebno je da OR tim  dovoljno jasno i precizno dokumentuje svoju metodologiju, kako bi se čitav posao mogao ponoviti. Repliciranje bi trebalo
 biti dio profesionalnog i etičkog kodeksa projektovanja (informacionih) sistema. %Ovo je stanje osobito važno kada se proučavaju kontroverzna pitanja javne politike. 
 
-\textbf{\emph{Primjer.}} Vratimo se na realni  IBM projekat pomenut u prethodnoj sekciji.  Tri su se glavna faktora pokazala posebno važnim za uspješan završetak projekta. Kao što je raspravljano u prethodnim poglavljima, 
+\begin{primjer} Vratimo se na realni  IBM projekat pomenut u prethodnoj sekciji.  Tri su se glavna faktora pokazala posebno važnim za uspješan završetak projekta. Kao što je raspravljano u prethodnim poglavljima, 
 prvo je   uključivanje korisničkog tima i (operativnog) rukovodstva koji je savjetovao razvojni tim tokom trajanja   projekta. U vrijeme faze implementacije, operativno rukovodstvo imalo je snažan  uticaj i naglašavana je važnost instaliranja \emph{Optimizer}-a u  funkcionalna područja poslovanja IBM-a. Drugi faktor uspjeha bio je dobijanje vrlo široke povratne informacije korisnika sistema, gdje su identifikovane problematične tačke u sistemu koje su  trebale biti ispravljene prije potpune implementacije. 
 Treći faktor je bio taj da je novi sistem  uvođen postepeno, fazu po fazu, uz pažljivo testiranje u svakoj fazi, kako bi se veće greške mogle ukloniti prije nego   je sistem   pušten na  globalnom nivou.  
+\end{primjer}
 \vspace{0.5cm}
 
 Ostatak ove knjige je fokusiran na  matematičke modele i odgovarajuće metode za njihovo rješavanje. Ovim poglavljem smo objasnili, a kroz neke primjere i ilustrovali, kako konstrukcija modela složenih problema ne sadrži samo ova dva koraka, već su oni  dio cjelokupnog OR procesa. Treba imati na umu da su sve faze vrlo važne za provođenje uspješnog OR projekta. Predlažemo da se nakon izučavanja algoritama za rješavanja modela, čitalac vrati na ovo poglavlje u cilju što jasnije slike razvoja potpunog OR projekta zasnovanog na kompleksnim procesima u praksi.  OR zahtijeva značajnu količinu domišljatosti, saradnje i komunikacije, kreativnosti i inovativnosti, tako da u praksi i ne postoji jedan standardni postupak kojeg bi se timovi trebali pridržavati pri razvijaju sistema zasnovanih na operacionim istraživanjima. %Prethodni opis može da se promatra kao model koji otprilike pokazuje koliko je uspješan ILI se provode studije. 
