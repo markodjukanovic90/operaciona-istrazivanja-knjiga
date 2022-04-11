@@ -314,7 +314,6 @@ Postoji nekoliko strana kojih se direktno tiču poslovi firme: (1) vlasnici (dio
  Timovi zaduženi za modelovanje obično provode veliku količinu vremena prikupljajući relevantne podatke o problemu. Mnogo podataka je potrebno prikupiti kako bi se došlo do tačnog razumijevanja problema i dolaska do potrebnih ulaznih podataka za matematički model, koji se konstruiše u narednoj fazi.  Mnogi  podaci često nisu dostupni, bilo zbog toga što informacije nikada nisu sačuvane ili su zastarjele ili su pak sačuvane u pogrešnom formatu.   Članovi tima komuniciraju sa ključnim osobama u upravi, kako bi pronašli sve podatke značajne za projekat. Međutim, mnogi podaci mogu biti prilično ``neprecizni'', tj. mogu biti grube procjene zasnovane na iskustvenim pretpostavkama. Tada se izdvaja značajna količina vremena da bi se poboljšala  
 preciznost podataka, a zatim se proces nastavlja sa najboljim mogućim resursima koji su prikupljeni. 
 
-%\textbf{\textit{Primjer.}}
 \begin{primjer}
  OR studija je urađena za policijsku upravu jednog grada %San Francisca 
 na razvoj računarskog sistema za optimalno raspoređivanje i postavljanje patrolnih službenika. U procjeni   ove studije, identifikovani su sljedeći glavni ciljevi:
@@ -945,7 +944,8 @@ Definišimo sada pojam \emph{degenerativnog} rješenja i degenerativnog baznog r
 \begin{definition}
       Neka je $P = \{ x \in \mathbb{R}^n \mid A x = b, x \geq 0\}, A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m$    i neka je $x$ bazno rješenje. Vektor $x$ nazivamo degenerativno bazno rješenje ako je više od $n-m$ komponenti u vektoru $x$   jednako 0.
 \end{definition}
-\emph{\textbf{Primjer.}} Zadajmo poliedar $P= \{ (x_1,x_2,x_3)^T \mid x_2 - x_1 = 0, x_1 + x_2 +   x_3 = 2, x_1,x_2,x_3 \geq 0 \}$.  Pronaći bazna dopustiva rješenja i odrediti jesu li ona degenerativna. \\
+\begin{primjer} Zadajmo poliedar $P= \{ (x_1,x_2,x_3)^T \mid x_2 - x_1 = 0, x_1 + x_2 +   x_3 = 2, x_1,x_2,x_3 \geq 0 \}$.  Pronaći bazna dopustiva rješenja i odrediti jesu li ona degenerativna. 
+\end{primjer}
 
 \emph{Rješenje.} Lako je vidjeti da je  
 $A=\left (\begin{array}{ccc}
@@ -1350,14 +1350,14 @@ na kanonski oblik pogodan simpleks metodi $(A {x} = b)$ dodavanjem ``izjednačav
     & (x, s) \geq 0. \\
 \end{align} 
 
-\emph{Primjer.} Neka je dat problem LP-a:
+\begin{primjer} Neka je dat problem LP-a:
 \begin{align*}
     &f= x_1 + x_2 \rightarrow \max \nonumber \\
     & x_1 + 3 x_2 \leq 9 \nonumber \\
     & 2x_1 + x_2 \leq 8  \nonumber \\
     & x_1, x_2 \geq 0. \nonumber \\
 \end{align*}
- 
+ \end{primjer}
  Pretvorimo ga u kanonski oblik dodavajući izjednačavajuće varijable $s = (s_1, s_2)>0$, pa dobijamo 
 \begin{center}
 \begin{tabular}{llllll}
@@ -1425,8 +1425,9 @@ Bazne varijable prepoznjemo jer odgovarajući vektori (kolone) zajedno čine jed
      \item U odgovarajućim kolonama u posljednjoj vrsti (ciljna vrsta) se nalaze nule.
  \end{itemize}
  Prema tome, vektori $x_i$, koji su bazni vektori (kolone baze $B$), su napisani preko nebaznih vektora $x_i \in N$. Kako se stavljaju $x_i  = 0$, za sve $i \in N$, onda se  vrijednosti baznih vektora $x_i$, tj. kolona baze $B$, trivijano izračunavaju.
- \vspace{1cm}\\
- \emph{\textbf{Primjer.}} Navedimo primjer jednog linearnog programa koji je neograničen, te ga riješimo simpleks metodom. 
+
+\begin{primjer} Navedimo primjer jednog linearnog programa koji je neograničen, te ga riješimo simpleks metodom. 
+\end{primjer}
   Neka je dat problem LP-a:
   \begin{align*}
   	  &\max -x + 3y \\
@@ -1469,7 +1470,8 @@ Ovo se može vidjeti i na osnovu grafičke reprezentacije dopustivog regiona na 
     \label{fig:unbounded-example-solve}
 \end{figure}
 
-\emph{\textbf{Primjer.}} U nastavku dajemo još jedan primjer kada pivotiranje u simpleks metodi generiše degenerativno rješenje. 
+\begin{primjer} U nastavku dajemo još jedan primjer kada pivotiranje u simpleks metodi generiše degenerativno rješenje. 
+\end{primjer}
 Posmatrajmo sljedeći linearni program:
 \begin{align*}
     &\max 2x + 3y \\
@@ -1993,7 +1995,8 @@ njegov dualni problem, označen sa ($D$), je dat sa
 \end{proof} 
 Primijetimo da koeficijenti $y^*$ posljednje vrste završne simpleks tabele odgovaraju  ``izjednačavajućim''   varijablama i one nam daju rješenje problema  ($D$).  
 
-\emph{\textbf{Primjer.}} Moguće je da i problem ($P$) i odgovarajući dual ($D$) nemaju dopustivo rješenje. Pogledajte sljedeći primjer:
+\begin{primjer} Moguće je da i problem ($P$) i odgovarajući dual ($D$) nemaju dopustivo rješenje. Pogledajte sljedeći primjer:
+	\end{primjer}
 $$\begin{array}{cc}
     \max          & 2 x_1 - x_2 \\
      {s.t. }      & x_1 - x_1 \leq 1 \\
@@ -2033,7 +2036,8 @@ Uslovi (\ref{eq:slackness-1}) i (\ref{eq:slackness-2}) se nazivaju \emph{uslovi 
 
 \emph{Komentar}.  Nekada je lakse riješiti jedan od problema, ($P$)  ili  ($D$).  Na primjer, lakše je riješiti dualni problem sa dvije varijable i 4 ograničenja (grafički metod), nego primalni  ($P$)  uslov sa 4 varijable i 2 ograničenja. 
 
-\emph{\textbf{Primjer.}} Posmatrajmo problem  ($P$)  i  ($D$)  gdje su:
+\begin{primjer} Posmatrajmo problem  ($P$)  i  ($D$)  gdje su:
+	\end{primjer}
  
 $$      A = \left(\begin{array}{ccc}
           1 &  4 & 0 \\
@@ -2065,7 +2069,8 @@ $$y_2 > 0 \Rightarrow (Ax - b)_2 y_2 = 0 \Rightarrow 3x_1 - x_2 + x_3 = 3 $$
 i kako je $y_1 + 3 y_2 > 4$, onda $(A^Ty)_1 > c_1$ i prema tome $x_1 =0$, 
 odakle $x =(0, \frac{1}{4}, \frac{13}{4})$. 
 
-\emph{\textbf{Primjer.}} Posmatrajmo problem LP-a:
+\begin{primjer} Posmatrajmo problem LP-a:
+	\end{primjer}
 $$\begin{array}{llll}
    &\max                     &10 x_1 + 10 x_2 + 20 x_3 + 20 x_4  & \\
    &{s.t. }      &12 x_1 + 8 x_2  + 6 x_3  + 4 x_4   & \leq 210 \\
@@ -2582,7 +2587,8 @@ $L_i \leq x_n \leq U_j$. Obrnuto, ako svih $k \cdot l$ nejednakosti vrijede, ond
 
 Prema tome, početni problem je redukovan na sistem od $n-1$ varijabli sa dodatnih  $k \cdot l$ nejednakosti izraženih gore, uz originalna ograničenja koja ne uključuju $x_n$ u sebi. Ovaj proces nastavimo iterativno, dok ne dobijemo samo jednu promjenjivu sa dodatnim ograničenjima  i potom (trivijalno) riješimo sistem. 
 
-\emph{\textbf{Primjer.}} Pretpostavimo da nam je dat sistem nejednačina:
+\begin{primjer} Pretpostavimo da nam je dat sistem nejednačina:
+	\end{primjer}
 \begin{align*}
 	 &x - y \geq 1 \\
 	 &-x + 2y \geq 1 \\
@@ -3112,9 +3118,8 @@ pa se ograničenja u (\ref{eq: piecewise-constraints}) mogu napisati u obliku
 
 Da bi primijenili veći broj gore navedenih transformacija ograničenja u praksi, posmatrajmo sljedeći primjer kojeg modelujemo. 
 
-
-\emph{Primjer}. Pretpostavimo da je stanovništvo koncentrirano u $I$ okruga  unutar grada i da u okrugu $i\in [I]$ stanuje $p_i$ ljudi. Preliminarna analiza (premjeri zemljišta, politička, socijalna situacija, itd.) ograničila je potencijalne lokacije za izgradnju vatrogasnih domova na $J$ lokacija. Neka $d_{ij} \geq 0$ predstavlja udaljenost   središta okruga (dijela grada) $i$  do lokacije $j$. 
-
+\begin{primjer} Pretpostavimo da je stanovništvo koncentrirano u $I$ okruga  unutar grada i da u okrugu $i\in [I]$ stanuje $p_i$ ljudi. Preliminarna analiza (premjeri zemljišta, politička, socijalna situacija, itd.) ograničila je potencijalne lokacije za izgradnju vatrogasnih domova na $J$ lokacija. Neka $d_{ij} \geq 0$ predstavlja udaljenost   središta okruga (dijela grada) $i$  do lokacije $j$. 
+\end{primjer}
 Zadatak: \emph{Potrebno je odabrati lokacija gdje će se podići vatrogasni domovi za svaki od okruga. O funkciji cilja i dodatnim ograničenjima ćemo diskutovati u toku modelovanja samog problema.}
 
 Definišimo binarne varijable 
@@ -3525,8 +3530,9 @@ Fiksiramo $i=1$ i $LB=-\infty$.
     \item U protivnom, ažuriramo $i = i+1$ i idemo na korak 3 sa potproblemima koji mogu dalje da se dijele, dok god je $i \leq n$. Inače, izlazimo iz petlje sa optimalnim rješenjem ($LB$). 
 \end{enumerate}
  Primijetimo da i u ovom slučaju dobijamo drvo odluke (binarno drvo) gdje su na granama koje spajaju čvor na dubini $i$ sa čvorom na dubini $i+1$  ugrađene odluke o tome da li je varijabla $x_i$ fiksirana na 0 ili 1.\\
-\vspace{0.4cm} \\
-\emph{Primjer.} Na Slici~\ref{fig:bnb_binary} je dato drvo odlučivanja za problem 
+\vspace{0.4cm} 
+\begin{primjer}Na Slici~\ref{fig:bnb_binary} je dato drvo odlučivanja za problem 
+\end{primjer}
 \begin{align*}
    &\max -8 x_1 - 2x_2 - 4x_3 - 7x_4 -5x_5 + 10 \\
    & s.t. \\
@@ -3655,7 +3661,8 @@ Prema tome, pokazali smo da odsjecajuće ravni~(\ref{eq:gomory_cuts}) ne elimini
        \overline{b}_i - \lfloor \overline{b}_i \rfloor=   \sum_{j} (\overline{a}_{i,j} - \lfloor \overline{a}_{i,j} \rfloor)s_j - y_i 
 \end{align}
 
-\emph{{Primjer.}} Neka je dat sljedeći ILP problem:\\
+\begin{primjer} Neka je dat sljedeći ILP problem:
+	\end{primjer}
 $$\begin{array}{ll}
     &\max\ 3 x_1 + 4 x_2 \\
     & {s.t. }  \\
@@ -3743,7 +3750,8 @@ $x=(2,2, \frac{1}{5}, 1)$, a optimalno $x^* = (2, 2)$, odakle dobijamo i optimal
 
 Rješenje ILP problema gdje su svi koeficijenti u ograničenjima cjelobrojni, je prikazano sljedećim primjerom. \\
 %https://www.math10.com/en/geometry/geogebra/geogebra.html
-\emph{Primjer}. Riješimo sljedeći problem ILP-a:
+\begin{primjer} Riješimo sljedeći problem ILP-a:
+	\end{primjer}
 \begin{align*}
     &\max 3 x_1 + 4 x_2 \\
     &\mbox{s.t.} \\
@@ -3841,7 +3849,8 @@ gdje je lako uočiti da je optimalno bazno dopustivo rješenje $x=(5, 4, 1, 7, 0
 % http://www.mi.fu-berlin.de/wiki/pub/Main/GunnarKlauP1winter0708/discMath_klau_ILP_I.pdf
 U ovom odjeljku analiziramo metod granjanja i odsijecanja (engl. branch and cut - B\&C). Za razliku od B\&B procedure koja rješava ILP, B\&C dodaje  i metod odsjecajućih ravni u rješavanju  potproblema koji odgovaraju čvorovima (drveta). Dakle, ako  uzimamo trenutno aktivni čvor i rješavamo njegov potproblem, dijelimo ga na nekoliko potproblema (podjelom dopustivog regiona na više disjunktnih -- dodavanjem ograničenja) ili ga rješavamo rekurzivnim dodavanjem (gomorijevih) odsjecajućih ravni. Demonstrirajmo ovu ideju na primjeru rješavanja jednog ILP-a.
 
-\emph{Primjer}.  Riješimo sljedeći ILP:
+\begin{primjer} Riješimo sljedeći ILP:
+	\end{primjer}
 \begin{align*}
     &\max 6 x_1 + 5 x_2 \\
     &  {s.t. } \\
@@ -3894,8 +3903,8 @@ U rješavanju problema optimizacije, nalazak optimalnog rješenja je primarni ci
 Ideja \emph{Lagranžove relaksacije} se sastoji u tome da u modelu ILP-a  koji ima  ograničenja koja čine problem teškim (ova procjena je najčešće stvar praktičnog iskustva),  posmatramo kao dio ciljne funkcije koju penalizujemo nekim parametrom.  %parametrom $\lambda>0$. 
 Ovo ograničenje potom brišemo iz skupa ograničenja modela, a zatim rješavamo novi problem. Na ovaj način, rješenje ovakvog problema je donja granica (za problem minimizacije)  optimalnog rješenja inicijalnog problema. U praksi, ona je često jako blizu vrijednosti optimuma. \\
 
-\emph{Primjer}. Posmatrajmo problem \emph{najkraćeg puta sa ogaraničenjem} (eng. \emph{Constrained Shortest Path Problem}). Neka je dat usmjeren neciklični graf $G=(V,E)$. Za svaku granu $(i,j) \in E$ dodijelimo cijenu puta $c_{i,j}$ i vrijeme putovanja $t_{i,j}$. Pretpostavimo da je čvor $i=1$ startni čvor (izvorišni čvor), a čvor $n = |V|$   završni čvor (terminalni čvor). Zadatak je da se nađe put  od izvorišnog do terminalnog čvora koji je najeftiniji ali tako da se čitav put pređe u vremenskom periodu $T$.
-
+\begin{primjer} Posmatrajmo problem \emph{najkraćeg puta sa ogaraničenjem} (eng. \emph{Constrained Shortest Path Problem}). Neka je dat usmjeren neciklični graf $G=(V,E)$. Za svaku granu $(i,j) \in E$ dodijelimo cijenu puta $c_{i,j}$ i vrijeme putovanja $t_{i,j}$. Pretpostavimo da je čvor $i=1$ startni čvor (izvorišni čvor), a čvor $n = |V|$   završni čvor (terminalni čvor). Zadatak je da se nađe put  od izvorišnog do terminalnog čvora koji je najeftiniji ali tako da se čitav put pređe u vremenskom periodu $T$.
+\end{primjer}
 Ovaj problem se modeluje pomoću sljedećeg ILP-a:
  \begin{align}
     &z^*=\min\sum_{(i,j) \in E }c_{i,j}x_{i,j} \\
@@ -4062,9 +4071,10 @@ $$ \begin{array}{lll}
      \item Ako je vrijednost optimalnog rješenja negativna, ubaciti novu kolonu $a$ (koja je rješenje potproblema) u skup $S$. Inače, prekidamo proces jer je optimalno rješenje nađeno. 
      \item Riješiti relaksaciju ($CSILP$) na novom skupu kolona $S$.
  \end{enumerate}
- Primijetimo da je dodavanje nove kolone u $S$ odgovara dodavanju novog obrasca (u rješenje). \\
+ Primijetimo da je dodavanje nove kolone u $S$ odgovara dodavanju novog obrasca (u rješenje). 
  
- \emph{Primjer.} Riješimo sada jednu instancu ovog problema pomocu CG frejmvorka. Recimo da imamo $W = 15$, te tri narudžbe za sječenje:
+\begin{primjer} Riješimo sada jednu instancu ovog problema pomocu CG frejmvorka. Recimo da imamo $W = 15$, te tri narudžbe za sječenje:
+	\end{primjer}
  \begin{enumerate}
  	\item stavka: $b_1=80$ rolni dužine 4;
  	\item stavka: $b_2=50$ rolni dužine 6;
@@ -4496,7 +4506,8 @@ U primjeru kojim ilustrujemo upotrebu Benderove dekompozicije posmatramo jedan j
 Iako je Algoritmom~\ref{alg:bender} opisan postupak rješavanja problema minimizacije, algoritam se vrlo lako može preformulisati tako da se on može primijeniti i na problem maksimizacije. Jasno je da će u tom slučaju, dualni problem, prikazan u liniji 4 algoritma tada postati problem minimizacije, te će se, rješavanjem dualnog potproblema dobijati donje granice.
 
 
-\emph{Primjer.} Pretpostavimo da raspolažemo sumom od 1000KM, koju možemo iskoristiti za ostvarivanje dobiti prema dva različita kriterijuma:
+\begin{primjer} Pretpostavimo da raspolažemo sumom od 1000KM, koju možemo iskoristiti za ostvarivanje dobiti prema dva različita kriterijuma:
+	\end{primjer}
 \begin{itemize}
 	\item Oročenje novca sa fiksnom kamatom u iznosi od 4.5\%. Dodatno ograničenje je da se može oročiti samo cjelobrojan iznos novca.
 	
@@ -5226,10 +5237,10 @@ $x\in X$ i $Ax=b$, pa imamo da vrijedi %Za to rješenje $x$ važi
  
  U slučaju kada je $\hat{z}$ jednako nuli, iz~(\ref{dw8}) se vidi da je vrijednost $\overline{z}$ zapravo i optimalno rješenje polaznog problema.
  
- \emph{Primjer.}%http://eaton.math.rpi.edu/faculty/Mitchell/courses/matp6640/notes/09C_egdcmpbeamer.pdf
+\begin{primjer}%http://eaton.math.rpi.edu/faculty/Mitchell/courses/matp6640/notes/09C_egdcmpbeamer.pdf
  
  Posmatrajmo problem linearnog programiranja
- 
+ \end{primjer}
    \begin{equation}
  	\begin{aligned}\label{primjer:dw1}
  		\max\  &x_1\\
@@ -5855,7 +5866,8 @@ Algoritam vraća vrijednost $s$.
 
 Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje. 
 
-\noindent \emph{Primjer}.  Neka su data dva stringa: $s_1 = \texttt{acb}, s_2 = \texttt{bac}$. Ako uzmemo  $ b$ kao prvi karakter, rješenje koje dobijamo je \texttt{b}. Medjutim, optimalno rješenje je string $s=\texttt{ac}$. 
+\begin{primjer} Neka su data dva stringa: $s_1 = \texttt{acb}, s_2 = \texttt{bac}$. Ako uzmemo  $ b$ kao prvi karakter, rješenje koje dobijamo je \texttt{b}. Medjutim, optimalno rješenje je string $s=\texttt{ac}$. 
+	\end{primjer}
 
 \section{Aproksimativni algoritmi} 
   %https://home.cs.colorado.edu/~srirams/courses/csci5654-fall13/ilpLectures.pdf
@@ -6409,8 +6421,8 @@ $N_{pop}$ označava ukupan broj jedinki u populaciji.  $N_{elite}$ je broj elitn
 
 
 
-\emph{Primjer}. U ovom primjeru posmatrajmo 0-1 problem ruksaka. Ponovimo da nam je, kod ovog problema, na raspolaganju određen broj proizvoda, od kojih svaki proizvod ima svoju vrijednost i težinu. Ruksak je ograničenog maksimalnog kapaciteta (težine) $C$. Podsjetimo se i da se u 0-1 problemu ruksaka svaki proizvod ili ne uzima nikako ili se uzima kompletan. Cilj je, kao i u drugim problemima ruksaka, odabrati onaj skup proizvoda, tako da je njihova ukupna vrijednost maksimalna, a da se ne naruši kapacitet ruksaka.
-
+\begin{primjer} U ovom primjeru posmatrajmo 0-1 problem ruksaka. Ponovimo da nam je, kod ovog problema, na raspolaganju određen broj proizvoda, od kojih svaki proizvod ima svoju vrijednost i težinu. Ruksak je ograničenog maksimalnog kapaciteta (težine) $C$. Podsjetimo se i da se u 0-1 problemu ruksaka svaki proizvod ili ne uzima nikako ili se uzima kompletan. Cilj je, kao i u drugim problemima ruksaka, odabrati onaj skup proizvoda, tako da je njihova ukupna vrijednost maksimalna, a da se ne naruši kapacitet ruksaka.
+\end{primjer}
 Formalna matematička definicija 0-1 problema ruksaka će nam pomoći u konstrukciji genetskog algoritma, pa ćemo je ovdje navesti.
 
 Neka je dato $n$ proizvoda, koji su opisani pomoću vektora $p$ i $w$. Neka $p_i$ i $w_i$ predstavljaju vrijenost i težinu $i$-tog proizvoda. Neka je $C$ maksimalan kapacitet ruksaka.
@@ -6552,7 +6564,8 @@ Pseudokod lokalne pretrage je dat u Algoritmu~\ref{alg:ls}. Ulaz u algoritam je 
  	\item \emph{najbolje poboljšanje} (eng. \emph{the best improvement strategy}) --   ova strategija provjerava sva rješenja iz okoline $\mathcal{N}(x)$ i za novo najbolje rješenje bira ono koje je lokalno najbolje u toj okolini. Nalazak  najboljeg rješenja zahtjeva enumeraciju svih rješenja iz okoline pa često ovakav proces u praksi traje dosta dugo,  tako da ona nije uvijek primjenjiva. %Ipak, u praksi se pokazalo da strategija \emph{najboljeg poboljšanja} često vodi ka lokalnom optimumu problema u svega nekoliko iteracija lokalne pretrage. 
  \end{itemize}
   
-  \emph{Primjer.} U   problemu 0-1 ruksaka, za okolinu $\mathcal{N}$ bi mogli uzeti $1$-\emph{swap} okolinu. Recimo, za $n=4$ i rješenje $x=1100$ imali  bismo $$\mathcal{N}(x)= \{ 0100, 1000, 1110, 1101 \}.$$ 
+ \begin{primjer} U   problemu 0-1 ruksaka, za okolinu $\mathcal{N}$ bi mogli uzeti $1$-\emph{swap} okolinu. Recimo, za $n=4$ i rješenje $x=1100$ imali  bismo $$\mathcal{N}(x)= \{ 0100, 1000, 1110, 1101 \}.$$ 
+ 	\end{primjer}
   
 \subsection{Metoda promjenljivih okolina}\label{intro:vns}
 Metoda promjenljivih okolina (VNS) je metaheuristika uvedena od strane Nenada Mladenovića i Pjera Hansena u drugoj polovini devedesetih godina prošlog vijeka.
@@ -6596,8 +6609,8 @@ Najčešći kriterijumi za prekid   algoritma su: dostignuto maksimalno  vrijeme
 \end{algorithm}
 
 
-\emph{Primjer}. Da bismo ilustrovali način funkcionisanja metode promjenljivih okolina, možemo posmatrati isti primjer kao i u slučaju genetskog algoritma: 0-1 problem ruksaka. 
-
+\begin{primjer} Da bismo ilustrovali način funkcionisanja metode promjenljivih okolina, možemo posmatrati isti primjer kao i u slučaju genetskog algoritma: 0-1 problem ruksaka. 
+\end{primjer}
 
 \emph{Reprezentacija rješenja}. Kao i u slučaju genetskog algoritma, rješenje problema se može predstaviti binarnim nizom. Ako $i$-ti element niza ima vrijednost 1, to znači da je $i$-ti proizvod uključen u rješenje, a u suprotnom, nije.
 
