@@ -3,7 +3,7 @@
 \usepackage{verbatim}
 \usepackage{amsmath}
 \usepackage[serbian]{babel}
- 
+ \usepackage{amsthm}
 \usepackage[OT2,T1]{fontenc}
 \usepackage[latin1,utf8]{inputenc}
 \usepackage{amssymb}
@@ -20,15 +20,20 @@
 
 %\usetikzlibrary{arrows,shapes}
 %\usepackage{epstopdf}
-\newenvironment{proof}{{Dokaz:}}{\hfill$\square$}
+%\newenvironment{proof}{{Dokaz:}}{\hfill$\square$}
 
 % redefinicija nekih konstanti: 
 \renewcommand{\figurename}{Slika}
 \renewcommand{\tablename}{Tabela}
-\newtheorem{primjer}{Primjer}[chapter]
+
+%\newtheoremstyle{primjer}{\upshape}
 \renewcommand{\contentsname}{Sadržaj}
 \renewcommand{\chaptername}{Glava}
+\renewcommand*{\proofname}{Dokaz}
 
+
+\theoremstyle{definition}
+\newtheorem{primjer}{Primjer}[chapter]
 \usepackage{url}
 
 \usepackage{fixme}
@@ -461,9 +466,9 @@ o linearnom programiranju i objavljeno je na hiljade naučnih radova koji   ovu 
 Linearno programiranje koristi matematički model za opisivanje problema; 
 pridjev ``linearno'' podrazumijeva da su  matematičke funkcije korištene u modelu linearne funkcije. Riječ ``programiranje'' se ne odnosi na računarsko programiranje, već je to sinonim za planiranje i optimizaciju. Dakle, linearno programiranje uključuje planiranje aktivnosti u cilju postizanja optimalnog rezultata, tj. rezultata koji najbolje postiže navedeni cilj (prema matematičkom modelu) među svim izvedivim alternativama.  Za rješavanje problema linearnog programiranja razvijeno je dosta efikasnih metoda. Iako jedan od nastarijih,  \emph{simpleks metod} se i danas koristi za rješavanje problema velikih dimenzija te je zaslužan za ogroman uticaj linearnog  programiranja u raznim oblastima nauke i privrede.
 
-\textbf{Primjer}. U ovom primjeru opisujemo jedan industrijski projekat 
+\begin{primjer} U ovom primjeru opisujemo jedan industrijski projekat 
 naziva {WYNDOR--GLASS CO projekat}, prikazujući kako OR može da riješi ozbiljne probleme u industriji. 
-  
+ \end{primjer}
 Firma \texttt{WYNDOR--GLASS} proizvodi visokokvalitetne staklene proizvode, uključujući prozore i staklena vrata. Postoje tri pogona. Aluminijski okviri i okovi izrađuju se u pogonu 1, drveni okviri izrađuju se u pogonu 2, a pogon 3 proizvodi staklo i sastavlja proizvode.
 Zbog pada zarade, rukovodstvo firme   odlučilo je da obnovi liniju proizvoda koje nudi. Neprofitabilni proizvodi se ukidaju, oslobađajući proizvodne kapacitete za lansiranje dva nova proizvoda sa velikim prodajnim potencijalom:
 \begin{itemize}
@@ -904,8 +909,7 @@ Pokažimo sada da su vrhovi, ekstremne tačke poliedra i bazna dopustiva rješen
           c^T x = \sum_{i \in I} a_i^T x \geq c^T x^*  
        \end{equation}
      Iz toga vidimo da je $x^*$ rješenje LP problema minimizacije. Jednakost u (\ref{eq:3_impl_1}) vrijedi ako i samo ako je $a_i^T x = b_i$ za sve $i \in I$. Kako je $x^*$ BDR, broj linearno nezavisnih vektora $a_i, i \in I$ koji su  aktivni u $x^*$ je jednak $n$, pa sistem $a_i^T x = b_i, i \in I$ ima jedinstveno rješenje koje je upravo $x^*$. Prema tome, pokazano je da postoji vektor $c \in \mathbb{R}^n$ za koji vrijedi $c^T x > c^T x^*$ za sve $x \neq x^*$, $x \in P$, odake, na osnovu definicije vrha poliedra, slijedi tvrdnja. 
-\end{proof}\\
-
+\end{proof}
 U nastavku ćemo dati uslove koji treba da vrijede za postojanje BDR-a, tj. 
  ekstremne tačke poliedra. Takođe, daćemo i postupak za konstrukciju BDR-a, te ćemo uvesti pojam degenerativnog rješenja.
 
@@ -1986,7 +1990,7 @@ njegov dualni problem, označen sa ($D$), je dat sa
     $ c = A^T y^* + c^*$. 
     Kako je $c^* \leq 0$, imamo  $A^T y^* \geq c$. Kako je $-y^* \leq 0$ pa je $y^*$ dopustivo rješenje za  ($D$).  Iz (\ref{eq:f_y_star}) je pokazano da je vrijednost ciljne funkcije u $y^*$ upravo $f^*$. Iz teoreme o slaboj dualnosti slijedi da je $y^*$ optimalno rješenje problema  ($D$). 
     
-\end{proof} \\
+\end{proof} 
 Primijetimo da koeficijenti $y^*$ posljednje vrste završne simpleks tabele odgovaraju  ``izjednačavajućim''   varijablama i one nam daju rješenje problema  ($D$).  
 
 \emph{\textbf{Primjer.}} Moguće je da i problem ($P$) i odgovarajući dual ($D$) nemaju dopustivo rješenje. Pogledajte sljedeći primjer:
@@ -2511,7 +2515,7 @@ Još jedna primjena teorije dualnosti u LP-u se ogleda u dokazivanju sljedeće t
   	  \item Sistem iz  slučaja  \ref{case:1}  nema rješenje akko sistem iz  slučaja  \ref{case:2}   ima rješenje. 
   	  \item Sistem iz  slučaja  \ref{case:1}  ima rješenje akko sistem iz  slučaja  \ref{case:2}  nema rješenje. 
    \end{itemize}
-\end{proof}\\
+\end{proof}
 
 \emph{Geometrijska interpretacija Farkašove leme.}
 Neka je dat sistem:
@@ -3199,7 +3203,7 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
    	   	      \end{align*} 
    	   \end{itemize}
    	   Dakle, iz gornje redukcije, nalazak rješenja ILP instance odgovara nalasku dodjele $\overline{x}$ literalima tako da je formula $\phi$ zadovoljena. Dakle, treba da se provjeri da li je ILP instanca dopustiva. Takođe, lako je vidjeti da je ova redukcija polinomna. Prema tome, ILP je NP-težak, s obzirom da je 3--SAT problem NP-kompletan. 
-   \end{proof} \\
+   \end{proof} 
  Može se pokazati i sljedeća teorema.
  \begin{thm} Neka je $k\in \mathbb{Z}$.
  	 Problem odlučivanja da li postoji cjelobrojno rješenje u ILP-u (pod uslovom da minimizujemo)   vrijednosti manje od $k$ je NP--kompletan. 
