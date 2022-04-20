@@ -7,17 +7,16 @@
 \usepackage[OT2,T1]{fontenc}
 \usepackage[latin1,utf8]{inputenc}
 \usepackage{amssymb}
-\newtheorem{definition}{Definicija}
-\newtheorem{thm}{Teorema}
-\newtheorem{lm}{Lema}
-\newtheorem{prop}{Propozicija}
-\newtheorem{poslje}{Posljedica}
+\newtheorem{definition}{Definicija}[chapter]
+\newtheorem{thm}{Teorema}[chapter]
+\newtheorem{lm}{Lema}[chapter]
+\newtheorem{prop}{Propozicija}[chapter]
+\newtheorem{poslje}{Posljedica}[chapter]
 \usepackage{algorithm}
 \usepackage{algorithmic}
 \usepackage{dot2texi}
 \usepackage{subcaption}
 \usepackage{titlepic}
-
 %\usetikzlibrary{arrows,shapes}
 %\usepackage{epstopdf}
 %\newenvironment{proof}{{Dokaz:}}{\hfill$\square$}
@@ -459,18 +458,17 @@ Ostatak ove knjige je fokusiran na  matematičke modele i odgovarajuće metode z
 
 \chapter{Linearno Programiranje} \label{chp:lp}
   
-  Početak razvoja linearnog programiranja počinje od sredine dvadesetog vijeka. Sovjetski matematičar i ekonomista Leonid Kantorovič je tokom drugog svjetskog rata formulisao problem ekvivalentan problemu linearnog programiranja u cilju boljeg upravljanja resursima i smanjenja troškova u vojsci. Neposredno nakon drugog svjetskog rata, američki matematičar Džordž Dencig razvija čuveni simpleks algoritam, čime se otvara prostor za efikasno rješavanje problema linearnog programiranja. U periodu koji je uslijedio, pa sve do danas, linearno programiranje se koristi kao standardan alat za rješavanje raznih problema u industriji i ekonomiji uopšte, što je dovelo do   milionskih ušteda ogromnom broju kompanija u raznim zemljama svijeta. Stoga se 
+  Razvoj linearnog programiranja počinje sredinom dvadesetog vijeka. Sovjetski matematičar i ekonomista Leonid Kantorovič je tokom Drugog svjetskog rata formulisao problem ekvivalentan problemu linearnog programiranja u cilju boljeg upravljanja resursima i smanjenja vojnih troškova. Neposredno nakon drugog svjetskog rata, američki matematičar Džordž Dencig razvija čuveni simpleks algoritam, čime se otvara prostor za efikasno rješavanje problema linearnog programiranja. U periodu koji je uslijedio, pa sve do danas, linearno programiranje se koristi kao standardan alat za rješavanje raznih problema u industriji i ekonomiji uopšte, što je dovelo do   milionskih ušteda ogromnom broju kompanija širom svijeta. Stoga se 
 razvoj linearnog programiranja  smatra jednim od najvažnijih naučnih dostignu\-ća XX vijeka.  Napisano je na desetine, pa i stotine udžbenika
 o linearnom programiranju i objavljeno je na hiljade naučnih radova koji   ovu paradigmu primjenjuju na probleme iz raznih naučnih i praktičnih domena. 
 
-Linearno programiranje koristi matematički model za opisivanje problema; 
-pridjev ``linearno'' podrazumijeva da su  matematičke funkcije korištene u modelu linearne funkcije. Riječ ``programiranje'' se ne odnosi na računarsko programiranje, već je to sinonim za planiranje i optimizaciju. Dakle, linearno programiranje uključuje planiranje aktivnosti u cilju postizanja optimalnog rezultata, tj. rezultata koji najbolje postiže navedeni cilj (prema matematičkom modelu) među svim izvedivim alternativama.  Za rješavanje problema linearnog programiranja razvijeno je dosta efikasnih metoda. Iako jedan od nastarijih,  \emph{simpleks metod} se i danas koristi za rješavanje problema velikih dimenzija te je zaslužan za ogroman uticaj linearnog  programiranja u raznim oblastima nauke i privrede.
+Linearno programiranje koristi matematički model za opisivanje problema. Pridjev ``linearno'' podrazumijeva da su  matematičke funkcije korištene u modelu linearne funkcije. Riječ ``programiranje'' se ne odnosi na računarsko programiranje, već je to sinonim za planiranje i optimizaciju. Dakle, linearno programiranje uključuje planiranje aktivnosti u cilju postizanja optimalnog rezultata, tj. rezultata koji najbolje postiže navedeni cilj (prema matematičkom modelu) među svim mogućim alternativama.  Za rješavanje problema linearnog programiranja razvijeno je dosta efikasnih metoda. Iako jedan od nastarijih,  \emph{simpleks metod} se i danas koristi za rješavanje problema velikih dimenzija te je zaslužan za ogroman uticaj linearnog  programiranja u raznim oblastima nauke i privrede.
 
-\begin{primjer} U ovom primjeru opisujemo jedan industrijski projekat 
-naziva {WYNDOR--GLASS CO projekat}, prikazujući kako OR može da riješi ozbiljne probleme u industriji. 
+\begin{primjer}\label{primjer:graficki} U ovom primjeru opisujemo jedan industrijski projekat 
+naziva {WYNDOR--GLASS CO projekat}, ilustrujući kako OR  može da, upotrebom linearnog programiranja, riješi ozbiljne probleme u industriji.
  \end{primjer}
 Firma \texttt{WYNDOR--GLASS} proizvodi visokokvalitetne staklene proizvode, uključujući prozore i staklena vrata. Postoje tri pogona. Aluminijski okviri i okovi izrađuju se u pogonu 1, drveni okviri izrađuju se u pogonu 2, a pogon 3 proizvodi staklo i sastavlja proizvode.
-Zbog pada zarade, rukovodstvo firme   odlučilo je da obnovi liniju proizvoda koje nudi. Neprofitabilni proizvodi se ukidaju, oslobađajući proizvodne kapacitete za lansiranje dva nova proizvoda sa velikim prodajnim potencijalom:
+Zbog pada zarade, rukovodstvo firme   odlučilo je da izmijeni liniju proizvoda koje nudi. Neprofitabilni proizvodi se ukidaju, oslobađajući proizvodne kapacitete za lansiranje dva nova proizvoda sa velikim prodajnim potencijalom:
 \begin{itemize}
     \item Proizvod 1: Staklena vrata od 2$m$ sa aluminijskim okvirom;
     \item Proizvod 2: Dvostruka drvena vrata sa okvirom visine 1.5$m$.
@@ -482,24 +480,24 @@ Uslovi i zahtjevi proizvodnje su sljedeći:
 \end{itemize}
     Rukovodstvo kompanije je zaključilo da bi kompanija mogla prodati sve proizvode koje bi mogla proizvesti u postrojenjima. Međutim, budući da   oba proizvoda koriste proizvodni kapacitet u postrojenju 3, nije očigledno jasno koja bi kombinacija proizvodnje dva proizvoda bila najisplativija. %Stoga je formiran tim za proučavanje ovog pitanja, te davanja adekvatnog odgovora.
 
-Nakon razgovora sa upravom, glavni ciljevi istraživanja su utvrđeni, gdje se utvrdila definicija  (idealizovanog) problema koji treba da se riješi:
+Nakon razgovora sa upravom, utvrđeni su glavni ciljevi istraživanja. Definicija  (idealizovanog) problema koji treba da se riješi je sljedeća:
 \begin{itemize}
     \item Utvrditi  stope proizvodnje  ova dva proizvoda kako bi se maksimizovala ukupna dobit, koja je podložna ograničenjima u  proizvodnim kapacitetima koji su dostupni u sva tri pogona. 
     \item Svaki proizvod se proizvodi u serijama od po 20 komada, tako da se stopa proizvodnje definiše kao broj serija proizvedenih na nivou jedne sedmice. 
     \item Dopuštena je bilo koja kombinacija stope proizvodnje koja zadovoljava ograničenja, uključujući i slučaj da se ne proizvede niti jedan od (dva) proizvoda kao i slučaj da se proizvede maksimalan broj drugog proizvoda na osnovu utvrđenih kapaciteta.
 \end{itemize}
 
-Da bi se razvio model, informacije koje je bilo neophodno prikupiti prije modelovanja su:
+U cilju razvijanja modela, neophodne je prikupiti sljedeće informacije:
 \begin{itemize}
-	\item[($i$)]   Broj radnih sati u sedmici dostupan u svakom pogonu za nove proizvode;  
-	\item[($ii$)]   Broj radnih sati koji je neophodno utrošiti  za proizvodnju jedne serije proizvoda u svakom pogonu;
+	\item[($i$)]   Broj radnih sati u sedmici dostupan u svakom pogonu za nove proizvode.  
+	\item[($ii$)]   Broj radnih sati koji je neophodno utrošiti  za proizvodnju jedne serije proizvoda u svakom pogonu.
 	\item[($iii$)] Dobit po proizvedenoj seriji svakog novog proizvoda. Odlučeno je da dobit po proizvedenoj seriji bude kao odgovarajuća mjera -- zaključeno je da   dobit svake dodatne proizvedene serije  raste približno konstantno bez obzira na ukupan broj proizvedenih serija.
 \end{itemize} 
 
 Budući da značajniji troškovi za pokretanje proizvodnje i promovisanje novih proizvoda nisu postojali, ukupna dobit je aproksimirana dobiti po proizvedenoj seriji koja je pomnožena sa brojem serija proizvodnje.  
 
-Dalje, treba procijeniti konstante (parametre)  u modelu. Ovo je ostvareno u komunikaciji između uprave firme i tima zadužen za rješavanje problema. 
-Za dobijanje razumnih procjena, pomoć ključnog osoblja u raznim odjelima firme je odigrala ključnu ulogu. Osoblje u proizvodnom odjelu informisalo  je o podacima za stavku ($i$). Za procjenu slučaja ($ii$), ključna je bila analiza proizvodnih inženjera uključenih u dizajniranje proizvodnih procesa novih proizvoda. Analizirajući podatke o resursima i uključivanjem  marketinškog odjela firme,  data je procjena za slučaj ($iii$). Tabela~\ref{tab:procjene-1} pokazuje sve ove procjene. 
+Dalje, treba procijeniti konstante (parametre)  u modelu. Ovo je ostvareno u komunikaciji između uprave firme i tima zaduženog za rješavanje problema. Pomoć stručnog osoblja iz raznih odjela firme je odigrala ključnu ulogu u dobijanju razumnih procjena.
+ Osoblje u proizvodnom odjelu   je obezbijedilo informacije o podacima za stavku ($i$). Za procjenu slučaja ($ii$), ključna je bila analiza proizvodnih inženjera koji su uključeni u dizajniranje proizvodnih procesa novih proizvoda. Analizirajući podatke o resursima i uključivanjem  marketinškog odjela firme,  data je procjena za slučaj ($iii$). Tabela~\ref{tab:procjene-1} pokazuje sve ove procjene. 
 
 
 \begin{table}[!ht]
@@ -530,9 +528,9 @@ Dakle, na osnovu realnog problema, formirali smo odgovarajući matematički mode
 
 %https://www.desmos.com/calculator
 \section{Grafički metod}
- Problem iz prethodne sekcije je malih dimenzija jer sadrži samo dvije varijable odluke i samim tim sva moguća (dopustiva) rješenja mogu biti predstavljena u dvije dimenzije. U ovom slučaju, možemo koristiti \emph{grafički metod} za rješavanje problema. Ovaj postupak uključuje rad u dvodimenzionalnom Dekartovom koordinatnom sistemu sa osama $x_1$ i $x_2$.  Prvi korak je identifikovati vrijednosti ($x_1$, $x_2$) koje zadovoljavaju ograničenja. Naglasimo još jednom da ona rješenja koja zadovoljavaju sva ograničenja modela  problema zovemo \emph{dopustivim rješenjima}. Grafički predstavimo svako od ograničenja, odakle dobijamo prostor koji uključuje svih 5 ograničenja; vidjeti Sliku~\ref{fig:fig1}.  Rezultujući region rješenja $(x_1, x_2)$ se naziva \emph{dopustivi region} problema.
+ Problem iz prethodne sekcije je malih dimenzija jer sadrži samo dvije varijable odluke. Samim tim,  moguća rješenja mogu biti predstavljena u dvije dimenzije. U ovom slučaju možemo koristiti \emph{grafički metod} za rješavanje problema. Postupak uključuje rad u dvodimenzionalnom Dekartovom koordinatnom sistemu sa osama $x_1$ i $x_2$.  Prvi korak je identifikovati vrijednosti ($x_1$, $x_2$) koje zadovoljavaju data ograničenja, odnosno, treba odrediti skup \emph{dopustivih rješenja}.    U narednoj sekciji ovog poglavlja ćemo preciznije definisati navedeni termin, ali je, u ovom trenutku, pod ovim skupom dovoljno smatrati ona rješenja koja zadovoljavaju sva ograničenja modela  problema. Predstavimo grafički svako od ograničenja, odakle dobijamo oblast koja uključuje svih 5 ograničenja, vidjeti Sliku~\ref{fig:fig1}.  Rezultujući region rješenja $(x_1, x_2)$ je \emph{dopustivi region} ovog problema.
  
- Posljednji korak se sastoji u odabiru tačke u ovom regionu  koja maksimizira vrijednost (ciljne) funkcije $f = 3x_1 + 5x_2$. 
+ Posljednji korak se sastoji u odabiru tačke u ovom regionu  koja maksimizuje vrijednost (ciljne) funkcije $f = 3x_1 + 5x_2$. 
 
 %) The resulting region of permissible values of (x1, x2), called the feasible region,
 \begin{figure}
@@ -541,9 +539,9 @@ Dakle, na osnovu realnog problema, formirali smo odgovarajući matematički mode
     \caption{Dopustiv region.}
     \label{fig:fig1}
 \end{figure}
-Pogledajmo sada niz (implicitnih) funkcija $3x_1 + 5 x_2 = c$, za $c \in \{10,20, 36\}$, kao na Slici~\ref{fig:fig2}. Jasno se vidi da prava $f = 36$ prolazi kroz tačku (vrh) regiona $(2,6)$, koja je svakako dopustiva. Takođe, vidimo da niti jedna druga funkcija $f=c, c > 36$ ne presijeca dopustiv region, odatkle zaključujemo da je tačka $(2, 6)$ rješenje problema. Dakle, funkcija cilja ima maksimalnu vrijednost 36 i dostiže se u tački $(x_1, x_2)=(2,6)$.
+Pogledajmo sada niz (implicitnih) funkcija $3x_1 + 5 x_2 = c$, za $c \in \{3,20, 36\}$, kao na Slici~\ref{fig:fig2}. Jasno se vidi da prava $f = 36$ prolazi kroz tačku (vrh) regiona $(2,6)$, koja je svakako dopustiva. Takođe, vidimo da niti jedna druga funkcija $f=c, c > 36$ ne presijeca dopustiv region, odakle zaključujemo da je tačka $(2, 6)$ optimalno rješenje problema. Dakle, funkcija cilja ima maksimalnu vrijednost 36 i dostiže se u tački $(x_1, x_2)=(2,6)$.
 
-Ovaj se postupak često naziva \emph{grafičkom metodom za linearno programiranje}. Ona se može koristiti za rješavanje bilo kojeg problema linearnog programiranja sa dvije varijable. Uz znatan angažman,  ovu metodu je moguće   proširiti na problem sa tri varijable, što je krajnji domet grafičke metode. Za uopšten slučaj se koriste naprednije metode,  o kojima će biti riječi u narednim sekcijama.
+Ovaj se postupak često naziva \emph{grafičkom metodom za linearno programiranje}. Ona se može koristiti za rješavanje bilo kojeg problema linearnog programiranja sa dvije varijable. Uz dodatni angažman,  ovu metodu je moguće   proširiti na problem sa tri varijable, što je krajnji domet grafičke metode. Za uopšten slučaj se koriste naprednije metode,  o kojima će biti riječi u narednim sekcijama.
 
 \section{Standardna forma linearnog programiranja}
 
@@ -556,7 +554,7 @@ Ovaj se postupak često naziva \emph{grafičkom metodom za linearno programiranj
 
 U ovoj sekciji govorimo o opštoj formi modela linearnog programiranja. Uvedimo neke ključne pojmove koji se standardno koriste u modelovanju i rješavanju problema linearnog programiranja. 
 
-Pođimo od pojmova \textit{resursi} i \textit{aktivnosti}. Pretpostavimo da u našem razmatranju imamo $m$ resursa i $n$ aktivnosti. Standardni resursi su vrijeme, novac, oprema, mašine, radnici itd. Aktivnosti uključuju ulaganje novca u određene projekte, dodjelu posla nekoj mašini ili radniku,  dostavljanje robe iz jednog u drugo mjesto, itd. 
+Pođimo od pojmova \textit{resursi} i \textit{aktivnosti}. Pretpostavimo da u našem razmatranju imamo $m$ resursa i $n$ aktivnosti. Neki standardni resursi su vrijeme, novac, oprema, mašine, radnici itd. Aktivnosti uključuju ulaganje novca u određene projekte, dodjelu posla nekoj mašini ili radniku,  dostavljanje robe iz jednog u drugo mjesto, itd. 
  Najčešći tip primjene linearnog programiranja uključuje povezivanje resursa i aktivnosti, odnosno dodjelu resursa određenim aktivnostima. Dostupna količina svakog resursa je najčešće ograničena, pa aktivnosti trebaju biti pažljivo raspoređene u odnosu na odgovarajuće resurse.  Utvrđivanje ove raspodjele uključuje odabir vrsta i nivoa aktivnosti za koje se postiže najbolja moguća vrijednost ukupne mjere učinka. Ukupna mjera učinka može biti mjerenje dobiti (profita), mjerenje vremena realizacije aktivnosti, mjerenje broja proizvedenih proizvoda itd.
 
 U nastavku navodimo notaciju koja se najčešće koriste u formiranju opšteg oblika modela linearnog programiranja (LP):
@@ -565,6 +563,7 @@ U nastavku navodimo notaciju koja se najčešće koriste u formiranju opšteg ob
     \item $f$: funkcija cilja (dobiti) 
     \item $x_j$: količina aktivnosti $j$ ($j = 1,\ldots,n$);
     \item $c_j$: povećanje u profitu ako se količna aktivnosti $j$ podigne za jediničnu vrijednost;
+    %dragan: ostavio sam termin jedinična vrijednost
     \item $b_i$: ukupna količina resursa $i$ ($i=1,\ldots,m$) koja je dozvoljena za alociranje aktivnosti;
     \item $a_{ij}$: količina resursa $i$ koja se uzima od strane jedinične (vrijednosti) aktivnosti $j$.
 \end{itemize}
@@ -572,7 +571,7 @@ Prema ovoj notaciji, matematički modeli problema linearnog programiranja ima sl
 
 \begin{align} 
       &f = c_1 x_1 + \cdots + c_n x_n \rightarrow \max \label{form:LP-1}\\
-      & s.t. \nonumber \\
+      & \mbox{t.d.} \nonumber \\
       & a_{11}x_1 + a_{12} x_{12} + \cdots + a_{1n}x_n \leq b_1 \label{form:LP-2} \\
       &\ldots \nonumber \\
       & a_{m1}x_1 + a_{12} x_{m2} + \cdots + a_{mn}x_n \leq b_m \label{form:LP-3} \\
@@ -584,14 +583,14 @@ Postavka (\ref{form:LP-1})--(\ref{form:LP-4}) se još naziva i \emph{standardna 
 Kompaktiniji oblik standardne forme je dat sa:
 \begin{align}
     & f = c^T x \rightarrow \max \label{eq:LP-o1}\\
-    & \mbox{s.t.} \nonumber \\
+    & \mbox{t.d.} \nonumber \\
     &  A x \leq b \label{eq:LP-c1} \\
     & x \geq 0 \label{eq:LP-c2},
 \end{align}
 
 gdje je matrica $A \in \mathbb{R}^{m \times n}$, vektori  $x,c \in \mathbb{R}^n$ i vektor $b \in \mathbb{R}^{m}$.
 
-Treba imati na umu da ograničenja (\ref{eq:LP-c1}) mogu da imaju i oblike:
+Treba imati na umu da se ograničenja (\ref{eq:LP-c1}) mogu zapisati i na sljedeći način:
 \begin{itemize}
     \item $Ax \geq b$;
     \item $Ax = b$;
@@ -602,17 +601,17 @@ Bilo koji problem koji koristi neke od prethodna tri ograničenja predstavlja i 
  Forma linearnog programa sa ograničenjima $Ax = b$ se naziva \emph{kanonska forma} linearnog programiranja. 
  
  Takođe, ako u linearnom
-programu postoji varijabla koja ne zadovoljava uslov nenegativnosti, ona se može zamijeniti razlikom dve nove nenegativne promenljive. Kanonski oblik linearnog programiranja je pogodan za efikasno izvođenje Gausovih transformacija  nad matricom problema, što će biti od koristi u konstrukciji simpleks metoda.   %, jer je svaki broj razlika dva nenegativna broja.
+programu postoji varijabla koja ne zadovoljava uslov nenegativnosti, ona se može zamijeniti razlikom dve nove nenegativne promenljive. Kanonski oblik linearnog programiranja je pogodan za efikasno izvođenje Gausovih transformacija  nad matricom problema, što se, na primjer, koristi u konstrukciji simpleks metoda.   %, jer je svaki broj razlika dva nenegativna broja.
 
- U nastavku pratimo sljedeću terminologiju u vezi linearnog programiranja (LP):
+ U nastavku koristimo sljedeću terminologiju linearnog programiranja (LP):
 \begin{itemize}
-    \item \emph{Rješenje} u standardnom matematičkom značenju najčešće označava krajnje rješenje   (u LP-u bi to bilo najbolje rješenje). Međutim, u rješavanju problema LP-a to  nije slučaj. Bilo koja specifikacija vrijednosti varijabli  $(x_1,\ldots, x_n)$ se smatra rješenjem bez obzira da li je riječ o željenom rješenju ili čak o nekom rješenju koje i ne zadovoljava sva organičenja. U zavisnosti od toga, rješenja  možemo podijeliti na:
+    \item \emph{Rješenje} u standardnom matematičkom značenju najčešće označava rezultat izračunavanja, odnosno krajnje rješenje posmatranog problema. Međutim, u rješavanju problema LP-a to  nije slučaj. Bilo koja specifikacija vrijednosti varijabli  $(x_1,\ldots, x_n)$ se smatra rješenjem, bez obzira da li je riječ o željenom krajnjem rješenju ili čak o nekom rješenju koje i ne zadovoljava sva ograničenja. U zavisnosti od toga, rješenja  možemo podijeliti na:
     \begin{itemize}
         \item \emph{dopustiva rješenja} (eng. \emph{feasible solution}) -- podrazumijevanju ona rješenja koja zadovoljavaju sva ograničenja u modelu;
         \item \emph{nedopustiva rješenja} (eng. \emph{infreasible solution}) -- ona rješenja koja ne zadovoljavaju barem jedno od ograničenja u modelu. 
     \end{itemize}
-  \item \emph{Dopustivi region}: označava skup svih rješenja koja su dopustiva. Ovo je prostor koji pretražujemo u svrhu pronalaska najboljeg rješenja modela. Takođe, može se desiti da problem nema niti jedno dopustivo rješenje. Kažemo da je taj problem \emph{nedopustiv}. 
-  \item \emph{Optimalno rješenje} je ono rješenje iz dopustivog skupa za koje je funkcija cilja najveća (pod pretpostavkom da maksimizujemo funkciju cilja), odnosno najmanja (pod pretpostavkom da minimizujemo funkciju cilja). Ova vrijednost ne mora biti jedinstvena, pogledati Sliku~\ref{fig:multi_solution} gdje je dopustiv region isti kao u primjeru sa Slike~\ref{fig:fig1}, dok je funkcija cilja data sa $f = 3x_1 + 2 x_2$.  
+  \item \emph{Dopustivi region}: označava skup svih rješenja koja su dopustiva. Ovo je prostor koji pretražujemo u svrhu pronalaska najboljeg rješenja modela. Takođe, može se desiti da problem nema niti jedno dopustivo rješenje. Za takav problem se kaže da je \emph{nedopustiv}. 
+  \item \emph{Optimalno rješenje} je ono rješenje iz dopustivog skupa za koje je funkcija cilja najveća (pod pretpostavkom da maksimizujemo funkciju cilja), odnosno najmanja (pod pretpostavkom da minimizujemo funkciju cilja). Treba napomenuti da ova vrijednost ne mora biti jedinstvena.  Na primjer, na Slici~\ref{fig:multi_solution} je prikazan dopustiv region isti kao u primjeru sa Slike~\ref{fig:fig1}, \fxnote{marko, nije isti dopustivi region na ove dvije slike} dok je funkcija cilja, koja se maksimizuje, data sa $f = 3x_1 + 2 x_2$.  
  \end{itemize}
  
  \begin{figure}
@@ -622,9 +621,9 @@ programu postoji varijabla koja ne zadovoljava uslov nenegativnosti, ona se mož
      \label{fig:multi_solution}
  \end{figure}
  
- Za razliku od nedopustivog problema, može se desiti i sasvim druga situacija, da je problem neograničen. U tom slučaju vrijednosti (jedne od) varijabli se mogu povećavati tako da funkcija cilja (u problemu maksimizacije) teži ka beskonačno, tj. nije ograničena odozgo nekom vrijednošću. Za taj problem kažemo da je \emph{neograničen} problem.
+ Za razliku od nedopustivog problema, može se desiti i sasvim druga situacija, da je problem neograničen. U tom slučaju vrijednosti neke od promjenljivih se mogu povećavati tako da funkcija cilja (u problemu maksimizacije) teži ka beskonačno, tj. nije ograničena odozgo nekom vrijednošću. Za takav problem kažemo da je \emph{neograničen}.
  
- Primjer takvog problema možemo vidjeti na Slici~\ref{fig:unbounded_solution}, gdje je potrebno maksimizovati funkciju $f = 3 x_1 + x_2$, pod uslovima $0\leq x_1 \leq 4$, te $x_2 \geq 0$. Kao što se može vidjeti, što se više povećava vrijednost varijable $x_2$, to funkcija $f$ više raste. Ako bi $x_2$ bilo $\infty$, to bi i funkcija $f$ bila neograničena ($f = \infty$).
+ Primjer neograničenog problema možemo vidjeti na Slici~\ref{fig:unbounded_solution}, gdje je potrebno maksimizovati funkciju $f = 3 x_1 + x_2$, pod uslovima $0\leq x_1 \leq 4$, te $x_2 \geq 0$. Kao što se može vidjeti,  kako vrijednost promjenljive $x_2$ teži ka beskonačnosti, tako i vrijednost funkcije $f$ teži ka beskonačnosti.
  
   \begin{figure}
      \centering
@@ -633,37 +632,40 @@ programu postoji varijabla koja ne zadovoljava uslov nenegativnosti, ona se mož
      \label{fig:unbounded_solution}
  \end{figure}
  
-Uvedimo sada pojam \emph{ekstremnih tačaka}, koje igraju bitnu ulogu u simpleks metodi. Za rješenje $x$ kažemo da je \emph{ekstremna tačka} ako se nalazi u vrhu dopustivog regiona (u presjeku granica dopustivog regiona).
+Uvedimo sada pojam \emph{ekstremnih tačaka}, koje igraju bitnu ulogu u simpleks metodi. Za rješenje $x$ kažemo da je \emph{ekstremna tačka} ako se nalazi u vrhu dopustivog regiona, odnosno u presjeku granica dopustivog regiona.
 
-Postoji važne veze između ovih tačaka i optimalnog rješenja LP-a, o čemu će biti riječi u nastavku ove knjige.
-Prije toga, za početak, razmotrimo bilo koji problem LP-a sa dopustivim rješenjima i ograničenim dopustivim regionom. Tada će važiti, što ćemo uskoro i pokazati, da problem u tom slučaju posjeduje barem jednu tačku koja je vrh tog regiona i barem jedno optimalno rješenje. Nadalje, jedan od vrhova mora biti optimalno rješenje. Dakle, ako problem ima tačno jedno optimalno rješenje, to rješenje je tačka koja je vrh regiona. Ako problem ima više optimalnih rješenja, barem dva moraju biti rješenja koja su tačke  vrhova dopustivog regiona.
+Postoji važna povezanost između ovih tačaka i optimalnog rješenja LP-a, o čemu će biti riječi u nastavku ove knjige.
+Prije toga, za početak, razmotrimo bilo koji problem LP-a sa dopustivim rješenjima i ograničenim dopustivim regionom. Kao što će uskoro biti i pokazano, u tom slučaju ćemo da raspolažemo barem jednom tačkom vrh tog regiona i barem jednim optimalnim rješenjem. Nadalje, jedan od vrhova mora biti optimalno rješenje. Dakle, ako problem ima tačno jedno optimalno rješenje, to rješenje je tačka koja je vrh regiona. Ako problem ima više optimalnih rješenja, barem dva moraju biti rješenja koja su tačke  vrhova dopustivog regiona.
 
-\textit{Napomena.} Treba imati na umu da (optimalno) rješenje LP-a ne mora da bude cjelobrojno. Budući da svaka varijabla odluke predstavlja nivo odgovarajuće aktivnosti, pretpostavlja se da se aktivnosti mogu izvoditi na razlomljenim nivoima (aktivnost  se ne dijeli samo na diskretne dijelove), na osnovu nenegativnih ograničenja.  
+Treba imati na umu da (optimalno) rješenje LP-a ne mora da bude cjelobrojno. Budući da svaka promjenljiva odluke predstavlja nivo odgovarajuće aktivnosti, pretpostavlja se da se aktivnosti mogu izvoditi i na razlomljenim nivoima, odnosno, aktivnost  se ne dijeli samo na diskretne dijelove. 
 
-Ako su sve varijable u LP-u cjelobrojne, riječ je o modelu \emph{Cjelobrojnog programiranja}. Ako pored cjelobrojnih, postoje i neke varijable koje su neprekidne, riječ je o modelima \emph{Mješovitog--cjelobrojnog linearnog programiranja}. Veliki broj realnih problema koji dolaze iz prakse su upravo problemi Mješovitog--cjelobrojnog linearnog programiranja.
+Ako su sve promjenljive u LP-u cjelobrojne, riječ je o modelu \emph{Cjelobrojnog programiranja}. Ako pored cjelobrojnih, postoje i neke varijable koje su neprekidne, riječ je o modelima \emph{Mješovitog--cjelobrojnog linearnog programiranja}. Veliki broj realnih problema koji dolaze iz prakse su upravo problemi Mješovitog--cjelobrojnog linearnog programiranja.
+\fxnote{marko, ja sam iskomentarisao ovaj naslov, jer je nekako glomazan za svega dva primjera}
+%\section{Modelovanje nekih problema paradigmom linearnog programiranja}\label{sec:modeli_lp}
 
-\section{Modelovanje nekih problema paradigmom linearnog programiranja}\label{sec:modeli_lp}
-
-\emph{Problem optimalne prehrane.} Pretpostavimo da su nam na raspolaganju namirnice $N_1, \ldots, N_n$. Cijena namirnice $N_j$ po jedinici je $c_j>0, j = 1, \ldots, n$. U namirnicama su prisutni nutritivni elementi $e_j,j=1,\ldots,m$ pri čemu
-u namirnici $N_j$ ima $a_{ij} \geq 0$ nutritivnog elementa $e_i$, $i = 1, \ldots, n$, $j = 1, \ldots, m$. Svaka osoba u toku dana treba da unese barem $b_i$
+U naredna dva primjera opisani su modeli linearnog programiranja za dva poznata problema. 
+\begin{primjer}
+\emph{Problem optimalne prehrane.} Pretpostavimo da su nam na raspolaganju namirnice $N_1, \ldots, N_n$. Jedinična cijena namirnice $N_j$ je $c_j>0, j = 1, \ldots, n$. U namirnicama su prisutni nutritivni elementi $e_i,i=1,\ldots,m$ pri čemu
+namirnica $N_j$ sadrži $a_{ij} \geq 0$ nutritivnog elementa $e_i$, $i = 1, \ldots, n$, $j = 1, \ldots, m$. Svaka osoba u toku dana treba da unese barem $b_i$
 jedinica nutritivnog elementa $e_i$. Potrebno je modelovati
 sljedeći problem: 
 
-\emph{Koliko je koje namirnice potrebno kupiti za (dnevnu) prehranu da bi se zadovoljila dnevna
-potreba za svim nutritivnim elementima, a da se pri tome minimizuje cijena prehrane?}
+Koliko je koje namirnice potrebno kupiti za (dnevnu) prehranu da bi se zadovoljila dnevna
+potreba za svim nutritivnim elementima, a da se pri tome minimizuje cijena prehrane?
+\end{primjer}
  
- \emph{Rješenje.}  Uvedimo prvo varijable $x_j \geq 0$ za količinu hrane namirnice $N_j$, $j = 1, \ldots, n$ koja će da bude korištena za prehranu. Funkcija cilja treba da odgovara minimizaciji cijene prehrane, pa je, prema tome 
+ \emph{Rješenje.}  Uvedimo prvo varijable $x_j \geq 0$ za količinu hrane namirnice $N_j$, $j = 1, \ldots, n$, koja će se koristiti za prehranu. Funkcija cilja treba da odgovara minimizaciji cijene prehrane:
  $$f(x) = c_1 x_1 + \cdots + c_n x_n.$$
  
- Dalje, ograničenja su sljedeća: treba da se zadovolje dnevne potrebe za unos svakog nutritivnog elementa, odakle slijedi da za $i$-ti element treba da bude zadovoljeno
+ Ograničenja problema su vezana za zahtjev da se zadovolji dnevna potreba za unosom svakog nutritivnog elementa. Odavde, slijedi da za $i$-ti element treba da bude zadovoljeno
  
  $$ a_{i,1} x_1 + \ldots + a_{i,n} x_n \geq b_i $$
  
  za svako $i=1,\ldots,m$. Dodajući još uslove nenegativnosti, $x_i \geq 0$, formulisali smo linearni model za ovaj problem.  
- 
+ \begin{primjer}
 \emph{Problem najboljeg pravca (problem linearne regresije)}. Zadani su podaci $(x_i, y_i), i = 1, \ldots , n$. Potrebno je odrediti pravu sa jednačinom $y = k x + l,
-k, l \in \mathbb{R}$ koja u smislu $l_1$ norme najbolje aproksimira date podatke. U prevodu, potrebno je minimizovati  funkciju cilja $$f(k, l) = \sum_{i=1}^n |k x_i + l - y_i|.$$
-
+k, l \in \mathbb{R}$ koja, u smislu $l_1$ norme, najbolje aproksimira date podatke. Drugim riječima, potrebno je minimizovati  funkciju cilja $$f(k, l) = \sum_{i=1}^n |k x_i + l - y_i|.$$
+\end{primjer}
 \emph{Rješenje}.
 Označimo sa $z_i = |k x_i + l - y_i| = \max\{k x_i + l - y_i, y_i - k x_i - l \}$, $i=1,\ldots,n$. 
 
@@ -679,21 +681,21 @@ $w_i = z_i, i=1,\ldots,n$, $w_{n+1} = k, w_{n+2} = l$, dok
 $c_i = 1, i=1,\ldots,n$, i $c_{n+1} = 0, c_{n+2} = 0$. 
 
 
-
  
-Kada je riječ o linearnim programima,  oni imaju nekoliko osnovnih implicitnih pretpostavki. 
+Na kraju ove sekcije, navednimo nekoliko osnovnih implicitnih pretpostavki o problemima linearnog programiranja. 
 \begin{enumerate}
     \item \emph{Proporcionalnost.} Doprinos svake aktivnosti ciljnoj funkciji $f$ proporcionalan je njenom koeficijentu doprinosa, tj. $c_ix_i$. Doprinos svake aktivnosti svakom od  ograničenja u modelu proporcionalan je njenom  koeficijentu doprinosa, tj. $a_ix_i$.
     \item  \emph{Aditivnost.} Svaka funkcija u modelu je zbir  doprinosa pojedinih aktivnosti, npr. $f(x) = \sum_i a_i x_i$.
-    \item \emph{Djeljivost}. Varijable odluke se mogu podijeliti na vrijednosti koje nisu cijele, uzimajući u obzir  razlomljene vrijednosti, dok god su ograničenja zadovoljena.  
+    \item \emph{Djeljivost}. Promjenljive odluke se mogu podijeliti na vrijednosti koje nisu cijele, uzimajući u obzir  razlomljene vrijednosti, dok god su ograničenja zadovoljena.  
+    \fxnote{umjesto Sigurnost bih pisao pouzdanost - ne znam koja je originalna rijec}
     \item \emph{Sigurnost}. Pretpostavljamo da su vrijednosti parametara u modelu poznate
-    sa nekom dozom sigurnosti ili se barem tako tretiraju. Dobijeno optimalno rješenje je optimalno za specifični formulisani problem. Ako su vrijednosti parametara pogrešne, tada rezultirajuće rješenje po pravilu ima malu (upotrebnu)  vrijednost.  
+    sa nekom dozom sigurnosti ili se barem tako tretiraju. Dobijeno optimalno rješenje je optimalno za razmatrani problem. Ako su vrijednosti parametara pogrešne, tada rezultujuće rješenje po pravilu ima malu (upotrebnu)  vrijednost.  
 \end{enumerate}
 %Ako model zadovoljava prethodne 4 pretpostavke, onda je riješ o modelu linearnog programiranja. 
 
 \section{Teorija linearnog programiranja}
-U ovom poglavlju ćemo formalno izvesti generalne uslove pod kojima se problem linearnog programiranja može riješiti. U osnovi, pokazaćemo da ako je problem
-linearnog programiranja dopustiv i ograničen i postoje vrhovi, onda postoji i optimalno rješenje  problema LP-a. Kako smo ranije neformalno pomenuli,  to rješenje se nalazi upravo u jednom od vrhova poliedra. 
+U ovom poglavlju ćemo formalno izvesti opšte uslove pod kojima se problem linearnog programiranja može riješiti. U osnovi, pokazaćemo da, ako je problem
+linearnog programiranja dopustiv i ograničen i ako postoje vrhovi, onda postoji i optimalno rješenje  problema LP-a. Kako smo ranije neformalno pomenuli,  to rješenje se nalazi upravo u jednom od vrhova poliedra.
 
 Prije nego što ovo i formalno pokažemo, uvedimo nekoliko osnovnih definicija i pratećih teorema. 
 
@@ -705,7 +707,7 @@ Prije nego što ovo i formalno pokažemo, uvedimo nekoliko osnovnih definicija i
    $$ f( \lambda x + (1-\lambda) y) \leq \lambda f(x) + (1 -\lambda) f(y),$$
    za svaki $x,y \in \mathbb{R}^n$ i svaki $\lambda \in [0,1].$
 \end{definition}
-Primijetimo da je svaka funkcija data u obliku $f(x_1, \ldots, x_n) = \sum_{i=1}^n c_i x_i$ za neke $c_i \in \mathbb{R}$, konveksna, što se direktno provjerava na osnovu definicije konveksnosti funkcije. Dakle, LP u svom opštem obliku  ima ciljnu funkciju koja je konveksna. Geometrijska interpretacija konveksnosti funkcije je prikazana na Slici~\ref{fig:convex_function}.
+Primijetimo da je svaka funkcija oblika $f(x_1, \ldots, x_n) = \sum_{i=1}^n c_i x_i$ za neke $c_i \in \mathbb{R}$, konveksna, što se lako provjerava na osnovu definicije konveksnosti. Dakle, LP u svom opštem obliku  ima ciljnu funkciju koja je konveksna. Geometrijska interpretacija konveksnosti funkcije je prikazana na Slici~\ref{fig:convex_function}.
 
 %\begin{figure}
 %    \centering
@@ -755,9 +757,9 @@ Primijetimo da je svaka funkcija data u obliku $f(x_1, \ldots, x_n) = \sum_{i=1}
 \end{definition}
 
 Konveksne funkcije imaju lijepa svojstva sa stanovišta teorije i u kombinaciji sa konveksnim skupovima čine osnov  teorije optimalnosti. Inače, vrijedi sljedeća teorema.
-\begin{thm}
+\begin{thm}\label{thm:globalopt}
   Neka je $f : S \mapsto \mathbb{R}$ konveksna funkcija definisana na konveksnom skupu $S \subseteq \mathbb{R}^n$. Ako funkcija $f$ u tački $x^* \in S$
- postiže lokalni minimum, onda je ta tačka predstavlja i tačku globalnog minimuma.
+ postiže lokalni minimum, onda ta tačka predstavlja i tačku globalnog minimuma.
 \end{thm}
 
 \begin{comment}
@@ -788,7 +790,9 @@ U sljedeće dvije definicije definišimo pojmove poliedra, hiperravni i polupros
 \begin{definition}
    Neka je $a\in \mathbb{R}^n $ i $b \in \mathbb{R}$. Skup $\{ x \in \mathbb{R}^n \mid a^T x = b \}$ se naziva hiperravan u $\mathbb{R}^n$ čiji je vektor  normale $a$, dok se $\{ x \in \mathbb{R}^n \mid a^T x \geq b \}$ naziva poluprostor. 
 \end{definition}
-Pokažimo sada da je poliedar konveksan skup. To je važna karakteristika, jer se uslovima problema LP-a formira odgovarajući poliedar, a kako je on konveksan skup, prethodna teorema nam garantuje da, uz pretpostavku da postoji lokalni minimum (maksimum), onda postoji  i globalni minimum (maksimum), tj. optimalno rješenje zadanog problema LP-a.
+
+
+Pokažimo sada da je poliedar konveksan skup. To je važna karakteristika, jer se uslovima problema LP-a formira upravo poliedar kao skup dopustivih rješenja. Kako je poliedar konveksan skup, Teorema~\ref{thm:globalopt} nam garantuje da, uz pretpostavku da postoji lokalni minimum (maksimum), onda postoji  i globalni minimum (maksimum), odnosno optimalno rješenje zadanog problema LP-a. 
 
 \begin{prop} Vrijede sljedeće tvrdnje: \\
   ($i$)  Poluprostor u $\mathbb{R}^n$ je konveksan skup.  \\
@@ -796,7 +800,7 @@ Pokažimo sada da je poliedar konveksan skup. To je važna karakteristika, jer s
 \end{prop}
 
 \begin{proof}
-  ($i$) Neka je dat poluprostor $P = \{ x \in \mathbb{R}^n \mid a^T x \geq b \}$. Uzmimo $x, y \in P$, te neko $\lambda \in [0, 1]$. Treba da pokažemo da konveksna kombinacija ova dva vektora   pripada $P$. Iz $x \in P$, slijedi  $a^T x \geq b$. Takođe, kako je $y \in P$, to je  $a^T y \geq b$. 
+  ($i$) Neka je dat poluprostor $P = \{ x \in \mathbb{R}^n \mid a^T x \geq b \}$. Uzmimo $x, y \in P$, te neko $\lambda \in [0, 1]$. Treba da pokažemo da konveksna kombinacija ova dva vektora   pripada $P$. Iz $x \in P$, slijedi  $a^T x \geq b$. Takođe, kako je $y \in P$, onda  je  $a^T y \geq b$. 
   Sada  imamo sljedeće:
   \begin{align}
       a^T (\lambda x) \geq \lambda b \\
@@ -806,20 +810,20 @@ Pokažimo sada da je poliedar konveksan skup. To je važna karakteristika, jer s
   \begin{equation}
       a^T( \lambda x + (1 - \lambda) y ) \geq b,
   \end{equation}
-  odakle slijedi da $\lambda x + (1-\lambda) y \in P$, pa imamo tvrdnju. 
+  odakle slijedi da $\lambda x + (1-\lambda) y \in P$, čime je tvrdnja dokazana.
   
   ($ii$) Neka su $S_1,\ldots, S_n$ konveksni skupovi. Ako $x,y \in \cap_{i=1}^n S_i$, onda slijedi da $x,y \in S_i$ za svaki $i=1,\ldots,n$. Zbog konveksnosti svakog od skupova,  
   $\lambda x + (1 - \lambda) y \in S_i$, za svaki $i=1,\ldots,n$. Prema tome, vrijedi $ \lambda x + (1-\lambda) y \in \cap_{i=1}^n S_i$, odakle slijedi da je $\cap_{i=1}^n S_i$ konveksan. 
 \end{proof}
 
-Iz prethodne teoreme vrijedi sljedeća posljedica.
+Iz prethodne propozicije vrijedi sljedeća posljedica.
 
 \begin{poslje}
 Poliedar $P$ nekog problema LP-a je konveksan skup.	
 \end{poslje}
  
 \begin{proof}
-  Definišimo $S_i:= \{ (x_1,\ldots, x_n) \in \mathbb{R}^n \mid c^T x \geq b_i \}$, gdje je  $c = (a_{i,1}, \ldots, a_{i, n}),$  $ i=1,\ldots, m$. Kako je $\cap_{i=1}^m S_i$ poliedar koji odgovara problemu LP-a, na osnovu prethodne propozicije ($ii$), slijedi tvrdnja. 
+  Definišimo $S_i:= \{(x_1,\ldots, x_n) \in \mathbb{R}^n \mid c^T x \geq b_i \}$, gdje je  $c = (a_{i,1}, \ldots, a_{i, n}),$  $ i=1,\ldots, m$. Kako je $\cap_{i=1}^m S_i$ poliedar koji odgovara problemu LP-a, na osnovu prethodne propozicije ($ii$), slijedi tvrdnja. 
 \end{proof}
 
 
@@ -832,11 +836,12 @@ Nadalje, formalno definišimo ekstremne tačke, vrhove i bazna dopustiva rješen
    ako ne postoje vektori $y, z \in P$, $y \neq x, z \neq x$ i skalar $\lambda \in [0, 1]$ takvi da je  $x = \lambda y + (1-\lambda)z$.
 \end{definition}
 
- Drugim riječima, ekstremna tačka $x$ ne leži između neke dvije tačke $y,z$    poliedra $P$.
-Možemo reći i ovako: One tačke koje se ne mogu napisati kao netrivijalna konveksna kombinacija tačaka iz poliedra čine skup ekstremnih tačaka. 
+Dakle, ekstremna tačka poliedra se ne može napisati kao netrivijalna konveksna kombinacija tačaka iz tog poliedra. 
+ 
+  Neformalno rečeno, ako je  $x$ ekstremna tačka poliedra, tada ona ne leži između neke dvije tačke $y$ i $z$   poliedra $P$.
  
  
-\begin{definition}
+\begin{definition}\label{def:vrhPoliedra}
    Neka je dat poliedar $P \subseteq \mathbb{R}^n$. Tačku $x \in P$ nazivamo vrh (poliedra) ako postoji linearna funkcija  $c^T x$ koja je strogo minimizovana u toj tački, tj. za sve  $y\in P, y \neq x$, vrijedi $c^T x < c^T y$. 
 \end{definition}
 Geometrijski posmatrano,  vrh poliedra $P$ je ona tačka poliedra  kroz koju možemo provući poluravan sa svojstvom da se sve tačke iz $P$ (izuzev vrha) nalaze sa iste strane te poluravni.
@@ -856,13 +861,13 @@ Uvedimo sada nekoliko novih pojmova koji će nam pomoći da definišemo bazno do
 
 \begin{definition}
       Neka je zadan poliedar iz Definicije~\ref{dfn:lp_aktivan}. Neka je 
-      $I = \{ i \in C_1 \cup C_2 \cup C_3 \mid a_i^T x^* = b_i \}$  skup indeksa aktivnih u $x^*\in \mathbb{R}^n$.  Ako je skup $\{ a_i \mid i \in I \}$ linearno nezavisan onda se $x^*$  naziva bazno rješenje. 
+      $I = \{ i \in C_1 \cup C_2 \cup C_3 \mid a_i^T x^* = b_i \}$  skup indeksa aktivnih u $x^*\in \mathbb{R}^n$.  Ako je skup $\{ a_i \mid i \in I \}$ linearno nezavisan, onda se $x^*$  naziva bazno rješenje. 
 \end{definition}
 % https://faculty.math.illinois.edu/~mlavrov/docs/482-fall-2019/lecture8.pdf
 \begin{definition}
 	 Bazno dopustivo rješenje $x^*$ je bazno rješenje koje zadovoljava  uslove linearnog programa. 
 \end{definition}
-Pokažimo sada da su vrhovi, ekstremne tačke poliedra i bazna dopustiva rješenja predstavljaju istu stvar kada je riječ o LP-u.
+Pokažimo sada da  vrhovi, ekstremne tačke poliedra i bazna dopustiva rješenja predstavljaju istu stvar kada je riječ o LP-u.
 
 \begin{thm}
    Neka je $P$ poliedar i neka je $x^* \in P$. Sljedeće tri tvrdnje su ekvivalentne:
@@ -876,17 +881,18 @@ Pokažimo sada da su vrhovi, ekstremne tačke poliedra i bazna dopustiva rješen
 \begin{proof}
       Pokažimo da vrijedi $1 \Rightarrow 2, 2 \Rightarrow 3$, pa onda $3 \Rightarrow 1$, čime ćemo pokazati ekvivalenciju sve tri tvrdnje.
       
-      $1 \Rightarrow 2$. Neka je $x^*$ vrh poliedra. Iz definicije slijedi da 
+      $1 \Rightarrow 2$. Neka je $x^*$ vrh poliedra. Iz Definicije~\ref{def:vrhPoliedra} slijedi da 
       postoji $c\in \mathbb{R}^n$ tako da $c^Tx^* < c^T x$, za sve $x \in P, x \neq x^*$. Pretpostavimo da $x^*$ nije ekstremna tačka poliedra $P$. 
       To bi značilo da postoje $y,z \in P$, koji su različiti od $x^*$, takvi da se $x^*$ može predstaviti kao njihova (netrivijalna) konveksna kombinacija, tj. $x^* = \lambda y + (1 - \lambda) z $, za neko $\lambda \in (0,1 )$. Na osnovu pretpostavke je $c^T x^* < c^T y$. Sada je 
       \begin{align}
           &c^T x^* = c^T ( \lambda y + (1 - \lambda) z )  = c^T( \lambda y) + c^T((1- \lambda) z) > \nonumber \\
           &>\lambda c^T x^* + ( 1 - \lambda) c^T x^* = c^T x^*.
       \end{align}
-      što je nemoguće, odakle slijedi tvrdnja. \\
+      što je nemoguće, odakle slijedi tvrdnja. 
+      
       $2 \Rightarrow 3$.
        Ovu implikaciju ćemo dokazati kontrapozicijom. Pretpostavimo da tačka $x^*$ nije BDR i pokažimo da iz toga slijedi da ona nije ni ekstremna tačka.
-      Bez smanjenja opštosti, zapišimo poliedar $P$ sa 
+      Bez smanjenja opštosti, zapišimo poliedar $P$ na sljedeći način.
        \begin{align}
             & a_i^T x \geq b_i, i \in C_1 \\
             & a_i^T x  = b_i, i \in C_2.
@@ -898,12 +904,14 @@ Pokažimo sada da su vrhovi, ekstremne tačke poliedra i bazna dopustiva rješen
        za neko $\epsilon > 0$, pa pokažimo da $y, z \in P$.
        
        Ako je $i \in I$, onda je $$a_i^T y = a_i^T (x^* + \epsilon d) = a_i^T x^* + \epsilon a_i^T d = a_i^T x^* = b_i. $$
+       \fxnote{marko, provjeri racun ispod}
        Pokažimo još da za $i \not \in I$ vrijedi $a_i^T x^* \geq b_i$, odakle bi slijedilo da $y \in P$. Dakle, $a_i^T y = a_i^T (x^* + \epsilon d) = a_i^T x^* + \epsilon a_i^T d $. Ako je $a_i^T d \geq 0$, slijedi da je 
        $a_i^T x^* > b_i$, odakle slijedi da je $y \in  P$. Ako je $a_i^T d < 0$, onda odaberimo takve $\epsilon$ za koje će vrijediti $a_i^T x^* + \epsilon a_i^T d > b_i$. Interval   vrijednosti za $\epsilon$ dobijemo iz sljedećeg računa:
        $$ a_i^T x^* + \epsilon a_i^T d > b_i \Rightarrow \epsilon < \frac{b_i - a_i^T x^*}{a_i^T d}  $$
-       Za svaki $\epsilon \in (0,  \frac{b_i - a_i^T x^*}{a_i^T d} )$ vrijedi $a_i^T y > b_i$, odakle slijedi $y \in P$. Slično pokažemo i da vrijedi $z \in P$. 
-       Prema tome lako je vidjeti da vrijedi $x^* = \frac{1}{2}y +\frac{1}{2} z$, dakle $x^*$ se dobija kao netrivijalna konveksna kombinacija, što je u suprotnosti sa definicijom ekstremne tačke. \\
-       $3 \Rightarrow 1$. Neka je $x^*$ BDR. Treba da pokažemo da je ona takođe vrh poliedra $P$. Iz pretpostavke, za BDR, označimo sa $I$ skup aktivnih indeksa u $x^*$ i definišimo $c = \sum_{i \in I} a_i$.  Tada imamo 
+       Za svaki $\epsilon \in \left(0,  \frac{b_i - a_i^T x^*}{a_i^T d} \right)$ vrijedi $a_i^T y > b_i$, odakle slijedi $y \in P$. Slično pokažemo i da vrijedi $z \in P$. 
+       Prema tome, lako je vidjeti da vrijedi $x^* = \frac{1}{2}y +\frac{1}{2} z$. Dakle, $x^*$ se dobija kao netrivijalna konveksna kombinacija, što je u suprotnosti sa definicijom ekstremne tačke. 
+       
+       $3 \Rightarrow 1$. Neka je $x^*$ BDR. Treba da pokažemo da je  $x^*$  takođe vrh poliedra $P$. Označimo sa $I$ skup aktivnih indeksa u $x^*$ i definišimo $c = \sum_{i \in I} a_i$.  Tada imamo 
        $ c^T x^* = \sum_{i \in I } a_i^T x^* = \sum_{i \in I} b_i$. Za proizvoljno $x \in P$ dobijamo
        \begin{equation}\label{eq:3_impl_1}
           c^T x = \sum_{i \in I} a_i^T x \geq c^T x^*  
@@ -915,14 +923,14 @@ U nastavku ćemo dati uslove koji treba da vrijede za postojanje BDR-a, tj.
 
 \begin{thm}
    Neka je $P = \{ x \in \mathbb{R}^n \mid A x = b, x \geq 0\}, A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m$ i $rang(A)= m, m < n$.
-   Vektor $x$ je bazno rješenje  akko je $A x = b$ i ako postoje indeksi $p_1,p_2,\ldots, p_m$ tako da vrijedi:
+   Vektor $x$ je bazno rješenje  akko je $A x = b$ i ako postoje indeksi $p_1,p_2,\ldots, p_m$ takvi da vrijedi:
    \begin{enumerate}
        \item kolone $A_{p_1},\ldots, A_{p_m}$ su linearno nezavisne
        \item ako $i \notin \{p_1,\ldots, p_m\}$, onda $x_i = 0$.
    \end{enumerate}
    
 \end{thm}
-Iz prethodne teoreme zaključujemo da bismo  konstruisali bazno rješenje, sljedeći koraci se izvršavaju:
+Iz prethodne teoreme možemo zaključiti sljedeće.  Da bismo  konstruisali bazno rješenje, potrebno je izvršiti sljedeće korake:
 \begin{enumerate}
     \item Odaberemo $m$ linearno nezavisnih kolona $A_{p_1}, \ldots, A_{p_m}$ matrice $A$.
     %\item Postavimo $x_i = 0$, za sve $i \in \{p_1,\ldots, p_m \}$.
@@ -931,11 +939,13 @@ Iz prethodne teoreme zaključujemo da bismo  konstruisali bazno rješenje, sljed
     	          0, j  \not \in \{p_1,\ldots, p_m \} \\
     	         x_{p_i} = (x_B)_i, j \in \{ p_1,\ldots, p_m \}
     \end{cases},$$  čime dobijamo bazno rješenje. 
+
 \end{enumerate}
-Varijable $x_{p_1},\ldots, x_{p_m}$ nazivamo \emph{bazne varijable}, a vektore  $A_{p_1}, \ldots, A_{p_m}$ \emph{bazni vektori}, indekse $p_1,\ldots, p_m$ \emph{bazni indeksi}, dok matricu $B$ matrica baze. 
+\fxnote{pitanje za marka: gdje je j}
+Promjenljive $x_{p_1},\ldots, x_{p_m}$ nazivamo \emph{bazne promjenljive}, a vektore  $A_{p_1}, \ldots, A_{p_m}$ \emph{bazni vektori}, indekse $p_1,\ldots, p_m$ \emph{bazni indeksi}, a matricu $B$ matricom baze. 
 
 
-Definišimo sada pojam \emph{degenerativnog} rješenja i degenerativnog baznog rješenja. Pokazaćemo kako se na primjeru pronalazi bazno rješenje te kako izgleda degenerativno bazno rješenje.
+Definišimo sada pojam \emph{degenerativnog} rješenja i degenerativnog baznog rješenja. 
 
 \begin{definition}
       Neka je dat poliedar $P = \{ x \in \mathbb{R}^n \mid a_i^T x \geq b_i, x_i \geq 0, i=1,\ldots,m \}$. Za bazno rješenje $x^*\in \mathbb{R}^n$ kažemo da je degenerativno ako je više od $n$  ograničenja aktivno u $x^*$. 
@@ -945,6 +955,8 @@ Definišimo sada pojam \emph{degenerativnog} rješenja i degenerativnog baznog r
 \begin{definition}
       Neka je $P = \{ x \in \mathbb{R}^n \mid A x = b, x \geq 0\}, A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m$    i neka je $x$ bazno rješenje. Vektor $x$ nazivamo degenerativno bazno rješenje ako je više od $n-m$ komponenti u vektoru $x$   jednako 0.
 \end{definition}
+U sljedećem primjeru ćemo pokazati kako se pronalazi bazno rješenje, te kako izgleda degenerativno bazno rješenje.
+
 \begin{primjer} Zadajmo poliedar $P= \{ (x_1,x_2,x_3)^T \mid x_2 - x_1 = 0, x_1 + x_2 +   x_3 = 2, x_1,x_2,x_3 \geq 0 \}$.  Pronaći bazna dopustiva rješenja i odrediti jesu li ona degenerativna. 
 \end{primjer}
 
@@ -952,14 +964,14 @@ Definišimo sada pojam \emph{degenerativnog} rješenja i degenerativnog baznog r
 $A=\left (\begin{array}{ccc}
    -1  &  1 & 0  \\
    1  &  1 & 1 \\
-\end{array} \right )$ te $b = [0\ 2]^T$. Prateći postupak konstrukcije baznog rješenja, pronađimo dvije linearno nezavisne kolone matrice $A$, recimo prve dvije, odakle je matica $B=\left (\begin{array}{cc}
+\end{array} \right )$ te $b = [0\ 2]^T$. Prateći postupak konstrukcije baznog rješenja, pronađimo dvije linearno nezavisne kolone matrice $A$. Na primjer, možemo uzeti prve dvije kolone, pa je matrica $B=\left (\begin{array}{cc}
    -1  & 1    \\
    1  &  1   \\
-\end{array} \right ) .$ Riješimo sistem jednačina (stavka 3), odakle je rješenje $x_B = [1\ 1]^T$, a krajnje rješenje je $x^* = [1\ 1\ 0]^T$. Kako je 
+\end{array} \right ) .$ Riješimo sistem jednačina (stavka 2), odakle je rješenje $x_B = [1\ 1]^T$, a krajnje rješenje je $x^* = [1\ 1\ 0]^T$. Kako je 
 $x^*$ aktivan u sva tri uslova $x_2 - x_1 = 0, x_1 + x_2 +  x_3 = 2$ i $x_3 = 0$, rješenje je nedegenerativno bazno dopustivo rješenje.  Takođe, možemo odabrati drugu i treću kolonu matrice za bazne kolone (kao i prvu i treću), odakle bismo dobili rješenje $x^* = [0\ 0\ 2]^T$, aktivno u četiri uslova, pa smo dobili degenerativno bazno dopustivo rješenje. 
 
 
-U nastavku govorimo o egzistenciji optimalnog rješenja problema LP-a. U narednoj definiciji objašnjavamo pojam pravca u poliedru.
+U nastavku govorimo o egzistenciji optimalnog rješenja problema LP-a. Definišimo prvo pojam pravca u poliedru.
 
 \begin{definition}
       Poliedar $P$ sadrži pravac akko postoji $x \in P$ i $d \in \mathbb{R}^n \setminus \{0\}$ tako da je $x + \lambda d \in P$, za sve $\lambda \in \mathbb{R}$. 
@@ -967,7 +979,7 @@ U nastavku govorimo o egzistenciji optimalnog rješenja problema LP-a. U naredno
 
 Sljedeću teoremu, koja daje vezu između ekstremnih tačaka poliedra i dopustivih pravaca, navodimo bez dokaza.
 
-\begin{thm}
+\begin{thm}\label{thm:pravac}
    Neka je dat poliedar $P=\{ x \in \mathbb{R}^n  \mid a_i^T x \geq b_i, i=1,\ldots,m\} \neq \emptyset$. Tada su sljedeće tri tvrdnje ekvivalentne:
    \begin{itemize}
        \item  Poliedar $P$ ima barem jednu ekstremnu tačku.
@@ -983,41 +995,43 @@ Sljedeća teorema nam daje dovoljan uslov za postojanje optimalnog rješenja koj
 \end{thm}
 
 \begin{proof}
-         Sa $O^* \not = \emptyset$ označimo skup svih optimalnih rješenja  nad poliedrom $P= \{ x \in \mathbb{R}^n \mid A x \geq b \}$ te neka je $c^T x^* = v$, za sve $x^* \in O^*$. Vidimo da je 
-         $O^* = \{ x \in \mathbb{R}^n \mid A x \geq b, c^T x = v  \}$ je takođe poliedar, $O^* \subset P$. Prethodna teorema nam kaže da poliedar $P$ ne sadrži pravac. Iz toga zaključujemo da ni $O^*$ nema pravac, odakle slijedi da $O^*$ ima barem jednu ekstremnu tačku (stavka 1 prethodne teoreme), označimo je sa $q^*$. Pokažimo da je to ujedno i ekstremna tačka od $P$.  Ako bismo pretpostavili da $q^*$ nije ekstremna tačka poliedra $P$, po definiciji slijedi da postoje $y, z \in P$ tako da $q^* = \lambda y + ( 1 - \lambda ) z $, $y \neq q^*, z \neq q^*, \lambda \in [0, 1]$. Kako je $q^* \in O^*$, imamo 
+         Sa $O^* \not = \emptyset$ označimo skup svih optimalnih rješenja  nad poliedrom $P= \{ x \in \mathbb{R}^n \mid A x \geq b \}$, te neka je $c^T x^* = v$, za sve $x^* \in O^*$. Vidimo da je 
+         $O^* = \{ x \in \mathbb{R}^n \mid A x \geq b, c^T x = v  \}$ takođe poliedar i da važi $O^* \subset P$. Iz Teoreme~\ref{thm:pravac} slijedi da poliedar $P$ ne sadrži pravac. Iz toga zaključujemo da ni $O^*$ nema pravac, odakle slijedi da $O^*$ ima barem jednu ekstremnu tačku (stavka 1 Teoreme~\ref{thm:pravac}). Označimo tu ekstremnu tačku sa $q^*$. Pokažimo da je to ujedno i ekstremna tačka od $P$.  Ako bismo pretpostavili da $q^*$ nije ekstremna tačka poliedra $P$, po definiciji, slijedi da postoje $y, z \in P$ tako da $q^* = \lambda y + ( 1 - \lambda ) z $, $y \neq q^*, z \neq q^*, \lambda \in [0, 1]$. Kako je $q^* \in O^*$, slijedi 
          $$ v = c^T q^* = c^T (  \lambda y + ( 1 - \lambda ) z ) = \lambda 
         \underbrace{ c^T y}_{ \geq v} + ( 1 - \lambda ) \underbrace{c^T z}_{\geq v} \geq \lambda v + (1 - \lambda) v = v,$$
-        odakle imamo $c^T y = v$ i $c^T z = v$, dakle $y, z \in O^*$. Prema tome, $q^*$ nije ekstremna tačka od $O^*$. Dakle, imamo kontradikciju, odakle zaključujemo da $q^*$ mora biti  ekstremna tačka od  $P$.
+        odakle imamo $c^T y = v$ i $c^T z = v$, dakle $y, z \in O^*$. Prema tome, $q^*$ nije ekstremna tačka od $O^*$. Dakle, dolazimo do kontradikcije, odakle zaključujemo da $q^*$ mora biti  ekstremna tačka i od  $P$.
 \end{proof}
  
- Ova važna tvrđenja nam daju bazu za konstrukciju simpleks metoda koji je, kao što smo već pomenuli, jedna od najpoznatijih i najefikasnijih generalnih metoda za rješavanje LP problema.
- 
-% \begin{thm}
- \emph{Posljedica.} Ako  rješavamo problem minimizacije LP-a na poliedru $P$ koji ima barem jednu ekstremnu tačku, tada vrijedi tačno jedna od sljedeće dvije tvrdnje:
+
+ Navedimo sada i važnu posljedicu prethodne teoreme.
+ \begin{poslje}
+Ako  rješavamo problem minimizacije LP-a na poliedru $P$ koji ima barem jednu ekstremnu tačku, tada vrijedi tačno jedna od sljedeće dvije tvrdnje:
    \begin{enumerate}
        \item Funkcija cilja ima vrijednost $- \infty$ (funkcija cilja je neograničena).
        \item Postoji ekstremna tačka u kojoj funkcija cilja dostiže optimalno rješenje. 
    \end{enumerate}
-% \end{thm}
-Kako ćemo vidjeti u narednom poglavlju, upravo  ove tvrdnje motivišu konstrukciju simpleks metode, koja je bazirana na iterativnim posjećivanju vrhova poliedra 
-u cilju pronalaska optimalnog rješenja.
+ \end{poslje}
+
+ Prethodna tvrđenja nam daju bazu za konstrukciju simpleks metoda koji je, kao što smo već pomenuli, jedna od najpoznatijih i najefikasnijih generalnih metoda za rješavanje LP problema.
+Kako ćemo vidjeti u narednom poglavlju, simpleks metoda je zasnovana na iterativnom posjećivanju vrhova poliedra  u cilju pronalaska optimalnog rješenja.
 
 \section{Neke tehnike u modelovanju problema linearnog programiranja}
 
-\emph{Funkcija apsolutna vrijednost}.   Pretpostavimo da imamo model dat sa 
+\emph{Funkcija apsolutna vrijednost}.   Pretpostavimo da imamo model zadat sa 
 \begin{align*}
 	&\min \sum_{j \in J} c_j |x_j| \\
 	& \sum_{j\in J} a_{ij} x_j \leq b_i, \forall i\in I \\
-	& x_i \in \mathbb{R}, \forall i \in I.
+	& x_j \in \mathbb{R}, \forall j \in J.
 \end{align*} 
-
+\fxnote{marko, provjeri i ti indekse, nisam siguran da sam dobro sredio}
 Kao što znamo, apsolutna vrijednost nije linearna funkcija, ali se ovaj model može transformisati u model linearnog programiranja na sljedeći način: 
-svaku slobodnu varijablu ćemo zapisati kao razliku dvije pozitivne varijable, tj.  $x_i = x_i^+ - x_i^-$, a apsolutnu vrijednost kao zbir dvije pozitivne varijable, tj. $|x_i|= x_i^+ + x_i^-$. Prema tome, prethodni model se transformiše  u 
+svaku slobodnu promjenljivu ćemo zapisati kao razliku dvije pozitivne promjenljive, tj.  $x_j = x_j^+ - x_j^-$, a apsolutnu vrijednost kao zbir dvije pozitivne promjenljive, tj. $|x_j|= x_j^+ + x_j^-$. Prema tome, prethodni model se transformiše  u 
 \begin{align*}
 	&\min \sum_{j \in J} c_j  (x_i^+ + x_i^-) \\
 	&\sum_{j\in J} a_{ij} (  x_i^+ - x_i^- ) \leq b_i, \forall i\in I \\
 	&  x_i^+, x_i^- \geq 0, \forall i \in I.
 \end{align*}
+\fxnote{marko, na ovo se moramo vratiti, ni meni nije jasno}
 Ostavljamo čitaocu da pokaže da ova dva modela imaju jednaka optimalna rješenja.
 
 \emph{Min-max problem}. Neka je dat sljedeći model: 
@@ -1027,11 +1041,13 @@ Ostavljamo čitaocu da pokaže da ova dva modela imaju jednaka optimalna rješen
 	& \sum_{j \in J} a_{ij} x_j \leq b_i\  \forall i \in I \\
 	& x_j \geq 0\ \forall j \in J.
 \end{align*}
-Ovaj  model se transformiše u model LP-a uvodeći varijablu $$z=\max_{k \in K} \sum_{j \in J} a_{kj}x_j$$ koja označava maksimalnu cijenu. Ograničenja koja treba da budu dodana u početni model poslije smjene da bi ograničili vrijednost varijable $z$ su:
+Ovaj  model se transformiše u model LP-a uvođenjem promjenljive 
+ $$z=\max_{k \in K} \sum_{j \in J} a_{kj}x_j,$$
+  koja označava maksimalnu cijenu. Da bi se, nakon uvedene smjene, ograničila vrijednost promjenljive $z$, u početni model potrebno je uključiti sljedeća ograničenja: 
 \begin{eqnarray}
 	\sum_{j \in J} a_{kj} x_j \leq z\ \forall k \in K.
 \end{eqnarray}
-Kada se $z$ minimizuje, ova ograničenja osiguravaju da je $z$ veće ili jednako  $\sum_{j \in J} c_{kj}x_j$, za sve $k$. Optimalna vrijednost $z$ neće biti veća od maksimuma svih $\sum_{j \in J} c_{kj}x_j$, jer  $z$ minimizujemo. Prema tome, optimalna vrijednost varijable $z$ će težiti da bude što manja moguća i jednaka maksimalnoj cijeni nad skupom $K$. Prema tome, početni model se transformiše u:
+Kada se $z$ minimizuje, ova ograničenja osiguravaju da je $z$ veće ili jednako  $\sum_{j \in J} c_{kj}x_j$, za sve $k$. Optimalna vrijednost $z$ neće biti veća od maksimuma svih $\sum_{j \in J} c_{kj}x_j$, jer  $z$ minimizujemo. Prema tome, optimalna vrijednost varijable $z$ će težiti da bude što manja moguća i jednaka maksimalnoj cijeni nad skupom $K$. Dakle, početni model se transformiše u:
 \begin{align*}
 	&\max z \\
 	&\sum_{j \in J} a_{ij} x_j \leq b_i\  \forall i \in I \\ 
@@ -1045,7 +1061,7 @@ Kada se $z$ minimizuje, ova ograničenja osiguravaju da je $z$ veće ili jednako
 	& \sum_{j \in J} a_{ij} x_j \leq b_i,  \forall i \in I \\
 	& x_j \geq 0, \forall j \in J.
 \end{align*}
-Ovdje je funkcija cilja data kao količnik dvije linearne funkcije. Potrebno je transformisati ovu funkciju u linearnu da bismo imali linearni program. Ovakvi modeli su česta pojava u modelovanju financijskog planiranja. Pretpostavimo da je $\sum_{j \in J}d_j x_j + \beta \neq 0$ za sve tačke iz dopustivog regiona. Glavni trik u transformaciji je uvođenje nove varijable $y_j$ i parametra $t$, tako da je $y_j = t x_j$. U nastavku, pretpostavljamo da je imenilac u funkciji cilja pozitivan (slično je izvođenje i sa negativnim imeniocem, s tim da imamo znak ``-'' ispred, što će promijeniti znak nejednakosti u ograničenjima krajnjeg modela). Dakle, uvedemo $t = \frac{1}{\sum_{j \in J} d_j x_j + \beta }$. Time dobijamo model
+Ovdje je funkcija cilja data kao količnik dvije linearne funkcije. Ovakvi modeli su česta pojava u modelovanju finansijskog planiranja. Objasnimo postupak transformacije frakcione funkcije cilja u linearnu. Pretpostavimo da je $\sum_{j \in J}d_j x_j + \beta \neq 0$ za sve tačke iz dopustivog regiona. Glavni trik u transformaciji je uvođenje nove promjenljive $y_j$ i parametra $t$, tako da je $y_j = t x_j$. U nastavku, pretpostavljamo da je imenilac u funkciji cilja pozitivan. Slično je izvođenje i sa negativnim imeniocem, s tim da imamo znak ``-'' ispred, što će promijeniti znak nejednakosti u ograničenjima krajnjeg modela. Dakle, uvedemo $t = \frac{1}{\sum_{j \in J} d_j x_j + \beta }$. Time dobijamo model
 \begin{align*}
 	&\min \sum_{j \in J} c_j x_j t + \alpha t \\
 	&\sum_{j \in J} a_{ij} x_j \leq b_i,  \forall i \in I \\
