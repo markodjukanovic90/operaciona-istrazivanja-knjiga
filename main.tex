@@ -1218,16 +1218,16 @@ promjenljive $x_i$ označava broj proizvoda $i$ koji se proizvode na sedmičnom 
 \newpage 
 \chapter{Simpleks Metod}
 
-Simpleks metod je jedan od najpoznatijih i najefikasnijih algoritama za rješavanje problema linearnog programiranja. Osnovna ideja leži u traženju optimalnog rješenja LP-a posjećivanjem vrhova dopustivog regiona problema, na način da se vrhovi sukcesivno posjećuju tako da se, prelaskom u novi vrh, vrijednost funkcije cilja smanjuje (ako je dat zadatak minimizacije). Simpleks metod je razvio George Dantzig 1947. godine, a s obzirom na njegovu važnost u rješavanju problema linearnog programiranja, spada među najznačajnije algoritme XX vijeka.
+Simpleks metod je jedan od najpoznatijih i najefikasnijih algoritama za rješavanje problema linearnog programiranja. Ideja za pronalaženje optimalnog rješenja problema LP-a simpleks metoda je zasnovana na  obilasku vrhova dopustivog regiona problema. Vrhovi se sukcesivno obilaze tako da se, prelaskom u novi vrh, vrijednost funkcije cilja smanjuje (ako je dat zadatak minimizacije). Simpleks metod je razvio George Dantzig 1947. godine, a s obzirom na njegovu važnost u rješavanju problema linearnog programiranja, spada među najznačajnije algoritme XX vijeka.
 
-Neka je dat problem LP-a u kanonskom obliku:
+Neka je dat problem LP-a u kanonskom obliku
 
 \begin{align}
     &c^Tx \rightarrow \min \nonumber \\ 
     & A x = b \nonumber \\
      & x \geq 0, \label{eq:lp_equality_constraint}
 \end{align}
-gdje je $A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m, c \in \mathbb{R}^n, x\in \mathbb{R}^n$ uz pretpostavku da je poliedar $P=\{ x \in \mathbb{R}^n \mid A x = b , x \geq 0 \}$ datog problema LP-a dopustiv.  U ovom poglavlju, osim ako drugačije nije naznačeno, strogo ćemo poštovati ovu notaciju. 
+gdje su $A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m, c \in \mathbb{R}^n, x\in \mathbb{R}^n$ uz pretpostavku da je poliedar $P=\{ x \in \mathbb{R}^n \mid A x = b , x \geq 0 \}$ datog problema LP-a dopustiv region.  U ovom poglavlju, osim ako drugačije nije naznačeno, strogo ćemo poštovati ovu notaciju. 
 
 %\begin{definition}
 %      Za matricu A kažemo da je regularna akko postoji matrica B td. AB = BA = I. 
@@ -1239,25 +1239,26 @@ gdje je $A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m, c \in \mathbb{R}^n, 
 
 \section{Konstrukcija simpleks metode}
 
- Neka je $x = [x_1,\ldots, x_n]^T$ bazno dopustivo rješenje problema (\ref{eq:lp_equality_constraint}), gdje je $B$ matrica baze, $x_B$ bazni dio vektora $x$, a gdje su na mjesto nebaznih indeksa $N$ postavljene 0.  Kao što je rečeno, ideja simpleks metode je  ``šetanje'' po vrhovima poliedra  dok ne nađemo optimalno rješenje. Krenimo pravcem $d$ u  početnom BDR $x$  pri čemu trebamo obratiti  pažnju na to da je zadovoljeno sljedeće:
+ Neka je $x = [x_1,\ldots, x_n]^T$ bazno dopustivo rješenje problema (\ref{eq:lp_equality_constraint}), gdje je $B$ matrica baze, $x_B$ bazni dio vektora $x$, pri čemu su na mjestima nebaznih indeksa iz skupa $N$ postavljene nule.  Kao što je rečeno, ideja simpleks metode je  ``šetanje'' po vrhovima poliedra,  dok ne nađemo optimalno rješenje. Krenimo pravcem $d$ u  početnom BDR $x$  pri čemu trebamo obratiti  pažnju na to da je zadovoljeno sljedeće:
 \begin{itemize}
     \item \emph{uslov optimalnosti}, tj. $c^T (x + \lambda d) \leq c^T x, \lambda>0$, što znači da idemo u pravcu smanjenja vrijednosti funkcije cilja;
-    \item \emph{uslov dopustivosti}, treba da je pravac $d$ dopustiv u tački $x$, tj. $ (x + \lambda d) \in P$, za neko $\lambda>0$. Dakle, uvijek se krećemo samo tačkama dopustivog regiona. 
+    \item \emph{uslov dopustivosti}, potrebno je da pravac $d$ dopustiv u tački $x$, tj. $ (x + \lambda d) \in P$, za neko $\lambda>0$. Dakle, uvijek se krećemo samo tačkama dopustivog regiona. 
 \end{itemize}
-Birajmo neku nebaznu koordinatu u $x$; neka je to $x_j, j \in N$. Definišemo $d=(d_B,  d_N)$, gdje su koordinate od (nebaznog dijela) $d_N$ svugdje 0, osim na koordinati $j$ na koju je postavljena vrijednost 1.   Bazni dio vektora $d$, koji je označen sa $d_B$, izvešćemo iz uslova dopustivosti i pretpostavke da ``šetamo'' pravcem koji se poklapa sa granicom dopustivog regiona, tj. poliedra $P$: $Ax + \lambda Ad = b$, odakle je $Ad = 0$. Tada vrijedi
-$$ Ad = \sum_{i=1}^n A_i d_i = \sum_{i=1}^m A_{p_i} d_i + A_j = B d_B + A_j = 0$$ za one koordinate $p_i$ koje pripadaju indekisima koordinata baznog dijela, 
+Birajmo neku nebaznu koordinatu u $x$. Neka je to $x_j, j \in N$. Definišemo $d=(d_B,  d_N)$, gdje su koordinate od (nebaznog dijela) $d_N$ jednake 0, osim na koordinati $j$, gdje je postavljena vrijednost 1.   Bazni dio vektora $d$, koji je označen sa $d_B$, izvešćemo iz uslova dopustivosti i pretpostavke da ``šetamo'' pravcem koji se poklapa sa granicom dopustivog regiona, tj. poliedra $P$: $Ax + \lambda Ad = b$, odakle je $Ad = 0$. Tada vrijedi
+$$ Ad = \sum_{i=1}^n A_i d_i = \sum_{i=1}^m A_{p_i} d_i + A_j = B d_B + A_j = 0$$ za one koordinate $p_i$ koje pripadaju indeksima koordinata baznog dijela, 
 odakle je $d_B = -  B^{-1} \cdot A_j $.  Za ovako odabran $d$ imamo zadovoljen uslov dopustivosti za ograničenje $A( x + \lambda d )  =b$. Posmatrajmo sada ograničenje nenegativnosti, tj. da li je zadovoljeno $x + \lambda d \geq 0$:
 \begin{itemize}
-    \item Ako je $x$ nedegenerativno, onda je tačno $n-m$ komponenti koje su jednake 0, pa je za nebazni dio komponenti $x_i + \lambda d_i = 0$, za $i \in N \setminus \{j\}$ i $x_j + \lambda d_j = 0$, pa imamo ispunjen uslov nenegativnosti ($x + \lambda d\in P$). Za bazne komponente imamo $x_{p_i} \cdot d_{p_i} > 0 $ ako je $d_{p_i}>0$. U protivnom, možemo odabrati  malu vrijednost  $\lambda>0$ (pogledati definiciju dopustivog pravca $x +\lambda d$) tako da $x_{p_i} \cdot d_{p_i} >0$, a time i $x_{p_i} + \lambda d_{p_i}>0$, pa imam zadovoljen uslov nenegativnosti.
-    \item Ako je $x$ degenerativno bazno dopustivo rješenje, slijedi da više od $n-m$ kompomenti od $x$ je jednako 0. Za nebazni slučaj kao i u prvom slučaju pokazujemo uslov nenegativnosti. Tada za bazne kompomenete vektora $x +\lambda d$  postoji bazni indeks $i$ za koji je $x_{p_i} = 0$, pa ako bi bilo $d_{p_i}< 0$, to bi slijedilo da ne možemo naći $\lambda>0$ tako da $x_{p_i} + \lambda d_{p_i} >0$  što stvara problem (dopustivost narušena). Pojava ovog slučaja se na sreću može zaobići primjenom određenih pravila izbora nove bazne koordinate umjesto koordinate $j$ (pokazaćemo to u nastavku ove sekcije). 
+    \item Ako je $x$ nedegenerativno, onda je tačno $n-m$ komponenti koje su jednake 0, pa je za nebazni dio komponenti $x_i + \lambda d_i = 0$, za $i \in N \setminus \{j\}$ i $x_j + \lambda d_j = 0$, pa imamo ispunjen uslov nenegativnosti ($x + \lambda d\in P$). Za bazne komponente imamo $x_{p_i} \cdot d_{p_i} > 0 $ ako je $d_{p_i}>0$. U suprotnom, možemo odabrati  malu vrijednost  $\lambda>0$ (pogledati definiciju dopustivog pravca $x +\lambda d$) tako da $x_{p_i} \cdot d_{p_i} >0$, a time i $x_{p_i} + \lambda d_{p_i}>0$, te je uslov nenegativnosti zadovoljen.
+    \fxnote{Marko, provjeri da li sam ovo dobro prepravio}
+    \item Ako je $x$ degenerativno bazno dopustivo rješenje, slijedi da je više od $n-m$ kompomenti od $x$ jednako 0. Kao i u prvom slučaju, za nebazni slučaj pokazujemo uslov nenegativnosti. Tada za bazne kompomenete vektora $x +\lambda d$  postoji bazni indeks $i$ za koji je $x_{p_i} = 0$, pa ako bi bilo $d_{p_i}< 0$, onda ne bismo mogli naći $\lambda>0$, tako da $x_{p_i} + \lambda d_{p_i} >0$, čime je narušena dopustivost. Pojava ovog slučaja se može zaobići primjenom određenih pravila izbora nove bazne koordinate umjesto koordinate $j$, što će biti i pokazano u nastavku ove sekcije. 
 \end{itemize}
- Ostaje nam pitanje odabira nebazne varijable $x_j$. U pomoć pozivamo uslov optimalnosti $c^T ( x + \lambda d ) < c^T x $, odakle slijedi $c^T d < 0$.  Dakle, $$c^T d = c_B^T d_B + c_j = c^T ( - B^{-1} A_j ) + c_j < 0.$$
- Prema tome, odaberimo (nebazni) indeks $j$ pri čemu je zadovoljeno $ \overline{c_j} = c_j - c_B^T B^{-1}A_j < 0$. Vektor $\overline{c}=[\overline{c_1}, \ldots, \overline{c_n}]^T$ se naziva \emph{vektor doprinosa}, dok vrijednost $\overline{c_j}$ \emph{doprinos nebazne varijable} $x_j$. 
+Da bi se pravilno izabrala nebazna promjenljiva $x_j$, koristimo  uslov optimalnosti $c^T ( x + \lambda d ) < c^T x $, odakle slijedi $c^T d < 0$.  Dakle, $$c^T d = c_B^T d_B + c_j = c^T ( - B^{-1} A_j ) + c_j < 0.$$
+ Prema tome, biramo (nebazni) indeks $j$ tako da je zadovoljeno $ \overline{c_j} = c_j - c_B^T B^{-1}A_j < 0$. Vektor $\overline{c}=[\overline{c_1}, \ldots, \overline{c_n}]^T$ se naziva \emph{vektor doprinosa}, dok je vrijednost $\overline{c_j}$ \emph{doprinos nebazne varijable} $x_j$. 
  
 Iz sljedeće teoreme dobijamo uslove optimalnosti rješenja.
 
 \begin{thm}
-  Neka je x bazno dopustivo rješenje i neka je $B$ bazna matrica a $\overline{c}$ vektor doprinosa. Tada vrijedi sljedeće
+  Neka je x bazno dopustivo rješenje i neka je $B$ bazna matrica, a $\overline{c}$ vektor doprinosa. Tada vrijedi sljedeće
   \begin{itemize}
       \item Ako je $\overline{c} >0$, onda je $x$ optimalno rješenje.
       \item Ako je x optimalno nedegenerativno rješenje, onda je $\overline{c} \geq 0$.
@@ -1267,11 +1268,13 @@ Iz sljedeće teoreme dobijamo uslove optimalnosti rješenja.
 Ostalo nam je još da odredimo dužinu   pravca $d$, tj. vrijednost $\lambda>0$. Ideja je da se krene nekim smjerom dok god se ne dođe do drugog vrha, tj. treba odrediti dužinu vektora $d$ koji je jednak $\lambda^* = \max \{ \lambda \in \mathbb{R} \mid x + \lambda d \geq 0 \}$. Razlikujemo sljedeća dva slučaja:
 \begin{itemize}
     \item Ako $d >0$, onda je $  x + \lambda d \geq 0$, za sve $\lambda > 0$, pa je $\lambda^* = \infty$, tj. ciljna funkcija je neograničena.
-    \item Ako postoji indeks $i$, td. $d_i < 0$, onda za dovoljno malo $\lambda>0$ tako da $x_i + \lambda d_i \geq 0$ dobijamo $\lambda \leq -\frac{x_i}{d_i}$. Prema tome 
+    \item Ako postoji indeks $i$, takav da je $d_i < 0$, onda za dovoljno malo $\lambda>0$, takvo da $x_i + \lambda d_i \geq 0$, dobijamo $\lambda \leq -\frac{x_i}{d_i}$. Prema tome 
     $$ \lambda^* = \min_{ \{i\in [m] \mid d_{p_i} < 0  \}} - \frac{x_{p_i}}{d_{p_i}} $$
 \end{itemize}
 Za indeks $l$ za koji se postiže ovaj minimum, vrijedi $x_{p_l} + \lambda^* d_{p_l}=0$.
-Da je ovo upravo bazno dopustivo rješenje problema, govori nam sljedeća teorema. 
+Da je ovo upravo bazno dopustivo rješenje problema, slijedi iz sljedeće teoreme. 
+
+\fxnote{Marko, ako ja dobro razumijem, ovo je sve tvrdjenje na osnovu prethodne konstrukcije. Milana je pitala da li je prva recenica pretpostavka, ili tvrdnja teoreme}
 \begin{thm}
     Kolone $A_{p_i}, i\not = l$, $i=1,\ldots,m$ i $A_{j}$ su linearno nezavisne, pa je matrica 
     $[A_{p_1},\ldots, A_{p_{l-1}}, A_j, A_{p_{l+1}}, \ldots, A_{p_m}]$
@@ -1282,13 +1285,14 @@ Navedimo sada osnovne korake jedne iteracije simpleks metoda:
 \begin{enumerate}
     \item Inicijalizacija: za bazne indekse $p_1,\ldots,p_m \in [n]$, riješiti sistem i dobiti bazno dopustivo rješenje $x$. 
     \item Izračunati doprinos za sve $\overline{c_j} = c_j - c_B^T B^{-1}A_j $
-          $j \in N$. Ako za sve $j$, $\overline{c_j} \geq 0$, optimum je nađen, algoritam staje sa radom. Inače, odabrati neki $j$  td. $\overline{c_j}<0$.
-    \item Izračunati $d = -B^{-1}A_j = -u$. Ako je svaki $d_i \geq  0$, funkcija cilja je $f = - \infty$, te algoritam staje. 
-    \item Tada je za barem neki $i$, $d_i < 0$, pa računamo 
+          $j \in N$. Ako za sve $j$, $\overline{c_j} \geq 0$, optimum je pronađen, pa algoritam prestaje sa radom. Inače, odabrati neki $j$  td. $\overline{c_j}<0$.
+    \item Izračunati $d = -B^{-1}A_j = -u$. Ako je svaki $d_i \geq  0$, funkcija cilja  $f = - \infty$, te se završava izvršenje algoritma. 
+    \item Ako je za barem neki $i$, $d_i < 0$, tada računamo 
              $$ \lambda^* = \min_{ \{i\in [m] \mid d_{p_i} < 0  \}} - \frac{x_{p_i}}{d_{p_i}} =  \min_{ \{i\in [m] \mid u_{p_i} < 0  \}} \frac{x_{p_i}}{u_{p_i}} $$
-    \item Neka je $\lambda^* = \frac{x_{p_l}}{u_{p_l}}$. Nova baza se formira tako da mjesto kolone $A_{p_l}$ stavimo kolonu $A_j$. Novo bazno rješenje 
-    $y = x + \lambda^*d $ je dato: $y_j = \lambda$, $y_{p_l} = x_{p_l} + \lambda^* d_{p_l}$, za indeks $l$ koji je bazni indeks, te $y_i = 0$, za $i \in N \setminus \{j\}$. 
+    \item Neka je $\lambda^* = \frac{x_{p_l}}{u_{p_l}}$. Nova baza se formira tako što na mjesto kolone $A_{p_l}$ stavimo kolonu $A_j$. Novo bazno rješenje 
+    $y = x + \lambda^*d $ je dato sa $y_j = \lambda$, $y_{p_l} = x_{p_l} + \lambda^* d_{p_l}$, za indeks $l$ koji je bazni indeks, te $y_i = 0$, za $i \in N \setminus \{j\}$. 
 \end{enumerate}
+\fxnote{marko, kako se prelazi na narednu iteraciju}
 
 \begin{figure}[!ht]
 	\centering
@@ -1296,12 +1300,13 @@ Navedimo sada osnovne korake jedne iteracije simpleks metoda:
     \caption{Iteracije simpleks metode (vizuelizacija).}
     \label{fig:simpleks-visuelisation}
 \end{figure}
+\fxnote{i ja se slazem da nam je ova slika malo bez veze}
 
 \section{Tabelarni oblik simpleks metoda}
 
-U osnovi, simpleks algoritam se sastoji od stalne izmjene jedne kolone baze $B$ sa nekim nebaznim vektorom u iterativnoj šemi u cilju smanjenja trenutne vrijednosti cilje funkcije, dok god je to moguće. 
-U praktičnom računanju, rad sa tabelarnim prikazom koraka simpleks metoda je u mnogome lakši (kompaktniji i prirodniji) nego koristiti standardan oblik LP-a. 
-Tabelarni simpleks prikaz se može vidjeti u Tabeli~\ref{tab:simplex_tabelau}. 
+Simpleks algoritam podrazumijeva stalnu zamjenu jedne kolone baze $B$ nekim nebaznim vektorom u iterativnoj šemi, u cilju smanjenja trenutne vrijednosti cilje funkcije, dok god je to moguće. 
+U praktičnom računanju koraka simpleks metoda se, zbog kompaktnosti zapisa,  umjesto transformisanja standardnog oblika LP-a, obično koristi tabelarni prikaz.
+Generički tabelarni  prikaz simpleks metode se može vidjeti u Tabeli~\ref{tab:simplex_tabelau}. Ovakva tabela se naziva i simpleks tabela.
 
 \begin{table}[!ht]
     \centering
@@ -1315,28 +1320,28 @@ Tabelarni simpleks prikaz se može vidjeti u Tabeli~\ref{tab:simplex_tabelau}.
     \label{tab:simplex_tabelau}
 \end{table}
 
-Na osnovu ovakve tabele, te koraka simpleks metode opisanih u prethodnoj sekciji, sljedeći koraci se izvršavaju u tabelarnoj simpleks formi:
+Na osnovu generičke Tabele~\ref{tab:simplex_tabelau} i koraka simpleks metode opisanih u prethodnoj sekciji, izvršavaju se sljedeći koraci:
 \begin{itemize}
     \item Konstruisati inicijalnu simpleks tabelu sa početnom bazom $B$ i odgovarajuće bazno dopustivo rješenje $x$.
     \item Posmatrati koeficijente doprinosa $\overline{c_j}$ (posljednja vrsta tabele). Ako su svi $\overline{c_j} \geq 0$, rješenje se ne može dalje popraviti, pa je nađeno optimalno rješenje. U protivnom, odabrati neki indeks $j$ za koji je $\overline{c_j}<0$.
-    \item Posmatrati vektor (kolonu) $u = B^{-1}A_j$. Ako su sve koordinate vektora $u$ negativne, rješenje LP-a je $-\infty$, algoritam se prekida.
-    \item Za svaki $u_i > 0$, računati $x_{p_i}/u_i$, i neka je   omjer najmanji za indeks $l$. Kolona $A_{j}$ ulazi u bazu, dok kolona $A_{p_l}$ izlazi iz baze. 
+    \item Posmatrati vektor (kolonu) $u = B^{-1}A_j$. Ako su sve koordinate vektora $u$ negativne, rješenje LP-a je $-\infty$, algoritam završava sa radom.
+    \item Za svaki $u_i > 0$, računati $x_{p_i}/u_i$, i neka je   ovaj količnik najmanji za indeks $l$. Kolona $A_{j}$ se uključuje u bazu, dok se kolona $A_{p_l}$ isključuje iz baze. 
     \item Svakom redu simpleks tabele dodati $l$--ti red (pivot red) kojeg množimo odgovarajućim
-         skalarom da bi pivot element (tj. element u presjeku l-te vrste i j-te kolone) postao 1, a svi ostali elementi u pivot koloni 0.
+         skalarom da bi pivot element (tj. element u presjeku $l$-te vrste i $j$-te kolone) postao 1, a svi ostali elementi u pivot koloni 0.
 \end{itemize}
 
-U ovom postupku  može se desiti situacija da postoji dva ili više redova koji su kandidati za ulazak u bazu. Ako se odabere nepovoljan kandidat, postupak može da proizvede degenerativno BDR ili čak da dođe do ciklusa. 
+U ovom postupku  može se desiti situacija da postoje dva ili više redova koji su kandidati za uključivanje u bazu. Ako se odabere nepovoljan kandidat, postupak može da proizvede degenerativno BDR ili čak da dovede do ciklusa. 
 Da bi se to spriječilo, Robert Bland (1977. godine) je uveo pravilo za pivotiranje danas poznato pod
-nazivom \emph{Blandovo pravilo} koje:
+nazivom \emph{Blandovo pravilo} koje glasi:
 \begin{enumerate}
-	\item   Među svim nebaznim varijablama koje su pogodne za ulazak u bazu odaberemo onu najmanjeg indeksa. 
-    \item Među svim baznim varijablama koje su pogodne za izbacivanje iz baze odaberemo onu sa najmanjim indeksom.
+	\item   Među svim nebaznim promjenljivima koje su pogodne za uključivanje u bazu odaberemo onu najmanjeg indeksa. 
+    \item Među svim baznim promjenljivima koje su pogodne za isključivanje iz baze odaberemo onu sa najmanjim indeksom.
 \end{enumerate}
-Može se pokazati da poštujući ovakva pravila, osigurava se da simpleks metoda  završava u konačno mnogo koraka. Blandovo pravilo nije jedino pravilo za izbjegavanje ciklusa, postoji i leksikografsko pravilo pivotiranja kojeg, zbog konciznosti, ne objašnjavamo ovdje.  
+Može se pokazati da se poštovanjem ovih pravila osigurava da će se simpleks metoda  završiti u konačno mnogo koraka. Treba napomenuti da Blandovo pravilo nije jedino pravilo za izbjegavanje ciklusa. Postoji i leksikografsko pravilo pivotiranja koje, zbog konciznosti, ne objašnjavamo ovdje.  
 
 Obratimo pažnju da se problem minimizacije vrlo lako prevodi u problem maksimizacije sljedećom transformacijom
 $$ \min_{ x \in P} f(x) = - \max_{x \in P}(-f(x)).$$ 
-Prema tome, ako imamo problem LP-a gdje treba da maksimizujemo vrijednost funkcije cilja, pa onda primijenimo simpleks metod, koraci metoda ostaju isti, uz malu izmijenu u koraku 2, gdje se mijenja znak nejednakosti (jer se mijenja znak koeficijenata u funkciji cilja).  Dakle, posmatraju se doprinosi za koje je $\overline{c_j} > 0$.
+Prema tome, ako  problem maksimizacije rješavamo simpleks metodom, koraci metoda ostaju isti. Jedina izmjena je u koraku 2, gdje se mijenja znak nejednakosti, jer se mijenja znak koeficijenata u funkciji cilja.  Dakle, posmatraju se doprinosi za koje je $\overline{c_j} > 0$.
 
 \section{Primjena simpleks metoda}
 %Kako je standardni poliedar LP-a dat sa svim onim $x \in \mathbb{R}^n$ tako da $Ax \leq (\geq) b$, 
@@ -1344,7 +1349,7 @@ Transformišimo standardni oblik problema LP-a
  
   \begin{align*}
     & c^T x \rightarrow \max \\
-    & \mbox{s.t} \nonumber \\
+    & \mbox{t.d} \nonumber \\
     & Ax \leq b \\
     & x \geq 0\\
 \end{align*}
