@@ -17,10 +17,16 @@
 \usepackage{dot2texi}
 \usepackage{subcaption}
 \usepackage{titlepic}
+\usepackage{fixme}
 %\usetikzlibrary{arrows,shapes}
 %\usepackage{epstopdf}
 %\newenvironment{proof}{{Dokaz:}}{\hfill$\square$}
-
+\fxsetup{
+	status=draft,
+	author=,
+	layout=inline, % also try footnote or pdfnote
+	theme=color
+}
 % redefinicija nekih konstanti: 
 \renewcommand{\figurename}{Slika}
 \renewcommand{\tablename}{Tabela}
@@ -475,8 +481,8 @@ Zbog pada zarade, rukovodstvo firme   odlučilo je da izmijeni liniju proizvoda 
 \end{itemize}
 Uslovi i zahtjevi proizvodnje su sljedeći:
 \begin{itemize}
-    \item Proizvod 1 zahtijeva   korištenje proizvodnih kapaciteta u postrojenjima 1 i 3, ali ne korisiti postrojenje 2; 
-    \item Proizvod 2 za proizvodnju koristi   postrojenja 2 i 3 . 
+    \item Proizvod 1 zahtijeva   korištenje proizvodnih kapaciteta u postrojenjima 1 i 3, ali ne koristi postrojenje 2; 
+    \item Proizvod 2 za proizvodnju koristi   postrojenja 2 i 3. 
 \end{itemize}
     Rukovodstvo kompanije je zaključilo da bi kompanija mogla prodati sve proizvode koje bi mogla proizvesti u postrojenjima. Međutim, budući da   oba proizvoda koriste proizvodni kapacitet u postrojenju 3, nije očigledno jasno koja bi kombinacija proizvodnje dva proizvoda bila najisplativija. %Stoga je formiran tim za proučavanje ovog pitanja, te davanja adekvatnog odgovora.
 
@@ -484,26 +490,26 @@ Nakon razgovora sa upravom, utvrđeni su glavni ciljevi istraživanja. Definicij
 \begin{itemize}
     \item Utvrditi  stope proizvodnje  ova dva proizvoda kako bi se maksimizovala ukupna dobit, koja je podložna ograničenjima u  proizvodnim kapacitetima koji su dostupni u sva tri pogona. 
     \item Svaki proizvod se proizvodi u serijama od po 20 komada, tako da se stopa proizvodnje definiše kao broj serija proizvedenih na nivou jedne sedmice. 
-    \item Dopuštena je bilo koja kombinacija stope proizvodnje koja zadovoljava ograničenja, uključujući i slučaj da se ne proizvede niti jedan od (dva) proizvoda kao i slučaj da se proizvede maksimalan broj drugog proizvoda na osnovu utvrđenih kapaciteta.
+    \item Dopuštena je bilo koja kombinacija stope proizvodnje koja zadovoljava ograničenja, uključujući i slučaj da se ne proizvede niti jedan od (dva) proizvoda kao i slučaj da se proizvede maksimalan broj jednog (od dva) proizvoda na osnovu utvrđenih kapaciteta.
 \end{itemize}
 
-U cilju razvijanja modela, neophodne je prikupiti sljedeće informacije:
+U cilju razvijanja modela, neophodno je prikupiti sljedeće informacije:
 \begin{itemize}
-	\item[($i$)]   Broj radnih sati u sedmici dostupan u svakom pogonu za nove proizvode.  
+	\item[($i$)]   Broj radnih sati u sedmici dostupan u svakom pogonu za proizvodnju proizvoda.  
 	\item[($ii$)]   Broj radnih sati koji je neophodno utrošiti  za proizvodnju jedne serije proizvoda u svakom pogonu.
-	\item[($iii$)] Dobit po proizvedenoj seriji svakog novog proizvoda. Odlučeno je da dobit po proizvedenoj seriji bude kao odgovarajuća mjera -- zaključeno je da   dobit svake dodatne proizvedene serije  raste približno konstantno bez obzira na ukupan broj proizvedenih serija.
+	\item[($iii$)] Dobit po proizvedenoj seriji svakog novog proizvoda. Odlučeno je da dobit po proizvedenoj seriji bude   odgovarajuća mjera -- zaključak je da dobit svake dodatne proizvedene serije  raste približno konstantno bez obzira na ukupan broj proizvedenih serija.
 \end{itemize} 
 
 Budući da značajniji troškovi za pokretanje proizvodnje i promovisanje novih proizvoda nisu postojali, ukupna dobit je aproksimirana dobiti po proizvedenoj seriji koja je pomnožena sa brojem serija proizvodnje.  
 
-Dalje, treba procijeniti konstante (parametre)  u modelu. Ovo je ostvareno u komunikaciji između uprave firme i tima zaduženog za rješavanje problema. Pomoć stručnog osoblja iz raznih odjela firme je odigrala ključnu ulogu u dobijanju razumnih procjena.
+Dalje, trebalo je procijeniti konstante (parametre)  u modelu; ovo je ostvareno u komunikaciji između uprave firme i tima zaduženog za rješavanje problema. Pomoć stručnog osoblja iz raznih odjela firme je odigrala ključnu ulogu u dobijanju razumnih procjena.
  Osoblje u proizvodnom odjelu   je obezbijedilo informacije o podacima za stavku ($i$). Za procjenu slučaja ($ii$), ključna je bila analiza proizvodnih inženjera koji su uključeni u dizajniranje proizvodnih procesa novih proizvoda. Analizirajući podatke o resursima i uključivanjem  marketinškog odjela firme,  data je procjena za slučaj ($iii$). Tabela~\ref{tab:procjene-1} pokazuje sve ove procjene. 
 
 
 \begin{table}[!ht]
     \centering
     \scalebox{0.85}{
-    \begin{tabular}{c|c c | c}
+    \begin{tabular}{c|c r | c}
     \      &      \multicolumn{2}{l}{Vrijeme proizvodnje serije ($h$)}    & \  \\ \hline
     \      &      \multicolumn{2}{c}{Proizvod}                      & \  \\ 
     Pogon  &  1    &      2                                 & Vrijeme za proizvodnju po sedm. ($h$) \\ \hline 
@@ -562,9 +568,9 @@ U nastavku navodimo notaciju koja se najčešće koriste u formiranju opšteg ob
 \begin{itemize}
     \item $f$: funkcija cilja (dobiti) 
     \item $x_j$: količina aktivnosti $j$ ($j = 1,\ldots,n$);
-    \item $c_j$: povećanje u profitu ako se količna aktivnosti $j$ podigne za jediničnu vrijednost;
+    \item $c_j$: povećanje u profitu ako se količna aktivnosti $j$ poveća za jediničnu vrijednost;
     %dragan: ostavio sam termin jedinična vrijednost
-    \item $b_i$: ukupna količina resursa $i$ ($i=1,\ldots,m$) koja je dozvoljena za alociranje aktivnosti;
+    \item $b_i$: ukupna količina resursa $i$ ($i=1,\ldots,m$) koja je dozvoljena za pridruživanje aktivnosti;
     \item $a_{ij}$: količina resursa $i$ koja se uzima od strane jedinične (vrijednosti) aktivnosti $j$.
 \end{itemize}
 Prema ovoj notaciji, matematički modeli problema linearnog programiranja ima sljedeću postavku:
@@ -573,7 +579,7 @@ Prema ovoj notaciji, matematički modeli problema linearnog programiranja ima sl
       &f = c_1 x_1 + \cdots + c_n x_n \rightarrow \max \label{form:LP-1}\\
       & \mbox{t.d.} \nonumber \\
       & a_{11}x_1 + a_{12} x_{12} + \cdots + a_{1n}x_n \leq b_1 \label{form:LP-2} \\
-      &\ldots \nonumber \\
+      &\vdots \nonumber \\
       & a_{m1}x_1 + a_{12} x_{m2} + \cdots + a_{mn}x_n \leq b_m \label{form:LP-3} \\
       & x_i \geq 0,\ i=1,\ldots,n.\label{form:LP-4}
 \end{align}
@@ -610,18 +616,18 @@ programu postoji varijabla koja ne zadovoljava uslov nenegativnosti, ona se mož
         \item \emph{dopustiva rješenja} (eng. \emph{feasible solution}) -- podrazumijevanju ona rješenja koja zadovoljavaju sva ograničenja u modelu;
         \item \emph{nedopustiva rješenja} (eng. \emph{infreasible solution}) -- ona rješenja koja ne zadovoljavaju barem jedno od ograničenja u modelu. 
     \end{itemize}
-  \item \emph{Dopustivi region}: označava skup svih rješenja koja su dopustiva. Ovo je prostor koji pretražujemo u svrhu pronalaska najboljeg rješenja modela. Takođe, može se desiti da problem nema niti jedno dopustivo rješenje. Za takav problem se kaže da je \emph{nedopustiv}. 
-  \item \emph{Optimalno rješenje} je ono rješenje iz dopustivog skupa za koje je funkcija cilja najveća (pod pretpostavkom da maksimizujemo funkciju cilja), odnosno najmanja (pod pretpostavkom da minimizujemo funkciju cilja). Treba napomenuti da ova vrijednost ne mora biti jedinstvena.  Na primjer, na Slici~\ref{fig:multi_solution} je prikazan dopustiv region isti kao u primjeru sa Slike~\ref{fig:fig1}, \fxnote{marko, nije isti dopustivi region na ove dvije slike} dok je funkcija cilja, koja se maksimizuje, data sa $f = 3x_1 + 2 x_2$.  
+  \item \emph{Dopustivi region}: označava skup svih rješenja koja su dopustiva. Ovo je prostor koji pretražujemo u svrhu pronalaska najboljeg rješenja modela. Takođe, može se desiti da problem nema niti jedno dopustivo rješenje. Za takav problem se kaže da je \emph{nedopustiv} (eng. infeasible). 
+  \item \emph{Optimalno rješenje} je ono rješenje iz dopustivog regiona za koje je funkcija cilja najveća (pod pretpostavkom da maksimizujemo funkciju cilja), odnosno najmanja (pod pretpostavkom da minimizujemo funkciju cilja). Treba napomenuti da ova vrijednost ne mora biti jedinstvena.  Na primjer, na Slici~\ref{fig:multi_solution} je prikazan dopustiv region sa ograničenjima $x_1, x_2 \geq 0, x_1 \leq 4 $ i $3 x_1 + 2 x_2 \leq 14$, dok je funkcija cilja, koja se maksimizuje, data sa $f = 3x_1 + 2 x_2$.  
  \end{itemize}
  
  \begin{figure}
      \centering
      \includegraphics[width=160pt, height=160pt]{fig3.eps}
-     \caption{LP sa više od jednog optimalnog rješenja.}
+     \caption{LP sa više optimalnih rješenja.}
      \label{fig:multi_solution}
  \end{figure}
  
- Za razliku od nedopustivog problema, može se desiti i sasvim druga situacija, da je problem neograničen. U tom slučaju vrijednosti neke od promjenljivih se mogu povećavati tako da funkcija cilja (u problemu maksimizacije) teži ka beskonačno, tj. nije ograničena odozgo nekom vrijednošću. Za takav problem kažemo da je \emph{neograničen}.
+ Za razliku od nedopustivog problema, može se desiti i sasvim druga situacija, da je problem \emph{neograničen} (eng. unbounded). U tom slučaju vrijednosti neke od promjenljivih se mogu povećavati tako da funkcija cilja (u problemu maksimizacije) teži ka beskonačno, tj. nije ograničena odozgo nekom vrijednošću. %Za takav problem kažemo da je \emph{neograničen}.
  
  Primjer neograničenog problema možemo vidjeti na Slici~\ref{fig:unbounded_solution}, gdje je potrebno maksimizovati funkciju $f = 3 x_1 + x_2$, pod uslovima $0\leq x_1 \leq 4$, te $x_2 \geq 0$. Kao što se može vidjeti,  kako vrijednost promjenljive $x_2$ teži ka beskonačnosti, tako i vrijednost funkcije $f$ teži ka beskonačnosti.
  
@@ -640,7 +646,7 @@ Prije toga, za početak, razmotrimo bilo koji problem LP-a sa dopustivim rješen
 Treba imati na umu da (optimalno) rješenje LP-a ne mora da bude cjelobrojno. Budući da svaka promjenljiva odluke predstavlja nivo odgovarajuće aktivnosti, pretpostavlja se da se aktivnosti mogu izvoditi i na razlomljenim nivoima, odnosno, aktivnost  se ne dijeli samo na diskretne dijelove. 
 
 Ako su sve promjenljive u LP-u cjelobrojne, riječ je o modelu \emph{Cjelobrojnog programiranja}. Ako pored cjelobrojnih, postoje i neke varijable koje su neprekidne, riječ je o modelima \emph{Mješovitog--cjelobrojnog linearnog programiranja}. Veliki broj realnih problema koji dolaze iz prakse su upravo problemi Mješovitog--cjelobrojnog linearnog programiranja.
-\fxnote{marko, ja sam iskomentarisao ovaj naslov, jer je nekako glomazan za svega dva primjera}
+ 
 %\section{Modelovanje nekih problema paradigmom linearnog programiranja}\label{sec:modeli_lp}
 
 U naredna dva primjera opisani su modeli linearnog programiranja za dva poznata problema. 
@@ -654,7 +660,7 @@ Koliko je koje namirnice potrebno kupiti za (dnevnu) prehranu da bi se zadovolji
 potreba za svim nutritivnim elementima, a da se pri tome minimizuje cijena prehrane?
 \end{primjer}
  
- \emph{Rješenje.}  Uvedimo prvo varijable $x_j \geq 0$ za količinu hrane namirnice $N_j$, $j = 1, \ldots, n$, koja će se koristiti za prehranu. Funkcija cilja treba da odgovara minimizaciji cijene prehrane:
+ \emph{Rješenje.}  Uvedimo realne varijable $x_j \geq 0$ za količinu hrane namirnice $N_j$, $j = 1, \ldots, n$, koja će se koristiti za prehranu. Funkcija cilja treba da odgovara minimizaciji cijene prehrane:
  $$f(x) = c_1 x_1 + \cdots + c_n x_n.$$
  
  Ograničenja problema su vezana za zahtjev da se zadovolji dnevna potreba za unosom svakog nutritivnog elementa. Odavde, slijedi da za $i$-ti element treba da bude zadovoljeno
@@ -687,9 +693,9 @@ Na kraju ove sekcije, navednimo nekoliko osnovnih implicitnih pretpostavki o pro
     \item \emph{Proporcionalnost.} Doprinos svake aktivnosti ciljnoj funkciji $f$ proporcionalan je njenom koeficijentu doprinosa, tj. $c_ix_i$. Doprinos svake aktivnosti svakom od  ograničenja u modelu proporcionalan je njenom  koeficijentu doprinosa, tj. $a_ix_i$.
     \item  \emph{Aditivnost.} Svaka funkcija u modelu je zbir  doprinosa pojedinih aktivnosti, npr. $f(x) = \sum_i a_i x_i$.
     \item \emph{Djeljivost}. Promjenljive odluke se mogu podijeliti na vrijednosti koje nisu cijele, uzimajući u obzir  razlomljene vrijednosti, dok god su ograničenja zadovoljena.  
-    \fxnote{umjesto Sigurnost bih pisao pouzdanost - ne znam koja je originalna rijec}
-    \item \emph{Sigurnost}. Pretpostavljamo da su vrijednosti parametara u modelu poznate
-    sa nekom dozom sigurnosti ili se barem tako tretiraju. Dobijeno optimalno rješenje je optimalno za razmatrani problem. Ako su vrijednosti parametara pogrešne, tada rezultujuće rješenje po pravilu ima malu (upotrebnu)  vrijednost.  
+
+    \item \emph{Pouzdanost}. Pretpostavljamo da su vrijednosti parametara u modelu poznate
+    sa velikom dozom pouzdanosti ili se barem tako tretiraju. Dobijeno optimalno rješenje je optimalno za razmatrani problem. Ako su vrijednosti parametara pogrešne, tada rezultujuće rješenje po pravilu ima malu (upotrebnu)  vrijednost.  
 \end{enumerate}
 %Ako model zadovoljava prethodne 4 pretpostavke, onda je riješ o modelu linearnog programiranja. 
 
