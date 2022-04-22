@@ -1451,7 +1451,7 @@ Bazne promjenljive sada lako prepoznajemo iz Tabele~\ref{tab:simpleks_tabela2}, 
  \end{figure}
  
  Analizirajmo još neke aspekte u ovom primjeru. Na Slici~\ref{fig:simplex_region}, tačke $A, B, C$, i $D$ su bazna dopustva rješenja. Tačke $E$ i $F$ su takođe bazna rješenja, ali nisu dopustiva. Simpleks algoritam prvo kreće od tačke $A$ prema tački $D$, te završava u tački $C$ (optimum).
- \fxnote{Marko, ovdje mi se nesto ne poklapa, valjda je simpleks krenuo od (0,0), pa presao u (4,0) i na kraju zavrsio u (3,2)}
+ \fxnote{Marko, ovdje se ne poklapa, valjda je simpleks krenuo od (0,0), pa presao u (4,0) i na kraju zavrsio u (3,2). Trebalo bi, dakle od tacke D, prema tacki C, pa do tacke B}
  
  Iz posljednje simpleks tabele (Tabela~\ref{tab:simpleks_tabela3}) se može uočiti i sljedeće:
  \begin{itemize}
@@ -1460,20 +1460,20 @@ Bazne promjenljive sada lako prepoznajemo iz Tabele~\ref{tab:simpleks_tabela2}, 
  \end{itemize}
  Prema tome, vektori $x_i$, koji su bazni vektori (kolone baze $B$), su napisani preko nebaznih vektora $x_i \in N$. Kako je $x_i  = 0$, za sve $i \in N$, vrijednosti baznih vektora $x_i$, tj. kolona baze $B$, se trivijano izračunavaju.
 
-\begin{primjer} Navedimo primjer jednog linearnog programa koji je neograničen, te ga riješimo simpleks metodom. 
+\begin{primjer} Navedimo i primjer jednog linearnog programa koji je neograničen, te ga riješimo simpleks metodom. 
 \end{primjer}
   Neka je dat problem LP-a:
   \begin{align*}
   	  &\max -x + 3y \\
-  	  & \mbox{s.t} \nonumber \\
+  	  & \mbox{t.d.} \nonumber \\
   	  & -x + y \leq 3 \\
   	  & x - 2y \leq 2 \\
   	  & x,y \geq 0.
   \end{align*}
- Prevedimo problem na kanonski oblik, dodavanjem izjednačavajućih varijabli, pa imamo 
+ Prevedimo problem na kanonski oblik, dodavanjem izjednačavajućih promjenljivih. 
  \begin{align*}
       &\max -x + 3y \\
-      & \mbox{s.t} \nonumber \\
+      & \mbox{t.d.} \nonumber \\
      & -x + y + s_1 = 3 \\
      & x - 2y + s_2 = 2  \\
      & (x,s) \geq 0.
@@ -1484,17 +1484,18 @@ $$\begin{array}{cccc| c}
 	    1 & -2 & 0 & 1 & 2 \\ \hline
 	   -1 & 3  & 0 & 0 & 0  
 \end{array}$$
-Kako minimizujemo,  kolona 2 je ona u kojoj tražimo pivota. Pivot je element 
-$\overline{a}_{1, 2} = 1$, odakle pivotiranjem oko tog elementa dobijamo novu simpleks tabelu 
+\fxnote{Marko, je li problem maksimizacije ili minimizacije? Ovo sad meni nije jasno}
+Kako rješavamo problem minimizacije, tražićemo pivota u koloni 2. Pivot je element 
+$\overline{a}_{1, 2} = 1$. Pivotiranjem oko tog elementa dobijamo novu simpleks tabelu 
 
 $$\begin{array}{cccc| c} 
 		   -1 & 1  & 1  &  0 & 3 \\
 		   -1 & 0  & 2  &  1 & 8 \\ \hline
 		   2  & 0  & -3 &  0 & -9 \\
 \end{array}$$
-Kandidata za pivota tražimo u prvoj koloni, ali kako su svi negativni, to znači da se 
-vrijednost  varijable $x$  može povećavati proizvoljno, što znači da nije ograničena. 
-Ovo se može vidjeti i na osnovu grafičke reprezentacije dopustivog regiona na Slici~\ref{fig:unbounded-example-solve} (koji je neograničen). 
+Kandidata za pivota tražimo u prvoj koloni. Međutim, kako su svi elementi prve kolone negativni, to znači da se 
+vrijednost  promjenljive $x$  može povećavati proizvoljno, odakle slijedi da nije ograničena. 
+Grafička reprezentacija dopustivog, neograničenog regiona, prikazana je  Slici~\ref{fig:unbounded-example-solve}. 
 
 
 \begin{figure}[!ht]
@@ -1504,18 +1505,18 @@ Ovo se može vidjeti i na osnovu grafičke reprezentacije dopustivog regiona na 
     \label{fig:unbounded-example-solve}
 \end{figure}
 
-\begin{primjer} U nastavku dajemo još jedan primjer kada pivotiranje u simpleks metodi generiše degenerativno rješenje. 
+\begin{primjer} U nastavku dajemo primjer kada pivotiranje u simpleks metodi generiše degenerativno rješenje. 
 \end{primjer}
 Posmatrajmo sljedeći linearni program:
 \begin{align*}
     &\max 2x + 3y \\
-    & s.t. \\
+    & \mbox{t.d.} \\
 	& -x + y \leq 3 \\
 	& x - 2y \leq 2 \\
 	& x + 6y \leq 18 \\
 	& x,y \geq 0. 
 \end{align*}
-Slično kao i u prethodnom primjeru, dodavanjem izjednačavajućih varijabli, dobijamo simpleks 
+Slično kao i u prethodnom primjeru, dodavanjem izjednačavajućih promjenljivih, dobijamo simpleks 
 tabelu 
 $$\begin{array}{ccccc|c}
      -1 & 1 & 1 & 0 & 0 & 3 \\
@@ -1523,13 +1524,15 @@ $$\begin{array}{ccccc|c}
       1 & 6 & 0 & 0 & 1 & 18 \\ \hline
       2 & 3 & 0 & 0 & 0 & 0 \\
 \end{array}$$
-Recimo da iz nekog razloga biramo varijablu $y$ za baznu, tj. pivotiramo oko nekog od elemenata u koloni 2. Za pivota odaberemo $\overline{a}_{1,2}=1$ element, te nakon pivotiranja dobijamo novu simpleks tabelu:
+Pretpostavimo smo  za baznu promjenljivu izabrali $y$, tj. pivotiramo oko nekog od elemenata u koloni 2. Za pivota odaberemo $\overline{a}_{1,2}=1$ element, te nakon pivotiranja dobijamo novu simpleks tabelu:
 $$\begin{array}{ccccc|c}
 	-1 & 1 & 1 & 0 & 0 & 3 \\
     -1 & 0 & 2 & 1 & 0 & 8 \\
     7 & 0 & -6 & 0 & 1 & 0 \\ \hline
     5 & 0 & -3 & 0 & 0 & -9 \\
 \end{array}$$
+\fxnote{Marko, ovdje je Milana primijetila da u prvoj koloni ima broj 7 koji je pozitivan. Kako onda nema elemenata koji su strogo veci od nule (njena primjedba oznacena crvenom bojom) Nisam dalje citao ovaj primjer, na ovo se moramo zajednicki vratiti}
+
 Ovdje počinju problemi. Pivotiranje bi trebalo da ide sa elementima u koloni 1, ali tamo nema niti jedan element strogo veći od 0 (samo jedan koji je 0, a to je $\overline{a}_{3,1}$) i trebalo bi oko njega da pivotiramo. Kada se izvrši pivotiranje, varijable $\overline{b}$ ne mijenjaju svoje vrijednosti:
 $$\begin{array}{ccccc|c}
      0 & 1 & \frac{1}{7}  & 0 & \frac{1}{7} & 3 \\
@@ -1555,11 +1558,15 @@ $-x+y=3$ i $x+6y=18$, što je opet ista tačka (i nema napretka vrijednosti funk
  \begin{itemize}
      \item Da li se uvijek (kao i koliko lako)   može naći bazno dopustivo rješenje za inicijalni korak 
      simpleks algoritma?
-     \item Da li se simpleks algoritam uvijek prekida sa nalaskom optimalnog rješenja ili je funkcija cilja neograničena?
+     \item Da li se simpleks algoritam uvijek prekida pronalaskom optimalnog rješenja ili je funkcija cilja neograničena?
  \end{itemize}
+
+Ako postoji jedinična podmatrica $I_m$ u gornjoj lijevoj blok matrici simpleks tabele, onda je jasno da je odgovor na prvo pitanje pozitivan.
+ \fxnote{dragan: u primjeru 4.1}
+ Linearnom programu koji sadrži ograničenja $Ax \leq b, x\geq 0$ se dodaju izjednačavajuće varijable da bi uslovi nejednakosti u ograničenjima postali potrebne jednakosti. Na taj način se i formira ova jedinična matrica. 
  
- Odgovor na prvo pitanje se može posmatrati u ekvivalentnom obliku: da li postoji jedinična podmatrica $I_m$ u gornjoj lijevoj blok matrici simpleks tabele? Ako je odgovor da,  onda je bazu jednostavno odrediti (kako smo to i vidjeli u prethodnoj sekciji). 
- Linearnom programu koji sadrži ograničenja $Ax \leq b, x\geq 0$ se dodaju izjednačavajuće varijable da bi uslovi nejednakosti u ograničenjima postali potrebne jednakosti. Na taj način se i formira ova jedinična matrica. Međutim, šta ako je linearan program direktno dat u kanonskom obliku, tj. sa ogarničenjima oblika $Ax = b, x \geq 0$? Bez smanjenja opštosti, pretpostavimo da je $b \geq 0$. Ako ne postoji očigledno bazno dopustivo rješenje ovog problema, onda uvodimo \emph{umjetne} varijable $s = (s_1,\ldots, s_m)$ nakon čega treba da riješimo sljedeći problem LP-a:
+ 
+ Međutim, šta ako je linearan program direktno dat u kanonskom obliku, tj. sa ogarničenjima oblika $Ax = b, x \geq 0$? Bez smanjenja opštosti, pretpostavimo da je $b \geq 0$. Ako ne postoji očigledno bazno dopustivo rješenje ovog problema, onda uvodimo \emph{umjetne} varijable $s = (s_1,\ldots, s_m)$ nakon čega treba da riješimo sljedeći problem LP-a:
  \begin{align}
       &\sum_{i=1}^m s_i \rightarrow \min_{x,s} \nonumber \\
       &\mbox{s.t.} A x + s = b \nonumber \\
