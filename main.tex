@@ -873,7 +873,7 @@ Uvedimo sada nekoliko novih pojmova koji će nam pomoći da definišemo bazno do
 \begin{definition}
 	 Bazno dopustivo rješenje $x^*$ je bazno rješenje koje zadovoljava  uslove linearnog programa. 
 \end{definition}
-Pokažimo sada da  vrhovi, ekstremne tačke poliedra i bazna dopustiva rješenja predstavljaju istu stvar kada je riječ o LP-u.
+Pokažimo sada da  vrhovi, ekstremne tačke poliedra i bazna dopustiva rješenja predstavljaju ekvivalentne pojmove kada je riječ o LP-u.
 
 \begin{thm}
    Neka je $P$ poliedar i neka je $x^* \in P$. Sljedeće tri tvrdnje su ekvivalentne:
@@ -889,7 +889,7 @@ Pokažimo sada da  vrhovi, ekstremne tačke poliedra i bazna dopustiva rješenja
       
       $1 \Rightarrow 2$. Neka je $x^*$ vrh poliedra. Iz Definicije~\ref{def:vrhPoliedra} slijedi da 
       postoji $c\in \mathbb{R}^n$ tako da $c^Tx^* < c^T x$, za sve $x \in P, x \neq x^*$. Pretpostavimo da $x^*$ nije ekstremna tačka poliedra $P$. 
-      To bi značilo da postoje $y,z \in P$, koji su različiti od $x^*$, takvi da se $x^*$ može predstaviti kao njihova (netrivijalna) konveksna kombinacija, tj. $x^* = \lambda y + (1 - \lambda) z $, za neko $\lambda \in (0,1 )$. Na osnovu pretpostavke je $c^T x^* < c^T y$. Sada je 
+      To bi značilo da postoje $y,z \in P$, koji su različiti od $x^*$, takvi da se $x^*$ može predstaviti kao njihova (netrivijalna) konveksna kombinacija, tj. $x^* = \lambda y + (1 - \lambda) z $, za neko $\lambda \in (0,1 )$. Na osnovu pretpostavke je $c^T x^* < c^T y$.  Sada je 
       \begin{align}
           &c^T x^* = c^T ( \lambda y + (1 - \lambda) z )  = c^T( \lambda y) + c^T((1- \lambda) z) > \nonumber \\
           &>\lambda c^T x^* + ( 1 - \lambda) c^T x^* = c^T x^*.
@@ -909,10 +909,10 @@ Pokažimo sada da  vrhovi, ekstremne tačke poliedra i bazna dopustiva rješenja
        $$ y = x^* + \epsilon d, z = x^* - \epsilon d, $$
        za neko $\epsilon > 0$, pa pokažimo da $y, z \in P$.
        
-       Ako je $i \in I$, onda je $$a_i^T y = a_i^T (x^* + \epsilon d) = a_i^T x^* + \epsilon a_i^T d = a_i^T x^* = b_i. $$
-       \fxnote{marko, provjeri racun ispod}
-       Pokažimo još da za $i \not \in I$ vrijedi $a_i^T x^* \geq b_i$, odakle bi slijedilo da $y \in P$. Dakle, $a_i^T y = a_i^T (x^* + \epsilon d) = a_i^T x^* + \epsilon a_i^T d $. Ako je $a_i^T d \geq 0$, slijedi da je 
-       $a_i^T x^* > b_i$, odakle slijedi da je $y \in  P$. Ako je $a_i^T d < 0$, onda odaberimo takve $\epsilon$ za koje će vrijediti $a_i^T x^* + \epsilon a_i^T d > b_i$. Interval   vrijednosti za $\epsilon$ dobijemo iz sljedećeg računa:
+       Ako je $i \in I$, onda je $$a_i^T y = a_i^T (x^* + \epsilon d) = a_i^T x^* + \epsilon a_i^T d = a_i^T x^* = b_i. $$ Preostalo je da pokažimo da za $i \not \in I$ vrijedi $a_i^T y \geq b_i$, odakle bi slijedilo da $y \in P$. 
+       
+       Dakle, $a_i^T y = a_i^T (x^* + \epsilon d) = a_i^T x^* + \epsilon a_i^T d $. Ako je $a_i^T d \geq 0$, slijedi da je 
+       $a_i^T y > a_i^Tx^* \geq b_i$, odakle slijedi da   $y \in  P$. Ako je $a_i^T d < 0$, onda odaberimo takve $\epsilon$ za koje će vrijediti $a_i^T x^* + \epsilon a_i^T d > b_i$. Interval   vrijednosti za $\epsilon$ dobijemo iz sljedećeg računa:
        $$ a_i^T x^* + \epsilon a_i^T d > b_i \Rightarrow \epsilon < \frac{b_i - a_i^T x^*}{a_i^T d}  $$
        Za svaki $\epsilon \in \left(0,  \frac{b_i - a_i^T x^*}{a_i^T d} \right)$ vrijedi $a_i^T y > b_i$, odakle slijedi $y \in P$. Slično pokažemo i da vrijedi $z \in P$. 
        Prema tome, lako je vidjeti da vrijedi $x^* = \frac{1}{2}y +\frac{1}{2} z$. Dakle, $x^*$ se dobija kao netrivijalna konveksna kombinacija, što je u suprotnosti sa definicijom ekstremne tačke. 
@@ -942,13 +942,13 @@ Iz prethodne teoreme možemo zaključiti sljedeće.  Da bismo  konstruisali bazn
     %\item Postavimo $x_i = 0$, za sve $i \in \{p_1,\ldots, p_m \}$.
     \item Riješimo sistem $B x_B = b$, za $x_B = [x_{p_1}, \ldots, x_{p_m}]$ i $B= [A_{p_1}. \ldots, A_{p_m}]$
     \item Dodijelimo $$x = (x_1,\ldots, x_n):= \begin{cases}
-    	          0, j  \not \in \{p_1,\ldots, p_m \} \\
-    	         x_{p_i} = (x_B)_i, j \in \{ p_1,\ldots, p_m \}
+    	          0, j  \not   \in \{ p_i \mid i=1,\ldots, m\} \\
+    	          (x_B)_i, j \in \{ p_i \mid i=1,\ldots, m\}
     \end{cases},$$  čime dobijamo bazno rješenje. 
 
 \end{enumerate}
-\fxnote{pitanje za marka: gdje je j}
-Promjenljive $x_{p_1},\ldots, x_{p_m}$ nazivamo \emph{bazne promjenljive}, a vektore  $A_{p_1}, \ldots, A_{p_m}$ \emph{bazni vektori}, indekse $p_1,\ldots, p_m$ \emph{bazni indeksi}, a matricu $B$ matricom baze. 
+ 
+Promjenljive $x_{p_1},\ldots, x_{p_m}$ se nazivaju \emph{bazne promjenljive}, dok vektore $A_{p_1}, \ldots, A_{p_m}$ nazivamo \emph{baznim vektorima}. Indekse $p_1,\ldots, p_m$ nazivamo \emph{bazni indeksi}, a matricu $B$ matricom baze. 
 
 
 Definišimo sada pojam \emph{degenerativnog} rješenja i degenerativnog baznog rješenja. 
@@ -1005,7 +1005,7 @@ Sljedeća teorema nam daje dovoljan uslov za postojanje optimalnog rješenja koj
          $O^* = \{ x \in \mathbb{R}^n \mid A x \geq b, c^T x = v  \}$ takođe poliedar i da važi $O^* \subset P$. Iz Teoreme~\ref{thm:pravac} slijedi da poliedar $P$ ne sadrži pravac. Iz toga zaključujemo da ni $O^*$ nema pravac, odakle slijedi da $O^*$ ima barem jednu ekstremnu tačku (stavka 1 Teoreme~\ref{thm:pravac}). Označimo tu ekstremnu tačku sa $q^*$. Pokažimo da je to ujedno i ekstremna tačka od $P$.  Ako bismo pretpostavili da $q^*$ nije ekstremna tačka poliedra $P$, po definiciji, slijedi da postoje $y, z \in P$ tako da $q^* = \lambda y + ( 1 - \lambda ) z $, $y \neq q^*, z \neq q^*, \lambda \in [0, 1]$. Kako je $q^* \in O^*$, slijedi 
          $$ v = c^T q^* = c^T (  \lambda y + ( 1 - \lambda ) z ) = \lambda 
         \underbrace{ c^T y}_{ \geq v} + ( 1 - \lambda ) \underbrace{c^T z}_{\geq v} \geq \lambda v + (1 - \lambda) v = v,$$
-        odakle imamo $c^T y = v$ i $c^T z = v$, dakle $y, z \in O^*$. Prema tome, $q^*$ nije ekstremna tačka od $O^*$. Dakle, dolazimo do kontradikcije, odakle zaključujemo da $q^*$ mora biti  ekstremna tačka i od  $P$.
+        odakle imamo $c^T y = v$ i $c^T z = v$, dakle $y, z \in O^*$. Prema tome, $q^*$ nije ekstremna tačka od $O^*$. Dolazimo do kontradikcije, odakle zaključujemo da $q^*$ mora biti  ekstremna tačka i od  $P$.
 \end{proof}
  
 
@@ -1023,27 +1023,30 @@ Kako ćemo vidjeti u narednom poglavlju, simpleks metoda je zasnovana na iterati
 
 \section{Neke tehnike u modelovanju problema linearnog programiranja}
 
-\emph{Funkcija apsolutna vrijednost}.   Pretpostavimo da imamo model zadat sa 
-\begin{align*}
-	&\min \sum_{j \in J} c_j |x_j| \\
-	& \sum_{j\in J} a_{ij} x_j \leq b_i, \forall i\in I \\
-	& x_j \in \mathbb{R}, \forall j \in J.
-\end{align*} 
-\fxnote{marko, provjeri i ti indekse, nisam siguran da sam dobro sredio}
+\emph{Apsolutna vrijednost u funkciji cilja}.   Pretpostavimo da imamo model zadat sa 
+\begin{align}
+	&\min \sum_{j \in J} c_j |x_j| \nonumber \\
+	& t.d. \nonumber \\
+	& \sum_{j\in J} a_{ij} x_j \leq b_i, \forall i\in I  \nonumber \\
+	& x_j \in \mathbb{R}, \forall j \in J. \label{eq:lp_abs}
+\end{align} 
+ 
 Kao što znamo, apsolutna vrijednost nije linearna funkcija, ali se ovaj model može transformisati u model linearnog programiranja na sljedeći način: 
 svaku slobodnu promjenljivu ćemo zapisati kao razliku dvije pozitivne promjenljive, tj.  $x_j = x_j^+ - x_j^-$, a apsolutnu vrijednost kao zbir dvije pozitivne promjenljive, tj. $|x_j|= x_j^+ + x_j^-$. Prema tome, prethodni model se transformiše  u 
-\begin{align*}
-	&\min \sum_{j \in J} c_j  (x_i^+ + x_i^-) \\
-	&\sum_{j\in J} a_{ij} (  x_i^+ - x_i^- ) \leq b_i, \forall i\in I \\
-	&  x_i^+, x_i^- \geq 0, \forall i \in I.
-\end{align*}
-\fxnote{marko, na ovo se moramo vratiti, ni meni nije jasno}
-Ostavljamo čitaocu da pokaže da ova dva modela imaju jednaka optimalna rješenja.
+\begin{align}
+	&\min \sum_{j \in J} c_j  (x_i^+ + x_i^-) \nonumber \\
+	& t.d. \nonumber \\
+	&\sum_{j\in J} a_{ij} (  x_i^+ - x_i^- ) \leq b_i, \forall i \in I \nonumber \\
+	&  x_i^+, x_i^- \geq 0, \forall j\in J. \label{eq:lp_abs_transformed}
+\end{align}
+
+Pretpostavimo da je $x_j^*$, $j \in J$ optimalno rješenje LP-a (\ref{eq:lp_abs}).  Lako je vidjeti da je ekvivalentno optimalno rješenje LP-a (\ref{eq:lp_abs_transformed}) tada dato u obliku $(x_j^+)^* = x_j^*$  ako je $x_j^* \geq 0$, a inače $(x_j^+)^* = 0$. Slično vrijedi $(x_j^-)^* = - x_j^*$  ako je $x_j^* \leq 0$, a inače $(x_j^-)^* = 0$. Naime, lako se provjeri da su vrijednosti ova dva rješenja u odnosu na odgovarajuće funkcije cilja jednake. Kako je takođe jasno da su optimalne tačke LP-a (\ref{eq:lp_abs_transformed}) one za koje je barem jedna od varijabli $x_j^+$ ili $x_j^-$, $j \in J$  jednaka 0 (pogledati funkciju cilja koja se minimizuje), zaključujemo da je transformacija validna u smislu jednake optimalne vrijednosti. 
+
 
 \emph{Min-max problem}. Neka je dat sljedeći model: 
 \begin{align*}
 	&\min_{x} \max_{k \in K} \sum_{j \in J} c_{kj} x_j \\
-	&\mbox{s.t.} \nonumber \\
+	&{t.d.} \nonumber \\
 	& \sum_{j \in J} a_{ij} x_j \leq b_i\  \forall i \in I \\
 	& x_j \geq 0\ \forall j \in J.
 \end{align*}
@@ -1056,6 +1059,7 @@ Ovaj  model se transformiše u model LP-a uvođenjem promjenljive
 Kada se $z$ minimizuje, ova ograničenja osiguravaju da je $z$ veće ili jednako  $\sum_{j \in J} c_{kj}x_j$, za sve $k$. Optimalna vrijednost $z$ neće biti veća od maksimuma svih $\sum_{j \in J} c_{kj}x_j$, jer  $z$ minimizujemo. Prema tome, optimalna vrijednost varijable $z$ će težiti da bude što manja moguća i jednaka maksimalnoj cijeni nad skupom $K$. Dakle, početni model se transformiše u:
 \begin{align*}
 	&\max z \\
+    &{t.d.} \nonumber \\
 	&\sum_{j \in J} a_{ij} x_j \leq b_i\  \forall i \in I \\ 
 	& 	 \sum_{j \in J} a_{kj} x_j \leq z\ \forall k \in K \\
 	& x \geq 0.
@@ -1231,7 +1235,7 @@ Neka je dat problem LP-a u kanonskom obliku
 \begin{align}
     &c^Tx \rightarrow \min \nonumber \\ 
     & A x = b \nonumber \\
-     & x \geq 0, \label{eq:lp_equality_constraint}
+    & x \geq 0, \label{eq:lp_equality_constraint}
 \end{align}
 gdje su $A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m, c \in \mathbb{R}^n, x\in \mathbb{R}^n$ uz pretpostavku da je poliedar $P=\{ x \in \mathbb{R}^n \mid A x = b , x \geq 0 \}$ datog problema LP-a dopustiv region.  U ovom poglavlju, osim ako drugačije nije naznačeno, strogo ćemo poštovati ovu notaciju. 
 
