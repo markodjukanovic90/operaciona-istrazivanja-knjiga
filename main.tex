@@ -1068,12 +1068,14 @@ Kada se $z$ minimizuje, ova ograničenja osiguravaju da je $z$ veće ili jednako
 \emph{Frakciona funkcija cilja}. Neka je dat sljedeći model:
 \begin{align*}
 	& \min \frac{\sum_{j \in J} c_j x_j + \alpha}{ \sum_{j \in J} d_j x_j + \beta} \\
+		& t.d. \nonumber \\
 	& \sum_{j \in J} a_{ij} x_j \leq b_i,  \forall i \in I \\
 	& x_j \geq 0, \forall j \in J.
 \end{align*}
 Ovdje je funkcija cilja data kao količnik dvije linearne funkcije. Ovakvi modeli su česta pojava u modelovanju finansijskog planiranja. Objasnimo postupak transformacije frakcione funkcije cilja u linearnu. Pretpostavimo da je $\sum_{j \in J}d_j x_j + \beta \neq 0$ za sve tačke iz dopustivog regiona. Glavni trik u transformaciji je uvođenje nove promjenljive $y_j$ i parametra $t$, tako da je $y_j = t x_j$. U nastavku, pretpostavljamo da je imenilac u funkciji cilja pozitivan. Slično je izvođenje i sa negativnim imeniocem, s tim da imamo znak ``-'' ispred, što će promijeniti znak nejednakosti u ograničenjima krajnjeg modela. Dakle, uvedemo $t = \frac{1}{\sum_{j \in J} d_j x_j + \beta }$. Time dobijamo model
 \begin{align*}
 	&\min \sum_{j \in J} c_j x_j t + \alpha t \\
+	& t.d. \nonumber \\
 	&\sum_{j \in J} a_{ij} x_j \leq b_i,  \forall i \in I \\
 	& \sum_{j \in J} d_j x_j t + \beta t = 1 \\
 	& t > 0 \\
@@ -1082,6 +1084,7 @@ Ovdje je funkcija cilja data kao količnik dvije linearne funkcije. Ovakvi model
 Množeći prvo ograničenje sa $t>0$ te uvodeći smjenu $y_j = t x_j$, dobijamo (ekvivalentan)  model:
 \begin{align*}
 	&\min \sum_{j \in J} c_j y_j + \alpha t \\
+		& t.d. \nonumber \\
 	& \sum_{j \in J} a_{ij} y_j \leq b_i t,  \forall i \in I \\
 	& \sum_{j \in J} d_j y_j + \beta t = 1 \\
 	& t > 0 \\
@@ -1091,12 +1094,14 @@ Da bi LP model bio validan, potrebno je staviti $t \geq 0$ i na kraju provjeriti
 \emph{Domenske granice u ograničenjima}. Neka je dat model
 \begin{align*}
 	&\min_{j \in J } c_j x_j \\
+	& t.d. \nonumber \\
 	& l_i \leq \sum_{j \in J} a_{ij} x_j \leq u_i, \forall i\in I \\
 	& x_j \geq 0, \forall j \in J.
 \end{align*} 
 Direktnom transformacijom dobijamo sljedeći LP (konjunkcija ograničenja): 
 \begin{align*}
 	& \min_{j \in J } c_j x_j \\
+    & t.d. \nonumber \\
 	&  l_i \leq \sum_{j \in J} a_{ij} x_j, \forall i\in I \\
 	&  \sum_{j \in J} a_{ij} x_j \leq u_i, \forall i\in I \\
 	&  x_j \geq 0, \forall j \in J.
@@ -1111,7 +1116,7 @@ Dakle, ako je $s_i = 0$, onda je  $\sum_{j \in J} a_{ij} x_j = u_i$, dok ako je 
 Konačno, dobijamo ekvivalentan LP model
 \begin{align*}
 	&\min_{j \in J } c_j x_j \\
-	& \mbox{s.t.} \nonumber \\
+	& t.d. \nonumber \\
 	&s_i + \sum_{j \in J} a_{ij} x_j = u_i, \forall i \in I \\ 
 	&  0 \leq s_i \leq  u_i - l_i, \forall i \in I \\
 	& x_j \geq 0, \forall j \in J.
@@ -1119,7 +1124,7 @@ Konačno, dobijamo ekvivalentan LP model
 
 \section{Zadaci}
 \begin{enumerate}
-	\item  Kompanija ``Zdrav ljubimac'' proizvodi dvije vrste hrane za pse: Gricko i NjamNjam. Svako pakovanje Gricko hrane sadrži 2 kilograma žitarica i 3 kilograma mesa; svako pakovanje NjamNjam-a sadrži 3 kilograma žitarica i 1,5 kilogram mesa. Kompanija vjeruje da može prodati onoliko hrane za pse koliko može napraviti. Gricko se prodaje za   2,80 KM po paketu, a NjamNjam  za 2,00 KM po paketu. Proizvodnja kompanije je ograničena na nekoliko načina. Prvo, kompanija može kupiti samo do 400.000 kg žitarica svakog mjeseca za 0,20 KM po kg. Dalje, kompanija može
+	\item  Kompanija ``Zdrav ljubimac'' proizvodi dvije vrste hrane za pse: Gricko i NjamNjam. Svako pakovanje Gricko hrane sadrži 2 kg žitarica i 3 kg mesa; svako pakovanje NjamNjam-a sadrži 3 kg žitarica i 1,5 kg mesa. Kompanija vjeruje da može prodati onoliko hrane za pse koliko može napraviti. Gricko se prodaje za   2,80 KM po paketu, a NjamNjam  za 2,00 KM po paketu. Proizvodnja kompanije je ograničena na nekoliko načina. Prvo, kompanija može kupiti samo do 400.000 kg žitarica svakog mjeseca za 0,20 KM po kg. Dalje, kompanija može
 	kupiti samo do 300.000 kg mesa mjesečno za 0,50 KM po kg. Osim toga, za proizvodnju hrane Gricko  potrebna je posebna mašina, a proizvodni kapacitet ove mašine je 90.000 paketa mjesečno. Varijabilni troškovi miješanja i pakovanja hrane za pse iznose 0,25 KM po pakovanju za hranu Gricko i 0,20 KM po paketu za hranu NjamNjam.  
 	Pretpostavimo da ste vođa odjela hrane za pse  ove kompanije. Na koji način biste  upravljali odjelom proizvodnje kako bi maksimizovali profit? 
 	\item %LP_zadaci_za_knjigu.pdf ==> pogledati 
@@ -1138,7 +1143,7 @@ Konačno, dobijamo ekvivalentan LP model
 \end{center}	
 	
 	Sa trenutnom radnom snagom, firma vjeruje da može proizvesti približno 420 ključeva za cijevi mjesečno po cijeni od 40 KM po ključu u standardnom režimu proizvodnje. Dodatnih 80 ključeva mjesečno može se izraditi prekovremenim radom po cijeni od 45 KM po ključu.
-	Ključevi se mogu napraviti unaprijed i držati u zalihama za kasniju isporuku po cijeni od 3 KM mjesečno po ključu. Mjesečna potražnja za ključevima mora biti zadovoljena svakog mjeseca. Pred kraj decembra (početak januara) kompanija ima 10 ključeva u inventaru. Želi planirati svoju proizvodnju, uključujući prekovremeni rad i zalihe za sljedećih 6 mjeseci, kako bi povećala profit. Pod pretpostavkom da je prihod od ovih ključeva stalan, uprava proizvodnje  će povećati  profit minimizovanjem ukupnih troškova nastalih u proizvodnji i isporuci ključeva. Modelovati ovaj problem.
+	Ključevi se mogu napraviti unaprijed i držati u zalihama za kasniju isporuku po cijeni od 3 KM mjesečno po ključu. Mjesečna potražnja za ključevima mora biti zadovoljena svakog mjeseca. Pred kraj decembra (početak januara) kompanija ima 10 ključeva u inventaru. Ona želi planirati svoju proizvodnju, uključujući prekovremeni rad i zalihe za sljedećih 6 mjeseci, kako bi povećala profit. Pod pretpostavkom da je prihod od ovih ključeva stalan, uprava proizvodnje  će povećati  profit minimizacijom ukupnih troškova nastalih u proizvodnji i isporuci ključeva. Modelovati ovaj problem.
 	\item %https://www.utc.fr/~dnace/dokuwiki/_media/fr/upt-cours-2012lp.pdf
 	(Varijacija prethodnog problema) Kompanija proizvodi prenosne računare. Predviđanja prodaje (u hiljadama) za naredna četiri mjeseci prikazana su u sljedećoj tabeli. 
 \begin{center}
