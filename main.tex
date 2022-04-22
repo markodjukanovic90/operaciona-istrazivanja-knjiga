@@ -1386,7 +1386,8 @@ na kanonski oblik pogodan simpleks metodi $(A {x} = b)$ dodavanjem ``izjednačav
     & x_1, x_2 \geq 0. \nonumber \\
 \end{align*}
  \end{primjer}
- Pretvorimo ga u kanonski oblik dodavajući izjednačavajuće varijable $s = (s_1, s_2)>0$, pa dobijamo 
+\emph{Rješenje.}
+ Pretvorimo model u kanonski oblik dodavajući izjednačavajuće promjenljive $s = (s_1, s_2)>0$, pa dobijamo 
 \begin{center}
 \begin{tabular}{llllll}
 	\centering
@@ -1408,8 +1409,8 @@ na kanonski oblik pogodan simpleks metodi $(A {x} = b)$ dodavanjem ``izjednačav
      \caption{Inicijalna simpleks tabela.}
      \label{tab:simpleks_tabela1}
  \end{table} 
- Na početku uzmemo za bazu vektore $s_1$ i $s_2$. Prema tome, bazno dopustivo rješenje je $x = (0, 0, 9, 8)$, za koji je $f =0$. Sada ažiriramo simpleks tabelu izvodeći pivotiranje. Izaberimo indeks $j$ td. $\overline{c_j}>0$. Neka je $j=1$, što odgovara varijabli $x_1$ čiji doprinos želimo da povećamo (jer maksimizujemo) u funkciji cilja. Izaberimo pivot vrstu tako što posmatramo odnos $\overline{b_i}/\overline{a}_{1,j}$, za sve $\overline{a}_{1,j} > 0$,  $B^{-1} A_1 = \overline{a}_{1,j}$
- i tražimo onaj indeks koji minimizuje datu vrijednost. Imamo dvije mogućnosti, $9/1$ i $8/2$, pa dobijamo da je $i = 2$ traženi indeks. Prema tome, pivot je dat elementom $\overline{a}_{1,2}=2$. Sada izvršimo elementarne operacije pivotiranja oko ovog elementa,  tako da sve elemente u koloni 1 simpleks matrice načinimo nulama, dok element u drugoj vrsti postaje 1 (Gausove eliminacije u rješavanju sistema jednačina). Primjera radi, vrsti 1 se dodaje druga vrsta pomnožena sa -$\frac{1}{2}$. Druga vrsta se dijeli sa $\frac{1}{2}$. Dok trećoj vrsti se dodaje takođe druga vrsta pomnožena sa -$\frac{1}{2}$. 
+\fxnote{Marko, ovdje sam prepravljao naredni paragraf, pa procitaj da nesto nisam zeznuo}
+ Na početku uzmemo za bazu vektore $s_1$ i $s_2$. U tom slučaju, bazno dopustivo rješenje je $x = (0, 0, 9, 8)$, za koje je $f =0$. Sada ažiriramo simpleks tabelu izvodeći pivotiranje. Izaberimo indeks $j$ tako da je  $\overline{c_j}>0$. Neka je $j=1$, odnosno, u razmatranje ćemo uzeti promjenljivu $x_1$, čijim doprinosom želimo da uvećamo funkciju cilja, jer rješavamo problem maksimizacije. Izaberimo pivot vrstu tako što posmatramo odnos $\overline{b_i}/\overline{a}_{1,j}$, za sve $\overline{a}_{1,j} > 0$,  $B^{-1} A_1 = \overline{a}_{1,j}$. Tražimo onaj indeks koji minimizuje datu vrijednost. Imamo dvije mogućnosti, $9/1$ i $8/2$, pa dobijamo da je $i = 2$ traženi indeks. Prema tome, pivot je  element $\overline{a}_{1,2}=2$. Sada izvršimo elementarne operacije pivotiranja oko ovog elementa. Primjenom Gausove metode eliminacije, elemente u koloni 1 simpleks tabele, osim elementa druge vrste,  svedemo na nule, dok element u drugoj vrsti prve kolone postavimo na 1. Vrsti 1 se dodaje druga vrsta pomnožena sa -$\frac{1}{2}$. Druga vrsta se dijeli sa $\frac{1}{2}$. Trećoj vrsti se dodaje druga vrsta pomnožena sa $-\frac{1}{2}$. 
  Primjenjujući ove transformacije, dobijamo simpleks tabelu:
  
   \begin{table}[!ht]
@@ -1419,12 +1420,12 @@ na kanonski oblik pogodan simpleks metodi $(A {x} = b)$ dodavanjem ``izjednačav
          1 &  $\frac{1}{2}$ & 0 & $\frac{1}{2}$ & 4 \\ \hline
          0 &  $\frac{1}{2}$ & 0 & -$\frac{1}{2}$ & -4 \\ \hline
      \end{tabular}
-     \caption{Simpleks tabela: nakon transformacija.}
+     \caption{Simpleks tabela nakon prvog pivotiranja}
      \label{tab:simpleks_tabela2}
  \end{table}
-Bazne varijable prepoznjemo jer odgovarajući vektori (kolone) zajedno čine jediničnu matricu. Prema tome, 
- nebazne varijable su $x_2$ i $s_2$, koje dobijaju vrijednost 0, dok ostale lako izračunavamo, odakle je $ x = (4, 0, 5, 0)$. Ponavljamo prethodne korake sa novom simpleks tabelom, nalazimo pivot, tj. poziciju  $(i,j)$. Lako je vidjeti da kolona 2 jedina odgovara nalasku odgovarajućeg pivot elementa. Dalje, za pogodnu vrstu $i$, imamo da je $5 / (5/2) < 4 / (1/2)$, prema tome $i =1$. Dakle, pivot je 
- $\overline{a}_{1,2} = \frac{5}{2}$. Radimo ponovo Gausove eliminacije oko prve vrste, pa se dobija simpleks tabela:
+Bazne promjenljive sada lako prepoznajemo iz Tabele~\ref{tab:simpleks_tabela2}, jer odgovarajući vektori kolone zajedno formiraju jediničnu matricu. Prema tome, 
+ nebazne promjenljive su $x_2$ i $s_2$, koje dobijaju vrijednost 0, dok ostale lako izračunavamo, odakle je $ x = (4, 0, 5, 0)$. Ponavljamo prethodne korake nad novom simpleks tabelom. Potrebno je pronaći novi pivot element. Lako se vidi da jedino kolona 2 odgovarajuća. Pošto je $5 / (5/2) < 4 / (1/2)$, zaključujemo da  pivot element pronalazimo u prvoj vrsti. Dakle, pivot je 
+ $\overline{a}_{1,2} = \frac{5}{2}$. Postupkom Gausove eliminacije oko prve vrste, dobija se simpleks Tabela~\ref{tab:simpleks_tabela3}.
  
    \begin{table}[!ht]
      \centering
@@ -1436,7 +1437,7 @@ Bazne varijable prepoznjemo jer odgovarajući vektori (kolone) zajedno čine jed
      \caption{Simpleks tabela: korak 2.}
      \label{tab:simpleks_tabela3}
  \end{table}
- Kako su sve varijable doprinosa manje (ili jednakom) 0, zaključujemo da smo našli optimum koji je jednak $x = (3, 2, 0, 0)$, a optimalna vrijednost je $f = 5$.
+ Kako su sve promjenljive doprinosa manje (ili jednake) 0, zaključujemo da smo pronašli optimum koji je jednak $x = (3, 2, 0, 0)$, a optimalna vrijednost je $f = 5$.
  
  \begin{figure}[!ht]
      \centering
@@ -1445,14 +1446,15 @@ Bazne varijable prepoznjemo jer odgovarajući vektori (kolone) zajedno čine jed
      \label{fig:simplex_region} 
  \end{figure}
  
- \emph{Komentari na zadatak}. Na Slici~\ref{fig:simplex_region}, tačke $A, B, C$, i $D$ su bazna dopustva rješenja (BDR). Tačke $E$ i $F$ su takođe bazna rješenja, ali nisu dopustiva. Simpleks algoritam prvo kreće od tačke $A$ prema tački $D$, te završava u tački $C$ (optimum).
+ Analizirajmo još neke aspekte u ovom primjeru. Na Slici~\ref{fig:simplex_region}, tačke $A, B, C$, i $D$ su bazna dopustva rješenja. Tačke $E$ i $F$ su takođe bazna rješenja, ali nisu dopustiva. Simpleks algoritam prvo kreće od tačke $A$ prema tački $D$, te završava u tački $C$ (optimum).
+ \fxnote{Marko, ovdje mi se nesto ne poklapa, valjda je simpleks krenuo od (0,0), pa presao u (4,0) i na kraju zavrsio u (3,2)}
  
- \emph{Komentari na simpleks tabelu}:
+ Iz posljednje simpleks tabele (Tabela~\ref{tab:simpleks_tabela3}) se može uočiti i sljedeće:
  \begin{itemize}
-     \item Jedinična matrica $m \times m$   ugrađena u gornju lijevu podmatricu simpleks tabele (blok sa elementima $\overline{a}_{i,j}$) sadrži kolone koji čine vektore baznih varijabli.
+     \item Jedinična matrica $m \times m$   ugrađena u gornju lijevu podmatricu simpleks tabele (blok sa elementima $\overline{a}_{i,j}$) sadrži kolone koje čine vektore baznih varijabli.
      \item U odgovarajućim kolonama u posljednjoj vrsti (ciljna vrsta) se nalaze nule.
  \end{itemize}
- Prema tome, vektori $x_i$, koji su bazni vektori (kolone baze $B$), su napisani preko nebaznih vektora $x_i \in N$. Kako se stavljaju $x_i  = 0$, za sve $i \in N$, onda se  vrijednosti baznih vektora $x_i$, tj. kolona baze $B$, trivijano izračunavaju.
+ Prema tome, vektori $x_i$, koji su bazni vektori (kolone baze $B$), su napisani preko nebaznih vektora $x_i \in N$. Kako je $x_i  = 0$, za sve $i \in N$, vrijednosti baznih vektora $x_i$, tj. kolona baze $B$, se trivijano izračunavaju.
 
 \begin{primjer} Navedimo primjer jednog linearnog programa koji je neograničen, te ga riješimo simpleks metodom. 
 \end{primjer}
