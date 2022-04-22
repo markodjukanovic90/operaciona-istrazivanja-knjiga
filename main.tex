@@ -1156,7 +1156,7 @@ Konačno, dobijamo ekvivalentan LP model
 	\end{tabular}  
 \end{center}	
 	
-	Proizvodni kapacitet kompanije je 30000 računara mjesečno po cijeni od 250 KM po računaru. Moguće je proizvesti i više proizvoda ali po uvećanoj cijeni od 300 KM. U startu je na lageru 2000 računara. Troškovi skladištenja su 25 KM po svakom računaru koji ostane na zalihama na kraju mjeseca. Pretpostavljamo da su skladišni kapaciteti neograničeni. Proizvodnja počinje 1. januara. Kako planirati proizvodnju za sljedeća četiri mjeseca tako da se zadovolje svi zahtjevi, a troškovi svedu na minimum?
+	Proizvodni kapacitet kompanije je 30000 računara mjesečno po cijeni od 250 KM po računaru. Moguće je proizvesti i više proizvoda ali po uvećanoj cijeni od 300 KM. U startu je na lageru 2000 računara. Troškovi skladištenja su 25 KM po svakom računaru koji ostane na zalihama na kraju mjeseca. Pretpostavljamo da su skladišni kapaciteti neograničeni. Sa proizvodnjom se počinje 1. januara. Kako isplanirati proizvodnju za sljedeća četiri mjeseca tako da se zadovolje svi zahtjevi, a troškovi svedu na minimum?
 	%http://people.brunel.ac.uk/~mastjjb/jeb/or/lpmore.html
 	\item Teretni avion ima tri odjeljka za skladištenje tereta: prednji, srednji i zadnji. Ovi odjeljci imaju sljedeća ograničenja po težini i po prostoru: 
 \begin{table}[!ht]
@@ -1183,7 +1183,7 @@ Osim toga, da bi se održala ravnoteža aviona, teret  se mora ravnomjerno raspo
 \end{table}
 Bilo koji dio ovih tereta se može   prihvatiti za transport. Cilj je utvrditi koju količinu svakog tereta $C_1$, $C_2$, $C_3$ i $C_4$ treba prihvatiti i kako ga rasporediti po odjeljcima, da bi ukupna dobit na letu bila maksimalna.
 
-Uputstvo. Definisati varijable odluke $x_{i,j}$ kao broj (tona) tereta $i$   (za $C_i, i=1, \ldots,4$,  respektivno) koji se skladišti  u odjeljak $j$, $j=1,2,3$ (prednji, srednji, zadnji).  % http://people.brunel.ac.uk/~mastjjb/jeb/or/lpmore.html 
+Uputstvo. Definisati varijable odluke $x_{i,j}$ koje predstavljaju broj (tona) tereta $i$   (za $C_i, i=1, \ldots,4$,  respektivno) koji se skladišti  u odjeljak $j$, $j=1,2,3$ (prednji, srednji, zadnji).  % http://people.brunel.ac.uk/~mastjjb/jeb/or/lpmore.html 
 \item Kompanija proizvodi četiri proizvoda ($1,2,3,4$) na dvije mašine ($X$ i $Y$). Vrijeme (u minutama) za obradu jednog proizvoda na svakoj mašini je dato tabelom:
 \begin{table}[!ht]
 	\centering	
@@ -1195,15 +1195,15 @@ Uputstvo. Definisati varijable odluke $x_{i,j}$ kao broj (tona) tereta $i$   (za
 		4          & 8          & 23         \\ \hline
 	\end{tabular}
 \end{table}	\\
-Profiti po jedinici proizvoda za proizvod $i=1,2,3,4$, su 10, 12, 17 i 8 KM, respektivno. Proizvod 1 mora biti proizveden na obje mašine $X$ i $Y$ (u početku proizvodnje obje mašine treba da budu pokrenute), ali ostali proizvodi  mogu biti proizvedeni na bilo kojoj mašini. 
+Profiti po jedinici proizvoda za proizvod $i=1,2,3,4$, su 10, 12, 17 i 8 KM, respektivno. Za proizvodnju proizvoda 1, obje mašine $X$ i $Y$ se koriste (u početku proizvodnje obje mašine treba da budu pokrenute), ali ostali proizvodi  mogu biti proizvedeni na bilo kojoj mašini. 
 
-Fabrika je  mala i proizvodni prostor je vrlo ograničen. Proizvodnja na nivou sedmice se skladišti na $50 m^2$ podne površine, pri čemu svaki proizvod zauzima 0.1, 0.15, 0.5 i 0.05 (kvadratnih metara) proizvoda $1, 2, 3$ i $4$,  respektivno. 
+Fabrika je  mala i proizvodni prostor je vrlo ograničen. Proizvodnja na nivou sedmice se skladišti na $50 m^2$ podne površine, pri čemu svaki od proizvod (1, 2, 3, i 4 ) zauzima 0.1, 0.15, 0.5 i 0.05 (kvadratnih metara) prostora,  respektivno. 
 
-Zahtjevi kupaca su specifični. Količina proizvoda 3 je povezana sa količinom  proizvoda 2. Preciznije, tokom sedmice trebalo bi se proizvesti približno dvostruko više  proizvoda 2 nego proizvoda 3. Mašina $X$ je van pogona (zbog održavanja/kvara) 5\% vremena, a mašina $Y$ 7\% vremena.
-Pretpostavljajući da radna sedmica ima ukupno 35 sati, treba formulisati model proizvodnje ovih proizvoda preko linearnog programa, u cilju maksimizovanja profita. 
+Zahtjevi kupaca su specifični. Količina proizvoda 3 je povezana sa količinom  proizvoda 2. Preciznije, tokom sedmice trebalo bi se proizvesti približno dvostruko više  proizvoda 2 nego proizvoda 3. Mašina $X$ je van pogona (zbog održavanja/kvara) 5\% vremena, a mašina $Y$ ukupno 7\% vremena.
+Pretpostaviti da radna sedmica ima ukupno 35 sati. Formulisati model proizvodnje ovih proizvoda preko linearnog programa, u cilju maksimizovanja profita. 
 
 Uputstvo. Promjenljive odluke se vezuju za količinu proizvoda koji se proizvode na svakoj od mašina.  Dakle, 
-promjenljive $x_i$ označava broj proizvoda $i$ koji se proizvode na sedmičnom nivou na mašini $X$, dok je $y_j$ --   broj proizvoda $j$ koji se proizvode na sedmičnom nivou na mašini $Y$, $i \in \{1,2,3,4\}$, $j \in \{2,3,4\}$. Varijablu $y_1$ ne definišemo jer se proizvod 1 izvršava na obje mašine.  
+promjenljive $x_i$ označava broj proizvoda $i$ koji se proizvode na sedmičnom nivou na mašini $X$, dok je $y_j$ označava  broj proizvoda $j$ koji se proizvode na sedmičnom nivou na mašini $Y$, $i \in \{1,2,3,4\}$, $j \in \{2,3,4\}$. Varijablu $y_1$ ne definišemo jer se proizvod 1 izvršava na obje mašine.  
 
 	\item Grafičkom metodom riješiti sljedeći problem
 	\begin{align*}
@@ -1233,16 +1233,15 @@ promjenljive $x_i$ označava broj proizvoda $i$ koji se proizvode na sedmičnom 
 \newpage 
 \chapter{Simpleks Metod}
 
-Simpleks metod je jedan od najpoznatijih i najefikasnijih algoritama za rješavanje problema linearnog programiranja. Ideja za pronalaženje optimalnog rješenja problema LP-a simpleks metoda je zasnovana na  obilasku vrhova dopustivog regiona problema. Vrhovi se sukcesivno obilaze tako da se, prelaskom u novi vrh, vrijednost funkcije cilja smanjuje (ako je dat zadatak minimizacije). Simpleks metod je razvio George Dantzig 1947. godine, a s obzirom na njegovu važnost u rješavanju problema linearnog programiranja, spada među najznačajnije algoritme XX vijeka.
+Simpleks metod je jedan od najpoznatijih i najefikasnijih algoritama za rješavanje problema linearnog programiranja. Ideja za pronalaženje optimalnog rješenja problema LP-a simpleks metodom je zasnovana na  obilasku vrhova dopustivog regiona problema. Vrhovi se sukcesivno obilaze tako da se, prelaskom u novi vrh, vrijednost funkcije cilja smanjuje (ako je dat zadatak minimizacije). Simpleks metod je razvio George Dantzig 1947. godine, a s obzirom na njegovu važnost u rješavanju problema linearnog programiranja, spada među najznačajnije matematičke algoritme XX vijeka.
 
 Neka je dat problem LP-a u kanonskom obliku
-
 \begin{align}
     &c^Tx \rightarrow \min \nonumber \\ 
     & A x = b \nonumber \\
     & x \geq 0, \label{eq:lp_equality_constraint}
 \end{align}
-gdje su $A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m, c \in \mathbb{R}^n, x\in \mathbb{R}^n$ uz pretpostavku da je poliedar $P=\{ x \in \mathbb{R}^n \mid A x = b , x \geq 0 \}$ datog problema LP-a dopustiv region.  U ovom poglavlju, osim ako drugačije nije naznačeno, strogo ćemo poštovati ovu notaciju. 
+gdje su $A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m, c \in \mathbb{R}^n, x\in \mathbb{R}^n$ uz pretpostavku da je poliedar $P=\{ x \in \mathbb{R}^n \mid A x = b , x \geq 0 \}$ datog problema LP-a neprazan.  U ovom poglavlju, osim ako drugačije nije naznačeno, strogo ćemo poštovati ovu notaciju. 
 
 %\begin{definition}
 %      Za matricu A kažemo da je regularna akko postoji matrica B td. AB = BA = I. 
@@ -1254,7 +1253,7 @@ gdje su $A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m, c \in \mathbb{R}^n, 
 
 \section{Konstrukcija simpleks metode}
 
- Neka je $x = [x_1,\ldots, x_n]^T$ bazno dopustivo rješenje problema (\ref{eq:lp_equality_constraint}), gdje je $B$ matrica baze, $x_B$ bazni dio vektora $x$, pri čemu su na mjestima nebaznih indeksa iz skupa $N$ postavljene nule.  Kao što je rečeno, ideja simpleks metode je  ``šetanje'' po vrhovima poliedra,  dok ne nađemo optimalno rješenje. Krenimo pravcem $d$ u  početnom BDR $x$  pri čemu trebamo obratiti  pažnju na to da je zadovoljeno sljedeće:
+ Neka je $x = [x_1,\ldots, x_n]^T$ bazno dopustivo rješenje problema (\ref{eq:lp_equality_constraint}), gdje je $B$ matrica baze, $x_B$ bazni dio vektora $x$, pri čemu su na mjestima nebaznih indeksa iz skupa $N$ postavljene nule.  Kao što je rečeno, ideja simpleks metode je  ``šetanje'' po vrhovima poliedra,  dok ne nađemo optimalno rješenje. Krenimo pravcem $d$ u iz tačke $x$  pri čemu trebamo obratiti  pažnju na to da je zadovoljeno sljedeće:
 \begin{itemize}
     \item \emph{uslov optimalnosti}, tj. $c^T (x + \lambda d) \leq c^T x, \lambda>0$, što znači da idemo u pravcu smanjenja vrijednosti funkcije cilja;
     \item \emph{uslov dopustivosti}, potrebno je da pravac $d$ dopustiv u tački $x$, tj. $ (x + \lambda d) \in P$, za neko $\lambda>0$. Dakle, uvijek se krećemo samo tačkama dopustivog regiona. 
@@ -1263,9 +1262,9 @@ Birajmo neku nebaznu koordinatu u $x$. Neka je to $x_j, j \in N$. Definišemo $d
 $$ Ad = \sum_{i=1}^n A_i d_i = \sum_{i=1}^m A_{p_i} d_i + A_j = B d_B + A_j = 0$$ za one koordinate $p_i$ koje pripadaju indeksima koordinata baznog dijela, 
 odakle je $d_B = -  B^{-1} \cdot A_j $.  Za ovako odabran $d$ imamo zadovoljen uslov dopustivosti za ograničenje $A( x + \lambda d )  =b$. Posmatrajmo sada ograničenje nenegativnosti, tj. da li je zadovoljeno $x + \lambda d \geq 0$:
 \begin{itemize}
-    \item Ako je $x$ nedegenerativno, onda je tačno $n-m$ komponenti koje su jednake 0, pa je za nebazni dio komponenti $x_i + \lambda d_i = 0$, za $i \in N \setminus \{j\}$ i $x_j + \lambda d_j = 0$, pa imamo ispunjen uslov nenegativnosti ($x + \lambda d\in P$). Za bazne komponente imamo $x_{p_i} \cdot d_{p_i} > 0 $ ako je $d_{p_i}>0$. U suprotnom, možemo odabrati  malu vrijednost  $\lambda>0$ (pogledati definiciju dopustivog pravca $x +\lambda d$) tako da $x_{p_i} \cdot d_{p_i} >0$, a time i $x_{p_i} + \lambda d_{p_i}>0$, te je uslov nenegativnosti zadovoljen.
-    \fxnote{Marko, provjeri da li sam ovo dobro prepravio}
-    \item Ako je $x$ degenerativno bazno dopustivo rješenje, slijedi da je više od $n-m$ kompomenti od $x$ jednako 0. Kao i u prvom slučaju, za nebazni slučaj pokazujemo uslov nenegativnosti. Tada za bazne kompomenete vektora $x +\lambda d$  postoji bazni indeks $i$ za koji je $x_{p_i} = 0$, pa ako bi bilo $d_{p_i}< 0$, onda ne bismo mogli naći $\lambda>0$, tako da $x_{p_i} + \lambda d_{p_i} >0$, čime je narušena dopustivost. Pojava ovog slučaja se može zaobići primjenom određenih pravila izbora nove bazne koordinate umjesto koordinate $j$, što će biti i pokazano u nastavku ove sekcije. 
+    \item Ako je $x$ nedegenerativno, onda postoji tačno $n-m$ komponenti koje su jednake 0, pa je za nebazni dio komponenti $x_i + \lambda d_i = 0$, za $i \in N \setminus \{j\}$ i $x_j + \lambda d_j = 0$, pa imamo ispunjen uslov nenegativnosti ($x + \lambda d\in P$). Za bazne komponente imamo $x_{p_i} \cdot d_{p_i} > 0 $ ako je $d_{p_i}>0$. U suprotnom, možemo odabrati  malu vrijednost  $\lambda>0$ (pogledati definiciju dopustivog pravca $x +\lambda d$) tako da $x_{p_i} \cdot d_{p_i} >0$, a time i $x_{p_i} + \lambda d_{p_i}>0$, te je uslov nenegativnosti zadovoljen.
+ 
+    \item Ako je $x$ degenerativno bazno dopustivo rješenje, slijedi da je više od $n-m$ kompomenti od $x$ jednako 0. Kao i u prvom slučaju, za nebazni slučaj pokazujemo uslov nenegativnosti. Tada za bazne kompomenete vektora $x +\lambda d$  postoji bazni indeks $i$ za koji je $x_{p_i} = 0$, pa ako bi bilo $d_{p_i}< 0$, onda ne bismo mogli naći $\lambda>0$, tako da $x_{p_i} + \lambda d_{p_i} >0$, čime je narušena dopustivost. Pojavljivanje ovakvog slučaja se može zaobići primjenom određenih pravila izbora nove bazne koordinate umjesto koordinate $j$, što će biti i pokazano u nastavku ove sekcije. 
 \end{itemize}
 Da bi se pravilno izabrala nebazna promjenljiva $x_j$, koristimo  uslov optimalnosti $c^T ( x + \lambda d ) < c^T x $, odakle slijedi $c^T d < 0$.  Dakle, $$c^T d = c_B^T d_B + c_j = c^T ( - B^{-1} A_j ) + c_j < 0.$$
  Prema tome, biramo (nebazni) indeks $j$ tako da je zadovoljeno $ \overline{c_j} = c_j - c_B^T B^{-1}A_j < 0$. Vektor $\overline{c}=[\overline{c_1}, \ldots, \overline{c_n}]^T$ se naziva \emph{vektor doprinosa}, dok je vrijednost $\overline{c_j}$ \emph{doprinos nebazne varijable} $x_j$. 
@@ -1280,16 +1279,18 @@ Iz sljedeće teoreme dobijamo uslove optimalnosti rješenja.
   \end{itemize}
 \end{thm}
 
-Ostalo nam je još da odredimo dužinu   pravca $d$, tj. vrijednost $\lambda>0$. Ideja je da se krene nekim smjerom dok god se ne dođe do drugog vrha, tj. treba odrediti dužinu vektora $d$ koji je jednak $\lambda^* = \max \{ \lambda \in \mathbb{R} \mid x + \lambda d \geq 0 \}$. Razlikujemo sljedeća dva slučaja:
+Ostalo nam je još da odredimo dužinu   pravca $d$, tj. vrijednost $\lambda>0$. Ideja je da se krene nekim smjerom dok god se ne dođe do drugog vrha, tj. treba odrediti dužinu vektora $d$ koji je jednak $\lambda^* = \max \{ \lambda \in \mathbb{R} \mid x + \lambda d \geq 0 \}$. Razlikujemo sljedeće slučajeve:
 \begin{itemize}
-    \item Ako $d >0$, onda je $  x + \lambda d \geq 0$, za sve $\lambda > 0$, pa je $\lambda^* = \infty$, tj. ciljna funkcija je neograničena.
-    \item Ako postoji indeks $i$, takav da je $d_i < 0$, onda za dovoljno malo $\lambda>0$, takvo da $x_i + \lambda d_i \geq 0$, dobijamo $\lambda \leq -\frac{x_i}{d_i}$. Prema tome 
+    \item Ako je $d >0$, onda je $  x + \lambda d \geq 0$, za sve $\lambda > 0$, pa je $\lambda^* = \infty$, tj. ciljna funkcija je neograničena.
+    \item Ako postoji indeks $i$, takav da je $d_i < 0$, onda za dovoljno malu vrijednost $\lambda>0$, takvo da $x_i + \lambda d_i \geq 0$, imamo $\lambda \leq -\frac{x_i}{d_i}$. Prema tome 
     $$ \lambda^* = \min_{ \{i\in [m] \mid d_{p_i} < 0  \}} - \frac{x_{p_i}}{d_{p_i}} $$
 \end{itemize}
 Za indeks $l$ za koji se postiže ovaj minimum, vrijedi $x_{p_l} + \lambda^* d_{p_l}=0$.
-Da je ovo upravo bazno dopustivo rješenje problema, slijedi iz sljedeće teoreme. 
+%Da je ovo upravo bazno dopustivo rješenje problema, slijedi iz sljedeće teoreme. 
 
-\fxnote{Marko, ako ja dobro razumijem, ovo je sve tvrdjenje na osnovu prethodne konstrukcije. Milana je pitala da li je prva recenica pretpostavka, ili tvrdnja teoreme}
+Može se pokazati sljedeća teorema, koja slijedi iz konstrukcije simpleks metode.
+
+%\fxnote{Marko, ako ja dobro razumijem, ovo je sve tvrdjenje na osnovu prethodne konstrukcije. Milana je pitala da li je prva recenica pretpostavka, ili tvrdnja teoreme}
 \begin{thm}
     Kolone $A_{p_i}, i\not = l$, $i=1,\ldots,m$ i $A_{j}$ su linearno nezavisne, pa je matrica 
     $[A_{p_1},\ldots, A_{p_{l-1}}, A_j, A_{p_{l+1}}, \ldots, A_{p_m}]$
@@ -1305,17 +1306,20 @@ Navedimo sada osnovne korake jedne iteracije simpleks metoda:
     \item Ako je za barem neki $i$, $d_i < 0$, tada računamo 
              $$ \lambda^* = \min_{ \{i\in [m] \mid d_{p_i} < 0  \}} - \frac{x_{p_i}}{d_{p_i}} =  \min_{ \{i\in [m] \mid u_{p_i} < 0  \}} \frac{x_{p_i}}{u_{p_i}} $$
     \item Neka je $\lambda^* = \frac{x_{p_l}}{u_{p_l}}$. Nova baza se formira tako što na mjesto kolone $A_{p_l}$ stavimo kolonu $A_j$. Novo bazno rješenje 
-    $y = x + \lambda^*d $ je dato sa $y_j = \lambda$, $y_{p_l} = x_{p_l} + \lambda^* d_{p_l}$, za indeks $l$ koji je bazni indeks, te $y_i = 0$, za $i \in N \setminus \{j\}$. 
+    $y = x + \lambda^*d $ je dato sa $y_j = \lambda^*$, $y_{p_l} = x_{p_l} + \lambda^* d_{p_l}$, za indeks $l$ koji je bazni indeks, te $y_i = 0$, za $i \in N \setminus \{j\}$. 
 \end{enumerate}
-\fxnote{marko, kako se prelazi na narednu iteraciju}
 
-\begin{figure}[!ht]
-	\centering
-   \includegraphics[scale=1.5]{simpleks_move.eps}\vspace{-2cm}
-    \caption{Iteracije simpleks metode (vizuelizacija).}
-    \label{fig:simpleks-visuelisation}
-\end{figure}
-\fxnote{i ja se slazem da nam je ova slika malo bez veze}
+Naredna iteracija metode koristi novu bazu i bazno rješenje $y$ i izvodi (po potrebi) korake 2--5. 
+
+%\fxnote{marko, kako se prelazi na narednu iteraciju}
+
+%\begin{figure}[!ht]
+%	\centering
+%   \includegraphics[scale=1.5]{simpleks_move.eps}\vspace{-2cm}
+%    \caption{Iteracije simpleks metode (vizuelizacija).}
+%    \label{fig:simpleks-visuelisation}
+%\end{figure}
+%\fxnote{i ja se slazem da nam je ova slika malo bez veze}
 
 \section{Tabelarni oblik simpleks metoda}
 
