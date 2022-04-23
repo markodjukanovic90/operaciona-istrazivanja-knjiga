@@ -1514,7 +1514,7 @@ Grafička reprezentacija dopustivog, neograničenog regiona, prikazana je na  Sl
 Posmatrajmo sljedeći linearni program:
 \begin{align*}
     &\max 2x + 3y \\
-    & \mbox{t.d.} \\
+    &  {t.d.} \\
 	& -x + y \leq 3 \\
 	& x - 2y \leq 2 \\
 	& x + 6y \leq 18 \\
@@ -1528,7 +1528,7 @@ $$\begin{array}{ccccc|c}
       1 & 6 & 0 & 0 & 1 & 18 \\ \hline
       2 & 3 & 0 & 0 & 0 & 0 \\
 \end{array}$$
-Pretpostavimo smo  za baznu promjenljivu izabrali $y$, tj. pivotiramo oko nekog od elemenata u koloni 2. Za pivota odaberemo $\overline{a}_{1,2}=1$ element, te nakon pivotiranja dobijamo novu simpleks tabelu:
+Pretpostavimo smo  za baznu promjenljivu izabrali $y$, tj. pivotiramo oko nekog od elemenata u koloni 2 (zanemarimo ovdje pomenuto Blandovo pravilo odabira pivota). Za pivota odaberemo $\overline{a}_{1,2}=1$ element, te nakon pivotiranja dobijamo novu simpleks tabelu:
 $$\begin{array}{ccccc|c}
 	-1 & 1 & 1 & 0 & 0 & 3 \\
     -1 & 0 & 2 & 1 & 0 & 8 \\
@@ -1537,17 +1537,17 @@ $$\begin{array}{ccccc|c}
 \end{array}$$
 \fxnote{Marko, ovdje je Milana primijetila da u prvoj koloni ima broj 7 koji je pozitivan. Kako onda nema elemenata koji su strogo veci od nule (njena primjedba oznacena crvenom bojom) Nisam dalje citao ovaj primjer, na ovo se moramo zajednicki vratiti}
 
-Ovdje počinju problemi. Pivotiranje bi trebalo da ide sa elementima u koloni 1, ali tamo nema niti jedan element strogo veći od 0 (samo jedan koji je 0, a to je $\overline{a}_{3,1}$) i trebalo bi oko njega da pivotiramo. Kada se izvrši pivotiranje, varijable $\overline{b}$ ne mijenjaju svoje vrijednosti:
+Ovdje počinju problemi. Pivotiranje bi trebalo da ide sa elementima u koloni 1, ali tamo nema niti jedan element strogo veći od 0 (samo jedan koji je 0, a to je $\overline{a}_{3,1}=7$) i trebalo bi oko njega da pivotiramo. Kada se izvrši pivotiranje, varijable $\overline{b}$ ne mijenjaju svoje vrijednosti, tj. dobijamo sljedeću tabelu:
 $$\begin{array}{ccccc|c}
      0 & 1 & \frac{1}{7}  & 0 & \frac{1}{7} & 3 \\
      0 & 0 & \frac{8}{7}  & 1 & \frac{1}{7} & 8 \\
      1 & 0 & -\frac{6}{7} & 0 & \frac{1}{7} & 0 \\ \hline
      0 & 0 & \frac{9}{7}  & 0 & -\frac{5}{7} & -9 \\
 \end{array}$$
-Razlog za to je jer se tri prave $x=0$, $-x+y=3$ i $x+6y=18$ susreću u tački $(0,3)$ (Slika~\ref{fig:deg-sol}). U prošlom koraku, kada su $x$ i $s_1$ bile nebazne varijable, tačka (0,3) je posmatrana kao presjek $x=0$ i $-x +y =3$. Nakon sljedećeg koraka $s_1$ i $s_3$ postaju nebazne, pa se pomjeramo u presjeku 
-$-x+y=3$ i $x+6y=18$, što je opet ista tačka (i nema napretka vrijednosti funkcije cilja). 
+Razlog za ovakvu situaciju su tri prave $x=0$, $-x+y=3$ i $x+6y=18$ koje se susreću u tački $(0,3)$ (Slika~\ref{fig:deg-sol}). U prošlom koraku, kada su $x$ i $s_1$ bile nebazne varijable, tačka (0,3) je posmatrana kao presjek $x=0$ i $-x +y =3$. Nakon sljedećeg koraka $s_1$ i $s_3$ postaju nebazne, pa se pomjeramo u tački presjeka pravih 
+$-x+y=3$ i $x+6y=18$, što je opet ista tačka (prema tome, nema ni napretka vrijednosti funkcije cilja). 
  Ovo pivotiranje se naziva \emph{degenerativno pivotiranje}. U ovom primjeru, napustićemo vrh $(0,3)$ nakon sljedećeg pivotiranja. U komplikovanijim primjerima, kada se mnoga ograničenja mogu sresti u jednom vrhu, ostajanje u istom vrhu na nrednim simpleks koracima je velika opasnost. Ovaj slučaj se može izbjeći poštovanjem 
- Bladovog pravila. Primijetimo da koristeći Bladovo pravilo u prvom koraku simpleks metode (uzimajući za pivota elemente iz kolone 1, a ne kolone 2), degenerativno pivotiranje se ne bi pojavilo.  
+ Blandovog pravila. Primijetimo da koristeći Blandovo pravilo u prvom koraku simpleks metode -- uzimajući za pivota elemente iz kolone 1, a ne kolone 2 --  degenerativno pivotiranje se ne bi pojavilo.  
 
 
 \begin{figure}[!ht]
@@ -1560,7 +1560,7 @@ $-x+y=3$ i $x+6y=18$, što je opet ista tačka (i nema napretka vrijednosti funk
  \section{Dvofazni simpleks metod}
  Postoje dva pitanja koja se nameću u primjeni simpleks algoritma:
  \begin{itemize}
-     \item Da li se uvijek (kao i koliko lako)   može naći bazno dopustivo rješenje za inicijalni korak 
+     \item Da li se uvijek (kao i koliko teško)   može naći bazno dopustivo rješenje za inicijalni korak 
      simpleks algoritma?
      \item Da li se simpleks algoritam uvijek prekida pronalaskom optimalnog rješenja ili je funkcija cilja neograničena?
  \end{itemize}
@@ -1570,11 +1570,11 @@ Ako postoji jedinična podmatrica $I_m$ u gornjoj lijevoj blok matrici simpleks 
  Međutim, šta ako je linearan program direktno dat u kanonskom obliku, tj. ograničenjima oblika $Ax = b, x \geq 0$? Bez smanjenja opštosti, pretpostavimo da je $b \geq 0$. Ako ne postoji očigledno bazno dopustivo rješenje ovog problema, onda uvodimo \emph{vještačke} promjenljive $s = (s_1,\ldots, s_m)$. Nakon toga, rješavamo sljedeći problem LP-a:
  \begin{align}
       &\sum_{i=1}^m s_i \rightarrow \min_{x,s} \nonumber \\
-      &\mbox{t.d.}\label{eq:artificial_lp_simplex}\\
+      & {t.d.}\label{eq:artificial_lp_simplex}\\
       & A x + s = b \nonumber \\
-      &  x, \omega \geq 0. \nonumber
+      &  x, s \geq 0. \nonumber
  \end{align}
-\fxnote{Marko, je li umjesto omega treba s?}
+  
 Postoje dva moguća slučaja:
 \begin{enumerate}
     \item Ako početni problem LP-a sa uslovima koji su jednakosti (\ref{eq:lp_equality_constraint}) 
@@ -1589,14 +1589,14 @@ Postoje dva moguća slučaja:
  Ovaj korak nas vodi ka \emph{dvofaznoj simpleks metodi}. U nastavku je prikazan primjer kako se problem linearnog programiranja rješava primjenom ove metode.      
       
 % \section{Primjena dvofaznog simpleks metoda}     
- \fxnote{Marko, mislim da nema potrebe da ovo bude nova sekcija, pa sam samo prebacio u primjer okruzenje}
+  
  
 \begin{primjer} Primjenom dvofaznog simpleks metoda riješiti sljedeći problem LP-a:
 	\end{primjer} 
 
 \begin{align*}
 	 &\min x_1 + x_2 - x_3 - x_4 \\
-	 &\mbox{t.d.} \\
+	 & {t.d.} \\
 	 &x_1 + 2x_2 + x_3 + x_4 = 7 \\
 	 & 2x_1 - x_2 - x_3 - 3x_4 = -1 \\
 	 & x_1,x_2,x_3,x_4 \geq 0.
@@ -1614,7 +1614,7 @@ Dodajmo vještačke promjenljive na početni problem, uz prethodno množenje ogr
 Prva faza metoda je rješavanje problema 
 \begin{align*}
 	&\min s_1 + s_2 \\
-		& \mbox{t.d.}\\
+		&  {t.d.}\\
 		& x_1 + 2x_2 + x_3 + x_4 + s_1 = 7 \\
 	& -2x_1 + x_2 + x_3 + 3x_4 + s_2 = 1 \\
 	& x_1,x_2,x_3,x_4, s_1, s_2\geq 0.
@@ -1659,10 +1659,10 @@ Kako su koeficijenti doprinosa svi veći ili jednaki 0, našli smo minimum.
 Prema tome, bazno dopustivo rješenje je jednako $(x, s)= (1,3, 0, 0, 0, 0)$. 
 
 Sada nastavljamo dalje sa algoritmom, odnosno sa drugom fazom metoda.  Posljednja simpleks tabela prve faze dvofaznog simpleks metoda se lako transformiše za početni problem: 
-\fxnote{opet imamo omegu u nabrajanju}
+ 
 \begin{itemize}
 	\item posljednja vrsta dobija koeficijente originalne funkcije cilja razmatranog LP-a;
-	\item kolone koje odgovaraju promjenljivima $\omega$ izbrišemo iz simpleks tabele;
+	\item kolone koje odgovaraju promjenljivima $s$ izbrišemo iz simpleks tabele;
 	\item ostale elemente tabele ne mijenjamo.
 \end{itemize}
 Iz ovih koraka, dobijamo simpleks tabelu 
@@ -1692,7 +1692,7 @@ Sljedeći primjer demonstrira odgovarajuće geometrijske korake (``šetanje'') p
  Neka je dat problem:
  \begin{align*}
  	&\max 2x + 3y \\
- 	& \mbox{t.d.} \\
+ 	&  {t.d.} \\
  	& -x + y \leq 3 \\
  	& x - 2y \leq 2 \\
  	& 3x + 4y \leq 26 \\
@@ -1709,7 +1709,6 @@ Sljedeći primjer demonstrira odgovarajuće geometrijske korake (``šetanje'') p
  \end{align*}
  Inicijalna simpleks 
 tabela je data sa
-
 $$\begin{array}{cccccc| c}
 	& x & y & s_1 & s_2 & s_3 & \\ \hline
 	s_1  & -1 & 1 & 1 & 0 & 0 & 3 \\
@@ -1718,17 +1717,16 @@ $$\begin{array}{cccccc| c}
 	-z  & 2 & 3 & 0 & 0 & 0 & 0 \\
 \end{array}
 $$ 
-Kao što već pomenuto, izjednačavajuće varijable čine pogodne bazne promjenljive za početak simpleks metode, jer one formiraju jediničnu podmatricu u gornjoj blok matrici 
+Kao što je već pomenuto, izjednačavajuće varijable čine pogodne bazne promjenljive za početak simpleks metode, jer one formiraju jediničnu podmatricu u gornjoj blok matrici 
 simpleks tabele. Prema tome, bazno rješenje je
 $(x, y, s_1, s_2, s_3) = (0, 0, 3, 2, 26)$, koje je ujedno i dopustivo.
-Na Slici~\ref{fig:step-1} je prikazan dopustivi region problema. Nakon prvog koraka, nalazimo u tački $A=(0,0)$, koja je dopustiva. Trenutna najbolja vrijednost je jednaka 0. 
+Na Slici~\ref{fig:step-1} je prikazan dopustivi region problema. Nakon prvog koraka, nalazimo se u tački $A=(0,0)$, koja je dopustiva. Trenutna najbolja vrijednost je jednaka 0. 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=170pt, height=170pt]{simpleks-primjer-2-sl1.eps}
 	\caption{Korak 1}
 	\label{fig:step-1}
 \end{figure}
-
 Izvršimo sada promjenu baznih vektora na osnovu  koraka simpleks metoda. Pošto maksimizujemo, 
 tražimo one koeficijente dopirnosa koji su veći od 0. Biramo prvu kolonu, koja odgovara promjenljivoj $x$. Pronađimo 
 pivot element: kandidati su $s_2$ i $s_3$.
@@ -1741,7 +1739,7 @@ $$\begin{array}{cccccc| c}
    -z  & 0    &  7   & 0   & -2 & 0 & -4   \\ 
 \end{array}
 $$ 
-Ova tabela odgovara Slici~\ref{fig:step-2}. Prelazi se u bazno rješenje $(x,y, s_1, s_2, s_3)=(2, 0, 5, 0 ,20)$, odnosno do tačke $E=(2, 0)$. 
+Ova tabela vizuelno odgovara Slici~\ref{fig:step-2}. Prelazi se u bazno rješenje $(x,y, s_1, s_2, s_3)=(2, 0, 5, 0 ,20)$, odnosno do tačke $E=(2, 0)$. 
 
 \begin{figure}[!ht]
 	\centering
@@ -1750,7 +1748,6 @@ Ova tabela odgovara Slici~\ref{fig:step-2}. Prelazi se u bazno rješenje $(x,y, 
 	\label{fig:step-2}
 \end{figure}
 Dalje, narednog pivota nalazimo u drugoj koloni, koja odgovara promjenljivoj $y$. Jedini kandidat za pivota je element $\overline{a}_{3, 2}= 10$, pa nakon pivotiranja dobijamo tabelu 
-
 $$\begin{array}{cccccc| c}
 	& s_2  & s_3   & s_1  & s_2 & s_3 &     \\ \hline
 s_1 & 0    &  0    & 1    &  \frac{7}{10}  & \frac{1}{10} &   7  \\  
@@ -1780,7 +1777,7 @@ y   &  0   &  1    &  \frac{3}{7}    &  0   & \frac{1}{7}   & 5  \\ \hline
 \end{array}
 $$ 
 
-Kako ne postoje koordinate čiji su doprinosi pozitivni, našli smo optimum, koji se dostiže u tački $C=(2,5)$. Prethodna simpleks tabela odgovara Slici~\ref{fig:step-4}, dok svi koraci u simpleks metodi odgovaraju 
+Kako ne postoje koordinate čiji su doprinosi pozitivni, našli smo optimum, koji se dostiže u tački $C=(2,5)$. Prethodna simpleks tabela odgovara Slici~\ref{fig:step-4}, dok sve iteracije u simpleks metodi odgovaraju 
 hodu $A \rightarrow E \rightarrow D \rightarrow C$. 
 
 \begin{figure}[H]
@@ -1791,14 +1788,14 @@ hodu $A \rightarrow E \rightarrow D \rightarrow C$.
 \end{figure}
 
 
-U slučaju da smo, u prvom koraku simpleks metode, umjesto promjenljive $x$ u bazu uključili promjenljivu $y$, do optimuma bismo došli pomjeranjem u tačku $B$, a potom u tačku $C$. U ovom slučaju bi bilo potrebno generisati samo dvije simpleks tabele (a ne tri, kao što smo mi imali u ovom primjeru).
+U slučaju da smo, u prvom koraku simpleks metode, umjesto promjenljive $x$ u bazu uključili promjenljivu $y$, do optimuma bismo došli pomjeranjem u tačku $B$, a potom u tačku $C$, koja je i optimum. U ovom slučaju bi bilo potrebno generisati samo dvije simpleks tabele (a ne tri, kao što smo imali u ovom primjeru).
 \\
 \section{Zadaci}
 \begin{enumerate}
  \item Uz pomoć Simpleks metoda, riješiti sljedeći problem LP-a:%http://www.phpsimplex.com/en/simplex_method_example.htm (PHP simpleks: http://www.phpsimplex.com/simplex/simplex.htm?l=en)
  \begin{align*}
  	 &\max  3x + 2y \\
- 	 & s.t. \\
+ 	 & t.d. \\
  	 & 2x + y \leq 18 \\
  	 & 2x + 3y \leq 42 \\
  	 & 3x + y \leq 24 \\
@@ -1810,7 +1807,7 @@ koristeći grafičku metodu.
   Koristeći simpleks metodu, riješiti sljedeći problem LP-a:
  \begin{align*}
  	  &\max 2x + 3y + z \\
- 	  & \mbox{t.d.} \\
+ 	  &   {t.d.} \\
  	  & 3x + 5 y \leq 5 \\
  	  & 2x + y - z \leq 13 \\
  	  & z \leq 4 \\
@@ -1819,7 +1816,7 @@ koristeći grafičku metodu.
 \item Uz pomoć dvofaznog simpleks metoda, riješiti sljedeći problem LP-a:%http://sma.epfl.ch/~niemeier/opt09/opt09_ch06.pdf
    \begin{align*}
    	    &\min  x_1 + x_2 + x_3 \\
-   	    & \mbox{t.d.} \\
+   	    & {t.d.} \\
    	    & x_1 + 2 x_2 + 3 x_3 = 3 \\
    	    & -x_1 + 2 x_2 + 6 x_3 = 2 \\
    	    & - 4x_2 - 9 x_3 = -5 \\
@@ -1829,7 +1826,7 @@ koristeći grafičku metodu.
 \item  Uz pomoć simpleks metoda, riješiti sljedeći problem LP-a:%http://myweb.usf.edu/~molla/2016_spring_math482/two_phase_pres-3up.pdf
 \begin{align*}
     & \min -x_1 - x_2 - x_3 \\
-    & \mbox{t.d.} \\
+    &  {t.d.} \\
     & 2 x_1 - x_2 + 2 x_3 + x_4 = 4 \\
     & 2x_1 - 3x_2 + x_3 + x_5 =  -5 \\
     & -x_1 + x_2 - 2x_3 + x_6 = -1 \\
@@ -1839,13 +1836,13 @@ koristeći grafičku metodu.
  %https://personal.utdallas.edu/~scniu/OPRE-6201/documents/LP10-Special-Situations.pdf (Degeneracy in Simplex method):
 \begin{align*}
 	 &\max 2x_1 + x_2 \\
-	 & \mbox{t.d.} \\
+	 &   {t.d.} \\
 	 &4 x_1 + 3 x_2 \leq 12 \\
 	 & 4 x_1 + x_2 \leq 8 \\
 	 & 4 x_1 + 2 x_2 \leq 8 \\
 	 & x_1, x_2 \geq 0.
 \end{align*}
-Da li se u nekom koraku simpleks metode javlja defenerativno bazno rješenje? Diskutovati zašto je ono degenerativno. 
+Da li se u nekom koraku simpleks metode javlja degenerativno bazno rješenje? Ako je to slučaj, diskutovati zašto je ono degenerativno. 
 
 \end{enumerate}
 
