@@ -1324,8 +1324,8 @@ Naredna iteracija metode koristi novu bazu i bazno rješenje $y$ i izvodi (po po
 \section{Tabelarni oblik simpleks metoda}
 
 Simpleks algoritam podrazumijeva stalnu zamjenu jedne kolone baze $B$ nekim nebaznim vektorom u iterativnoj šemi, u cilju smanjenja trenutne vrijednosti cilje funkcije, dok god je to moguće. 
-U praktičnom računanju koraka simpleks metoda se, zbog kompaktnosti zapisa,  umjesto transformisanja standardnog oblika LP-a, obično koristi tabelarni prikaz.
-Generički tabelarni  prikaz simpleks metode se može vidjeti u Tabeli~\ref{tab:simplex_tabelau}. Ovakva tabela se naziva i simpleks tabela.
+U praktičnom računanju, za simpleks metodu se zbog kompaktnosti zapisa,  umjesto transformisanja standardnog oblika LP-a, obično koristi tabelarni prikaz.
+Generički tabelarni  prikaz simpleks metode se može vidjeti u Tabeli~\ref{tab:simplex_tabelau}. Ovakva tabela se naziva  simpleks tabela.
 
 \begin{table}[!ht]
     \centering
@@ -1343,7 +1343,7 @@ Na osnovu generičke Tabele~\ref{tab:simplex_tabelau} i koraka simpleks metode o
 \begin{itemize}
     \item Konstruisati inicijalnu simpleks tabelu sa početnom bazom $B$ i odgovarajuće bazno dopustivo rješenje $x$.
     \item Posmatrati koeficijente doprinosa $\overline{c_j}$ (posljednja vrsta tabele). Ako su svi $\overline{c_j} \geq 0$, rješenje se ne može dalje popraviti, pa je nađeno optimalno rješenje. U protivnom, odabrati neki indeks $j$ za koji je $\overline{c_j}<0$.
-    \item Posmatrati vektor (kolonu) $u = B^{-1}A_j$. Ako su sve koordinate vektora $u$ negativne, rješenje LP-a je $-\infty$, algoritam završava sa radom.
+    \item Posmatrati vektor (kolonu) $u = B^{-1}A_j$. Ako su sve koordinate vektora $u$ negativne, rješenje LP-a je $-\infty$ (funkcija cilja neograničena), algoritam završava sa radom.
     \item Za svaki $u_i > 0$, računati $x_{p_i}/u_i$, i neka je   ovaj količnik najmanji za indeks $l$. Kolona $A_{j}$ se uključuje u bazu, dok se kolona $A_{p_l}$ isključuje iz baze. 
     \item Svakom redu simpleks tabele dodati $l$--ti red (pivot red) kojeg množimo odgovarajućim
          skalarom da bi pivot element (tj. element u presjeku $l$-te vrste i $j$-te kolone) postao 1, a svi ostali elementi u pivot koloni 0.
@@ -1356,32 +1356,28 @@ nazivom \emph{Blandovo pravilo} koje glasi:
 	\item   Među svim nebaznim promjenljivima koje su pogodne za uključivanje u bazu odaberemo onu najmanjeg indeksa. 
     \item Među svim baznim promjenljivima koje su pogodne za isključivanje iz baze odaberemo onu sa najmanjim indeksom.
 \end{enumerate}
-Može se pokazati da se poštovanjem ovih pravila osigurava da će se simpleks metoda  završiti u konačno mnogo koraka. Treba napomenuti da Blandovo pravilo nije jedino pravilo za izbjegavanje ciklusa. Postoji i leksikografsko pravilo pivotiranja koje, zbog konciznosti, ne objašnjavamo ovdje.  
+Može se pokazati da se poštovanjem ovih pravila osigurava simpleks metoda  završava u konačno mnogo koraka. Treba napomenuti da Blandovo pravilo nije jedino pravilo za izbjegavanje ciklusa. Postoji i leksikografsko pravilo pivotiranja koje, zbog konciznosti, ne objašnjavamo ovdje.  
 
 Obratimo pažnju da se problem minimizacije vrlo lako prevodi u problem maksimizacije sljedećom transformacijom
 $$ \min_{ x \in P} f(x) = - \max_{x \in P}(-f(x)).$$ 
-Prema tome, ako  problem maksimizacije rješavamo simpleks metodom, koraci metoda ostaju isti. Jedina izmjena je u koraku 2, gdje se mijenja znak nejednakosti, jer se mijenja znak koeficijenata u funkciji cilja.  Dakle, posmatraju se doprinosi za koje je $\overline{c_j} > 0$.
+Prema tome, ako  problem maksimizacije rješavamo simpleks metodom, koraci metoda ostaju isti. Jedina izmjena je u koraku 2, gdje se mijenja znak nejednakosti, jer se mijenja znak koeficijenata u funkciji cilja.  Dakle, posmatraju se indeksi $j$ za koje je $\overline{c_j} > 0$.
 
 \section{Primjena simpleks metoda}
 %Kako je standardni poliedar LP-a dat sa svim onim $x \in \mathbb{R}^n$ tako da $Ax \leq (\geq) b$, 
 Transformišimo standardni oblik problema LP-a
- 
   \begin{align*}
     & c^T x \rightarrow \max \\
-    & \mbox{t.d} \nonumber \\
+    & {t.d} \nonumber \\
     & Ax \leq b \\
     & x \geq 0\\
 \end{align*}
- 
 na kanonski oblik pogodan simpleks metodi $(A {x} = b)$ dodavanjem ``izjednačavajućih'' varijabli $s$ na sljedeći način:
- 
 \begin{align}
     & c^T x \rightarrow \max \\
     & Ax + s =  b \\
     & x \geq 0, s \geq 0. \\
 \end{align}
 što u matričnom obliku odgovara zapisu
-
 \begin{align}
     & c^T x \rightarrow \max \\
     & (A | I) \cdot \left (\begin{array}{c}
@@ -1422,11 +1418,11 @@ na kanonski oblik pogodan simpleks metodi $(A {x} = b)$ dodavanjem ``izjednačav
      \caption{Inicijalna simpleks tabela.}
      \label{tab:simpleks_tabela1}
  \end{table} 
-\fxnote{Marko, ovdje sam prepravljao naredni paragraf, pa procitaj da nesto nisam zeznuo}
- Na početku uzmemo za bazu vektore $s_1$ i $s_2$. U tom slučaju, bazno dopustivo rješenje je $x = (0, 0, 9, 8)$, za koje je $f =0$. Sada ažiriramo simpleks tabelu izvodeći pivotiranje. Izaberimo indeks $j$ tako da je  $\overline{c_j}>0$. Neka je $j=1$, odnosno, u razmatranje ćemo uzeti promjenljivu $x_1$, čijim doprinosom želimo da uvećamo funkciju cilja, jer rješavamo problem maksimizacije. Izaberimo pivot vrstu tako što posmatramo odnos $\overline{b_i}/\overline{a}_{1,j}$, za sve $\overline{a}_{1,j} > 0$,  $B^{-1} A_1 = \overline{a}_{1,j}$. Tražimo onaj indeks koji minimizuje datu vrijednost. Imamo dvije mogućnosti, $9/1$ i $8/2$, pa dobijamo da je $i = 2$ traženi indeks. Prema tome, pivot je  element $\overline{a}_{1,2}=2$. Sada izvršimo elementarne operacije pivotiranja oko ovog elementa. Primjenom Gausove metode eliminacije, elemente u koloni 1 simpleks tabele, osim elementa druge vrste,  svedemo na nule, dok element u drugoj vrsti prve kolone postavimo na 1. Vrsti 1 se dodaje druga vrsta pomnožena sa -$\frac{1}{2}$. Druga vrsta se dijeli sa $\frac{1}{2}$. Trećoj vrsti se dodaje druga vrsta pomnožena sa $-\frac{1}{2}$. 
+ 
+ Na početku konstruišimo bazu uzimajući vektore $s_1$ i $s_2$. U tom slučaju, bazno dopustivo rješenje je $x = (0, 0, 9, 8)$, za koje je $f =0$. Sada ažiriramo simpleks tabelu izvodeći pivotiranje. Izaberimo indeks $j$ tako da je  $\overline{c_j}>0$. Neka je $j=1$, odnosno, u razmatranje ćemo uzeti promjenljivu $x_1$, čijim doprinosom želimo da uvećamo funkciju cilja, jer rješavamo problem maksimizacije. Izaberimo pivot vrstu tako što posmatramo odnos $\overline{b_i}/\overline{a}_{1,j}$, za sve $\overline{a}_{1,j} > 0$,  $B^{-1} A_1 = \overline{a}_{1,j}$. Tražimo onaj indeks koji minimizuje datu vrijednost. Imamo dvije mogućnosti, $9/1$ i $8/2$, pa dobijamo da je $i = 2$ traženi indeks. Prema tome, pivot je  element $\overline{a}_{1,2}=2$. Sada izvršimo elementarne operacije pivotiranja oko ovog elementa. Primjenom Gausove metode eliminacije, elemente u koloni 1 simpleks tabele, osim elementa druge vrste,  svedemo na nule, dok element u drugoj vrsti prve kolone postavimo na 1. Vrsti 1 se dodaje druga vrsta pomnožena sa -$\frac{1}{2}$. Druga vrsta se dijeli sa $\frac{1}{2}$. Trećoj vrsti se dodaje druga vrsta pomnožena sa $-\frac{1}{2}$. 
  Primjenjujući ove transformacije, dobijamo simpleks tabelu:
  
-  \begin{table}[!ht]
+  \begin{table}[H]
      \centering
      \begin{tabular}{c c c c | c}
          0 &  $\frac{5}{2}$  & 1 & -$\frac{1}{2} $& 5 \\
@@ -1437,7 +1433,7 @@ na kanonski oblik pogodan simpleks metodi $(A {x} = b)$ dodavanjem ``izjednačav
      \label{tab:simpleks_tabela2}
  \end{table}
 Bazne promjenljive sada lako prepoznajemo iz Tabele~\ref{tab:simpleks_tabela2}, jer odgovarajući vektori kolone zajedno formiraju jediničnu matricu. Prema tome, 
- nebazne promjenljive su $x_2$ i $s_2$, koje dobijaju vrijednost 0, dok ostale lako izračunavamo, odakle je $ x = (4, 0, 5, 0)$. Ponavljamo prethodne korake nad novom simpleks tabelom. Potrebno je pronaći novi pivot element. Lako se vidi da jedino kolona 2 odgovarajuća. Pošto je $5 / (5/2) < 4 / (1/2)$, zaključujemo da  pivot element pronalazimo u prvoj vrsti. Dakle, pivot je 
+ nebazne promjenljive su $x_2$ i $s_2$, koje dobijaju vrijednost 0, dok ostale lako izračunavamo, odakle je $ x = (4, 0, 5, 0)$. Ponavljamo prethodne korake nad novom simpleks tabelom. Potrebno je pronaći novi pivot element. Lako se vidi da je jedino kolona 2 odgovarajuća. Pošto je $5 / (5/2) < 4 / (1/2)$, zaključujemo da  pivot element pronalazimo u prvoj vrsti. Dakle, pivot je 
  $\overline{a}_{1,2} = \frac{5}{2}$. Postupkom Gausove eliminacije oko prve vrste, dobija se simpleks Tabela~\ref{tab:simpleks_tabela3}.
  
    \begin{table}[!ht]
@@ -1450,7 +1446,7 @@ Bazne promjenljive sada lako prepoznajemo iz Tabele~\ref{tab:simpleks_tabela2}, 
      \caption{Simpleks tabela: korak 2.}
      \label{tab:simpleks_tabela3}
  \end{table}
- Kako su sve promjenljive doprinosa manje (ili jednake) 0, zaključujemo da smo pronašli optimum koji je jednak $x = (3, 2, 0, 0)$, a optimalna vrijednost je $f = 5$.
+ Kako su sve vrijednosti doprinosa manje (ili jednake) 0, zaključujemo da smo pronašli optimum koji je jednak $x = (3, 2, 0, 0)$, a optimalna vrijednost je $f = 5$.
  
  \begin{figure}[!ht]
      \centering
@@ -1459,8 +1455,8 @@ Bazne promjenljive sada lako prepoznajemo iz Tabele~\ref{tab:simpleks_tabela2}, 
      \label{fig:simplex_region} 
  \end{figure}
  
- Analizirajmo još neke aspekte u ovom primjeru. Na Slici~\ref{fig:simplex_region}, tačke $A, B, C$, i $D$ su bazna dopustva rješenja. Tačke $E$ i $F$ su takođe bazna rješenja, ali nisu dopustiva. Simpleks algoritam prvo kreće od tačke $A$ prema tački $D$, te završava u tački $C$ (optimum).
- \fxnote{Marko, ovdje se ne poklapa, valjda je simpleks krenuo od (0,0), pa presao u (4,0) i na kraju zavrsio u (3,2). Trebalo bi, dakle od tacke D, prema tacki C, pa do tacke B}
+ Analizirajmo još neke aspekte u ovom primjeru. Na Slici~\ref{fig:simplex_region}, tačke $A, B, C$, i $D$ su bazna dopustva rješenja. Tačke $E$ i $F$ su takođe bazna rješenja, ali nisu dopustiva. Simpleks algoritam prvo kreće od tačke $D$ prema tački $C$, te posljednjom iteracijom završava u tački $B$ (optimum).
+ 
  
  Iz posljednje simpleks tabele (Tabela~\ref{tab:simpleks_tabela3}) se može uočiti i sljedeće:
  \begin{itemize}
@@ -1474,7 +1470,7 @@ Bazne promjenljive sada lako prepoznajemo iz Tabele~\ref{tab:simpleks_tabela2}, 
   Neka je dat problem LP-a:
   \begin{align*}
   	  &\max -x + 3y \\
-  	  & \mbox{t.d.} \nonumber \\
+  	  &  {t.d.} \nonumber \\
   	  & -x + y \leq 3 \\
   	  & x - 2y \leq 2 \\
   	  & x,y \geq 0.
@@ -1482,7 +1478,7 @@ Bazne promjenljive sada lako prepoznajemo iz Tabele~\ref{tab:simpleks_tabela2}, 
  Prevedimo problem na kanonski oblik, dodavanjem izjednačavajućih promjenljivih. 
  \begin{align*}
       &\max -x + 3y \\
-      & \mbox{t.d.} \nonumber \\
+      &  {t.d.} \nonumber \\
      & -x + y + s_1 = 3 \\
      & x - 2y + s_2 = 2  \\
      & (x,s) \geq 0.
@@ -1493,9 +1489,8 @@ $$\begin{array}{cccc| c}
 	    1 & -2 & 0 & 1 & 2 \\ \hline
 	   -1 & 3  & 0 & 0 & 0  
 \end{array}$$
-\fxnote{Marko, je li problem maksimizacije ili minimizacije? Ovo sad meni nije jasno}
-Kako rješavamo problem minimizacije, tražićemo pivota u koloni 2. Pivot je element 
-$\overline{a}_{1, 2} = 1$. Pivotiranjem oko tog elementa dobijamo novu simpleks tabelu 
+ 
+Kako rješavamo problem minimizacije, tražićemo pivota u koloni 2. Jedini kandidat za pivota je element  $\overline{a}_{1, 2} = 1$. Pivotiranjem oko tog elementa dobijamo novu simpleks tabelu 
 
 $$\begin{array}{cccc| c} 
 		   -1 & 1  & 1  &  0 & 3 \\
@@ -1504,7 +1499,7 @@ $$\begin{array}{cccc| c}
 \end{array}$$
 Kandidata za pivota tražimo u prvoj koloni. Međutim, kako su svi elementi prve kolone negativni, to znači da se 
 vrijednost  promjenljive $x$  može povećavati proizvoljno, odakle slijedi da nije ograničena. 
-Grafička reprezentacija dopustivog, neograničenog regiona, prikazana je  Slici~\ref{fig:unbounded-example-solve}. 
+Grafička reprezentacija dopustivog, neograničenog regiona, prikazana je na  Slici~\ref{fig:unbounded-example-solve}. 
 
 
 \begin{figure}[!ht]
