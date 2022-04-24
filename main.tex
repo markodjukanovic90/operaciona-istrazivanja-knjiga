@@ -1040,7 +1040,7 @@ svaku slobodnu promjenljivu ćemo zapisati kao razliku dvije pozitivne promjenlj
 	&  x_i^+, x_i^- \geq 0, \forall j\in J. \label{eq:lp_abs_transformed}
 \end{align}
 
-Pretpostavimo da je $x_j^*$, $j \in J$ optimalno rješenje LP-a (\ref{eq:lp_abs}).  Lako je vidjeti da je ekvivalentno optimalno rješenje LP-a (\ref{eq:lp_abs_transformed}) tada dato u obliku $(x_j^+)^* = x_j^*$  ako je $x_j^* \geq 0$, a inače $(x_j^+)^* = 0$. Slično vrijedi $(x_j^-)^* = - x_j^*$  ako je $x_j^* \leq 0$, a inače $(x_j^-)^* = 0$. Naime, lako se provjeri da su vrijednosti ova dva rješenja u odnosu na odgovarajuće funkcije cilja jednake. Kako je takođe jasno da su optimalne tačke LP-a (\ref{eq:lp_abs_transformed}) one za koje je barem jedna od varijabli $x_j^+$ ili $x_j^-$, $j \in J$  jednaka 0 (pogledati funkciju cilja koja se minimizuje), zaključujemo da je transformacija validna u smislu jednake optimalne vrijednosti. 
+Pretpostavimo da je $x_j^*$, $j \in J$ optimalno rješenje LP-a (\ref{eq:lp_abs}).  Lako je vidjeti da je ekvivalentno optimalno rješenje LP-a (\ref{eq:lp_abs_transformed}) tada dato u obliku $(x_j^+)^* = x_j^*$  ako je $x_j^* \geq 0$, a inače $(x_j^+)^* = 0$. Slično imamo $(x_j^-)^* = - x_j^*$  ako je $x_j^* \leq 0$, a inače $(x_j^-)^* = 0$. Naime, lako se provjeri da su vrijednosti ova dva rješenja u odnosu na odgovarajuće funkcije cilja jednake. Kako je takođe jasno da su optimalne tačke LP-a (\ref{eq:lp_abs_transformed}) one za koje je barem jedna od varijabli $x_j^+$ ili $x_j^-$, $j \in J$  jednaka 0 (pogledati funkciju cilja koja se minimizuje), pod uslovom da LP (\ref{eq:lp_abs}) ima barem jedno dopustivo rješenje, zaključujemo da je ova transformacija validna. Ostalo je još primijetiti da iz  nedopustivosti jednog modela slijedi nedopustivost drugog modela i obrnuto. %u smislu jednake optimalne vrijednosti. 
 
 
 \emph{Min-max problem}. Neka je dat sljedeći model: 
@@ -1535,7 +1535,7 @@ $$\begin{array}{ccccc|c}
     7 & 0 & -6 & 0 & 1 & 0 \\ \hline
     5 & 0 & -3 & 0 & 0 & -9 \\
 \end{array}$$
-\fxnote{Marko, ovdje je Milana primijetila da u prvoj koloni ima broj 7 koji je pozitivan. Kako onda nema elemenata koji su strogo veci od nule (njena primjedba oznacena crvenom bojom) Nisam dalje citao ovaj primjer, na ovo se moramo zajednicki vratiti. Marko: pogledacemo ovo, nisam siguran da razumijem konstataciju. Moram da vidim sta je Milana konkretno dodala kao primjedbu.}
+\fxnote{Marko, ovdje je Milana primijetila da u prvoj koloni ima broj 7 koji je pozitivan. Kako onda nema elemenata koji su strogo veci od nule (njena primjedba oznacena crvenom bojom) Nisam dalje citao ovaj primjer, na ovo se moramo zajednicki vratiti. Marko: pogledacemo ovo, nisam siguran da razumijem konstataciju. Moram da vidim sta je Milana konkretno dodala kao primjedbu. Neke stvari su jos dodatno precizirane sada}
 
 Ovdje počinju problemi. Pivotiranje bi trebalo da ide sa elementima u koloni 1, ali tamo nema niti jedan element strogo veći od 0 (samo jedan koji je 0, a to je $\overline{a}_{3,1}=7$) i trebalo bi oko njega da pivotiramo. Kada se izvrši pivotiranje, varijable $\overline{b}$ ne mijenjaju svoje vrijednosti, tj. dobijamo sljedeću tabelu:
 $$\begin{array}{ccccc|c}
