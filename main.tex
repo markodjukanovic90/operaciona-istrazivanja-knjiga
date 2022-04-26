@@ -1535,18 +1535,18 @@ $$\begin{array}{ccccc|c}
     7 & 0 & -6 & 0 & 1 & 0 \\ \hline
     5 & 0 & -3 & 0 & 0 & -9 \\
 \end{array}$$
-\fxnote{Marko, ovdje je Milana primijetila da u prvoj koloni ima broj 7 koji je pozitivan. Kako onda nema elemenata koji su strogo veci od nule (njena primjedba oznacena crvenom bojom) Nisam dalje citao ovaj primjer, na ovo se moramo zajednicki vratiti. Marko: pogledacemo ovo, nisam siguran da razumijem konstataciju. Moram da vidim sta je Milana konkretno dodala kao primjedbu. Neke stvari su jos dodatno precizirane sada}
+\fxnote{Marko, ovdje je Milana primijetila da u prvoj koloni ima broj 7 koji je pozitivan. Kako onda nema elemenata koji su strogo veci od nule (njena primjedba oznacena crvenom bojom) Nisam dalje citao ovaj primjer, na ovo se moramo zajednicki vratiti. Marko: pogledati sada je li ok...} 
 
-Ovdje počinju problemi. Pivotiranje bi trebalo da ide sa elementima u koloni 1, ali tamo nema niti jedan element strogo veći od 0 (samo jedan koji je 0, a to je $\overline{a}_{3,1}=7$) i trebalo bi oko njega da pivotiramo. Kada se izvrši pivotiranje, varijable $\overline{b}$ ne mijenjaju svoje vrijednosti, tj. dobijamo sljedeću tabelu:
+Ovdje počinju problemi. Pivotiranje bi trebalo da ide oko nekog elementa u prvoj koloni. Kako tu imamo samo jedan element strogo veći od 0, a to je $\overline{a}_{3,1}=7$, on je ujedno i pivot. Izvršavajući operaciju pivotiranja, varijable $\overline{b}$ neće promijeniti svoje vrijednosti, tj. dobijamo sljedeću tabelu:
 $$\begin{array}{ccccc|c}
      0 & 1 & \frac{1}{7}  & 0 & \frac{1}{7} & 3 \\
      0 & 0 & \frac{8}{7}  & 1 & \frac{1}{7} & 8 \\
      1 & 0 & -\frac{6}{7} & 0 & \frac{1}{7} & 0 \\ \hline
      0 & 0 & \frac{9}{7}  & 0 & -\frac{5}{7} & -9 \\
 \end{array}$$
-Razlog za ovakvu situaciju su tri prave $x=0$, $-x+y=3$ i $x+6y=18$ koje se susreću u tački $(0,3)$ (Slika~\ref{fig:deg-sol}). U prošlom koraku, kada su $x$ i $s_1$ bile nebazne varijable, tačka (0,3) je posmatrana kao presjek $x=0$ i $-x +y =3$. Nakon sljedećeg koraka $s_1$ i $s_3$ postaju nebazne, pa se pomjeramo u tački presjeka pravih 
-$-x+y=3$ i $x+6y=18$, što je opet ista tačka (prema tome, nema ni napretka vrijednosti funkcije cilja). 
- Ovo pivotiranje se naziva \emph{degenerativno pivotiranje}. U ovom primjeru, napustićemo vrh $(0,3)$ nakon sljedećeg pivotiranja. U komplikovanijim primjerima, kada se mnoga ograničenja mogu sresti u jednom vrhu, ostajanje u istom vrhu na nrednim simpleks koracima je velika opasnost. Ovaj slučaj se može izbjeći poštovanjem 
+Geometrijski gledano, razlog za ovakvu situaciju su tri prave $x=0$, $-x+y=3$ i $x+6y=18$ koje se susreću u tački $(0,3)$ (Slika~\ref{fig:deg-sol}). U prošlom koraku, kada su $x$ i $s_1$ bile nebazne varijable, tačka (0,3) je posmatrana kao presjek $x=0$ i $-x +y =3$. Nakon sljedećeg koraka $s_1$ i $s_3$ postaju nebazne, pa se pomjeramo u tački presjeka pravih 
+$-x+y=3$ i $x+6y=18$, što je opet ista tačka (prema tome, nema ni poboljšanja vrijednosti funkcije cilja). 
+ Ovo pivotiranje se naziva \emph{degenerativno pivotiranje}. U ovom primjeru, napustićemo vrh $(0,3)$ nakon sljedeće iteracije  pivotiranja. U komplikovanijim primjerima, kada se mnoga ograničenja mogu sresti u jednom vrhu, ostanak u istom vrhu u narednim simpleks koracima je velika opasnost. Ovaj slučaj se može izbjeći poštovanjem 
  Blandovog pravila. Primijetimo da koristeći Blandovo pravilo u prvom koraku simpleks metode -- uzimajući za pivota elemente iz kolone 1, a ne kolone 2 --  degenerativno pivotiranje se ne bi pojavilo.  
 
 
