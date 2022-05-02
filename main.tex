@@ -1928,26 +1928,29 @@ $$
 $$
 Kako su svi koeficijenti doprinosa ($\overline{c}$ varijable) manje od 0, simpleks metod staje nalazeći optimum koji se dostiže u tački $x = (24, 3, 0)$, i jednak je vrijednosti  $f = 72$.
 \end{comment}
-  \newpage
+ % \newpage
  \chapter{Dualnost \& Dopustivost}
  
  %Dualnost je pojam koji je vezan za dobijanje gornjih granica optimalne vrijednosti funkcije cilja. 
- Teorija dualnosti povezuje dva problema linearnog programiranja -- jedan od njih je problem linearnog programiranja koji maksimizuje funkciju cilja, dok je drugi linearan program  koji minimizuje (ne obavezno istu) funkciju cilja. Svaki problem LP-a se može navesti u drugom, ekvivalentnom obliku na osnovu istih ulaznih podataka. Ponekad rješavanje dualnog problema može da bude puno lakše nego rješavanje početnog LP-a.  Dualnost implicira da svaki problem linearnog programiranja možemo analizirati na dva potpuno različita načina, ali sa ekvivalentnim (optimalnim) rješenjima. 
+ U teoriji linearnog programiranja, ali i teoriji optimizacije uopšte, pod dualnošću podrazumijevamo da se neki problem može promatrati s dva različita aspekta: kao primalni i kao dualni problem. 
+Preciznije, teorija dualnosti povezuje dva problema linearnog programiranja -- jedan od njih je problem linearnog programiranja koji maksimizuje funkciju cilja, dok je drugi linearan program  koji minimizuje (ne obavezno istu) funkciju cilja.  Na osnovu istih ulaznih podataka, svaki problem LP-a se može navesti u drugom, ekvivalentnom obliku. Ponekad rješavanje dualnog problema LP-a može da bude puno lakše nego rješavanje početnog problema.  Dualnost implicira da svaki problem linearnog programiranja možemo analizirati na dva potpuno različita načina, ali sa ekvivalentnim (optimalnim) rješenjima. 
  
- Prije nego što uvedemo pojam dualnog problema, objasnimo motivaciju koja stoji iza nastanka teorije dualnosti. Posmatrajmo jedan LP i probajmo naći što bolju gornju procjenu za optimalnu vrijednost ciljne funkcije na osnovu ograničenja u datom modelu.
+ Prije nego što uvedemo pojam dualnog problema, objasnimo motivaciju koja stoji iza nastanka teorije dualnosti. Posmatrajmo jedan LP i probajmo naći što bolju gornju procjenu za optimalnu vrijednost  funkcije cilja na osnovu ograničenja u datom modelu.
  
 $$ 
 \begin{array}{lllll}
     \max                  &x_1 &+& x_2   &               \\
-    \mbox{s.t.}  &4x_1 & +&3 x_2 & \leq 9        \\
+    \mbox{t.d.}  &4x_1 & +&3 x_2 & \leq 9        \\
                           &x_1 &+ &x_2   &  \leq 8       \\
                           &x \geq 0  &  &     &      
  \end{array}
 $$
-Iz uslova je jasno da su gornje granice date sa: $f(x) = x_1 + x_2 \leq 4 x_1 + 3 x_2 \leq 9$, kao i 
-$f(x) \leq x_1 + x_2 \leq 8$. One se mogu i poboljšati na osnovu sljedećeg niza nejednakosti:
-$$f(x) \leq \frac{1}{4}(  4 x_1 + 3 x_2  ) + \frac{1}{4}(    x_1 +   x_2 ) = \frac{5}{4}x_1 + x_2 \leq  \frac{9}{4} + 2 = \frac{17}{4},$$ kao jedna (bolja) gornja granica optimalne vrijednosti ciljne funkcije. 
-Uradimo sada slično izvođenje u opštijem obliku, tj. iskoristimo ograničenja data u modelu zajedno u kombinaciji sa koeficijentima funkcije cilja. Neka su $y_1, y_2 \geq 0$ koeficijenti sa kojima množimo ograničenja u početnom modelu, odakle dobijamo 
+Označimo funkciju cilja sa $f$. Iz uslova je jasno da su gornje granice date sa $f(x_1,x_2) = x_1 + x_2 \leq 4 x_1 + 3 x_2 \leq 9$, kao i 
+$f(x_1,x_2) \leq x_1 + x_2 \leq 8$. Gornje granice se mogu i poboljšati na osnovu sljedećeg niza nejednakosti
+$$f(x_1,x_2) \leq \frac{1}{4}(  4 x_1 + 3 x_2  ) + \frac{1}{4}(    x_1 +   x_2 ) = \frac{5}{4}x_1 + x_2 \leq  \frac{9}{4} + 2 = \frac{17}{4},$$ 
+čime dobijamo bolju gornju granicu funkcije $f$. 
+
+Uradimo sada slično izvođenje u opštijem obliku. Iskoristimo ograničenja data u modelu, i iskombinujmo ih sa koeficijentima funkcije cilja na sljedeći način. Neka su $y_1, y_2 \geq 0$ koeficijenti sa kojima množimo ograničenja u početnom modelu. Tada imamo 
 \begin{align*}
     &y_1 \cdot (4x_1 + 3x_2) \leq 9 y_1 \\
     &y_2 \cdot (x_1 + x_2 ) \leq 8 y_2 
@@ -1956,32 +1959,33 @@ Sabirajući ove dvije nejednakosti i grupišući sabirke dobijamo
 \begin{equation}\label{eq:dual-1}
      x_1 ( 4 y_1 + y_2 ) + x_2 ( 3 y_1 + y_2 ) \leq 9 y_1 + 8 y_2 
 \end{equation}
-Posmatrajući funkciju cilja i koeficijente uz varijable u (\ref{eq:dual-1}), jasno je da treba da vrijedi 
-$4 y_1 + y_2 \geq 1$ i $3 y_1 + y_2 \geq 1$. Da bi ocjena gornje granice bila što bolja u (\ref{eq:dual-1}), dakle koeficijent na desnoj strani što veći, potrebno je minimizovati izraz $9y_1 + 8 y_2$, pod gore navedenim uslovima. Prema tome, početnom problemu, kojeg označavamo sa ($P$), odgovara dualni problem 
-$$\begin{array}{cccc}
-     \min                    &  9 y_1 &+& 8 y_2        \\
-     {s.t. }     &  4 y_1    & +  & y_2 \geq 1   \\
-                             &  3 y_1 &+& y_2 \geq 1 \\
-                 &           &y=(y_1,y_2) \geq 0.  & 
+Posmatrajući funkciju cilja i koeficijente uz promjenljive u (\ref{eq:dual-1}), jasno je da treba da vrijedi 
+$4 y_1 + y_2 \geq 1$ i $3 y_1 + y_2 \geq 1$. Da bi ocjena gornje granice u izrazu  (\ref{eq:dual-1}) bila što bolja, odnosno koeficijent na desnoj strani što veći, potrebno je minimizovati izraz $9y_1 + 8 y_2$, prema gore navedenim uslovima. Prema tome, početnom problemu, koji označavamo sa ($P$), odgovara dualni problem ($D$)
+$$\begin{array}{ll}
+     \min                    &  9 y_1+ 8 y_2        \\
+       \mbox{t.d.}   &  4 y_1     +   y_2 \geq 1   \\
+                             &  3 y_1 + y_2 \geq 1 \\
+                  &            y=(y_1,y_2) \geq 0.
 \end{array}$$
-Generalno posmatrajući,  za problem ($P$) %~(\ref{eq:LP-o1})--(\ref{eq:LP-c2}), 
+U oštem slučaju,  za problem ($P$) %~(\ref{eq:LP-o1})--(\ref{eq:LP-c2}), 
 \begin{align}
 	& \max c^T x  \\
-	& \mbox{s.t.} \nonumber \\
+	& \mbox{t.d.} \nonumber \\
 	& A x \leq b \\
 	& x \geq 0.
 \end{align}
-njegov dualni problem, označen sa ($D$), je dat sa 
+odgovorarajući dualni problem, označen sa ($D$), je dat sa 
 \begin{align}
      & \min b^T y  \\
-     & \mbox{s.t.} \nonumber \\
+     & \mbox{t.d.} \nonumber \\
      & A^T y \geq c \\
      & y \geq 0.
 \end{align}
 
 \section{Teoreme dualnosti}
+U ovom odjeljku ćemo navesti najvažnije teoreme koje omogućavaju primjenu teorije dualnosti na rješavanje problema linearnog programiranja.
 
-\begin{thm}[Teorema o slaboj dualnosti]
+\begin{thm}[Teorema slabe dualnosti]
   Ako je x dopustivo rješenje za problem ($P$) i y dopustivo rješenje za problem  ($D$), onda je 
   $$ c^T x \leq b^T y.$$
 \end{thm}
@@ -1991,24 +1995,28 @@ njegov dualni problem, označen sa ($D$), je dat sa
          $$y^TAx \geq c^T x.$$ Kako je $Ax \leq b$ i $y \geq 0$,  tada dobijamo 
          $ y^T b = b^T y  \geq c^T x$
 \end{proof}
+Iz Teoreme  slabe dualnosti slijedi sljedeća važna posljedica.
+\begin{poslje}
+	Ako je $y$ dopustivo rješenje problema  ($D$),  onda bilo koje dopustivo rješenje $x$ problema ($P$) je ograničeno odozgo sa $b^T y$. Prema tome, ako je problem ($D$) dopustiv, onda je ($P$) ograničen. Slično se može pokazati da ovo vrijedi i kada problemi ($P$) i ($D$) zamijene uloge.
+\end{poslje}
 
-\emph{Posljedica.} Ako je $y$ dopustivo rješenje problema  ($D$),  onda bilo koje dopustivo rješenje $x$ problema ($P$) je ograničeno odozgo sa $b^T y$. Prema tome, ako je problem ($D$) dopustiv, onda je ($P$) ograničen. Slično se može pokazati da ovo vrijedi kada problemi ($P$) i ($D$) zamijene uloge.
+Pokažimo da važi i naredno tvrđenje, koje ćemo koristiti u dokazu Teoreme jake dualnosti.
 
 \begin{prop}  
-    Ako je $x^*$ dopustivo rješenje za  ($P$), $y^*$ dopustivo rješenje za ($D$) i pri tome vrijedi 
+    Ako je $x^*$ dopustivo rješenje za  ($P$), $y^*$ dopustivo rješenje za ($D$) i ako vrijedi 
     $c^T x^* = b^T y^*$, onda je $x^*$ optimalno rješenje za problem  ($P$), dok je $y^*$ optimalno rješenje za problem  ($D$).  
 \end{prop}
 \begin{proof}
-         Iz teoreme o slaboj dualnosti imamo: $c^T x  \leq b^T y^* = c^T x^*$, za bilo koje dopustivo rješenje $x$ od  ($P$), pa je $x^*$ upravo optimalno rješenje problema  ($P$).
-         Slično imamo da vrijedi za sva dopustiva rješenja problema ($D$): $b^T y^* = c^T x^* \geq b^T y$, odakle imamo da je $y^*$ optimalno rješenje problema  ($D$). 
+        Neka je $x$ bilo koje dopustivo rješenje problema ($P$). Iz teoreme o slaboj dualnosti imamo $c^T x  \leq b^T y^* = c^T x^*$, odakle slijedi da je $x^*$ upravo optimalno rješenje problema  ($P$).
+         Slično vrijedi i za sva dopustiva rješenja problema ($D$): $b^T y^* = c^T x^* \geq b^T y$, odakle imamo da je $y^*$ optimalno rješenje problema  ($D$). 
 \end{proof}
 
-\begin{thm}[Teorema o jakoj dualnosti]
+\begin{thm}[Teorema jake dualnosti]
      Ako problem ($P$) ima optimalno rješenje $x^*$, onda i problem ($D$) ima optimalno rješenje $y^*$ i pri tome je $c^T x^* = b^T y^*$.
 \end{thm}
 \begin{proof}
          Napišimo ograničenja probema ($P$) kao $Ax + s = b, x, s \geq 0$.
-         Primijenimo simpleks metod, pa posmatrajmo posljednju (optimalnu) simpleks tabelu (iz koje je dobijeno rješenje $x^*$):
+         Primijenimo simpleks metod, pa posmatrajmo posljednju  simpleks tabelu, odnosno tabelu iz koje je dobijeno rješenje $x^*$.
          
          $$\begin{array}{c |c | c}
          \overbrace{\ \ \ \ \ \hspace{1.5cm}}_{x \mbox{ varijable}}     &  \overbrace{\ \ \ \ \ \hspace{1.5cm}}_{s \mbox{ varijable}} &   \\
@@ -2029,13 +2037,16 @@ njegov dualni problem, označen sa ($D$), je dat sa
                  &=  f^* + (c^*)^T x - (y^*)^T (b - Ax) \\
                  &= f^*  - (y^*)^T b +   ((c^*)^T + (y^*)^T A ) x
     \end{align*}
-    koje vrijedi za sve $x$, pa dobijamo 
+    koje vrijedi za sve $x$. Specijalno, za  $x = 0$,  dobijamo 
     
     \begin{equation}\label{eq:f_y_star}
         f^* = (y^*)^T b
     \end{equation}
-     (posljedica kad uvrstimo $x = 0$) odakle posljedično slijedi 
+     odakle  slijedi 
     $ c = A^T y^* + c^*$. 
+    
+    \fxnote{nejasno i meni i Milani}
+    
     Kako je $c^* \leq 0$, imamo  $A^T y^* \geq c$. Kako je $-y^* \leq 0$ pa je $y^*$ dopustivo rješenje za  ($D$).  Iz (\ref{eq:f_y_star}) je pokazano da je vrijednost ciljne funkcije u $y^*$ upravo $f^*$. Iz teoreme o slaboj dualnosti slijedi da je $y^*$ optimalno rješenje problema  ($D$). 
     
 \end{proof} 
