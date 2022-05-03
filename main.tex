@@ -1843,6 +1843,7 @@ koristeći grafičku metodu.
 	 & x_1, x_2 \geq 0.
 \end{align*}
 Da li se u nekom koraku simpleks metode javlja degenerativno bazno rješenje? Ako je to slučaj, diskutovati zašto je ono degenerativno. 
+\item Iako je simpleks metod u prosječnom slučaju efikasan metod za rješavanje LP problema, u najgorem slučaju, vrijeme izvršenja eksponencijalno zavisi od broja vrhova dopustivog skupa. Koristeći pouzdane internet izvore, pronađi i analiziraj primjer LP problema sa $D$ promjenljivih i $D$ ograničenja, kod koga simpleks metod obilazi svih $2^D$ vrhova politopa. Jedan od primjera takvog politopa je tzv. Kli-Mintijeva kocka (eng. Klee-Minty cube).
 
 \end{enumerate}
 
@@ -1932,10 +1933,16 @@ Kako su svi koeficijenti doprinosa ($\overline{c}$ varijable) manje od 0, simple
  \chapter{Dualnost \& Dopustivost}
  
  %Dualnost je pojam koji je vezan za dobijanje gornjih granica optimalne vrijednosti funkcije cilja. 
- U teoriji linearnog programiranja, ali i teoriji optimizacije uopšte, pod dualnošću podrazumijevamo da se neki problem može promatrati s dva različita aspekta: kao primalni i kao dualni problem. 
+ U teoriji linearnog programiranja, ali i teoriji optimizacije uopšte, pod dualnošću podrazumijevamo da se neki problem može posmatrati s dva različita aspekta: kao primalni i kao dualni problem. 
 Preciznije, teorija dualnosti povezuje dva problema linearnog programiranja -- jedan od njih je problem linearnog programiranja koji maksimizuje funkciju cilja, dok je drugi linearan program  koji minimizuje (ne obavezno istu) funkciju cilja.  Na osnovu istih ulaznih podataka, svaki problem LP-a se može navesti u drugom, ekvivalentnom obliku. Ponekad rješavanje dualnog problema LP-a može da bude puno lakše nego rješavanje početnog problema.  Dualnost implicira da svaki problem linearnog programiranja možemo analizirati na dva potpuno različita načina, ali sa ekvivalentnim (optimalnim) rješenjima. 
+
+U ovom poglavlju ćemo najprije objasniti kako od početnog, primarnog problema formirati dualni problem. Nakon toga, biće navedene Teoreme o slaboj i jakoj dualnosti, koje daju vezu između rješenja i ograničenja primarnog i dualnog problema. U nastavku poglavlja su objašnjene još neke važne tehnike koje se koriste za rješavanje problema linearnog programiranja: metod unutrašnje tačke, Farkašova lema i Fourier-Motzkin-ova eliminacija.
  
- Prije nego što uvedemo pojam dualnog problema, objasnimo motivaciju koja stoji iza nastanka teorije dualnosti. Posmatrajmo jedan LP i probajmo naći što bolju gornju procjenu za optimalnu vrijednost  funkcije cilja na osnovu ograničenja u datom modelu.
+ Prije nego što uvedemo pojam dualnog problema, objasnimo motivaciju koja stoji iza nastanka teorije dualnosti.
+ 
+ \begin{primjer}
+ 	Posmatrajmo jedan LP i probajmo naći što bolju gornju procjenu za optimalnu vrijednost  funkcije cilja na osnovu ograničenja u datom modelu.
+ 	\end{primjer}
  
 $$ 
 \begin{array}{lllll}
@@ -2185,26 +2192,37 @@ jednog problema i promjenljivih u drugom problemu je data sljedećom tabelom.
     \caption{Odnos promjenljivih i ograničenja problema ($P$) i odgovarajućeg problema ($D$).}  \label{tab:primal-dual-relation}
 \end{table}
 
-\fixme{dovde sam stigao}
+
 \section{Metod unutrašnje tačke}
+
+\fixme{Dragan: dodao sam zadatak na kraju poglavlja iz simpleks metode}
 
 Simpleks metod ne garantuje   rješavanje proizvoljnog problema LP u polinomijalnom broju koraka u odnosu na veličinu ulaza. % V. Klee and G. Minty constructed an example LP: simplex method needs 2^n iterations to solve it 
 %Dakle, iz njega se ne može zaključiti da je problem rješavanja generalnog LP problema   polinomijalno rješiv. 
-\emph{Metod unutrašnje tačke} rješava bilo koji problem LP-a  u polinomijanom vremenu. U ovoj sekciji ćemo dati konstrukciju ovog metoda, koji pokazuje da rješavanje problema LP-a pripada klasi $\mathcal{P}$. Iako u praksi često ne postiže dobre  performanse kao simpleks metod, te se  obično  preporučuje korištenje simpleks metoda u rješavanju LP-a prije korištenja komplikovanijih metoda, ovaj metod je veoma važan sa teoretskog stanovišta.  \emph{Metod unutrašnje tačke} (eng. \emph{Interior point metod}) je dizajniran 50-ih godina XX vijeka i sve do 80-ih godina nije bio smatran za algoritam koji se efikasno može primijeniti na probleme velikih dimenzija. Tek 1984.godine (N. Karmakar, inžinjer u IBM-u) je formalno dokazao da se ovaj algoritam izvršava u polinomijalnom broju koraka za unaprijed zadatu preciznost (optimalne vrijednosti) za probleme linearnog programiranja. U današnje vrijeme, usljed ekstremnog poboljšanja performansi mašina, pokazalo se da je {metod unutrašnje tačke} kompetentan sa simpleks metodom kada je riječ o problemima LP-a  velikih dimenzija (sa matricom $A$ čiji je broj elemenata $10^9$ i više).
 
-Za razliku od simpleks metoda, koji ``hoda'' po granicama poliedra (dopustivog regiona) u potrazi za optimalnim rješenjem, {metod unutrašnje tačke}, kako i samo ime kaže, se kreće po unutrašnjim tačkama poliedra  dok ne naiđe   optimalno rješenje problema. 
+U ovoj sekciji ćemo prikazati konstrukciju  \emph{Metoda unutrašnje tačke}, koji  bilo koji problem LP-a rješava  u polinomijanom vremenu.
+%, čime se pokazuje da rješavanje problema LP-a pripada klasi $\mathcal{P}$. 
+%Iako u praksi često ne postiže dobre  performanse kao simpleks metod, ovaj metod je veoma važan sa teorijskog aspekta, 
 
-Postoji nekoliko metoda ove vrste, kao što su: metod centralne putanje, redukcija potencijala, afino skaliranje, itd. Mi ćemo u ovoj sekciji obratiti pažnju na metod centralne putanje. Da ponovimo, ova sekcija se bavi rješavanjem problema LP-a koji je dat u obliku (\ref{eq:lp_equality_constraint}). 
+\fixme{izbacio sam prethodnu recenicu, jer ona mozda nije ni tacna, jer sam nasao na par mjesta recenicu da je on i prilicno efikasan}
+
+   \emph{Metod unutrašnje tačke} (eng. \emph{Interior point metod}) je dizajniran 50-ih godina XX vijeka. Sve do 80-ih godina XX vijeka nije smatran algoritmom koji efikasno  rješava probleme velikih dimenzija. Tek 1984.godine, N. Karmakar, inžinjer u IBM-u,  formalno dokazuje da se ovaj algoritam izvršava u polinomijalnom broju koraka za unaprijed zadatu preciznost optimalne vrijednosti. U današnje vrijeme, zbog ekstremnog poboljšanja performansi mašina, pokazalo se da je {metod unutrašnje tačke} kompetentan sa simpleks metodom u situacijama kada se radi o problemima izuzetno velikih dimenzija, gdje matrice problema sadrže $10^9$ i više elemenata.
+
+Za razliku od simpleks metoda, koji ``šeta'' po granicama poliedra (dopustivog regiona) u potrazi za optimalnim rješenjem, {metod unutrašnje tačke}, kako i samo ime kaže, se kreće po unutrašnjim tačkama poliedra,  dok ne naiđe na  optimalno rješenje. 
+
+Postoji nekoliko metoda ove vrste, kao što su: metod centralne putanje, redukcija potencijala, afino skaliranje, itd. U ovoj sekciji ćemo razmatrati metod centralne putanje. Napomenimo i da ćemo se baviti rješavanjem problema LP-a koji je dat u obliku (\ref{eq:lp_equality_constraint}). 
 
 Neka je par Primal-dual linearnih programa dat sa
 
-$$ \begin{array}{lll}
-	&\mbox{Primal}            & \mbox{Dual}     \\
-	&\min  c^T x              & \max  b^T y \\
-	& {s.t.\ } Ax = b      &   {s.t.\ } A^Ty + s = c \\
-	& x \geq 0                &   s \geq 0
+$$ \begin{array}{llll}
+	&\mbox{Primal}            &\quad &\mbox{Dual}     \\
+	&\min  c^T x              &\quad &\max  b^T y \\
+\mbox{t.d.\ }	&  Ax = b      &\quad \mbox{t.d.\ } &   A^Ty + s = c \\
+	& x \geq 0                &\quad &  s \geq 0
 \end{array}
 $$
+
+\fixme{dovde sam stao - prebacujem se na Fakrasovu lemu}
 \begin{definition}
 Lagranžijan primal-dual linearnih programa definišemo sa 
 \begin{equation}
@@ -2548,43 +2566,45 @@ Iz trečeg uslova   $x_1(\mu)=x_2(\mu)=2$, što je i optimum. Primijetimo da ovd
 Još jedna primjena teorije dualnosti u LP-u se ogleda u dokazivanju sljedeće teoreme alternative.
 
 \begin{thm}
-	Neka je $A\in \mathbb{R}^{m \times n}$ matica i $c\in \mathbb{R}^n$. Onda jedan i samo jedan od dva sljedeća sistema ima rješenje:
+	Neka je $A\in \mathbb{R}^{m \times n}$ matrica i $c\in \mathbb{R}^n$. Onda jedan i samo jedan od  sljedeća dva sistema ima rješenje:
 	\begin{enumerate}
 		\item  $Ax \geq 0$  i $c^T x < 0$; \label{case:1}
 		\item $A^T y = c$ i $y \geq 0$. \label{case:2}
 	\end{enumerate}
 \end{thm}
 \begin{proof}
-	  Pogledajmo prvi sistem. Uočimo sličnosti sa   sljedećim LP-om:
+	  Pogledajmo prvi sistem. Uočimo sličnosti sa   LP-om:
 	  \begin{align*}
 	  	 &\min c^T x \\
-	  	 &s.t. \\
+	  	 &\mbox{t.d.} \\
 	  	 & A x \geq 0.
 	  \end{align*}
-  Šta se može reći o ovom LP-u? Ako pogledamo desnu stranu ograničenja, vidimo da je vektor $x = 0$ 
-  dopustivo rješenje problema, tako da problem ima barem jedno dopustivo rješenje. Zaključujemo da naš LP može da bude ili optimalan ili neograničen. Posmatrajmo njegov dual   dat sa 
+ Ako pogledamo desnu stranu ograničenja, vidimo da je vektor $x = 0$ 
+  dopustivo rješenje problema, tako da problem ima barem jedno dopustivo rješenje. Zaključujemo da dati LP može da bude ili ima optimalno rješenje ili je neograničen. Posmatrajmo njegov dual   dat sa 
   \begin{align*}
   	   &\max 0 \\
-  	   &s.t. \\
+  	   &\mbox{t.d.} \\
   	   & A^T y  = c \\
   	   & y \geq 0.
   \end{align*}
-  Primijetimo da ako postoji barem jedno dopustivo rješenje za prethodni dual, optimalno rješenje je 0. Ako ne postoji niti jedno dopustivo rješenje, problem je nedopustiv. 
-  
-  Ono što zaključujemo iz odnosa definisanog primala i njegovog duala je:
+  Primijetimo da, ako postoji barem jedno dopustivo rješenje za dati dual, optimalno rješenje je 0. Ako ne postoji niti jedno dopustivo rješenje, problem je nedopustiv. 
+  \fxnote{umjesto optimalan primal, u tekstu sam prepravio na: primal ima optimalno rjesenje}
+Iz odnosa definisanog primala i njegovog duala zaključujemo:
   \begin{itemize}
-  	\item primal je optimalan akko je dual optimalan; 
+  	\item primal ima optimalno rješenje akko  dual ima optimalno rješenje; 
   	\item primal je neograničen  akko je njegov dual nedopustiv.  
   \end{itemize}
-  Odgovorimo sada na pitanje kada je primal optimalan. Ono što vidimo je da ako bi $x$ bio dopustiv tako da je $c^Tx < 0$ to bi onda i bilo koje $kx$, za proizvoljno $k>0$ bilo takođe dopustivo. Iz toga bi slijedilo da vrijednost funkcije cilja nije ograničena odozdo, tj. teži ka -$\infty$. Dakle, u tom slučaju je problem neograničen. Zaključujemo da kad god je primal optimalan, ta vrijednost mora biti 0, i dostiže se za $x =0$; inače je problem neograničen. Dalje, ako je primal optimalan, to  je ekvivalentno sa tim da je sistem iz slučaja  \ref{case:1} ove teoreme nedopustiv (nema rješenja).  Ako sistem iz slučaja  \ref{case:1}  ima rješenje, primal je neograničen (vrijedi i obrnut smjer). Ako pogledamo   dualni problem, dual je optimalan akko sistem iz  slučaja  \ref{case:2}   ima rješenje. Slično, dual nije dopustiv akko je sistem iz  slučaja   \ref{case:2}  nedopustiv (nema rješenje). Iz niza prethodnih ekvivalencija, zaključujemo da vrijedi: 
+  Odgovorimo sada na pitanje kada primal ima optimalno rješenje. Ono što vidimo je da ako bi $x$ bio dopustiv tako da je $c^Tx < 0$ to bi onda i bilo koje $kx$, za proizvoljno $k>0$ bilo takođe dopustivo. Iz toga bi slijedilo da vrijednost funkcije cilja nije ograničena odozdo, tj. teži ka -$\infty$. Dakle, u tom slučaju je problem neograničen. Zaključujemo da, kad god  primal ima optimalno rješenje, ta vrijednost mora biti 0 i dostiže se za $x =0$. Inače, problem je neograničen. Dalje, ako primal ima optimalno rješenje, to  je ekvivalentno sa tim da je sistem iz slučaja  \ref{case:1} ove teoreme nedopustiv (nema rješenja).  Ako sistem iz slučaja  \ref{case:1}  ima rješenje, primal je neograničen (vrijedi i obrnut smjer). Ako pogledamo   dualni problem, dual ima optimalno rješenje akko sistem iz  slučaja  \ref{case:2}   ima rješenje. Slično, dual nije dopustiv akko je sistem iz  slučaja   \ref{case:2}  nedopustiv (nema rješenje). Iz niza prethodnih ekvivalencija, zaključujemo da vrijedi: 
   \begin{itemize}
   	  \item Sistem iz  slučaja  \ref{case:1}  nema rješenje akko sistem iz  slučaja  \ref{case:2}   ima rješenje. 
   	  \item Sistem iz  slučaja  \ref{case:1}  ima rješenje akko sistem iz  slučaja  \ref{case:2}  nema rješenje. 
    \end{itemize}
 \end{proof}
 
-\emph{Geometrijska interpretacija Farkašove leme.}
-Neka je dat sistem:
+\begin{primjer}
+	Ovim primjerom analizirajmo geometrijsku interpretaciju Farkašove leme. Neka je dat sistem:
+\end{primjer}
+
 \begin{align*}
 	& \underline{x_1 + 4 x_2  < 0: c^T x}\\  
 	& 2 x_1 + 3 x_2 \geq 0 \\
@@ -2593,7 +2613,7 @@ Neka je dat sistem:
 	& -x_1 + 3 x_2 \geq 0: Ax \geq 0.
 \end{align*}
 
-Pogledajmo kako izgleda sistem iz slučaja \ref{case:2}. On je dat sa:
+Pogledajmo kako izgleda sistem iz slučaja \ref{case:2}. Taj sistem je dat sa:
 \begin{align*}
 	&2 y_1 + 3 y_2 + 4 y_3 - y_4 = 1\\
 	&3y_1 + 2 y_2 + y_3 + 3 y_4 = 4 \\
@@ -2606,8 +2626,8 @@ Pogledajmo kako izgleda sistem iz slučaja \ref{case:2}. On je dat sa:
 	\caption{Geometrijska interpretacija Farkašove leme.}
 	\label{fig:farkas-slika}
 \end{figure}
-U osnovi geometrijska interpretacija nam kaže da se vektor $c =(1,4)^T$ može predstaviti kao linearna kombinacija vekotora vrsta matrice $A$, kao što vidimo na Slici~\ref{fig:farkas-slika}, jer se nalazi unutar prostora upregnutog   vektorima $a_1, \ldots, a_n$.  To implicira da početni sistem nema rješenje. 
-Kada bi posmatrali $c=(5,0)^T$, zaključili bi da se on ne može izraziti preko vektora vrste matrice $A$ (jer je van prostora upregnutog sa vektrima vrste), pa prema tome postoji rješenje za početni problem u slučaju ove konfiguracije.  
+Iz geometrijske interpretacije slijedi da se vektor $c =(1,4)^T$ može predstaviti kao linearna kombinacija vekotora vrsta matrice $A$, kao što vidimo na Slici~\ref{fig:farkas-slika}. Vektor $c =(1,4)^T$ se nalazi unutar prostora upregnutog   vektorima $a_1, \ldots, a_n$. što implicira da početni sistem nema rješenje. 
+Kada bismo posmatrali $c=(5,0)^T$, zaključili bi da se on ne može izraziti preko vektora vrste matrice $A$, jer je van prostora upregnutog sa vektrima vrste. Prema tome, u slučaju ove konfiguracije bi postojalo  rješenje za početni problem.  
 
 %Fourier–Motzkin elimination ==> Problem dopustivosti...
 \section{Fourier–Motzkin-ova eliminacija}
@@ -2617,9 +2637,9 @@ Jedno od važnih pitanja vezano za problem  LP-a je sljedeće.
 
 Problem dopustivosti može da služi i da odgovorimo na sljedeće pitanje: 
 \emph{Da li je optimalna vrijednost funkcije cilja problema LP-a veća od neke unaprijed zadate  vrijednosti k?}
- Na ovo pitanje možemo odgovoriti pomoću \emph{Fourier–Motzkin}-ove eliminacije, koja je strukturalno drugačija metoda od simpleks metode pa je zbog toga i navedena u ovoj knjizi. Ideja algoritma se sastoji od procedure koja će redukovati problem sa $n$ varijabli na ekvivalentan problem sa $n-1$ varijabli. Ekvivalentnost se podrazumijeva u pogledu da početi problem ima riješenje akko  ga ima i redukovani problem. Ideja procedure se sastoji u iterativnom izvršavanju, smanjujući broj varijabli u problemu u svakom koraku. Na kraju ćemo eventualno ostati sa sistemom od jedne varijable za koji se lako može provjeriti da li postoji barem jedna tačka između najveće gornje granice i najmanje donje granice koja zadovoljava  uslove. 
+ Na ovo pitanje možemo odgovoriti pomoću  \emph{Fourier–Motzkin}-ove eliminacije. Ova metoda je strukturalno drugačija  od simpleks metode. Ideja algoritma je zasnovana na redukciji problema sa $n$ promjenljivih na ekvivalentan problem sa $n-1$ promjenljivih. Ekvivalentnost podrazumijeva da početni problem ima rješenje akko  ga ima i redukovani problem. Eliminacija promjenljivih se vrši iterativno, odnosno, u svakom koraku se smanjuje broj promjenljivih. Na kraju se početni sistem svodi na sistem sa jednom promjenljivom, za koji se lako može provjeriti da li sadrži dopustivo rješenje.
  
- Glavni korak ovog metoda je redukcija problema na ekvivalentan problem sa manjim brojem varijabli. Pretpostavimo da su ograničenja data u varijablama $x_1,\ldots, x_n$ i da želimo da eliminišemo varijablu $x_n$. Za svaku od ograničenja
+ Ponovimo, glavni korak ovog metoda je redukcija problema na ekvivalentan problem sa manjim brojem promjenljivih. Pretpostavimo da su ograničenja data u varijablama $x_1,\ldots, x_n$ i da želimo da eliminišemo varijablu $x_n$. Za svako od ograničenja
  \begin{equation}\label{eq:inequality_i}
       a_{i,1} x_1 + \cdots + a_{i,n} x_n \leq b_i
  \end{equation}
@@ -2628,7 +2648,7 @@ Problem dopustivosti može da služi i da odgovorimo na sljedeće pitanje:
  	 \item  $x_n \geq \frac{b_i - a_{i,1}x_1- \cdots - a_{i, n-1} x_{n-1} }{a_{i,n}}=U_i$ ili 
  	 \item   $x_n \leq \frac{b_i - a_{i,1}x_1- \cdots - a_{i, n-1} x_{n-1} }{a_{i,n}}=L_i$
  \end{itemize}
- $i=1,\ldots, m$, zavisno od toga da li je $a_{i,n} >0$ ili $a_{i,n} <0$. U slučaju da je $a_{i,n} = 0$,  ostavljamo  ograničenje (\ref{eq:inequality_i}) kakvo i jeste (jer $x_n$ ne učestvuje u datom ograničenju). Na ovaj način ćemo dobiti (najviše) $m$ gornjih i donjih granica za $x_n$ koje se mogu izraziti preko $n-1$ varijabli, tj. 
+ $i=1,\ldots, m$, zavisno od toga da li je $a_{i,n} >0$ ili $a_{i,n} <0$. U slučaju da je $a_{i,n} = 0$,  ostavljamo  ograničenje (\ref{eq:inequality_i}) nepromijenjeno, jer tada $x_n$ i ne učestvuje u datom ograničenju. Na ovaj način ćemo dobiti najviše $m$ gornjih i donjih granica za $x_n$ koje se mogu izraziti preko $n-1$ promjenljivih, tj. 
  $$  x_n \geq L_1, \ldots, x_n\geq L_k \mbox{ te }  x_n \leq U_1, \ldots, x_n \leq U_l,$$
   za neke $k,l \in \mathbb{N}$, $k+l \leq m$.
  Moguće je izabrati $x_n$ koje zadovoljava gornja ograničenja akko 
@@ -2636,7 +2656,7 @@ Problem dopustivosti može da služi i da odgovorimo na sljedeće pitanje:
      \max\{L_1,\ldots, L_k \} \leq x_n \leq \min \{ U_1, \ldots, U_l \},
    \end{equation}
    %https://faculty.math.illinois.edu/~mlavrov/docs/482-fall-2019/lecture19.pdf
- jer bi tada postojalo nešto između najveće donje granice i najmanje gornje granice za za vrijednost varijable $x_n$. Međutim, kako su sve donje i gornje granice izražene preko nepoznatih varijabli $x_1, \ldots, x_{n-1}$, ne može se reći koje od njih su veće a koje manje. Kompromis postižemo dodavanjem  sljedećih nejednakosti 
+ jer bi tada postojalo nešto između najveće donje granice i najmanje gornje granice za za vrijednost varijable $x_n$. Međutim, kako su sve donje i gornje granice izražene preko nepoznatih varijabli $x_1, \ldots, x_{n-1}$, ne može se ustanoviti koje od njih su veće, a koje manje. Kompromis postižemo dodavanjem  sljedećih nejednakosti 
  $$\begin{array}{cccc}
        L_1 \leq U_1 & L_1 \leq U_2   &  \cdots   & L_1 \leq U_l \\
        L_2 \leq U_1 & L_2  \leq U_2  &  \cdots   & L_2 \leq U_l \\
@@ -2646,17 +2666,19 @@ Problem dopustivosti može da služi i da odgovorimo na sljedeće pitanje:
 Ako postoji neka vrijednost  $x_n$ koja zadovoljava sva ograničenja (\ref{eq:min_max_xi}), onda je za sve $i,j$, 
 $L_i \leq x_n \leq U_j$. Obrnuto, ako svih $k \cdot l$ nejednakosti vrijede, onda vrijedi i (\ref{eq:min_max_xi}), pa se može izabrati neki $x_n$ između $\max$ i $\min$ gornje granice. 
 
-Prema tome, početni problem je redukovan na sistem od $n-1$ varijabli sa dodatnih  $k \cdot l$ nejednakosti izraženih gore, uz originalna ograničenja koja ne uključuju $x_n$ u sebi. Ovaj proces nastavimo iterativno, dok ne dobijemo samo jednu promjenjivu sa dodatnim ograničenjima  i potom (trivijalno) riješimo sistem. 
+Prema tome, početni problem je redukovan na sistem od $n-1$ varijabli sa dodatnih  $k \cdot l$ nejednakosti izraženih gore, uz originalna ograničenja koja ne uključuju $x_n$. Ovaj proces nastavimo iterativno, dok ne dobijemo samo jednu promjenjivu sa dodatnim ograničenjima  i potom (trivijalno) riješimo sistem. 
 
 \begin{primjer} Pretpostavimo da nam je dat sistem nejednačina:
 	\end{primjer}
+
+\fxnote{obratiti paznju na znak prve nejednacine, ne poklapa se sa racunom dole}
 \begin{align*}
 	 &x - y \geq 1 \\
 	 &-x + 2y \geq 1 \\
 	 & 3x - 5y \geq 1 \\
 	 & x,y \geq 0.
 \end{align*}
-Eliminišimo varijablu $y$ iz sistema. Kako je $x-y \leq 1 \Rightarrow y \leq x -1 $, 
+Eliminišimo promjenljivu $y$ iz sistema. Kako je $x-y \leq 1 \Rightarrow y \leq x -1 $, 
 $-x + 2y \geq 1 \Rightarrow y \geq \frac{x+1}{2}$, te $ 3x - 5y \geq 1 \Rightarrow y \leq \frac{3x-1}{5}$, uparimo gornje i donje granice te dobijamo 
  $$
  \begin{cases}
@@ -2667,7 +2689,7 @@ $-x + 2y \geq 1 \Rightarrow y \geq \frac{x+1}{2}$, te $ 3x - 5y \geq 1 \Rightarr
  	& x \geq 0, y \geq 0.  	
  \end{cases}
  $$
-Ove nejednakosti se mogu pojednostaviti u donje i gornje granice za $x$, dato sa:
+Ove nejednakosti se mogu pojednostaviti u donje i gornje granice za $x$, na sljedeći način:
 $$
 \begin{cases}
     &x \geq 3 \\
@@ -2677,8 +2699,8 @@ $$
     & x \geq 0.	
 \end{cases}
 $$
-Sve ove nejednakosti su donje granice. Prema tome, ako $x=7$, vidimo da će ta vrijednost proći. 
-Tada, donje i gornje granice za $y$ postaju uslovi (pogledati gore): $y \leq 6, y \geq 4, y \leq 4$ te $y \geq 0$. Prema tome, možemo staviti $y=4$ i naći dopustivo rješenje. 
+Sve ove nejednakosti su donje granice. Vidimo da vrijednost $x=7$ zadovoljava sve navedene nejednakosti.
+Tada, donje i gornje granice za $y$ postaju uslovi: $y \leq 6, y \geq 4, y \leq 4$ te $y \geq 0$. Prema tome, možemo uzeti vrijednost $y=4$, čime smo pronašli i dopustivo rješenje polaznog sistema. 
 
 %kompleksnost i Farkasova lema...
 %  dualna simpleks metoda ? https://www.youtube.com/watch?v=lyNHVnT9zVk&list=PLY9yf2-4yyeT0Jh80w5yuevm0o9lAAUJg&index=40
@@ -2689,7 +2711,7 @@ Tada, donje i gornje granice za $y$ postaju uslovi (pogledati gore): $y \leq 6, 
 	Napišite odgovarajući dual linearnog programa:
 	\begin{align*}
 		 &\max x_1 - x_2 + 3 x_3 \\
-		 & s.t. \\
+		 & \mbox{t.d.} \\
 		 & x_1 + x_2 + x_3 \leq 10 \\
 		 & 2x_1 - x_2 - x_3 \leq 2 \\
 		 & 2x_1 - 2x_2 - 3 x_3 \leq 6 \\
@@ -2698,7 +2720,7 @@ Tada, donje i gornje granice za $y$ postaju uslovi (pogledati gore): $y \leq 6, 
  \item    	Napišite odgovarajući dual linearnog programa:
       \begin{align*}
       	  &\min 3 x_1 - 2 x_2 + 4 x_3 \\
-      	  & s.t. \\
+      	  & \mbox{t.d.} \\
       	  & 3x_1 + 5 x_2 + 4 x_3 \geq 7 \\
       	  & 6 x_1 + x_2 + 3 x_3 \geq 4 \\
       	  & 7 x_1 - 2 x_2 - x_3 \leq 10 \\
@@ -2709,7 +2731,7 @@ Tada, donje i gornje granice za $y$ postaju uslovi (pogledati gore): $y \leq 6, 
   \item Napišite dual sljedećeg linearnog programa:
   \begin{align*}
         &\min x_1 - 3 x_2 - 2 x_3 \\
-        & s.t. \\
+        &\mbox{t.d.} \\
         & 3 x_1 - x_2 + 2 x_3 \leq 7 \\
         & 2 x_1 - 4 x_2 \geq 12 \\
         & -4x_1 + 3x_2 + 8 x_3 = 10 \\
@@ -2721,7 +2743,7 @@ Pokazati da je dual dualnog problema ponovo primalni problem ($P$).
 
 \item Vratite se na Primjer~\ref{primjer:dual}. Vrijednost 210 u drugom ograničenju primarnog problema  ($P$)  zamijenite sa 420 i diskutujte optimalna rješenja  ($P$)  i  ($D$)  na sličan način kako je urađeno  u samom primjeru.
 
-\item Ako je primalni problem ($P$) neograničen (ima neograničenu funkciju cilja), njegov dual nije dopustiv.
+\item Ako je primalni problem ($P$) neograničen (ima neograničenu funkciju cilja), njegov dual nije dopustiv. Dokazati.
 \item Pokazati da vrijede odnosi dati u Tabeli~\ref{tab:primal-dual-relation}.
 \item Istražiti verziju simpleks metoda zvanu \emph{Dualni simpleks metod}.
 \item Koristeći Farkaš-ovu lemu, pokazati sljedeći rezultat. 
@@ -2737,7 +2759,7 @@ Pokazati da je dual dualnog problema ponovo primalni problem ($P$).
  	\item $y^T A = 0, y^T b < 0, y \geq 0.$
  \end{enumerate}
  \item  %https://www.cs.cmu.edu/~odonnell/toolkit13/lecture13-anonymous.pdf
- Koristeći Furijer-Motzkin-ovu eliminaciju, pokazati da postoji rješenje za sljedeći sistem nejednačina:
+ Koristeći Fourijer-Motzkin-ovu eliminaciju, pokazati da postoji rješenje za sljedeći sistem nejednačina:
  \begin{align*} 
  	&x - 5y + 2 z \geq 7 \\
  	&3x - 2y - 6 z \geq -12 \\
@@ -2746,7 +2768,7 @@ Pokazati da je dual dualnog problema ponovo primalni problem ($P$).
  	& -10 y + z \geq -15 \\  
  	& x,y,z \geq 0.
  \end{align*}
-\item Pomoću Furijer-Motzkin-ovu eliminacije, pokazati sa je sistem 
+\item Pomoću Fourijer-Motzkin-ovu eliminacije, pokazati sa je sistem 
 \begin{align*}
 	&x_1 \geq 0 \\
 	&x_2 \geq 0 \\
@@ -2762,14 +2784,14 @@ $$\langle Ax^0-b,y^0\rangle=\langle A^Ty^0-c,x^0\rangle=0$$
 $$\min -x_1+2x_2+3x_3$$
 pri uslovima
 \begin{align}
-	& x_1-x_2+2x_3=1\\
-	& 2x_1+x_2\leqslant 3 \\
-	& x \geq 0 \\
-	& x_1\leqslant 0,\ x_2\geqslant 0, x_3\geqslant 0
+	& x_1-x_2+2x_3=1\nonumber\\
+	& 2x_1+x_2\leqslant 3\nonumber \\
+	& x \geq 0\nonumber \\
+	& x_1\leqslant 0,\ x_2\geqslant 0, x_3\geqslant 0 \nonumber
 \end{align}
 pa riješiti oba problema.
 
-\item Koristeći teoriju dualnosti, riješiti zadatak linearnog programiranja
+\item Koristeći teoriju dualnosti, riješiti problem linearnog programiranja
 
 $$\min x_1+x_2+\cdots nx_n$$
 
@@ -2783,7 +2805,7 @@ $$
 	&x_1\geqslant 0,\ x_2\geqslant 0,\cdots,x_n\geqslant 0.
 \end{aligned}$$
 \end{enumerate}
-\newpage
+%\newpage
 \chapter{Cjelobrojno Programiranje}
 
 %https://www.google.com/url?sa=t&source=web&rct=j&url=https://web.mit.edu/15.053/www/AMP-Chapter-09.pdf&ved=2ahUKEwiN0cef_f7xAhU0CRAIHWLqCw0QFjAfegQILBAC&usg=AOvVaw1cQCbZJQbc55Z0VLPue2ul
