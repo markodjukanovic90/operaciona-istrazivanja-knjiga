@@ -2635,7 +2635,7 @@ Jedno od važnih pitanja vezano za problem  LP-a je sljedeće.
 
 Problem dopustivosti može da služi i da odgovorimo na sljedeće pitanje: 
 \emph{Da li je optimalna vrijednost funkcije cilja problema LP-a veća od neke unaprijed zadate  vrijednosti k?}
- Na ovo pitanje možemo odgovoriti pomoću  \emph{Furije–Mockin}-ove eliminacije. Ova metoda je strukturalno drugačija  od simpleks metode. Ideja algoritma je zasnovana na redukciji problema sa $n$ promjenljivih na ekvivalentan problem sa $n-1$ promjenljivih. Ekvivalentnost podrazumijeva da početni problem ima rješenje akko  ga ima i redukovani problem. Eliminacija promjenljivih se vrši iterativno, odnosno, u svakom koraku se smanjuje broj (nepoznatih)  promjenljivih. Na kraju se početni sistem svodi na sistem sa jednom promjenljivom, za koji se lako može provjeriti da li sadrži dopustivo rješenje.
+ Na ovo pitanje možemo odgovoriti pomoću  \emph{Furije–Mockinove} eliminacije. Ova metoda je strukturalno drugačija  od simpleks metode. Ideja algoritma je zasnovana na redukciji problema sa $n$ promjenljivih na ekvivalentan problem sa $n-1$ promjenljivih. Ekvivalentnost podrazumijeva da početni problem ima rješenje akko  ga ima i redukovani problem. Eliminacija promjenljivih se vrši iterativno, odnosno, u svakom koraku se smanjuje broj (nepoznatih)  promjenljivih. Na kraju se početni sistem svodi na sistem sa jednom promjenljivom, za koji se lako može provjeriti da li sadrži dopustivo rješenje.
  
  Ponovimo, glavni korak ovog metoda je redukcija problema na ekvivalentan problem sa manjim brojem promjenljivih. Pretpostavimo da su ograničenja data sa varijablama $x_1,\ldots, x_n$ i da želimo da eliminišemo varijablu $x_n$. Za svako od ograničenja
  \begin{equation}\label{eq:inequality_i}
