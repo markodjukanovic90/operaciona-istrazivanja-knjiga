@@ -1936,7 +1936,7 @@ Kako su svi koeficijenti doprinosa ($\overline{c}$ varijable) manje od 0, simple
  U teoriji linearnog programiranja, ali i teoriji optimizacije uopšte, pod dualnošću podrazumijevamo da se neki problem može posmatrati s dva različita aspekta: kao primalni i kao dualni problem. 
 Preciznije, teorija dualnosti povezuje dva problema linearnog programiranja -- jedan od njih je problem linearnog programiranja koji maksimizuje funkciju cilja, dok je drugi linearan program  koji minimizuje (ne obavezno istu) funkciju cilja.  Na osnovu istih ulaznih podataka, svaki problem LP-a se može navesti u drugom, ekvivalentnom obliku. Ponekad rješavanje dualnog problema LP-a može da bude puno lakše nego rješavanje početnog problema.  Dualnost implicira da svaki problem linearnog programiranja možemo analizirati na dva potpuno različita načina, ali sa ekvivalentnim (optimalnim) rješenjima. 
 
-U ovom poglavlju ćemo najprije objasniti kako od početnog, primarnog problema formirati dualni problem. Nakon toga, biće navedene Teoreme o slaboj i jakoj dualnosti, koje daju vezu između rješenja i ograničenja primarnog i dualnog problema. U nastavku poglavlja su objašnjene još neke važne tehnike koje se koriste za rješavanje problema linearnog programiranja: metod unutrašnje tačke, Farkašova lema i Fourier-Motzkin-ova eliminacija.
+U ovom poglavlju ćemo najprije objasniti kako se od početnog, primarnog problema formira dualni problem. Nakon toga, biće navedene Teoreme o slaboj i jakoj dualnosti, koje daju vezu između rješenja i ograničenja primarnog i dualnog problema. U nastavku poglavlja su objašnjene još neke važne tehnike koje se koriste za rješavanje problema linearnog programiranja: metod unutrašnje tačke, Farkašova lema i Fourier-Motzkin-ova eliminacija.
  
  Prije nego što uvedemo pojam dualnog problema, objasnimo motivaciju koja stoji iza nastanka teorije dualnosti.
  
@@ -1946,18 +1946,18 @@ U ovom poglavlju ćemo najprije objasniti kako od početnog, primarnog problema 
  
 $$ 
 \begin{array}{lllll}
-    \max                  &x_1 &+& x_2   &               \\
+    \max                f((x_1,x_2))=  &x_1 &+& x_2   &               \\
     \mbox{t.d.}  &4x_1 & +&3 x_2 & \leq 9        \\
                           &x_1 &+ &x_2   &  \leq 8       \\
                           &x \geq 0  &  &     &      
  \end{array}
 $$
-Označimo funkciju cilja sa $f$. Iz uslova je jasno da su gornje granice date sa $f(x_1,x_2) = x_1 + x_2 \leq 4 x_1 + 3 x_2 \leq 9$, kao i 
+ Iz uslova je jasno da su gornje granice date sa $f(x_1,x_2) = x_1 + x_2 \leq 4 x_1 + 3 x_2 \leq 9$, kao i 
 $f(x_1,x_2) \leq x_1 + x_2 \leq 8$. Gornje granice se mogu i poboljšati na osnovu sljedećeg niza nejednakosti
 $$f(x_1,x_2) \leq \frac{1}{4}(  4 x_1 + 3 x_2  ) + \frac{1}{4}(    x_1 +   x_2 ) = \frac{5}{4}x_1 + x_2 \leq  \frac{9}{4} + 2 = \frac{17}{4},$$ 
 čime dobijamo bolju gornju granicu funkcije $f$. 
 
-Uradimo sada slično izvođenje u opštijem obliku. Iskoristimo ograničenja data u modelu, i iskombinujmo ih sa koeficijentima funkcije cilja na sljedeći način. Neka su $y_1, y_2 \geq 0$ koeficijenti sa kojima množimo ograničenja u početnom modelu. Tada imamo 
+Izvedimo sada ovakvu konstrukciju u opštijem obliku. Iskoristimo ograničenja data u modelu, i iskombinujmo ih sa koeficijentima funkcije cilja na sljedeći način. Neka su $y_1, y_2 \geq 0$ koeficijenti sa kojima množimo ograničenja u početnom modelu. Tada imamo 
 \begin{align*}
     &y_1 \cdot (4x_1 + 3x_2) \leq 9 y_1 \\
     &y_2 \cdot (x_1 + x_2 ) \leq 8 y_2 
@@ -1975,19 +1975,19 @@ $$\begin{array}{ll}
                   &            y=(y_1,y_2) \geq 0.
 \end{array}$$
 U oštem slučaju,  za problem ($P$) %~(\ref{eq:LP-o1})--(\ref{eq:LP-c2}), 
-\begin{align}
+\begin{align*}
 	& \max c^T x  \\
 	& \mbox{t.d.} \nonumber \\
 	& A x \leq b \\
 	& x \geq 0.
-\end{align}
-odgovorarajući dualni problem, označen sa ($D$), je dat sa 
-\begin{align}
+\end{align*}
+odgovorarajući dualni problem ($D$)  je dat sa 
+\begin{align*}
      & \min b^T y  \\
      & \mbox{t.d.} \nonumber \\
      & A^T y \geq c \\
      & y \geq 0.
-\end{align}
+\end{align*}
 
 \section{Teoreme dualnosti}
 U ovom odjeljku ćemo navesti najvažnije teoreme koje omogućavaju primjenu teorije dualnosti na rješavanje problema linearnog programiranja.
@@ -1997,21 +1997,21 @@ U ovom odjeljku ćemo navesti najvažnije teoreme koje omogućavaju primjenu teo
   $$ c^T x \leq b^T y.$$
 \end{thm}
 \begin{proof}
-         Kako je $x \geq 0$ i $A^T y \geq c $,  transponovanjem obje strane dobijemo 
-         $y^T A \geq c^T$. Množenjem obje strane posljednje nejednakosti sa $x$, dobijamo 
+         Kako je $A^T y \geq c $,  transponovanjem obje strane dobijemo 
+         $y^T A \geq c^T$. Množenjem obje strane posljednje nejednakosti sa $x \geq 0$, dobijamo 
          $$y^TAx \geq c^T x.$$ Kako je $Ax \leq b$ i $y \geq 0$,  tada dobijamo 
          $ y^T b = b^T y  \geq c^T x$
 \end{proof}
 Iz Teoreme  slabe dualnosti slijedi sljedeća važna posljedica.
 \begin{poslje}
-	Ako je $y$ dopustivo rješenje problema  ($D$),  onda bilo koje dopustivo rješenje $x$ problema ($P$) je ograničeno odozgo sa $b^T y$. Prema tome, ako je problem ($D$) dopustiv, onda je ($P$) ograničen. Slično se može pokazati da ovo vrijedi i kada problemi ($P$) i ($D$) zamijene uloge.
+	Ako je $y$ dopustivo rješenje problema  ($D$),  onda bilo koje dopustivo rješenje $x$ problema ($P$) je ograničeno odozgo sa $b^T y$. Prema tome, ako je problem ($D$) dopustiv, onda je ($P$) ograničen. Slično se može pokazati da vrijedi i obrnuto,  kada problemi ($P$) i ($D$) zamijene uloge.
 \end{poslje}
 
 Pokažimo da važi i naredno tvrđenje, koje ćemo koristiti u dokazu Teoreme jake dualnosti.
 
 \begin{prop}  
     Ako je $x^*$ dopustivo rješenje za  ($P$), $y^*$ dopustivo rješenje za ($D$) i ako vrijedi 
-    $c^T x^* = b^T y^*$, onda je $x^*$ optimalno rješenje za problem  ($P$), dok je $y^*$ optimalno rješenje za problem  ($D$).  
+    $c^T x^* = b^T y^*$, onda je $x^*$ optimalno rješenje za problem  ($P$), a $y^*$ optimalno rješenje za problem  ($D$).  
 \end{prop}
 \begin{proof}
         Neka je $x$ bilo koje dopustivo rješenje problema ($P$). Iz teoreme o slaboj dualnosti imamo $c^T x  \leq b^T y^* = c^T x^*$, odakle slijedi da je $x^*$ upravo optimalno rješenje problema  ($P$).
@@ -2023,7 +2023,7 @@ Pokažimo da važi i naredno tvrđenje, koje ćemo koristiti u dokazu Teoreme ja
 \end{thm}
 \begin{proof}
          Napišimo ograničenja probema ($P$) kao $Ax + s = b, x, s \geq 0$.
-         Primijenimo simpleks metod, pa posmatrajmo posljednju  simpleks tabelu, odnosno tabelu iz koje je dobijeno rješenje $x^*$.
+         Primijenimo simpleks metod, pa posmatrajmo posljednju  simpleks tabelu, odnosno tabelu iz koje se dobija rješenje $x^*$.
          
          $$\begin{array}{c |c | c}
          \overbrace{\ \ \ \ \ \hspace{1.5cm}}_{x \mbox{ varijable}}     &  \overbrace{\ \ \ \ \ \hspace{1.5cm}}_{s \mbox{ varijable}} &   \\
@@ -2052,26 +2052,29 @@ Pokažimo da važi i naredno tvrđenje, koje ćemo koristiti u dokazu Teoreme ja
 
 Dalje, važi i $c^T x = ((c^*)^T + (y^*)^T A ) x$, odnosno     $ c = A^T y^* + c^*$. 
     
-    \fxnote{Marko, provjeri da li sam ovo dobro prepravio.}
-    
-    Kako je $c^* \leq 0$, imamo  $A^T y^* \geq c$. Kako je $-y^* \leq 0$, slijedi da je $y^*$ dopustivo rješenje za  ($D$).  Iz (\ref{eq:f_y_star}) je pokazano da je vrijednost funkcije cilja u $y^*$ upravo $f^*$. Iz Teoreme slabe dualnosti slijedi da je $y^*$ optimalno rješenje problema  ($D$). 
-    
-     \fxnote{Marko, je li ovo slijedi iz teoreme, ili iz propozicije?}
+    Kako je $c^* \leq 0$, imamo  $A^T y^* \geq c$. Kako je $-y^* \leq 0$, slijedi da je $y^*$ dopustivo rješenje za  ($D$).  Iz (\ref{eq:f_y_star}) imamo da je vrijednost funkcije cilja u $y^*$ upravo $f^* = c^T x^* $. Iz Propozicije 5.1  slijedi da je $y^*$ optimalno rješenje problema  ($D$). 
+ 
     
 \end{proof} 
 Primijetimo da koeficijenti $y^*$ posljednje vrste završne simpleks tabele odgovaraju  ``izjednačavajućim''   varijablama i one nam daju rješenje problema  ($D$).  
 
-\begin{primjer} Moguće je da i problem ($P$) i odgovarajući dual ($D$) nemaju dopustivo rješenje. Pogledajte sljedeći primjer:
+\begin{primjer} Moguće je da problem ($P$) i njegov   dual ($D$) nemaju dopustivo rješenje. Pogledajte sljedeći primjer:
 	\end{primjer}
 $$\begin{array}{cc}
     \max          & 2 x_1 - x_2 \\
-     {s.t. }      & x_1 - x_1 \leq 1 \\
+     {t.d. }      & x_1 - x_2 \leq 1 \\
                   & -x_1 + x_2 \leq -2 \\
                   & x_1, x_2 \geq 0.
 \end{array}$$
-i pokažite da je to slučaj.
-
-\fxnote{Marko, slazem se sa Milanom da primjer uradimo na ovom mjestu.}
+%i pokažite da je to slučaj.
+\emph{Rješenje.} Množenjem drugog ograničenja sa -1, dobijamo $x_1 - x_2 \geq 2$, što u kombinaciji sa prvim ograničenjem jasno pokazuje da problem ($P$) nema dopustivih rješenja. Dualni problem ($D$) ovog LP-a je dat sa 
+$$\begin{array}{cc}
+	\min          &x_1 - 2x_2 \\
+	{t.d. }       & y_1 -y_2 \geq 2 \\
+				  & -y_1 + y_2 \geq -1 \\
+				  & y_1, y_2 \geq 0.
+\end{array}$$
+Množeći drugo ograničenje sa -1, dobijamo $y_1 -y_2 \leq 1$, što u kombinaciji sa prvim ograničenjem jasno pokazuje da problem ($D$) nema dopustivo rješenje. ~
 
 Analizirajmo sada i koncept  \emph{komplementarnosti} (eng. \emph{complementary slackness}), koji nam omogućava da uspostavimo još neke važne odnose između promjenljivih i ograničenja primarnog i dualnog problema. 
 \begin{thm}[Teorema komplementarnosti]
@@ -2165,8 +2168,6 @@ Dalje, može se pokazati da je optimum duala u presjeku prave $12 y_1 + 3 y_2 = 
 \end{align}
 odakle dobijamo rješenje $x_1 = 10, x_3 = 15$, pa je optimalno rješenje $x^* = (10, 0, 15, 0)$.
 
-\fxnote{dragan: prebacio sam zadatak medju zadatke}
-
 \begin{figure}[H]
     \centering
     \includegraphics[width=190pt, height=190pt]{fig6.eps}
@@ -2195,8 +2196,6 @@ jednog problema i promjenljivih u drugom problemu je data sljedećom tabelom.
 
 \section{Metod unutrašnje tačke}
 
-\fixme{Dragan: dodao sam zadatak na kraju poglavlja iz simpleks metode}
-
 Simpleks metod ne garantuje   rješavanje proizvoljnog problema LP u polinomijalnom broju koraka u odnosu na veličinu ulaza. % V. Klee and G. Minty constructed an example LP: simplex method needs 2^n iterations to solve it 
 %Dakle, iz njega se ne može zaključiti da je problem rješavanja generalnog LP problema   polinomijalno rješiv. 
 
@@ -2204,13 +2203,13 @@ U ovoj sekciji ćemo prikazati konstrukciju  \emph{Metoda unutrašnje tačke}, k
 %, čime se pokazuje da rješavanje problema LP-a pripada klasi $\mathcal{P}$. 
 %Iako u praksi često ne postiže dobre  performanse kao simpleks metod, ovaj metod je veoma važan sa teorijskog aspekta, 
 
-\fixme{izbacio sam prethodnu recenicu, jer ona mozda nije ni tacna, jer sam nasao na par mjesta recenicu da je on i prilicno efikasan}
+%\fixme{izbacio sam prethodnu recenicu, jer ona mozda nije ni tacna, jer sam nasao na par mjesta recenicu da je on i prilicno efikasan}
 
-   \emph{Metod unutrašnje tačke} (eng. \emph{Interior point metod}) je dizajniran 50-ih godina XX vijeka. Sve do 80-ih godina XX vijeka nije smatran algoritmom koji efikasno  rješava probleme velikih dimenzija. Tek 1984.godine, N. Karmakar, inžinjer u IBM-u,  formalno dokazuje da se ovaj algoritam izvršava u polinomijalnom broju koraka za unaprijed zadatu preciznost optimalne vrijednosti. U današnje vrijeme, zbog ekstremnog poboljšanja performansi mašina, pokazalo se da je {metod unutrašnje tačke} kompetentan sa simpleks metodom u situacijama kada se radi o problemima izuzetno velikih dimenzija, gdje matrice problema sadrže $10^9$ i više elemenata.
+   \emph{Metod unutrašnje tačke} (eng. \emph{Interior point metod}) je dizajniran 50-ih godina XX vijeka. Sve do 80-ih godina XX vijeka nije smatran algoritmom koji efikasno  rješava probleme velikih dimenzija. Tek 1984. godine, N. Karmakar, inžinjer u IBM-u,  formalno dokazuje da se ovaj algoritam izvršava u polinomijalnom broju koraka za unaprijed zadatu preciznost optimalne vrijednosti. U današnje vrijeme, zbog ekstremnog poboljšanja performansi mašina, pokazalo se da je {metod unutrašnje tačke} kompetentan sa simpleks metodom u situacijama kada se radi o problemima izuzetno velikih dimenzija, gdje matrice problema sadrže $10^9$ i više elemenata.
 
 Za razliku od simpleks metoda, koji ``šeta'' po granicama poliedra (dopustivog regiona) u potrazi za optimalnim rješenjem, {metod unutrašnje tačke}, kako i samo ime kaže, se kreće po unutrašnjim tačkama poliedra,  dok ne naiđe na  optimalno rješenje. 
 
-Postoji nekoliko metoda ove vrste, kao što su: metod centralne putanje, redukcija potencijala, afino skaliranje, itd. U ovoj sekciji ćemo razmatrati metod centralne putanje. Napomenimo i da ćemo se baviti rješavanjem problema LP-a koji je dat u obliku (\ref{eq:lp_equality_constraint}). 
+Postoji nekoliko metoda ove vrste, kao što su: metod centralne putanje, redukcija potencijala, afino skaliranje, itd. U ovoj sekciji ćemo razmatrati metod centralne putanje. Napomenimo i da ćemo se baviti rješavanjem problema LP-a koji je dat u obliku (\ref{eq:lp_equality_constraint}). Napomenimo da razumijevanje procesa konstrukcije metode  unutrašnje tačke zahtjeva poznavanje osnovnih pojmova i teorema klasične matematičke analize sa više promjenjivih, kao i iterativnih numeričkih metoda za rješavanje (nelinearnih) sistema jednačina. Dalje, kako je konstrukcija ovog algoritma iznimno zahtjevna, neke teoreme, ili dijelovi teorema koji koriste ovoj svrsi, će biti  navedeni bez dokaza i ulaženja u detalje. Dakle, više ćemo se fokusirati na ideju i razumijevanje glavnih koraka u konstrukciji ovog algoritma.
 
 Neka je par Primal-dual linearnih programa dat sa
 
@@ -2222,15 +2221,15 @@ $$ \begin{array}{llll}
 \end{array}
 $$
 
-\fixme{dovde sam stao - prebacujem se na Fakrasovu lemu}
+  
 \begin{definition}
-Lagranžijan primal-dual linearnih programa definišemo sa 
+Lagranžijan primal-dual linearnih programa se definiše sa 
 \begin{equation}
 	L(x,y) = c^Tx - y^T(Ax - b) - s^T x.
 \end{equation}
 \end{definition}
 
-Postoji niz teorema koje obezbjeđuju dovoljne optimalne uslove za LP-a. U nastavku navodimo najvažnije od njih. 
+Postoji niz teorema koje obezbjeđuju dovoljne  uslove za nalazak optimalnog rješenja LP-a. U nastavku navodimo najvažnije od njih. 
 %http://www.optimization-online.org/DB_FILE/2008/06/2024.pdf
 \begin{thm}
 	 Pretpostavimo da postoje $y \in \mathbb{R}^m, s \in \mathbb{R}^n$ tako da je 
@@ -2244,7 +2243,7 @@ Postoji niz teorema koje obezbjeđuju dovoljne optimalne uslove za LP-a. U nasta
 \begin{proof}
 	 Pretpostavimo da je $x$ dopustivo za Primal ($P$). Tada vrijedi
 	 $$ c^Tx = (A^Ty + s)^Tx = s^Tx + y^Tb \geq b^T y.$$
-	 Dakle, pokazali smo tvrdnju. Štaviše, vrijednost $b^Ty$ je donja granica na optimalnu vrijednost Primal-a. Takođe, ako je $s^T x = 0$ donja granica je dostignuta, i $x$ je optimalno rješenje Primal-a.
+	 Dakle, pokazali smo tvrdnju. Štaviše, vrijednost $b^Ty$ je donja granica za optimalnu vrijednost Primal-a. Takođe, ako je $s^T x = 0$ donja granica je dostignuta, te je $x$ je optimalno rješenje Primal-a.
 \end{proof}
 \begin{thm}
 	Pretpostavimo da Primal ima barem jedno optimalno rješenje. Vektor $x \in \mathbb{R}^n$ je optimalno rješenje za Primal akko postoje $y \in \mathbb{R}^m, s\in \mathbb{R}^n$ tako da 
@@ -2258,17 +2257,19 @@ Postoji niz teorema koje obezbjeđuju dovoljne optimalne uslove za LP-a. U nasta
 Optimalna vrijednost je data sa $b^T y$.
 \end{thm}
 \begin{proof}
- Za potrebne uslove, neka je $\tilde{x}$ optimalno rješenje za Primal. Zbog uslova dopustivosti za Primal, treba da vrijedi (\ref{eq:oc1}) i (\ref{eq:oc2}). Iz prethodne teoreme je pokazano da je optimalna vrijednost Primala  jednaka $b^Ty$ te dodatno da je $\tilde{x}$ optimalno samo ako je $s^T \tilde{x}=0$, pa vrijedi i (\ref{eq:oc5}).
+ Za potrebne uslove, neka je $\tilde{x}$ optimalno rješenje za Primal. Zbog uslova dopustivosti za Primal, treba da vrijedi (\ref{eq:oc1}) i (\ref{eq:oc2}). Iz Teoreme 5.4, imamo da je optimalna vrijednost Primala  jednaka $b^Ty$ te dodatno da je $\tilde{x}$ optimalno samo ako je $s^T \tilde{x}=0$, pa vrijedi i (\ref{eq:oc5}).
  
- 	Dovoljni uslovi se mogu pokazati na osnovu koraka konstrukcije simpleks metode  i teoreme o komplementarnosti. Prema tome, ako postoje $x, y, s$ koji zadovoljavaju uslove optimalnosti, onda je $x$ optimalno rješenje.
+ 	Dovoljni uslovi se mogu pokazati na osnovu koraka konstrukcije simpleks metode  i teoreme o komplementarnosti. Ovaj dokaz ne navodimo ovdje, jer je tehnički dosta zahtjevan. 
+ 	
+ 	 Prema tome, ako postoje $x, y, s$ koji zadovoljavaju uslove optimalnosti, onda je $x$ optimalno rješenje.
 \end{proof}
 
-Drugi način da se dođe do uslova optimalnosti je preko Lagranžijana $L$ para Primal-Dual, tj. nalazak stacionarne tačke za $L$, odakle nalazimo optimalno rješenje (oba problema).  Uslovi za nalazak stacionarne tačke se mogu izvesti iz sistema
+Drugi način da se dođe do uslova optimalnosti posmatrati Lagranžijan $L$ para Primal-Dual i naći stacionarne tačke za $L$, odakle nalazimo optimalno rješenje oba problema.  Uslovi za nalaženje stacionarne tačke se dobijaju iz sistema
 \begin{align}
 	&\triangledown_x L(x,y) = 0\\
 	&\triangledown_y L(x,y) = 0,
 \end{align} 
-što nas (uz uslov komplementarnosti za $x$ i $y$) ponovo dovodi do sistema:
+što nas, uz uslov komplementarnosti za $x$ i $y$, ponovo dovodi do sistema
 \begin{align}
 	&Ax = b \\
 	&A^T y + s = c \\
@@ -2277,22 +2278,22 @@ Drugi način da se dođe do uslova optimalnosti je preko Lagranžijana $L$ para 
 \end{align}
 gdje je $X = diag (x_1, \ldots, x_n)$, $S= diag(s_1,\ldots s_m)$, $\mathbf{1}=(1,\ldots, 1)$. Ovaj sistem nazivamo \emph{uslov optimalnosti prvog reda za primal-dual par}. 
 
-U nastavku navodimo pojam barijernog problema preko koga razvijamo metod unutrašnje tačke. Zamijenimo ograničenja nenegativnosti u primalnom problemu sa $-ln x_j$, $j=1,\ldots,n$.   
-Primijetite da vrijedi 
+U nastavku navodimo pojam barijernog problema preko kojeg razvijamo metod unutrašnje tačke. Zamijenimo ograničenja nenegativnosti u primalnom problemu sa $-ln x_j$, $j=1,\ldots,n$.   
+Tada vrijedi 
 $$\min e^{-\sum_{j=1}^n ln x_j} \Leftrightarrow \max \prod_{j} x_j $$
-Dakle, minimizacija izraza $-\sum_{j=1}^n x_j$ je ekvivalentna maksimizaciji proizvoda udaljenosti od svih hiperravni koje definišu prvi ortant. Dakle, ovakav optimizacioni problem (na prvom ortantu) nas sprečava da se vrijednost neke od varijabli $x_j$ približi nuli (uprkos nenegativnim ograničenjima).  Na osnovu ovih činjenica, definišimo sljedeći optimizacioni problem. 
+Dakle, minimizacija izraza $-\sum_{j=1}^n x_j$ je ekvivalentna maksimizaciji proizvoda udaljenosti od svih hiperravni koje definišu prvi ortant (skup svih vektora kojima su koordinate nenegativne). Dakle, ovako definisan optimizacioni problem će onemogućiti da se vrijednost neke od varijabli $x_j$ približi nuli (uprkos nenegativnim ograničenjima).  Na osnovu ovih činjenica, definišimo sljedeći optimizacioni problem. 
 
 \begin{definition}
 	Barijerni program  primala je dat u obliku 
 	\begin{align*}
 		&\min c^T x - \mu \sum_{j=1}^n ln(x_j) \\
-		&{s.t. \ } A x = b \\
+		&{t.d. \ } A x = b \\
 		& x \geq 0
 	\end{align*}
 \end{definition}
 za neki $\mu >0$. Lagranžijan barijernog problema je dat sa 
 $$  L(x, y, \mu) = c^T x - \mu \sum_{j=1}^n ln(x_j)  - y^T(Ax - b) $$
-Sljedeću teoremu iz teorije optimizacije  za skalarne funkcije sa uslovnim ekstremima, koja je od bitne važnosti u daljem razmatranju, navodimo   bez dokaza. 
+Sljedeća teoremu koja razmatra skalarne funkcije sa više promjenjivih sa uslovnim ekstremima je važna u daljem razmatranju; navodimo  je bez dokaza. 
 \begin{thm}
 	Neka je data skalarna funkcija  $f:\mathbb{R}^n \mapsto \mathbb{R}$ na skupu $g_1(x)=g_2(x)= \cdots = g_m(x) =0$ koja ima minimum u $x^*$. Onda vrijedi 
 	$$ \triangledown f (x^*) = \sum_{i=1}^m y_i \triangledown g_i(x^*),$$
@@ -2318,7 +2319,9 @@ Uvedimo nenegativni vektor $s =\mu \cdot \left(\frac{1}{x_1}, \frac{1}{x_2}, \ld
 Primijetimo da ovaj uslov aproksimira iste uslove za primal-dual par.  
 Interesantno je da parametar $\mu$ kontroliše udaljenost od optimalnosti, tj. 
 $$ c^T x - b^T y = c^T x - x^T A y = x^T(c- A^Ty ) = x^T s = n \mu.$$
- Problem u rješavanju leži u činjenici da uslovi~(\ref{eq:primal-dual-central-path-problem}) ne daju linearni sistem, jer treće ograničenje  nije linearno.
+Primijetimo da uslovi~(\ref{eq:primal-dual-central-path-problem}) ne daju linearni sistem, jer treće ograničenje  nije linearno. 
+
+\fxnote{Marko: stigao sam dovde.}
 
 \begin{definition}
 	Primal-dual centralni put $\{(x(\mu), y(\mu), s(\mu)) \in \mathbb{R}^{2n + m} \mid \mu > 0, x(\mu) >0, s(\mu)>0 \}$ je (jedinstveno) rješenje koje zadovoljava uslove (\ref{eq:primal-dual-central-path-problem}) parametrizovano sa $\mu$. 
