@@ -3327,53 +3327,58 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
    
    Neka su dati literali $x_1, \ldots, x_n$. Svaki literal može da bude pozitivan ($x_1$) ili negativan  ($\neg x_1$). Kažemo da je formula napisana u \emph{konjunktivnoj normalnoj formi} (CNF) akko je napisana kao konjunkcija klauzula ili literala. Pod klauzulom podrazumijevamo formulu koja je sastavljena od literala povezanih disjunkcijama. Npr. formula $\phi(x_1, x_2, x_3)= (x_1 \vee  \neg x_2) \wedge (x_1 \vee x_3)$ je napisana u CNF. U njoj postoje dvije klauzule sastavljena od po dva literala. CNF formula $\phi(x)$ je zadovoljiva akko postoji dodjela $\overline{x}$ literalima ($\overline{x}_i \in \{TRUE, FALSE\}$) tako da je $\phi(\overline{x})$ tačna, prema zakonima Bulove algebre.  
    
-   \fixme{dovde}
+
    Kažemo da je konjunktivna formula $\phi(x)$  napisana u 3--CNF  akko se u svakoj klauzuli nalazi najviše 3 različita literala. Napomenimo da se, u smislu rješivosti, proizvoljna klauzula može redukovati u 3--CNF. Dakle, svaka klauzula 
    $l_1 \vee l_2 \vee \cdots \vee l_n$ se prevodi u 3--CNF na sljedeći način:
    \begin{align*}
        &(l_1 \vee l_2 \vee x_2) \wedge ( \neg x_2 \vee l_3 \vee x_3) \wedge ( \neg x_3 \vee l_4 \vee x_4 ) \wedge \cdots \wedge (\neg x_{n-3} \vee l_{n-3} \\
        &\vee x_{n-2} ) \wedge ( \neg x_{n-2} \vee l_{n-1} \vee l_n ).  
     \end{align*}    
-      Imajte na umu da ove formule nisu logički ekvivalentne ali su ekvivalentne u smislu zadovoljenja. 
-    Pokazano je da je problem 3--SAT, gdje je ulaz 3--CNF formula,  u opštem slučaju NP-kompletan problem.  
+\fixme{marko, da li ima potrebe da se objasnjava sta su ove x promjenljive?}
+
+      Treba imati na umu da ove formule nisu logički ekvivalentne, ali su ekvivalentne u smislu zadovoljenja. 
+    Poznato je da je problem 3--SAT, gdje je ulaz 3--CNF formula,  u opštem slučaju NP-kompletan problem.  
     
    \begin{thm}
    	  Rješivost ILP-a je NP-težak problem.
    \end{thm}
    \begin{proof}
    	   Izvedimo redukciju sa 3-SAT problema. Neka je dat 3--SAT izraz sa literalima  
-   	   $x_1,\ldots, x_n$.  Konstruišimo ILP instancu sa varijablama $z_1, \ldots, z_n$ gdje imamo:
+   	   $x_1,\ldots, x_n$.  Konstruišimo ILP instancu sa varijablama $z_1, \ldots, z_n$ na sljedeći način.
+   	   Svaka klauzula $\phi_i(x)$ je konvertovana u nejednakost,  gdje važi:
    	   \begin{itemize}
-   	   	   \item Svaka klauzula $\phi_i(x)$ je konvertovana u nejednakost gdje
-   	   	      $z_i = x_i$, ako je $x_i$ pozitivan literal u klauzuli $\phi$, odnosno $z_i = 1 - x_i$ ako je $x_i$ negativan literal u klauzuli $\phi$ (negacija ispred). Primjera radi, ako je data instanca problema 3-SAT sa 
+   	   	\item $z_i = x_i$, ako je $x_i$ pozitivan literal u klauzuli $\phi$, odnosno 
+   	   	\item $z_i = 1 - x_i$ ako je $x_i$ negativan literal u klauzuli $\phi$ (negacija ispred).
+   	   \end{itemize}
+   	   	       Primjera radi, ako je data instanca problema 3-SAT sa 
    	   	      $\phi(x) = (x_1 \vee \neg x_2 \vee \neg x_3) \wedge ( x_2 \vee \neg x_4 \vee x_5 )$, transformišemo je (u polinomijalnom vremenu) na instancu ILP-a
    	   	      \begin{align*}
    	   	         	 &z_1 + (1- z_2) + (1 - z_3 ) \geq 1 \\
    	   	         	 &z_2 + (1-z_4)  + z_5 \geq 1 \\
    	   	         	 & z_i \in \{0,1\}, i=1,\ldots,5.
    	   	      \end{align*} 
-   	   \end{itemize}
-   	   Dakle, iz gornje redukcije, nalazak rješenja ILP instance odgovara nalasku dodjele $\overline{x}$ literalima tako da je formula $\phi$ zadovoljena. Dakle, treba da se provjeri da li je ILP instanca dopustiva. Takođe, lako je vidjeti da je ova redukcija polinomna. Prema tome, ILP je NP-težak, s obzirom da je 3--SAT problem NP-kompletan. 
+
+   	   Dakle, iz gornje redukcije, pronalazak rješenja ILP instance odgovara određivanju dodjele $\overline{x}$ literalima, tako da je formula $\phi$ zadovoljena.\fixme{marko, ovu recenicu popravi: Dakle, treba da se provjeri da li je ILP instanca dopustiva.} Takođe, lako se vidi da je ova redukcija polinomna. Prema tome, ILP je NP-težak, s obzirom da je 3--SAT problem NP-kompletan. 
    \end{proof} 
  Može se pokazati i sljedeća teorema.
  \begin{thm} Neka je $k\in \mathbb{Z}$.
- 	 Problem odlučivanja da li postoji cjelobrojno rješenje u ILP-u (pod uslovom da minimizujemo)   vrijednosti manje od $k$ je NP--kompletan. 
+ 	 Problem odlučivanja da li postoji cjelobrojno rješenje  ILP-a,  vrijednosti manje od $k$ je NP--kompletan, uz pretpostavku da je posmatrani ILP problem minimizacije. 
  \end{thm}
  
 \section{Zadaci}
 \begin{enumerate}
 	
-	\item Preduzeće za prikupljanje reciklažnog otpada raspolaže sa dvije deponije, koje su označene sa A i B. Dnevni troškovi održavanja deponije A su 300KM dnevno, a deponije B 45KM dnevno.  U deponiji A se dnevno prikupi 250 flaša i 100 limenki, dok se u deponiji B prikupi 160 flaša i 350 limenki. Da bi se isplatio rad deponija mjesečno treba prikupiti barem 5200 flaša i 4000 limenki.
+	\item Preduzeće za prikupljanje reciklažnog otpada raspolaže sa dvije deponije, koje su označene sa A i B. Dnevni troškovi održavanja deponije A su 300KM, a deponije B 45KM.  U deponiji A se dnevno prikupi 250 flaša i 100 limenki, dok se u deponiji B prikupi 160 flaša i 350 limenki. Da bi se isplatio rad deponija, mjesečno treba prikupiti barem 5200 flaša i 4000 limenki.
 	Koliko bi dana mjesečno trebale raditi obje deponije da budu isplative i da troškovi budu minimalni?
 	
 	\item Fabrika proizvodi artikle A i B te ih prodaje po cijeni 30 KM, odnosno 50 KM, po komadu. Za
 	proizvodnju fabrika koristi samo jednu mašinu, pri čemu je za proizvodnju artikla A potrebno 19
 	minuta, a proizvoda B 26 minuta. Tokom dana aparat može da radi najviše 8 sati. Odredi koliko treba
-	proizvesti proizvoda A, a koliko B, da bi zarada bila najveća.
+	proizvesti proizvoda A, a koliko B, da bi zarada bila maksimalna.
 	
-	\item Marko se sprema na planinarenje. Na raspolaganju ima samo jedan ruksak i pet namirnica, po jedan
+	\item Aleksandar se sprema na planinarenje. Na raspolaganju ima samo jedan ruksak i pet namirnica, po jedan
 	komad svake od njih. Ruksak je kapaciteta 2.5 $l$ i ne smije biti teži od 2 $kg$. U tabeli su
-	prikazani podaci o namirnicama
+	prikazani podaci o namirnicama.
 	\begin{table}[H]
 		\centering
 		\begin{tabular}{|c|c|c|c|}
@@ -3392,14 +3397,14 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
 			\hline
 		\end{tabular}
 	\end{table}
-	Kako treba napuniti tako da ukupna kalorijska vrijednost ponesenih namirnica bude maksimalna?
+	Kako treba napuniti ruksak da ukupna kalorijska vrijednost ponesenih namirnica bude maksimalna?
 	
-	\item Riješiti prethodni zadatak ako Marko na raspolaganju ima dovoljno veliki broj svih pojedinačnih namirnica.
+	\item Riješiti prethodni zadatak ako Aleksandar na raspolaganju ima dovoljno veliki broj svih pojedinačnih namirnica.
 	
 	
-	\item Preduzeće  razmatra izvođenje 5 trogodišnjih projekata, ali u svakoj godini može u to uložiti najviše
-	25 000 KM. Procjena troškova za svaki projekat u tri godine dana je tabelom (u hiljadama maraka), kao i
-	očekivana dobit od projekta (čista dobit – troškovi su oduzeti):
+	\item Preduzeće  razmatra izvođenje 5 trogodišnjih projekata, ali u svakoj godini može uložiti najviše
+	25 000 KM. Procjena troškova, u hiljadama maraka, za svaki projekat u tri godine, kao i
+	očekivana dobit od projekta (čista dobit – troškovi su oduzeti)  dati su tabelom:
 %	\begin{table}
 %	\centering
 %\begin{center}
@@ -3430,17 +3435,18 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
 
 	
 	%https://www.utc.fr/~dnace/dokuwiki/_media/fr/upt-cours-2012lp.pdf
-	\item Problem totalnog pokrivanja. %Neka je dato $n$ mijesta, te $m$ zahtjeva koji treba da budu ispunjeni ($d_1,\ldots, d_m$).  
-	Sa $D_c$ označimo maksimalnu daljinu koja se može pokriti instalacijom (skladišta, antene). Pod ``pokrivanjem'' podrazumijevamo ispunjavanje zahtjeva klijenata (koji žive u nekom mjestu). Sa $c_i$ označimo cijenu instalacije (antene, skladišta isl.) na mjesto $i$. Sa $d_{ij}$ označimo udaljenost između mjesta $i$ i $j$. Zadatak ovog problema je koja mjesta odabrati (za instaliranje antene, skladišta isl.) tako da su sva mjesta pokrivena, ali da pri tome minimizujemo troškove instalacija. Sa jednog odabranog mjesta se pokrivaju sva susjedna koja su u njegovom radijusu od $D_c$. 
-	\item Problem maksimalnog pokrivanja (eng. \emph{maximum coverage problem}). Neka je u ulazu data kolekcija skupova  $S=\{ S_1, \ldots, S_m\}$ te broj $k \in \mathbb{N}$. Potrebno je naći podskup $S' \subseteq S$, tako da je $|S'|\leq k$, a broj pokrivenih elemenata $|\bigcup_{s' \in S'} s'|$ je maksimizovan. \\
-	Uputstvo. Sa $x_j \in \{0, 1\}$ označimo varijablu koja dobija vrijednost 1 ako je skup $S_i$ odabran u rješenje $S'$, inače 0. Dodatno, sa $y_j \in \{0, 1 \}$ definišemo varijablu koja dobija vrijednost 1 ako je   element $e_j$ pokriven rješenjem.  
-%http://courses.ieor.berkeley.edu/ieor151/lecture_notes/ieor151_lec14.pdf
-	\item $P$-center problem čvorova (eng. \emph{vertex p-center problem}). Formulacija problema je  predstavljena neusmjerenim grafom $G = (I, J, E)$, gdje su čvorovi potražnje predstavljeni  vrhovima $i\in I$, moguće lokacije (servisnih) objekata date su drugim skupom vrhova $j \in J$ , a grane $e_{i,j} \in E$ postoje samo između čvorova $i \in  I$ i čvorova $j \in J$. Nadalje, čvorovima $d_{i,j}\geq 0$ dodjeljujemo pozitivne težine, što predstavlja udaljenost između čvorova $i$ i $j$. Imajte na umu da je moguće imati i udaljenost 0 između čvora potražnje i moguće lokacije objekta. Za svaki čvor $i \in I$ pridružena je težina (zahtjeva) $h_i>0$, koja predstavlja količinu zahtjeva tog čvora koja je može ispuniti u tom čvoru. 
+	\item U ovom zadatku je potrebno modelovati \emph{Problem totalnog pokrivanja}. %Neka je dato $n$ mijesta, te $m$ zahtjeva koji treba da budu ispunjeni ($d_1,\ldots, d_m$).  
+	Sa $D_c$ označimo maksimalnu daljinu koja se može pokriti instalacijom $c$. Pod instalacijom možemo da podrazumijevamo skladiše, antene i sl. Pod ``pokrivanjem'' podrazumijevamo ispunjavanje zahtjeva klijenata, koji žive u nekom mjestu. Sa $c_i$ označimo cijenu instalacije  na mjesto $i$. Sa $d_{ij}$ označimo udaljenost između mjesta $i$ i $j$. Zadatak ovog problema je da se odredi koja mjesta odabrati za lociranje instalacija, tako da su sva mjesta pokrivena, ali da pri tome minimizujemo troškove instalacija. Sa jednog odabranog mjesta se pokrivaju sva susjedna mjesta koja su u njegovom radijusu. 
+	\item U ovom zadatku se modeluje  \emph{Problem maksimalnog pokrivanja} (eng. \emph{maximum coverage problem}). Neka je na ulazu data kolekcija skupova  $S=\{ S_1, \ldots, S_m\}$ te broj $k \in \mathbb{N}$. Potrebno je naći podskup $S' \subseteq S$, tako da je $|S'|\leq k$, a broj pokrivenih elemenata $|\bigcup_{s' \in S'} s'|$ je maksimizovan. 
 	
-	U ovom problemu želimo postaviti $p$ objekata kako bismo smanjili maksimalnu udaljenost između bilo kojeg čvora potražnje i	njegovog servisnog objekta. 
+	\emph{Uputstvo}. Sa $x_j \in \{0, 1\}$ označimo promjenljivu koja dobija vrijednost 1 ako je skup $S_i$ odabran u rješenje $S'$, inače 0. Dodatno, sa $y_j \in \{0, 1 \}$ definišemo promjenljivu koja dobija vrijednost 1 ako je   element $e_j$ pokriven rješenjem.  
+%http://courses.ieor.berkeley.edu/ieor151/lecture_notes/ieor151_lec14.pdf
+	\item Potrebno je modelovati \emph{$P$-center problem čvorova} (eng. \emph{vertex p-center problem}). Formulacija problema je sljedeća. Ulazni podaci su predstavljeni neusmjerenim grafom $G = (I, J, E)$, gdje su objekti potražnje predstavljeni  vrhovima $i\in I$, a moguće lokacije (servisnih) objekata date su drugim skupom vrhova $j \in J$, Grane $e_{i,j} \in E$ postoje samo između čvorova $i \in  I$ i čvorova $j \in J$. Dalje, parovima čvorova su dodijeljene pozitivne težine $d_{i,j}\geq 0$, što predstavlja udaljenost između čvorova $i$ i $j$. Treba imati na umu da je moguće imati i udaljenost 0 između čvora potražnje i moguće lokacije objekta. Za svaki čvor $i \in I$ pridružena je težina zahtjeva $h_i>0$, koja predstavlja količinu zahtjeva koje taj čvor može da ispuni. 
+	
+	Zadatak je postaviti $p$ objekata kako be se smanjila maksimalnu udaljenost između bilo kojeg čvora potražnje i	njegovog servisnog objekta. 
 	\item %https://personal.utdallas.edu/~metin/Or6302/Notes/integer.pdf
 	 Pretpostavimo da se selimo u novi stan i da imamo samo dva kofera u koje možemo spakovati svoje stvari. U prvi kofer može da se spakuje 22 kg, a drugi 28 kg. Težina i vrijednosti stvari
-	su dati sa tabelom:
+	su dati sa tabelom
  \begin{table}[H]
  	\centering
 	\begin{tabular}{l|cccccccc}
@@ -3451,13 +3457,13 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
     
  \end{table}
 Konstruišite model koji maksimizuje vrijednost  predmeta koji mogu biti ubačeni u ova dva kofera. 
-\item Višedimenzionalni više-direkcioni problem particionisanja brojeva (eng. \emph{multidimensional multi-way number partitioning problem}). Neka je dat skup vektora $S$. Inače, vektori mogu da budu iz proizvoljneg prostora $\mathbb{R}^m, m \in \mathbb{N}$.   Zadatak je podijeliti skup $S$ na $p \geq 1$ particija tako da su sume vrijednosti  elemenata  po koordinatama po particijama podjednake (što manje moguće). 
+\item Višedimenzionalni više-direkcioni problem particionisanja brojeva (eng. \emph{multidimensional multi-way number partitioning problem}) se definiše na sljedeći način. Neka je dat skup vektora $S$. Vektori mogu da budu iz proizvoljneg prostora $\mathbb{R}^m, m \in \mathbb{N}$.   Zadatak je podijeliti skup $S$ na $p \geq 1$ particija tako da su sume vrijednosti  elemenata  po koordinatama po particijama što ujednačenije. 
 
-\item Problem maksimalnog nezavisnog skupa (eng. \emph{independent set problem}). U ulazu je dat graf $G = (V, E)$. Potrebno je naći podskup $V' \subseteq V$ maksimalne kardinalnosti tako da niti jedan par čvorova iz $V'$ nisu susjedni. 
-\item Problem maksimalne klike (eng. \emph{maximum clique problem}).   U ulazu je dat graf $G = (V, E)$. Potrebno je naći podskup $V' \subseteq V$ maksimalne kardinalnosti tako da je indukovani podgraf 
-$G[V']$ grafa $G$ kompletan graf (postoji grana između bilo koja dva čvora iz $V'$). 
+\item U ovom zadatku se razmatra  \emph{Problem maksimalnog nezavisnog skupa} (eng. \emph{independent set problem}). Dat je graf $G = (V, E)$. Potrebno je naći podskup $V' \subseteq V$ maksimalne kardinalnosti takav da  $V'$ ne sadrži ni jedan par susjednih čvorova. 
+\item Problem maksimalne klike (eng. \emph{maximum clique problem}) se definiše na sljedeći način.  Dat graf $G = (V, E)$. Potrebno je naći podskup $V' \subseteq V$ maksimalne kardinalnosti tako da je indukovani podgraf 
+$G[V']$ grafa $G$ kompletan graf. 
 \item % http://people.brunel.ac.uk/~mastjjb/jeb/or/moreip.html
-Proizvođač igračaka planira proizvodnju novih igračaka. Troškovi pripreme proizvodnih pogona i jedinični profit za svaku igračku dati su u nastavku: 
+Proizvođač igračaka planira proizvodnju novih igračaka. Troškovi pripreme proizvodnih pogona i jedinični profit za svaku igračku dati su sljedećom tabelom: 
  \begin{table}[H]
 	\centering
 	\begin{tabular}{l|cc} 
@@ -3467,21 +3473,21 @@ Proizvođač igračaka planira proizvodnju novih igračaka. Troškovi pripreme p
 	  2       &  76000     &  16     \\	\hline
 	\end{tabular} 
 \end{table}
- Kompanija ima dvije tvornice koje mogu proizvoditi ove igračke. Kako bi se izbjeglo udvostručenje troškova pripreme za proizvodnju,  samo jedna tvornica se može koristiti u datom momentu. 
+ Kompanija ima dvije fabrike koje mogu proizvoditi ove igračke. Kako bi se izbjeglo udvostručenje troškova pripreme za proizvodnju,  samo jedna fabrika se može koristiti u datom momentu. 
  
  
- Stope proizvodnje svake igračke date su u nastavku (u jedinicama/satu): 
+ Stope proizvodnje svake igračke date su tabelom (u jedinicama/satu): 
   \begin{table}[H]
  	\centering
  	\begin{tabular}{l|cc} \hline
  		  \        &  Igračka 1 & Igračka 2 \\ \hline
- 	Tvornica 1   &  52     &  38     \\
-    Tvornica 2   &  42     &  23     \\	\hline
+ 	Fabrika 1   &  52     &  38     \\
+    Fabrika 2   &  42     &  23     \\	\hline
  	\end{tabular} 
  \end{table}
- Fabrika 1 i 2, imaju 480 i 720 sati radnog vremena za proizvodnju ovih igračaka, redom. Proizvođač želi znati koju će od novih igračaka proizvesti, u kojoj tvornici i koliko svake (ako uopšte) treba proizvesti kako bi se ukupna zarada maksimizovala. 
+ Fabrika 1 i 2, imaju 480 i 720 sati radnog vremena za proizvodnju ovih igračaka, respektivno. Proizvođač želi znati koju će od novih igračaka proizvesti, u kojoj tvornici i koliko svake (ako uopšte) treba proizvesti kako bi se ukupna zarada maksimizovala. 
  \item %http://people.brunel.ac.uk/~mastjjb/jeb/or/moreip.html
- Hrana se proizvodi rafiniranjem sirovih ulja i njihovim miješanjem. Sirova ulja dolaze u dvije kategorije: 
+ Hrana se proizvodi rafiniranjem sirovih ulja i njihovim miješanjem. Postoje dvije kategorije sirovog ulja: 
  \begin{itemize}
  	\item vegansko ulje:
  	\begin{enumerate}
@@ -3495,7 +3501,7 @@ Proizvođač igračaka planira proizvodnju novih igračaka. Troškovi pripreme p
    	\item Ulje3
    \end{enumerate}
  \end{itemize}
-Cijene za kupovinu svakog ulja date su u nastavku (u \$/toni)
+Cijene za kupovinu svakog ulja date su u nastavku (u KM/toni)
 \begin{table}[H]
  	\centering
  	\begin{tabular}{ccccc}
@@ -3503,9 +3509,9 @@ Cijene za kupovinu svakog ulja date su u nastavku (u \$/toni)
             115  & 128  & 132   & 109   & 114 \\ 	\hline	
     \end{tabular} 
 \end{table}
-Finalni proizvod prodaje se po 180 funti po toni. Biljna ulja i ne-biljna ulja zahtijevaju različite proizvodne linije za rafinisanje. Nije moguće rafinisati više od 210 $t$ biljnih ulja i više od 260 $t$ ne-biljnih ulja. Pretpostavimo da u procesu rafinisanja nema gubitka težine, a troškovi prerade mogu se zanemariti. 
+Finalni proizvod prodaje se po 180 KM po toni. Biljna ulja i ne-biljna ulja zahtijevaju različite proizvodne linije za rafinisanje. Nije moguće rafinisati više od 210 $t$ biljnih ulja i više od 260 $t$ nebiljnih ulja. Pretpostavimo da u procesu rafinisanja nema gubitka težine, a troškovi prerade mogu se zanemariti. 
 
-Postoji tehničko ograničenje koje se odnosi na tvrdoću konačnog proizvoda. U jedinicama u kojima se mjeri tvrdoća, dopušteno je da ona bude između 3.5 i 6.2. Pretpostavlja se da se tvrdoća odnosi linearno sa miješanjem vrsta ulja. Tvrdoća sirovog ulja je data sljedećom tabelom: 
+Postoji tehničko ograničenje koje se odnosi na tvrdoću konačnog proizvoda. U jedinicama u kojima se mjeri tvrdoća, dopušteno je da ona bude između 3.5 i 6.2. Pretpostavlja se da se tvrdoća odnosi linearno sa miješanjem vrsta ulja. Tvrdoća sirovog ulja je data sljedećom tabelom
 \begin{table}[H]
 	\centering
 	\begin{tabular}{ccccc}
@@ -3519,7 +3525,7 @@ Potrebno je odrediti šta kupiti i kako miješati sirova ulja tako da kompanija 
 U osnovni model uključiti i sljedeća ograničenja:
 \begin{itemize}
 	\item Hrana nikad ne smije biti napravljena miješanjem više od 3 vrste ulja. 
-	\item Ako je ulje korišteno, onda se mora iskoristiti barem 30 $t$ ulja.
+	\item Ako se neko ulje uključeno u upotrebu, onda se mora iskoristiti barem 30 $t$ tog ulja.
 	\item Ako su ili VEG1 ili VEG2 ulja korištena, onda i Ulje2 mora biti korišteno.  
 \end{itemize}
 
