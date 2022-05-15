@@ -3022,20 +3022,30 @@ $$  \sum_{j=1}^n x_{ij} = 1, \forall i =1,\ldots, n$$
  
  \section{Tehnike transformacija nekih nelinearnih izraza u ILP-u}\label{sec:transformILP}
  
- \emph{Binarne varijable.} Pretpostavimo da je potrebno uključiti sljedeće aktivnosti: ($i$) izgraditi novo postrojenje ili
-($ii$) poduzeti reklamnu kampanju ili ($iii$) razviti novi proizvod. Jasno je da su ove odluke korespondiraju ka logičkim odlukama da ili ne, pa ih, prema tome, modelujemo   uvodeći  (binarne) varijable $x_i \in \{0, 1 \}$, $i=1,2,3$. Često se nameće uslov da se najviše jedna od ovih odluka izvrši, što se modeluje sa $\sum_{i=1}^3 x_1 \leq 1$. Ovo ograničenje se obično naziva \emph{ograničenjem sa višestrukim izborom} (eng. \emph{multiple choice constraint}), jer se njime ograničava izbor odluka na najviše jednu od, u ovom slučaju, tri dostupne alternative. 
+ U prethodnom odjeljku je objašnjeno modelovanje nekih problema pomoću cjelobrojnog linearnog programiranja. Kao što se može vidjeti, modeli nekih problema pravolinijski slijede iz definicije samog problema, dok je za modelovanje nekih drugih, kompleksnijih problema, potrebno uključiti veći broj dodatnih promjenljivih i ograničenja. U ovom odjeljku ćemo prikazati neke standardne transformacije i tehnike, kojima različite (nelinearne) izraze transformišemo i modelujemo ih pomoću cjelobrojnih promjenljivih i linearnih ograničenja.
+ %\emph{Binarne varijable.} 
+ 
+ \fixme{Stavio sam ovo u podnaslove. Ako mislis da ne treba, vrati, jer nisam ni ja siguran da li je bolje ovako ili onako kako je prvobitno bilo}
+ 
+\subsection{Prepoznavanje binarnih promjenljivih}
+ Pretpostavimo da je potrebno uključiti sljedeće aktivnosti: (1) izgraditi novo postrojenje ili
+(2) pokrenuti reklamnu kampanju ili (3) razviti novi proizvod. Jasno je da su to logičke odluke, odnosno odluke tipa ``da ili ne'', pa ih, prema tome, modelujemo   uvođenjem  binarnih promjenljivih $x_i \in \{0, 1 \}$, $i=1,2,3$. Često se nameće uslov da se najviše jedna od ovih odluka izvrši, što se modeluje izrazom $\sum_{i=1}^3 x_i \leq 1$. Ovo ograničenje se obično naziva \emph{ograničenjem sa višestrukim izborom} (eng. \emph{multiple choice constraint}), jer se njime ograničava izbor odluka na najviše jednu od, u ovom slučaju, tri dostupne alternative. Ukoliko se zahtijeva da se tačno jedna od ovih odluka izvrši, onda se znak nejednakosti u posljednjem izrazu mijenja znakom jednakosti, odnosno, ograničenje postaje $\sum_{i=1}^3 x_i = 1$.
 
 
-Pretpostavimo da proizvođač lijekova treba da odluči hoće li koristiti spremnik za fermentaciju u proizvodnji. Ako koristi spremnik, tehnologija obrade zahtijeva da se napravi $K$ jedinica ljekova. Dakle, količina proizvodnje $y$ dobija vrijednosti 0 ili $K$, a problem se može modelovati binarnom varijablom $x_j \in \{ 0, 1\}$, a potom zamjenom $Kx_j$ za $y_i$. 
+\fxnote{marko, ovaj dio sa proizvodnjom lijekova nije bas jasan. Da li hoces da se umjesto y promjenljive koristi Kx ili obrnuto? Mozes ti ukljuciti jednu recenicu prije donjeg teksta, da se objasni motivacija sta se tu zapravo radi}
+ 
+Pretpostavimo da proizvođač lijekova treba da odluči hoće li koristiti rezervoar za fermentaciju u proizvodnji. Ako koristi rezervoar, tehnologija obrade zahtijeva da se napravi $K$ jedinica ljekova. Dakle, količina proizvodnje $y$ dobija vrijednosti 0 ili $K$, a problem se može modelovati binarnom varijablom $x_j \in \{ 0, 1\}$, a potom zamjenom $Kx_j$ za $y_i$. 
 
-\emph{Logička ograničenja}. Jedno od najprostijih logičkih pitanja u matematičkom programiranju je da li dati izbor varijabli odluka zadovoljava ograničenje
+%\emph{Logička ograničenja}. 
+\subsection{Logička ograničenja}
+Jedno od najprostijih logičkih pitanja u matematičkom programiranju je da li dati izbor varijabli odluka zadovoljava ograničenje
 
 \begin{equation}\label{eq:constr-ex-1-ilp}
    f(x_1,\ldots, x_n )\leq b
 \end{equation}
- ili   ograničenje vrijedi u generalnom slučaju.
+ ili   ograničenje vrijedi u generalnom slučaju. 
  
- Uvedimo binarnu varijablu $y$ na sljedeći način:
+ Da bismo modelovali ograničenja koja odgovaraju ovakvom zahtjevu, uvedimo binarnu varijablu $y$ na sljedeći način:
  
 $$y =\begin{cases}
 1, \mbox{ ako je poznato da je ograničenje zadovoljeno}, \\
@@ -3046,47 +3056,61 @@ te napišimo
    f(x) - M y \leq b,
 \end{equation}
 
-gdje je $M$ (dovoljno velika) konstanta tako da je 
-ograničenje zadovoljeno za sve $x$ ako je $y =1$. Kad god je $y=0$ i ako je uslov (\ref{eq:constr-ex-1-ilp}) zadovoljen, onda je i ograničenje (\ref{eq:constr-ex-1-ilp-big-B}) zadovoljeno. U praksi   određivanje konstante $M$ često slijedi iz samog problema. Inače, veoma je bitno da uzmemo što manju vrijednost za $M$ da bismo izbjegli potencijalne numeričke probleme prilikom računanja. 
+gdje je $M$ dovoljno velika konstanta, takva da je 
+ograničenje zadovoljeno za sve $x$, ako je $y =1$. Kad god je $y=0$ i ako je uslov (\ref{eq:constr-ex-1-ilp}) zadovoljen, onda je i ograničenje (\ref{eq:constr-ex-1-ilp-big-B}) zadovoljeno. U praksi je vrijednost  konstante $M$ često određena samim problemom. Inače, konstanta $M$ treba da dobije što je moguće manju vrijednost, kako bi se, prilikom računanja, izbjegli potencijalni problemi numeričke prirode. 
 
-\emph{Alternativna ograničenja}. Pogledajmo sljedeću situaciju sa alternativnim ograničenjima:
+
+%\emph{Alternativna ograničenja}.
+
+\subsection{Alternativna ograničenja} 
+
+Razmotrimo sljedeću situaciju sa alternativnim ograničenjima:
 \begin{align}
      &f_1(x) \leq b_1 \vee \nonumber\\
-     &f_2(x) \leq b_2.\label{ineq:f_leq_b2}
+     &f_2(x) \leq b_2,\label{ineq:f_leq_b2}
 \end{align}
-gdje je u modelu traženo da se zadovolji barem jedno od ograničenja. 
-Ovo ograničenje se može dobiti kombinovanjem logičkih ograničenja te ograničenja sa višestrukim izborom. Dakle, imamo 
+odnosno, u modelu se traži je barem jedno od alternativnih ograničenja zadovoljeno. 
+Ovakvo ograničenje se može modelovati kombinovanjem logičkih ograničenja i ograničenja sa višestrukim izborom. Dakle, imamo 
 \begin{align*}
       &f_1(x) - M_1 y_1  \leq b_1 \\
       &f_2(x) - M_2 y_2  \leq b_2 \\
       & y_1 + y_2 \leq 1 \\
       & y_1, y_2 \in \{0, 1\}.
 \end{align*}
-Konstante $M_1$ i $M_2$ se odabiru da oba ograničenja u (\ref{ineq:f_leq_b2})  budu (trivijano) zadovoljena, te time postanu invarijante kad je $y=1$.
+Konstante $M_1$ i $M_2$ se biraju tako da oba ograničenja iz (\ref{ineq:f_leq_b2})  budu trivijano zadovoljena, te time postanu invarijante kada je $y=1$.
 
-Ograničenje $y_1 + y_2 \leq 1$ implicira da barem jedna od $y$--varijabli mora da bude 0, tj. barem jedno ograničenje mora da bude zadovoljeno. 
+Ograničenje $y_1 + y_2 \leq 1$ implicira da barem jedna od $y$--promjenljivih mora da bude 0, odnosno, barem jedno alternativno ograničenje mora da bude zadovoljeno. 
 
-Pojednostavimo ovu formulaciju koristeći ograničenje $y_1 + y_2 = 1$ mjesto ograničenja nejednakosti (jer ovo povlači da je ili $y_1$ ili $y_2$    jednako 0), tj. uvrštavanjem $y_2 =  1-y_1$, odakle dobijamo 
+Pojednostavimo ovu formulaciju koristeći ograničenje $y_1 + y_2 = 1$ umjesto ograničenja nejednakosti, što povlači da je ili $y_1$ ili $y_2$    jednako 0. Uvrštavanjem $y_2 =  1-y_1$,  dobijamo 
 \begin{align*}
       & f_1(x) - M_1 y_1       \leq b_1 \\
       & f_2(x) - M_2 (1-y_1)   \leq b_2  \\
       & y_1 \in \{0,1 \}.
 \end{align*}
 
-\emph{Uslovna ograničenja}. 
-Pretpostavimo da želimo modelovati sljedeći scenario sa ograničenjima 
+%\emph{Uslovna ograničenja}.
+\subsection{Uslovna ograničenja} 
+Pretpostavimo da želimo da modelujemo sljedeću situaciju, sa ograničenjima 
 \begin{align*}
     f(x) > b_1 \Rightarrow f(x) \leq b_2 
 \end{align*}
-Kako je implikacija $p \Rightarrow q$ ekvivalentna sa $\neg p \wedge q$, imamo da je ovaj scenario  ekvivalentan sa
+Kako je implikacija $p \Rightarrow q$ ekvivalentna sa $\neg p \vee q$, prethodno ograničenje je ekvivalentno sa
 \begin{align*}
     f(x) \leq b_1 \vee f(x) \leq b_2 
 \end{align*}
-odakle slijedi da koristeći alternativna ograničenja možemo da modelujemo ovakav tip ograničenja.
+čime smo problem sveli na problem sa alternativnim ograničenjima. 
 
-\emph{K-alternative}. Pokušajmo da modelujemo scenario da od $m$ ograničenja
+%\emph{K-alternative}.
+
+\subsection{K-alternative} 
+
+Pokušajmo da modelujemo situaciju zadatu sa $m$ ograničenja
 $$f_j(x) \leq  b_j, j=1,\ldots,m,$$
-barem $k$ od njih treba da budu zadovoljena. Modelovanje ovakvog scenarija vršimo na način da prvo odredimo konstante koje će ignorisati ograničenja, nazovimo ih $M_1, \ldots, M_m>0$, redom. Generalni problem u tom slučaju može biti definisan na sljedeći način:
+od kojih barem $k$ ograničenja treba da bude zadovoljeno.
+
+\fxnote{dovde sam stigao}
+
+ Modelovanje ovakvog scenarija vršimo na način da prvo odredimo konstante koje će ignorisati ograničenja, nazovimo ih $M_1, \ldots, M_m>0$, redom. Generalni problem u tom slučaju može biti definisan na sljedeći način:
 \begin{align}
      &f_j(x) + (1-y_j) M_j \leq b_j, j=1,\ldots,m\\
      & \sum_{i=1}^m y_i \geq k \\
