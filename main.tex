@@ -3108,9 +3108,7 @@ Pokušajmo da modelujemo situaciju zadatu sa $m$ ograničenja
 $$f_j(x) \leq  b_j, j=1,\ldots,m,$$
 od kojih barem $k$ ograničenja treba da bude zadovoljeno.
 
-\fxnote{dovde sam stigao}
-
- Modelovanje ovakvog scenarija vršimo na način da prvo odredimo konstante koje će ignorisati ograničenja, nazovimo ih $M_1, \ldots, M_m>0$, redom. Generalni problem u tom slučaju može biti definisan na sljedeći način:
+ Modelovanje ovakvog scenarija vršimo na način da prvo odredimo konstante, čijim uključivanjem u izraz dobijamo ograničenja koja su uvijek ispunjena. Dodijelimo tim konstantama oznake  $M_1, \ldots, M_m>0$, redom. U tom slučaju, opšti problem može biti definisan na sljedeći način
 \begin{align}
      &f_j(x) + (1-y_j) M_j \leq b_j, j=1,\ldots,m\\
      & \sum_{i=1}^m y_i \geq k \\
@@ -3118,7 +3116,9 @@ od kojih barem $k$ ograničenja treba da bude zadovoljeno.
 \end{align}
 Primijetimo da ako je $y_j = 1$, tada je $j$-to ograničenje zadovoljeno (za dato $x$). Dakle, barem $k$ ograničenja treba da budu zadovoljena da bi $x$ bilo dopustivo rješenje. 
 
-\emph{Složene alternative}. Pretpostavimo da se dopustiv region problema $LP$ sastoji od tri disjunktna regiona kao na Slici~\ref{fig:compound_regions}. Ovakav scenario se može modelovati uz pomoć konstante veliko $M>0$, te  ograničenjem sa višestrukim izborom, odakle dobijamo:
+%\emph{Složene alternative}.
+\subsection{Složene alternative}
+ Pretpostavimo da se dopustiv region problema $LP$ sastoji od tri disjunktna regiona kao na Slici~\ref{fig:compound_regions}. Ovakav slučaj se može modelovati uz pomoć tzv. konstante veliko $M>0$ (eng. \emph{big M}), te  ograničenjem sa višestrukim izborom, odakle dobijamo:
 \begin{align*}
     &f_1(x) - M_1 y_1 \leq b_1 \\
     &f_2(x) - M_2 y_1 \leq b_2\ (\mbox{ region 1}) \\ \hline
@@ -3140,24 +3140,40 @@ Primijetimo da ako je $y_j = 1$, tada je $j$-to ograničenje zadovoljeno (za dat
 \end{figure}
 Uslov $y_1 + y_2 + y_3 \leq 2$ nam upravo ograničava da rješenje $(x_1, x_2)$ pripada tačno jednom od (disjunktnih) dopustivih regiona. 
 
-\emph{Reporezentovanje nelinearnih funkcija}. ($i$) \underline{Fiksne cijene}. Ciljna funkcija problema minimizacije može da sadrži i neke fiksne troškove (fiksni troškovi ulaganja, fiksni troškovi postavljanja opreme itd.). Na primjer, trošak proizvodnje $x$ jedinica određenog proizvoda može da se sastoji od fiksnih troškova postavljanja opreme i promjenjivih troškova koji se tiču proizvedene robe na opremi (mašinama). Pretpostavimo da oprema ima kapacitet proizvodnje od $B$ jedinica. Neka je $y$ binarna varijabla koja pokazuje kada nastaje fiksni trošak, pri čemu  je $y=1$ ako je $x >0$, dok je $y=0$ ako je $x=0$. Tada doprinos cijeni proizvodnje od $x$ jedinica proizvoda se može predstaviti sa
+\fixme{Marko, ovi uslovi za y promjenljive mi nisu u redu. Prvo, moze li neka od y promjenljivih biti 0, posto pise da pripadaju skupu N? Ako nijedno y ne moze da bude nula, onda $y_1 + y_2 + y_3 \leq 2$ nikad nije zadovoljeno. E sad, ako su dvije y promjenljive nule, onda tacka x mora da zadovoljava uslove za dva regiona, sto je nemoguce. Ako ja vidim dobro, uslovi bi trebali da izgledaju ovako kako sam ispod napisao , odnosno da su tacno dvije y promjenljive jednake 1, a treca jednaka nuli. }
+\begin{align*}
+    & y_1 + y_2 + y_3 = 2 \\
+& y_1, y_2, y_3 \in \{0,1\}.
+\end{align*}
+
+
+%\emph{Predstavljanje nekih nelinearnih funkcija}.
+
+\subsection{Predstavljanje nekih nelinearnih funkcija} 
+
+U ovom odjeljku ćemo analizirati kako se neke nelinearne funkcije mogu predstaviti pomoću odgovarajućih linearnih funkcija, zajedno sa linearnim ograničenjima. 
+
+($i$) \underline{Uključivanje fiksnih cijena u funkciju cilja}. Kod nekih problema, funkcija cilja problema minimizacije može da sadrži i neke fiksne troškove, kao što su fiksni troškovi ulaganja ili fiksni troškovi postavljanja opreme. Na primjer, trošak proizvodnje $x$ jedinica određenog proizvoda može da se sastoji od fiksnih troškova postavljanja opreme i promjenjivih troškova koji se tiču proizvedene robe na opremi (mašinama). Pretpostavimo da oprema ima kapacitet proizvodnje od $B$ jedinica. Neka je $y$ binarna varijabla koja pokazuje kada nastaje fiksni trošak, pri čemu  je $y=1$ ako je $x >0$, dok je $y=0$ ako je $x=0$. Tada se doprinos cijeni proizvodnje od $x$ jedinica proizvoda može predstaviti sa
 $$ yB + c x $$ pod uslovima:
 \begin{align}
      &x \leq By \\
      & x \geq 0 \\
      & y \in \{0, 1\}.
 \end{align}
-Primijetimo da je ovaj model pripada \emph{Mješovitom-cjelobrojnom programiranju} (gdje postoje obje vrste varijabli, neprekidne i cjelobrojne). O ovoj paradigmi će biti više riječi u narednim sekcijama. \\
-($ii$) \underline{{Po dijelovima linearna funkcija}}. Druga vrsta nelinearne funkcije koja se može predstaviti cjelobrojnim varijablama je po-dijelovima-linearna funkcija. Radi jednostavnosti, posmatramo takve funkcije u ravni. To znači da funkcija sama po sebi nije linearna, ali kada joj se domen rastavi na komade (intervale), ona postaje linearna na svakom od tih komada. Recimo da se ova funkcija sastoji od tri po dijelovima (nezavisne) linearne funkcije, tj. 
+Primijetimo da je ovaj model pripada \emph{Mješovitom-cjelobrojnom programiranju}, gdje postoje obje vrste varijabli, neprekidne i cjelobrojne. O ovoj paradigmi će biti više riječi u narednim sekcijama. 
+
+($ii$) \underline{{Po dijelovima linearna funkcija}}. Druga vrsta nelinearne funkcije koja se može predstaviti cjelobrojnim varijablama je po-dijelovima-linearna funkcija.  To znači da funkcija sama po sebi nije linearna, ali kada joj se domen podijeli na segmente (intervale), ona postaje linearna na svakom od tih segmenata. 
+
+Radi jednostavnosti, posmatrajmo primjer zadat u ravni. Pretpostavimo da je funkcija definisana preko tri linearne funkcije na sljedeći način.
 $$f(x) = \begin{cases}
           c_1 x, \mbox{ za } x \in I_1 = [\delta^1_1, \delta^1_2] \\
           c_2 x, \mbox{ za } x \in I_2 = [\delta^1_2 = \delta^2_1, \delta^2_2] \\
           c_3 x, \mbox{ za } x \in I_3 = [\delta^2_2 = \delta^3_1, \delta^3_2].
       \end{cases}
 $$
-gdje su $I_1, I_2$ i $I_3$ disjunktni intervali na $\mathbb{R}$.
+gdje su $I_1, I_2$ i $I_3$  zatvoreni intervali iz $\mathbb{R}$, koji se nastavljaju jedan na drugi.
 
-Da bi se modelovala ovakva funkciju cilja u modelu, varijablu $x$ izrazimo preko tri nove varijable 
+Da bi se modelovala ovakva funkciju cilja, promjenljivu $x$ izrazimo preko tri nove promjenljive 
 $$x = \beta_1 + \beta_2 + \beta_3$$
 pod uslovima 
 \begin{align}
@@ -3165,9 +3181,9 @@ pod uslovima
      &0  \leq \beta_2 \leq \delta^2_2 - \delta^2_1 = b_2 \nonumber \\
      &0  \leq \beta_3 \leq \delta^3_2- \delta^3_1 = b_3, \label{eq: piecewise-constraints}
 \end{align}
-dakle slijedi da je funkcija cilja   jednaka 
+odakle slijedi da je funkcija cilja   jednaka 
 $$ C = c_1 \beta_1 + c_2 \beta_2 + c_3 \beta_3.$$ 
-Primijetimo da imamo problema na graničnim uslovima intervala, dakle u tačkama $I_1 \cap I_2 =\{\delta^1_2\}$ i $I_2 \cap I_3 =\{\delta^2_2\}$. Trebalo bi da vrijedi da $\beta_1 =  \delta^1_2 - \delta^1_1$ kad god je $\beta_2  > 0$ kao i $\beta_2 =  \delta^2_2 - \delta^2_1$ kad god je $\beta_3  > 0$.  S obzirom da su ovo uslovna ograničenja, ona se modeluju uvođenjem dodatnih binarnih varijabli 
+Primijetimo da imamo problema na graničnim uslovima intervala, dakle u tačkama $I_1 \cap I_2 =\{\delta^1_2\}$ i $I_2 \cap I_3 =\{\delta^2_2\}$. Trebalo bi da vrijedi da $\beta_1 =  \delta^1_2 - \delta^1_1$ kad god je $\beta_2  > 0$ kao i $\beta_2 =  \delta^2_2 - \delta^2_1$ kad god je $\beta_3  > 0$.  S obzirom da su ovo uslovna ograničenja, ona se modeluju uvođenjem dodatnih binarnih promjenljivih 
 $$ \omega_1 = \begin{cases}
                    1, \mbox{ ako } \beta_1 \mbox{ dostiže svoju gornju granicu} \\
                    0, \mbox{ inače},
@@ -3177,7 +3193,7 @@ $$ \omega_2 = \begin{cases}
                    1, \mbox{ ako } \beta_2 \mbox{ dostiže svoju gornju granicu} \\
                    0, \mbox{ inače}, 
               \end{cases}$$
-pa se ograničenja u (\ref{eq: piecewise-constraints}) mogu napisati u obliku
+pa se ograničenja (\ref{eq: piecewise-constraints}) mogu napisati u obliku
 
 \begin{align}
      & b_1 \omega_1 \leq \beta_1 \leq b_1   \nonumber \\
@@ -3185,23 +3201,29 @@ pa se ograničenja u (\ref{eq: piecewise-constraints}) mogu napisati u obliku
      & 0 \leq \beta_3  \omega_2 \leq b_3\nonumber \\
      & \omega_1, \omega_2 \geq 0. \label{eq: piecewise-constraints-equivalent}
 \end{align}
-      Primijetimo da ako $\omega_1 = 0$, onda je $\omega_2= 0$ kako bi se održala dopustivost za ograničenja nametnuta  od strane $\beta_2$, pri čemu se uslovi u (\ref{eq: piecewise-constraints-equivalent}) prevode u
+
+      Primijetimo da, ako $\omega_1 = 0$, onda je $\omega_2= 0$ kako bi se održala dopustivost za ograničenja propisana  od strane $\beta_2$, pri čemu se uslovi u (\ref{eq: piecewise-constraints-equivalent}) prevode u
       $$ 0 \leq \beta_1 \leq b_1, \beta_2 =0, \beta_3 =0.$$
-      Ako je $\omega_1 = 1, \omega_2 = 0$, onda se uslovi u (\ref{eq: piecewise-constraints-equivalent}) prevode u
+      Ako je $\omega_1 = 1, \omega_2 = 0$, onda se uslovi u (\ref{eq: piecewise-constraints-equivalent}) transformišu u
             $$   \beta_1 = b_1, 0 \leq \beta_2 \leq b_2, \beta_3 =0.$$
-    Ako je $\omega_1 = \omega_2 = 1$, onda se  uslovi u (\ref{eq: piecewise-constraints-equivalent}) prevode u
+    Ako je $\omega_1 = \omega_2 = 1$, onda se  uslovi u (\ref{eq: piecewise-constraints-equivalent}) transformišu u
     $$ \beta_1 = b_1, \beta_2 = b_2, 0 \leq \beta_3 \leq b_3.$$
     Prema tome, postoje tri dopustive kombinacije parametara $\omega_1$ i $\omega_2$:
     \begin{itemize}
-             \item  $\omega_1 = 0, \omega_2= 0:$ koje odgovara $x \in I_1$ jer $\beta_2=\beta_3=0$;  
-             \item $\omega_1 = 1, \omega_2 = 0$: koje odgovara $x\in I_2$, jer je $\beta_1=b_1, \beta_3=0$;
-              \item $\omega_1 = 1, \omega_2 = 1$: koje odgovara $x\in I_3$, jer je $\beta_1=b_1, \beta_2=b_2$.
+             \item  $\omega_1 = 0, \omega_2= 0:$ za koje je $x \in I_1$ jer $\beta_2=\beta_3=0$;  
+             \item $\omega_1 = 1, \omega_2 = 0$ za koje je $x\in I_2$, jer je $\beta_1=b_1, \beta_3=0$;
+              \item $\omega_1 = 1, \omega_2 = 1$ za koje je $x\in I_3$, jer je $\beta_1=b_1, \beta_2=b_2$.
     \end{itemize}
  %https://download.aimms.com/aimms/download/manuals/AIMMS3OM_LinearProgrammingTricks.pdf
  %https://download.aimms.com/aimms/download/manuals/AIMMS3OM_IntegerProgrammingTricks.pdf
- \emph{Eliminacija proizvoda varijabli}. Generalno, proizvod dvije varijable se može zamijeniti sa jednom varijablom sa dodatnim ograničenjima. Metod prezentovan ovdje se na isti način može proširiti na proizvod više od dvije varijable. Razlikujemo nekoliko slučajeva:
+ 
+% \emph{Eliminacija proizvoda varijabli}.
+ 
+ \subsection{Eliminacija proizvoda promjenljivih}
+ 
+ Jasno je da proizvod dvije ili više promjenljivih narušavaju linearnost modela, te je korisno poznavati mehanizam kako se takvi proizvodi mogu izbjeći, odnosno transformisati u odgovarajuće linearizovane izraze. U ovom odjeljku ćemo prezentovati kako se proizvod dvije promjenljive može zamijeniti jednom promjenljivom  sa dodatnim ograničenjima. Taj metod se, po potrebi, može proširiti i na proizvod više od dvije promjenljive. Razlikujemo nekoliko slučajeva:
  \begin{itemize}
- 	\item $x_1$ i $x_2$ su binarne varijable. Uvedemo smjenu $y=x_1 x_2$. Sljedeći uslovi će nametnuti da $y$ dobije vrijednost proizvoda ove dvije binarne varijable:
+ 	\item $x_1$ i $x_2$ su binarne varijable. Uvedemo smjenu $y=x_1 x_2$. uz sljedeće uslove za promjenljivu $y$:
  	  \begin{align*}
  		      &y \leq x_1 \\
  		      &y \leq x_2 \\
@@ -3209,7 +3231,7 @@ pa se ograničenja u (\ref{eq: piecewise-constraints}) mogu napisati u obliku
  		      & y \in \{0, 1\}.
  	  \end{align*}
    
-   Napomenimo da se ova tehnika može generalizovati na slučaj proizvoda $n$ binarnih varijabli, tj. $y = x_1 \cdot \ldots \cdot x_n$, $x_i\in\{0,1\}, i=1,\ldots ,n$ sa sljedećom linearizacijom 
+ Ova tehnika može generalizovati na slučaj proizvoda $n$ binarnih promjenljivih. Definišimo promjenljivu  $y = x_1 \cdot \ldots \cdot x_n$, $x_i\in\{0,1\}, i=1,\ldots ,n$. Uključivanjem sljedećih ograničenja 
    \begin{align*}
    	&y \leq x_1 \\
    	& \vdots \\
@@ -3217,6 +3239,9 @@ pa se ograničenja u (\ref{eq: piecewise-constraints}) mogu napisati u obliku
    	& y \geq \sum_{i=1}^n x_i - (n-1) \\
    	& y \in \{0, 1\}.
    \end{align*}
+postiže se traženi efekat.
+
+\fixme{dovde sam stigao}
 
    \item $x_1$ je binarna, $x_2$ je realna (pozitivna) varijabla, $0 \leq x_2 \leq u$. Opet uvodimo istu smjenu $y= x_1 x_2$ koja je neprekidna, te dodamo sljedeća ograničenja da primoramo $y$ da dobije vrijednost proizvoda:
     \begin{align*}
