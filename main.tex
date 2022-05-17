@@ -3321,44 +3321,46 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
      %https://mediaspace.msu.edu/media/Proving+that+Integer+Programming+is+NP-Complete/1_0j1vkmvw
    Podsjetimo se definicije 3--SAT problema. 
    
-   Neka su dati literali $x_1, \ldots, x_n$. Svaki literal može da bude pozitivan ($x_1$) ili negativan  ($\neg x_1$). Kažemo da je formula napisana u \emph{konjunktivnoj normalnoj formi} (CNF) akko je napisana kao konjunkcija klauzula ili literala. Pod klauzulom podrazumijevamo formulu koja je sastavljena od literala povezanih disjunkcijama. Npr. formula $\phi(x_1, x_2, x_3)= (x_1 \vee  \neg x_2) \wedge (x_1 \vee x_3)$ je napisana u CNF. U njoj postoje dvije klauzule sastavljena od po dva literala. CNF formula $\phi(x)$ je zadovoljiva akko postoji dodjela $\overline{x}$ literalima ($\overline{x}_i \in \{TRUE, FALSE\}$) tako da je $\phi(\overline{x})$ tačna, prema zakonima Bulove algebre.  
+   Neka su dati literali $x_1, \ldots, x_n$. Svaki literal može da bude pozitivan ($x_1$) ili negativan  ($\neg x_1$). Kažemo da je formula napisana u \emph{konjunktivnoj normalnoj formi} (CNF) akko je napisana kao konjunkcija klauzula ili literala. Pod klauzulom podrazumijevamo formulu koja je sastavljena od literala povezanih disjunkcijama. Npr. formula $\phi(x_1, x_2, x_3)= (x_1 \vee  \neg x_2) \wedge (x_1 \vee x_3)$ je napisana u CNF. Ona se sastoji od dvije klauzule sastavljena od po dva literala. CNF formula $\phi(x)$ je zadovoljiva akko postoji dodjela $\overline{x}$ literalima ($\overline{x}_i \in \{TRUE, FALSE\}$) tako da je $\phi(\overline{x})$ tačna, prema zakonima Bulove algebre.  
    
 
    Kažemo da je konjunktivna formula $\phi(x)$  napisana u 3--CNF  akko se u svakoj klauzuli nalazi najviše 3 različita literala. Napomenimo da se, u smislu rješivosti, proizvoljna klauzula može redukovati u 3--CNF. Dakle, svaka klauzula 
-   $l_1 \vee l_2 \vee \cdots \vee l_n$ se prevodi u 3--CNF na sljedeći način:
+   $l_1 \vee l_2 \vee \cdots \vee l_n$ se može pretvoriti u 3--CNF na sljedeći način:
    \begin{align*}
        &(l_1 \vee l_2 \vee x_2) \wedge ( \neg x_2 \vee l_3 \vee x_3) \wedge ( \neg x_3 \vee l_4 \vee x_4 ) \wedge \cdots \wedge (\neg x_{n-3} \vee l_{n-3} \\
-       &\vee x_{n-2} ) \wedge ( \neg x_{n-2} \vee l_{n-1} \vee l_n ).  
+       &\vee x_{n-2} ) \wedge ( \neg x_{n-2} \vee l_{n-1} \vee l_n ),  
     \end{align*}    
-\fixme{marko, da li ima potrebe da se objasnjava sta su ove x promjenljive?}
-
-      Treba imati na umu da ove formule nisu logički ekvivalentne, ali su ekvivalentne u smislu zadovoljenja. 
+gdje su $x2, \ldots, x_{n-2}$  proizvoljne bulove promjenjive.  
+ 
+ Treba imati na umu da ove formule nisu logički ekvivalentne, ali su ekvivalentne u smislu zadovoljenja. 
     Poznato je da je problem 3--SAT, gdje je ulaz 3--CNF formula,  u opštem slučaju NP-kompletan problem.  
     
    \begin{thm}
    	  Rješivost ILP-a je NP-težak problem.
    \end{thm}
    \begin{proof}
-   	   Izvedimo redukciju sa 3-SAT problema. Neka je dat 3--SAT izraz sa literalima  
-   	   $x_1,\ldots, x_n$.  Konstruišimo ILP instancu sa varijablama $z_1, \ldots, z_n$ na sljedeći način.
-   	   Svaka klauzula $\phi_i(x)$ je konvertovana u nejednakost,  gdje važi:
+   	   Izvedimo polinomnu redukciju instance 3-SAT problema na instancu problema ILP-a. Neka je dat 3--SAT izraz sa literalima  
+   	   $x_1,\ldots, x_n$.  Konstruišimo ILP instancu sa varijablama $z_1, \ldots, z_n$.
+   	   Svaka klauzula $\phi_i(x)$ se pretvara u nejednakost na sljedeći način:
    	   \begin{itemize}
-   	   	\item $z_i = x_i$, ako je $x_i$ pozitivan literal u klauzuli $\phi$, odnosno 
-   	   	\item $z_i = 1 - x_i$ ako je $x_i$ negativan literal u klauzuli $\phi$ (negacija ispred).
+   	   	\item $z_i = x_i$, ako je $x_i$  literal u klauzuli $\phi$; 
+   	   	\item $z_i = 1 - x_i$ ako se $\neg x_i$ pojavljuje u klauzuli $\phi$;
+   	   	\item znak disjunkcije se mijenja znakom sabiranja ``+'';
+   	   	\item vrijednost konstruisanog izraza treba da bude $\geq 1$. 
    	   \end{itemize}
    	   	       Primjera radi, ako je data instanca problema 3-SAT sa 
-   	   	      $\phi(x) = (x_1 \vee \neg x_2 \vee \neg x_3) \wedge ( x_2 \vee \neg x_4 \vee x_5 )$, transformišemo je (u polinomijalnom vremenu) na instancu ILP-a
+   	   	      $\phi(x) = (x_1 \vee \neg x_2 \vee \neg x_3) \wedge ( x_2 \vee \neg x_4 \vee x_5 )$, transformišemo je (u polinomnom vremenu) na instancu ILP-a
    	   	      \begin{align*}
    	   	         	 &z_1 + (1- z_2) + (1 - z_3 ) \geq 1 \\
    	   	         	 &z_2 + (1-z_4)  + z_5 \geq 1 \\
    	   	         	 & z_i \in \{0,1\}, i=1,\ldots,5.
    	   	      \end{align*} 
 
-   	   Dakle, iz gornje redukcije, pronalazak rješenja ILP instance odgovara određivanju dodjele $\overline{x}$ literalima, tako da je formula $\phi$ zadovoljena.\fixme{marko, ovu recenicu popravi: Dakle, treba da se provjeri da li je ILP instanca dopustiva.} Takođe, lako se vidi da je ova redukcija polinomna. Prema tome, ILP je NP-težak, s obzirom da je 3--SAT problem NP-kompletan. 
+   	   Dakle, iz gornje redukcije,  provjera dopustivosti ILP instance odgovara provjeri zadovoljivosti 3--CNF izraza $\phi$.   Prema tome, problem rješavanja ILP-a je NP-težak, s obzirom da je 3--SAT problem NP-kompletan. 
    \end{proof} 
  Može se pokazati i sljedeća teorema.
  \begin{thm} Neka je $k\in \mathbb{Z}$.
- 	 Problem odlučivanja da li postoji cjelobrojno rješenje  ILP-a,  vrijednosti manje od $k$ je NP--kompletan, uz pretpostavku da je posmatrani ILP problem minimizacije. 
+ 	 Problem odlučivanja da li postoji cjelobrojno rješenje  ILP-a,  vrijednosti manje od $k$ je NP--kompletan, posmatrajući ILP problem minimizacije. 
  \end{thm}
  
 \section{Zadaci}
@@ -3377,6 +3379,7 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
 	prikazani podaci o namirnicama.
 	\begin{table}[H]
 		\centering
+		\scalebox{0.85}{
 		\begin{tabular}{|c|c|c|c|}
 			\hline
 			Namirnica & Masa (g) & Zapremina (L) & Kalorijska vrijednost (kcal) \\
@@ -3391,7 +3394,7 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
 			\hline
 			Keks& 500 & 0,9 & 1800 \\
 			\hline
-		\end{tabular}
+		\end{tabular}}
 	\end{table}
 	Kako treba napuniti ruksak da ukupna kalorijska vrijednost ponesenih namirnica bude maksimalna?
 	
@@ -3403,7 +3406,7 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
 	očekivana dobit od projekta (čista dobit – troškovi su oduzeti)  dati su tabelom:
 %	\begin{table}
 %	\centering
-%\begin{center}
+\begin{center}
 
 	\begin{tabular}{|c|c|c|c|c|}
 		\hline
@@ -3420,7 +3423,7 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
 		5 & 8 & 6 & 10 & 30 \\
 		\hline
 	\end{tabular}  \\
-%\end{center}
+\end{center}
 %	\end{table}
 	Odrediti koje od projekata treba realizovati da se maksimizuje ukupna dobit.
 	
@@ -3432,14 +3435,14 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
 	
 	%https://www.utc.fr/~dnace/dokuwiki/_media/fr/upt-cours-2012lp.pdf
 	\item U ovom zadatku je potrebno modelovati \emph{Problem totalnog pokrivanja}. %Neka je dato $n$ mijesta, te $m$ zahtjeva koji treba da budu ispunjeni ($d_1,\ldots, d_m$).  
-	Sa $D_c$ označimo maksimalnu daljinu koja se može pokriti instalacijom $c$. Pod instalacijom možemo da podrazumijevamo skladiše, antene i sl. Pod ``pokrivanjem'' podrazumijevamo ispunjavanje zahtjeva klijenata, koji žive u nekom mjestu. Sa $c_i$ označimo cijenu instalacije  na mjesto $i$. Sa $d_{ij}$ označimo udaljenost između mjesta $i$ i $j$. Zadatak ovog problema je da se odredi koja mjesta odabrati za lociranje instalacija, tako da su sva mjesta pokrivena, ali da pri tome minimizujemo troškove instalacija. Sa jednog odabranog mjesta se pokrivaju sva susjedna mjesta koja su u njegovom radijusu. 
+	Sa $D_c$ označimo maksimalnu daljinu koja se može pokriti instalacijom $c$. Pod instalacijom podrazumijevamo skladiše, antene i sl. Pod ``pokrivanjem'' podrazumijevamo ispunjavanje zahtjeva klijenata, koji žive u nekom mjestu. Sa $c_i$ označimo cijenu postavljanja instalacije na mjesto $i$. Sa $d_{ij}$ označimo udaljenost između mjesta $i$ i $j$. Zadatak ovog problema je da se odredi koja mjesta da se odaberu za instalacije, tako da su sva (ostala) mjesta pokrivena, ali da pri tome minimizujemo troškove instalacija. Sa jednog odabranog mjesta $c$ se pokrivaju sva susjedna mjesta koja su u okviru radijusa $D_c$.  
 	\item U ovom zadatku se modeluje  \emph{Problem maksimalnog pokrivanja} (eng. \emph{maximum coverage problem}). Neka je na ulazu data kolekcija skupova  $S=\{ S_1, \ldots, S_m\}$ te broj $k \in \mathbb{N}$. Potrebno je naći podskup $S' \subseteq S$, tako da je $|S'|\leq k$, a broj pokrivenih elemenata $|\bigcup_{s' \in S'} s'|$ je maksimizovan. 
 	
 	\emph{Uputstvo}. Sa $x_j \in \{0, 1\}$ označimo promjenljivu koja dobija vrijednost 1 ako je skup $S_i$ odabran u rješenje $S'$, inače 0. Dodatno, sa $y_j \in \{0, 1 \}$ definišemo promjenljivu koja dobija vrijednost 1 ako je   element $e_j$ pokriven rješenjem.  
 %http://courses.ieor.berkeley.edu/ieor151/lecture_notes/ieor151_lec14.pdf
-	\item Potrebno je modelovati \emph{$P$-center problem čvorova} (eng. \emph{vertex p-center problem}). Formulacija problema je sljedeća. Ulazni podaci su predstavljeni neusmjerenim grafom $G = (I, J, E)$, gdje su objekti potražnje predstavljeni  vrhovima $i\in I$, a moguće lokacije (servisnih) objekata date su drugim skupom vrhova $j \in J$, Grane $e_{i,j} \in E$ postoje samo između čvorova $i \in  I$ i čvorova $j \in J$. Dalje, parovima čvorova su dodijeljene pozitivne težine $d_{i,j}\geq 0$, što predstavlja udaljenost između čvorova $i$ i $j$. Treba imati na umu da je moguće imati i udaljenost 0 između čvora potražnje i moguće lokacije objekta. Za svaki čvor $i \in I$ pridružena je težina zahtjeva $h_i>0$, koja predstavlja količinu zahtjeva koje taj čvor može da ispuni. 
+	\item Potrebno je modelovati \emph{$P$-center problem čvorova} (eng. \emph{vertex p-center problem}). Formulacija problema je sljedeća. Ulazni podaci su predstavljeni neusmjerenim grafom $G = (I, J, E)$, gdje su objekti potražnje predstavljeni  vrhovima $i\in I$, a moguće lokacije (servisnih) objekata su date   drugim skupom vrhova $j \in J$, Grane $e_{i,j} \in E$ postoje samo između čvorova $i \in  I$ i čvorova $j \in J$. Dalje, parovima čvorova su dodijeljene pozitivne težine $d_{i,j}\geq 0$, što predstavlja udaljenost između čvorova $i$ i $j$. Treba imati na umu da je moguće imati i udaljenost 0 između čvora potražnje i moguće lokacije objekta. Za svaki čvor $i \in I$ pridružena je težina zahtjeva $h_i>0$, koja predstavlja količinu zahtjeva koje taj čvor može da ispuni. 
 	
-	Zadatak je postaviti $p$ objekata kako be se smanjila maksimalnu udaljenost između bilo kojeg čvora potražnje i	njegovog servisnog objekta. 
+	Zadatak je postaviti $p$ objekata kako bi se smanjila maksimalnu udaljenost između bilo kojeg čvora potražnje i	njegovog servisnog objekta. 
 	\item %https://personal.utdallas.edu/~metin/Or6302/Notes/integer.pdf
 	 Pretpostavimo da se selimo u novi stan i da imamo samo dva kofera u koje možemo spakovati svoje stvari. U prvi kofer može da se spakuje 22 kg, a drugi 28 kg. Težina i vrijednosti stvari
 	su dati sa tabelom
@@ -3507,7 +3510,8 @@ Cijene za kupovinu svakog ulja date su u nastavku (u KM/toni)
 \end{table}
 Finalni proizvod prodaje se po 180 KM po toni. Biljna ulja i ne-biljna ulja zahtijevaju različite proizvodne linije za rafinisanje. Nije moguće rafinisati više od 210 $t$ biljnih ulja i više od 260 $t$ nebiljnih ulja. Pretpostavimo da u procesu rafinisanja nema gubitka težine, a troškovi prerade mogu se zanemariti. 
 
-Postoji tehničko ograničenje koje se odnosi na tvrdoću konačnog proizvoda. U jedinicama u kojima se mjeri tvrdoća, dopušteno je da ona bude između 3.5 i 6.2. Pretpostavlja se da se tvrdoća odnosi linearno sa miješanjem vrsta ulja. Tvrdoća sirovog ulja je data sljedećom tabelom
+Postoji tehničko ograničenje koje se odnosi na tvrdoću konačnog proizvoda. U jedinicama u kojima se mjeri tvrdoća, dopušteno je da ona ima vrijednosti između 3.5 i 6.2. Pretpostavlja se da se tvrdoća mijenja %odnosi
+ linearno sa miješanjem vrsta ulja. Tvrdoća sirovog ulja je data sljedećom tabelom
 \begin{table}[H]
 	\centering
 	\begin{tabular}{ccccc}
@@ -3516,13 +3520,13 @@ Postoji tehničko ograničenje koje se odnosi na tvrdoću konačnog proizvoda. U
     \end{tabular} 
 \end{table}
 
-Potrebno je odrediti šta kupiti i kako miješati sirova ulja tako da kompanija maksimizuje svoj profit. 
+Potrebno je odrediti koja ulja kupiti i kako ih miješati  tako da kompanija maksimizuje svoj profit. 
 
 U osnovni model uključiti i sljedeća ograničenja:
 \begin{itemize}
-	\item Hrana nikad ne smije biti napravljena miješanjem više od 3 vrste ulja. 
-	\item Ako se neko ulje uključeno u upotrebu, onda se mora iskoristiti barem 30 $t$ tog ulja.
-	\item Ako su ili VEG1 ili VEG2 ulja korištena, onda i Ulje2 mora biti korišteno.  
+	\item Hrana nikad ne smije biti  pravljena miješanjem više od 3 vrste ulja. 
+	\item Ako je neko ulje uključeno u upotrebu,  koristi se barem 30 $t$ tog ulja.
+	\item Ako su ulja VEG1 ili VEG2  korištena, onda i Ulje2 mora biti korišteno.  
 \end{itemize}
 
 \end{enumerate}                                                       
