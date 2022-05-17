@@ -3129,8 +3129,8 @@ Primijetimo da ako je $y_j = 1$, tada je $j$-to ograničenje zadovoljeno (za dat
     & f_6(x) - M_6 y_3 \leq b_6 \\
     & f_7(x) - M_7 y_3 \leq b_7\ (\mbox{region 3}) \\ \hline
     & y_1 + y_2 + y_3 \leq 2 \\
-    & x_1, x_2 \geq 0 \\
-    & y_1, y_2, y_3 \in \mathbb{N}.
+    & x=(x_1, x_2) \geq 0 \\
+    & y_1, y_2, y_3 \in \{0, 1\}.
 \end{align*}
 
 \begin{figure}[!ht]
@@ -3139,22 +3139,16 @@ Primijetimo da ako je $y_j = 1$, tada je $j$-to ograničenje zadovoljeno (za dat
     \caption{Dopustiv region sa više disjunktnih regiona.}
     \label{fig:compound_regions}
 \end{figure}
-Uslov $y_1 + y_2 + y_3 \leq 2$ nam upravo ograničava da rješenje $(x_1, x_2)$ pripada tačno jednom od (disjunktnih) dopustivih regiona. 
-
-\fixme{Marko, ovi uslovi za y promjenljive mi nisu u redu. Prvo, moze li neka od y promjenljivih biti 0, posto pise da pripadaju skupu N? Ako nijedno y ne moze da bude nula, onda $y_1 + y_2 + y_3 \leq 2$ nikad nije zadovoljeno. E sad, ako su dvije y promjenljive nule, onda tacka x mora da zadovoljava uslove za dva regiona, sto je nemoguce. Ako ja vidim dobro, uslovi bi trebali da izgledaju ovako kako sam ispod napisao , odnosno da su tacno dvije y promjenljive jednake 1, a treca jednaka nuli. }
-\begin{align*}
-    & y_1 + y_2 + y_3 = 2 \\
-& y_1, y_2, y_3 \in \{0,1\}.
-\end{align*}
-
+Uslov $y_1 + y_2 + y_3 \leq 2$ nam upravo ograničava da rješenje $(x_1, x_2)$ pripada barem jednom od (disjunktnih) dopustivih regiona. Npr. ako je $y_3 = 0$, onda je svako od ograničenja $$f_5(x) \leq b_5, \ f_6(x) \leq b_6 \mbox{ i } f_7(x) \leq b_7$$
+ ispunjeno. 
 
 %\emph{Predstavljanje nekih nelinearnih funkcija}.
 
 \subsection{Predstavljanje nekih nelinearnih funkcija} 
 
-U ovom odjeljku ćemo analizirati kako se neke nelinearne funkcije mogu predstaviti pomoću odgovarajućih linearnih funkcija, zajedno sa linearnim ograničenjima. 
+U ovom odjeljku ćemo analizirati način na koji se neke nelinearne funkcije mogu predstaviti pomoću odgovarajućih linearnih funkcija, zajedno sa linearnim ograničenjima. 
 
-($i$) \underline{Uključivanje fiksnih cijena u funkciju cilja}. Kod nekih problema, funkcija cilja problema minimizacije može da sadrži i neke fiksne troškove, kao što su fiksni troškovi ulaganja ili fiksni troškovi postavljanja opreme. Na primjer, trošak proizvodnje $x$ jedinica određenog proizvoda može da se sastoji od fiksnih troškova postavljanja opreme i promjenjivih troškova koji se tiču proizvedene robe na opremi (mašinama). Pretpostavimo da oprema ima kapacitet proizvodnje od $B$ jedinica. Neka je $y$ binarna varijabla koja pokazuje kada nastaje fiksni trošak, pri čemu  je $y=1$ ako je $x >0$, dok je $y=0$ ako je $x=0$. Tada se doprinos cijeni proizvodnje od $x$ jedinica proizvoda može predstaviti sa
+($i$) \emph{Uključivanje fiksnih cijena u funkciju cilja}. Kod nekih problema, funkcija cilja problema minimizacije može da sadrži i neke fiksne troškove, kao što su fiksni troškovi ulaganja ili fiksni troškovi postavljanja opreme. Na primjer, trošak proizvodnje $x$ jedinica određenog proizvoda može da se sastoji od fiksnih troškova postavljanja opreme i promjenjivih troškova koji se tiču proizvedene robe na opremi (mašinama). Pretpostavimo da oprema ima kapacitet proizvodnje od $B$ jedinica (nekog proizvoda). Neka je $y$ binarna varijabla koja ukazuje na to kada nastaje fiksni trošak, pri čemu  je $y=1$ ako je $x >0$, dok je $y=0$ ako je $x=0$. Tada se doprinos cijeni proizvodnje od $x$ jedinica proizvoda može predstaviti sa
 $$ yB + c x $$ pod uslovima:
 \begin{align}
      &x \leq By \\
@@ -3163,7 +3157,7 @@ $$ yB + c x $$ pod uslovima:
 \end{align}
 Primijetimo da je ovaj model pripada \emph{Mješovitom-cjelobrojnom programiranju}, gdje postoje obje vrste varijabli, neprekidne i cjelobrojne. O ovoj paradigmi će biti više riječi u narednim sekcijama. 
 
-($ii$) \underline{{Po dijelovima linearna funkcija}}. Druga vrsta nelinearne funkcije koja se može predstaviti cjelobrojnim varijablama je po-dijelovima-linearna funkcija.  To znači da funkcija sama po sebi nije linearna, ali kada joj se domen podijeli na segmente (intervale), ona postaje linearna na svakom od tih segmenata. 
+($ii$) \emph{{Po dijelovima linearna funkcija}}. Druga vrsta nelinearne funkcije koja se može predstaviti cjelobrojnim varijablama je po-dijelovima-linearna funkcija.  To znači da funkcija sama po sebi nije linearna, ali kada joj se domen podijeli na segmente (intervale), ona postaje linearna na svakom od tih segmenata. Napomenimo da se svaka neprekidna relana funkcija može aproksimirati skupom po-dijelovima-linearnih funkcija.  
 
 Radi jednostavnosti, posmatrajmo primjer zadat u ravni. Pretpostavimo da je funkcija definisana preko tri linearne funkcije na sljedeći način.
 $$f(x) = \begin{cases}
@@ -3172,7 +3166,7 @@ $$f(x) = \begin{cases}
           c_3 x, \mbox{ za } x \in I_3 = [\delta^2_2 = \delta^3_1, \delta^3_2].
       \end{cases}
 $$
-gdje su $I_1, I_2$ i $I_3$  zatvoreni intervali iz $\mathbb{R}$, koji se nastavljaju jedan na drugi.
+gdje su $I_1, I_2$ i $I_3$  zatvoreni intervali u $\mathbb{R}$, koji se nadovezuju jedan na drugi.
 
 Da bi se modelovala ovakva funkciju cilja, promjenljivu $x$ izrazimo preko tri nove promjenljive 
 $$x = \beta_1 + \beta_2 + \beta_3$$
@@ -3184,7 +3178,7 @@ pod uslovima
 \end{align}
 odakle slijedi da je funkcija cilja   jednaka 
 $$ C = c_1 \beta_1 + c_2 \beta_2 + c_3 \beta_3.$$ 
-Primijetimo da imamo problema na graničnim uslovima intervala, dakle u tačkama $I_1 \cap I_2 =\{\delta^1_2\}$ i $I_2 \cap I_3 =\{\delta^2_2\}$. Trebalo bi da vrijedi da $\beta_1 =  \delta^1_2 - \delta^1_1$ kad god je $\beta_2  > 0$ kao i $\beta_2 =  \delta^2_2 - \delta^2_1$ kad god je $\beta_3  > 0$.  S obzirom da su ovo uslovna ograničenja, ona se modeluju uvođenjem dodatnih binarnih promjenljivih 
+Primijetimo da se pojavljuju problemi na graničnim uslovima intervala, dakle u tačkama $I_1 \cap I_2 =\{\delta^1_2\}$ i $I_2 \cap I_3 =\{\delta^2_2\}$. Trebalo bi da vrijedi da $\beta_1 =  \delta^1_2 - \delta^1_1$ kad god je $\beta_2  > 0$ kao i $\beta_2 =  \delta^2_2 - \delta^2_1$ kad god je $\beta_3  > 0$.  S obzirom da su ovo uslovna ograničenja, ona se modeluju uvođenjem dodatnih binarnih promjenljivih 
 $$ \omega_1 = \begin{cases}
                    1, \mbox{ ako } \beta_1 \mbox{ dostiže svoju gornju granicu} \\
                    0, \mbox{ inače},
@@ -3211,7 +3205,7 @@ pa se ograničenja (\ref{eq: piecewise-constraints}) mogu napisati u obliku
     $$ \beta_1 = b_1, \beta_2 = b_2, 0 \leq \beta_3 \leq b_3.$$
     Prema tome, postoje tri dopustive kombinacije parametara $\omega_1$ i $\omega_2$:
     \begin{itemize}
-             \item  $\omega_1 = 0, \omega_2= 0:$ za koje je $x \in I_1$ jer $\beta_2=\beta_3=0$;  
+             \item  $\omega_1 = 0, \omega_2= 0$ za koje je $x \in I_1$ jer $\beta_2=\beta_3=0$;  
              \item $\omega_1 = 1, \omega_2 = 0$ za koje je $x\in I_2$, jer je $\beta_1=b_1, \beta_3=0$;
               \item $\omega_1 = 1, \omega_2 = 1$ za koje je $x\in I_3$, jer je $\beta_1=b_1, \beta_2=b_2$.
     \end{itemize}
@@ -3222,7 +3216,7 @@ pa se ograničenja (\ref{eq: piecewise-constraints}) mogu napisati u obliku
  
  \subsection{Eliminacija proizvoda promjenljivih}
  
- Jasno je da proizvod dvije ili više promjenljivih narušavaju linearnost modela, te je korisno poznavati mehanizam kako se takvi proizvodi mogu izbjeći, odnosno transformisati u odgovarajuće linearizovane izraze. U ovom odjeljku ćemo prezentovati kako se proizvod dvije promjenljive može zamijeniti jednom promjenljivom  sa dodatnim ograničenjima. Taj metod se, po potrebi, može proširiti i na proizvod više od dvije promjenljive. Razlikujemo nekoliko slučajeva:
+ Jasno je da proizvod dvije ili više promjenljivih narušavaju linearnost modela, te je korisno poznavati mehanizam kako se takvi proizvodi mogu izbjeći, odnosno transformisati u odgovarajuće linearizovane relacije. U ovom odjeljku ćemo prezentovati kako se proizvod dvije promjenljive može zamijeniti jednom promjenljivom  sa dodatnim ograničenjima. Taj metod se, po potrebi, može proširiti i na proizvod više od dvije promjenljive. Razlikujemo nekoliko slučajeva:
  \begin{itemize}
  	\item $x_1$ i $x_2$ su binarne varijable. Uvedemo smjenu $y=x_1 x_2$. uz sljedeće uslove za promjenljivu $y$:
  	  \begin{align*}
@@ -3232,7 +3226,7 @@ pa se ograničenja (\ref{eq: piecewise-constraints}) mogu napisati u obliku
  		      & y \in \{0, 1\}.
  	  \end{align*}
    
- Ova tehnika može generalizovati na slučaj proizvoda $n$ binarnih promjenljivih. Definišimo promjenljivu  $y = x_1 \cdot \ldots \cdot x_n$, $x_i\in\{0,1\}, i=1,\ldots ,n$. Uključivanjem sljedećih ograničenja 
+ Ova tehnika se može generalizovati na slučaj kada imamo proizvod $n$ binarnih promjenljivih. Definišimo promjenljivu  $y = x_1 \cdot \ldots \cdot x_n$, $x_i\in\{0,1\}, i=1,\ldots ,n$. Uključivanjem sljedećih ograničenja 
    \begin{align*}
    	&y \leq x_1 \\
    	& \vdots \\
@@ -3240,7 +3234,7 @@ pa se ograničenja (\ref{eq: piecewise-constraints}) mogu napisati u obliku
    	& y \geq \sum_{i=1}^n x_i - (n-1) \\
    	& y \in \{0, 1\}.
    \end{align*}
-postiže se traženi efekat.
+postiže se tražena transformacija.
 
    \item $x_1$ je binarna, $x_2$ je realna (pozitivna) promjenljiva, $0 \leq x_2 \leq u$. Opet uvodimo istu smjenu $y= x_1 x_2$, gdje je $y$ neprekidna promjenljiva. Dodamo sljedeća ograničenja, kako bismo osigurali da $y$ da dobije vrijednost proizvoda:
     \begin{align*}
@@ -3256,16 +3250,16 @@ postiže se traženi efekat.
   
  \end{itemize} 
 
-\fixme{marko, ovaj donji paragraf mi je nejasan. U kojoj prethodnoj stavci je pomenuta aproksimacija pomocu niza po dijelovima linearnih funkcija?}
+%\fixme{marko, ovaj donji paragraf mi je nejasan. U kojoj prethodnoj stavci je pomenuta aproksimacija pomocu niza po dijelovima linearnih funkcija? Marko: Izgleda obrisano, pomenuto sada u 6.2.7. stavka (ii) }
 
-\emph{Aproksimacija nelinearnih funkcija}. Kako smo pomenuli u prethodnoj stavci, ako je funkcija cilja neprekidna i nelinearna, ona se može aproksimirati uz pomoću niza po-dijelovima-linearnih funkcija. Na tu aproksimaciju potom primjenimo transformaciju ograničenja  data u stavci o po-dijelovima-linearnim funkcijama. 
+\emph{Aproksimacija nelinearnih funkcija}. Kako smo pomenuli u prethodnoj sekciji, ako je funkcija cilja realana, neprekidna i nelinearna, ona se može aproksimirati uz pomoć  niza po-dijelovima-linearnih funkcija. Na tu aproksimaciju ćemo potom primjeniti transformaciju ograničenja koja je već prezentovana u prethodnoj sekciji, a tiče se po-dijelovima-linearnim funkcijama. 
 
 U sljedećem primjeru primijenimo nekoliko navedenih transformacija ograničenja.
 
 
-\begin{primjer} Pretpostavimo da je stanovništvo koncentrisano u $I$ okruga  unutar grada i da u okrugu $i\in [I]$ stanuje $p_i$ ljudi. Preliminarna analiza (premjeri zemljišta, političke i društvene prilike itd.) ukazala je da potencijalne lokacije za izgradnju vatrogasnih domova mogu biti na $J$ lokacija. Neka $d_{ij} \geq 0$ predstavlja udaljenost   središta okruga (dijela grada) $i$  do lokacije $j$. 
+\begin{primjer} Pretpostavimo da je stanovništvo koncentrisano u $I$ okruga  unutar grada i da u okrugu $i\in [I]$ stanuje $p_i$ ljudi. Preliminarna analiza (premjeri zemljišta, političke i društvene prilike itd.) dala je  potencijalne lokacije za izgradnju vatrogasnih domova sa $J$ lokacija. Neka $d_{ij} \geq 0$ predstavlja udaljenost   središta okruga (dijela grada) $i$  do lokacije $j \in J $. 
 \end{primjer}
-Zadatak: \emph{Potrebno je odabrati lokacija gdje će se podići vatrogasni domovi za svaki od okruga. O funkciji cilja i dodatnim ograničenjima ćemo diskutovati u toku modelovanja samog problema.}
+Zadatak: \emph{Potrebno je odabrati lokacije gdje će se podići vatrogasni domovi za svaki od okruga. O funkciji cilja i dodatnim ograničenjima ćemo diskutovati u toku modelovanja samog problema.}
 
 Definišimo binarne varijable 
 $$y_j = \begin{cases}
@@ -3293,11 +3287,11 @@ Udaljenost okruga $i$ do nadležnog vatrogasnog doma je jednaka $d_i = \sum_{j \
 \begin{equation}\label{eq:ex-constr-3}
     s_j = \sum_{i \in I} p_i x_{ij}. 
 \end{equation}
-Pretpostavimo da je jedan okrug posebno osjetljiv na požar i da lokacije  1 i 2 ili lokacije 3 i 4 treba  da budu iskorištene da zaštite taj okrug. Ovakva situacija se modeluje sa
+Pretpostavimo da je jedan okrug posebno osjetljiv na požar i da lokacije  1 i 2 ili lokacije 3 i 4 treba  da budu iskorištene da zaštite taj okrug. Ovakva situacija se modeluje sa ograničenjima
 \begin{equation*} 
     y_1 + y_2 \geq 2 \mbox{ ili } y_3 + y_4 \geq 2
 \end{equation*}
-što je ekvivalentno ograničenjima 
+što je ekvivalentno sa 
 \begin{align}
     &y_1 + y_2 \geq 2 y \nonumber \\
     &y_3 + y_4 \geq 2 (1-y) \nonumber \\
@@ -3308,14 +3302,15 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
      \sum_{j \in J} f_j(s_j) \leq B.
 \end{equation}
  Funkcija cilja koja bi se mogla optimizovati u ovoj varijanti problema je minimizacija udaljenosti 
- okruga koja se nalazi najdalje od svog nadležnog vatrogasnog doma ($d_i$)
+ okruga koja je najudaljenija od svog nadležnog vatrogasnog doma ($d_i$)
       $$\min D $$
  gdje je $D= \max d_i$. Ova funkcija cilja se može napisati  u ekvivalentnom obliku kao:
  \begin{align*}
-      &\min D \\
+      &\min D \\     
+      &  \mbox{t.d.} \\
       & D \geq d_i,  \forall i \in I \\
-      &  \mbox{t.d. važe ograničenja } \\ 
-      &(\ref{eq:ex-constr-1})-(\ref{eq:ex-constr-5}).
+      &(\ref{eq:ex-constr-1})-(\ref{eq:ex-constr-5}) \\
+      & D \in \mathbb{R}. 
  \end{align*}
  Kako bismo završili modelovanje, ostalo je još da se svaka funkcija $f_j (s_j)$ zamijeni aproksimacijom cjelobrojnog programiranje. Detalje ostavljamo čitaocu kao zadatak. Ako bi funkcija $f_j (s_j)$ sadržala fiksne troškove, tada se ne bi trebale uvoditi nove promjenljive fiksnih troškova, jer u tu svrhu već služi ranije uvedena promjenljiva $y_j$. 
  % jos neki trikovi u modelovanju: https://download.aimms.com/aimms/download/manuals/AIMMS3OM_LinearProgrammingTricks.pdf
