@@ -1535,7 +1535,7 @@ $$\begin{array}{ccccc|c}
     7 & 0 & -6 & 0 & 1 & 0 \\ \hline
     5 & 0 & -3 & 0 & 0 & -9 \\
 \end{array}$$
-\fxnote{Marko, ovdje je Milana primijetila da u prvoj koloni ima broj 7 koji je pozitivan. Kako onda nema elemenata koji su strogo veci od nule (njena primjedba oznacena crvenom bojom) Nisam dalje citao ovaj primjer, na ovo se moramo zajednicki vratiti. Marko: pogledati sada je li ok...} 
+ 
 
 Ovdje počinju problemi. Pivotiranje bi trebalo da ide oko nekog elementa u prvoj koloni. Kako tu imamo samo jedan element strogo veći od 0, a to je $\overline{a}_{3,1}=7$, on je ujedno i pivot. Izvršavajući operaciju pivotiranja, varijable $\overline{b}$ neće promijeniti svoje vrijednosti, tj. dobijamo sljedeću tabelu:
 $$\begin{array}{ccccc|c}
@@ -2818,15 +2818,15 @@ Problemi cjelobrojnog linearnog programiranja se veoma često sreću i u teoriji
 
 
 \begin{primjer}
-\emph{Cjelobrojni problem ruksaka.} Neka je dato $n$ proizvoda i neka je težina $i$-tog proizvoda jednaka $w_i$, dok je vrijednost $i$-tog proizvoda jednaka $c_i$, $i=1,\ldots,n$. Koje proizvode treba da stavimo u ruksak  čiji je kapacitet $C>0$ tako da   vrijednost proizvoda u ruksaku bude maksimalna? 
+\emph{Cjelobrojni problem ruksaka.} Neka je dato $n$ proizvoda i neka je težina $i$-tog proizvoda jednaka $w_i$, dok je vrijednost $i$-tog proizvoda jednaka $c_i$, $i=1,\ldots,n$. Koje od proizvoda treba da stavimo u ruksak , ?iji je kapacitet $C>0$, tako da   vrijednost proizvoda u ruksaku bude maksimalna, poštujući  kapacitet  ruksaka? 
 
-\emph{Rješenje}. Definišimo promjenljive odluke $x_i$, koje dobijaju vrijednost 1 ako  $i$-ti proizvod uključujemo u ruksak, odnosno, vrijednost 0, ako $i$-ti proizvod nije uključen u ruksak, za $i=1,\ldots,n$. Ograničenje kapaciteta ruksaka se modeluje ograničenjem $\sum_{i=1}^n w_i x_i \leq C$. Funkcija cilja maksimizuje ukupnu vrijednost odabranih proizvoda i modeluje se uz pomoć linearne kombinacije $f(x) = \sum_{i=1}^n c_i x_i$. 
+\emph{Rješenje}. Definišimo promjenljive odluke $x_i$, koje dobijaju vrijednost 1 ako  $i$-ti proizvod uključujemo u ruksak, odnosno, vrijednost 0, ako $i$-ti proizvod nije uključen u ruksak, za $i=1,\ldots,n$. Ograničenje kapaciteta ruksaka se modeluje sa $\sum_{i=1}^n w_i x_i \leq C$. Funkcija cilja maksimizuje ukupnu vrijednost odabranih proizvoda i modeluje se uz pomoć linearne kombinacije $f(x) = \sum_{i=1}^n c_i x_i$. 
 \end{primjer}
 \begin{primjer}
 \emph{Jedan problem rasporeda radnika u dežurstvu}. Uprava bolnice želi da napravi raspored dežurstva po sedmičnim noćnim smjenama za svoje medicinske sestre.  Potrebno je da broj medicinskih sestara u noćnoj smjeni za $j$--ti dan bude barem (cio broj) $d_j, j = 1,\ldots 7$. Svaka
 medicinska sestra radi pet dana zaredom u noćnoj smjeni. 
 
-\emph{Pronaći minimalan broj medicinskih sestara koje bolnica treba da zaposli, da bi se mogle napraviti takve smjene.}
+\emph{Pronaći minimalan broj medicinskih sestara koje bolnica treba da zaposli, da bi se takve smjene mogle napraviti.}
 
 \emph{Rješenje}. Označimo sa $x_i$ broj medicinskih sestara koje svoju noćnu smjenu započinju na $i$-ti dan. Potrebno je minimizovati funkciju 
 $f = \sum_{i=1}^7 x_i$ pod uslovima da su ispunjeni zahtjevi za brojem medicinskih sestara, što je modelovano sa:
@@ -2940,7 +2940,7 @@ Prije nego što modelujemo ovaj problem, uvedimo sljedeću notaciju.
 $$ f(x) = \sum_{i=1}^n f_i x_i  + \sum_{i,j} c_{ij} y_{ij} d_j,$$
 gdje je
 \begin{itemize}
-	\item $x_i$: binarna promjenljiva, koja ozačava da li je (1) ili nije (0) otvoreno postrojenje $i$;
+	\item $x_i$: binarna promjenljiva, koja označava da li je (1) ili nije (0) otvoreno postrojenje $i$;
 	\item $y_{ij} \in \mathbb{R}^+$ realna promjenljiva, koja označava dio potražnje $d_j$ kupca $j$ koja je ostvarena u prodavnici $i$.
 \end{itemize}
 Ograničenja ovog modela su sljedeća:
@@ -2956,7 +2956,7 @@ Sljedeći primjer spada u modele \emph{binarnog linearnog programiranja}.
 \begin{primjer}
 	
 \emph{Problem postrojenja sa neograničenim kapacitetom.}
-Čest slučaj prethodnog problema lokacija je dat sa  $ u_{i} = + \infty,i=1\ldots,m$. U ovom slučaju optimalna strategija se sastoji u zadovoljenju kompletne (neparcijalne) potražnje kupca $j$ iz najbližeg otvorenog objekta. Zbog toga, neprekidne promjenljive  $y_{ij}$ možemo zamijeniti binarnim varijablama $z_{ij}$, $i=1,\ldots,n, j=1,\ldots,m$ pri čemu promjenljiva dobija vrijednost 1 ako je kupac $j$ snabdjeven od strane postrojenja $i$. Prema tome, model izgleda ovako:
+Čest slučaj je varijacija prethodnog problema lokacija gdje je $ u_{i} = + \infty,i=1\ldots,m$. U ovom slučaju optimalna strategija se sastoji u zadovoljenju kompletne (neparcijalne) potražnje kupca $j$ iz najbližeg otvorenog objekta. Zbog toga, neprekidne promjenljive  $y_{ij}$ možemo zamijeniti binarnim varijablama $z_{ij}$, $i=1,\ldots,n, j=1,\ldots,m$ pri čemu promjenljiva dobija vrijednost 1 ako je kupac $j$ snabdjeven od strane postrojenja $i$. Prema tome, model izgleda ovako:
 
 \begin{align*}
 	&\sum_{i=1}^n f_i x_i  + \sum_{i,j} c_{ij} z_{ij} d_j \rightarrow \min\\
@@ -2977,8 +2977,8 @@ Posmatrajmo ipak malo specifičniji problem u odnosu na najopštiji (koji je dos
 Razmotrimo raspoređivanje osoblja zaduženog za upravljanje letom aviona. 
 Avionska kompanija treba da rasporedi svoje osoblje na rutama koje pokrivaju letove. Treba paziti, na primjer, da jedna posada treba da upravlja letom iz  Beograda u Zagreb (u 10:00), a zatim letom iz Zagreba u Cirih (u 14:00). Dakle, jedna posada bi trebalo da je uključena u rutu na kojoj upravlja različitim letovima. Prema tome, raspoređivanje posade na rutu $j$ se modeluje uz pomoć binarne varijable 
 $$x_j = \begin{cases}
-    &1, \mbox{ ako je barem jedna posada pridružena ruti } j \\
-    &0, \mbox{ inače}. 
+    1,& \mbox{ ako je barem jedna posada pridružena ruti } j \\
+    0,& \mbox{ inače}. 
 \end{cases}
 $$
 Dalje, definišimo 
@@ -2999,7 +2999,7 @@ Model ovakvog problema je dat sa
 \end{align}
 Ograničenje (\ref{ineq:set_cover}) je poznato ograničenje koje se javlja u problemu pokrivanju  skupa (eng. \emph{set covering problem}).
 \begin{primjer}
-\emph{Problem trgovačkog putnika (engl. Traveling Salesman Problem - TSP)}. Neka je dato $n$ gradova. Krenuvši od svog mjesta, putnik želi da posjeti ostalih $n-1$ gradova pod minimalnim troškovima i da se na kraju vrati na isto mjesto. U suštini, ovo je problem grafovske prirode, gdje je ulaz (bez smanjenja opštosti) kompletan težinski graf, a potrebno je naći Hamiltonovu konturu minimalne težine u datom grafu. Pod težinom konture se podrazumijeva zbir težina njenih grana. 
+\emph{Problem trgovačkog putnika} (eng. \emph{Traveling Salesman Problem - TSP)}. Neka je dato $n$ gradova. Krenuvši od svog mjesta, putnik želi da posjeti ostalih $n-1$ gradova pod minimalnim troškovima i da se na kraju vrati na isto mjesto. U suštini, ovo je problem grafovske prirode, gdje je ulaz (bez smanjenja opštosti) kompletan težinski graf, a potrebno je naći Hamiltonovu konturu minimalne težine u datom grafu. Pod težinom konture se podrazumijeva zbir težina njenih grana. 
 \end{primjer}
 \emph{Rješenje}. Označimo težinu grane od grada $i$ do grada $j$ sa $c_{ij}$.  Definišimo (binarne) promjenljive 
 $$x_{ij} = \begin{cases}
@@ -3029,7 +3029,7 @@ $$  \sum_{j=1}^n x_{ij} = 1, \forall i =1,\ldots, n$$
  
 \subsection{Prepoznavanje binarnih promjenljivih}
  Pretpostavimo da je potrebno uključiti sljedeće aktivnosti: (1) izgraditi novo postrojenje ili
-(2) pokrenuti reklamnu kampanju ili (3) razviti novi proizvod. Jasno je da su to logičke odluke, odnosno odluke tipa ``da ili ne'', pa ih, prema tome, modelujemo   uvođenjem  binarnih promjenljivih $x_i \in \{0, 1 \}$, $i=1,2,3$. Često se nameće uslov da se najviše jedna od ovih odluka izvrši, što se modeluje izrazom $\sum_{i=1}^3 x_i \leq 1$. Ovo ograničenje se obično naziva \emph{ograničenjem sa višestrukim izborom} (eng. \emph{multiple choice constraint}), jer se njime ograničava izbor odluka na najviše jednu od, u ovom slučaju, tri dostupne alternative. Ukoliko se zahtijeva da se tačno jedna od ovih odluka izvrši, onda se znak nejednakosti u posljednjem izrazu mijenja znakom jednakosti, odnosno, ograničenje postaje $\sum_{i=1}^3 x_i = 1$.
+(2) pokrenuti reklamnu kampanju ili (3) razviti novi proizvod. Jasno je da su u pitanju logičke odluke, odnosno odluke tipa ``da ili ne'', pa ih, prema tome, modelujemo   uvođenjem  binarnih promjenljivih $x_i \in \{0, 1 \}$, $i=1,2,3$. Često se nameće uslov da se najviše jedna od ovih odluka izvrši, što se modeluje izrazom $\sum_{i=1}^3 x_i \leq 1$. Ovo ograničenje se obično naziva \emph{ograničenjem sa višestrukim izborom} (eng. \emph{multiple choice constraint}), jer se njime ograničava izbor odluka na najviše jednu od, u ovom slučaju, tri dostupne alternative. Ukoliko se zahtijeva da se tačno jedna od ovih odluka izvrši, onda se znak nejednakosti u posljednjem izrazu mijenja znakom jednakosti, odnosno, ograničenje postaje $\sum_{i=1}^3 x_i = 1$.
 
 
 \begin{comment}
@@ -3044,7 +3044,7 @@ Jedno od najprostijih logičkih pitanja u matematičkom programiranju je da li d
 \begin{equation}\label{eq:constr-ex-1-ilp}
    f(x_1,\ldots, x_n )\leq b
 \end{equation}
- ili   ograničenje vrijedi u generalnom slučaju. 
+ ili   ograničenje vrijedi u generalnom slučaju (ograničenje je invarijantno). 
  
  Da bismo modelovali ograničenja koja odgovaraju ovakvom zahtjevu, uvedimo binarnu varijablu $y$ na sljedeći način:
  
@@ -3120,22 +3120,23 @@ Primijetimo da ako je $y_j = 1$, tada je $j$-to ograničenje zadovoljeno (za dat
 %\emph{Složene alternative}.
 \subsection{Složene alternative}
  Pretpostavimo da se dopustiv region problema $LP$ sastoji od tri disjunktna regiona kao na Slici~\ref{fig:compound_regions}. Ovakav slučaj se može modelovati uz pomoć tzv. konstante veliko $M>0$ (eng. \emph{big M}), te  ograničenjem sa višestrukim izborom, odakle dobijamo:
-\begin{align*}
-    &f_1(x) - M_1 y_1 \leq b_1 \\
-    &f_2(x) - M_2 y_1 \leq b_2\ (\mbox{region 1}) \\ \hline
-    & f_3(x) - M_3 y_2 \leq b_3 \\ 
-    & f_4(x) - M_4 y_2 \leq b_4\ (\mbox{region 2})\\  \hline 
-    & f_5(x) - M_5 y_3 \leq b_5 \\
-    & f_6(x) - M_6 y_3 \leq b_6 \\
-    & f_7(x) - M_7 y_3 \leq b_7\ (\mbox{region 3}) \\ \hline
-    & y_1 + y_2 + y_3 \leq 2 \\
-    & x=(x_1, x_2) \geq 0 \\
-    & y_1, y_2, y_3 \in \{0, 1\}.
-\end{align*}
-
+ \begin{center}
+	\begin{tabular}{l }
+        $f_1(x) - M_1 y_1 \leq b_1$ \\
+       $f_2(x) - M_2 y_1 \leq b_2$\ (\mbox{region 1}) \\ \hline
+        $f_3(x) - M_3 y_2 \leq b_3$ \\ 
+        $f_4(x) - M_4 y_2 \leq b_4$\ (\mbox{region 2})\\  \hline 
+       $f_5(x) - M_5 y_3 \leq b_5$ \\
+        $f_6(x) - M_6 y_3 \leq b_6 $\\
+        $f_7(x) - M_7 y_3 \leq b_7$\  (\mbox{region 3}) \\ \hline
+        $y_1 + y_2 + y_3 \leq 2$ \\
+       $x=(x_1, x_2) \geq 0$ \\
+        $y_1, y_2, y_3 \in \{0, 1\}$.
+	\end{tabular}
+\end{center}
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=200pt, height=200pt]{compound.eps}
+    \includegraphics[width=200pt, height=180pt]{compound.eps}
     \caption{Dopustiv region sa više disjunktnih regiona.}
     \label{fig:compound_regions}
 \end{figure}
@@ -3218,7 +3219,7 @@ pa se ograničenja (\ref{eq: piecewise-constraints}) mogu napisati u obliku
  
  Jasno je da proizvod dvije ili više promjenljivih narušavaju linearnost modela, te je korisno poznavati mehanizam kako se takvi proizvodi mogu izbjeći, odnosno transformisati u odgovarajuće linearizovane relacije. U ovom odjeljku ćemo prezentovati kako se proizvod dvije promjenljive može zamijeniti jednom promjenljivom  sa dodatnim ograničenjima. Taj metod se, po potrebi, može proširiti i na proizvod više od dvije promjenljive. Razlikujemo nekoliko slučajeva:
  \begin{itemize}
- 	\item $x_1$ i $x_2$ su binarne varijable. Uvedemo smjenu $y=x_1 x_2$. uz sljedeće uslove za promjenljivu $y$:
+ 	\item $x_1$ i $x_2$ su binarne varijable. Uvedemo smjenu $y=x_1 x_2$, uz sljedeće uslove za promjenljivu $y$:
  	  \begin{align*}
  		      &y \leq x_1 \\
  		      &y \leq x_2 \\
@@ -3257,7 +3258,7 @@ postiže se tražena transformacija.
 U sljedećem primjeru primijenimo nekoliko navedenih transformacija ograničenja.
 
 
-\begin{primjer} Pretpostavimo da je stanovništvo koncentrisano u $I$ okruga  unutar grada i da u okrugu $i\in [I]$ stanuje $p_i$ ljudi. Preliminarna analiza (premjeri zemljišta, političke i društvene prilike itd.) dala je  potencijalne lokacije za izgradnju vatrogasnih domova sa $J$ lokacija. Neka $d_{ij} \geq 0$ predstavlja udaljenost   središta okruga (dijela grada) $i$  do lokacije $j \in J $. 
+\begin{primjer} Pretpostavimo da je stanovništvo koncentrisano u $I$ okruga  unutar grada i da u okrugu $i\in [I]$ stanuje $p_i$ ljudi. Preliminarna analiza (premjeri zemljišta, političke i društvene prilike itd.) dala je potencijalne lokacije za izgradnju vatrogasnih domova sa $J$ lokacija. Neka $d_{ij} \geq 0$ predstavlja udaljenost   središta okruga (dijela grada) $i$  do lokacije $j \in J $. 
 \end{primjer}
 Zadatak: \emph{Potrebno je odabrati lokacije gdje će se podići vatrogasni domovi za svaki od okruga. O funkciji cilja i dodatnim ograničenjima ćemo diskutovati u toku modelovanja samog problema.}
 
@@ -3310,7 +3311,7 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
       &  \mbox{t.d.} \\
       & D \geq d_i,  \forall i \in I \\
       &(\ref{eq:ex-constr-1})-(\ref{eq:ex-constr-5}) \\
-      & D \in \mathbb{R}. 
+      & D \in \mathbb{R}^+. 
  \end{align*}
  Kako bismo završili modelovanje, ostalo je još da se svaka funkcija $f_j (s_j)$ zamijeni aproksimacijom cjelobrojnog programiranje. Detalje ostavljamo čitaocu kao zadatak. Ako bi funkcija $f_j (s_j)$ sadržala fiksne troškove, tada se ne bi trebale uvoditi nove promjenljive fiksnih troškova, jer u tu svrhu već služi ranije uvedena promjenljiva $y_j$. 
  % jos neki trikovi u modelovanju: https://download.aimms.com/aimms/download/manuals/AIMMS3OM_LinearProgrammingTricks.pdf
@@ -3330,7 +3331,7 @@ Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može vodi
        &(l_1 \vee l_2 \vee x_2) \wedge ( \neg x_2 \vee l_3 \vee x_3) \wedge ( \neg x_3 \vee l_4 \vee x_4 ) \wedge \cdots \wedge (\neg x_{n-3} \vee l_{n-3} \\
        &\vee x_{n-2} ) \wedge ( \neg x_{n-2} \vee l_{n-1} \vee l_n ),  
     \end{align*}    
-gdje su $x2, \ldots, x_{n-2}$  proizvoljne bulove promjenjive.  
+gdje su $x_2, \ldots, x_{n-2}$  proizvoljne bulove promjenjive (literali).  
  
  Treba imati na umu da ove formule nisu logički ekvivalentne, ali su ekvivalentne u smislu zadovoljenja. 
     Poznato je da je problem 3--SAT, gdje je ulaz 3--CNF formula,  u opštem slučaju NP-kompletan problem.  
@@ -3341,9 +3342,9 @@ gdje su $x2, \ldots, x_{n-2}$  proizvoljne bulove promjenjive.
    \begin{proof}
    	   Izvedimo polinomnu redukciju instance 3-SAT problema na instancu problema ILP-a. Neka je dat 3--SAT izraz sa literalima  
    	   $x_1,\ldots, x_n$.  Konstruišimo ILP instancu sa varijablama $z_1, \ldots, z_n$.
-   	   Svaka klauzula $\phi_i(x)$ se pretvara u nejednakost na sljedeći način:
+   	   Svaka klauzula $\phi_i(x)$ se pretvara u nejednakost (ograničenje)  $C_i$ na sljedeći način:
    	   \begin{itemize}
-   	   	\item $z_i = x_i$, ako je $x_i$  literal u klauzuli $\phi$; 
+   	   	\item $z_i = x_i$, ako je literal $x_i$ pojavljuje u klauzuli $\phi$; 
    	   	\item $z_i = 1 - x_i$ ako se $\neg x_i$ pojavljuje u klauzuli $\phi$;
    	   	\item znak disjunkcije se mijenja znakom sabiranja ``+'';
    	   	\item vrijednost konstruisanog izraza treba da bude $\geq 1$. 
@@ -3351,16 +3352,16 @@ gdje su $x2, \ldots, x_{n-2}$  proizvoljne bulove promjenjive.
    	   	       Primjera radi, ako je data instanca problema 3-SAT sa 
    	   	      $\phi(x) = (x_1 \vee \neg x_2 \vee \neg x_3) \wedge ( x_2 \vee \neg x_4 \vee x_5 )$, transformišemo je (u polinomnom vremenu) na instancu ILP-a
    	   	      \begin{align*}
-   	   	         	 &z_1 + (1- z_2) + (1 - z_3 ) \geq 1 \\
-   	   	         	 &z_2 + (1-z_4)  + z_5 \geq 1 \\
-   	   	         	 & z_i \in \{0,1\}, i=1,\ldots,5.
+   	   	         	 &C_1: z_1 + (1- z_2) + (1 - z_3 ) \geq 1 \\
+   	   	         	 &C_2: z_2 + (1-z_4)  + z_5 \geq 1 \\
+   	   	         	 &C_3: z_i \in \{0,1\}, i=1,\ldots,5.
    	   	      \end{align*} 
 
    	   Dakle, iz gornje redukcije,  provjera dopustivosti ILP instance odgovara provjeri zadovoljivosti 3--CNF izraza $\phi$.   Prema tome, problem rješavanja ILP-a je NP-težak, s obzirom da je 3--SAT problem NP-kompletan. 
    \end{proof} 
  Može se pokazati i sljedeća teorema.
  \begin{thm} Neka je $k\in \mathbb{Z}$.
- 	 Problem odlučivanja da li postoji cjelobrojno rješenje  ILP-a,  vrijednosti manje od $k$ je NP--kompletan, posmatrajući ILP problem minimizacije. 
+ 	 Problem odlučivanja da li postoji cjelobrojno rješenje  ILP-a,  vrijednosti manje od $k$ je NP--kompletan, posmatrajući problem minimizacije. 
  \end{thm}
  
 \section{Zadaci}
