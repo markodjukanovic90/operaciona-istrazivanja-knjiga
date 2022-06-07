@@ -3539,7 +3539,10 @@ U osnovni model uključiti i sljedeća ograničenja:
  Za razliku od problema LP-a, koji se efikasno rješava simpleks metodom, za rješavanje problema Cjelobrojnog programiranja ne postoji generalno efikasna metoda. Drugim riječima, efikasnost metoda, kojima se rješava ovaj problem, u velikoj mjeri zavisi od karakteristika samog problema. 
  
  \fixme{vratiti se na ovo kasnije}
-Neke tehnike za rješavanje su zasnovane na tzv. relaksaciji ILP-a u odgovarajući LP, koji se od polaznog problema dobija zanemarivanjem uslova da promjenljive treba da budu cjelobrojne. Dobijena  LP relaksacija se može efikasno riješiti uz pomoć simpleks metoda. Označimo rješenje LP relaksacije sa $x^*$.   Zaokruživanjem svake koordinate vektora $x^*$ na njenu najbližu cjelobrojnu vrijednost, dobijamo cjelobrojni vektor  $\overline{x}$.  Iako je uslov o cjelobrojnosti (kakav je u odgovarajućem ILP-u potreban) u ovom slučaju ispunjen, može se desiti da ovakvo rješenje izvedeno iz LP relaksacije problema (\ref{ilp-formulation}) nije  dopustivo za početni ILP. Čak i više, skaliranjem desnih strana ILP-a, kao i koeficijenata funkcije cilja na odgovarajući način, moguće je konstruisati problem, čije je optimalno cjelobrojno rješenje proizvoljno udaljeno od zaokruženog rješenja LP relaksacije. 
+Tehnike za rješavanje su uglavnom zasnovane na tzv. relaksaciji ILP-a u odgovarajući LP, koji se od polaznog problema dobija zanemarivanjem uslova da promjenljive treba da budu cjelobrojne. 
+
+
+Dobijena  LP relaksacija se može efikasno riješiti uz pomoć simpleks metoda. Označimo rješenje LP relaksacije sa $x^*$.   Zaokruživanjem svake koordinate vektora $x^*$ na njenu najbližu cjelobrojnu vrijednost, dobijamo cjelobrojni vektor  $\overline{x}$.  Iako je uslov o cjelobrojnosti (kakav je u odgovarajućem ILP-u potreban) u ovom slučaju ispunjen, može se desiti da ovakvo rješenje izvedeno iz LP relaksacije problema (\ref{ilp-formulation}) nije  dopustivo za početni ILP. Čak i više, skaliranjem desnih strana ILP-a, kao i koeficijenata funkcije cilja na odgovarajući način, moguće je konstruisati problem, čije je optimalno cjelobrojno rješenje proizvoljno udaljeno od zaokruženog rješenja LP relaksacije. 
  
  
  Metode za (egzaktno) rješavanje ILP-a se mogu klasifikovati na sljedeći način:
@@ -3689,8 +3692,8 @@ Fiksiramo $i=1$ i $LB=-\infty$.
      %Inače, idemo na korak 4. Primijetimo da  potproblem sa fiksnim $x_i=0$ ne mora da provjeravamo, jer je on isti kao i korjeni (korjeni) problem.
     \item U suprotnom, ažuriramo $i = i+1$ i idemo na korak 3 sa potproblemima koji mogu dalje da se dijele, dok god je $i \leq n$. Inače, izlazimo iz petlje sa optimalnim rješenjem ($LB$). 
 \end{enumerate}
- Primijetimo da i u ovom slučaju dobijamo drvo odluke (binarno drvo) gdje su na granama koje spajaju čvor na dubini $i$ sa čvorom na dubini $i+1$  ugrađene odluke o tome da li je varijabla $x_i$ fiksirana na 0 ili 1.
-\fixme{dovde sam stigao}
+ Primijetimo da i u ovom slučaju dobijamo drvo odluke (binarno drvo) gdje su na granama koje spajaju čvor na dubini $i$ sa čvorom na dubini $i+1$  ugrađene odluke o tome da li je promjenljiva $x_i$ fiksirana na 0 ili 1.
+
 \begin{primjer}Na Slici~\ref{fig:bnb_binary} je dato drvo odlučivanja za problem 
 \end{primjer}
 \begin{align*}
@@ -3757,26 +3760,28 @@ Prodiskutujmo ovo rješenje po čvorovima dobijenog stabla:
   \begin{itemize}
       \item U čvoru 0 imamo  rješenje $x_i = 0$, za sve $i$, koje  nije dopustivo, ali  tada za optimalno rješenje vrijedi $z^*=f(x^*) \leq 10$.
       \item  Dalje, granamo ovaj problem na dva (korak 2), jedan gdje je $x_i=1$ a drugi $x_1=0$, odakle dobijamo dva potproblema (odgovaraju čvorovima 1 i 2). U čvoru 2 imamo potproblem za koji je $x_1=1$. Jasno je da kada uvrstimo $(1,0, \ldots, 0)$ u početni problem, da je ono dopustivo. Prema tome, optimalna vrijednost problema neće biti manji od 2, odakle zaključujemo da je za ovaj potproblem $z^*=f(x^*) \geq 2$. Dakle, imamo $LB$=2. 
-      \item Problem u čvoru 2 je isti kao problem u čvoru 1, pa nastavljamo dalje sa dijeljenjem problema fiksirajući slobodne varijable. 
+      \item Problem u čvoru 2 je isti kao problem u čvoru 1, pa nastavljamo dalje sa dijeljenjem problema fiksirajući slobodne promjenljive. 
       \item Sada fiksiramo promjenjivu $x_2$ (uz već fiksiranu odluku $x_1=0$). 
-            Za potproblem u čvoru 4, provjerimo da ne postoji dopuna do dopustivog rješenja za ovako fiksirane vrijednosti (narušeno ograničenje 1), pa tu stajemo sa njim. Za potproblem u čvoru 3, imamo sada podjelu na dva potproblema fiksirajući varijablu $x_3$, tj. dva   nova čvora 5 i 6. Za problem u čvoru 5, lako se vidi da za ovakve fiksirane varijable imamo dopustivo rješenje za koje je vrijednost funkcije cilja jednaka 4, pa zaključujemo da je $z^*=f(x^*) \leq 4$, odakle imamo $LB=4$. Problem u čvoru 6 dijelimo dalje (po varijabli $x_4$), odakle dobijamo dva nova potproblema, koji odgovaraju čvoru 7 i 8. Lako se zaključi da je $z^*<LB$ za   potproblem u čvoru 7.  Za čvor 8, imamo novo grananje (po varijabli $x_5$). Kako su ovdje sve varijable kompletno fiksne, primijetimo da niti jedna od ovih tačaka  nije dopustiva.
+            Za potproblem u čvoru 4, provjerimo da ne postoji dopuna do dopustivog rješenja za ovako fiksirane vrijednosti (narušeno ograničenje 1), čime se prekida dalje granjenje po ovoj grani. Za potproblem u čvoru 3, imamo sada podjelu na dva potproblema fiksiranjem promjenljive $x_3$, tj. dobijamo dva   nova čvora 5 i 6. Za problem u čvoru 5, lako se vidi da za ovakve fiksirane promjenljive imamo dopustivo rješenje za koje je vrijednost funkcije cilja jednaka 4, pa zaključujemo da je $z^*=f(x^*) \leq 4$, odakle imamo $LB=4$. Problem u čvoru 6 dijelimo dalje (po promjenljivoj $x_4$), odakle dobijamo dva nova potproblema, koji odgovaraju čvorovima 7 i 8. Lako se zaključi da je $z^*<LB$ za   potproblem u čvoru 7.  Za čvor 8, imamo novo grananje (po po promjenljivoj $x_5$). Kako su ovdje sve promjenljive fiksirane, primijetimo da niti jedna od ovih tačaka  nije dopustiva.
             \item Prema tome, optimalno rješenje početnog problema je $LB=4$ i dostiže se u tački $x=(0, 1, 1, 0, 0)$. 
   \end{itemize}
-  Potpuna enumeracija bi generisala 32 čvora za gornji problem. Implicitna enumeracija generiše svega 11 čvorova. 
+  Totalna enumeracija bi generisala 32 čvora za gornji problem. Implicitna enumeracija generiše svega 11 čvorova. 
  
 \section{Metoda odsjecajućih ravni}
   
-\emph{Metoda odsjecajućih ravni} rješava cjelobrojne programe mijenjanjem rješenja njegove relaksacije sve dok se ne dobije model čije je optimalno rješenje cjelobrojno. Metoda ne radi  na principu dijeljenja dopustivog regiona problema na podregione, kao u B\&B metodama, već radi sa jednim linearnim programom, kojeg poboljšava iterativnim dodavanjem novih ograničenja. Nova ograničenja sukcesivno smanjuju dopustiv region dok se ne pronađe cjelobrojno optimalno rješenje.   
- Istorijski gledano, to je prvi algoritam razvijen za probleme cjelobrojno programiranja za koji se formalno dokazalo da konvergira u konačnom broju
-koraka ka optimumu. Iako se algoritam generalno smatra   neefikasnim, ovaj metod je doveo do konstrukcije drugih, učinkovitijih algoritama.  
+\emph{Metoda odsjecajućih ravni} rješava problem cjelobrojnog  programiranja mijenjanjem rješenja njegove relaksacije, sve dok se ne dobije model čije je optimalno rješenje cjelobrojno. Metoda ne radi  na principu dijeljenja dopustivog regiona problema na podregione, kao što je to slučaj sa B\&B metodama, već radi sa jednim linearnim programom, kojeg poboljšava iterativnim dodavanjem novih ograničenja. Nova ograničenja sukcesivno smanjuju dopustiv region, sve dok se ne pronađe cjelobrojno optimalno rješenje.   
+ Istorijski gledano, to je prvi algoritam razvijen za probleme cjelobrojnog programiranja, za koji je formalno dokazano da konvergira ka optimumu u konačnom broju koraka. Iako se algoritam generalno smatra   neefikasnim, važan je sa metodološkog aspekta, jer je njegov razvoj kasnije doveo do konstrukcije drugih, efikasnijih algoritama.  
   
  \begin{definition}{Validna nejednakost} za ILP je svako ograničenje koje ne eliminiše niti   jedno moguće cjelobrojno rješenje problema.
  \end{definition}
- Drugo ime za {validnu nejednakost} je \emph{odsjecajuća ravan}.
-Recimo, ako imamo sljedeći problem ILP-a:
+ Drugi naziv za \emph{validnu nejednakost} je \emph{odsjecajuća ravan}.
+
+\begin{primjer}
+Za sljedeći problem ILP-a
+\end{primjer}
 \begin{align*}
     &\max z = 3x_1 + 4 x_2 \\
-    &\mbox{s.t.} \\
+    &\mbox{t.d.} \\
     &5x_1 + 8x_1 \leq 24 \\
     & x_1, x_2 \geq 0, x_1,x_2\in \mathbb{Z},
 \end{align*}
@@ -3785,18 +3790,22 @@ jedna njegova validna nejednakost je $z \leq 5$.
 \begin{definition}
       Konveksni omotač za problem  ~(\ref{ilp-formulation}) je najmanji (dopustivi) poliedar nekog LP-a koji sadrži sve cjelobrojne tačke tog problema.
 \end{definition}
-Ako riješimo LP problem čiji je dopustivi skup konveksni omotač cjelobrojnih tačaka, onda je to rješenje optimalno za odgovarajući ILP. Međutim ovaj problem je takođe  NP-težak, pa prema tome nije očekivano da se takav konveksni omotač može naći u generalnom slučaju. Nalazak korisnih ograničenja (ne svih) koja učestvuju u izgradnji konveksnog omotača je takođe veoma težak zadatak, mada je ovo nekad i moguće (kao u slučaju problema trgovačkog putnika). Prema tome, ostaje nam naći korisne odsjecajuće ravni nezavisno od problema nalaska konveksnog omotača, što se najčeše i radi  u praksi. 
+Ako riješimo LP problem čiji je dopustivi skup konveksni omotač cjelobrojnih tačaka, onda je to rješenje optimalno za odgovarajući ILP. Međutim ovaj problem je takođe  NP-težak, pa prema tome nije očekivano da se takav konveksni omotač može naći u opštem slučaju. Nalazak korisnih ograničenja (ne svih) koja učestvuju u izgradnji konveksnog omotača je takođe veoma težak zadatak, mada je ovo nekad i moguće, kao u slučaju problema trgovačkog putnika. Prema tome, zadatak je pronaći korisne odsjecajuće ravni, nezavisno od problema pronalaska konveksnog omotača, što se najčeše i radi  u praksi. 
 
+\begin{primjer}
 Posmatrajmo   \emph{problem pakovanja skupa} dat na sljedeći način. Neka je data kolekcija $D$ rombova (u $\mathbb{R}^2$). 
-Zadatak se sastoji od odabira maksimalnog broja rombova tako da se niti jedan od njih ne presjeca.  Za rombove kažemo da se presijecaju ako imaju barem jednu zajedničku tačku u presjeku. 
+\end{primjer}
+Zadatak je izabrati maksimalan broj rombova tako da se nikoja dva od njih ne presijecaju.  Za rombove kažemo da se presijecaju ako imaju barem jednu zajedničku tačku u presjeku. 
 Neka je $O$ skup svih parova rombova koji se presijecaju. Sljedeći ILP odgovara ovom problemu:
 \begin{align*}
     &\max \sum_{d\in D}x_d\\
     & x_d + x_{d'} \leq 1, \forall (d, d^{'}) \in O \\
     & x_d \in \{0,1\}, \forall d \in D,
 \end{align*}
-gdje je $x_d$ binarna varijabla koja dobija vrijednost 1 ako je romb $d$ izabran u riješenju, inače 0. 
-Kao što vidimo, broj binarnih varijabli u praksi može biti veoma velik, što nas rješava mogućnosti efikasne primjene neke od B\&B tehnika.
+gdje je $x_d$ binarna promjenljiva, koja dobija vrijednost 1 ako je romb $d$ izabran u riješenju, inače 0. 
+Kao što vidimo, broj binarnih promjenljivih u praksi može biti veoma velik, što otežava efikasnu primjenu neke od B\&B tehnika.
+
+\fixme{dovde sam stigao}
 
 Pokušajmo dodati odsjecajuće ravni u prethodni ILP. Za svaku tačku $c$, enumerišimo sve one (moguće) rombove iz $D$ koji sadrže ovu tačku. Označimo takav skup sa $D(c)$. Prema tome, za svaki skup $D(c)$, najviše jedan romb može da bude odabran. Sada dodajemo sljedeća ograničenja u prethodni model
 \begin{equation}
