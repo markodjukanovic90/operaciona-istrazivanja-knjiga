@@ -199,7 +199,7 @@ Ovaj udžbenik je namijenjen studentima koji slušaju uvodni kurs iz Opera\-cion
 
 Pretpostavljamo da čitaoci ovog udžbenika u dovoljnoj mjeri vladaju solidnim znanjem iz matematike i programiranja, koje uključuje osnovne linearne algebre (manipulacija vektorima i matricama), teorije grafova, kombinatorike, kalkulusa, teorije algoritama i struktura podataka. Za implementaciju programa linearnog programiranja, podrazumijeva se posjedovanje osnovnih programerskih vještina, koje se stiču u uvodnim kursevima iz programiranja, te poznavanje rada u  programskim jezicima C/C++ i/ili Python. 
 
-Cilj ovog udžbenika je da čitaoca upozna kako sa lijepom matematičkom teorijom koja je u osnovi operacionih istraživanja, tako i sa praktičkim problemima, koji se rješavaju primjenom odgovarajućih tehnika. U udžbeniku je prezentovan veliki broj primjera realnih problema koji potiču iz prakse, a na različitim mjestima su objašnjene različite faze rješavanja tih problema, počev od  identifikovanja samog problema, njegove formalne matematičke formulacije, analizu potencijalnih metoda za rješavanje, pa do implementacije rješenja u odgovarajućem rješavaču ili pak pomoću samostalno dizajniranog algoritma. 
+Cilj ovog udžbenika je da čitaoca upozna kako sa lijepom matematičkom teorijom koja je u osnovi operacionih istraživanja, tako i sa praktičkim problemima, koji se rješavaju primjenom odgovarajućih tehnika. U udžbeniku je prezentovan veliki broj primjera realnih problema koji potiču iz prakse, a na različitim mjestima su objašnjene različite faze rješavanja tih problema, počev od  identifikovanja samog problema, njegove formalne matematičke formulacije, analize  metoda za rješavanje, pa do implementacije rješenja u odgovarajućem rješavaču ili pak pomoću samostalno dizajniranog algoritma. 
 
 
 Uz pomoć znanja stečenog iz ovog udžbenika, polaznik će biti sposoban da sam identifikuje i formuliše probleme koji spadaju u oblast operacionih istraživanja (sa naglaskom na probleme linearnog programiranja), analizira različite metode za rješavanje datih problema, te, primjenjujući odgovarajuće računarske alate, implementira algoritme i rješava probleme.
@@ -4106,10 +4106,10 @@ $$ L(\lambda) \leq L^* \leq z^*.$$
 
 U praksi se pokazalo da je Lagranžova relaksacija dobra tehnika za dobijanje granica za optimalnu vrijednost problema. 
 
-\fixme{dovde sam stigao}
+\fixme{marko, ovo razmatranje u narednom primjeru mi nije bas jasno, mozemo zajedno prodiskutovati.}
 
 \begin{primjer}
-Pokušajmo sada primijeniti ovu tehniku na \emph{problem trgovačkog putnika}.  Razmotrimo ovaj problem sa grafovske strane. Znamo da kolekcija grana formira rutu ako su svaka dva čvora grafa pokrivena sa dvije grane. Takođe, ako obrišemo grane incidentne sa čvorom 1, ostatak rute čini stablo koje pokriva graf  $G\setminus \{1\}$.  
+Primijenimo ovu tehniku na \emph{problem trgovačkog putnika}.  Razmotrimo  problem sa grafovske strane. Znamo da kolekcija grana formira rutu ako su svaka dva čvora grafa pokrivena sa dvije grane. Takođe, ako obrišemo grane incidentne sa čvorom 1, ostatak rute čini stablo koje pokriva graf  $G\setminus \{1\}$.  
 Definišimo sa $A(j)$ skup svih čvorova koji su incidentni sa čvorom $j$. 
 \end{primjer}
 Relaksacija: definišimo sa $T_1$ skup svih ruta koje nakon brisanja grana koje pokrivaju čvor $1$ formiraju drvo.  
@@ -4129,9 +4129,9 @@ Lagranžova relaksacija za ovaj problem može se zadati sa
 \end{align*}
 gdje je $\lambda=(\lambda_1, \ldots, \lambda_n)$ i $c^\lambda_{i,j} = c_{i,j} + \lambda_i + \lambda_j$. 
 
-Rješenje problema Lagranžovog multiplikatora u praksi daje izvrsna rješenja i obično su rješenja blizu prave rute. Optimalno pokrivajuće stablo Lagranžovog problema $L(\lambda^*)$ za optimalni $\lambda^*$ će nam često u praksi dati rješenje sa  nekoliko visećih čvorova. 
+U praksi se pokazalo da su rješenja dobijena Lagranžovom relaksacijom blizu optimalnim rješenju problema. Optimalno pokrivajuće stablo Lagranžovog problema $L(\lambda^*)$ za optimalno $\lambda^*$ će nam,  u praksi, često dati rješenje sa  nekoliko visećih čvorova. 
 
-Konstruišimo još jednu Lagranžovu relaksaciju za ovaj problem uvodeći \emph{ograničenja pokrivanja}, tj. da u svakoj ruti broj grana koje imaju oba kraja u skupu čvorova $S$ kardinalnosti $|S|$ je najviše $|S|-1$, pa imamo: 
+Konstruišimo još jednu Lagranžovu relaksaciju za ovaj problem,  uvodeći tzv. \emph{ograničenja pokrivanja}. Ova ograničenja osiguravaju da je u svakoj ruti broj grana, koje imaju oba kraja u skupu čvorova $S$, najviše $|S|-1$. Dobijamo sljedeći model 
 
 \begin{align*}
      & z^* = \min \sum_{(i,j)\in E} c_{i,j} x_{i,j} \\
@@ -4139,7 +4139,7 @@ Konstruišimo još jednu Lagranžovu relaksaciju za ovaj problem uvodeći \emph{
      & \sum_{(i,j) \in E  \wedge i,j \in S} x_{i,j} \leq |S|-1, \forall S \subseteq V \\
      & x_{i,j} \in \{0, 1 \}, (i,j)\in E.
 \end{align*}
-Lagranživa relaksacija prethodnog ILP-a ima oblik 
+Lagranžova relaksacija prethodnog ILP-a ima oblik 
 \begin{align*}
  &L(\lambda) = \min \sum_{(i,j)\in E} c^\lambda_{i,j} x_{i,j} - 2 \sum_{i} \lambda_i \\
  & \sum_{(i,j) \in E} x_{i,j} \leq |S|-1, \forall S \in V \\
@@ -4151,71 +4151,77 @@ gdje je $\lambda=(\lambda_1, \ldots, \lambda_n)$ i $c^\lambda_{i,j} = c_{i,j} + 
 \section{Metod generisanja kolona}% ovo je za LP probleme sa velikim brojem kolona, pogledati u https://coral.ise.lehigh.edu/~ted/files/ie418/lectures/Lecture18.pdf file:///C:/Users/PC/Downloads/ColumnGenerationTutorial.pdf
 
 %video: https://www.youtube.com/watch?v=O918V86Grhc
-Često se u praksi nailazi na situaciju da je u LP-u (ili ILP-u) broj varijabli puno (eksponencijalno) veći  u odnosu na broj ograničenja. U osnovi, riječ je o ekstremno velikim modelima sa matricom $A$ velikih dimenzija. Kada je riječ o rješavanju ovakvih problema, veliki dio matrice (tj. njene kolone) nam obično nikada i neće biti relevantan u rješavanju. Da bi se riješila specifična instanca problema, ono što nam je potrebno su:
+U praksi se često nailazi  na situaciju da je u LP-u (ili ILP-u) broj promjenljivih značajno (eksponencijalno) veći  u odnosu na broj ograničenja. Kod takvih ekstremno velikih modela, matrica modela je izuzetno velikih dimenzija. Sa druge strane, veliki dio matrice (tj. njene kolone) nam obično nikada i neće biti relevantan za rješavanje. Da bi se riješila specifična instanca problema, ono što nam je potrebno su:
 \begin{itemize}
     \item Ograničenja koja se vezuju uz optimalnost.
-    \item Varijable koje su bazne u optimalnom rješenju.
+    \item Promjenljive koje su bazne u optimalnom rješenju.
 \end{itemize}
-Dakle, ono što je potrebno su ograničenja čije su odgovarajuće dualne vrijednosti pozitivne, kao i varijable koje imaju pozitivne vrijednosti koeficijenata doprinosa za optimalno rješenje (tj. vektor  $\overline{c}$ iz simpleks tabele). Ako bismo imali ove varijable i ograničenja na raspolaganju od samog početka, problem bi bio riješen veoma brzo. Međutim, ova informacija nam nije besplatna.  U simpleks metodi, vektor doprinosa je potrebno računati u svakoj iteraciji, što nije efikasno ako je matrica $A$ velikih dimenzija. Takođe, vrijeme potrebno za generisanje simpleks tabele bi bilo ogromno.  Oba ova problema su rješiva uz pomoć \emph{metode generisanja kolona}.  Ideja ovog metoda se sastoji u sljedećem. 
+Dakle, ono što je potrebno su ograničenja, čije su odgovarajuće dualne vrijednosti pozitivne, kao i promjenljive koje imaju pozitivne vrijednosti koeficijenata doprinosa za optimalno rješenje (tj. vektor  $\overline{c}$ iz simpleks tabele). Ako bismo  ove promjeljive i ograničenja imali na raspolaganju od samog početka, problem bi bio riješen veoma brzo. Međutim, do ove informacije nije jednostavno doći.  U simpleks metodi, vektor doprinosa je potrebno računati u svakoj iteraciji, što nije efikasno ako je matrica $A$ velikih dimenzija. Takođe, vrijeme potrebno za generisanje simpleks tabele bi bilo ogromno.  Oba ova problema su rješiva uz pomoć \emph{metode generisanja kolona}.  Ideja ovog metoda se sastoji u sljedećem. 
+
+\fixme{marko, nije jasno sta znaci obecavajuci podskup. Pogledaj kako sam zamijenio prvu stavku, pa ispravi ako ti se ne svidja}
+
 \begin{itemize}
-    \item Krenimo sa ``obećavajućim'' podskupom $S$ kolona matrice $A$; 
-    \item Riješimo restrikovani LP na odabrnom podskupu kolona $S$; 
+   % \item ¸Krenimo sa ``obećavajućim'' podskupom $S$ kolona matrice $A$; 
+   \item Izaberimo podskup $S$ kolona matrice $A$ u cilju određivanja potencijalno dobrog inicijalnog baznog dopustivog rješenja
+    \item Riješimo restrikovani LP na odabrnom podskupu kolona $S$.
     \item Procijenimo ostale kolone i dodajmo u $S$ one sa negativnim 
-          cijenama doprinosa;
+          cijenama doprinosa.
     \item Itrerativno pozivamo perthodna dva koraka dok god postoje kolone   sa negativnim doprinosom koje nisu u $S$.
 \end{itemize}
 Tehnički zapisano, krećemo od \emph{restrikovanog master problema} (RMP)
 \begin{align*}
     &\min c^T x \\
-    &\mbox{s.t} \\
+    &\mbox{t.d} \\
     & \sum_{i \in I} A_i x_i  \leq b \hspace{2cm} (RMP)\\
     & x \geq 0. 
 \end{align*}
-gdje $I$ inicijalizujemo kao skup kolona koje čine inicijalno BDR za RMP (i po mogućnosti neke druge kolone za koje smatramo da su ``bitne'' u kontekstu problema).  Riješimo RMP,  te izračunamo odgovarajuće optimalno dualno rješenje. Sada je potrebno naći varijablu $x_j$ i odgovarajuću kolonu $A_j$ za koju je koeficijent doprinosa negativan, tj. $\overline{c_j} = c_j - c_B^T B^{-1}A_j < 0$.
+gdje $I$ inicijalizujemo kao skup kolona koje čine inicijalno bazno dopustivo rješenje  za RMP. Po mogućnosti, dodajemo i neke druge kolone za koje smatramo da su ``bitne'' u kontekstu problema.  Riješimo RMP,  te izračunamo odgovarajuće optimalno dualno rješenje. Sada je potrebno naći promjenljivu $x_j$ i odgovarajuću kolonu $A_j$ za koju je koeficijent doprinosa negativan, tj. $\overline{c_j} = c_j - c_B^T B^{-1}A_j < 0$.
 %Pogledati: https://www.youtube.com/watch?v=0SV99VJaGzw
-Ovo se može uraditi rješavanjem tzv. potproblema generisan kolonama (eng. \emph{column generating subproblem}) (CGSP):
+Ovo se može uraditi rješavanjem tzv. potproblema generisanog kolonama (eng. \emph{column generating subproblem -- CGSP}):
 $$\min_{a \in C} \overline{c_j} = \min_{a \in C} c_a - c_B^T B^{-1} a,$$
 gdje je $C$ skup kolona nad nekim globalnim skupom. Za LP problem možemo staviti $C = \{1,\ldots,n\}$. 
 
 Ako je rješenje problema kolona $a \in C$ za koju je $\overline{c_a}<0$, dodamo odgovarajuću $A_a$ u skup $S$, te riješimo  RMP na novom skupu kolona. Ako ne postoji takva kolona, onda je rješenje RMP takođe optimalno i za početni problem. %Ovaj metod se još naziva \emph{generički metod generisanja kolona}.   
  Proces dodavanja kolona se nastavlja sve dok postoji kolona $a\in C$ sa negativnom cijenom doprinosa. 
 
-Postoji mnogo pristupa koji se tiču ažuriranja skup $S$ tokom iteracija. 
-Najjednostavniji se tiče zadržavanja svake kolone koja je do sada izgenerisana  u skup $S$ i dodavanja  nove u postojeći skup. Naprednija strategija se tiče izbacivanja onih kolona iz skupa $S$ koje su nebazne u svakoj iteraciji. \\
+Postoji više različitih pristupa koje se odnose na ažuriranje skupa $S$ tokom iteracija. 
+Najjednostavniji pristup je zadržavanje svake kolone koja je do sada izgenerisana  u skup $S$ i dodavanje  nove u postojeći skup. Naprednija strategija je zasnovana na izbacivanju onih kolona iz skupa $S$ koje su nebazne u svakoj iteraciji. 
 
-\emph{Bazna column generation šema.} U osnovi, šema se sastoji od dva koraka:
+\emph{Bazna šema za generisanje kolona}. U osnovi, šema se sastoji od dva koraka:
 \begin{enumerate}
-	\item  Za ulazne kolone prvo izaberemo one sa najvećim negativnim koeficijentom doprinosa među varijablama koje odgovaraju skupu $I$.
-	\item Jednom kada su svi koeficijenti nenegativni (tj. kada smo našli optimalnu vrijednost za  RMP), tražimo nove varijable (kolone) van skupa $I$ (rješavajući CGSP) koje će biti ubačene u $I$. 
+	\item  Za ulazne kolone prvo izaberemo one sa najvećim negativnim koeficijentom doprinosa, među promjenljivima koje odgovaraju skupu $I$.
+	\item Jednom kada su svi koeficijenti nenegativni (tj. kada smo našli optimalnu vrijednost za  RMP), tražimo nove promjenljive (kolone) van skupa $I$ (rješavajući CGSP), koje će biti ubačene u $I$. 
 \end{enumerate}
-Ako u koraku 1 za skup $I$ uzmemo bazne kolone, u svakom koraku pri rješavanju CGSP dobijamo kolonu koja ulazi kao bazna i zamjenjuje kolonu iz $I$. To znači da rješavanje RMP traje samo jednu iteraciju (simpleks metoda), jer uvijek imamo $m$ kolona i novu ulaznu kolonu $A_a$. Dakle, ovaj proces ne uzima mnogo memorije i rješavanje RMP je efikasno. Težište ovog pristupa je   prebačeno na korak 2 i rješavanje CGSP. Ako ne postoji efikasan način rješavanja ovog problema, onda efikasna primjena CG frejmvorka je teško ostvariva.  
+Ako u koraku 1 za skup $I$ uzmemo bazne kolone, u svakom koraku pri rješavanju CGSP dobijamo kolonu koja ulazi kao bazna i zamjenjuje kolonu iz $I$. To znači da rješavanje RMP traje samo jednu iteraciju (simpleks metoda), jer uvijek imamo $m$ kolona i novu ulaznu kolonu $A_a$. Dakle, ovaj proces ne uzima mnogo memorije i rješavanje RMP je efikasno. Težište ovog pristupa je   prebačeno na korak 2 i rješavanje CGSP. Ako ne postoji efikasan način rješavanja ovog problema, onda je i efikasna primjena CG okvira teško ostvariva.  
  
 
-Iterativni proces rješavanja RMP problema se može prekinuti i ranije (bez dostizanja optimalnog rješenja početnog problema), usljed velikog broja iteracija,  iako je moguće da postoji kolona van RMP problema koja će eventualno ući u konstrukciju optimalne baze.  Takođe, ako RMP nije riješen do optimalnosti u nekoj iteraciji, ali CGSP jeste, i dalje se garantuje rješavanje početnog (LP) problema do optimalnosti kada se (master) iteracije prekinu. Prema tome, rješavanje RMP problema u svakoj iteraciji nije toliko bitno dok god rješavamo CGSP do optimalnosti u svakom koraku. Obruto ne vrijedi:   ako bi iskoristili neku heuristiku za rješavanje CGSP, onda se optimalnost početnog LP-a ne može garantovati. Razlog je vrlo jednostavan, heuristika treba da nađe bilo koju kolonu sa negativnim koeficijentom doprinosa koja će biti ubačena u RMP, čine se proces (uspješno) nastavlja. Ali, ako heuristika ne uspije u nalasku takve kolone, to ne znači da takva kolona ne postoji. 
+Iterativni proces rješavanja RMP problema se može prekinuti i ranije, bez dostizanja optimalnog rješenja početnog problema usljed velikog broja iteracija. U ovom slučaju, moguće je da postoji kolona van RMP problema koja će eventualno ući u konstrukciju optimalne baze.  Takođe, ako RMP nije riješen do optimalnosti u nekoj iteraciji, ali CGSP jeste, i dalje se garantuje rješavanje početnog (LP) problema do optimalnosti kada se (master) iteracije prekinu. Prema tome, rješavanje RMP problema u svakoj iteraciji nije toliko bitno dok god rješavamo CGSP do optimalnosti u svakom koraku. Obrnuto ne vrijedi.   Ako bismo iskoristili neku heuristiku za rješavanje CGSP, onda se optimalnost početnog LP-a ne može garantovati. Razlog je vrlo jednostavan, jer heuristika treba da nađe bilo koju kolonu sa negativnim koeficijentom doprinosa koja će biti ubačena u RMP, čime se proces uspješno nastavlja. Sa druge strane, ako heuristika ne uspije da pronađe takve kolone, to ne znači da takva kolona ne postoji. 
 
 
- U nastavku dajemo primjenu \emph{metode generisanja kolona} na poznatom \emph{Cutting stock} problemu. 
+ U nastavku primijenimo \emph{metode generisanja kolona} na poznati \emph{Cutting stock} problemu. 
  
- \emph{Problem}. Tvornica papira proizvodi rolne papira fiksne širine  $W$. 
- Kupci naručuju različit broj rolni različite širine $w \in \mathbb{R}^m$, dok je sa vektorom $b \in \mathbb{R}^m$ dat zahtjev (broj naručenih rolni).  Zadatak je pronaći optimalan način  rezanja velike rolne da bi se zahtjevi ispunili, a smanjila količina otpada nastala nakon rezanja.  \\ 
- 
+\begin{primjer} Fabrika papira proizvodi rolne papira fiksne širine  $W$. 
+ Kupci naručuju različit broj rolni različite širine $w \in \mathbb{R}^m$. Vektorom $b \in \mathbb{R}^m$ se definiše zahtjev koji se odnosi za broj naručenih odgovarajućih rolni.  Zadatak je pronaći optimalan način  rezanja velike rolne da bi se zahtjevi ispunili, a smanjila količina otpada nastala nakon rezanja. 
+ \end{primjer}
+
  \emph{Rješenje.} Na Slici~\ref{fig:cuting_stock_solutions} je dato rješenje jedne instance ovog problema. 
- Što se tiče kolona za ovom problemu, one predstavljaju dopustive obrasce (kombinacije rezanja). Jedan dio obrasca sa slike bi bio $1820$ x $2$ (rolne) u prvoj koloni.
- Primijetimo da broj različitih obrazaca raste eksponencijalno u odnosu na broj narudžbi.  Ako bismo izvršili enumeraciju svih mogućih obrazaca, trebali bi riješiti sljedeće ILP modele:
+ U ovom problemu, kolone predstavljaju dopustive obrasce (kombinacije rezanja). Jedan dio obrasca sa slike bi bio $1820$ x $2$ (rolne) u prvoj koloni.
+ Primijetimo da broj različitih obrazaca raste eksponencijalno u odnosu na broj narudžbi.  Ako bismo izvršili enumeraciju svih mogućih obrazaca, trebali bismo riješiti sljedeći ILP model
  \begin{align*}
       & \min \sum_{i} x_i \\
       & \sum_{ij} a_{i,j }x_j \geq b_i, \forall i \hspace{2cm} (CSILP)\\
       &  x_j \geq 0, x_{j} \in \mathbb{Z} 
  \end{align*}
- gdje je $a_{i,j}$ broj puta da se narudžba $i$ pojavi u obrascu $j$ (vrsta na slici), dok  je $x_j$ broj puta koliko je obrazac $j$ korišten. Primjera radi, na  Slici~\ref{fig:cuting_stock_solutions} je $a_{1,1}=3$ i $x_1 = 2$, dok je $a_{1,2}=0$; $a_{1,5}=1$ i $ x_5 = 12$.
+ Parametar $a_{i,j}$ predstavlja onaj broj, koliko se puta  narudžba $i$ pojavljuje u obrascu $j$ (vrsta na slici). Promjenljivom $x_j$ se označava koliko puta je obrazac $j$ korišten. Primjera radi, na  Slici~\ref{fig:cuting_stock_solutions} je $a_{1,1}=3$ i $x_1 = 2$, dok je $a_{1,2}=0$; $a_{1,5}=1$ i $ x_5 = 12$.
  
- Ideja je ne stvarati obrasce na početku, već ih generisati prema potrebi (po kolonama) koristeći \emph{metod generisanja kolona}. Kolona $a$ odgovara dopustivom obrascu akko vrijedi 
+ Ideja je da se obrasci ne formiraju na početku, već da se generišu prema potrebi (po kolonama), koristeći \emph{metodu generisanja kolona}. Kolona $a$ odgovara dopustivom obrascu akko vrijedi 
  $$ \sum_{i=1}^m a_i w_i \leq W,$$
  gdje $a$ sadrži samo nenegativne (cjelobrojne) vrijednosti. 
+ 
 % Primijetimo da je cijena svakog paterna po kolonama jednaka za svaku kolonu. 
-Primijetimo da je na osnovu prethodnog (razmatrajući relaksaciju problema  $CSILP$), vrijednosti koeficijenata doprinosa 
+Primijetimo da su, na osnovu prethodnog, razmatrajući relaksaciju problema  $CSILP$, vrijednosti koeficijenata doprinosa 
 jednaki $\overline{c} = 1 - \sum_{i} a_{j,i} y_i$.  
- Dakle, CG potproblem izgleda ovako:
+ Dakle, CG potproblem izgleda ovako
 $$ \begin{array}{lll}
      &\max& \sum_{i=1}^m y_i a_i \\
      &  &\sum_{i} w_i a_i \leq W \hspace{2cm} (CGP)\\
@@ -4223,7 +4229,9 @@ $$ \begin{array}{lll}
      & &a_i \in \mathbb{Z},
  \end{array}$$
   gdje su $y_i$ vrijednosti optimuma duala. 
- Ovaj problem je poznat pod nazivom \emph{cjelobrojni problem ruksaka} (eng. integer knapsack problem). Iako je NP-težak, on se u praksi rješava na vrlo efikasan način uz pomoć dinamičkog programiranja. 
+  
+  \fixme{dovde sam stigao}
+ Ovaj problem je poznat pod nazivom \emph{cjelobrojni problem ruksaka} (eng. integer knapsack problem). Iako je NP-težak, on se u praksi relativno efikasno rješava  uz pomoć dinamičkog programiranja. 
  
  \begin{figure}[!ht]
      \centering
@@ -4231,9 +4239,9 @@ $$ \begin{array}{lll}
      \caption{Rješenje jedne instance.}
      \label{fig:cuting_stock_solutions}
  \end{figure}
- Za ovaj problem je lako naći inicijalno bazno dopustivo rješenje:
- za $i$-tu baznu kolonu uzimamo $i$-ti jedinični vektor, tj. obrazac dobijen rezanjem jedne rolne dužine $w_i$. Ovakav skup kolona formira inicijalnu dopustivu bazu. Svakako, malo je vjerovatno da će ove kolone biti korištene u optimalnom rješenju. 
- Prema tome, algoritam za ovaj problem bi išao ovako:
+ Za ovaj problem je lako naći inicijalno bazno dopustivo rješenje.
+ Za $i$-tu baznu kolonu uzimamo $i$-ti jedinični vektor, tj. obrazac dobijen rezanjem jedne rolne dužine $w_i$. Ovakav skup kolona formira inicijalnu dopustivu bazu. Svakako, malo je vjerovatno da će ove kolone biti korištene u optimalnom rješenju. 
+ Algoritam za rješavanje ovog problema je sljedeći.
  \begin{enumerate}
      \item Konstruišimo inicijalno bazno dopustivo rješenje (jedinični vektori) i kolone ubacimo u skup $S$.
      \item Riješimo relaksaciju restrikovanog problema ($CSILP$) i vratimo dualno optimalno rješenje. 
@@ -4241,9 +4249,9 @@ $$ \begin{array}{lll}
      \item Ako je vrijednost optimalnog rješenja negativna, ubaciti novu kolonu $a$ (koja je rješenje potproblema) u skup $S$. Inače, prekidamo proces jer je optimalno rješenje nađeno. 
      \item Riješiti relaksaciju ($CSILP$) na novom skupu kolona $S$.
  \end{enumerate}
- Primijetimo da je dodavanje nove kolone u $S$ odgovara dodavanju novog obrasca (u rješenje). 
+ Primijetimo da je dodavanje nove kolone u $S$ odgovara dodavanju novog obrasca u rješenje. 
  
-\begin{primjer} Riješimo sada jednu instancu ovog problema pomocu CG frejmvorka. Recimo da imamo $W = 15$, te tri narudžbe za sječenje:
+\begin{primjer} Riješimo sada jednu instancu ovog problema pomocu CG okvira. Recimo da imamo $W = 15$, te tri narudžbe za sječenje:
 	\end{primjer}
  \begin{enumerate}
  	\item stavka: $b_1=80$ rolni dužine 4;
@@ -4352,7 +4360,7 @@ ILP model koji odgovara gore ulaznim podacima je sljedeći:
   \end{pmatrix} \\
   & x_i \geq 0, x_i \in \mathbb{Z}, i=1,2,3.
  \end{align*}  
-Da bi problem gledali sa jednostavnije strane, izbacimo uslove integralnosti (cjelobrojnosti promjenjivih). Tada ovaj problem možemo da riješimo uz pomoć simpleks metoda gdje je 
+Da bismo  problem posmatrali sa jednostavnije strane, izbacimo uslove integralnosti (cjelobrojnosti promjenjivih). Tada ovaj problem možemo da riješimo uz pomoć simpleks metoda gdje je 
 $B^{-1} =\begin{pmatrix}
 	    \frac{1}{3} & 0 & 0 \\
 	    0 & \frac{1}{2} & 0  \\
@@ -4368,7 +4376,7 @@ $B^{-1} =\begin{pmatrix}
 	  $z$   &  $\frac{1}{3}$     &  $\frac{1}{2}$   &  $\frac{1}{2}$ & $\frac{305}{3}$ 
 \end{tabular}
 \end{center}
-Sljedeći korak je naći kolonu čija je koeficijent doprinosa negativan i ubaciti je potom u restrikovani MP u cilju poboljšanja trenutnog rješenja. Dakle, treba da riješimo CGSP
+Sljedeći korak je naći kolonu čiji je koeficijent doprinosa negativan i ubaciti je potom u restrikovani MP u cilju poboljšanja trenutnog rješenja. Dakle, treba da riješimo CGSP
 \begin{align}
 	\min_{i=1,\ldots,n} \overline{c_j} = \min_{i=1,\ldots,n} 1 - y^T N
 \end{align}
@@ -4377,11 +4385,11 @@ gdje su $N$ vektori (kolone) koji odgovaraju nebaznim varijablama. Ovaj problem 
 	\max_{j=1,\ldots,n} y^T A_j,
 \end{align}
 gdje su $A_j$ paterni, $j=1,\ldots, 6$. 
-Ako je rješenje veće od 0, optimalno rješenje nađeno rješavanjem prethodnog RMP je optimalno i za početni problem. Inače, biramo varijablu (i odgovarajuću kolonu) sa minimalnim negativnim doprinosom koju potom ubacujemo u RMP. Kako je svaki patern dat u opštem slučaju kao $A_j = \begin{pmatrix}
+Ako je rješenje veće od 0, optimalno rješenje nađeno rješavanjem prethodnog RMP je optimalno i za početni problem. Inače, biramo promjenljivu (i odgovarajuću kolonu) sa minimalnim negativnim doprinosom koju potom ubacujemo u RMP. Kako je svaki patern dat u opštem slučaju kao $A_j = \begin{pmatrix}
 	a_4 \\
 	a_6 \\
 	a_7
-\end{pmatrix}$, CG potproblem se svodi na sljedeći optimizacioni problem:
+\end{pmatrix}$, CG potproblem se svodi na sljedeći optimizacioni problem
 \begin{align}
 	 \max y_1 a_4 + y_2 a_6 + y_3 a_7  
 \end{align}
@@ -4390,24 +4398,24 @@ uz zadovoljenje uslova o maksimalnoj širini
    &	4 a_4 + 6 a_6 + 7 a_7 \leq 15 \\
    &	a_4, a_6, a_7 \geq 0, a_4, a_6, a_7 \in \mathbb{Z}.
 \end{align}
-kako smo to i ranije pomenuli, ovaj problem je klasični problem ruksaka koji se u praksi rješava veoma efikasno. Dakle, ako je rješenje problema ruksaka manje ili jednako od 1, trenutno najbolje rješenje je optimalno rješenje. U protivnom, optimalno rješenje $(a_4^*, a_6^*, a_7^*)^T$ ulazi kao nova kolona u RMP. Na osnovu prethodne simpleks tabele imamo: $y_1 = \frac{1}{3}, y_2 = y_3 = \frac{1}{2}$, pa treba da riješimo sljedeći CG problem:
+kako smo to i ranije pomenuli, ovaj problem je klasični problem ruksaka koji se u praksi rješava veoma efikasno. Dakle, ako je rješenje problema ruksaka manje ili jednako od 1, trenutno najbolje rješenje je optimalno rješenje. U protivnom, optimalno rješenje $(a_4^*, a_6^*, a_7^*)^T$ se uključuje  u RMP kao nova kolona. Na osnovu prethodne simpleks tabele imamo $y_1 = \frac{1}{3}, y_2 = y_3 = \frac{1}{2}$, pa treba da riješimo sljedeći CG problem
 \begin{align*}
       &\max \frac{1}{3} a_4 + \frac{1}{2} a_6 + \frac{1}{2} a_7 \\
       & 4 a_4 + 6 a_6 + 7 a_7 \leq 15 \\
       & 	a_4, a_6, a_7 \geq 0, a_4, a_6, a_7 \in \mathbb{Z}.
 \end{align*}
-Uz pomoć algoritma dinamičkog programiranja riješimo ovaj problem, pa dobijamo rješenje 
-$(a_4^*, a_6^*, a_7^*)^T =  (2, 0, 1)^T=A_4$ optimalne vrijednosti $\frac{7}{6}$. Prekonvertujmo vektor $\begin{pmatrix}
+Pomoću algoritma dinamičkog programiranja riješimo ovaj problem i dobijamo rješenje 
+$(a_4^*, a_6^*, a_7^*)^T =  (2, 0, 1)^T=A_4$, optimalne vrijednosti $\frac{7}{6}$. Konvertujemo vektor $\begin{pmatrix}
 	2\\
     0 \\
     1
 \end{pmatrix}$
-na bazu koja je generisana vektorima baze $x_1$, $x_2$ i $x_3$.  Iz toga slijedi da vektor 
+na bazu koja je generisana vektorima baze $x_1$, $x_2$ i $x_3$.  Iz toga slijedi da se vektor 
 $$ B^{-1}A_4 = \begin{pmatrix}
 	  \frac{2}{3} \\
 	  0           \\
 	  \frac{1}{3}
-\end{pmatrix}$$ ulazi u novu simpleks tabelu (uz redukovanu cijenu doprinosa od -(1- $\frac{7}{6}$)= $\frac{1}{6}$):
+\end{pmatrix}$$ uključuje u novu simpleks tabelu (uz redukovanu cijenu doprinosa od -(1- $\frac{7}{6}$)= $\frac{1}{6}$):
 
 \begin{center}
 	
@@ -4418,7 +4426,7 @@ $$ B^{-1}A_4 = \begin{pmatrix}
 		$z$   &  $\frac{1}{3}$     &  $\frac{1}{2}$   &  $\frac{1}{2}$ &   $\frac{1}{6}$   & $\frac{305}{3}$ 
 	\end{tabular}
 \end{center}
-U novododanoj koloni tražimo pivot element (kao i u simpleks metodi). Lako je vidjeti da je pivot element $\frac{2}{3}$, pa radeći elementarne transformacije po vrstama oko pivota, dobijamo simpleks tabelu:
+U novoj koloni tražimo pivot element (kao i u simpleks metodi). Lako je vidjeti da je pivot element $\frac{2}{3}$, pa primjenjujući elementarne transformacije po vrstama oko pivota, dobijamo simpleks tabelu
 \begin{center}
 	\begin{tabular}{ccccc| c}
 		  $x_4$ & $\frac{1}{2}$ & 0 & 0 & 1 & 40 \\
@@ -4428,14 +4436,14 @@ U novododanoj koloni tražimo pivot element (kao i u simpleks metodi). Lako je v
 	\end{tabular}
 \end{center}
 
-Dalje, generišimo novi CG potproblem čitajući vrijednost dualnih promjenjivih iz prethodne simpleks tabele: $y_1 = \frac{1}{4}$, $y_2 = \frac{1}{2}$, $y_3= \frac{1}{2}$, a dobijamo novi potproblem:
+Dalje, generišimo novi CG potproblem čitajući vrijednost dualnih promjenjivih iz prethodne simpleks tabele $y_1 = \frac{1}{4}$, $y_2 = \frac{1}{2}$, $y_3= \frac{1}{2}$, a dobijamo novi potproblem
 \begin{align*}
 	 \frac{1}{4} a_4 + \frac{1}{2} a_6 + \frac{1}{2} a_7
 \end{align*}
-uz uslove nenegativnosti i kapaciteta i integralnosti (cjelobrojnosti). Rješavajući problem uz pomoć dinamičkog problema, dobijamo optimalno rješenje $A_5 = (2,1,0)^T$, dok je vrijednost optimuma za CG potproblem jednak 1, odakle slijedi da je optimum početnog problema nađen sa prethodnim rješenjem (ne postoji više ulaznih kolona koje se dodaju u RMP), i ono je jednako 95, dok je rješenje dato sa $x_1^* = 0, x_2^* = 25, x_3^*=30, x_4^*= 40$. Dakle, koristimo samo 3 različita paterna za sječenje. 
+uz uslove nenegativnosti i kapaciteta i integralnosti (cjelobrojnosti). Rješavajući problem dinamičkim programiranjem, dobijamo optimalno rješenje $A_5 = (2,1,0)^T$. Vrijednost optimuma za CG potproblem je jednaka 1, odakle slijedi da je optimum početnog problema pronađen sa prethodnim rješenjem (ne postoji više ulaznih kolona koje se dodaju u RMP). Rješenje je jednako 95, dato sa $x_1^* = 0, x_2^* = 25, x_3^*=30, x_4^*= 40$. Dakle, koristimo samo 3 različita obrasca za sječenje. 
 \\ \vspace{1cm}
  %Za uraditi:  https://ocw.mit.edu/courses/sloan-school-of-management/15-083j-integer-programming-and-combinatorial-optimization-fall-2009/lecture-notes/ (Lekcija 19-25)
-  
+  \fxnote{dovde}
  \section{Zadaci}
  \begin{enumerate}
  	\item %http://web.tecnico.ulisboa.pt/mcasquilho/compute/_linpro/TaylorB_module_c.pdf
