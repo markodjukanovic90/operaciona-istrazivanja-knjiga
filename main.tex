@@ -3553,7 +3553,7 @@ Dobijena  LP relaksacija se može efikasno riješiti uz pomoć simpleks metoda. 
  \end{enumerate}
 
 
-\section{Metoda grananja i ograničavanja (B\&B)}
+\section{Metoda grananja i ograničavanja (B\&B)}\label{sec:bb}
 Metoda grananja i ograničavanja (engl. branch and bound, skraćeno B\&B) je zasnovana na poznatom principu ``zavadi pa vladaj'' (engl. divide and conquer) gdje se problem, rekurzivno, rastavlja na manje dijelove. Kasnije se (optimalna rješenja) manjih problema kombinuju za dobijanje optimalnog rješenja početnog problema.  U B\&B metodi važan dodatak je upotreba strategije da se 
 problem ne rastavlja na manje potprobleme ako se može procijeniti da će rješenje potproblema biti suboptimalno. Drugim riječima, algoritam ``ne ulazi'' u one grane koje ne sadrže samo ona rješenja koja su lošija od trenutno najboljeg dopustivog rješenja razmatranog problema. Očigledno, na taj način dolazi do uštede u broju operacija koje je potrebno izvršiti u toku samog algoritma, a samim tim dolazi i do uštede memorije i vremena izvršenja. U rješavanju ILP-a, dopustiv skup se dijeli na manje skupove, dodavanjem specijalnih ograničenja u model. Rekurzivni postupak se izvršava sve  dok se ne dobiju potproblemi, čije relaksacije obezbjeđuju cjelobrojno rješenje ili se zaključi da potproblemi nisu dopustivi. Ovakvi pristupi se razlikuju u načinu podjele dopustivog skupa i zbog toga  u literaturi  postoji nekoliko različitih B\&B procedura. 
 
@@ -3799,21 +3799,22 @@ Zadatak je izabrati maksimalan broj rombova tako da se nikoja dva od njih ne pre
 Neka je $O$ skup svih parova rombova koji se presijecaju. Sljedeći ILP odgovara ovom problemu:
 \begin{align*}
     &\max \sum_{d\in D}x_d\\
+    &\mbox{t.d.}
     & x_d + x_{d'} \leq 1, \forall (d, d^{'}) \in O \\
-    & x_d \in \{0,1\}, \forall d \in D,
+    & x_d \in \{0,1\}, \forall d \in D
 \end{align*}
 gdje je $x_d$ binarna promjenljiva, koja dobija vrijednost 1 ako je romb $d$ izabran u riješenju, inače 0. 
 Kao što vidimo, broj binarnih promjenljivih u praksi može biti veoma velik, što otežava efikasnu primjenu neke od B\&B tehnika.
 
-\fixme{dovde sam stigao}
-
-Pokušajmo dodati odsjecajuće ravni u prethodni ILP. Za svaku tačku $c$, enumerišimo sve one (moguće) rombove iz $D$ koji sadrže ovu tačku. Označimo takav skup sa $D(c)$. Prema tome, za svaki skup $D(c)$, najviše jedan romb može da bude odabran. Sada dodajemo sljedeća ograničenja u prethodni model
+Pokušajmo dodati odsjecajuće ravni u prethodni ILP. Za svaku tačku $c$, enumerišimo sve one (moguće) rombove iz $D$ koji sadrže ovu tačku. Označimo takav skup sa $D(c)$. S obzirom na uslove zadatka, za svaki skup $D(c)$, najviše jedan romb može da bude odabran. Sada,  u prethodni model dodajemo sljedeća ograničenja
 \begin{equation}
      \sum_{d \in D(c)} x_d \leq 1, \forall c.
 \end{equation}
-Ove odsjecajuće ravni će ubrzati rješavanje ovog problema za   red veličine.\\ \vspace{0.2cm} \\
+Ovim postupkom smo formirali odsjecajuće ravni, koje će ubrzati rješavanje posmatranog problema za   red veličine.\\ \vspace{0.2cm} \\
 
-Pozabavimo se sada \emph{Gomorijevim odsjecajućim ravnima}, generalnom metodom za dodavanje odsjecajućih ravni za  ILP.  Ideja je da se dobiju ravni iz nekog od ograničenja optimalne tabele simpleks metode, koja predstavlja LP relaksaciju problema. Neka simpleks metod generiše sljedeći skup jednakosti u formi:
+Razmotrimo sada \emph{Gomorijeve odsjecajuće ravni}, kao generalnu metodu za dodavanje odsjecajućih ravni za  ILP.  Ideja je da se dobiju ravni iz nekog od ograničenja optimalne tabele simpleks metode, koja predstavlja LP relaksaciju problema. Neka simpleks metod generiše sljedeći skup jednakosti u formi:
+
+\fixme{marko, ubaci kratko objasnjenje sta su ovi a i b koeficijenti}
 
 $$x_i + \sum_{ j} \overline{a}_{i,j} s_j= \overline{b}_i, i=1, \ldots,m$$
 gdje su $x_i$ bazne promjenjive, a $s_j$ nebazne promjenjive. Napišimo ovu jednakost u drugačijem obliku tako da su na lijevoj strani cjelobrojni dijelovi, dok su na desnoj decimalni dijelovi, tj.
@@ -3825,79 +3826,76 @@ Ako je $x$ dopustivo cjelobrojno rješenje, onda je desna strana manja od 1, pa 
 \end{equation}
 za bilo koje (bazno) dopustivo rješenje $x$ koje je cjelobrojno. Dalje, kako su nebazne varijable jednake 0 u bilo kom baznom dopustivom rješenju, tada imamo 
 $$ \overline{b}_i - \lfloor \overline{b}_i  \rfloor    - \sum_{ij} (\overline{a}_{i,j} - \lfloor \overline{a}_{i,j} \rfloor) s_j = \overline{b}_i - \lfloor \overline{b}_i \rfloor  \geq 0.$$
-Prema tome, pokazali smo da odsjecajuće ravni~(\ref{eq:gomory_cuts}) ne eliminišu bazna dopustiva rješenja, pa ispunjava sve uslove za validnu nejednakost. Uvodeći dodatnu promjenjivu $y_i$ za nejednakosti u (\ref{eq:gomory_cuts}), sljedeća (validna) ograničenja dodajemo u ILP:
+Prema tome, pokazali smo da odsjecajuće ravni~(\ref{eq:gomory_cuts}) ne eliminišu bazna dopustiva rješenja, pa ispunjavaju sve uslove za validnu nejednakost. Uvodeći dodatnu promjenjivu $y_i$ za nejednakosti u (\ref{eq:gomory_cuts}), sljedeća (validna) ograničenja dodajemo u ILP:
 \begin{align}\label{gomory_cplex}
        \overline{b}_i - \lfloor \overline{b}_i \rfloor=   \sum_{j} (\overline{a}_{i,j} - \lfloor \overline{a}_{i,j} \rfloor)s_j - y_i 
 \end{align}
 
-\begin{primjer} Neka je dat sljedeći ILP problem:
+\begin{primjer} Neka je dat sljedeći ILP problem
 	\end{primjer}
-$$\begin{array}{ll}
+\begin{align*}
     &\max\ 3 x_1 + 4 x_2 \\
-    & {s.t. }  \\
+    & \mbox{t.d. }  \\
     & \displaystyle\frac{2}{5}x_1 + x_2 \leq 3 \\
     & \displaystyle\frac{2}{5}x_1 - \frac{2}{5}x_2 \leq 1 \\
     &x_1, x_2 \geq 0, \\
     &  x_1, x_1 \in \mathbb{Z}.
-\end{array}$$
+\end{align*}
 Riješimo ga uz pomoć Gomorijevih odsjecajućih ravni. 
 
 \emph{Rješenje.}
 Inicijalna simpleks tabela (LP relaksacije) je data sa 
 
-$$\begin{array}{cccc|c}
-   \frac{2}{5}           & 1               & 1 & 0 & 3 \\
+$$\begin{array}{cccc|c}\vspace{1mm}
+   \frac{2}{5}           & 1               & 1 & 0 & 3 \\\vspace{1mm}
    \frac{2}{5}           & -\frac{2}{5}    & 0 & 1 & 1 \\ \hline
    -3                    &  -4             & 0 & 0 & 0
 \end{array}$$
-Dovedimo drugu varijablu (odg. kolona 2) u bazu, pa imamo 
-$$\begin{array}{cccc|c}
-   \frac{2}{5}           & 1               & 1           & 0 & 3 \\
-   \frac{14}{25}         & 0               & \frac{2}{5} & 1 & \frac{11}{5}\\ \hline
-   -\frac{7}{5}                  & 0               &4 & 0 & 12
+Uključimo drugu promjenljivu (odg. kolona 2) u bazu, pa imamo 
+$$\begin{array}{cccc|c}\vspace{1mm}
+   \frac{2}{5}           & 1               & 1           & 0 & 3 \\\vspace{1mm}
+   \frac{14}{25}         & 0    & \frac{2}{5} & 1&\frac{11}{5}\\\hline\vspace{1mm}
+   -\frac{7}{5}     & 0     &4 & 0 & 12
 \end{array}$$
 Dalje, biramo novi pivot  u prethodnoj simpleks tabeli, a to je element $\overline{a}_{2,1} = \frac{14}{25}$, pa transformacijama dobijamo simpleks tabelu
 $$
-\begin{array}{cccc|c}
-    0    &  1  &  \frac{10}{14} &  -\frac{10}{14}  &  \frac{20}{14}                  \\
+\begin{array}{cccc|c}\vspace{1mm}
+    0    &  1  &  \frac{10}{14} &  -\frac{10}{14}  &  \frac{20}{14}  \\\vspace{1mm}
     1    &  0  &  \frac{10}{14} &   \frac{25}{14}  &   \frac{55}{14}\\ \hline
     0    &  0  &  5             &    \frac{5}{2}   &    \frac{35}{2}
 \end{array}
 $$
-Kako u posljednjoj vrsti nemamo negativnih vrijednosti, zaključujemo da je ovo optimalna simpleks tabela. Na osnovu (\ref{gomory_cplex}),   za prvi red simpleks tabele i odrogarajuće ogranjičenje generišemo odsjecajuću ravan:
+Kako u posljednjoj vrsti nemamo negativnih vrijednosti, zaključujemo da je ovo optimalna simpleks tabela. Na osnovu (\ref{gomory_cplex}),   za prvi red simpleks tabele i odgovarajuće ogranjičenje generišemo odsjecajuću ravan:
 $$   \frac{5}{7}s_1 + \frac{2}{7} s_2 -      y_1   = \frac{6}{14}=\frac{3}{7}$$
 pa je dodajemo u (završnu) simpleks tabelu:
 $$
-\begin{array}{ccccc|c}
-    0    &  1  &  \frac{10}{14} &  -\frac{10}{14}  &  0 & \frac{20}{14}                  \\
-    1    &  0  &  \frac{10}{14} &   \frac{25}{14}  &  0 & \frac{55}{14}\\ 
-    0    &  0  & \frac{5}{7}    &   \frac{2}{7}    &  -1 & \frac{3}{7}  \\
-     \hline 
+\begin{array}{ccccc|c}\vspace{1mm}
+    0    &  1  &  \frac{10}{14} &  -\frac{10}{14}  &  0 & \frac{20}{14} \\\vspace{1mm}
+    1    &  0  &  \frac{10}{14} &   \frac{25}{14}  &  0 & \frac{55}{14}\\ \vspace{1mm}
+    0    &  0  & \frac{5}{7}    &   \frac{2}{7}    &  -1 & \frac{3}{7}  \\\hline \vspace{1mm}
     0    &  0  &  5             &    \frac{5}{2}   &  0 &    \frac{35}{2}
 \end{array}
 $$
-Načinimo sada jediničnu podmatricu u gornjoj lijevoj matrici $\overline{A}$, za treću kolonu (i odgovarajuću varijablu $s_1$), pivotirajući oko elementa $\overline{a}_{3,3}$, čime dobijamo 
+Formirajmo sada jediničnu podmatricu u gornjoj lijevoj matrici $\overline{A}$, imajući u vidu treću kolonu (i odgovarajuću promjenljivu $s_1$), a pivotirajući oko elementa $\overline{a}_{3,3}$. Dobijamo 
 
 $$
 \begin{array}{ccccc|c}
     0    &  1  &   0 &   -1  &            1 & 1                  \\
-    1    &  0  &  0 &    \frac{3}{2}  &  1 & \frac{7}{2}\\ 
-    0    &  0  &  1  &   \frac{2}{5}    &  -\frac{7}{5} & \frac{3}{5}  \\
-     \hline 
+    1    &  0  &  0 &    \frac{3}{2}  &  1 & \frac{7}{2}\\ \vspace{1mm}
+    0    &  0  &  1  &   \frac{2}{5}    &  -\frac{7}{5} & \frac{3}{5}  \\ \hline \vspace{1mm}
     0    &  0  &  0   &    \frac{1}{2}  &  7  &    \frac{29}{2}
-\end{array}
+.\end{array}
 $$
-Kao što vidimo, rješenje problema je $(\frac{7}{2}, 1, 0, 0, \frac{3}{5})$, što i dalje nije cjelobrojno rješenje. Dalje, dodajemo novu odsjecajuću ravan, koja se izvodi iz drugog ograničenja (drugi red simpleks tabele): 
+Kao što vidimo, rješenje problema je $(\frac{7}{2}, 1, 0, 0, \frac{3}{5})$, što i dalje nije cjelobrojno rješenje. Dalje, dodajemo novu odsjecajuću ravan, koja se izvodi iz drugog ograničenja (drugi red simpleks tabele).
 $$ \frac{1}{2} s_2 - y_2 = \frac{1}{2}.$$
-Dodajmo ovo ograničenje u posljednju simpleks tabelu:
+Dodajmo ovo ograničenje u posljednju simpleks tabelu
 
 $$
-\begin{array}{cccccc|c}
-    0    &  1  &   0 &   -1  &            1 & 0 & 1                  \\
-    1    &  0  &  0 &    \frac{3}{2}    &  1 & 0 &  \frac{7}{2}\\ 
-    0    &  0  &  1  &   \frac{2}{5}    &  -\frac{7}{5} &  0 & \frac{3}{5}  \\
-    0    & 0   &  0  &   \frac{1}{2}    & 0     & -1 & \frac{1}{2} \\
-     \hline 
+\begin{array}{cccccc|c}\vspace{1mm}
+    0    &  1  &   0 &   -1  &            1 & 0 & 1                  \\\vspace{1mm}
+    1    &  0  &  0 &    \frac{3}{2}    &  1 & 0 &  \frac{7}{2}\\ \vspace{1mm}
+    0    &  0  &  1  &   \frac{2}{5}    &  -\frac{7}{5} &  0 & \frac{3}{5}  \\\vspace{1mm}
+    0    & 0   &  0  &   \frac{1}{2}    & 0     & -1 & \frac{1}{2} \\ \hline\vspace{1mm} 
     0    &  0  &  0   &    \frac{1}{2}  &  7  &   0 &  \frac{29}{2}
 \end{array}
 $$
@@ -3917,20 +3915,20 @@ $$
 Iz tabele zaključujemo da je bazno rješenje problema 
 $x=(2,2, \frac{1}{5}, 1)$, a optimalno $x^* = (2, 2)$, odakle dobijamo i optimalno rješenje početnog problema. 
 
-Rješenje ILP problema gdje su svi koeficijenti u ograničenjima cjelobrojni, je prikazano sljedećim primjerom. \\
+
 %https://www.math10.com/en/geometry/geogebra/geogebra.html
-\begin{primjer} Riješimo sljedeći problem ILP-a:
+\begin{primjer} U ovom primjeru ćemo prikazati ILP problem gdje su svi koeficijenti u ograničenjima cjelobrojni.
 	\end{primjer}
 \begin{align*}
     &\max 3 x_1 + 4 x_2 \\
-    &\mbox{s.t.} \\
+    &\mbox{t.d.} \\
     & 3 x_1 - x_2 \leq 12 \\
     & 3 x_1 + 11 x_2 \leq 66 \\
     & x_1, x_2 \geq 0 \\
     & x_1, x_2 \in \mathbb{Z}
 \end{align*}
 \emph{Rješenje. }
-Na Slici~ \ref{fig:region_ilp_primjer_2} dat je skup tačaka koje su dopustive za problem, za koji je optimalna tačka $x^*=(5,4)$.
+Na Slici~ \ref{fig:region_ilp_primjer_2} dat je skup tačaka koje su dopustive za problem, Funkcija cilja dostiže optimum u tački $x^*=(5,4)$.
 \begin{figure}
     \centering
     \includegraphics[width=170pt,height=170pt]{region_ilp_primjer_2.eps}
@@ -3946,21 +3944,21 @@ $$\begin{array}{ccc c| c}
    -3  & -4 & 0 &  0  & 0
 \end{array}$$
 Nakon dvije iteracije pivotiranja, dobijamo simpleks tabelu 
-$$\begin{array}{ccc c| c}
-1 & 0 &  \frac{11}{36}   &  \frac{1}{36}  &  \frac{11}{2} \\
-0 & 1 &  -\frac{1}{12}  &  \frac{1}{12}  &  \frac{9}{2}   \\ \hline
+$$\begin{array}{ccc c| c}\vspace{1mm}
+1 & 0 &  \frac{11}{36}   &  \frac{1}{36}  &  \frac{11}{2} \\\vspace{1mm}
+0 & 1 &  -\frac{1}{12}  &  \frac{1}{12}  &  \frac{9}{2}   \\ \hline\vspace{1mm}
 0 & 0 &  \frac{7}{12}   &  \frac{5}{12}  &  \frac{69}{2}
 \end{array} $$
-Optimalno rješenje je $x^* = (\frac{11}{2}, \frac{9}{2}, 0, 0)$ koje nije cjelobrojno. Dodajmo gomorijevu odsjecajuću ravan generisanu iz ograničenja u prvoj vrsti simpleks tabele (za prvu baznu komponentu $x_1^* = \frac{11}{2}$):
+Optimalno rješenje je $x = (\frac{11}{2}, \frac{9}{2}, 0, 0)$ koje nije cjelobrojno. Dodajmo Gomorijevu odsjecajuću ravan generisanu iz ograničenja u prvoj vrsti simpleks tabele (za prvu baznu komponentu $x_1 = \frac{11}{2}$):
 $$  \frac{11}{36} x_2 + \frac{1}{36} s_1 - y_1 = \frac{1}{2},$$
 pa dobijamo tabelu 
-$$\begin{array}{ccccc| c}
-1 &  0 &   \frac{11}{36}  & \frac{1}{36}   &  0 & \frac{11}{2} \\
-0 &  1 &   -\frac{1}{12}  & \frac{1}{12}   &  0 & \frac{9}{2} \\
-0 &  0 &  \frac{11}{36}   &  \frac{1}{36}  & -1 & \frac{1}{2} \\ \hline
+$$\begin{array}{ccccc| c}\vspace{1mm}
+1 &  0 &   \frac{11}{36}  & \frac{1}{36}   &  0 & \frac{11}{2} \\\vspace{1mm}
+0 &  1 &   -\frac{1}{12}  & \frac{1}{12}   &  0 & \frac{9}{2} \\\vspace{1mm}
+0 &  0 &  \frac{11}{36}   &  \frac{1}{36}  & -1 & \frac{1}{2} \\ \hline\vspace{1mm}
 0 & 0  &  \frac{7}{12}    & \frac{5}{12}   &  0 & \frac{69}{2}
 \end{array} $$
-Kako bazno dopustivo rješenje nije očigledno, primijenimo dvofazni simpleks metod da bi izabrali bazu, odakle dobijamo tabelu 
+Kako bazno dopustivo rješenje nije očigledno, primijenimo dvofazni simpleks metod da bi izabrali bazu. Dobijamo tabelu
 $$\begin{array}{ccccc| c}
 1   &   0       &   0   &   0             & 1              & 5 \\
 0   &   1       &   0   &   \frac{1}{11}  & -\frac{3}{11}  & \frac{51}{11} \\
@@ -3968,46 +3966,46 @@ $$\begin{array}{ccccc| c}
 0   &   0       &   0   &   \frac{4}{11}  & \frac{21}{11}  &  \frac{369}{11} \\
 \end{array} $$
 Kako su svi koeficijenti u posljednjoj vrsti veći od 0, slijedi da je optimalno bazno rješenje jednako $x=(5, \frac{51}{11}, \frac{18}{11}, 0, 0)$, koje opet nije cjelobrojno. 
- Prema tome, dodajmo sljedeću gomorijevu odsjecajuću ravan za bazno rješenje $x^*_2 = \frac{51}{11}$ (posmatrajući vrstu 2 posljednje simpleks tabele):
+ Prema tome, dodajmo sljedeću Gomorijevu odsjecajuću ravan za bazno rješenje $x_2 = \frac{51}{11}$ (posmatrajući vrstu 2 posljednje simpleks tabele):
  
  $$ \frac{1}{11} s_2 + \frac{8}{11} y_1 - y_2 = \frac{7}{11},$$
  odakle imamo tabelu 
  $$\begin{array}{cccccc| c}
- 1   &   0   &  0  &   0             &   1  &   0              &   5 \\
- 0   &   1   &  0  &  \frac{1}{11}    &   -\frac{3}{11}    &  0 & \frac{51}{11} \\
- 0   &   0   &  1  &  \frac{1}{11}    & -\frac{36}{11}       & 0 & \frac{18}{11}  \\
- 0   &   0   &  0  &  \frac{1}{11}    &  \frac{8}{11}   & -1 & \frac{7}{11} \\ \hline
+ 1   &   0   &  0  &   0             &   1  &   0              &   5 \\\vspace{1mm}
+ 0   &   1   &  0  &  \frac{1}{11}    &   -\frac{3}{11}    &  0 & \frac{51}{11} \\\vspace{1mm}
+ 0   &   0   &  1  &  \frac{1}{11}    & -\frac{36}{11}       & 0 & \frac{18}{11}  \\\vspace{1mm}
+ 0   &   0   &  0  &  \frac{1}{11}    &  \frac{8}{11}   & -1 & \frac{7}{11} \\ \hline\vspace{1mm}
  0   &   0   &  0  &   \frac{4}{11}   &   \frac{21}{11} & 0 & \frac{369}{11}
 \end{array} $$
-I ovdje nije očigledno šta su bazne varijable, pa ovdje primijenimo dvofazni simpleks metod, te dobijamo 
+I ovdje nije očigledno šta su bazne promjenljive, pa i ovdje primijenimo dvofazni simpleks metod. Dobijamo 
  $$\begin{array}{cccccc| c}
-1    &   0   &   0   &  -\frac{1}{8}   &   0    &    \frac{11}{8}    &  \frac{33}{8} \\
-0    &   1   &   0   &   \frac{1}{8}   &   0    &    -\frac{3}{8}    & \frac{39}{8} \\
-0    &   0   &   1   &   \frac{1}{2}   &   0    &    - \frac{9}{2}   & \frac{9}{2} \\
-0    &   0   &   0   &   \frac{1}{8}   &   1    &    - \frac{11}{8}  & \frac{7}{8} \\ \hline
+1    &   0   &   0   &  -\frac{1}{8}   &   0    &    \frac{11}{8}    &  \frac{33}{8} \\\vspace{1mm}
+0    &   1   &   0   &   \frac{1}{8}   &   0    &    -\frac{3}{8}    & \frac{39}{8} \\\vspace{1mm}
+0    &   0   &   1   &   \frac{1}{2}   &   0    &    - \frac{9}{2}   & \frac{9}{2} \\\vspace{1mm}
+0    &   0   &   0   &   \frac{1}{8}   &   1    &    - \frac{11}{8}  & \frac{7}{8} \\ \hline\vspace{1mm}
 0    &   0   &   0   &   \frac{1}{8}   &   0    &     \frac{21}{8}   & \frac{255}{8}
 \end{array} $$
 Odgovarajuće optimalno bazno dopustivo rješenje i dalje nije cjelobrojno -- niti jedna komponenta nije cjelobrojna. 
 
-Prema tome, dodajemo gomorijevu odsjecajuću ravan za vrstu 2 prethodne simpleks tabele, koja je oblika
+Prema tome, dodajemo Gomorijevu odsjecajuću ravan za vrstu 2 prethodne simpleks tabele, koja je oblika
 $$  \frac{1}{8}s_2 + \frac{5}{8} y_2 - y_3 = \frac{7}{8},$$
 te dobijamo tabelu
-$$ \begin{array}{ccccccc| c}
-1    &   0   &   0   &  -\frac{1}{8}   &   0    &    \frac{11}{8}    & 0 & \frac{33}{8} \\
-0    &   1   &   0   &   \frac{1}{8}   &   0    &    -\frac{3}{8}    & 0 & \frac{39}{8} \\
-0    &   0   &   1   &   \frac{1}{2}   &   0    &    - \frac{9}{2}   & 0 & \frac{9}{2} \\
-0    &   0   &   0   &   \frac{1}{8}   &   1    &    - \frac{11}{8}  & 0    & \frac{7}{8} \\ 
-0    &   0   &   0   &   \frac{1}{8}   &   0    &    \frac{5}{8}     & -1 & \frac{7}{8} \\ \hline
+$$ \begin{array}{ccccccc| c}\vspace{1mm}
+1    &   0   &   0   &  -\frac{1}{8}   &   0    &    \frac{11}{8}    & 0 & \frac{33}{8} \\\vspace{1mm}
+0    &   1   &   0   &   \frac{1}{8}   &   0    &    -\frac{3}{8}    & 0 & \frac{39}{8} \\\vspace{1mm}
+0    &   0   &   1   &   \frac{1}{2}   &   0    &    - \frac{9}{2}   & 0 & \frac{9}{2} \\\vspace{1mm}
+0    &   0   &   0   &   \frac{1}{8}   &   1    &    - \frac{11}{8}  & 0    & \frac{7}{8} \\ \vspace{1mm}
+0    &   0   &   0   &   \frac{1}{8}   &   0    &    \frac{5}{8}     & -1 & \frac{7}{8} \\ \hline\vspace{1mm}
 0    &   0   &   0   &   \frac{1}{8}   &   0    &     \frac{21}{8}   & 0 & \frac{255}{8}   
 \end{array} $$
 I ovdje nije očigledno koju   varijablu treba dodati u bazne varijable (bazu), pa primijenimo dvofazni simpleks metod, odakle dobijamo 
 
-$$ \begin{array}{ccccccc| c}
-    1    &   0   &   0   &  0 &  1  &   0    &    0    & 5  \\
-0    &   1   &   0   &  0   &   -\frac{1}{2}    &   0   & \frac{1}{2} & 4 \\
-0    &   0   &   1   &  0   &   -\frac{7}{2}    &   0   & \frac{1}{2} & 1 \\
-0    &   0   &   0   &  1  &   \frac{5}{2}    &  0 &  -\frac{11}{2}    & 7 \\ 
-0    &   0   &   0   &   0 &  -\frac{1}{2}    &   1   & - \frac{1}{2} & 0\\ \hline
+$$ \begin{array}{ccccccc| c}\vspace{1mm}
+    1    &   0   &   0   &  0 &  1  &   0    &    0    & 5  \\\vspace{1mm}
+0    &   1   &   0   &  0   &   -\frac{1}{2}    &   0   & \frac{1}{2} & 4 \\\vspace{1mm}
+0    &   0   &   1   &  0   &   -\frac{7}{2}    &   0   & \frac{1}{2} & 1 \\\vspace{1mm}
+0    &   0   &   0   &  1  &   \frac{5}{2}    &  0 &  -\frac{11}{2}    & 7 \\ \vspace{1mm}
+0    &   0   &   0   &   0 &  -\frac{1}{2}    &   1   & - \frac{1}{2} & 0\\ \hline\vspace{1mm}
 0    &   0   &   0   &  0  &   1    &    0   & 2 & 31  
 \end{array} 
 $$
@@ -4016,13 +4014,13 @@ gdje je lako uočiti da je optimalno bazno dopustivo rješenje $x=(5, 4, 1, 7, 0
 \section{B\&C algoritam za rješavanje ILP-a}
 %https://homepages.rpi.edu/~mitchj/handouts/bc_algo/
 % http://www.mi.fu-berlin.de/wiki/pub/Main/GunnarKlauP1winter0708/discMath_klau_ILP_I.pdf
-U ovom odjeljku analiziramo metod granjanja i odsijecanja (engl. branch and cut - B\&C). Za razliku od B\&B procedure koja rješava ILP, B\&C dodaje  i metod odsjecajućih ravni u rješavanju  potproblema koji odgovaraju čvorovima (drveta). Dakle, ako  uzimamo trenutno aktivni čvor i rješavamo njegov potproblem, dijelimo ga na nekoliko potproblema (podjelom dopustivog regiona na više disjunktnih -- dodavanjem ograničenja) ili ga rješavamo rekurzivnim dodavanjem (gomorijevih) odsjecajućih ravni. Demonstrirajmo ovu ideju na primjeru rješavanja jednog ILP-a.
+U ovom odjeljku analiziramo metodu granjanja i odsijecanja (engl. branch and cut - B\&C). U odnosu na B\&B metodu, koja je opisana u Odjeljku~\ref{sec:bb}, B\&C dodaje  i metod odsjecajućih ravni u rješavanju  potproblema koji odgovaraju čvorovima drveta. Dakle, ako  uzimamo trenutno aktivni čvor i rješavamo njegov potproblem, dijelimo ga na nekoliko potproblema (podjelom dopustivog regiona na više disjunktnih -- dodavanjem ograničenja) ili ga rješavamo rekurzivnim dodavanjem (Gomorijevih) odsjecajućih ravni. Ilustrujmo ovu ideju na primjeru rješavanja jednog ILP-a.
 
-\begin{primjer} Riješimo sljedeći ILP:
+\begin{primjer} Riješimo sljedeći ILP
 	\end{primjer}
 \begin{align*}
     &\max 6 x_1 + 5 x_2 \\
-    &  {s.t. } \\
+    &  \mbox{t.d. } \\
     & 3x_1 + x_2 \leq 11 \\
     & - x_2 + 2 x_2 \leq 5 \\
     & x_1, x_2 \geq 0 \\
@@ -4034,7 +4032,7 @@ sa optimalnom vrijednošću $33\frac{1}{7}$. Nakon toga treba da se donese odluk
 
 \begin{align*}
     &\max 6 x_1 + 5 x_2 \\
-    & {s.t. } \\
+     &  \mbox{t.d. } \\
     & 3x_1 + x_2 \leq 11 \\
     & - x_2 + 2 x_2 \leq 5 \hspace{2cm} (P1) \\
     & x_1 \geq 3 \\
@@ -4044,7 +4042,7 @@ sa optimalnom vrijednošću $33\frac{1}{7}$. Nakon toga treba da se donese odluk
 
 \begin{align*}
     &\max 6 x_1 + 5 x_2 \\
-    & {s.t. } \\
+      &  \mbox{t.d. } \\
     & 3x_1 + x_2 \leq 11 \\
     & - x_2 + 2 x_2 \leq 5 \hspace{2cm} (P2) \\
     & x_1  \leq 2 \\
@@ -4052,10 +4050,10 @@ sa optimalnom vrijednošću $33\frac{1}{7}$. Nakon toga treba da se donese odluk
     & x_1, x_2 \in \mathbb{Z}
 \end{align*}
 
-Rješenje relaksacije problema ($P1$) daje riješenje $x^*=(3,2)$, koje je cjelobrojno, pa prema tome i dopustivo u početnom problemu. Njena vrijednost je 28, što je i donja granica ($LB$) početnog problema. Relaksacija problema ($P2$) nam daje rješenje $x^*=(2, \frac{7}{2})$, čija je optimalna vrijednost $29.5$.  Prema tome, rješenje nije cjelobrojno. Primjenjujući metod Gomorijevih odsjecajućih ravni na problem ($P2$), konstruišemo odsjecajuću ravan $2x_1 + x_2 \leq 7$ koju dodajemo u problem ($P2$) pa dobijamo problem 
+Rješavanjem relaksacije problema ($P1$) dobijamo riješenje $x^*=(3,2)$, koje je cjelobrojno, pa prema tome i dopustivo u početnom problemu. Vrijednost funkcije cilja je 28, što je i donja granica ($LB$) početnog problema. Relaksacija problema ($P2$) nam daje rješenje $x^*=(2, \frac{7}{2})$, čija je optimalna vrijednost $29.5$.  Prema tome, rješenje nije cjelobrojno. Primjenjujući metod Gomorijevih odsjecajućih ravni na problem ($P2$), konstruišemo odsjecajuću ravan $2x_1 + x_2 \leq 7$ koju dodajemo u problem ($P2$), pa dobijamo problem 
 \begin{align*}
     &\max 6 x_1 + 5 x_2 \\
-    & {s.t. } \\
+    & \mbox{t.d. } \\
     & 3x_1 + x_2 \leq 11 \\
     & - x_2 + 2 x_2 \leq 5  \\
     & 2x_1 + x_2 \leq 7 \hspace{2cm} (P3)\\ 
@@ -4064,20 +4062,20 @@ Rješenje relaksacije problema ($P1$) daje riješenje $x^*=(3,2)$, koje je cjelo
     & x_1, x_2 \in \mathbb{Z}
 \end{align*}
 
-Rješavajući LP relaksaciju problema ($P3$), dobijamo rješenje $x^*=(\frac{9}{5}, \frac{17}{5})$, tj.  optimalna vrijednost je $27.8$. Kako je $LB \geq 28.8$, niti jedno cjelobrojno rješenje problema ($P3$) ne može biti bolje od trenutno najbolje donje granice ($LB=28$), pa zaključujemo da je optimalo rješenje početnog problema $x^*=(3,2)$. 
+Rješavajući LP relaksaciju problema ($P3$), dobijamo rješenje $x^*=(\frac{9}{5}, \frac{17}{5})$, a  optimalna vrijednost funkcije cilja je $27.8$. Kako je $LB \geq 28.8$, niti jedno cjelobrojno rješenje problema ($P3$) ne može biti bolje od trenutno najbolje donje granice ($LB=28$), pa zaključujemo da je optimalo rješenje početnog problema $x^*=(3,2)$. 
 
 \section{Lagranžova relaksacija}
-U rješavanju problema optimizacije, nalazak optimalnog rješenja je primarni cilj. Međutim, za mnoge probleme nije realno očekivati da se garantuje nalazak optimalnog rješenja u realnom vremenu za realne instance problema. Umjesto toga, najbolje što se može učiniti je da se ponudi dobra donja granica za optimalnu vrijednost. Ako je ta granica blizu optimuma, u mnogo slučajeva ona može da zamijeni optimum, štedeći resurse kojima raspolažemo. 
+U rješavanju problema optimizacije, pronalazak optimalnog rješenja je primarni cilj. Međutim, za mnoge probleme nije realno očekivati da seu razumnom vremenu može doći do optimalnog rješenja. Umjesto toga, najbolje što se može učiniti je da se ponudi dobra  granica za optimalnu vrijednost. Ako je ta granica blizu optimuma, u mnogo slučajeva ona može da zamijeni optimum, čime štedimo resurse kojima raspolažemo. 
 
 Ideja \emph{Lagranžove relaksacije} se sastoji u tome da u modelu ILP-a  koji ima  ograničenja koja čine problem teškim (ova procjena je najčešće stvar praktičnog iskustva),  posmatramo kao dio ciljne funkcije koju penalizujemo nekim parametrom.  %parametrom $\lambda>0$. 
-Ovo ograničenje potom brišemo iz skupa ograničenja modela, a zatim rješavamo novi problem. Na ovaj način, rješenje ovakvog problema je donja granica (za problem minimizacije)  optimalnog rješenja inicijalnog problema. U praksi, ona je često jako blizu vrijednosti optimuma. \\
+Ovo ograničenje potom brišemo iz skupa ograničenja modela, a zatim rješavamo novi problem. Na ovaj način, rješenje ovakvog problema je donja granica (za problem minimizacije)  optimalnog rješenja inicijalnog problema. Dobijena granica je često dovoljno blizu vrijednosti optimuma, što ovu metodu čini upotrebljivom u rješavanju praktičnih problema. 
 
-\begin{primjer} Posmatrajmo problem \emph{najkraćeg puta sa ogaraničenjem} (eng. \emph{Constrained Shortest Path Problem}). Neka je dat usmjeren neciklični graf $G=(V,E)$. Za svaku granu $(i,j) \in E$ dodijelimo cijenu puta $c_{i,j}$ i vrijeme putovanja $t_{i,j}$. Pretpostavimo da je čvor $i=1$ startni čvor (izvorišni čvor), a čvor $n = |V|$   završni čvor (terminalni čvor). Zadatak je da se nađe put  od izvorišnog do terminalnog čvora koji je najeftiniji ali tako da se čitav put pređe u vremenskom periodu $T$.
+\begin{primjer} Posmatrajmo problem \emph{najkraćeg puta sa ograničenjem} (eng. \emph{Constrained Shortest Path Problem}). Neka je dat usmjeren neciklični graf $G=(V,E)$. Za svaku granu $(i,j) \in E$ dodijelimo cijenu puta $c_{i,j}$ i vrijeme putovanja $t_{i,j}$. Pretpostavimo da je čvor $i=1$ startni (izvorni) čvor, a čvor $n = |V|$   završni čvor (terminalni čvor). Zadatak je da se nađe najjeftiniji put  od izvornog do terminalnog čvora, ali tako da se čitav put pređe u vremenskom periodu $T$.
 \end{primjer}
 Ovaj problem se modeluje pomoću sljedećeg ILP-a:
  \begin{align}
     &z^*=\min\sum_{(i,j) \in E }c_{i,j}x_{i,j} \\
-    &{s.t. }\\
+    &\mbox{t.d. }\\
     & \sum_{i} x_{i,j} - \sum_{i} x_{j,i} = \begin{cases}  
                                                1, \mbox{ ako } i=1 \\
                                               -1, \mbox{ ako } i=n \\
@@ -4087,9 +4085,9 @@ Ovaj problem se modeluje pomoću sljedećeg ILP-a:
     & x_{i,j} \in \{0, 1 \}, \forall (i,j) \in E.
 \end{align} 
 
-Binarna varijabla $x_{i,j}$ dobija vrijednost 1 ako je odabrana grana $(i,j)$ na   putu, a 0 inače.  
-Prvo ograničenje u modelu nam ograničava da je dopustivo rješenje upravo put od izvornog do terminalnog čvora. Drugo ograničenje nam modeluje uslov da vrijeme prelaska puta treba da bude u  granicama dopustivog. Ovo ograničenje spada pod ``komplikovanim'' ograničenjima jer, kao što znamo,  pronalazak najkraćeg puta u direktnim grafovima sa unaprijed definisanim izvorišnim čvorom je polinomijalno rješiv (uz pomoć Dajkstrinog algoritma), dok dodavanjem ograničenja o vremenu taj problem postaje NP-težak. Ideja je sada relaksirati ovaj problem uz prebacivanje ograničenja za vrijeme u funkciju cilja koja se zatim penalizuje. 
-Dakle, Lagranžova relaksacija problema je data sa:
+Binarna promjenljiva $x_{i,j}$ dobija vrijednost 1 ako je  na   putu odabrana grana $(i,j)$, a 0 inače. 
+Prvo ograničenje u modelu osigurava da je dopustivo rješenje upravo put od izvornog do terminalnog čvora. Drugo ograničenje nam modeluje uslov da vrijeme prelaska puta treba da bude u  granicama dopustivog. Ovo ograničenje spada u ``teška'' ograničenja. Kao što znamo,  pronalazak najkraćeg puta u usmjerenim grafovima, sa unaprijed definisanim izvornim čvorom, je polinomijalno rješiv (na primjer, uz pomoć Dajkstrinog algoritma). Međutim,  dodavanjem ograničenja o vremenu, taj problem postaje NP-težak. Stoga, ideja je  relaksirati ovaj problem uz prebacivanje ograničenja za vrijeme u funkciju cilja, koja se zatim penalizuje. 
+Dakle, Lagranžova relaksacija problema je data sa
 
 \begin{align*}
        &L(\lambda)= \min\sum_{(i,j) \in E }c_{i,j}x_{i,j}  + \lambda(\sum_{(i,j) \in E} t_{i,j} x_{i,j} - T ) = \min \sum_{(i,j) \in E} (c_{i,j} + t_{i,j} )x_{i,j} - \lambda T \\
@@ -4108,9 +4106,12 @@ $$ L(\lambda) \leq L^* \leq z^*.$$
 
 U praksi se pokazalo da je Lagranžova relaksacija dobra tehnika za dobijanje granica za optimalnu vrijednost problema. 
 
-Pokušajmo sada primijeniti ovu tehniku na \emph{problem trgovačkog putnika}.  Pogledajmo ovaj problem sa grafovske strane. Znamo da kolekcija grana formira rutu ako su svaka dva čvora grafa pokrivena sa dvije grane. Takođe, ako obrišemo grane incidentne sa čvorom 1, ostatak rute čini stablo koje pokriva graf  $G\setminus \{1\}$.  
-Definišimo sa $A(j)$ skup svih čvorova koji su incidentni sa čvorom $j$. 
+\fixme{dovde sam stigao}
 
+\begin{primjer}
+Pokušajmo sada primijeniti ovu tehniku na \emph{problem trgovačkog putnika}.  Razmotrimo ovaj problem sa grafovske strane. Znamo da kolekcija grana formira rutu ako su svaka dva čvora grafa pokrivena sa dvije grane. Takođe, ako obrišemo grane incidentne sa čvorom 1, ostatak rute čini stablo koje pokriva graf  $G\setminus \{1\}$.  
+Definišimo sa $A(j)$ skup svih čvorova koji su incidentni sa čvorom $j$. 
+\end{primjer}
 Relaksacija: definišimo sa $T_1$ skup svih ruta koje nakon brisanja grana koje pokrivaju čvor $1$ formiraju drvo.  
 
 Shodno tome, konstruišemo sljedeći model
