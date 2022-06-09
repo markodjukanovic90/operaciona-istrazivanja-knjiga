@@ -5365,14 +5365,14 @@ odnosno
  
  Međutim, pravi razlog za DW dekompoziciju leži u činjenici da za rješavanje problema~(\ref{dw3}) ne moramo eksplicitno da koristimo sve vrhove politopa $X$. Umjesto toga, krenućemo od jednog   manjeg podskupa, a samim tim i podskupom skupa $\lambda$ promjenljivih. Nakon toga, primijenićemo tehniku ``generisanja kolona'' (eng. \emph{column generation}), kako bismo u razmatranje uključili nove vrhove politopa $X$, koji će pomoći poboljšanju rješenja tzv. ograničenog master problema (eng. \emph{Restricted master problema} -- RMP).
  
- \fixme{dovde}
- 
+
  Označimo sada problem formulisan  sa~(\ref{dw3}) kao \emph{Master problem} (MP). Na osnovu master problema formiramo RMP sa manjim brojem $\lambda$ promjenljivih.
  
      \begin{equation}
  	\begin{aligned}\label{dw4}
- 		\min\  & \sum_{j\in I}(c^T x_j)\lambda_j\\
- 		s.t.\  &\sum_{j\in I} (A x_j)\lambda_j=b\\
+ 		&\min\   \sum_{j\in I}(c^T x_j)\lambda_j\\
+ 		&\mbox{t.d.}\\ 
+ 		 &\sum_{j\in I} (A x_j)\lambda_j=b\\
  		&\sum_{j\in I}\lambda_j = 1\\
  		&\lambda_j\geqslant 0,\ j  \in I
  	\end{aligned}
@@ -5383,7 +5383,7 @@ Označimo sa $\overline{z}$ optimalnu vrijednost funkcije cilja RMP, a sa $z^*$ 
 
 Primijetimo da je $\overline{z}$ jedna gornja granica za master problem, jer je svako dopustivo rješenje RMP takođe i dopustivo za master problem. Ova konstatacija će nam biti od koristi u razmatranju koje slijedi.
 
-Da bismo provjerili da li je optimalno rješenje RMP ujedno i optimalno rješenje master problema, potrebno je da provjerimo da li su koeficijenti doprinosa svih nebaznih promjenjivih nenegativni, tj. postoji li neka nebazna varijabla koja može doprinijeti dodatnom smanjenju vrijednosti funkcije cilja. Kao što znamo iz simpleks tablele i ranije sekcije o dualnosti linearnog programiranja, ove vrijednosti su ekvivalentne optimalnim vrijednostima dualnih promjenjivih (duala problema RMP).   
+Da bismo provjerili da li je optimalno rješenje RMP ujedno i optimalno rješenje master problema, potrebno je da provjerimo da li su koeficijenti doprinosa svih nebaznih promjenjivih nenegativni, tj. postoji li neka nebazna promjenljiva koja može doprinijeti dodatnom smanjenju vrijednosti funkcije cilja. Na osnovu osobina simpleks tabele i tvrđenja koja važe na osnovu teorije dualnosti, ove vrijednosti su ekvivalentne optimalnim vrijednostima dualnih promjenjivih (duala problema RMP).   
 %je reduced cost od svih nebazičnih promjenljivih NIJE JASNO...
 
 
@@ -5391,7 +5391,7 @@ Da bismo provjerili da li je optimalno rješenje RMP ujedno i optimalno rješenj
 
 Označimo vektorom $y$ optimalne vrijednosti dualnih promjenljih koje se odnose na ograničenja $\sum_{j\in I} (A x^{(j)})\lambda_j=b$ i skalarom $\alpha$ optimalnu vrijednost dualne promjenljive koja se odnosi na ograničenje $\sum_{j\in I}\lambda_j = 1$. 
 
-Da bi se odredili   koeficijenti doprinosa za $\lambda_j$, odredimo šta se dobija u odgovarajućoj koloni: U funkciji cilja, imamo $c^Tx^{(j)}$, u ograničenjima $A x^{(j)} $ i još jednu jedinicu (na osnovu ograničenja $\sum_{j\in I}\lambda_j = 1$). Tako, kolona na koju se fokusiramo da bismo izračunali doprinose izgleda ovako
+Da bi se odredili   koeficijenti doprinosa za $\lambda_j$, odredimo šta se dobija u odgovarajućoj koloni. U funkciji cilja, imamo $c^Tx^{(j)}$, u ograničenjima $A x^{(j)} $ i još jednu jedinicu (na osnovu ograničenja $\sum_{j\in I}\lambda_j = 1$). Tako, kolona na koju se fokusiramo da bismo izračunali doprinose izgleda ovako
 
 
  $$\left(\begin{array}{c}
@@ -5400,7 +5400,7 @@ Da bi se odredili   koeficijenti doprinosa za $\lambda_j$, odredimo šta se dobi
  	1 
  \end{array}\right)$$
  
- i sada rješavamo \emph{Column generation potproblem} (CG), čiji je cilj da se pronađe najmanji koeficijent doprinosa. Ukoliko je on manji od nule, dobija se nova kolona koja treba da se doda u potproblem RMP.  U slučaju da je on nenegativan, tada je optimalno rješenje RMP ujedmo i optimalno rješenje MP.
+ Sada rješavamo \emph{Column generation potproblem} (CG), čiji je cilj da se pronađe najmanji koeficijent doprinosa. Ukoliko je on manji od nule, dobija se nova kolona koja treba da se doda u potproblem RMP.  U slučaju da je on nenegativan, tada je optimalno rješenje RMP ujedno i optimalno rješenje MP.
  
  CG potproblem se definiše kao
  
@@ -5416,6 +5416,7 @@ Prisjetimo se sada da smo za jednu od polaznih pretpostavki imali da je skup $X$
 
 Reformulišimo  CG potproblem sada kao problem maksimizacije, gdje ćemo za funkciju cilja uzeti negativnu vrijednost funkcije cilja minimizacije, tj.
  
+ \fixme{Marko, provjeri Milanin komentar vezan za 8.18, odnosno po cemu ide maksimizacija}
  
        \begin{equation}
  	\begin{aligned}\label{dw7}
@@ -5427,17 +5428,18 @@ Neka je $\hat{z}$ optimalna vrijednost funkcije cilja ovog problema maksimizacij
 Posmatrajmo sada jedno dopustivo rješenje $x$ polaznog problema. Za to rješenje važi 
 $x\in X$ i $Ax=b$, pa imamo da vrijedi %Za to rješenje $x$ važi 	
  
- $$y^T	Ax-c^Tx+\alpha\leqslant \hat{z} \Leftrightarrow c^Tx\geqslant y^T	Ax+\alpha-\hat{z} \Leftrightarrow  c^T x \geqslant y^T b+\alpha-\hat{z}$$
+ $$y^T	Ax-c^Tx+\alpha\leqslant \hat{z} \Leftrightarrow c^Tx\geqslant y^T	Ax+\alpha-\hat{z} \Leftrightarrow  c^T x \geqslant y^T b+\alpha-\hat{z}.$$
  
  Primijetimo sada da je  $y^T b+\alpha$ zapravo  optimalna vrijednost funkcije duala od RMP, koja je dalje, jednaka optimalnoj vrijednosti $\overline{z}$ od RMP-a. 
  
  $$ c^Tx\geqslant \overline{z}-\hat{z}$$
  
  Sada zaključujemo da je razlika između optimalne vrijednosti RMP-a i problema maksimizacije CG  problema donja granica za originalni LP. Pošto ovo važi za proizvoljno rješenje $x$, zaključujemo da važi 
- $$z^*\geqslant \overline{z}-\hat{z}$$
- odnosno, razlika $\overline{z}-\hat{z}$ je donja granica za optimalnu vrijednost funkcije cilja polaznog problema. Dalje, prisjetimo se da je $\overline{z}$ gornja granica za $z^*$, odnosno važi 
+ $$z^*\geqslant \overline{z}-\hat{z}.$$
+ 
+ Ovim smo dobili da je razlika $\overline{z}-\hat{z}$ donja granica za optimalnu vrijednost funkcije cilja polaznog problema. Dalje, prisjetimo se da je $\overline{z}$ gornja granica za $z^*$, odnosno važi 
 \begin{equation}\label{dw8}
-	  \overline{z}\geqslant z^*\geqslant \overline{z}-\hat{z}
+	  \overline{z}\geqslant z^*\geqslant \overline{z}-\hat{z}.
 \end{equation}
  
  Izraz~(\ref{dw8}) se može koristiti za određivanje koliko daleko se optimalno rješenje polaznog problema razlikuje od rješenja koja se dobijaju u iterativnom procesu DW dekompozicije.
@@ -5450,8 +5452,9 @@ $x\in X$ i $Ax=b$, pa imamo da vrijedi %Za to rješenje $x$ važi
  \end{primjer}
    \begin{equation}
  	\begin{aligned}\label{primjer:dw1}
- 		\max\  &x_1\\
- 		s.t.\  &x_1+3x_2\leqslant \frac94\\
+ 		&\max\  x_1\\
+ 		&\mbox{t.d.}\\  
+ 		&x_1+3x_2\leqslant \frac94\\
  		 &2x_1-3x_2\leqslant 0\\
  		&x \in X=\{(x_{1,2}):0\leqslant x_{1, 2}  \leqslant 1\}.
  	\end{aligned}
@@ -5515,8 +5518,9 @@ $$
  pa polazni problem možemo napisati kao
     \begin{equation}
  	\begin{aligned}\label{primjer:dw2}
- 		\max\  &c^Tx\\
- 		s.t.\  &Ax\leqslant b\\
+ 		&\max\ c^Tx\\
+ 		&\mbox{t.d.}\\
+ 		  &Ax\leqslant b\\
  		&x \in X
  	\end{aligned}
  \end{equation}
@@ -5531,8 +5535,9 @@ $$\begin{aligned}
  
      \begin{equation}
  	\begin{aligned}\label{primjer:dw3}
- 		\max\  & \sum_{j=1}^4(c^T  x^{(j)})\lambda_j\\
- 		s.t.\  &\sum_{j=1}^4 (A  x^{(j)})\lambda_j\leqslant b\\
+ 		&\max\   \sum_{j=1}^4(c^T  x^{(j)})\lambda_j\\
+ 		&\mbox{t.d.}\\ 
+ 		 &\sum_{j=1}^4 (A  x^{(j)})\lambda_j\leqslant b\\
  		&\sum_{j=1}^4\lambda_j = 1\\
  		&\lambda_j\geqslant 0,\ j = 1,\ldots,4
  	\end{aligned}
@@ -5540,8 +5545,9 @@ $$\begin{aligned}
  Odnosno, nakon sređivanja 
       \begin{equation}
  	\begin{aligned}\label{primjer:dw4}
- 		\max  &\  \lambda_2+\lambda_4\\
- 		s.t.\  &\left(\begin{array}{c}
+ 		&\max \  \lambda_2+\lambda_4\\
+ 		&\mbox{t.d.}\\
+ 		 &\left(\begin{array}{c}
  			1\\
  			2
  		\end{array}\right)\lambda_2+\left(\begin{array}{c}
@@ -5562,8 +5568,9 @@ $$\begin{aligned}
 Da bismo u ograničenjima izbjegli znak $\leqslant$ u prva dva ograničenja, dodajmo modelu dvije izjednačavajuće promjenljive $s_1$ i $s_2$, te model zapišimo kao
       \begin{equation}
 	\begin{aligned}\label{primjer:dw5}
-		\max\  & \lambda_2+\lambda_4\\
-		s.t.\  &\lambda_2+3\lambda_3+4\lambda_4+s_1=\frac 94\\
+		&\max\   \lambda_2+\lambda_4\\
+		&\mbox{t.d.}\\
+		  &\lambda_2+3\lambda_3+4\lambda_4+s_1=\frac 94\\
 		&2\lambda_2-3\lambda_3-\lambda_4+s_2=0\\
 		&\sum_{j=1}^4\lambda_j = 1\\
 		&\lambda_j\geqslant 0,\ j = 1,\ldots,4\\
@@ -5576,14 +5583,15 @@ Sada se može inicijalnizovati RMP, biranjem dopustive baze.
 Izabraćemo promjenljive $\lambda_1, s_1$ i $s_2$ kao inicijalne bazne promjenljive. Pošto  promjenljive $\lambda_2,\lambda_3$ i $\lambda_4$ ne egzistiraju u potproblemu,  RMP izgleda ovako
       \begin{equation}
 	\begin{aligned}\label{primjer:dw6}
-		\max\  & 0\\
-		s.t.\  &s_1=\frac 94\\
+		&\max\   0\\
+		&\mbox{t.d.}\\  
+		&s_1=\frac 94\\
 		&s_2=0\\
 		&\lambda_1 = 1\\
 		&\lambda_1,s_1,s_2\geqslant 0
 	\end{aligned}
 \end{equation}
-Posljednji problem se trivijalno rješava (funkcija cilja ima vrijednost 0, a vrijednost promjenljivih se direktno očitavaju iz ograničenja). Ispitajmo sada optimalnu vrijednost dualnih promjenjivih, dakle $y$ i $\alpha$ uz pomoć simpleks tabele problema (\ref{primjer:dw6}). Ona izgleda ovako
+Posljednji problem se trivijalno rješava. Funkcija cilja ima vrijednost 0, a vrijednost promjenljivih se direktno očitavaju iz ograničenja. Ispitajmo sada optimalnu vrijednost dualnih promjenjivih, dakle $y$ i $\alpha$ uz pomoć simpleks tabele problema (\ref{primjer:dw6}). Ona izgleda ovako
 \begin{center}
 
 \begin{tabular}{c|cccc}
@@ -5598,14 +5606,7 @@ $\lambda_1$	  &  0  &    0     &   1         &  1   \\ \hline
 Posmatrajmo sada dualni problem problema~(\ref{primjer:dw3}). Označimo sa $y_1$, $y_2$ i $\alpha$ promjenljive dualnog problema. Kako imamo optimalnu simpleks tabelu, vrijednost optimuma dualnih promjenjivih jednaka je odgovarajućim koeficijentima doprinosa (posljednji red tabele), pa je $y_1 = 0 = y_2 = \alpha$. 
 
 %Za dalje razmatranje biće nam potrebna  Tabela~\ref{tbl:dw1}, koju ćemo popunjavati u iterativnom procesu.
-\begin{table}\centering
-	\begin{tabular}{|c|c|c|} \hline
-	$\vdots$ & 	$B^{-1}$& $B^{-1}b$ \\
-	\hline
-	$BV$ &	$(y_1,y_2,\alpha)=c^T_B B^{-1}$ & $\overline{z}= c^T_B B^{-1}b$ \\	
-		\hline
-	\end{tabular}\caption{Forma tabele za praćenje vrijednosti u iterativnom procesu DW dekompozicije}\label{tbl:dw1}
-\end{table}
+
 
 \emph{Iteracija 1.} 
 Konstruišemo CG problem sa
@@ -5633,8 +5634,9 @@ Kada pogledamo prethodne vrijednosti kolone i master problem (\ref{primjer:dw5})
 	0 & 1 & 0  \\
 	0 & 0 & 1  \\
 \end{pmatrix}. $ %da bismo dodali potrebnu kolonu za RMP. 
-Za to je potrebno izvršiti njenu transformaciju na nove baze čiji su koraci opisani u Tabeli \ref{tbl:dw1}, odakle dobijamo kolonu za dodavanje u RMP:
- 
+Za to je potrebno izvršiti njenu transformaciju na nove baze čiji su koraci opisani u Tabeli \ref{tbl:dw1}, odakle dobijamo kolonu za dodavanje u RMP
+
+
 $$	\begin{pmatrix}
 	       1 \\
 	      1  \\
@@ -5642,8 +5644,19 @@ $$	\begin{pmatrix}
 	      1\\
 	\end{pmatrix}
  $$
+ 
+  \begin{table}\centering
+ 	\begin{tabular}{|c|c|c|} \hline
+ 		$\vdots$ & 	$B^{-1}$& $B^{-1}b$ \\
+ 		\hline
+ 		$BV$ &	$(y_1,y_2,\alpha)=c^T_B B^{-1}$ & $\overline{z}= c^T_B B^{-1}b$ \\	
+ 		\hline
+ 	\end{tabular}\caption{Forma tabele za praćenje vrijednosti u iterativnom procesu DW dekompozicije}\label{tbl:dw1}
+ \end{table}
+ 
+ 
 
-Ubacimo za trenutak ovu kolonu u prethodnu simpleks tabelu, odakle imamo tabelu: 
+Ubacimo za trenutak ovu kolonu u prethodnu simpleks tabelu, odakle imamo tabelu
 
  \begin{center}
  	
@@ -5655,7 +5668,7 @@ Ubacimo za trenutak ovu kolonu u prethodnu simpleks tabelu, odakle imamo tabelu:
  		$z$         &   0      &    0         &   0         &    -1         &  0
  	\end{tabular}
  \end{center}
-Primijetimo da je cijena doprinosa dodate kolone promijenjena sa 1 na -1 (zbog korištenja tabelarne forme simpleks metoda, optimalna vrijednost problema je -$\hat{z}$, jer se CG potproblem u stvari minimizuje). Sada koristimo novu kolonu kao ulaznu kolonu za transformacije -- u njoj tražimo kandidata za pivota kako smo to i vidjeli u simpleks metodi. Odaberemo element čija je vrijednost $2$, pa pivotirajmo oko njega. Prvo sve elemente u koloni 2 podijelimo sa 2, te potom izvršimo elementarne transformacije u kojima načinimo nule u ostalim elementima novododate kolone. Varijabla $s_2$ izlazi iz baze, dok $\lambda_2$ ulazi u bazu. Na kraju dobijamo transformisanu tabelu:
+Primijetimo da je cijena doprinosa dodate kolone promijenjena sa 1 na -~1, jer je, zbog korištenja tabelarne forme simpleks metoda, optimalna vrijednost problema zapravo -$\hat{z}$, pošto se CG potproblem minimizuje. Sada koristimo novu kolonu kao ulaznu kolonu za transformacije -- u njoj tražimo kandidata za pivota kako smo to i vidjeli u simpleks metodi. Odaberemo element čija je vrijednost $2$ i pivotiramo oko njega. Prvo sve elemente u koloni 2 podijelimo sa 2, te potom izvršimo elementarne transformacije da bi ostali elementi novododate kolone dobili vrijednost nula. Promjenljiva $s_2$ se isključuje iz baze, dok se $\lambda_2$ uključuje u bazu. Na kraju dobijamo transformisanu tabelu:
 
 \begin{center}
 	
@@ -5667,14 +5680,18 @@ Primijetimo da je cijena doprinosa dodate kolone promijenjena sa 1 na -1 (zbog k
 		$z$         &   0      &    $\frac{1}{2}$         &   0         &    0          &  0
 	\end{tabular}
 \end{center} 
-Dakle, bazne varijable su sada iz skupa $\{s_1, \lambda_1, \lambda_2\}$, koja odgovara baznoj matrici 
+Dakle, bazne promjenljive su sada iz skupa $\{s_1, \lambda_1, \lambda_2\}$, koji odgovara baznoj matrici 
 $B^{-1} = 
 \begin{pmatrix}
 	   1 & -\frac{1}{2}    &  0 \\
 	   0 & \frac{1}{2}     &  0  \\
 	   0 & -\frac{1}{2}    &  1  \\
-\end{pmatrix}$
-na osnovu prethodne simpleks tabele, dobijamo   vrijednosti dualnih varijabli iz koeficijenta doprinosa, tj. $y_1 = 0, y_2 = \frac{1}{2}, \alpha = 0$. \\
+\end{pmatrix}$.
+Na osnovu prethodne simpleks tabele, dobijamo   vrijednosti dualnih promjenljivih iz koeficijenta doprinosa, tj. $y_1 = 0, y_2 = \frac{1}{2}, \alpha = 0$. 
+
+
+\vspace{5mm}
+
 \emph{Iteracija 2.} Iz prethodnog dobijamo CG potproblem 
 \begin{align}
 	 \max_{x \in X} (1, 0)^T x - \left(0, \frac{1}{2}\right)\left(\begin{array}{cc}
@@ -5682,8 +5699,8 @@ na osnovu prethodne simpleks tabele, dobijamo   vrijednosti dualnih varijabli iz
 	 	2 & -3
 	 \end{array}\right)  x   - 0 = \max_{x \in X}x_1 - x_1 + \frac{3}{2}x_2 = \max_{x \in X} \frac{3}{2}x_2.
 \end{align}
-Rješenje ovog problema je lako dobiti, tj. optimum se dostiže u, recimo,  tački $x^{(3)}= (0, 1)^T$, dok je optimalna vrijednost jednaka $\hat{z}= \frac{3}{2}$. Kako je $\hat{z} > 0$, treba da odaberemo novu kolonu koja se dodaje u RMP. 
-Ova kolona (ako posmatramo problem (\ref{primjer:dw5})) je   data sa 
+Rješenje ovog problema se lako dobija, tj. optimum se dostiže u, recimo,  tački $x^{(3)}= (0, 1)^T$, dok je optimalna vrijednost jednaka $\hat{z}= \frac{3}{2}$. Kako je $\hat{z} > 0$, treba da odaberemo novu kolonu koja se dodaje u RMP. 
+Ova kolona, ako posmatramo problem (\ref{primjer:dw5}), je   data sa 
 \begin{align}
 	V =   \begin{pmatrix}
 		c^T  x^{(3)}\\
@@ -5694,10 +5711,10 @@ Ova kolona (ako posmatramo problem (\ref{primjer:dw5})) je   data sa
 		3  \\
 		-3  \\
 		1\\  
-	\end{pmatrix}
+	\end{pmatrix}.
 \end{align}
 
-Kada pogledamo prethodne vrijednosti kolone $V$ i master problem (\ref{primjer:dw5}), jasno je da ona odgovara koeficijentima varijable $\lambda_3$. Dakle, prethodna kolona je data u odnosu na varijablu $\lambda_3$ početnog problema, ali je sada izražavamo preko trenutne baze (potproblema) vektora $s_1, s_2$ i $\lambda_2$. Dakle, nakon množenja kolone sa inverzom baze $B^{-1}$, na osnovu koraka opisanih u Tabeli \ref{tbl:dw1}, sljedeća kolona je ulazna koja se dodaje u simpleks tabelu:
+Kada pogledamo prethodne vrijednosti kolone $V$ i master problem (\ref{primjer:dw5}), jasno je da ona odgovara koeficijentima promjenljive $\lambda_3$. Dakle, prethodna kolona je data u odnosu na promjenljivu $\lambda_3$ početnog problema, ali je sada izražavamo preko trenutne baze (potproblema) vektora $s_1, s_2$ i $\lambda_2$. Dakle, nakon množenja kolone sa inverzom baze $B^{-1}$, na osnovu koraka opisanih u Tabeli \ref{tbl:dw1}, sljedeća kolona se dodaje u simpleks tabelu:
 
 \begin{center}
  
@@ -5706,33 +5723,37 @@ Kada pogledamo prethodne vrijednosti kolone $V$ i master problem (\ref{primjer:d
 	 \frac{9}{2}     \\
  	-\frac{3}{2}       \\
 	 \frac{5}{2}    \\
-   \end{pmatrix}$
+   \end{pmatrix}$.
 \end{center}
 Dakle, dobijamo tabelu 
 
 \begin{center}
  
-		\begin{tabular}{c|cccc|c}
-		   $s_1$	    &   1      &   -$\frac{1}{2}$         &   0         &   $\frac{9}{2}$          &  $\frac{9}{4}$ \\
-		   $\lambda_2$  &   0      &    $\frac{1}{2}$         &   0         &  -$ \frac{3}{2}$         &  0             \\
-		   $\lambda_1$  &   0      &    -$\frac{1}{2}$        &   1         &  $\frac{5}{2} $          &  1             \\ \hline
+		\begin{tabular}{c|cccc|c}\vspace{1mm}
+		   $s_1$	    &   1      &   -$\frac{1}{2}$         &   0         &   $\frac{9}{2}$          &  $\frac{9}{4}$ \\\vspace{1mm}
+		   $\lambda_2$  &   0      &    $\frac{1}{2}$         &   0         &  -$ \frac{3}{2}$         &  0             \\\vspace{1mm}
+		   $\lambda_1$  &   0      &    -$\frac{1}{2}$        &   1         &  $\frac{5}{2} $          &  1             \\ \hline\vspace{1mm}
 		   $z$          &   0      &    $\frac{1}{2}$         &   0         &   -$\frac{3}{2}$       & 0  
 	\end{tabular}
  
 \end{center} 
-Sada nađimo pivota oko kolone koja je dodana. Kandidati za izlazak iz baze su ili $s_1$ ili $\lambda_2$ dok će mjesto njih ući varijabla $\lambda_3$. Kako je $\frac{9/4}{9/2}=\frac{1}{2} > \frac{1}{5/2}=\frac{2}{5}$, imamo da je $\frac{5}{2}$ pivot element. Sada pivotiramo oko tog elementa na način da se kolona transformiše elementarnim transformacijama po vrstama na kolonu sa svim nulama osim na poziciji pivota, gdje treba da stoji jedinica. Na taj način, simpleks tabela se transformiše u novu simpleks tabelu 
+Sada nađimo pivota oko kolone koja je dodana. Kandidati za izlazak iz baze su ili $s_1$ ili $\lambda_2$ dok će mjesto njih ući varijabla $\lambda_3$. Kako je $\frac{\frac94}{\frac92}=\frac{1}{2} > \frac{1}{\frac52}=\frac{2}{5}$, imamo da je $\frac{5}{2}$ pivot element. Sada pivotiramo oko tog elementa, tako da se, elementarnim transformacijama po vrstama, kolona transformiše  na kolonu sa svim nulama osim na poziciji pivota, gdje treba da stoji jedinica. Na taj način, simpleks tabela se transformiše u novu simpleks tabelu 
 
 \begin{center}
 	
-	\begin{tabular}{c|cccc|c}
-		$s_1$	    &   1      &    $\frac{2}{5}$          &   -$\frac{9}{5}$       &   0          &  $\frac{9}{20}$ \\
-		$\lambda_2$  &   0      &    $\frac{1}{5}$         &   $\frac{3}{5}$        &   0          &  $\frac{3}{5}$             \\
-		$\lambda_3$  &   0      &    -$\frac{1}{5}$        &   $\frac{2}{5}$        &   1          &  $\frac{2}{5}$            \\ \hline
+	\begin{tabular}{c|cccc|c}\vspace{1mm}
+		$s_1$	    &   1      &    $\frac{2}{5}$          &   -$\frac{9}{5}$       &   0          &  $\frac{9}{20}$ \\\vspace{1mm}
+		$\lambda_2$  &   0      &    $\frac{1}{5}$         &   $\frac{3}{5}$        &   0          &  $\frac{3}{5}$             \\\vspace{1mm}
+		$\lambda_3$  &   0      &    -$\frac{1}{5}$        &   $\frac{2}{5}$        &   1          &  $\frac{2}{5}$            \\ \hline\vspace{1mm}
 		$z$          &   0      &    $\frac{1}{5}$         &  $ \frac{3}{5}$        &   0           & $\frac{3}{5}$
 	\end{tabular}
 	
 \end{center} 
-  Pročitamo vrijednost dualnih promjenjivih u posljednjoj vrsti: $y_1 =0, y_2=\frac{1}{5}$ i $\alpha=\frac{3}{5}$.\\ \emph{Iteracija 3.} Prema tome, novi CG potproblem je dat sa 
+  Pročitamo vrijednost dualnih promjenjivih u posljednjoj vrsti: $y_1 =0, y_2=\frac{1}{5}$ i $\alpha=\frac{3}{5}$.
+  
+  
+  \vspace{5mm}
+   \emph{Iteracija 3.} Prema tome, novi CG potproblem je dat sa 
   \begin{align*}
         \max_{x \in X} (1, 0)^T x - (0, \frac{1}{5})\left(\begin{array}{cc}
        	1 & 3 \\
@@ -5740,7 +5761,7 @@ Sada nađimo pivota oko kolone koja je dodana. Kandidati za izlazak iz baze su i
        \end{array}\right)  x   - \frac{3}{5} &= \max_{x \in X}x_1  - \frac{2}{5}x_1 + \frac{3}{5}x_2 - \frac{3}{5} \\
        &= \max_{x \in X} \frac{3}{5}x_1 + \frac{3}{5}x_2 - \frac{3}{5}.
   \end{align*} 
-Optimalna vrijednost CG potproblema se dostiže u $x^{(4)} = (1, 1)^T$ i ona je jednaka $\hat{z}=\frac{3}{5}$. Kako je $\hat{z}>0$, tražićemo novu kolonu koju treba dodati u potproblem. Ova kolona (ako posmatramo problem (\ref{primjer:dw5})) je   data sa 
+Optimalna vrijednost CG potproblema se dostiže u $x^{(4)} = (1, 1)^T$ i ona je jednaka $\hat{z}=\frac{3}{5}$. Kako je $\hat{z}>0$, tražićemo novu kolonu koju treba dodati u potproblem. Ova kolona, ako posmatramo problem (\ref{primjer:dw5}), je   data sa 
 \begin{align}
 	V =   \begin{pmatrix}
 		c^T x^4\\
@@ -5753,13 +5774,13 @@ Optimalna vrijednost CG potproblema se dostiže u $x^{(4)} = (1, 1)^T$ i ona je 
 		1\\  
 	\end{pmatrix}
 \end{align}
-Kada pogledamo prethodne vrijednosti kolone $V$ i master problem (\ref{primjer:dw5}), jasno je da ona odgovara koeficijentima varijable $\lambda_4$. Dakle, prethodna kolona je data u odnosu na varijablu $\lambda_4$ početnog problema, ali je sada izražavamo preko trenutne baze (potproblema) vektora $s_1, \lambda_2$ i $\lambda_3$.  Dakle, nakon množenja kolone sa inverzom baze 
+Kada pogledamo prethodne vrijednosti kolone $V$ i master problem (\ref{primjer:dw5}), jasno je da ona odgovara koeficijentima promjenljive $\lambda_4$. Dakle, prethodna kolona je data u odnosu na promjenljivu $\lambda_4$ početnog problema, ali je sada izražavamo preko trenutne baze (potproblema) vektora $s_1, \lambda_2$ i $\lambda_3$.  Nakon množenja kolone sa inverzom baze 
 $B^{-1}= 
 \begin{pmatrix}
 	 1 &  \frac{2}{5}   & -\frac{9}{5} \\
 	 0 &  -\frac{1}{5}  & \frac{3}{5}  \\
 	 0 &  -\frac{1}{5}  & \frac{2}{5}  \\ 
-\end{pmatrix} $, koraci opisani u Tabeli \ref{tbl:dw1}, sljedeća kolona je ulazna koja se dodaje u simpleks tabelu:
+\end{pmatrix} $ i na osnovu koraka opisanih u Tabeli \ref{tbl:dw1}, dobijamo da se sljedeća kolona dodaje u simpleks tabelu
 
 \begin{center}
 	
@@ -5774,28 +5795,31 @@ Dakle, imamo simpleks tabelu
 
 \begin{center}
 	
-	\begin{tabular}{c|cccc|c}
-		$s_1$	    &   1      &    $\frac{2}{5}$          &   -$\frac{9}{5}$       &  $\frac{9}{5} $        &  $\frac{9}{20}$ \\
-		$\lambda_2$  &   0      &    $\frac{1}{5}$         &   $\frac{3}{5}$        &   $\frac{2}{5}$        &  $\frac{3}{5}$             \\
-		$\lambda_3$  &   0      &    -$\frac{1}{5}$        &   $\frac{2}{5}$        &   $\frac{3}{5}$         &  $\frac{2}{5}$            \\ \hline
+	\begin{tabular}{c|cccc|c}\vspace{1mm}
+		$s_1$	    &   1      &    $\frac{2}{5}$          &   -$\frac{9}{5}$       &  $\frac{9}{5} $        &  $\frac{9}{20}$ \\\vspace{1mm}
+		$\lambda_2$  &   0      &    $\frac{1}{5}$         &   $\frac{3}{5}$        &   $\frac{2}{5}$        &  $\frac{3}{5}$             \\\vspace{1mm}
+		$\lambda_3$  &   0      &    -$\frac{1}{5}$        &   $\frac{2}{5}$        &   $\frac{3}{5}$         &  $\frac{2}{5}$            \\ \hline\vspace{1mm}
 		$z$          &   0      &    $\frac{1}{5}$         &  $ \frac{3}{5}$        &   -$\frac{3}{5}$         & $\frac{3}{5}$
 	\end{tabular}
 	
 \end{center} 
-Nađimo sada pivota u dodanoj koloni. Kako je $\frac{9/20}{9/5} < \frac{2/5}{3/5}< \frac{3/5}{2/5}$, slijedi da je pivot element $\frac{9}{5}$.  Sada pivotiramo oko tog elementa na način da se kolona transformiše elementarnim transformacijama po vrstama na kolonu sa svim nulama osim na poziciji pivota, gdje treba da stoji jedinica. Na taj način, simpleks tabela se transformiše u novu simpleks tabelu 
+Nađimo sada pivota u dodanoj koloni. Kako je $\frac{\frac{9}{20}}{\frac95} < \frac{\frac25}{\frac35}< \frac{\frac35}{\frac25}$, slijedi da je pivot element $\frac{9}{5}$.  Sada pivotiramo oko tog elementa, tako da se kolona transformiše elementarnim transformacijama po vrstama na kolonu sa svim nulama osim na poziciji pivota, gdje treba da stoji jedinica. Na taj način, simpleks tabela se transformiše u novu simpleks tabelu 
 \begin{center}
 	
-	\begin{tabular}{c|cccc|c}
-		$\lambda_4$	 &   $\frac{5}{9}$      &    $\frac{2}{9}$          &   -1       &  1      &  $\frac{1}{4}$ \\
-		$\lambda_2$  &   -$\frac{2}{9}$    &   $\frac{1}{9}$        &   1        &   0         &  $\frac{1}{2}$        \\
+	\begin{tabular}{c|cccc|c}\vspace{1mm}
+		$\lambda_4$	 &   $\frac{5}{9}$      &    $\frac{2}{9}$          &   -1       &  1      &  $\frac{1}{4}$ \\\vspace{1mm}
+		$\lambda_2$  &   -$\frac{2}{9}$    &   $\frac{1}{9}$        &   1        &   0         &  $\frac{1}{2}$        \\\vspace{1mm}
 	    $\lambda_3$  &  -$\frac{1}{3}$     &    -$\frac{1}{3}$      &   1        &   0        &  $\frac{1}{4}$      
-		    \\ \hline
+		    \\ \hline\vspace{1mm}
 		$z$          &   $\frac{1}{3}$     &    $\frac{1}{3}$         &  $0$        &  0         & $\frac{3}{4}$
 	\end{tabular}
 	
 \end{center} 
-Iz prethodne tabele pročitamo vrijednost dualnih varijabli: $y_1 =  \frac{1}{3}=y_2$, dok je $\lambda=0$. \\
-\emph{Iteracija 4.} Na osnovu vrijednosti dualnih varijabli, formira se novi CG potproblem:
+Iz prethodne tabele pročitamo vrijednost dualnih promjenljivih: $y_1 =  \frac{1}{3}=y_2$, dok je $\lambda=0$. 
+
+\vspace{5mm}
+
+\emph{Iteracija 4.} Na osnovu vrijednosti dualnih promjenljivih, formira se novi CG potproblem
  
 	 \begin{align*}
 		\max_{x \in X} (1, 0)^T x - (\frac{1}{3}, \frac{1}{3})\left(\begin{array}{cc}
@@ -5831,19 +5855,19 @@ Iz prethodne tabele pročitamo vrijednost dualnih varijabli: $y_1 =  \frac{1}{3}
 \section{Zadaci}
 \begin{enumerate}
 	\item % http://motor.ece.iit.edu/ms/benders.pdf
-	  	Uz pomoć Benderove dekompozicije riješiti sljedeći MILP problem:
+	  	Uz pomoć Benderove dekompozicije riješiti sljedeći MILP problem
 	  \begin{align*}
 	  	   &\min x + y \\
-	  	   &s.t. \\
+	  	   &\mbox{t.d.} \\
 	  	   & 2x + y \geq 3 \\
 	  	   & x \geq 0 \\
 	  	   & y \in \{-5, -4,\ldots, 3, 4\}.
    	  \end{align*}
 	\item %http://eaton.math.rpi.edu/faculty/Mitchell/courses/matp6620/notesMATP6620/lecture23/23C_benders_egbeamer.pdf
-	Uz pomoć Benderove dekompozicije riješiti sljedeći MILP problem:
+	Uz pomoć Benderove dekompozicije riješiti sljedeći MILP problem
 	\begin{align*}
 		 &\max 8 y_1 + 9 y_2 + 5 y_3 + 6 y_4 - 15 x_1 - 10 x_2 \\
-		 & s.t.\\
+		 &\mbox{t.d.} \\
 		 &y_1 + y_3 \leq 1 \\
 		 & y_1 + y_4 \leq 1 \\
 		 &y_2 + y_4 \leq 1 \\
@@ -5857,20 +5881,20 @@ Iz prethodne tabele pročitamo vrijednost dualnih varijabli: $y_1 =  \frac{1}{3}
 	\end{align*}
 \item %https://homepages.rpi.edu/~mitchj/matp6640/
 %https://personal.eur.nl/birbil/ie606/04_DW_Dec/04_DW_Dec_Octave.html
-Uz pomoć DW dekompozicije riješiti sljedeći MILP problem:
+Uz pomoć DW dekompozicije riješiti sljedeći MILP problem
 \begin{align*}
 	&\min x_1 - 3 x_2 \\
-	& s.t. \\
+	&\mbox{t.d.} \\
 	& -x_1 + 2x_2 \leq 6 \\
 	& x_1 + x_2 \leq 5 \\
 	& x_1, x_2 \geq 0.
 \end{align*}
 
 \item %https://perso.uclouvain.be/anthony.papavasiliou/public_html/DantzigWolfe.pdf
-	Uz pomoć   DW dekompozicije riješiti sljedeći MILP problem:
+	Uz pomoć   DW dekompozicije riješiti sljedeći MILP problem
 \begin{align*}
 	 &\min -4x_1 - x_2 - 6 x_3 \\
-	 & s.t.\\
+	 &\mbox{t.d.} \\
 	 & 3 x_1 + 2 x_2 + 4 x_3 = 17 \\
 	 & x \in X = \begin{cases}
 	 	1 \leq x_1 \leq 2 \\
@@ -5879,10 +5903,10 @@ Uz pomoć DW dekompozicije riješiti sljedeći MILP problem:
 	 \end{cases}
 \end{align*}
 \item %https://homepages.rpi.edu/~mitchj/handouts/egdcmp/ 
-    Proučiti opšti slučaj za DW dekompoziciju kada poliedar koji odgovara problemu nije ograničen (u njemu postoji zrak). Nakon toga, uz pomoć DW dekompozicije riješiti sljedeći MILP problem:
+    Proučiti opšti slučaj za DW dekompoziciju kada poliedar koji odgovara problemu nije ograničen (u njemu postoji zrak). Nakon toga, uz pomoć DW dekompozicije riješiti sljedeći MILP problem
 	\begin{align*}
 		 &\min x_1 - x_2 - 2 x_3 \\
-		 & s.t. \\
+		 &\mbox{t.d.} \\
 		 & x_1 + x_2 + x_3 = 3 \\
 		 & x \in X = \begin{cases}
 		 	        0 \leq x_1 \leq 2 \\
