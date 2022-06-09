@@ -105,7 +105,7 @@
 }
 
 \def\textE{$L_3$:\\
-	potproblem nedopustiv
+	podproblem nedopustiv
  }
 
 \def\textF{ $L_4$:\\
@@ -266,7 +266,7 @@ Na primjer, resursi i aktivnosti nisu nešto što se može definisati u poznatom
 
 \emph{Algoritamska rješenja}. Algoritam je procedura ili konačan niz instrukcija čijim izvršavanjem možemo riješiti problem. Neki algoritmi su opšti, kao, na primjer, sortiranje ili pretraživanje,  dok su drugi vezani uz specifične probleme. Algoritmi pretrage su izuzetno važni u rješavanju problema operacionih istraživanja. Među njima se izdvajaju ``Branch \& X''-tip algoritama koji rješavaju Cjelobrojne, Mješovito-cjelobrojne probleme kao i probleme zasnovane na modelovanju ograničenjima. Specifično, među ove algoritme spadaju Branch \& Bound (za rješavanje problema cjelobrojnog programiranja), Branch \& Cut, Branch \& Price (tj. metod generisanja kolona), itd.
 
-\emph{Dinamičko programiranje} je još jedna značajna programska paradigmama  u operacionim istraživanjima. Ova familija algoritama rješava probleme tako što eksploatiše optimalnu pod-strukturu problema. Drugim riječima, polazni problem razbijemo na manje potprobleme, koje rješavamo rekurzivno. U rješavanju glavnog problema, koristimo pronađena optimalna rješenja potproblema, izbjegavajući da potprobleme koji se ponavljaju rješavamo više puta. Ova programska paradigma ima značajnu ulogu u rješavanju grafovskih problema. 
+\emph{Dinamičko programiranje} je još jedna značajna programska paradigmama  u operacionim istraživanjima. Ova familija algoritama rješava probleme tako što eksploatiše optimalnu pod-strukturu problema. Drugim riječima, polazni problem razbijemo na manje podprobleme, koje rješavamo rekurzivno. U rješavanju glavnog problema, koristimo pronađena optimalna rješenja podproblema, izbjegavajući da podprobleme koji se ponavljaju rješavamo više puta. Ova programska paradigma ima značajnu ulogu u rješavanju grafovskih problema. 
 %Jedan od najpoznatijih takvih algoritama je \emph{Bellman-Ford}-ov algoritam, nazvan po izumitelju  paradigme dinamičkog programiranja, Ričardu Belmanu. 
 
 U praksi, problemi iz oblasti operacionih istraživanja mogu biti prilično teški za egzaktno rješavanje, što podrazumijeva da je za dobijanje optimalnog rješenja potrebno jako puno vremena i memorijskih resursa. Za potrebe dobijanja brzog (ne obavezno optimalnog) rješenja  koriste se \emph{pohlepni algoritmi}. Oni obično ne mogu 
@@ -3538,12 +3538,7 @@ U osnovni model uključiti i sljedeća ograničenja:
  U ovom poglavlju će biti analizirane različite tehnike kojima se rješavaju problemi cjelobrojnog linearnog programiranja.
  Za razliku od problema LP-a, koji se efikasno rješava simpleks metodom, za rješavanje problema Cjelobrojnog programiranja ne postoji generalno efikasna metoda. Drugim riječima, efikasnost metoda, kojima se rješava ovaj problem, u velikoj mjeri zavisi od karakteristika samog problema. 
  
- \fixme{Marko, ovaj dio sa početka sam malo više mijenjao, pa pogledaj da li ti je prihvatljivo.}
- 
- 
-Tehnike za rješavanje su uglavnom zasnovane na tzv. relaksaciji ILP-a u odgovarajući LP, koji se od polaznog problema dobija zanemarivanjem uslova da promjenljive treba da budu cjelobrojne. 
-
-Iako se dobijena  LP relaksacija može efikasno riješiti uz pomoć simpleks metoda, to ne znači da se iz rješenja relaksacije može lako doći do rješenja polaznog ILP-a. Na primjer, ako rješenje LP relaksacije označimo sa $x^*$, zaokruživanjem svake koordinate vektora $x^*$ na njenu najbližu cjelobrojnu vrijednost, dobijamo cjelobrojni vektor  $\overline{x}$.  U uvom slučaju, uslov cjelobrojnosti jeste zadovoljen, ali ne postoji nikakva garancija da će, u opštem slučaju,  ovakvo rješenje, izvedeno iz LP relaksacije problema (\ref{ilp-formulation}), biti i  dopustivo za početni ILP. Čak i više, skaliranjem desnih strana ILP-a, kao i koeficijenata funkcije cilja na odgovarajući način, moguće je konstruisati problem, čije je optimalno cjelobrojno rješenje proizvoljno udaljeno od zaokruženog rješenja LP relaksacije. 
+Tehnike za rješavanje su uglavnom zasnovane na tzv. relaksaciji ILP-a u odgovarajući LP, koji se od polaznog problema (ili nekog od podproblema generisanog u toku rješavanja) dobija zanemarivanjem uslova o cjelobrojnosti promjenljivih.  Iako se dobijena  LP relaksacija može efikasno riješiti uz pomoć simpleks metoda, to ne znači da se iz rješenja relaksacije može lako doći do rješenja polaznog ILP-a. Na primjer, ako rješenje LP relaksacije označimo sa $x^*$, zaokruživanjem svake koordinate vektora $x^*$ na njenu najbližu cjelobrojnu vrijednost, dobijamo cjelobrojni vektor  $\overline{x}$.  U uvom slučaju, uslov cjelobrojnosti jeste zadovoljen, ali ne postoji nikakva garancija da će, u opštem slučaju,  ovakvo rješenje izvedeno iz LP relaksacije problema (\ref{ilp-formulation}), biti i  dopustivo za početni ILP. Međutim, skaliranjem desnih strana ILP-a, kao i koeficijenata funkcije cilja na odgovarajući način, moguće je konstruisati problem, čije je optimalno cjelobrojno rješenje proizvoljno udaljeno od zaokruženog rješenja LP relaksacije. 
  
  Razmatranje opisano u prethodnom paragrafu ukazuje na to da se, uz relaksaciju početnog ILP-a u LP, moraju koristiti suptilnije tehnike za određivanje optimalnog rješenja ILP-a. 
  
@@ -3556,15 +3551,15 @@ Metode za egzaktno rješavanje ILP-a se mogu klasifikovati na sljedeći način:
 
 
 \section{Metoda grananja i ograničavanja (B\&B)}\label{sec:bb}
-Metoda grananja i ograničavanja (eng. branch and bound, skraćeno B\&B) je zasnovana na poznatom principu ``zavadi pa vladaj'' (eng. divide and conquer) gdje se problem, rekurzivno, rastavlja na manje dijelove. Kasnije se (optimalna rješenja) manjih problema kombinuju za dobijanje optimalnog rješenja početnog problema.  U B\&B metodi važan dodatak je upotreba strategije da se 
-problem ne rastavlja na manje potprobleme ako se može procijeniti da će rješenje potproblema biti suboptimalno. Drugim riječima, algoritam ``ne ulazi'' u one grane, za koje se unaprijed može pokazati da sadrže samo  rješenja koja su lošija od trenutno najboljeg dopustivog rješenja. Očigledno, na taj način dolazi do uštede u broju operacija koje je potrebno izvršiti u toku samog algoritma, a, samim tim, dolazi i do uštede memorije i vremena izvršenja. U rješavanju ILP-a, dopustiv skup se dijeli na manje skupove, dodavanjem specijalnih ograničenja u model. Rekurzivni postupak se izvršava sve  dok se ne dobiju potproblemi, čije relaksacije obezbjeđuju cjelobrojno rješenje ili se zaključi da potproblemi nisu dopustivi. Ovakvi pristupi se razlikuju u načinu podjele dopustivog skupa i zbog toga  u literaturi  postoji nekoliko različitih B\&B procedura. 
+Metoda grananja i ograničavanja (eng. branch and bound, skraćeno B\&B) je zasnovana na poznatom principu ``zavadi pa vladaj'' (eng. divide and conquer) gdje se problem, rekurzivno, rastavlja na manje dijelove. Kasnije se (optimalna rješenja) manjih problema kombinuju na odgovarajući način za dobijanje optimalnog rješenja početnog problema.  U B\&B metodi važan dodatak je upotreba strategije da se 
+problem nikada ne rastavlja na manje podprobleme ako se može procijeniti da će rješenje podproblema biti suboptimalno (ograničavanje). Drugim riječima, algoritam ``ne ulazi'' u one grane, za koje se unaprijed može pokazati da sadrže samo  rješenja koja su lošija od trenutno najboljeg dopustivog rješenja. Očigledno, na taj način dolazi do uštede u broju operacija koje je potrebno izvršiti u toku izvođenja algoritma, a, samim tim, dolazi i do uštede memorije i vremena izvršenja. U rješavanju ILP-a, dopustiv skup se dijeli na manje skupove, dodavanjem specijalnih ograničenja u model. Rekurzivni postupak se izvršava sve  dok se ne dobiju podproblemi, čije relaksacije obezbjeđuju cjelobrojno rješenje ili se zaključi da podproblemi nisu dopustivi. Ovakvi pristupi se razlikuju u načinu podjele dopustivog skupa i zbog toga  u literaturi  postoji nekoliko različitih B\&B procedura. 
 
 \subsection{Bazni B\&B za rješavanje problema ILP-a}
 
 U rješavanju problema  ILP-a uz pomoć B\&B procedure, sljedeće jednostavne činjenice mogu biti korisne:
 \begin{itemize}
     \item  U LP relaksaciji (problema 
-           maksimizacije), optimalna vrijednost  relaksacije  će biti gornja granica (eng. upper bound, skraćeno $UB$) optimuma posmatranog ILP-a. 
+           maksimizacije), optimalna vrijednost  relaksacije  će biti gornja granica (eng. upper bound, skraćeno $UB$) optimuma posmatranog ILP-a na odgovarajućem podregionu. 
     \item  Bilo koja cjelobrojna tačka LP relaksacije na nekom podskupu  
            dopustivog skupa uvijek je  donja granica (eng. lower bound, skraćeno $LB$) optimalne vrijednosti početnog ILP-a. 
 \end{itemize}
@@ -3574,33 +3569,33 @@ Na osnovu ove dvije činjenice, uvedimo sada sistematičnu podjelu dopustivog re
     \item U korjenom čvoru B\&B stabla rješavamo LP relaksaciju početnog problema     (npr. simpleks metodom) i dobijamo rješenje $x^*=(x^*_1, \ldots, x^*_n)$.   Ako je rješenje cjelobrojno, prekidamo dalje izvršavanje i stavimo $LB=f(x^*)$, koje je optimalno. %U protivnom, postavimo $f(x^*)=UB$.
     \item Za sve koordinate $i$ za koje je $x^*_i \not \in \mathbb{Z}$, dopustiv region se može podijeliti na dva (disjunktna) podskupa uvođenjem ograničenja: $z_i \geq \lfloor x^*_i \rfloor + 1$ ili $z_i \leq \lfloor x^*_i \rfloor$ i to je upravo mjesto podjele dopustivog regiona. Ako ima više takvih koordinata, biramo onu koordinatu $i$ gdje je decimalni dio najveći.  Recimo da je to koordinata $k$.
     \item Sada dijelimo region problema na dva podregiona (lijevi i desni potomak čvor u B\&B drvetu), dodavajući 
-          ograničenja $x_k \geq \lfloor x^*_k \rfloor + 1$ i $x_k \leq \lfloor x^*_k \rfloor$, redom
+          ograničenja $x_k \geq \lfloor x^*_k \rfloor + 1$ i $x_k \leq \lfloor x^*_k \rfloor$, redom.
     \item Rješavamo relaksaciju oba (pot)problema i razmatramo sljedeće slučajeve. 
     \begin{itemize}
-    	\item  Ako je neko od rješenja cjelobrojno, popravljamo $LB$ (ako smo dobili bolje dopustivo rješenje) i odgovarajući potproblem (njegov region) se dalje ne dijeli. 
-    	\item Ako rješenje $x$ nije cjelobrojno i pri tome je vrijednost optimuma manja od $LB$, taj potproblem se dalje više ne dijeli (\emph{bound} procedura). 
-    	\item Dalje, ako je potproblem nedopustiv, problem se ne dijeli (i ne razmatra više). 
-    	\item Inače, idemo na korak 2 dijeljeći podregion   na nove (manje) podregione nekog od potproblema za koje to nije urađeno.    
+    	\item  Ako je neko od rješenja cjelobrojno, popravljamo $LB$ (ako smo dobili bolje dopustivo rješenje) i odgovarajući podproblem (njegov region) se dalje ne dijeli. 
+    	\item Ako rješenje $x$ nije cjelobrojno i pri tome je vrijednost optimuma manja od $LB$, taj podproblem se dalje više ne dijeli (\emph{bound} procedura). 
+    	\item Dalje, ako je podproblem nedopustiv, problem se ne dijeli (i ne razmatra više). 
+    	\item Inače, idemo na korak 2 dijeljeći podregion   na nove (manje) podregione nekog od podproblema za koje to nije urađeno.    
     \end{itemize}
 
 \end{enumerate}
 
-Primijetimo da ovom metodom formiramo drvo enumeracije koje nam garantuje nalazak optimalnog rješenja početnog ILP-a. Takođe, primijetimo da ovo drvo raste eksponencijalno u odnosu na veličinu ulaznog problema. 
+Primijetimo da ovom metodom formiramo drvo enumeracije koje nam garantuje nalazak optimalnog rješenja početnog ILP-a. Takođe, primijetimo da ovo drvo raste eksponencijalno u odnosu na veličinu ulaznog problema.  
 
-  Ovo je samo okvirna shema B\&B procedure. Ono što je ostalo nerazjašnjeno je koji od neriješenih potproblema prvo rješavati. Kažemo da se čvorovi čiji je odgovarajući problem podijeljen na podregione naziva \emph{neaktivan}, a inače \emph{aktivan}. Generalni B\&B metod za rješavanje problema ILP-a je dat   Algoritmom~\ref{bnb_algorithm_ilp}.  Neki od kriterijuma za izbor čvora (potproblema) koji se rješava su sljedeći:
+  Ovo je bila okvirna shema B\&B procedure. Ono što je ostalo nerazjašnjeno je koji od neriješenih podproblema prvo rješavati. Kažemo da se čvorovi čiji je odgovarajući problem podijeljen na podregione naziva \emph{neaktivan}, a inače \emph{aktivan}. Generalni B\&B metod za rješavanje problema ILP-a je dat   Algoritmom~\ref{bnb_algorithm_ilp}.  Neki od kriterijuma za izbor čvora (podproblema) koji se rješava su sljedeći:
   \begin{itemize}
   	\item Izabrati one aktivne čvorove koji su najdublje u drvetu, da bi se što prije stiglo do listova i potencijalnih dopustivih rješenja.
-  	\item Birati aktivne čvorove nivo po nivo. Dakle, sve aktivne čvorove (tj. odgovarajuće potprobleme) jednog nivoa   rješavati, pa onda preći na čvorove narednog nivoa. 
-  	\item Koristiti heurističku funkciju pri odlučivanju koji aktivni čvor (tj. odgovarajući potproblem) prvo rješavati. 
+  	\item Birati aktivne čvorove nivo po nivo. Dakle, sve aktivne čvorove (tj. odgovarajuće podprobleme) jednog nivoa   rješavati, pa onda preći na čvorove narednog nivoa. 
+  	\item Koristiti heurističku funkciju pri odlučivanju koji aktivni čvor (tj. odgovarajući podproblem) prvo rješavati. 
   \end{itemize}
 
-\begin{algorithm}[!ht] 
+\begin{algorithm}[!htb] 
 	\begin{algorithmic}[1] 
 		\STATE $LB \gets$ $-\infty$
 		\WHILE{postoji neki aktivni čvor}
 		\STATE  $v_j \gets$ Odabrati neki od aktivnih čvorova; // strategija
 		\STATE  Označiti $v_j$ kao neaktivan;
-		\STATE  $x^j \gets$ Riješiti potproblem koji odgovara čvoru $v_j$
+		\STATE  $x^j \gets$ Riješiti podproblem koji odgovara čvoru $v_j$
 		\STATE $z^*_j \gets f(x^j)$;
 		\IF{ $z^*_j  \leq LB$} 
 		\STATE Čvor $j$ nije relevantan za dalje razmaranje; 
@@ -3613,7 +3608,7 @@ Primijetimo da ovom metodom formiramo drvo enumeracije koje nam garantuje nalaza
 		\ENDIF
 		\IF{$z^*_j  > LB$}
 		\IF{$x^j$ nije dopustivo}
-		\STATE $v_j^{'}, v_j^{''},\ldots, v_j^{(')^k}  \gets$ Generisati potprobleme (čvorove) problema koji odgovara problemu čvora $v_j$ (branch procedura);
+		\STATE $v_j^{'}, v_j^{''},\ldots, v_j^{(')^k}  \gets$ Generisati podprobleme (čvorove) problema koji odgovara problemu čvora $v_j$ (branch procedura);
 		\STATE Označi aktivnim nove čvorove; 
 		\ENDIF
 		\ENDIF
@@ -3666,18 +3661,18 @@ Na Slici~\ref{fig:bnb_ilp} je prikazano B\&B drvo sljedećeg ILP-a:
 \emph{Napomene.} Da bi se granice  poboljšale, treba imati na umu sljedeće činjenice:
 \begin{itemize}
 	\item Ako su koeficijenti ciljne funkcije cjelobrojni, onda $z^* \leq \lfloor z^* \rfloor$;
-	\item Dodavanjem važećih ograničenja u sam model, što će biti objašnjeno u Poglavlju \fixme{pronaci kojem}. 
+	\item Dodavanjem važećih ograničenja u sam model, što će biti objašnjeno u Poglavlju 7.3. 
 \end{itemize}
 
 
 
 \section{Implicitna enumeracija}
-Posmatrajmo sada specijalnu B\&B proceduru koja se može primijeniti na rješavanje problema binarnog cjelobrojnog programiranja, gdje diskretne promjenljive modeluju logičke odluke (da ili ne). Ovaj algoritam ne zahtijeva da se posmatraju rješenja LP-relaksacija, već se, umjesto toga, radi sa enumeracijom. U totalnomj enumeraciji bismo izlistali sve moguće kombinacije vrijednosti koje promjenljive mogu da prime, pa bi se izabrala ona koja je dopustiva i daje optimalnu vrijednost za ciljnu funkciju. Ovaj pristup se može koristiti na problemima malih dimenzija, gdje postoji svega nekoliko binarnih varijabli. Primijetimo da je u problemu sa $n$ binarnih promjenljivih, ukupan broj kombinacija za vrijednosti promjenljivih je jednak $2^n$, odnosno raste eksponencijalno u odnosu na veličinu ulaza. 
+Posmatrajmo sada specijalnu B\&B proceduru koja se može primijeniti na rješavanje problema binarnog cjelobrojnog programiranja, gdje diskretne promjenljive modeluju logičke odluke (da ili ne). Ovaj algoritam ne zahtijeva da se posmatraju rješenja LP-relaksacija, već se, umjesto toga, radi sa enumeracijom. U totalnoj enumeraciji bismo izlistali sve moguće kombinacije vrijednosti koje promjenljive mogu da dobiju, pa bi se izabrala ona koja je dopustiva i daje optimalnu vrijednost za ciljnu funkciju. Ovaj pristup se može koristiti na problemima malih dimenzija, gdje postoji svega nekoliko binarnih varijabli. Primijetimo da je u problemu sa $n$ binarnih promjenljivih, ukupan broj kombinacija za vrijednosti promjenljivih je jednak $2^n$, odnosno raste eksponencijalno u odnosu na veličinu ulaza. 
 
 Prisjetimo se da je, u standardnoj B\&B proceduri, podjela na manje probleme izvedena dodavanjem dodatnih ograničenja u početni model, a potom su izbačena ograničenja za cjelobrojnost. 
 U implicitnoj enumeraciji se primjenjuje suprotna taktika, zadržavaju se 0-1 restrikcije za promjenljive, ali se  u modelu ignorišu linearna ograničenja. 
 Ideja implicitne enumeracije je uključiti B\&B proces tako što se fiksiraju neke od varijabli na 0 ili 1. Promjenljive koje su još neodređene se nazivaju \emph{slobodne varijable}.  B\&B kreće od slučaja da ne postoje promjenljive koje nisu slobodne. U svakom koraku fiksiramo jednu od promjenljivih i rješavamo problem bez razmatranja ograničenja sa nejednakostima. Potom, provjeravamo da li je to rješenje dopustivo (zadovoljava ograničenja sa nejednakostima). U narednim podjelama  prethodne (ne-slobodne) varijable ostaju i dalje fiksirane. 
-%, dobijajući dva nova potproblema koja treba da budu riješena te implicitno određivanje da li su neophodna dalja fiksiranja.  
+%, dobijajući dva nova podproblema koja treba da budu riješena te implicitno određivanje da li su neophodna dalja fiksiranja.  
 
 
 Pretpostavimo da je u pitanju problem maksimizacije. Proces implicitne enumeracije se sastoji od sljedećih koraka. 
@@ -3686,13 +3681,13 @@ Fiksiramo $i=1$ i $LB=-\infty$.
 
 \begin{enumerate}
     \item U početnom problemu  biramo $x_j=1$ za sve $j$ (kažemo da je svaka promjenljiva \emph{slobodna}) za koje je $c_j > 0$, a inače 0. Ako je dobijeno rješenje dopustivo, ažuriramo vrijednost za $LB$, algoritam se prekida.
-    \item Fiksiramo sada $x_i=0$ za jedan potproblem, te $x_i=1$, za drugi potproblem koji treba da se riješe.
+    \item Fiksiramo sada $x_i=0$ za jedan podproblem, te $x_i=1$, za drugi podproblem koji treba da se riješe.
     
-    \item  Provjerimo za oba potproblema da li je rješenje (sa fiksnim dijelom) koje maksimizuje rješenje potproblema (kao u koraku 1) dopustivo. U slučaju da jeste,   odgovarajući protproblem se više ne dijeli; po mogućnosti ažuriramo $LB$, ako je nađeno novo najbolje rješenje.  Ukoliko fiksiranje dijela rješenja vodi narušavanju nekog od ograničenja bez obzira na vrijednosti ostalih promjenljivih, potproblem je nedopustiv i više se ne dijeli. 
+    \item  Provjerimo za oba podproblema da li je rješenje (sa fiksnim dijelom) koje maksimizuje rješenje podproblema (kao u koraku 1) dopustivo. U slučaju da jeste,   odgovarajući podproblem se više ne dijeli; po mogućnosti ažuriramo $LB$, ukoliko je nađeno novo najbolje rješenje.  Ukoliko fiksiranje dijela rješenja vodi narušavanju nekog od ograničenja bez obzira na vrijednosti ostalih promjenljivih, podproblem je nedopustiv i više se ne dijeli. 
     
     
-     %Inače, idemo na korak 4. Primijetimo da  potproblem sa fiksnim $x_i=0$ ne mora da provjeravamo, jer je on isti kao i korjeni (korjeni) problem.
-    \item U suprotnom, ažuriramo $i = i+1$ i idemo na korak 3 sa potproblemima koji mogu dalje da se dijele, dok god je $i \leq n$. Inače, izlazimo iz petlje sa optimalnim rješenjem ($LB$). 
+     %Inače, idemo na korak 4. Primijetimo da  podproblem sa fiksnim $x_i=0$ ne mora da provjeravamo, jer je on isti kao i korjeni (korjeni) problem.
+    \item U suprotnom, ažuriramo $i = i+1$ i idemo na korak 3 sa podproblemima koji mogu dalje da se dijele, dok god je $i \leq n$. Inače, izlazimo iz petlje sa optimalnim rješenjem ($LB$). 
 \end{enumerate}
  Primijetimo da i u ovom slučaju dobijamo drvo odluke (binarno drvo) gdje su na granama koje spajaju čvor na dubini $i$ sa čvorom na dubini $i+1$  ugrađene odluke o tome da li je promjenljiva $x_i$ fiksirana na 0 ili 1.
 
@@ -3700,7 +3695,7 @@ Fiksiramo $i=1$ i $LB=-\infty$.
 \end{primjer}
 \begin{align*}
    &\max -8 x_1 - 2x_2 - 4x_3 - 7x_4 -5x_5 + 10 \\
-   & s.t. \\
+   & t.d. \\
    & -3 x_1 - 3 x_2 + x_3 + 2 x_4 + 3 x_5 \leq -2 \\
    & -5 x_1 - 3 x_2 - 2 x_3 - x_4 + x_5 \leq -4 \\
    & x_i \in \{0, 1\}, \mbox{ za } i=1,\ldots,5.
@@ -3761,10 +3756,10 @@ Fiksiramo $i=1$ i $LB=-\infty$.
 Prodiskutujmo ovo rješenje po čvorovima dobijenog stabla:
   \begin{itemize}
       \item U čvoru 0 imamo  rješenje $x_i = 0$, za sve $i$, koje  nije dopustivo, ali  tada za optimalno rješenje vrijedi $z^*=f(x^*) \leq 10$.
-      \item  Dalje, granamo ovaj problem na dva (korak 2), jedan gdje je $x_i=1$ a drugi $x_1=0$, odakle dobijamo dva potproblema (odgovaraju čvorovima 1 i 2). U čvoru 2 imamo potproblem za koji je $x_1=1$. Jasno je da kada uvrstimo $(1,0, \ldots, 0)$ u početni problem, da je ono dopustivo. Prema tome, optimalna vrijednost problema neće biti manji od 2, odakle zaključujemo da je za ovaj potproblem $z^*=f(x^*) \geq 2$. Dakle, imamo $LB$=2. 
+      \item  Dalje, granamo ovaj problem na dva (korak 2), jedan gdje je $x_i=1$ a drugi $x_1=0$, odakle dobijamo dva podproblema (odgovaraju čvorovima 1 i 2). U čvoru 2 imamo podproblem za koji je $x_1=1$. Jasno je da kada uvrstimo $(1,0, \ldots, 0)$ u početni problem, da je ono dopustivo. Prema tome, optimalna vrijednost problema neće biti manji od 2, odakle zaključujemo da je za ovaj podproblem $z^*=f(x^*) \geq 2$. Dakle, imamo $LB$=2. 
       \item Problem u čvoru 2 je isti kao problem u čvoru 1, pa nastavljamo dalje sa dijeljenjem problema fiksirajući slobodne promjenljive. 
       \item Sada fiksiramo promjenjivu $x_2$ (uz već fiksiranu odluku $x_1=0$). 
-            Za potproblem u čvoru 4, provjerimo da ne postoji dopuna do dopustivog rješenja za ovako fiksirane vrijednosti (narušeno ograničenje 1), čime se prekida dalje granjenje po ovoj grani. Za potproblem u čvoru 3, imamo sada podjelu na dva potproblema fiksiranjem promjenljive $x_3$, tj. dobijamo dva   nova čvora 5 i 6. Za problem u čvoru 5, lako se vidi da za ovakve fiksirane promjenljive imamo dopustivo rješenje za koje je vrijednost funkcije cilja jednaka 4, pa zaključujemo da je $z^*=f(x^*) \leq 4$, odakle imamo $LB=4$. Problem u čvoru 6 dijelimo dalje (po promjenljivoj $x_4$), odakle dobijamo dva nova potproblema, koji odgovaraju čvorovima 7 i 8. Lako se zaključi da je $z^*<LB$ za   potproblem u čvoru 7.  Za čvor 8, imamo novo grananje (po po promjenljivoj $x_5$). Kako su ovdje sve promjenljive fiksirane, primijetimo da niti jedna od ovih tačaka  nije dopustiva.
+            Za podproblem u čvoru 4, provjerimo da ne postoji dopuna do dopustivog rješenja za ovako fiksirane vrijednosti (narušeno ograničenje 1), čime se prekida dalje granjenje po ovoj grani. Za podproblem u čvoru 3, imamo sada podjelu na dva podproblema fiksiranjem promjenljive $x_3$, tj. dobijamo dva   nova čvora 5 i 6. Za problem u čvoru 5, lako se vidi da za ovakve fiksirane promjenljive imamo dopustivo rješenje za koje je vrijednost funkcije cilja jednaka 4, pa zaključujemo da je $z^*=f(x^*) \leq 4$, odakle imamo $LB=4$. Problem u čvoru 6 dijelimo dalje (po promjenljivoj $x_4$), odakle dobijamo dva nova podproblema, koji odgovaraju čvorovima 7 i 8. Lako se zaključi da je $z^*<LB$ za   podproblem u čvoru 7.  Za čvor 8, imamo novo grananje (po promjenljivoj $x_5$). Kako su ovdje sve promjenljive fiksirane, primijetimo da niti jedna od ovih tačaka  nije dopustiva.
             \item Prema tome, optimalno rješenje početnog problema je $LB=4$ i dostiže se u tački $x=(0, 1, 1, 0, 0)$. 
   \end{itemize}
   Totalna enumeracija bi generisala 32 čvora za gornji problem. Implicitna enumeracija generiše svega 11 čvorova. 
@@ -4016,7 +4011,7 @@ gdje je lako uočiti da je optimalno bazno dopustivo rješenje $x=(5, 4, 1, 7, 0
 \section{B\&C algoritam za rješavanje ILP-a}
 %https://homepages.rpi.edu/~mitchj/handouts/bc_algo/
 % http://www.mi.fu-berlin.de/wiki/pub/Main/GunnarKlauP1winter0708/discMath_klau_ILP_I.pdf
-U ovom odjeljku analiziramo metodu granjanja i odsijecanja (engl. branch and cut - B\&C). U odnosu na B\&B metodu, koja je opisana u Odjeljku~\ref{sec:bb}, B\&C dodaje  i metod odsjecajućih ravni u rješavanju  potproblema koji odgovaraju čvorovima drveta. Dakle, ako  uzimamo trenutno aktivni čvor i rješavamo njegov potproblem, dijelimo ga na nekoliko potproblema (podjelom dopustivog regiona na više disjunktnih -- dodavanjem ograničenja) ili ga rješavamo rekurzivnim dodavanjem (Gomorijevih) odsjecajućih ravni. Ilustrujmo ovu ideju na primjeru rješavanja jednog ILP-a.
+U ovom odjeljku analiziramo metodu granjanja i odsijecanja (engl. branch and cut - B\&C). U odnosu na B\&B metodu, koja je opisana u Odjeljku~\ref{sec:bb}, B\&C dodaje  i metod odsjecajućih ravni u rješavanju  podproblema koji odgovaraju čvorovima drveta. Dakle, ako  uzimamo trenutno aktivni čvor i rješavamo njegov podproblem, dijelimo ga na nekoliko podproblema (podjelom dopustivog regiona na više disjunktnih -- dodavanjem ograničenja) ili ga rješavamo rekurzivnim dodavanjem (Gomorijevih) odsjecajućih ravni. Ilustrujmo ovu ideju na primjeru rješavanja jednog ILP-a.
 
 \begin{primjer} Riješimo sljedeći ILP
 	\end{primjer}
@@ -4030,7 +4025,7 @@ U ovom odjeljku analiziramo metodu granjanja i odsijecanja (engl. branch and cut
 \end{align*}
 
 \emph{Rješenje}. B\&C procedura prvo rješava LP relaksaciju početnog problema (simpleks metodom), odakle dobijamo rješenje $x=(\frac{17}{7}, \frac{26}{7})$
-sa optimalnom vrijednošću $33\frac{1}{7}$. Nakon toga treba da se donese odluka, da li se problem rješava dodavanjem odsjecajućih ravni ili podjelom dopustivog regiona na manje (disjunktne) podregione. Podijelimo region po koordinati $x_1$, odakle ćemo dobiti dva potproblema 
+sa optimalnom vrijednošću $33\frac{1}{7}$. Nakon toga treba da se donese odluka, da li se problem rješava dodavanjem odsjecajućih ravni ili podjelom dopustivog regiona na manje (disjunktne) podregione. Podijelimo region po koordinati $x_1$, odakle ćemo dobiti dva podproblema 
 
 \begin{align*}
     &\max 6 x_1 + 5 x_2 \\
@@ -4179,7 +4174,7 @@ Tehnički zapisano, krećemo od \emph{restrikovanog master problema} (RMP)
 \end{align*}
 gdje $I$ inicijalizujemo kao skup kolona koje čine inicijalno bazno dopustivo rješenje  za RMP. Po mogućnosti, dodajemo i neke druge kolone za koje smatramo da su ``bitne'' u kontekstu problema.  Riješimo RMP,  te izračunamo odgovarajuće optimalno dualno rješenje. Sada je potrebno naći promjenljivu $x_j$ i odgovarajuću kolonu $A_j$ za koju je koeficijent doprinosa negativan, tj. $\overline{c_j} = c_j - c_B^T B^{-1}A_j < 0$.
 %Pogledati: https://www.youtube.com/watch?v=0SV99VJaGzw
-Ovo se može uraditi rješavanjem tzv. potproblema generisanog kolonama (eng. \emph{column generating subproblem -- CGSP}):
+Ovo se može uraditi rješavanjem tzv. podproblema generisanog kolonama (eng. \emph{column generating subproblem -- CGSP}):
 $$\min_{a \in C} \overline{c_j} = \min_{a \in C} c_a - c_B^T B^{-1} a,$$
 gdje je $C$ skup kolona nad nekim globalnim skupom. Za LP problem možemo staviti $C = \{1,\ldots,n\}$. 
 
@@ -4223,7 +4218,7 @@ Iterativni proces rješavanja RMP problema se može prekinuti i ranije, bez dost
 % Primijetimo da je cijena svakog paterna po kolonama jednaka za svaku kolonu. 
 Primijetimo da su, na osnovu prethodnog, razmatrajući relaksaciju problema  $CSILP$, vrijednosti koeficijenata doprinosa 
 jednaki $\overline{c} = 1 - \sum_{i} a_{j,i} y_i$.  
- Dakle, CG potproblem izgleda ovako
+ Dakle, CG podproblem izgleda ovako
 $$ \begin{array}{lll}
      &\max& \sum_{i=1}^m y_i a_i \\
      &  &\sum_{i} w_i a_i \leq W \hspace{2cm} (CGP)\\
@@ -4248,7 +4243,7 @@ $$ \begin{array}{lll}
      \item Konstruišimo inicijalno bazno dopustivo rješenje (jedinični vektori) i kolone ubacimo u skup $S$.
      \item Riješimo relaksaciju restrikovanog problema ($CSILP$) i vratimo dualno optimalno rješenje. 
      \item Riješimo ($CGP$).
-     \item Ako je vrijednost optimalnog rješenja negativna, ubaciti novu kolonu $a$ (koja je rješenje potproblema) u skup $S$. Inače, prekidamo proces jer je optimalno rješenje nađeno. 
+     \item Ako je vrijednost optimalnog rješenja negativna, ubaciti novu kolonu $a$ (koja je rješenje podproblema) u skup $S$. Inače, prekidamo proces jer je optimalno rješenje nađeno. 
      \item Riješiti relaksaciju ($CSILP$) na novom skupu kolona $S$.
  \end{enumerate}
  Primijetimo da je dodavanje nove kolone u $S$ odgovara dodavanju novog obrasca u rješenje. 
@@ -4391,7 +4386,7 @@ Ako je rješenje veće od 0, optimalno rješenje nađeno rješavanjem prethodnog
 	a_4 \\
 	a_6 \\
 	a_7
-\end{pmatrix}$, CG potproblem se svodi na sljedeći optimizacioni problem
+\end{pmatrix}$, CG podproblem se svodi na sljedeći optimizacioni problem
 \begin{align}
 	 \max y_1 a_4 + y_2 a_6 + y_3 a_7  
 \end{align}
@@ -4438,11 +4433,11 @@ U novoj koloni tražimo pivot element (kao i u simpleks metodi). Lako je vidjeti
 	\end{tabular}
 \end{center}
 
-Dalje, generišimo novi CG potproblem čitajući vrijednost dualnih promjenjivih iz prethodne simpleks tabele $y_1 = \frac{1}{4}$, $y_2 = \frac{1}{2}$, $y_3= \frac{1}{2}$, a dobijamo novi potproblem
+Dalje, generišimo novi CG podproblem čitajući vrijednost dualnih promjenjivih iz prethodne simpleks tabele $y_1 = \frac{1}{4}$, $y_2 = \frac{1}{2}$, $y_3= \frac{1}{2}$, a dobijamo novi podproblem
 \begin{align*}
 	 \frac{1}{4} a_4 + \frac{1}{2} a_6 + \frac{1}{2} a_7
 \end{align*}
-uz uslove nenegativnosti i kapaciteta i integralnosti (cjelobrojnosti). Rješavajući problem dinamičkim programiranjem, dobijamo optimalno rješenje $A_5 = (2,1,0)^T$. Vrijednost optimuma za CG potproblem je jednaka 1, odakle slijedi da je optimum početnog problema pronađen sa prethodnim rješenjem (ne postoji više ulaznih kolona koje se dodaju u RMP). Rješenje je jednako 95, dato sa $x_1^* = 0, x_2^* = 25, x_3^*=30, x_4^*= 40$. Dakle, koristimo samo 3 različita obrasca za sječenje. 
+uz uslove nenegativnosti i kapaciteta i integralnosti (cjelobrojnosti). Rješavajući problem dinamičkim programiranjem, dobijamo optimalno rješenje $A_5 = (2,1,0)^T$. Vrijednost optimuma za CG podproblem je jednaka 1, odakle slijedi da je optimum početnog problema pronađen sa prethodnim rješenjem (ne postoji više ulaznih kolona koje se dodaju u RMP). Rješenje je jednako 95, dato sa $x_1^* = 0, x_2^* = 25, x_3^*=30, x_4^*= 40$. Dakle, koristimo samo 3 različita obrasca za sječenje. 
 \\ \vspace{1cm}
  %Za uraditi:  https://ocw.mit.edu/courses/sloan-school-of-management/15-083j-integer-programming-and-combinatorial-optimization-fall-2009/lecture-notes/ (Lekcija 19-25)
  \section{Zadaci}
@@ -4558,7 +4553,7 @@ Treba napomenuti da i savremeni MILP rješavači, o čemu će biti govora kasnij
  \section{Benderova dekompozicija}
  
  Benderova metoda je uvedena šezdesetih godina dvadesetog vijeka, kao algoritam za rješavanje MILP programa. 
- Osnovna ideja Benderove dekompozicije primijenjenog na MILP program je podjela skupa promjenljivih na dva podskupa, od kojih se jedan skup promjenljivih (skup cjelobrojnih promjenljivih) smatra ``komplikovanim'', odnosno skupom promjenljivih čijim se fiksiranjem dolazi do značajnog pojednostavljenja polaznog problema. Prvi problem, koji se zove i master problem,  rješava se nad prvim skupom promjenljivih, dok se vrijednosti promjenljivih iz drugog skupa,  za dato rješenje prvog potproblema, određuju rješavanjem drugog potproblema. Uspješnu primjenu Benderove dekompozicije, između ostalog, obezbjeđuje i teorija dualnosti, odnosno teoreme slabe i jake dualnosti.
+ Osnovna ideja Benderove dekompozicije primijenjenog na MILP program je podjela skupa promjenljivih na dva podskupa, od kojih se jedan skup promjenljivih (skup cjelobrojnih promjenljivih) smatra ``komplikovanim'', odnosno skupom promjenljivih čijim se fiksiranjem dolazi do značajnog pojednostavljenja polaznog problema. Prvi problem, koji se zove i master problem,  rješava se nad prvim skupom promjenljivih, dok se vrijednosti promjenljivih iz drugog skupa,  za dato rješenje prvog podproblema, određuju rješavanjem drugog podproblema. Uspješnu primjenu Benderove dekompozicije, između ostalog, obezbjeđuje i teorija dualnosti, odnosno teoreme slabe i jake dualnosti.
  
 
  Posmatrajmo sada sljedeću formulaciju MILP programa
@@ -4572,7 +4567,7 @@ Treba napomenuti da i savremeni MILP rješavači, o čemu će biti govora kasnij
 \end{equation}
  gdje su $x$ i $y$ vektori neprekidnih i cjelobrojnih promjenljivih, respektivno, dimenzija $p$ i $q$. $f,g,c$ su vektori, a $A$ i $B$ matrice odgovarajućih dimenzija. 
  
- Pretpostavimo da raspolažemo jednom početnom vrijednošću vektora $y$. Za tu vrijednost (označimo je sa $\overline{y}$) dobijamo sljedeći potproblem
+ Pretpostavimo da raspolažemo jednom početnom vrijednošću vektora $y$. Za tu vrijednost (označimo je sa $\overline{y}$) dobijamo sljedeći podproblem
 
 \begin{equation}
 	\begin{aligned}\label{bender2}
@@ -4584,7 +4579,7 @@ Treba napomenuti da i savremeni MILP rješavači, o čemu će biti govora kasnij
 \end{equation}
 
  
-Posmatrajmo dualni problem potproblema~(\ref{bender2}), ignorišući term $g^T\overline{y}$ koji je konstantan.
+Posmatrajmo dualni problem podproblema~(\ref{bender2}), ignorišući term $g^T\overline{y}$ koji je konstantan.
 
 \begin{equation}
 	\begin{aligned}\label{bender3}
@@ -4614,11 +4609,11 @@ Dalje, uočimo da oblast dopustivih rješenja dualnog problema~(\ref{bender3}) n
 \end{equation}
 
 
-Posljednja nejednakost određuje jednju donju granicu funkcije cilja polaznog problema. Ovo je ključni element koji se koristi u Benderovoj dekompoziciji, pomoću kog se određuje jedna odsjecajuća ravan za master problem, koji će biti definisan kasnije. Treba napomenuti da odsjecajuća ravan~(\ref{bender5}) ukazuje na činjenicu da, ako bi se za $y$ uzela vrijednost $\overline{y}$, funkcija cilja bi bila veća ili jednaka vrijednosti $\overline{z}$, koja se dobije u potproblemu, s obzirom da važi $	z\geqslant g^Ty+(u)^T(c-B\overline{y})$.
+Posljednja nejednakost određuje jednju donju granicu funkcije cilja polaznog problema. Ovo je ključni element koji se koristi u Benderovoj dekompoziciji, pomoću kog se određuje jedna odsjecajuća ravan za master problem, koji će biti definisan kasnije. Treba napomenuti da odsjecajuća ravan~(\ref{bender5}) ukazuje na činjenicu da, ako bi se za $y$ uzela vrijednost $\overline{y}$, funkcija cilja bi bila veća ili jednaka vrijednosti $\overline{z}$, koja se dobije u podproblemu, s obzirom da važi $	z\geqslant g^Ty+(u)^T(c-B\overline{y})$.
 
 Ovo takođe daje i donju granicu za druge vrijednosti $y$ koje bismo mogli probati u narednim iteracijama.
 
-2. Posmatrajmo sada slučaj da je dualni potproblem neograničen. U toj situaciji važi nejednakost
+2. Posmatrajmo sada slučaj da je dualni podproblem neograničen. U toj situaciji važi nejednakost
 \begin{equation}
 	\label{bender6}
 	(u^*)^T(c-By)>0
@@ -4644,9 +4639,9 @@ Sada možemo definisati master problem koji nastaje dodavanjem svih odsjecajući
 		&y \in \mathbb{Z},
 	\end{aligned}
 \end{equation}
- gdje je $K$ skup ekstremnih tačaka, a $L$ skup ekstremnih zrakova potproblema. Rješavanjem master problema (koji je obično puno lakši od početnog problema) dobijamo novu vrijednost za $y$, koju koristimo u sljedećoj iteraciji.
+ gdje je $K$ skup ekstremnih tačaka, a $L$ skup ekstremnih zrakova podproblema. Rješavanjem master problema (koji je obično puno lakši od početnog problema) dobijamo novu vrijednost za $y$, koju koristimo u sljedećoj iteraciji.
  
- Treba napomenuti da je potproblem~(\ref{bender2}) restrikcija originalnog problema~(\ref{bender1}), pa je njegova optimalna vrijednost $z^*$ jedna gornja granica za funkciju cilja polaznog problema. Takođe, master problem~(\ref{bender8}) je relaksacija polaznog problema, jer se pri rješavanju master problema ne posmatraju sva ograničenja. Stoga, optimalna vrijednost master problema je donja granica za funkciju cilja originalnog problema.
+ Treba napomenuti da je podproblem~(\ref{bender2}) restrikcija originalnog problema~(\ref{bender1}), pa je njegova optimalna vrijednost $z^*$ jedna gornja granica za funkciju cilja polaznog problema. Takođe, master problem~(\ref{bender8}) je relaksacija polaznog problema, jer se pri rješavanju master problema ne posmatraju sva ograničenja. Stoga, optimalna vrijednost master problema je donja granica za funkciju cilja originalnog problema.
 % DOPUNITI
  
  Postupak primjene Benderove dekompozicije na problem minimizacije prikazan je Algoritmom~\ref{alg:bender}.
@@ -4658,7 +4653,7 @@ Sada možemo definisati master problem koji nastaje dodavanjem svih odsjecajući
  		\STATE Postavi $\overline{y}\in\mathbb{Z}$ na inicijalnu vrijednost
  		\STATE 	$LB \gets$ $-\infty$; $UB \gets$ $+\infty$
  		\WHILE{$UB-LB>\epsilon$}
- 		\STATE Riješi dualni problem (Benderov potproblem)
+ 		\STATE Riješi dualni problem (Benderov podproblem)
  		
  		$$	\begin{aligned}
  			\max\ &u^T (c-B\overline{y})\\
@@ -4694,7 +4689,7 @@ Sada možemo definisati master problem koji nastaje dodavanjem svih odsjecajući
 
 
 U primjeru kojim ilustrujemo upotrebu Benderove dekompozicije posmatramo jedan jednostavan problem maksimizacije dobiti na osnovu ulaganja po različitim kriterijumima.
-Iako je Algoritmom~\ref{alg:bender} opisan postupak rješavanja problema minimizacije, algoritam se vrlo lako može preformulisati tako da se može primijeniti i na problem maksimizacije. Jasno je da će u tom slučaju, dualni problem, prikazan u liniji 4 algoritma tada postati problem minimizacije, te će se, rješavanjem dualnog potproblema dobijati donje granice.
+Iako je Algoritmom~\ref{alg:bender} opisan postupak rješavanja problema minimizacije, algoritam se vrlo lako može preformulisati tako da se može primijeniti i na problem maksimizacije. Jasno je da će u tom slučaju, dualni problem, prikazan u liniji 4 algoritma tada postati problem minimizacije, te će se, rješavanjem dualnog podproblema dobijati donje granice.
 
 
 \begin{primjer} Pretpostavimo da raspolažemo sumom od 1000KM, koju možemo iskoristiti za ostvarivanje dobiti prema dva različita kriterijuma:
@@ -4779,7 +4774,7 @@ $c=\left(\begin{array}{c}
 
 Primijenimo sada Benderovu dokompoziciju. Najprije treba odrediti početnu vrijednost za $\overline{y}$, za koju, u ovom koraku, možemo uzeti bilo koju nenegativnu vrijednost. Neka je, na primjer, $\overline{y}=1500$. Dalje, neka su $LB=-\infty$ i $UB=+\infty$ i uzmimo da je $\epsilon = 0.1$.
 
- Nakon inicijalnih postavki, prvi korak je rješavanje dualnog problema (Benderovog potproblema). S obzirom da je početni problem problem maksimizacije, dualni problem će sada biti problem minimizacije. Obilježimo promjenljvie dualnog problema vektorom  $u$, koji ima 11 koordinata (polazni problem ima 11 oraničenja).
+ Nakon inicijalnih postavki, prvi korak je rješavanje dualnog problema (Benderovog podproblema). S obzirom da je početni problem problem maksimizacije, dualni problem će sada biti problem minimizacije. Obilježimo promjenljvie dualnog problema vektorom  $u$, koji ima 11 koordinata (polazni problem ima 11 oraničenja).
  
  Računamo funkciju cilja dualnog problema
  $$
@@ -5293,7 +5288,7 @@ $$x =\left(\begin{array}{c}
  %https://www.youtube.com/watch?v=wxz0NJvKZNM
  %Glavni link: https://www.youtube.com/watch?v=IposxYVBUnY
  
- U ovom odjeljku ćemo objasniti još jednu korisnu dekompozicionu tehniku za rješavanje problema linearnog programiranja -- \emph{Dantzig-Wolfe} (DW) dekompoziciju. Ova tehnika je originalno dizajnirana za rješavanje problema linearnog programiranja velikih dimenzija. Osnovna ideja DW dekompozicije je da se na podskup ograničenja polaznog problema primijeni \emph{Teorema Minkovskog}, odnosno \emph{Teorema o reprezentaciji za konveksne poliedre}, te da se polazni problem razbije na   više manjih potproblema.
+ U ovom odjeljku ćemo objasniti još jednu korisnu dekompozicionu tehniku za rješavanje problema linearnog programiranja -- \emph{Dantzig-Wolfe} (DW) dekompoziciju. Ova tehnika je originalno dizajnirana za rješavanje problema linearnog programiranja velikih dimenzija. Osnovna ideja DW dekompozicije je da se na podskup ograničenja polaznog problema primijeni \emph{Teorema Minkovskog}, odnosno \emph{Teorema o reprezentaciji za konveksne poliedre}, te da se polazni problem razbije na   više manjih podproblema.
  
  \begin{thm}
  	Neka je $P = \{ x \in \mathbb{R}^n \mid Ax \leq b\}$ ograničeni poliedar i neka je $\{x^{(1)}, \ldots, x^{(p)} \}$ skup ekstremnih tačaka od $P$. Tada za sve $x \in P$ vrijedi 
@@ -5400,9 +5395,9 @@ Da bi se odredili   koeficijenti doprinosa za $\lambda_j$, odredimo šta se dobi
  	1 
  \end{array}\right)$$
  
- Sada rješavamo \emph{Column generation potproblem} (CG), čiji je cilj da se pronađe najmanji koeficijent doprinosa. Ukoliko je on manji od nule, dobija se nova kolona koja treba da se doda u potproblem RMP.  U slučaju da je on nenegativan, tada je optimalno rješenje RMP ujedno i optimalno rješenje MP.
+ Sada rješavamo \emph{Column generation podproblem} (CG), čiji je cilj da se pronađe najmanji koeficijent doprinosa. Ukoliko je on manji od nule, dobija se nova kolona koja treba da se doda u podproblem RMP.  U slučaju da je on nenegativan, tada je optimalno rješenje RMP ujedno i optimalno rješenje MP.
  
- CG potproblem se definiše kao
+ CG podproblem se definiše kao
  
       \begin{equation}
  	\begin{aligned}\label{dw6}
@@ -5414,7 +5409,7 @@ jer je rješenje problema na desnoj strani jednakosti upravo u nekom od vrhova p
 
 Prisjetimo se sada da smo za jednu od polaznih pretpostavki imali da je skup $X$ opisan kao skup sa ``jednostavnim'' ograničenjima, što znači da je problem na desnoj strani jednakosti (\ref{dw6}) jednostavan za rješavanje.
 
-Reformulišimo  CG potproblem sada kao problem maksimizacije, gdje ćemo za funkciju cilja uzeti negativnu vrijednost funkcije cilja minimizacije, tj.
+Reformulišimo  CG podproblem sada kao problem maksimizacije, gdje ćemo za funkciju cilja uzeti negativnu vrijednost funkcije cilja minimizacije, tj.
  
  \fixme{Marko, provjeri Milanin komentar vezan za 8.18, odnosno po cemu ide maksimizacija}
  
@@ -5580,7 +5575,7 @@ Da bismo u ograničenjima izbjegli znak $\leqslant$ u prva dva ograničenja, dod
 
 Sada se može inicijalnizovati RMP, biranjem dopustive baze.
 
-Izabraćemo promjenljive $\lambda_1, s_1$ i $s_2$ kao inicijalne bazne promjenljive. Pošto  promjenljive $\lambda_2,\lambda_3$ i $\lambda_4$ ne egzistiraju u potproblemu,  RMP izgleda ovako
+Izabraćemo promjenljive $\lambda_1, s_1$ i $s_2$ kao inicijalne bazne promjenljive. Pošto  promjenljive $\lambda_2,\lambda_3$ i $\lambda_4$ ne egzistiraju u podproblemu,  RMP izgleda ovako
       \begin{equation}
 	\begin{aligned}\label{primjer:dw6}
 		&\max\   0\\
@@ -5616,7 +5611,7 @@ Konstruišemo CG problem sa
 	 	2 & -3
 	 \end{array}\right)  x = \max_{x \in X} x_1. 
 \end{align} 
-Optimalna vrijednost problema (\ref{eq:cg-1}) je jednaka $\hat{z}=1$, i dostiže se, recimo, u ekstremnoj tački $ x^{(2)}= (1, 0)^T.$ Kako je optimalna vrijednost pozitivna, ulazna kolona za prethodni potproblem postoji, te je treba da odaberemo. Ova kolona (ako posmatramo problem (\ref{primjer:dw5})) će biti data sa 
+Optimalna vrijednost problema (\ref{eq:cg-1}) je jednaka $\hat{z}=1$, i dostiže se, recimo, u ekstremnoj tački $ x^{(2)}= (1, 0)^T.$ Kako je optimalna vrijednost pozitivna, ulazna kolona za prethodni podproblem postoji, te je treba da odaberemo. Ova kolona (ako posmatramo problem (\ref{primjer:dw5})) će biti data sa 
 \begin{align}
      \begin{pmatrix}
      	    c^T  x^{(2)} \\
@@ -5668,7 +5663,7 @@ Ubacimo za trenutak ovu kolonu u prethodnu simpleks tabelu, odakle imamo tabelu
  		$z$         &   0      &    0         &   0         &    -1         &  0
  	\end{tabular}
  \end{center}
-Primijetimo da je cijena doprinosa dodate kolone promijenjena sa 1 na -~1, jer je, zbog korištenja tabelarne forme simpleks metoda, optimalna vrijednost problema zapravo -$\hat{z}$, pošto se CG potproblem minimizuje. Sada koristimo novu kolonu kao ulaznu kolonu za transformacije -- u njoj tražimo kandidata za pivota kako smo to i vidjeli u simpleks metodi. Odaberemo element čija je vrijednost $2$ i pivotiramo oko njega. Prvo sve elemente u koloni 2 podijelimo sa 2, te potom izvršimo elementarne transformacije da bi ostali elementi novododate kolone dobili vrijednost nula. Promjenljiva $s_2$ se isključuje iz baze, dok se $\lambda_2$ uključuje u bazu. Na kraju dobijamo transformisanu tabelu:
+Primijetimo da je cijena doprinosa dodate kolone promijenjena sa 1 na -~1, jer je, zbog korištenja tabelarne forme simpleks metoda, optimalna vrijednost problema zapravo -$\hat{z}$, pošto se CG podproblem minimizuje. Sada koristimo novu kolonu kao ulaznu kolonu za transformacije -- u njoj tražimo kandidata za pivota kako smo to i vidjeli u simpleks metodi. Odaberemo element čija je vrijednost $2$ i pivotiramo oko njega. Prvo sve elemente u koloni 2 podijelimo sa 2, te potom izvršimo elementarne transformacije da bi ostali elementi novododate kolone dobili vrijednost nula. Promjenljiva $s_2$ se isključuje iz baze, dok se $\lambda_2$ uključuje u bazu. Na kraju dobijamo transformisanu tabelu:
 
 \begin{center}
 	
@@ -5692,7 +5687,7 @@ Na osnovu prethodne simpleks tabele, dobijamo   vrijednosti dualnih promjenljivi
 
 \vspace{5mm}
 
-\emph{Iteracija 2.} Iz prethodnog dobijamo CG potproblem 
+\emph{Iteracija 2.} Iz prethodnog dobijamo CG podproblem 
 \begin{align}
 	 \max_{x \in X} (1, 0)^T x - \left(0, \frac{1}{2}\right)\left(\begin{array}{cc}
 	 	1 & 3 \\
@@ -5714,7 +5709,7 @@ Ova kolona, ako posmatramo problem (\ref{primjer:dw5}), je   data sa
 	\end{pmatrix}.
 \end{align}
 
-Kada pogledamo prethodne vrijednosti kolone $V$ i master problem (\ref{primjer:dw5}), jasno je da ona odgovara koeficijentima promjenljive $\lambda_3$. Dakle, prethodna kolona je data u odnosu na promjenljivu $\lambda_3$ početnog problema, ali je sada izražavamo preko trenutne baze (potproblema) vektora $s_1, s_2$ i $\lambda_2$. Dakle, nakon množenja kolone sa inverzom baze $B^{-1}$, na osnovu koraka opisanih u Tabeli \ref{tbl:dw1}, sljedeća kolona se dodaje u simpleks tabelu:
+Kada pogledamo prethodne vrijednosti kolone $V$ i master problem (\ref{primjer:dw5}), jasno je da ona odgovara koeficijentima promjenljive $\lambda_3$. Dakle, prethodna kolona je data u odnosu na promjenljivu $\lambda_3$ početnog problema, ali je sada izražavamo preko trenutne baze (podproblema) vektora $s_1, s_2$ i $\lambda_2$. Dakle, nakon množenja kolone sa inverzom baze $B^{-1}$, na osnovu koraka opisanih u Tabeli \ref{tbl:dw1}, sljedeća kolona se dodaje u simpleks tabelu:
 
 \begin{center}
  
@@ -5753,7 +5748,7 @@ Sada nađimo pivota oko kolone koja je dodana. Kandidati za izlazak iz baze su i
   
   
   \vspace{5mm}
-   \emph{Iteracija 3.} Prema tome, novi CG potproblem je dat sa 
+   \emph{Iteracija 3.} Prema tome, novi CG podproblem je dat sa 
   \begin{align*}
         \max_{x \in X} (1, 0)^T x - (0, \frac{1}{5})\left(\begin{array}{cc}
        	1 & 3 \\
@@ -5761,7 +5756,7 @@ Sada nađimo pivota oko kolone koja je dodana. Kandidati za izlazak iz baze su i
        \end{array}\right)  x   - \frac{3}{5} &= \max_{x \in X}x_1  - \frac{2}{5}x_1 + \frac{3}{5}x_2 - \frac{3}{5} \\
        &= \max_{x \in X} \frac{3}{5}x_1 + \frac{3}{5}x_2 - \frac{3}{5}.
   \end{align*} 
-Optimalna vrijednost CG potproblema se dostiže u $x^{(4)} = (1, 1)^T$ i ona je jednaka $\hat{z}=\frac{3}{5}$. Kako je $\hat{z}>0$, tražićemo novu kolonu koju treba dodati u potproblem. Ova kolona, ako posmatramo problem (\ref{primjer:dw5}), je   data sa 
+Optimalna vrijednost CG podproblema se dostiže u $x^{(4)} = (1, 1)^T$ i ona je jednaka $\hat{z}=\frac{3}{5}$. Kako je $\hat{z}>0$, tražićemo novu kolonu koju treba dodati u podproblem. Ova kolona, ako posmatramo problem (\ref{primjer:dw5}), je   data sa 
 \begin{align}
 	V =   \begin{pmatrix}
 		c^T x^4\\
@@ -5774,7 +5769,7 @@ Optimalna vrijednost CG potproblema se dostiže u $x^{(4)} = (1, 1)^T$ i ona je 
 		1\\  
 	\end{pmatrix}
 \end{align}
-Kada pogledamo prethodne vrijednosti kolone $V$ i master problem (\ref{primjer:dw5}), jasno je da ona odgovara koeficijentima promjenljive $\lambda_4$. Dakle, prethodna kolona je data u odnosu na promjenljivu $\lambda_4$ početnog problema, ali je sada izražavamo preko trenutne baze (potproblema) vektora $s_1, \lambda_2$ i $\lambda_3$.  Nakon množenja kolone sa inverzom baze 
+Kada pogledamo prethodne vrijednosti kolone $V$ i master problem (\ref{primjer:dw5}), jasno je da ona odgovara koeficijentima promjenljive $\lambda_4$. Dakle, prethodna kolona je data u odnosu na promjenljivu $\lambda_4$ početnog problema, ali je sada izražavamo preko trenutne baze (podproblema) vektora $s_1, \lambda_2$ i $\lambda_3$.  Nakon množenja kolone sa inverzom baze 
 $B^{-1}= 
 \begin{pmatrix}
 	 1 &  \frac{2}{5}   & -\frac{9}{5} \\
@@ -5819,7 +5814,7 @@ Iz prethodne tabele pročitamo vrijednost dualnih promjenljivih: $y_1 =  \frac{1
 
 \vspace{5mm}
 
-\emph{Iteracija 4.} Na osnovu vrijednosti dualnih promjenljivih, formira se novi CG potproblem
+\emph{Iteracija 4.} Na osnovu vrijednosti dualnih promjenljivih, formira se novi CG podproblem
  
 	 \begin{align*}
 		\max_{x \in X} (1, 0)^T x - (\frac{1}{3}, \frac{1}{3})\left(\begin{array}{cc}
@@ -6073,7 +6068,7 @@ Problem najdužeg podniza (eng. \emph{Longest common subsequence}), ili skraćen
 Jedan od najjednostavnijih pristupa u rješavanu ovog problema je  \emph{pohlepni pristup}, tzv. \emph{Best-Next} (BN) heuristika. Prije nego navedemo detalje algoritma, uvedimo nekoliko definicija i oznaka koje će biti korištene u konstrukciji ovog algoritma. Za cjelobrojni vektor $p^L = (p^L_1,\ldots, p^L_m)$, definišemo sa
 $S[p^L] = \{s_i[p^L_i, |s_i| \mid i=1,\ldots,m\}$, gdje $|s|$ označava dužinu stringa $s$, a $s[x,y]$ podstring (sufiks) stringa $s$ koji počinje od karaktera na poziciji $x$, a završava sa karakterom na poziciji $y$. Konvencija je da se indeksi u stringu numerišu krenuvši od 1. Dakle, $s= [1, |s|]$ za svaki string $s$. Primjera radi, za (pozicioni) vektor $p^L=(1,2,2)$ i skup $S$ sa početka ove podsekcije imamo $S[ (1,2,3)] = \{ s_1[1, |s_1|], s_2[2, |s_2|], s_3[3, |s_3|]  \}= \{ \texttt{bbccb}, \texttt{ccab}, \texttt{bcb}\}$. 
  
-Dalje, sa $p^L_{i,a}$ definišemo poziciju prvog pojavljivanja karaktera $\texttt{a}\in \Sigma$ koja je  $p^L_{i,a} \geq p^L_i$ (ukoliko karakter ne postoji, dodijelimo vrijednost $n+1$). Skup karaktera $\Sigma_{p^L}$ koji se pojavljuju u svakom od stringova (u potproblemu) $S[p^L]$ se nazivaju dopustive ekstenzije u odnosu na pozicioni vektor $p^L$. 
+Dalje, sa $p^L_{i,a}$ definišemo poziciju prvog pojavljivanja karaktera $\texttt{a}\in \Sigma$ koja je  $p^L_{i,a} \geq p^L_i$ (ukoliko karakter ne postoji, dodijelimo vrijednost $n+1$). Skup karaktera $\Sigma_{p^L}$ koji se pojavljuju u svakom od stringova (u podproblemu) $S[p^L]$ se nazivaju dopustive ekstenzije u odnosu na pozicioni vektor $p^L$. 
 
 U konstrukciji pohlepnog algoritma, odredimo  skup dopustivih komponenti i (pohlepni) kriterijum odabira najbolje komponente u svakom od koraka algoritma. Inicijalno rješenje $s$ je prazan string, koji je, trivijalno, dopustivo rješenje za svaku instancu LCS problema. Ideja je u svakom koraku proširiti rješenje za jedan karakter tako da spojimo taj karakter (sa desna) sa $s$  dok god je to moguće i pri tome da je prošireni string i dalje LCS. Prema tome, krenemo sa pozicijom $p^L = (1, \ldots, 1)$ koja odgovara čitavom skupu $S=S[p^L]$ i praznim stringom $s =\varepsilon$ kao inicijalno rješenje. Dalje, da bi očuvali dopustivost rješenja kada se rješenje proširi za jedan karakter, za komponente rješenja $\Sigma_{p^L}$ ćemo uzeti sve karaktere koji se nalaze u svim stringovima iz $S=S[p^L]$, jer na taj način  ekstenzija $s = s \cdot x$ za bilo koji $x \in \Sigma_{p^L}$ će dati dopustivo LCS rješenje. Među karakterima iz $\Sigma_{p^L}$ treba odabrati (lokalno) najboljeg kandidata za proširivanje rješenja. Treba imati na umu da se kandidat $x\in \Sigma_{p^L}$ može pojaviti na nekoliko pozicija u svakom stringu iz $S=S[p^L]$. Kako ne želimo ekstenzije koje vode ka podoptimalnim rješenjima, biramo karakter $x$ koji je najbliže početku u stringovima iz $S=S[p^L]$, dakle na pozicijama $p^L_{i,a},i=1,\ldots,m$. 
 
