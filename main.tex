@@ -5121,23 +5121,24 @@ Dalje, master problemu pridružujemo odsjecajuću ravan
  
  $$
  \begin{aligned}
- 	\max z\\
- 	1000-y\geqslant 0\\
- 	z\leqslant 1100-0.055y\\ 
- 	z\leqslant 1.045y+1055\\
- 	z\leqslant 0.035y+1055\\
- 	z\leqslant -0.005y+1065\\
- 	y\in\mathbb{Z}^+\\	
+ 	&\max z\\
+ 	&\mbox{t.d.}\\
+ 	&1000-y\geqslant 0\\
+ 	&z\leqslant 1100-0.055y\\ 
+ 	&z\leqslant 1.045y+1055\\
+ 	&z\leqslant 0.035y+1055\\
+ 	&z\leqslant -0.005y+1065\\
+ 	&y\in\mathbb{Z}^+\\	
  \end{aligned}
  $$
  
- \fixme{dovde}
+
  
- 
- čije se optimalno rješenje dobija za vrijednost za cjelobrojnu vrijednost $\overline{y}=250$, koje iznosi $\overline{z} = 1063.75$.
+ čije se optimalno rješenje iznosi $\overline{z} = 1063.75$, a dobija se za cjelobrojnu vrijednost $\overline{y}=250$.
  
  Ažuriranjem gornje granice dobijamo 
- $$UB = 1063.75$$, pa je razlika između gornje i donje granice jednaka
+ $$UB = 1063.75,$$ 
+ pa je razlika između gornje i donje granice jednaka
  $1063.75-1062.5=1.25$, što je još uvijek veće od $\epsilon$.
  
 Ponovo formiramo dualni problem uzimajući $\overline{y}=250$.
@@ -5160,10 +5161,10 @@ Ponovo formiramo dualni problem uzimajući $\overline{y}=250$.
  0.05\\
  	1.06\\
  	1.07 \\
- \end{array}\right)$$
+ \end{array}\right).$$
  
  Ispitujemo da li se ažurira donja granica:
- $$LB = \max\{1062.5, 1.045\cdot 250+ 800.5\} = \max\{1062.5,1061.75\}=1062.5$$
+ $$LB = \max\{1062.5, 1.045\cdot 250+ 800.5\} = \max\{1062.5,1061.75\}=1062.5.$$
  
  Dalje, određujemo odsjecajuću ravan
  
@@ -5191,28 +5192,29 @@ Ponovo formiramo dualni problem uzimajući $\overline{y}=250$.
  	0 \\
  	\vdots \\
  	0
- \end{array}\right)y\right)$$
+ \end{array}\right)y\right).$$
  Odnosno 
- $$z\leqslant 1.045y+1030-1.03y+28$$
+ $$z\leqslant 1.045y+1030-1.03y+28,$$
  t.j.
  $$z\leqslant 0.015y+1058$$
  
- i pridodajemo je master problemu, koji izgleda
+ i dodajemo je master problemu, koji izgleda
   $$
  \begin{aligned}
- 	\max z\\
- 	1000-y\geqslant 0\\
- 	z\leqslant 1100-0.055y\\ 
- 	z\leqslant 1.045y+1055\\
- 	z\leqslant 0.035y+1055\\
- 	z\leqslant -0.005y+1065\\
- 	z\leqslant 0.015y+1058\\
- 	y\in\mathbb{Z}^+\\	
+ 	&\max z\\
+ 	&\mbox{t.d.}\\
+ 	&1000-y\geqslant 0\\
+ 	&z\leqslant 1100-0.055y\\ 
+ 	&z\leqslant 1.045y+1055\\
+ 	&z\leqslant 0.035y+1055\\
+ 	&z\leqslant -0.005y+1065\\
+ 	&z\leqslant 0.015y+1058\\
+ 	&y\in\mathbb{Z}^+\\	
  \end{aligned}
- $$
+ .$$
  
  Rješavanjem master problema dobijamo novu vrijednost $\overline{y} =350$, a gornja granica se ažurira na 
- $$UB = 1063.25$$
+ $$UB = 1063.25.$$
  
  Ponavljajući postupak još jednom, dobijamo redom: 
  \begin{itemize}
@@ -5233,8 +5235,8 @@ Ponovo formiramo dualni problem uzimajući $\overline{y}=250$.
  	0.05\\
  	1.06\\
  \end{array}\right)$$
-\item $LB = 1062.75$
-\item odsjecajuću ravan:  $z\leqslant 0.005y+1061$
+\item $LB = 1062.75$,
+\item odsjecajuću ravan:  $z\leqslant 0.005y+1061$.
 \end{itemize}
 
 
@@ -5242,24 +5244,25 @@ Rješavajući još jednom master problem, koji sada izgleda
 
   $$
 \begin{aligned}
-	\max z\\
-	1000-y\geqslant 0\\
-	z\leqslant 1100-0.055y\\ 
-	z\leqslant 1.045y+1055\\
-	z\leqslant 0.035y+1055\\
-	z\leqslant -0.005y+1065\\
-	z\leqslant 0.015y+1058\\
-	z\leqslant 0.005y+1061\\
-	y\in\mathbb{Z}^+\\	
+	&\max z\\
+	&\mbox{s.t.}\\
+	&1000-y\geqslant 0\\
+	&z\leqslant 1100-0.055y\\ 
+	&z\leqslant 1.045y+1055\\
+	&z\leqslant 0.035y+1055\\
+	&z\leqslant -0.005y+1065\\
+	&z\leqslant 0.015y+1058\\
+	&z\leqslant 0.005y+1061\\
+	&y\in\mathbb{Z}^+\\	
 \end{aligned}
 $$
 dobijamo da je nova vrijednost $\overline{y}=400$, a gornja granica $UB = 1063$.
 
 Formirajući i rješavajući (pokazaće se, po posljednji put), dualni problem, dobija se optimalno rješenje 645, pa donja granica iznosi 1063.
 
-Sada vidimo da smo dobili da je donja granica jednaka gornjoj i možemo obustaviti iterativni postupak.
+Vidimo da smo dobili da je donja granica jednaka gornjoj i možemo obustaviti iterativni postupak.
 
-Sada znamo da se optimalno rješenje polaznog problema~\ref{primer:formulacija2}, odnosno~\ref{primer:formulacija1} dobija za vrijednost $\overline{y}=400$, te se on svodi na problem
+Sada znamo da se optimalno rješenje polaznog problema~(\ref{primer:formulacija2}), odnosno~(\ref{primer:formulacija1}), dobija za vrijednost $\overline{y}=400$, te se on svodi na problem
 
  \begin{equation}\label{primer:formulacija3}
 	\begin{aligned}
@@ -5290,7 +5293,7 @@ $$x =\left(\begin{array}{c}
  %https://www.youtube.com/watch?v=wxz0NJvKZNM
  %Glavni link: https://www.youtube.com/watch?v=IposxYVBUnY
  
- U ovom odjeljku ćemo objasniti još jednu korisnu dekompozicionu tehniku za rješavanje problema linearnog programiranja -- \emph{Dantzig-Wolfe} (DW) dekompoziciju. Ova tehnika je originalno dizajnirana za rješavanje problema linearnog programiranja velikih dimenzija. Osnovna ideja DW dekompozicije je da se na podskup ograničenja polaznog problema primijeni \emph{Teorema Minkovskog}, odnosno \emph{Teorema o reprezentaciji za konveksne poliedre}, te da se polazni problem razbije na   više manjih problema.
+ U ovom odjeljku ćemo objasniti još jednu korisnu dekompozicionu tehniku za rješavanje problema linearnog programiranja -- \emph{Dantzig-Wolfe} (DW) dekompoziciju. Ova tehnika je originalno dizajnirana za rješavanje problema linearnog programiranja velikih dimenzija. Osnovna ideja DW dekompozicije je da se na podskup ograničenja polaznog problema primijeni \emph{Teorema Minkovskog}, odnosno \emph{Teorema o reprezentaciji za konveksne poliedre}, te da se polazni problem razbije na   više manjih potproblema.
  
  \begin{thm}
  	Neka je $P = \{ x \in \mathbb{R}^n \mid Ax \leq b\}$ ograničeni poliedar i neka je $\{x^{(1)}, \ldots, x^{(p)} \}$ skup ekstremnih tačaka od $P$. Tada za sve $x \in P$ vrijedi 
@@ -5302,20 +5305,21 @@ $$x =\left(\begin{array}{c}
  
   \begin{equation}
  	\begin{aligned}\label{dw1}
- 		\min\  &c^Tx\\
- 		s.t.\  &Ax=b\\
+ 		&\min\ c^Tx\\
+ 		&\mbox{t.d.}\\
+ 	 &Ax=b\\
  		&x \in X
  	\end{aligned}
  \end{equation}
  
  gdje je skup $X$ poliedar. Iako za DW dekompoziciju nije neophodno, u daljem razmatranju, radi lakše analize DW dekompozicije, smatraćemo da je $X$ ograničen poliedar, odnosno politop.
  
- Dalje, navešćemo i sljedeću pretpostavku: Ako bismo iz skupa ograničenja izbacili ograničenja $Ax=b$, tada bi rješavanje problema bilo jednostavno. Drugim riječima, skup $X$ je opisan nekim ``jednostavnim'' ograničenjima, dok ograničenja $Ax=b$ čine problem značajno težim, koje ćemo zbog toga i zvati ``komplikovanim ograničenjima''. 
+ Dalje, navešćemo i sljedeću pretpostavku. Ako bismo iz skupa ograničenja izbacili ograničenja $Ax=b$, tada bi rješavanje problema bilo jednostavno. Drugim riječima, skup $X$ je opisan nekim ``jednostavnim'' ograničenjima, dok ograničenja $Ax=b$ čine problem značajno težim, pa ćemo ih, zbog toga, zvati ``komplikovanim ograničenjima''. 
  
- Posmatrajmo sada konfiguraciju za primjenu Teoreme o reprezentaciji na skup $X$.
+ Posmatrajmo sada konfiguraciju za primjenu Teoreme o reprezentaciji za konveksne poliedre na skup $X$.
  
  Neka su tačke $x^{(1)},x^{(2)},\dots,x^{(t)}$ vrhovi politopa $X$.  
- Prema Teoremi o reprezentaciji, za svaku tačku $x\in X$ vrijedi da se ona može predstaviti kao konveksna kombinacija (ekstremnihh) tačaka $x^{(1)},x^{(2)},\dots,x^{(t)}$.
+ Prema Teoremi o reprezentaciji za konveksne poliedre, za svaku tačku $x\in X$ vrijedi da se ona može predstaviti kao konveksna kombinacija (ekstremnih) tačaka $x^{(1)},x^{(2)},\dots,x^{(t)}$.
  
  Neka je  $x \in X$ proizvoljna tačka iz skupa $X$.  Tada postoje $\lambda_1,\lambda_2,\ldots,\lambda_t$, takvi da važi:
  
@@ -5327,15 +5331,16 @@ $$x =\left(\begin{array}{c}
  	\end{aligned}
  \end{equation}
  
- Ponovimo da Teorema o reprezentaciji ima svoju formulaciju i u slučaju da poliedar nije ograničen, ali zbog pojednostavljenja daljeg objašnjenja DW dekompozicije, ovaj slučaj nećemo razmatrati.
+ Ponovimo da Teorema o reprezentaciji za konveksne poliedre ima svoju formulaciju i u slučaju da poliedar nije ograničen, ali zbog pojednostavljenja daljeg objašnjenja DW dekompozicije, ovaj slučaj nećemo razmatrati.
  
  Uzimajući u obzir prikazanu reprezentaciju proizvoljne tačke $x\in X$, početni problem~(\ref{dw1}) sada možemo preformulisati na
  
  
    \begin{equation}
  	\begin{aligned}\label{dw2}
- 		\min\  &c^T\cdot \sum_{j=1}^t\lambda_jx^{(j)}\\
- 		s.t.\  &A\cdot \sum_{j=1}^t\lambda_jx^{(j)}=b\\
+ 	&	\min\  c^T\cdot \sum_{j=1}^t\lambda_jx^{(j)}\\
+ 		&\mbox{t.d.}\\  
+ 		&A\cdot \sum_{j=1}^t\lambda_jx^{(j)}=b\\
  		 		 &\sum_{j=1}^t\lambda_j = 1\\
  		&\lambda_j\geqslant 0,\ j = 1,\ldots,t
  	\end{aligned}
@@ -5343,18 +5348,24 @@ $$x =\left(\begin{array}{c}
 odnosno
     \begin{equation}
  	\begin{aligned}\label{dw3}
- 		\min\  & \sum_{j=1}^t(c^T x^{(j)})\lambda_j\\
- 		s.t.\  &\sum_{j=1}^t (A x^{(j)})\lambda_j=b\\
+ 		&\min\  \sum_{j=1}^t(c^T x^{(j)})\lambda_j\\
+ 			&\mbox{t.d.}\\   
+ 		&\sum_{j=1}^t (A x^{(j)})\lambda_j=b\\
  		&\sum_{j=1}^t\lambda_j = 1\\
  		&\lambda_j\geqslant 0,\ j = 1,\ldots,t
  	\end{aligned}
  \end{equation}
  
- Vidimo da se početni problem~(\ref{dw1}) sada može predstaviti ekvivalentnom reprezentacijom~(\ref{dw3}), u kojem se, umjesto polaznih promjenljivih (vektora $x$), sada posmatraju promjenljive $\lambda_j,\ j = 1,\ldots,t$ (skup ovih promjenljivih ćemo zvati $\lambda$ promjenljive), uz pretpostavku da su  vrhovi $x^{(1)},x^{(2)},\dots,x^{(t)}$ konveksnog politopa $X$ poznati. Variranjem vrijednosti $\lambda$ promjenljivih po dopustivom skupu iz formulacije~(\ref{dw3}), generišu se tačke iz dopustivog skupa polazne formulacije~(\ref{dw1}). Sa druge strane, svaka tačka $x$ iz formulacije~(\ref{dw1}) ima svoju reprezentaciju preko odgovarajućih vrijednosti  $\lambda$ promjenljivih u dopustivom skupu formulacije~(\ref{dw3}). S obzirom na to da i funkcije cilja odgovaraju jedna drugoj, zaključujemo da je i optimalno rješenje polaznog problema~(\ref{dw1}) jednako optimalnom rješenju reformulisanog problema~(\ref{dw3}).
+ Vidimo da se početni problem~(\ref{dw1}) sada može predstaviti ekvivalentnom reprezentacijom~(\ref{dw3}), u kojoj se, umjesto polaznih promjenljivih (vektora $x$), sada posmatraju promjenljive $\lambda_j,\ j = 1,\ldots,t$, uz pretpostavku da su  vrhovi $x^{(1)},x^{(2)},\dots,x^{(t)}$ konveksnog politopa $X$ poznati.
+ 
+ Skup promjenljivih $\lambda_j,\ j = 1,\ldots,t$ ćemo zvati $\lambda$ promjenljive.
+  Variranjem vrijednosti $\lambda$ promjenljivih po dopustivom skupu iz formulacije~(\ref{dw3}), generišu se tačke iz dopustivog skupa polazne formulacije~(\ref{dw1}). Sa druge strane, svaka tačka $x$ iz formulacije~(\ref{dw1}) ima svoju reprezentaciju preko odgovarajućih vrijednosti  $\lambda$ promjenljivih u dopustivom skupu formulacije~(\ref{dw3}). S obzirom na to da i funkcije cilja odgovaraju jedna drugoj, zaključujemo da je i optimalno rješenje polaznog problema~(\ref{dw1}) jednako optimalnom rješenju reformulisanog problema~(\ref{dw3}).
  
  Samom reformulacijom polaznog problema~(\ref{dw1}) u DW formulaciju~(\ref{dw3}) nismo postigli mnogo, jer broj vrhova politopa, a time i broj $\lambda$ promjenljivih može biti jako veliki.
  
- Međutim, pravi razlog za DW dekompoziciju leži u činjenici da za rješavanje problema~(\ref{dw3}) ne moramo eksplicitno da koristimo sve vrhove politopa $X$. Umjesto toga, krenućemo od jednog   manjeg podskupa (a samim tim i podskupom skupa $\lambda$ promjenljivih). Nakon toga, primijenićemo tehniku ``generisanja kolona'' (eng. \emph{column generation}), kako bismo u razmatranje uključili nove vrhove politopa $X$, koje će pomoći poboljšanju rješenja tzv. ograničenog master problema (eng. \emph{Restricted master problema}) (RMP).
+ Međutim, pravi razlog za DW dekompoziciju leži u činjenici da za rješavanje problema~(\ref{dw3}) ne moramo eksplicitno da koristimo sve vrhove politopa $X$. Umjesto toga, krenućemo od jednog   manjeg podskupa, a samim tim i podskupom skupa $\lambda$ promjenljivih. Nakon toga, primijenićemo tehniku ``generisanja kolona'' (eng. \emph{column generation}), kako bismo u razmatranje uključili nove vrhove politopa $X$, koji će pomoći poboljšanju rješenja tzv. ograničenog master problema (eng. \emph{Restricted master problema} -- RMP).
+ 
+ \fixme{dovde}
  
  Označimo sada problem formulisan  sa~(\ref{dw3}) kao \emph{Master problem} (MP). Na osnovu master problema formiramo RMP sa manjim brojem $\lambda$ promjenljivih.
  
