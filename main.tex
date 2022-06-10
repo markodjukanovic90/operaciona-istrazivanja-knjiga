@@ -4063,10 +4063,10 @@ Rješavanjem relaksacije problema ($P1$) dobijamo rješenje $x^*=(3,2)$, koje je
 Rješavajući LP relaksaciju problema ($P3$), dobijamo rješenje $x^*=(\frac{9}{5}, \frac{17}{5})$, a  optimalna vrijednost funkcije cilja je $27.8$. Kako je $LB \geq 28.8$, niti jedno cjelobrojno rješenje problema ($P3$) ne može biti bolje od trenutno najbolje donje granice ($LB=28$), pa zaključujemo da je optimalo rješenje početnog problema dato sa $x^*=(3,2)$. 
 
 \section{Lagranžova relaksacija}
-U rješavanju problema optimizacije, pronalazak optimalnog rješenja je primarni cilj. Međutim, za mnoge probleme nije realno očekivati da seu razumnom vremenu može doći do optimalnog rješenja. Umjesto toga, najbolje što se može učiniti je da se ponudi dobra  granica za optimalnu vrijednost. Ako je ta granica blizu optimuma, u mnogo slučajeva ona može da zamijeni optimum, čime štedimo resurse kojima raspolažemo. 
+U rješavanju problema optimizacije, pronalazak optimalnog rješenja je osnovni cilj. Međutim, za mnoge probleme nije realno očekivati da će se razumnom vremenu može doći do optimalnog rješenja. Umjesto toga, najbolje što se može učiniti je da se ponudi dobra  granica za optimalnu vrijednost. Ako je ta granica blizu optimuma, u mnogo slučajeva ona može da zamijeni optimum, čime štedimo resurse kojima raspolažemo, a dobijamo rješenje koje je prihvatljivo.  
 
-Ideja \emph{Lagranžove relaksacije} se sastoji u tome da u modelu ILP-a  koji ima  ograničenja koja čine problem teškim (ova procjena je najčešće stvar praktičnog iskustva),  posmatramo kao dio ciljne funkcije koju penalizujemo nekim parametrom.  %parametrom $\lambda>0$. 
-Ovo ograničenje potom brišemo iz skupa ograničenja modela, a zatim rješavamo novi problem. Na ovaj način, rješenje ovakvog problema je donja granica (za problem minimizacije)  optimalnog rješenja inicijalnog problema. Dobijena granica je često dovoljno blizu vrijednosti optimuma, što ovu metodu čini upotrebljivom u rješavanju praktičnih problema. 
+Ideja \emph{Lagranžove relaksacije} se sastoji u tome da u modelu ILP-a  koji ima  ograničenja koja problem čine teškim (ova procjena je najčešće stvar praktičnog iskustva),  posmatramo kao dio ciljne funkcije koju penalizujemo nekim parametrom.  %parametrom $\lambda>0$. 
+Ovo ograničenje potom brišemo iz skupa ograničenja modela, a zatim rješavamo ovakav problem. Na ovaj način, rješenje takvog problema je donja granica (za problem minimizacije)  optimalnog rješenja inicijalnog problema. Dobijena granica je često dovoljno blizu vrijednosti optimuma, što ovu metodu čini upotrebljivom u rješavanju praktičnih problema. 
 
 \begin{primjer} Posmatrajmo problem \emph{najkraćeg puta sa ograničenjem} (eng. \emph{Constrained Shortest Path Problem}). Neka je dat usmjeren neciklični graf $G=(V,E)$. Za svaku granu $(i,j) \in E$ dodijelimo cijenu puta $c_{i,j}$ i vrijeme putovanja $t_{i,j}$. Pretpostavimo da je čvor $i=1$ startni (izvorni) čvor, a čvor $n = |V|$   završni čvor (terminalni čvor). Zadatak je da se nađe najjeftiniji put  od izvornog do terminalnog čvora, ali tako da se čitav put pređe u vremenskom periodu $T$.
 \end{primjer}
@@ -4089,7 +4089,7 @@ Dakle, Lagranžova relaksacija problema je data sa
 
 \begin{align*}
        &L(\lambda)= \min\sum_{(i,j) \in E }c_{i,j}x_{i,j}  + \lambda(\sum_{(i,j) \in E} t_{i,j} x_{i,j} - T ) = \min \sum_{(i,j) \in E} (c_{i,j} + t_{i,j} )x_{i,j} - \lambda T \\
-        &{s.t. }\\
+        &{t.d. }\\
     & \sum_{i} x_{i,j} - \sum_{i} x_{j,i} = \begin{cases}  
                                                1, \mbox{ ako } i=1 \\
                                               -1, \mbox{ ako } i=n \\
@@ -4154,9 +4154,8 @@ U praksi se često nailazi  na situaciju da je u LP-u (ili ILP-u) broj promjenlj
     \item Ograničenja koja se vezuju uz optimalnost.
     \item Promjenljive koje su bazne u optimalnom rješenju.
 \end{itemize}
-Dakle, ono što je potrebno su ograničenja, čije su odgovarajuće dualne vrijednosti pozitivne, kao i promjenljive koje imaju pozitivne vrijednosti koeficijenata doprinosa za optimalno rješenje (tj. vektor  $\overline{c}$ iz simpleks tabele). Ako bismo  ove promjeljive i ograničenja imali na raspolaganju od samog početka, problem bi bio riješen veoma brzo. Međutim, do ove informacije nije jednostavno doći.  U simpleks metodi, vektor doprinosa je potrebno računati u svakoj iteraciji, što nije efikasno ako je matrica $A$ velikih dimenzija. Takođe, vrijeme potrebno za generisanje simpleks tabele bi bilo ogromno.  Oba ova problema su rješiva uz pomoć \emph{metode generisanja kolona}.  Ideja ovog metoda se sastoji u sljedećem. 
-
-\fixme{marko, nije jasno sta znaci obecavajuci podskup. Pogledaj kako sam zamijenio prvu stavku, pa ispravi ako ti se ne svidja}
+Dakle, ono što je potrebno da znamo su ograničenja, čije su odgovarajuće dualne vrijednosti pozitivne, kao i promjenljive koje imaju pozitivne vrijednosti koeficijenata doprinosa za optimalno rješenje (tj. vektor  $\overline{c}$ iz simpleks tabele). Ako bismo  ove promjeljive i ograničenja imali na raspolaganju od samog početka, problem bi bio riješen efikasno. Međutim, do ove informacije nije jednostavno doći.  U simpleks metodi, vektor doprinosa je potrebno računati u svakoj iteraciji, što nije efikasno ako je matrica $A$ velikih dimenzija. Takođe, vrijeme potrebno za generisanje simpleks tabele bi bilo ogromno.  Oba ova problema su rješiva uz pomoć \emph{metode generisanja kolona}.  Ideja ovog metoda se sastoji u sljedećem. 
+ 
 
 \begin{itemize}
    % \item ¸Krenimo sa ``obećavajućim'' podskupom $S$ kolona matrice $A$; 
@@ -4179,7 +4178,7 @@ Ovo se može uraditi rješavanjem tzv. podproblema generisanog kolonama (eng. \e
 $$\min_{a \in C} \overline{c_j} = \min_{a \in C} c_a - c_B^T B^{-1} a,$$
 gdje je $C$ skup kolona nad nekim globalnim skupom. Za LP problem možemo staviti $C = \{1,\ldots,n\}$. 
 
-Ako je rješenje problema kolona $a \in C$ za koju je $\overline{c_a}<0$, dodamo odgovarajuću $A_a$ u skup $S$, te riješimo  RMP na novom skupu kolona. Ako ne postoji takva kolona, onda je rješenje RMP takođe optimalno i za početni problem. %Ovaj metod se još naziva \emph{generički metod generisanja kolona}.   
+Ako je rješenje problema kolona $a \in C$ za koju je $\overline{c_a}<0$, dodamo odgovarajuću vektor kolonu $A_a$ u skup $S$, te riješimo  RMP na novom skupu kolona. Ako ne postoji takva kolona, onda je rješenje RMP takođe optimalno i za početni problem. %Ovaj metod se još naziva \emph{generički metod generisanja kolona}.   
  Proces dodavanja kolona se nastavlja sve dok postoji kolona $a\in C$ sa negativnom cijenom doprinosa. 
 
 Postoji više različitih pristupa koje se odnose na ažuriranje skupa $S$ tokom iteracija. 
@@ -4196,7 +4195,7 @@ Ako u koraku 1 za skup $I$ uzmemo bazne kolone, u svakom koraku pri rješavanju 
 Iterativni proces rješavanja RMP problema se može prekinuti i ranije, bez dostizanja optimalnog rješenja početnog problema usljed velikog broja iteracija. U ovom slučaju, moguće je da postoji kolona van RMP problema koja će eventualno ući u konstrukciju optimalne baze.  Takođe, ako RMP nije riješen do optimalnosti u nekoj iteraciji, ali CGSP jeste, i dalje se garantuje rješavanje početnog (LP) problema do optimalnosti kada se (master) iteracije prekinu. Prema tome, rješavanje RMP problema u svakoj iteraciji nije toliko bitno dok god rješavamo CGSP do optimalnosti u svakom koraku. Obrnuto ne vrijedi.   Ako bismo iskoristili neku heuristiku za rješavanje CGSP, onda se optimalnost početnog LP-a ne može garantovati. Razlog je vrlo jednostavan, jer heuristika treba da nađe bilo koju kolonu sa negativnim koeficijentom doprinosa koja će biti ubačena u RMP, čime se proces uspješno nastavlja. Sa druge strane, ako heuristika ne uspije da pronađe takve kolone, to ne znači da takva kolona ne postoji. 
 
 
- U nastavku primijenimo \emph{metode generisanja kolona} na poznati \emph{Cutting stock} problemu. 
+ U nastavku primijenimo \emph{metode generisanja kolona} na poznatom \emph{Cutting stock} problemu. 
  
 \begin{primjer} Fabrika papira proizvodi rolne papira fiksne širine  $W$. 
  Kupci naručuju različit broj rolni različite širine $w \in \mathbb{R}^m$. Vektorom $b \in \mathbb{R}^m$ se definiše zahtjev koji se odnosi za broj naručenih odgovarajućih rolni.  Zadatak je pronaći optimalan način  rezanja velike rolne da bi se zahtjevi ispunili, a smanjila količina otpada nastala nakon rezanja. 
@@ -4228,7 +4227,7 @@ $$ \begin{array}{lll}
  \end{array}$$
   gdje su $y_i$ vrijednosti optimuma duala. 
   
-  \fixme{dovde sam stigao}
+ 
  Ovaj problem je poznat pod nazivom \emph{cjelobrojni problem ruksaka} (eng. integer knapsack problem). Iako je NP-težak, on se u praksi relativno efikasno rješava  uz pomoć dinamičkog programiranja. 
  
  \begin{figure}[!ht]
