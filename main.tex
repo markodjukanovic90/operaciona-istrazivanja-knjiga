@@ -5919,81 +5919,89 @@ Uz pomoć DW dekompozicije riješiti sljedeći MILP problem
 
  \chapter{Metode za pronalaženje dopustivih rješenja}\label{chp:heuristike}
  
- U prethodnim poglavljima prezentovane su najvažnije tehnike za egzaktno rješavanje problema iz oblasti Operacionih istraživanja. Sa druge strane, u teoriji i praksi se često javljaju i problemi koji se, zbog svoje složenosti i dimenzionalnosti, ne mogu riješiti do optimalnosti uz razuman utrošak memorijskih i vremenskih resursa. Kao što je već i ranije napominjano, u takvim situacijama se postavlja drugačiji cilj u istraživanju, odnosno, traži se dovoljno dobro dopustivo rješenje. 
+ U prethodnim poglavljima prikazane su najvažnije tehnike za egzaktno rješavanje problema iz oblasti linearnog i cjelobrojnog programiranja. Sa druge strane, u teoriji i praksi se često javljaju i problemi koji se, zbog svoje složenosti i dimenzionalnosti, ne mogu optimalno riješiti uz razuman utrošak memorijskih i vremenskih resursa. Kao što je već i ranije napominjano, u takvim situacijama se postavlja drugačiji cilj u istraživanju, odnosno, traži se dovoljno dobro \emph{dopustivo rješenje}. Pod dopustivim rješenjem podrazumijevamo ono rješenje koje zadovoljava uslove samog problema, ali ne postoji garancija da je to rješenje i optimalno.
  
- U ovom poglavlju ćemo prezentovati neke od tehnika za pronalaženje dopustivih rješenja. Čak i više od toga, prikazaćemo i neke od moćnih optimizacionih tehnika, koje ne garantuju uvijek pronalazak optimalnog rješenja, ali su se u praksi pokazale kao izuzetno moćan alat za rješavanje problema iz oblasti operacionih istraživanja.
+ U ovom poglavlju ćemo objasniti neke od tehnika za pronalaženje dopustivih rješenja. Čak i više od toga, prikazaćemo i neke od moćnih optimizacionih tehnika, koje ne garantuju  pronalazak optimalnog rješenja, ali su se u praksi pokazale kao izuzetno koristan alat za rješavanje problema iz oblasti operacionih istraživanja.
  
 
 \section{Pohlepni algoritmi}
  
 Pohlepni algoritmi su programska paradigma zasnovana na pristupu da se  rješenje iterativno formira dio po dio (komponenta po komponenta) tako da se naredna komponenta, koja se dodaje u postojeće rješenje, bira 
- po nekom razumnom (pohlepnom) kriterijumu. Preciznije, u svakoj iteraciji se u rješenje uključuje ona komponenta koja donosi najveći benefit u odnosu na sve ostale komponente koje se razmatraju za proširenje  trenutnog (parcijalnog) rješenja, u nadi da će takvi izbori na kraju dovesti i do kvalitetnog globalnog rješenja.
+ po nekom pohlepnom kriterijumu. Preciznije, u svakoj iteraciji se u rješenje uključuje ona komponenta koja donosi najveću korist u odnosu na sve ostale komponente, koje se razmatraju za proširenje  trenutnog parcijalnog rješenja, u nadi da će takvi izbori na kraju dovesti i do kvalitetnog globalnog rješenja.
  
  %Kod ovakve strategije, u svakom koraku bira se komponenta koja je lokalno najbolji kandidat za proširivanje (parcijalnog) rješenja, u nadi da će takvi izbori na kraju dovesti i do kvalitetnog globalnog rješenja.
  
- Strategija pohlepnih algoritama isključuje ``vraćanje'' na neko prethodno (parcijalno) rješenje, odnosno ne vodi se računa o ``lošim'' odlukama, koje su eventualno napravljene u prethodnim iteracijama. Zbog toga se podrazumijeva da pohlepni algoritmi imaju polinomijalnu vremensku složenost.
+ Strategija pohlepnih algoritama isključuje ``vraćanje'' na neko prethodno (parcijalno) rješenje, odnosno ne vodi se računa o ``lošim'' odlukama, koje su eventualno napravljene u prethodnim iteracijama. Zbog toga se podrazumijeva da pohlepni algoritmi imaju polinomijalnu vremensku složenost, što je jedna od najvažnijih osobina ovakvih algoritam.
  
- Zbog relativno jednostavne strategije na kojoj su zasnovani, ali i brzine izvršenja, ovi algoritmi se često koriste i u rješavanju teških optimizacionih problema i najčešće su prva strategija koja se primjenjuje prije 
+ Zbog relativno jednostavne strategije na kojoj su zasnovani, ali i brzine izvršenja, ovi algoritmi se često koriste i u rješavanju teških optimizacionih problema i najčešće su prva strategija koja se primjenjuje, prije 
 upotrebe neke složenije paradigme. 
-U nekim situacijama, pohlepni algoritmi mogu svojim rješenjem garantovati optimalnost, odnosno, za neke probleme se može pokazati da se optimalno rješenje uvijek može dobiti primjenom pohlepnog algoritma. Primjer takvog problema je \emph{frakcioni problem ruksaka}, a u nastavku će biti prikazani još neki važni problemi koji se do optimalnosti rješavaju pohlepnim algoritmima.
+U nekim situacijama se može pokazati da se optimalno rješenje uvijek može dobiti primjenom pohlepnog algoritma. Primjer takvog problema je \emph{frakcioni problem ruksaka}, a u nastavku će biti prikazani još neki važni problemi koji se optimlalno rješavaju upravo pohlepnim algoritmima.
  
-Sa druge strane, većina optimizacionih problema se ne može optimalno riješiti pomoću pohlepnih algoritama. U tim slučajevima, ova paradigma se koristi da bi se u kratkom vremenskom periodu obezbijedila dobra aproksimaciona rješenja, ili da se konstruiše neko polazno (dopustivo) rješenje, koje će se kasnije unapređivati naprednijim i složenijim algoritamskim tehnikama. 
+Sa druge strane, većina optimizacionih problema se ne može optimalno riješiti pomoću pohlepnih algoritama. U tim slučajevima, ova paradigma se koristi da bi se u kratkom vremenskom periodu obezbijedila dobra aproksimaciona rješenja, ili da se konstruiše neko polazno dopustivo rješenje, koje će se kasnije unapređivati naprednijim i složenijim algoritamskim tehnikama. 
 
-U ovoj sekciji razmatramo nekoliko poznatih pohlepnih algoritama koji se mogu naći u literaturi:
+U ovoj sekciji razmatramo nekoliko poznatih pohlepnih algoritama:
 \begin{itemize}
-	\item  \emph{Kruskalov algoritam} za nalazak minimalnog pokrivajućeg stabla (MST);
-	\item  \emph{Primov algoritam} za nalazak minimalnog pokrivajućeg stabla;
-	\item  \emph{Dajkstrin algoritam} za nalaženje najkraćih puteva;
-	\item  Pohlepni algoritam za problem \emph{najdužeg zajedničkog podniza} za proizvoljan skup stringova u ulazu.
+	\item  \emph{Primov algoritam} za pronalaženje minimalnog pokrivajućeg stabla grafa ( eng. minimum spanning tree -- MST);
+	\item  \emph{Kruskalov algoritam} za pronalaženje MST;
+	\item  \emph{Dajkstrin algoritam} za pronalaženje najkraćih puteva u grafu;
+	\item  Pohlepni algoritam za rješavanje problema \emph{najdužeg zajedničkog podniza}, za proizvoljan skup stringova u ulazu.
 \end{itemize}
 
-Definšimo prvo pojam pokrivajućeg stabla, pa potom i minimalnog pokrivajućeg stabla (eng. \emph{minimum spanning tree} - MST).
+
+\subsection{Algoritmi za pronalaženje MST}
+
+Definišimo prvo pojam pokrivajućeg stabla, pa potom i minimalnog pokrivajućeg stabla (eng. \emph{minimum spanning tree} - MST).
 
 Neka je dat težinski graf $G=(V,E)$. Svaku težinu grane $uv \in E $ u grafu $G$, označimo sa $w(uv)$. 
- 
-\begin{definition}
   Stablo $T =(V_1, E_1)$ je pokrivajuće za graf $G=(V,E)$ akko
   $V_1 = V$ i $E_1 \subseteq E$. Pokrivajuće stablo $T$ grafa $G$ sa minimalnim zbirom težina svojih grana, tj. 
   $\sum_{e \in E_1} w(e)$, se naziva minimalno pokrivajuće stablo (MST) grafa $G$. 
-\end{definition}
-Postoji nekoliko efikasnih algoritama za pronalazak MST, koje u narednim sekcijama i opisujemo. 
 
+MST ima primjene u različitim oblastime teorije i prakse. Izdvajamo:
+\begin{enumerate}
+ \item[($i$)] dizajniranje mreža (na primjer, telefonske mreže), gdje je do svakog domaćinstva. koje je predstavljeno jednim čvorom, potrebno obezbijediti liniju, tako da se, na kraju, u mrežu povežu sva domaćinstva, uz minimalnu potrošnju materijala potrebnog za infrastrukturu mreže;
+ \item[($ii$)] aproksimaciji drugih teških optimizacionih problema kao što je problem trgovačkog putnika (TSP). Ponovimo, u problemu TSP je potrebno naći najkraću konturu koja posjećuje sve čvorove u (težinskom) grafu. Primijetimo da su takvi putevi takođe MST. Težina MST je manja nego težina TSP, jer minimizujemo nad većim skupom rješenja, tako da se može pokazati da je nalazak MST-a u težinskom grafu aproksimira nalazak TSP-a (nad euklidskim težinskim grafovima); 
+ \item[($iii$)] Klaster analiza. $k$-klaster problem  se može posmatrati kao problem nalaženja MST-a, a potom brisanja $k-1$ najskupljih grana iz MST. 
+ \end{enumerate}
 
-\subsection{Primov algoritam}
-Ovo je jedan od osnovnih algoritama koji se, zbog svoje važnosti, ali i jednostavnosti, izučava u teoriji algoritama. Ovdje navodimo korake algoritma, bez ulaženja u detalje o njegovoj validnosti. Algoritam se sastoji od sljedećih koraka:
+\subsubsection{Primov algoritam}
 
-\begin{itemize}
+Primov algoritam je jedan od osnovnih algoritama koji se, zbog svoje važnosti, ali i jednostavnosti, izučava u teoriji algoritama. Navešćemo ključne korake algoritma, bez detaljnije analize validnosti algoritma. Algoritam se sastoji od sljedećih koraka:
+
+\begin{enumerate}
 	\item Kreirati skup \emph{mstSkup}=$\emptyset$ da bi se pratili svi čvorovi koji su već uključeni u MST.
 	\item Dodijeliti vrijednosti svakom čvoru u ulaznom grafu: inicijalizovati vrijednosti na +$\infty$. 
 	      Dodijeli vrijednosti 0 za čvor koji je izabran prvi za MST;
-	\item Dok god \emph{mstSkup} ne uključi sve čvorove iz $V$, radimo sljedeće korake:
+	\item Dok god \emph{mstSkup} ne uključi sve čvorove iz $V$, ponavljamo sljedeće korake:
 	\begin{itemize}
 		\item Izabrati čvor $u\notin\emph{mstSkup} $ sa minimalnom vrijednošću (pohlepni korak);
 		\item \emph{mstSkup} = \emph{mstSkup}$\cup \{u\}$;
 		\item Ažurirati vrijednosti svih susjeda čvora $u$ na sljedeći način:
-		     \begin{itemize}
-		     	\item Za svaki susjed $v$, ako je težina grane $uv$ manja od
-		             ranije vrijednosti za $v$, dodijeliti vrijednost čvoru $v$ na $w(uv)$. 		    
-	         \end{itemize}
+		     Za svaki susjed $v$, ako je težina grane $uv$ manja od
+		             ranije vrijednosti za $v$, dodijeliti  čvoru $v$ vrijednost $w(uv)$. 		    
+	        
 	\end{itemize}
-\end{itemize}
+\end{enumerate}
 
-Ideja dodjele vrijednosti čvorovima koji još nisu prisutni u MST je u tome da se efikasno izabere grana minimalne težine koja treba da se doda u trenutni parcijalno rješenje. Dakle, ove vrijednosti ukazuju na grane minimalne težine koje su povezane sa skupom čvorova koji su već uključeni u MST.
+Ideja dodjele vrijednosti čvorovima koji još nisu prisutni u MST je u tome da se efikasno izabere grana minimalne težine, koja treba da se doda u trenutno parcijalno rješenje. Dakle, ažurirane vrijednosti težina grana pomažu da se u razmatranje uključe upravo one grane spajaju jedan čvor koji je već uključen u MST i jedan čvor koji nije uključen u MST.
 
-\emph{Kompleksnost algoritma}. Lista susjedstva i pretraga: $O(|V|^2)$. Ako  koristimo prioritetni red za nalaženje grane minimalne težine, imamo kompleksnost od $O( |E| \log(|V|))$. 
+\emph{Kompleksnost algoritma}. Ako se za predstavljanje grafa koristi lista susjedstva, složenost algoritma je $O(|V|^2)$. Ako  koristimo prioritetni red za nalaženje grane minimalne težine, imamo kompleksnost od $O( |E| \log(|V|))$. 
 
-MST ima primjene u ($i$) dizajniranju mreža (na primjer, telefonske mreže), gdje je do svakog domaćinstva (koje je predstavljeno jednim čvorom) potrebno obezbijediti liniju, tako da se u mrežu povežu sva domaćinstva, uz potrošnju što manje materijala za infrastrukturu mreže; ($ii$) aproksimaciji drugih teških optimizacionih problema kao što je problem trgovačkog putnika (TSP). Ponovimo, u problemu TSP je potrebno naći najkraću konturu koja posjećuje sve čvorove u (težinskom) grafu. Primijetimo da su takvi putevi takođe MST. Težina MST je manja nego težina TSP, jer minimizujemo nad većim skupom rješenja, tako da se može pokazati da je nalazak MST-a u težinskom grafu aproksimira nalazak TSP-a (nad euklidskim težinskim grafovima); ($iii$) Klaster analiza. $k$-klaster problem  se može posmatrati kao problem nalaženja MST-a, a potom brisanja $k-1$ najskupljih grana iz MST. 
+
 
 \subsection{Kruskalov algoritam}
 
-Ovo je još jedan pohlepni algoritam za nalaženje MST-a. Radi na principu izbora grana na osnovu njihove težine, gdje se u svakom koraku koristi pohlepna strategija da se bira odgovarajuća grana najmanje težine.
+Kruskalov algoritam radi po principu izbora grana na osnovu njihove težine, gdje se u svakom koraku koristi pohlepna strategija da se bira odgovarajuća grana najmanje težine.
 
- Neka je $\emph{mst} = \emptyset$. U detalje, sljedeći koraci se izvršavaju ovim algoritmom:
-
+ Neka je  Koraci koji se izvršavaju su sljedeći: 
+ \fixme{dovde sam stigao}
 \begin{enumerate}
-	\item Sortiranje svih grana u neopadajućem poretku;
+	
+	\item Sortirati sve grana polaznog grafa u neopadajućem poretku;
+	\item Postaviti $\emph{mstSkup} = \emptyset$. 
 	\item Odabir najlakše grane i provjera da li se formira ciklus ako se ova 
-	grana doda u skup grana koje su do sada ubačene u skup \emph{mst}; Ako to nije slučaj, ubaciti granu u trenutni skup \emph{mst}. Inače, provjeriti  granu koja je sljedeća u sortiranom nizu grana (pohlepni korak);
+	grana doda u skup grana koje su do sada ubačene u skup \emph{mstSkup}; Ako to nije slučaj, ubaciti granu u trenutni skup \emph{mstSkup}. 
+	\item Inače, provjeriti  granu koja je sljedeća u sortiranom nizu grana (pohlepni korak);
 	\item Ponoviti korak 2, dok se ne doda tačno $|V|-1$ grana u \emph{mst}.
 \end{enumerate} 
 
