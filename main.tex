@@ -3766,7 +3766,7 @@ Prodiskutujmo ovo rješenje po čvorovima dobijenog stabla:
  
 \section{Metoda odsjecajućih ravni}
   
-\emph{Metoda odsjecajućih ravni} rješava problem cjelobrojnog  programiranja mijenjanjem rješenja njegove relaksacije, sve dok se ne dobije model čije je optimalno rješenje cjelobrojno. Metoda ne radi  na principu dijeljenja dopustivog regiona problema na podregione, kao što je to slučaj sa B\&B metodama, već radi sa jednim linearnim programom, kojeg poboljšava iterativnim dodavanjem novih ograničenja. Nova ograničenja sukcesivno smanjuju dopustiv region, sve dok se ne pronađe cjelobrojno optimalno rješenje.   
+\emph{Metoda odsjecajućih ravni} rješava problem cjelobrojnog  programiranja mijenjanjem rješenja njegove relaksacije, sve dok se ne dobije model čije je optimalno rješenje cjelobrojno. Metoda nije bazirana na principu dijeljenja dopustivog regiona problema na podregione, kao što je to slučaj sa B\&B metodama, već radi sa jednim linearnim programom, kojeg poboljšava iterativnim dodavanjem novih ograničenja. Nova ograničenja sukcesivno smanjuju dopustiv region, sve dok se ne pronađe cjelobrojno optimalno rješenje.   
  Istorijski gledano, to je prvi algoritam razvijen za probleme cjelobrojnog programiranja, za koji je formalno dokazano da konvergira ka optimumu u konačnom broju koraka. Iako se algoritam generalno smatra   neefikasnim, važan je sa metodološkog aspekta, jer je njegov razvoj kasnije doveo do konstrukcije drugih, efikasnijih algoritama.  
   
  \begin{definition}{Validna nejednakost} za ILP je svako ograničenje koje ne eliminiše niti   jedno moguće cjelobrojno rješenje problema.
@@ -3787,7 +3787,7 @@ jedna njegova validna nejednakost je $z \leq 5$.
 \begin{definition}
       Konveksni omotač za problem  ~(\ref{ilp-formulation}) je najmanji (dopustivi) poliedar nekog LP-a koji sadrži sve cjelobrojne tačke tog problema.
 \end{definition}
-Ako riješimo LP problem čiji je dopustivi skup konveksni omotač cjelobrojnih tačaka, onda je to rješenje optimalno za odgovarajući ILP. Međutim ovaj problem je takođe  NP-težak, pa prema tome nije očekivano da se takav konveksni omotač može naći u opštem slučaju. Nalazak korisnih ograničenja (ne svih) koja učestvuju u izgradnji konveksnog omotača je takođe veoma težak zadatak, mada je ovo nekad i moguće, kao u slučaju problema trgovačkog putnika. Prema tome, zadatak je pronaći korisne odsjecajuće ravni, nezavisno od problema pronalaska konveksnog omotača, što se najčeše i radi  u praksi. 
+Ako riješimo LP problem čiji je dopustivi skup konveksni omotač cjelobrojnih tačaka, onda je to rješenje optimalno za odgovarajući ILP. Međutim problem nalaska ovakvog konveksnog omotača je takođe  NP-težak, pa prema tome nije očekivano da se takav   omotač može naći u opštem slučaju. Nalazak korisnih ograničenja (ne svih) koja učestvuju u izgradnji konveksnog omotača je takođe veoma težak zadatak, mada je ovo ponekad i moguće, kao u slučaju problema trgovačkog putnika. Prema tome, zadatak se svodi na nalazak korisnih odsjecajućih ravni, nezavisno od problema pronalaska konveksnog omotača, što se najčeše i radi  u praksi. 
 
 \begin{primjer}
 Posmatrajmo   \emph{problem pakovanja skupa} dat na sljedeći način. Neka je data kolekcija $D$ rombova (u $\mathbb{R}^2$). 
@@ -3796,7 +3796,7 @@ Zadatak je izabrati maksimalan broj rombova tako da se nikoja dva od njih ne pre
 Neka je $O$ skup svih parova rombova koji se presijecaju. Sljedeći ILP odgovara ovom problemu:
 \begin{align*}
     &\max \sum_{d\in D}x_d\\
-    &\mbox{t.d.}
+    &\mbox{t.d.} \\
     & x_d + x_{d'} \leq 1, \forall (d, d^{'}) \in O \\
     & x_d \in \{0,1\}, \forall d \in D
 \end{align*}
@@ -3807,28 +3807,29 @@ Pokušajmo dodati odsjecajuće ravni u prethodni ILP. Za svaku tačku $c$, enume
 \begin{equation}
      \sum_{d \in D(c)} x_d \leq 1, \forall c.
 \end{equation}
-Ovim postupkom smo formirali odsjecajuće ravni, koje će ubrzati rješavanje posmatranog problema za   red veličine.\\ \vspace{0.2cm} \\
+Ovim postupkom smo formirali odsjecajuće ravni, koje će ubrzati rješavanje posmatranog problema za   red veličine. \\
 
-Razmotrimo sada \emph{Gomorijeve odsjecajuće ravni}, kao generalnu metodu za dodavanje odsjecajućih ravni za  ILP.  Ideja je da se dobiju ravni iz nekog od ograničenja optimalne tabele simpleks metode, koja predstavlja LP relaksaciju problema. Neka simpleks metod generiše sljedeći skup jednakosti u formi:
-
-\fixme{marko, ubaci kratko objasnjenje sta su ovi a i b koeficijenti}
+Razmotrimo sada \emph{Gomorijeve odsjecajuće ravni}, kao generalnu metodu za dodavanje odsjecajućih ravni u rješavanju  ILP-a.  Ideja se sastoji u generisanju ravni iz nekog od ograničenja dobijene optimalnom tabelom simpleks metode, koja predstavlja LP relaksaciju problema. Neka simpleks metod generiše sljedeći skup jednakosti u formi:
+ 
 
 $$x_i + \sum_{ j} \overline{a}_{i,j} s_j= \overline{b}_i, i=1, \ldots,m$$
-gdje su $x_i$ bazne promjenjive, a $s_j$ nebazne promjenjive. Napišimo ovu jednakost u drugačijem obliku tako da su na lijevoj strani cjelobrojni dijelovi, dok su na desnoj decimalni dijelovi, tj.
+gdje su $x_i$ bazne promjenjive, $s_j$ nebazne promjenjive, dok su vrijednosti $\overline{a}_{ij}$ elementi gornje lijeve podmatrice optimalne simpleks tabele~(\ref{tab:simplex_tabelau}) koji odgovaraju baznim vektorima.  
+ 
+ Napišimo prethodnu jednakost u drugačijem obliku tako da se na lijevoj strani nalaze cjelobrojni dijelovi, dok su na desnoj decimalni dijelovi, tj.
 $$x_i + \sum_{j} \lfloor \overline{a}_{i,j} \rfloor s_j - \lfloor \overline{b}_i \rfloor = \overline{b}_i - \lfloor \overline{b}_i  \rfloor    - \sum_{j} (\overline{a}_{i,j} - \lfloor \overline{a}_{i,j} \rfloor) s_j.$$
 
-Ako je $x$ dopustivo cjelobrojno rješenje, onda je desna strana manja od 1, pa kako je lijeva strana cjelobrojna u tom slučaju, dobijamo da je ona manja ili jednaka 0, pa imamo
+Ako je $x$ dopustivo cjelobrojno rješenje, onda je desna strana manja od 1, a kako je lijeva strana cjelobrojna u tom slučaju, dobijamo da je desna strana manja ili jednaka 0, pa imamo
 \begin{equation}\label{eq:gomory_cuts}
     \overline{b}_i - \lfloor \overline{b}_i  \rfloor    - \sum_{j} (\overline{a}_{i,j} - \lfloor \overline{a}_{i,j} \rfloor) s_j \leq 0
 \end{equation}
-za bilo koje (bazno) dopustivo rješenje $x$ koje je cjelobrojno. Dalje, kako su nebazne varijable jednake 0 u bilo kom baznom dopustivom rješenju, tada imamo 
+za bilo koje (bazno) dopustivo rješenje $x$ koje je cjelobrojno. Dalje, kako su vrijednosti nebaznih promjenjivih jednake 0 u bilo kom baznom dopustivom rješenju, zaključujemo
 $$ \overline{b}_i - \lfloor \overline{b}_i  \rfloor    - \sum_{ij} (\overline{a}_{i,j} - \lfloor \overline{a}_{i,j} \rfloor) s_j = \overline{b}_i - \lfloor \overline{b}_i \rfloor  \geq 0.$$
 Prema tome, pokazali smo da odsjecajuće ravni~(\ref{eq:gomory_cuts}) ne eliminišu bazna dopustiva rješenja, pa ispunjavaju sve uslove za validnu nejednakost. Uvodeći dodatnu promjenjivu $y_i$ za nejednakosti u (\ref{eq:gomory_cuts}), sljedeća (validna) ograničenja dodajemo u ILP:
 \begin{align}\label{gomory_cplex}
        \overline{b}_i - \lfloor \overline{b}_i \rfloor=   \sum_{j} (\overline{a}_{i,j} - \lfloor \overline{a}_{i,j} \rfloor)s_j - y_i 
 \end{align}
 
-\begin{primjer} Neka je dat sljedeći ILP problem
+\begin{primjer} Neka je dat sljedeći problem ILP-a
 	\end{primjer}
 \begin{align*}
     &\max\ 3 x_1 + 4 x_2 \\
@@ -3914,7 +3915,7 @@ $x=(2,2, \frac{1}{5}, 1)$, a optimalno $x^* = (2, 2)$, odakle dobijamo i optimal
 
 
 %https://www.math10.com/en/geometry/geogebra/geogebra.html
-\begin{primjer} U ovom primjeru ćemo prikazati ILP problem gdje su svi koeficijenti u ograničenjima cjelobrojni.
+\begin{primjer} U ovom primjeru ćemo prikazati ILP problem u kojem su svi koeficijenti u ograničenjima cjelobrojni.
 	\end{primjer}
 \begin{align*}
     &\max 3 x_1 + 4 x_2 \\
@@ -3946,7 +3947,7 @@ $$\begin{array}{ccc c| c}\vspace{1mm}
 0 & 1 &  -\frac{1}{12}  &  \frac{1}{12}  &  \frac{9}{2}   \\ \hline\vspace{1mm}
 0 & 0 &  \frac{7}{12}   &  \frac{5}{12}  &  \frac{69}{2}
 \end{array} $$
-Optimalno rješenje je $x = (\frac{11}{2}, \frac{9}{2}, 0, 0)$ koje nije cjelobrojno. Dodajmo Gomorijevu odsjecajuću ravan generisanu iz ograničenja u prvoj vrsti simpleks tabele (za prvu baznu komponentu $x_1 = \frac{11}{2}$):
+Optimalno rješenje je $x = (\frac{11}{2}, \frac{9}{2}, 0, 0)$ koje nije cjelobrojno. Dodajmo Gomorijevu odsjecajuću ravan generisanu iz ograničenja prve vrste simpleks tabele (za prvu baznu komponentu $x_1 = \frac{11}{2}$):
 $$  \frac{11}{36} x_2 + \frac{1}{36} s_1 - y_1 = \frac{1}{2},$$
 pa dobijamo tabelu 
 $$\begin{array}{ccccc| c}\vspace{1mm}
@@ -3974,7 +3975,7 @@ Kako su svi koeficijenti u posljednjoj vrsti veći od 0, slijedi da je optimalno
  0   &   0   &  0  &  \frac{1}{11}    &  \frac{8}{11}   & -1 & \frac{7}{11} \\ \hline\vspace{1mm}
  0   &   0   &  0  &   \frac{4}{11}   &   \frac{21}{11} & 0 & \frac{369}{11}
 \end{array} $$
-I ovdje nije očigledno šta su bazne promjenljive, pa i ovdje primijenimo dvofazni simpleks metod. Dobijamo 
+I ovdje nije očigledno šta su bazne promjenljive, pa i ovdje primijenimo dvofazni simpleks metod. Nakon toga, dobijamo 
  $$\begin{array}{cccccc| c}
 1    &   0   &   0   &  -\frac{1}{8}   &   0    &    \frac{11}{8}    &  \frac{33}{8} \\\vspace{1mm}
 0    &   1   &   0   &   \frac{1}{8}   &   0    &    -\frac{3}{8}    & \frac{39}{8} \\\vspace{1mm}
@@ -3984,7 +3985,7 @@ I ovdje nije očigledno šta su bazne promjenljive, pa i ovdje primijenimo dvofa
 \end{array} $$
 Odgovarajuće optimalno bazno dopustivo rješenje i dalje nije cjelobrojno -- niti jedna komponenta nije cjelobrojna. 
 
-Prema tome, dodajemo Gomorijevu odsjecajuću ravan za vrstu 2 prethodne simpleks tabele, koja je oblika
+Prema tome, dodajemo novu Gomorijevu odsjecajuću ravan za vrstu 2 prethodne simpleks tabele, koja je oblika
 $$  \frac{1}{8}s_2 + \frac{5}{8} y_2 - y_3 = \frac{7}{8},$$
 te dobijamo tabelu
 $$ \begin{array}{ccccccc| c}\vspace{1mm}
@@ -4011,7 +4012,7 @@ gdje je lako uočiti da je optimalno bazno dopustivo rješenje $x=(5, 4, 1, 7, 0
 \section{B\&C algoritam za rješavanje ILP-a}
 %https://homepages.rpi.edu/~mitchj/handouts/bc_algo/
 % http://www.mi.fu-berlin.de/wiki/pub/Main/GunnarKlauP1winter0708/discMath_klau_ILP_I.pdf
-U ovom odjeljku analiziramo metodu granjanja i odsijecanja (engl. branch and cut - B\&C). U odnosu na B\&B metodu, koja je opisana u Odjeljku~\ref{sec:bb}, B\&C dodaje  i metod odsjecajućih ravni u rješavanju  podproblema koji odgovaraju čvorovima drveta. Dakle, ako  uzimamo trenutno aktivni čvor i rješavamo njegov podproblem, dijelimo ga na nekoliko podproblema (podjelom dopustivog regiona na više disjunktnih -- dodavanjem ograničenja) ili ga rješavamo rekurzivnim dodavanjem (Gomorijevih) odsjecajućih ravni. Ilustrujmo ovu ideju na primjeru rješavanja jednog ILP-a.
+U ovom odjeljku analiziramo metodu granjanja i odsijecanja (eng. branch and cut, skraćeno B\&C). U odnosu na B\&B metodu, koja je opisana u Odjeljku~\ref{sec:bb}, B\&C dodaje  i metod odsjecajućih ravni u rješavanju  podproblema koji odgovaraju čvorovima drveta. Dakle, ako  uzimamo trenutno aktivni čvor i rješavamo njegov podproblem, dijelimo ga na nekoliko podproblema (podjelom dopustivog regiona na više disjunktnih -- dodavanjem ograničenja) ili ga rješavamo rekurzivnim dodavanjem (Gomorijevih) odsjecajućih ravni. Ilustrujmo ovu ideju na primjeru rješavanja jednog ILP-a.
 
 \begin{primjer} Riješimo sljedeći ILP
 	\end{primjer}
@@ -4047,7 +4048,7 @@ sa optimalnom vrijednošću $33\frac{1}{7}$. Nakon toga treba da se donese odluk
     & x_1, x_2 \in \mathbb{Z}
 \end{align*}
 
-Rješavanjem relaksacije problema ($P1$) dobijamo riješenje $x^*=(3,2)$, koje je cjelobrojno, pa prema tome i dopustivo u početnom problemu. Vrijednost funkcije cilja je 28, što je i donja granica ($LB$) početnog problema. Relaksacija problema ($P2$) nam daje rješenje $x^*=(2, \frac{7}{2})$, čija je optimalna vrijednost $29.5$.  Prema tome, rješenje nije cjelobrojno. Primjenjujući metod Gomorijevih odsjecajućih ravni na problem ($P2$), konstruišemo odsjecajuću ravan $2x_1 + x_2 \leq 7$ koju dodajemo u problem ($P2$), pa dobijamo problem 
+Rješavanjem relaksacije problema ($P1$) dobijamo rješenje $x^*=(3,2)$, koje je cjelobrojno, pa prema tome i dopustivo u početnom problemu. Vrijednost funkcije cilja je 28, što je i donja granica ($LB$) početnog problema. Relaksacija problema ($P2$) nam daje rješenje $x^*=(2, \frac{7}{2})$, čija je optimalna vrijednost $29.5$.  Prema tome, rješenje nije cjelobrojno. Primjenjujući metod Gomorijevih odsjecajućih ravni na problem ($P2$), konstruišemo odsjecajuću ravan $2x_1 + x_2 \leq 7$ koju dodajemo u problem ($P2$), pa dobijamo problem 
 \begin{align*}
     &\max 6 x_1 + 5 x_2 \\
     & \mbox{t.d. } \\
@@ -4059,7 +4060,7 @@ Rješavanjem relaksacije problema ($P1$) dobijamo riješenje $x^*=(3,2)$, koje j
     & x_1, x_2 \in \mathbb{Z}
 \end{align*}
 
-Rješavajući LP relaksaciju problema ($P3$), dobijamo rješenje $x^*=(\frac{9}{5}, \frac{17}{5})$, a  optimalna vrijednost funkcije cilja je $27.8$. Kako je $LB \geq 28.8$, niti jedno cjelobrojno rješenje problema ($P3$) ne može biti bolje od trenutno najbolje donje granice ($LB=28$), pa zaključujemo da je optimalo rješenje početnog problema $x^*=(3,2)$. 
+Rješavajući LP relaksaciju problema ($P3$), dobijamo rješenje $x^*=(\frac{9}{5}, \frac{17}{5})$, a  optimalna vrijednost funkcije cilja je $27.8$. Kako je $LB \geq 28.8$, niti jedno cjelobrojno rješenje problema ($P3$) ne može biti bolje od trenutno najbolje donje granice ($LB=28$), pa zaključujemo da je optimalo rješenje početnog problema dato sa $x^*=(3,2)$. 
 
 \section{Lagranžova relaksacija}
 U rješavanju problema optimizacije, pronalazak optimalnog rješenja je primarni cilj. Međutim, za mnoge probleme nije realno očekivati da seu razumnom vremenu može doći do optimalnog rješenja. Umjesto toga, najbolje što se može učiniti je da se ponudi dobra  granica za optimalnu vrijednost. Ako je ta granica blizu optimuma, u mnogo slučajeva ona može da zamijeni optimum, čime štedimo resurse kojima raspolažemo. 
@@ -6602,7 +6603,7 @@ Kao što je već rečeno, u osnovi se podrazumijeva rad sa populacijom jedinki, 
 
 Osnovni okvir za funkcionisanje genetskih algoritama je prezentovan jo 175. godine od strane Džona Holanda, u čuvenoj knjizi ``Adaptation in natural and artificial system''.
 
-Svakoj jedinki se dodjeljuje brojevna vrijednost, tzv. prilagođenost (engl.  \emph{fitness}), koja ocjenjuje kvalitet posmatrane jedinke. Cilj genetskog algoritma je da se, iz iteracije u iteraciju, pronalaze jedinke sa sve boljom prilagođenošću, pod čime se smatra i pojedinačno poboljšanje svake jedinke, ali i prosječna prilagođenost kompletne populacije, što se postiže standardnim genetskim operatorima: \textit{selekcijom}, \textit{ukrštanjem} i \textit{mutacijom}.
+Svakoj jedinki se dodjeljuje brojevna vrijednost, tzv. prilagođenost (eng.  \emph{fitness}), koja ocjenjuje kvalitet posmatrane jedinke. Cilj genetskog algoritma je da se, iz iteracije u iteraciju, pronalaze jedinke sa sve boljom prilagođenošću, pod čime se smatra i pojedinačno poboljšanje svake jedinke, ali i prosječna prilagođenost kompletne populacije, što se postiže standardnim genetskim operatorima: \textit{selekcijom}, \textit{ukrštanjem} i \textit{mutacijom}.
 
 Populacija je centralna struktura kod genetskog algoritma i ona  obično broji od nekoliko, pa do nekoliko stotina jedinki (u rijetkim situacijama i do hiljadu). Svaka jedinka se predstavlja genetskim kodom, koji se zapisuje nad nekom konačnom azbukom (najčešće binarnom ili pak cjelobrojnom).
 
