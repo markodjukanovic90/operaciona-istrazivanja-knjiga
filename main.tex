@@ -4213,7 +4213,7 @@ Iterativni proces rješavanja RMP problema se može prekinuti i ranije, bez dost
  
  Ideja je da se obrasci ne formiraju na početku, već da se generišu prema potrebi (po kolonama), koristeći \emph{metodu generisanja kolona}. Kolona $a$ odgovara dopustivom obrascu akko vrijedi 
  $$ \sum_{i=1}^m a_i w_i \leq W,$$
- gdje $a$ sadrži samo nenegativne (cjelobrojne) vrijednosti. 
+ gdje vektor $a$ sadrži samo nenegativne (cjelobrojne) vrijednosti. 
  
 % Primijetimo da je cijena svakog paterna po kolonama jednaka za svaku kolonu. 
 Primijetimo da su, na osnovu prethodnog, razmatrajući relaksaciju problema  $CSILP$, vrijednosti koeficijenata doprinosa 
@@ -4221,6 +4221,7 @@ jednaki $\overline{c} = 1 - \sum_{i} a_{j,i} y_i$.
  Dakle, CG podproblem izgleda ovako
 $$ \begin{array}{lll}
      &\max& \sum_{i=1}^m y_i a_i \\
+     & \mbox{t.d}& \\
      &  &\sum_{i} w_i a_i \leq W \hspace{2cm} (CGP)\\
      & &a_i \geq 0 \\
      & &a_i \in \mathbb{Z},
@@ -4237,7 +4238,7 @@ $$ \begin{array}{lll}
      \label{fig:cuting_stock_solutions}
  \end{figure}
  Za ovaj problem je lako naći inicijalno bazno dopustivo rješenje.
- Za $i$-tu baznu kolonu uzimamo $i$-ti jedinični vektor, tj. obrazac dobijen rezanjem jedne rolne dužine $w_i$. Ovakav skup kolona formira inicijalnu dopustivu bazu. Svakako, malo je vjerovatno da će ove kolone biti korištene u optimalnom rješenju. 
+ Za $i$-tu baznu kolonu uzimamo $i$-ti jedinični vektor, tj. obrazac dobijen rezanjem jedne rolne dužine $w_i$. Ovakav skup kolona formira inicijalnu dopustivu bazu. Svakako, malo je vjerovatno da će ove kolone biti korištene u optimalnom rješenju, ali to nije ni očekivano od inicijalnog rješenja. 
  Algoritam za rješavanje ovog problema je sljedeći.
  \begin{enumerate}
      \item Konstruišimo inicijalno bazno dopustivo rješenje (jedinični vektori) i kolone ubacimo u skup $S$.
@@ -4357,12 +4358,12 @@ ILP model koji odgovara gore ulaznim podacima je sljedeći:
   \end{pmatrix} \\
   & x_i \geq 0, x_i \in \mathbb{Z}, i=1,2,3.
  \end{align*}  
-Da bismo  problem posmatrali sa jednostavnije strane, izbacimo uslove integralnosti (cjelobrojnosti promjenjivih). Tada ovaj problem možemo da riješimo uz pomoć simpleks metoda gdje je 
+Da bismo  problem posmatrali sa jednostavnije strane, izbacimo uslove integralnosti (cjelobrojnosti promjenjivih). Tada ovaj problem možemo da riješimo uz pomoć simpleks metoda, gdje je 
 $B^{-1} =\begin{pmatrix}
 	    \frac{1}{3} & 0 & 0 \\
 	    0 & \frac{1}{2} & 0  \\
 	    0 &   0 & \frac{1}{2}
-\end{pmatrix}$ a završna simpleks tabela ima oblik 
+\end{pmatrix}$, dok završna (optimalna) simpleks tabela ima oblik 
 
 \begin{center}
  
@@ -4377,7 +4378,7 @@ Sljedeći korak je naći kolonu čiji je koeficijent doprinosa negativan i ubaci
 \begin{align}
 	\min_{i=1,\ldots,n} \overline{c_j} = \min_{i=1,\ldots,n} 1 - y^T N
 \end{align}
-gdje su $N$ vektori (kolone) koji odgovaraju nebaznim varijablama. Ovaj problem je ekvivalentan rješavanju problema
+gdje su $N$ vektori (kolone) koji odgovaraju nebaznim promjenljivim. Ovaj problem je ekvivalentan rješavanju problema
 \begin{align}
 	\max_{j=1,\ldots,n} y^T A_j,
 \end{align}
@@ -4395,13 +4396,13 @@ uz zadovoljenje uslova o maksimalnoj širini
    &	4 a_4 + 6 a_6 + 7 a_7 \leq 15 \\
    &	a_4, a_6, a_7 \geq 0, a_4, a_6, a_7 \in \mathbb{Z}.
 \end{align}
-kako smo to i ranije pomenuli, ovaj problem je klasični problem ruksaka koji se u praksi rješava veoma efikasno. Dakle, ako je rješenje problema ruksaka manje ili jednako od 1, trenutno najbolje rješenje je optimalno rješenje. U protivnom, optimalno rješenje $(a_4^*, a_6^*, a_7^*)^T$ se uključuje  u RMP kao nova kolona. Na osnovu prethodne simpleks tabele imamo $y_1 = \frac{1}{3}, y_2 = y_3 = \frac{1}{2}$, pa treba da riješimo sljedeći CG problem
+Kako smo to i ranije pomenuli, ovaj problem je klasični problem ruksaka koji se u praksi rješava veoma efikasno. Dakle, ako je rješenje problema ruksaka manje ili jednako od 1, trenutno najbolje rješenje je optimalno rješenje. U protivnom, optimalno rješenje $(a_4^*, a_6^*, a_7^*)^T$ se uključuje  u RMP kao nova kolona. Na osnovu prethodne simpleks tabele imamo $y_1 = \frac{1}{3}, y_2 = y_3 = \frac{1}{2}$, pa treba da riješimo sljedeći CG problem
 \begin{align*}
       &\max \frac{1}{3} a_4 + \frac{1}{2} a_6 + \frac{1}{2} a_7 \\
       & 4 a_4 + 6 a_6 + 7 a_7 \leq 15 \\
       & 	a_4, a_6, a_7 \geq 0, a_4, a_6, a_7 \in \mathbb{Z}.
 \end{align*}
-Pomoću algoritma dinamičkog programiranja riješimo ovaj problem i dobijamo rješenje 
+Pomoću algoritma dinamičkog programiranja, riješimo ovaj problem i dobijamo rješenje 
 $(a_4^*, a_6^*, a_7^*)^T =  (2, 0, 1)^T=A_4$, optimalne vrijednosti $\frac{7}{6}$. Konvertujemo vektor $\begin{pmatrix}
 	2\\
     0 \\
@@ -4437,7 +4438,7 @@ Dalje, generišimo novi CG podproblem čitajući vrijednost dualnih promjenjivih
 \begin{align*}
 	 \frac{1}{4} a_4 + \frac{1}{2} a_6 + \frac{1}{2} a_7
 \end{align*}
-uz uslove nenegativnosti i kapaciteta i integralnosti (cjelobrojnosti). Rješavajući problem dinamičkim programiranjem, dobijamo optimalno rješenje $A_5 = (2,1,0)^T$. Vrijednost optimuma za CG podproblem je jednaka 1, odakle slijedi da je optimum početnog problema pronađen sa prethodnim rješenjem (ne postoji više ulaznih kolona koje se dodaju u RMP). Rješenje je jednako 95, dato sa $x_1^* = 0, x_2^* = 25, x_3^*=30, x_4^*= 40$. Dakle, koristimo samo 3 različita obrasca za sječenje. 
+uz uslove nenegativnosti i kapaciteta i integralnosti (cjelobrojnosti). Rješavajući problem dinamičkim programiranjem, dobijamo optimalno rješenje $A_5 = (2,1,0)^T$. Vrijednost optimuma za CG podproblem je jednaka 1, odakle slijedi da je optimum početnog problema pronađen sa prethodnim rješenjem (ne postoji ulazna kolona koje se dodaju u RMP). Rješenje je jednako 9 i dato je sa $x_1^* = 0, x_2^* = 25, x_3^*=30, x_4^*= 40$. Dakle, koristimo samo 3 različita obrasca za sječenje. 
 \\ \vspace{1cm}
  %Za uraditi:  https://ocw.mit.edu/courses/sloan-school-of-management/15-083j-integer-programming-and-combinatorial-optimization-fall-2009/lecture-notes/ (Lekcija 19-25)
  \section{Zadaci}
@@ -4492,8 +4493,8 @@ Nakon primjene B\&B metode, riješiti problem grafički dijeljeći region na pod
 	\begin{align*}
 		 &\min -x_1 - x_2 \\
 		 &\mbox{t.d.}\\
-		 & 2 x_1 + 5x_2 \leq 20 \\
-		 & 4 x_1 + 3 x_2 \leq 17 \\
+		 & 2.1 x_1 + 5.2x_2 \leq 20 \\
+		 & 4.5 x_1 + 3.5 x_2 \leq 17 \\
 		 & x_1, x_2 \geq 0 \\
 		 & x_1, x_2 \in \mathbb{Z}.
 	\end{align*}
@@ -4529,12 +4530,13 @@ napisati odgovarajuću Lagranžovu relaksaciju.
 Neka je dat problem ILP-a
 \begin{align*}
 	&\max x_2 \\
+    &\mbox{t.d.}\\
 	& -2x_1 + 2x_2 \leq 1 \\
 	& 2 x_1 + 2 x_2 \leq 7 \\
 	& x_1, x_2 \geq 0 \\
 	& x_1, x_2 \in \mathbb{Z}.
 \end{align*}
-Definisati Lagranžovu relaksaciju za ovaj problem (npr. uzeti prvo ograničenje za ``teško''). Riješiti početni problem sa jednom od tehnika za rješavanje ILP-a. Potom, riješiti Lagranžovu relaksaciju problema za $\lambda=0.25$. Šta možemo zaključiti na osnovu rješenja Lagranžove relaksacije i pročetnog problema? 
+Definisati Lagranžovu relaksaciju za ovaj problem (npr. uzeti prvo ograničenje za ``teško''). Riješiti početni problem sa jednom od tehnika za rješavanje ILP-a. Potom, riješiti Lagranžovu relaksaciju problema za $\lambda=0.25$. Šta možemo zaključiti na osnovu rješenja Lagranžove relaksacije i početnog problema? 
 \item   Pomoću CG okvira (generisanje kolona), riješiti jedni instancu \emph{Cutting stock} problema gdje je  
 $W = 20$, te postoje tri narudžbe za sječenje: 1. stavka: $b_1=60$ rolni dužine 7; 2. stavka: $b_2=40$ rolni dužine 8; 3. stavka: $b_3=70$ rolni dužine 10. 
 
