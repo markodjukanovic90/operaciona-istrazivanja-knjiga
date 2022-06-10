@@ -5293,7 +5293,7 @@ $$x =\left(\begin{array}{c}
  U ovom odjeljku ćemo objasniti još jednu korisnu dekompozicionu tehniku za rješavanje problema linearnog programiranja -- \emph{Dantzig-Wolfe} (DW) dekompoziciju. Ova tehnika je originalno dizajnirana za rješavanje problema linearnog programiranja velikih dimenzija. Osnovna ideja DW dekompozicije je da se na podskup ograničenja polaznog problema primijeni \emph{Teorema Minkovskog}, odnosno \emph{Teorema o reprezentaciji za konveksne poliedre}, te da se polazni problem razbije na   više manjih podproblema.
  
  \begin{thm}
- 	Neka je $P = \{ x \in \mathbb{R}^n \mid Ax \leq b\}$ ograničeni poliedar i neka je $\{x^{(1)}, \ldots, x^{(p)} \}$ skup ekstremnih tačaka od $P$. Tada za sve $x \in P$ vrijedi 
+ 	Neka je $P = \{ x \in \mathbb{R}^n \mid Ax \leq b\}$ ograničeni poliedar i neka je $\{x^{(1)}, \ldots, x^{(p)} \}$ skup ekstremnih tačaka poliedra $P$. Tada za sve $x \in P$ vrijedi 
  	 $$ x = \sum_{i=1}^p \lambda_i x^{(i)},$$ 
  	 gdje je $\lambda_i \geq 0,i=1,\ldots,p$, $\sum_{i=1}^p \lambda_i=1$.
  \end{thm}
@@ -5319,7 +5319,6 @@ $$x =\left(\begin{array}{c}
  Prema Teoremi o reprezentaciji za konveksne poliedre, za svaku tačku $x\in X$ vrijedi da se ona može predstaviti kao konveksna kombinacija (ekstremnih) tačaka $x^{(1)},x^{(2)},\dots,x^{(t)}$.
  
  Neka je  $x \in X$ proizvoljna tačka iz skupa $X$.  Tada postoje $\lambda_1,\lambda_2,\ldots,\lambda_t$, takvi da važi:
- 
  \begin{equation}
  	\begin{aligned}
  		&x = \sum_{j=1}^t\lambda_jx^{(j)}\\
@@ -5367,9 +5366,9 @@ odnosno
  
      \begin{equation}
  	\begin{aligned}\label{dw4}
- 		&\min\   \sum_{j\in I}(c^T x_j)\lambda_j\\
+ 		&\min\   \sum_{j\in I}(c^T x^{(j)})\lambda_j\\
  		&\mbox{t.d.}\\ 
- 		 &\sum_{j\in I} (A x_j)\lambda_j=b\\
+ 		 &\sum_{j\in I} (A x^{(j)})\lambda_j=b\\
  		&\sum_{j\in I}\lambda_j = 1\\
  		&\lambda_j\geqslant 0,\ j  \in I
  	\end{aligned}
@@ -5380,7 +5379,7 @@ Označimo sa $\overline{z}$ optimalnu vrijednost funkcije cilja RMP, a sa $z^*$ 
 
 Primijetimo da je $\overline{z}$ jedna gornja granica za master problem, jer je svako dopustivo rješenje RMP takođe i dopustivo za master problem. Ova konstatacija će nam biti od koristi u razmatranju koje slijedi.
 
-Da bismo provjerili da li je optimalno rješenje RMP ujedno i optimalno rješenje master problema, potrebno je da provjerimo da li su koeficijenti doprinosa svih nebaznih promjenjivih nenegativni, tj. postoji li neka nebazna promjenljiva koja može doprinijeti dodatnom smanjenju vrijednosti funkcije cilja. Na osnovu osobina simpleks tabele i tvrđenja koja važe na osnovu teorije dualnosti, ove vrijednosti su ekvivalentne optimalnim vrijednostima dualnih promjenjivih (duala problema RMP).   
+Da bismo provjerili da li je optimalno rješenje RMP ujedno i optimalno rješenje master problema, potrebno je da provjerimo da li su koeficijenti doprinosa svih nebaznih promjenjivih nenegativni, tj. postoji li neka nebazna promjenljiva koja može doprinijeti dodatnom smanjenju vrijednosti funkcije cilja. Na osnovu karakteristika (optimalne) simpleks tabele i tvrđenja koja važe na osnovu teorije dualnosti, ove vrijednosti su ekvivalentne optimalnim vrijednostima dualnih promjenjivih (duala problema RMP).   
 %je reduced cost od svih nebazičnih promjenljivih NIJE JASNO...
 
 
@@ -5413,11 +5412,10 @@ Prisjetimo se sada da smo za jednu od polaznih pretpostavki imali da je skup $X$
 
 Reformulišimo  CG podproblem sada kao problem maksimizacije, gdje ćemo za funkciju cilja uzeti negativnu vrijednost funkcije cilja minimizacije, tj.
  
- \fixme{Marko, provjeri Milanin komentar vezan za 8.18, odnosno po cemu ide maksimizacija}
  
        \begin{equation}
  	\begin{aligned}\label{dw7}
- 		\max_{j=1,\ldots,t}\  &  \{y^T	Ax-c^Tx+\alpha\}\\
+ 		\max_{j=1,\ldots,t}\  &  \{y^T	Ax^{(j)}-c^Tx^{(j)}+\alpha\}\\
  	\end{aligned}
  \end{equation}
 Neka je $\hat{z}$ optimalna vrijednost funkcije cilja ovog problema maksimizacije.
@@ -5471,10 +5469,10 @@ $x\in X$ i $Ax=b$, pa imamo da vrijedi %Za to rješenje $x$ važi
  \frac12)$ tog trougla, odnosno,
 
     \begin{equation}
- z^* = \frac 34\qquad \textnormal{za}\ x^*=\left(\begin{array}{c}
+ z^* = \frac 34,\qquad \textnormal{za}\ x^*=\left(\begin{array}{c}
  	\frac34\\
- 	\frac12.
- \end{array}\right)
+ 	\frac12
+ \end{array}\right).
  \end{equation}
  
  Formirajmo sada polaznu konfiguraciju za primjenu DW dekompozicije.
@@ -5900,7 +5898,7 @@ Uz pomoć DW dekompozicije riješiti sljedeći MILP problem
 	 \end{cases}
 \end{align*}
 \item %https://homepages.rpi.edu/~mitchj/handouts/egdcmp/ 
-    Proučiti opšti slučaj za DW dekompoziciju kada poliedar koji odgovara problemu nije ograničen (u njemu postoji zrak). Nakon toga, uz pomoć DW dekompozicije riješiti sljedeći MILP problem
+    Proučiti opšti slučaj za DW dekompoziciju kada poliedar koji odgovara problemu nije ograničen (u njemu postoji ekstremni zrak). Nakon toga, uz pomoć DW dekompozicije riješiti sljedeći MILP problem
 	\begin{align*}
 		 &\min x_1 - x_2 - 2 x_3 \\
 		 &\mbox{t.d.} \\
