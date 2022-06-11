@@ -4107,7 +4107,7 @@ U praksi se pokazalo da je Lagranžova relaksacija dobra tehnika za dobijanje gr
 \fixme{marko, ovo razmatranje u narednom primjeru mi nije bas jasno, mozemo zajedno prodiskutovati. Marko: Detaljnije objasnjeno sada -- nadam se da je jasnije, pa pogledaj kako ti izgleda.}
 
 \begin{primjer}
-Primijenimo ovu tehniku na \emph{problem trgovačkog putnika} sa ulaznim težinskim grafom $G=(V,E)$. Razmotrimo  problem sa grafovske strane i pokušajmo da izvedemo njegovu relaksaciju. Neka je data kolekcija grana $T$. Kolekcija grana $T$ formira rutu ako su svaka dva čvora grafa $G$ pokrivena sa tačno dvije grane iz te kolekcije. Kada obrišemo grane incidentne sa čvorom 1 (ili nekim drugim), ostatak rute će činiti stablo koje pokriva graf  $G\setminus \{1\}$.  
+Primijenimo ovu tehniku na \emph{problem trgovačkog putnika} sa ulaznim težinskim grafom $G=(V,E)$, gdje je $V=\{1, \ldots, n\}$.  Razmotrimo  problem sa grafovske strane i pokušajmo da izvedemo njegovu relaksaciju. Neka je data kolekcija grana $T$. Kolekcija grana $T$ formira rutu ako su svaka dva čvora grafa $G$ pokrivena sa tačno dvije grane iz te kolekcije. Kada obrišemo grane incidentne sa čvorom 1 (ili nekim drugim), ostatak rute će činiti stablo koje pokriva graf  $G\setminus \{1\}$.  
 Definišimo sa $A(j)$ skup svih čvorova koji su incidentni sa čvorom $j$. 
 \end{primjer}
 Relaksacija: definišimo sa $T_1$ skup svih ruta koje nakon brisanja grana koje pokrivaju čvor $1$ formiraju (pokrivajuće) stablo.  Dakle, prije samog rješavanja problema, enumerišimo sve ovakve rute u grafu $G$. 
@@ -4130,13 +4130,14 @@ gdje je $\lambda=(\lambda_1, \ldots, \lambda_n)$ i $c^\lambda_{i,j} = c_{i,j} + 
 
 U praksi se pokazalo da su rješenja dobijena Lagranžovom relaksacijom blizu optimalnim rješenju problema. Optimalno pokrivajuće stablo Lagranžovog problema $L(\lambda^*)$ za optimalno $\lambda^*$ će nam,  u praksi, često dati rješenje sa  nekoliko visećih čvorova. 
 
-Konstruišimo još jednu Lagranžovu relaksaciju za ovaj problem,  uvodeći tzv. \emph{ograničenja pokrivanja}. Ova ograničenja osiguravaju da je u svakoj ruti broj grana, koje imaju oba kraja u skupu čvorova $S$, najviše $|S|-1$. Dobijamo sljedeći model 
-
+Konstruišimo još jednu Lagranžovu relaksaciju za ovaj problem,  uvodeći tzv. \emph{ograničenja pokrivanja}. Neka je dat skup $S\subseteq V$. Ograničenje pokrivanja u odnosu na skup $S$ osiguravaju da postoji najviše $|S|-1$ grana u svakoj ruti kojima oba kraja pripadaju jednom od čvorova iz $S$. Ovom smo ograničili pojavljivanje ciklusa među čvorovima u konačnom rješenju.
+Prethodni scenario modelijemo sljedećim modelom 
 \begin{align*}
      & z^* = \min \sum_{(i,j)\in E} c_{i,j} x_{i,j} \\
      & t.d. \\
      & \sum_{ \{ i \mid (i,j) \in E \} } x_{i,j} = 2, \forall i \in \{1,\ldots, n \} \\
-     & \sum_{(i,j) \in E  \wedge i,j \in S} x_{i,j} \leq |S|-1, \forall S \subseteq V \\
+     & \sum_{(i,j) \in E \ \wedge\ i,j \in S} x_{i,j} \leq |S|-1, \forall S \subseteq V \\
+     &  & \sum_{(i,j) \in E} x_{i,j} = n \\
      & x_{i,j} \in \{0, 1 \}, (i,j)\in E.
 \end{align*}
 Lagranžova relaksacija prethodnog ILP-a ima oblik 
