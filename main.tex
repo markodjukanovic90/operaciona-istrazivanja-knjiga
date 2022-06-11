@@ -6140,7 +6140,7 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje, što 
   	$$\frac{\mathcal{A}(I)}{\mathcal{A}^*(I)} \geq c,$$ za neko $c\in \mathbb{R}^+$.
   \end{itemize}
   
-  \fixme{Marko, ni meni nije jasno da li se u oba slucaja koristi ovaj termin}
+  %\fixme{Marko, ni meni nije jasno da li se u oba slucaja koristi ovaj termin}
   
  U tom slučaju kažemo da je algoritma $\mathcal{A}$ $c$--aproksimativni algoritam.
  \begin{comment}
@@ -6149,7 +6149,7 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje, što 
   \end{comment}
   
   
-   U nastavku navodimo  aproksimativne algoritme za nekoliko poznatih problema kombinatorne optimizacije
+   U nastavku navodimo  aproksimativne algoritme za nekoliko poznatih problema kombinatorne optimizacije. 
   
   \subsection{Aproksimativni algoritmi za problem pokrivanja čvorova}
   
@@ -6184,8 +6184,7 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje, što 
   
   \noindent Pokazaćemo da je ovo aproksimativni algoritam. Izračunajmo koeficijent aproksimacije $c$ za Algoritam~\ref{alg:gridi-vc}.
   Grane koje se biraju u ovom algoritmu su grane maksimalnog mečinga ($M$), pa je prema tome, skup $C$ uistinu pokrivač čvorova, prema definiciji mečinga. Dalje, jasno je da se algoritam izvodi u polinomijalnom vremenu. Neka je $C^*$ pokrivač koji je rješenje problema. Tada $C^*$ sadrži barem jedan kraj svake grane iz $M$, odakle slijedi $|C^*|\geq |M|$. Dalje, $|C|= 2 \cdot |M| \geq 2 \cdot |C^*|$. Prema tome, ovo je $2$--aproksimativni algoritam za problem pokrivanja čvorova grafa. Jednakost u prethodnoj aproksimaciji se postiže, recimo, za bipartitne grafove $K_{n,n}$. 
-  
-  \fixme{meni je u redu da ne uvodimo definiciju mecinga, iako je Milana imala taj komentar}
+ 
   
   Posmatrajmo sada i drugi pohlepni Algoritam ~\ref{alg:gridi-vc-2} za problem pokrivanja čvorova.  
   
@@ -6218,8 +6217,7 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje, što 
   da je $$|C| = k!\cdot( 1/k + 1/k-1 + \cdots + 1/2 + 1) \approx k! \cdot \log k.$$  
   Dakle, imamo da je
   $$   |C| \approx \log k \cdot |C^*|.$$ Prema tome, ovaj algoritam je $\log k$--aproksimativni algoritam, za $k \in \mathbb{N}$. 
-
-\fixme{ja predlazem da izbacimo ovaj donji paragraf, jer nije bitno za udzbenik.}
+ 
 \begin{comment}
  U literaturi, najbolji faktor je $2 - \frac{1}{\sqrt{\log n}}$ (Karakostas, 2009).
   Ono sto se takođe zna (Hastad, 2001) je da ne postoji aproksimativni faktor 
@@ -6257,7 +6255,7 @@ Posmatrajmo \emph{Algoritam najbližeg dodavanja} koji aproksimira TSP, dat Algo
   		\STATE $S \gets \{u,v\}$
   		\STATE $T \gets uv$
   		\WHILE{$|S| \neq n$}
-  		\STATE $u,t \gets$ $\mbox{argmin}_{(u,t) \in (V(G)\setminus V(T)) \times V(T)} \{w(u, t)\}$
+  		\STATE $(u,t) \gets$ $\mbox{argmin}_{(u,t) \in (V(G)\setminus V(T)) \times V(T)} \{w(u, t)\}$
   		\STATE $ S \gets S \cup \{u\}$ 
   		\STATE $(u, q)\gets$ čvor $q$ slijedi $u$ u  $T$
   		\STATE  $uq$ se izbacuje iz $T$, ubacuje se $utq$  // Ažururanje $T$ (rekonstrukcija)
