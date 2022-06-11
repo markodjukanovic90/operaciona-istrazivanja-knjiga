@@ -6439,10 +6439,15 @@ Motivacija za razmatranje ovog problema se može pronaći i u svakodnevnom živo
 	 \label{fig:set-cover-1}
 \end{figure}
 
-\fixme{dovde sam stigao}
+\fixme{e Marko, ovdje kod ovog algoritma ispod, mislim da 6. red nije dobro zapisan. Ako ja dobro kontam, trebalo bi da se bira onaj podskup iz kolekcije koji ima presjek sa U najvece kardinalnosti. Nije mi jasno zasto si ti to tako komplikovano zapisao, kada bi trebalo samo da pise $\mbox{argmax}_{f \in \mathcal{F}}{|f \cap U}|$. Ako ja dobro kontam, $U$ je skup elemenata, a ne kolekcija skupova. Pogledaj pa mi javi, mogu se ja vratiti da popravim ovo ako sam u pravu }
 
- Pohlepni algoritam za ovaj problem je dat u Algoritmu~\ref{alg:set-cover-gridi}.  %objasnjenje algoritma.
-Skup $U$ predstavlja skup preostalih nepokrivenih elemenata dok skup $\mathcal{C}$ pedstavlja pokrivač koji se konstruiše kroz iteracije algoritma. U svakom koraku, algoritam nastoji da proširi pokrivač $\mathcal{C}$ na račun smanjenja skupa $U$. Kandidata za proširivanje pokrivača biramo na osnovu pohlepne funkcije data u liniji 6. U osnovi, biramo onaj $f' \in \mathcal{F}$ koji ima najviše  elementima iz $U$ sa kojim ima neprazan presjek sve dok je $U \neq \emptyset$. Algoritam se izvodi u $O(|\mathcal{F}| \cdot |X|)$ vremenu, dakle  polinomijalnom. Takođe, jasno je da je rješenje koje se vraća dopustivo. Izračunajmo još aproksimativni faktor algoritma. Prije toga, označimo $d$-ti harmonijski broj $=H_d = \sum_{i=1}^d 1/i$ sa $H(d)$. 
+ Pohlepni metod za Problem pokrivanja skupa je prikazan Algoritmom~\ref{alg:set-cover-gridi}.  %objasnjenje algoritma.
+Skup $U$ predstavlja skup preostalih nepokrivenih elemenata, dok skup $\mathcal{C}$ predstavlja pokrivač koji se konstruiše kroz iteracije algoritma. U svakom koraku, algoritam nastoji da proširi pokrivač $\mathcal{C}$ na račun smanjenja skupa $U$. Kandidata za proširivanje pokrivača biramo na osnovu pohlepne funkcije date u liniji 6. U osnovi, biramo onaj  podskup $f' \in \mathcal{F}$ koji ima najviše  elementima iz $U$ sa kojim ima neprazan presjek sve dok je $U \neq \emptyset$.
+
+Algoritam se izvodi u $O(|\mathcal{F}| \cdot |X|)$ vremenu, što znači da je polinomijalne zavisnosti. Takođe, jasno je da je rješenje koje se vraća dopustivo.
+
+Izračunajmo još aproksimativni faktor algoritma. Prije toga, označimo $d$-ti harmonijski broj $=H_d = \sum_{i=1}^d 1/i$ sa $H(d)$.
+
 Vrijedi sljedeća teorema.
 
 %pseudokod algoritma 
@@ -6467,28 +6472,30 @@ Vrijedi sljedeća teorema.
 	$$ H(\max\{|f| \mid f \in \mathcal{F}\}).$$
 	
 \end{thm}
+\fixme{Marko, ovaj dokaz je prilicno konfuzan. Ja bih ga izbacio. Ako ipak smatras da treba da ostane, onda predlazem da se ipak prvo pokaze da vazi (9.2), pa da se onda zakljucuje (9.3). Ovako je prilicno nejasno sta se dokazuje preko cega. Ako se dogovorimo da ostane, mozemo zajedno pokusati da malo uredimo dokaz. Ako se izbacuje, onda ni za tim nema potrebe.}
+
 \begin{proof}
-	  Označimo sa $f_i$, $i$-ti podskup koji je selektovan od strane algoritma: algoritam dodjeljuje cijenu $1$ kad se $f_i$ doda u $\mathcal{C}$. 
-	  Cijenu selektovanja $f_i$ distribuiramo podjednakom vjerovatnoćom na sve elemente koji su po prvi put pokriveni sa $f_i$. Posmatrajmo primjer dat na Slici~\ref{fig:set-cover-1}. U prvoj iteraciji pohlepnog algoritma,  
-	  6 elemenata je pokriveno sa $T_1$; prema tome, cijena svakog od ovih elemenata je $c_x = \frac{1}{|T_1\setminus \emptyset|}= \frac{1}{6}$. Dalje, u drugoj iteraciji algoritam odabire skup $T_3$, koji pokriva 2 nova elementa; njihova cijena je $c_x=\frac{1}{|T_3 \setminus T_1|} = \frac{1}{2}$. U iteraciji broj 3, odabere se skup $T_2$, te se jedan novi element pokrije; njegova cijena je jednaka $c_x = \frac{1}{T_2 \setminus ( T_1 \cup T_3)}$. 
+	  Označimo sa $f_i$, $i$-ti podskup koji je izabran od strane algoritma. Algoritam dodjeljuje cijenu $1$ kad se $f_i$ doda u $\mathcal{C}$. 
+	  Cijenu izbora $f_i$ distribuiramo podjednakom vjerovatnoćom na sve elemente koji su po prvi put pokriveni sa $f_i$. Posmatrajmo primjer dat na Slici~\ref{fig:set-cover-1}. U prvoj iteraciji pohlepnog algoritma, 
+	  6 elemenata je pokriveno sa $T_1$. Prema tome, cijena svakog od ovih elemenata je $c_x = \frac{1}{|T_1\setminus \emptyset|}= \frac{1}{6}$. Dalje, u drugoj iteraciji algoritam odabire skup $T_3$, koji pokriva 2 nova elementa. Njihova cijena je $c_x=\frac{1}{|T_3 \setminus T_1|} = \frac{1}{2}$. U iteraciji broj 3, odabere se skup $T_2$, te se pokriva jedan novi element. Njegova cijena je jednaka $c_x = \frac{1}{T_2 \setminus ( T_1 \cup T_3)}$. 
 	 
-	 Neka $ c_x$ označava cijenu za pokrivanje elementa $x\in X$.  Svakom elementu se cijena dodijeli najviše jednom, onog puta kada se pokrije po prvi put. Ako se $x$ pokriva prvi put sa $f_i$, tada imamo:
+	 Neka $ c_x$ označava cijenu za pokrivanje elementa $x\in X$.  Svakom elementu se cijena dodijeli najviše jednom, odnosno, pri prvom pokrivanju. Ako se $x$ pokriva prvi put sa $f_i$, tada imamo
 	 $$c_x = \frac{1}{f_i \setminus (f_1 \cup ...\cup f_{i-1})}.$$
 	 
 	 Algoritam generiše rješenje $\mathcal{C}$, koje je cijene $|\mathcal{C}|$ i ova cijena se raspoređuje elemenatima iz $X$. Kako optimalni pokrivač $C^*$ takođe pokriva skup $X$, dobijamo
 	 \begin{align}\label{eq:f1x}
 	 	|C| = \sum_{x \in X} c_x \leq \sum_{f \in C^*}\sum_{x \in f} c_x.
 	 \end{align}
-	  Pokazimo sljedeću ključnu nejednakost koja služi u dokazu ove teoreme. Za svaku $f \in \mathcal{F}$, vrijedi  
+	  Pokažimo sljedeću ključnu nejednakost. Za svaku $f \in \mathcal{F}$, vrijedi  
 	 \begin{equation}\label{eq:f2x}
 	 	\sum_{x \in f} c_x \leq H(|f|).
 	 \end{equation}
 	 
-	 Iz formula~(\ref{eq:f1x}) i (\ref{eq:f2x}) bi dobili da je 
+	 Iz formula~(\ref{eq:f1x}) i (\ref{eq:f2x}) se dobija da je 
 	 \begin{equation}
 	 	|C| \leq \sum_{f \in C^*}\sum_{x \in f} c_x \leq \sum_{f \in C^*} H(|f|),
 	 \end{equation}
-	 odakle bi slijedila tvrdnja o vrijednosti aproksimacionog faktora algoritma.
+	 odakle slijedi tvrdnja o vrijednosti aproksimacionog faktora algoritma.
 	 Ostaje nam još da pokažemo formulu~(\ref{eq:f2x}). 
 	 
 	 Neka je $f\in \mathcal{F}$ tako da za $i=1,\ldots,|C|$
@@ -6528,27 +6535,32 @@ Vrijedi sljedeća teorema.
  
 \end{proof}
 
-Napomenimo da postoji i težinska verzija Problema pokrivanja skupa. U ovoj verziji je svakom skupu iz $f \in\mathcal{F}$ data težina $w_f$. Zadatak je naći pokrivač $C \subseteq \mathcal{F}$ skupa $X$ sa najmanjom težinom. Ovaj problem na sličan način kao i ne-težinska varijanta može aproksimirati do na faktor $H_d= \log d+O(1)$, gdje je $d= \max\{|f|:f \in \mathcal{F}\}$ uz pomoć sličnog pohlepnog algoritma. U tom slučaju, pohlepni kriterij je određen funkcijom 
+\fxnote{ovaj tekst ispod predlazem da ostane i njega sam malo popravio.}
+
+Napomenimo da postoji i težinska verzija Problema pokrivanja skupa. U ovoj verziji je svakom skupu iz $f \in\mathcal{F}$ dodijeljena težina $w_f$. Zadatak je pronaći pokrivač $C \subseteq \mathcal{F}$ skupa $X$ sa najmanjom ukupnom težinom. Ovaj problem se,  uz pomoć sličnog pohlepnog algoritma kao kod netežinske varijante, može aproksimirati do na faktor $H_d= \log d+O(1)$, gdje je $d= \max\{|f|:f \in \mathcal{F}\}$. U tom slučaju, pohlepni kriterijum je određen funkcijom 
 \begin{align}
 	g(f) = \frac{w_f}{|f \cap U|}, f \in \mathcal{F}\setminus C,
 \end{align}
-gdje je $w_f$ težina skupa. U svakom koraku algoritma određuje skup $f^* \in \mathcal{F}$ koji minimizuje vrijednost funkcije $g$, koji se zatim dodaje u trenutni (parcijalni) pokrivač $C$.
+gdje je $w_f$ težina skupa $f$. U svakom koraku algoritma određuje se skup $f^* \in \mathcal{F}$ koji minimizuje vrijednost funkcije $g$, koji se zatim dodaje u trenutni (parcijalni) pokrivač $C$.
 
 \subsection{Aproksimativni algoritam za problem najkraćeg nadstringa}
 
-
+Na kraju odjeljka o aproksimativnim algoritmima, razmotrimo i problem najkraćeg nadstringa.
 \begin{definition}
-   Neka je dat skup stringova $S=\{s_1,...,s_n\}$. Problem najkraćeg nadstringa traži string  $s$ minimalne dužine koji sadrži sve stringove iz $S$ za njegove podstrigove. 
+   Neka je dat skup stringova $S=\{s_1,...,s_n\}$. Kod problema najkraćeg nadstringa potrebno je odrediti string  $s$ minimalne dužine koji sve stringove iz $S$ sadrži kao svoje podstrigove. 
   \end{definition}
-Bez gubljenja opštosti, mozemo pretpostaviti da niti jedan string $s_i$ nije podstring stringa $s_j, i\neq j$.
-Ovaj problem je NP--težak. Ideja je riješiti ga koristeći Problem pokrivanja skupa i 
-njegove algoritame iz prethodne sekcije. Pokazaćemo da postoji $2\cdot H_n$--aproksimacija za problem najkraćeg nadstringa. 
+Pomenimo da je i ovaj problem NP--težak.
 
- Svakom stringu $\theta$ dodijelimo skup $set(\theta)$ tako da   $set(\theta)$ pokriva string $s\in S$ akko 
+Bez gubljenja opštosti, mozemo pretpostaviti da niti jedan string $s_i$ nije podstring stringa $s_j, i\neq j$.
+ Ideja je primijeniti tehnike razvijene za rješavanje Problem pokrivanja skupa iz prethodne sekcije. Pokazaćemo da postoji $2\cdot H_n$--aproksimacija za problem najkraćeg nadstringa. 
+
+ Svakom stringu $\theta$ dodijelimo skup $set(\theta)$, pri čemu   $set(\theta)$ pokriva string $s\in S$ akko 
 je $s$ podstring od $\theta$. Prema tome 
 $$set(\theta) = \{ s \in S \mid s \mbox{  podstring od }\theta \}.$$
 
- Odatle bi pokrivač skupa bila familija takvih skupova $set(\theta)$, iz kojih se konstruiše nadstring skupa $S$ spajajući sve $\theta$ stringove u jedan string. U svakom slučaju familija  $\mathcal{F}$ se ne može definisanti kao skup skupova $set(\theta)$ jer bi u suprotnom $\mathcal{F}$ bio beskonačan. Sa druge strane, ne možemo ograničiti sve stringove $\theta$ samo na one iz $S$, jer bi u suprotnom dobili rješenje koje je jednako konkatenaciji svih stringova iz $S$, što je svakako  rješenje koje nije korisno. Za uspostavljanje balansa, neka iz skupa $S=\{s_1,...,s_n\}$ uzmemo par stringova $s_i$ i $s_j$, nađemo $k>0$  tako da je posljednjih $k$ karaktera stringa $s_i$ jednaka prvih $k$ karakera stringa $s_j$ (poklapanje). Označimo sa $\theta_{ijk}$ string koji se 
+\fixme{dovde sam stigao}
+
+ Odatle bi pokrivač skupa bila familija takvih skupova $set(\theta)$, iz kojih se konstruiše nadstring skupa $S$ spajajući sve $\theta$ stringove u jedan string. U svakom slučaju familija  $\mathcal{F}$ se ne može definisanti kao skup skupova $set(\theta)$ jer bi u suprotnom $\mathcal{F}$ bio beskonačan. Sa druge strane, ne možemo ograničiti sve stringove $\theta$ samo na one iz $S$, jer bismo u suprotnom dobili rješenje koje je jednako konkatenaciji svih stringova iz $S$, što je svakako  rješenje koje nije korisno. Za uspostavljanje balansa, neka iz skupa $S=\{s_1,...,s_n\}$ uzmemo par stringova $s_i$ i $s_j$, nađemo $k>0$  tako da je posljednjih $k$ karaktera stringa $s_i$ jednaka prvih $k$ karakera stringa $s_j$ (poklapanje). Označimo sa $\theta_{ijk}$ string koji se 
 dobije preklapanjem stringova $s_i$ i $s_j$ na $k$ karaktera. Oznacimo sa $I$ skup strinova $\theta_{ijk}$  za validne izbore $i,j$ i $k$. Zatim definišemo $\mathcal{F}=\{set(\theta) \mid  \theta \in S \cup I\}$. Dodijeljena cijena svakog skupa $set(\theta))$ je jednaka $|\theta|$. Na osnovu prethodnog, dobijamo algoritam za rješavanje problema Najkraćeg nadstriga Algoritmom~\ref{alg:ss}. 
 
   \begin{algorithm}[!t] 
@@ -6559,7 +6571,7 @@ dobije preklapanjem stringova $s_i$ i $s_j$ na $k$ karaktera. Oznacimo sa $I$ sk
 		\STATE  $\mathcal{C}=\{set(\theta_1), set(\theta_2),...,set(\theta_p)\}\gets$ Primijeniti GREEDY-SET-COVER$(X,\mathcal{F})$
 		\STATE  $s \gets \theta_1 \cdots \theta_p$
 	\end{algorithmic}
-	\caption{Gridi heuristika za Problem Najkraćeg Nadstringa.}
+	\caption{Poghlepna heuristika za Problem Najkraćeg Nadstringa.}
 	\label{alg:ss}
 \end{algorithm}
 
