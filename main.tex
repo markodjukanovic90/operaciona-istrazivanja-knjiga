@@ -5983,37 +5983,40 @@ Primov algoritam je jedan od osnovnih algoritama koji se, zbog svoje važnosti, 
 
 Ideja dodjele vrijednosti čvorovima koji još nisu prisutni u MST je u tome da se efikasno izabere grana minimalne težine, koja treba da se doda u trenutno parcijalno rješenje. Dakle, ažurirane vrijednosti težina grana pomažu da se u razmatranje uključe upravo one grane spajaju jedan čvor koji je već uključen u MST i jedan čvor koji nije uključen u MST.
 
-\emph{Kompleksnost algoritma}. Ako se za predstavljanje grafa koristi lista susjedstva, složenost algoritma je $O(|V|^2)$. Ako  koristimo prioritetni red za nalaženje grane minimalne težine, imamo kompleksnost od $O( |E| \log(|V|))$. 
+ \emph{Vremenska kompleksnost}. Ako se za predstavljanje grafa koristi lista susjedstva, složenost algoritma je $O(|V|^2)$. Ako  koristimo prioritetni red za nalaženje grane minimalne težine, imamo kompleksnost od $O( |E| \log(|V|))$. 
 
 
 
-\subsection{Kruskalov algoritam}
+\subsubsection{Kruskalov algoritam}
 
 Kruskalov algoritam radi po principu izbora grana na osnovu njihove težine, gdje se u svakom koraku koristi pohlepna strategija da se bira odgovarajuća grana najmanje težine.
+Koraci algoritma su sljedeći.
 
- Neka je  Koraci koji se izvršavaju su sljedeći: 
- \fixme{dovde sam stigao}
+\fixme{Marko, malo sam mijenjao korake u ovim algoritmima, pa provjeri da li ti je dobro ovako.}
+
 \begin{enumerate}
 	
-	\item Sortirati sve grana polaznog grafa u neopadajućem poretku;
+	\item Sortirati sve grana polaznog grafa u neopadajućem poretku; Neka je tako formirana lista $S$ svih grana u grafu.
 	\item Postaviti $\emph{mstSkup} = \emptyset$. 
-	\item Odabir najlakše grane i provjera da li se formira ciklus ako se ova 
+	\item Odabrati najlakšu granu iz skupa $S$ (pohlepni korak). Provjeriti da li se formira ciklus ako se ta 
 	grana doda u skup grana koje su do sada ubačene u skup \emph{mstSkup}; Ako to nije slučaj, ubaciti granu u trenutni skup \emph{mstSkup}. 
-	\item Inače, provjeriti  granu koja je sljedeća u sortiranom nizu grana (pohlepni korak);
-	\item Ponoviti korak 2, dok se ne doda tačno $|V|-1$ grana u \emph{mst}.
+	\item Iz liste $S$ ukloniti odabranu granu;
+	\item Ponoviti korak 3, dok se ne doda tačno $|V|-1$ grana u \emph{mstSkup}.
 \end{enumerate} 
 
-\noindent \emph{Vremenska kompleksnost}. Algoritam se izvršava u $O(|E|\log |E|)$ ili $O(|E|\log |V|)$ vremenu. Sortiranje grana uzima $O(|E| \log|E|)$ vremena. Potom, za svaku granu 
+ \emph{Vremenska kompleksnost}. Kruskalov algoritam se izvršava u $O(|E|\log |E|)$ ili $O(|E|\log |V|)$ vremenu. Sortiranje grana uzima $O(|E| \log|E|)$ vremena. Potom, za svaku granu 
 se primjenjuje operacija nalaženja i dodavanja grane u skup \emph{mst}. Ove dvije operacije se izvršavaju u $O(\log |V|)$ vremenu. Dakle, za izvršavanje algoritma treba $O(|E|\log |E| + |E|\log |V|)$ vremena. Kako je $|E|=O(|V|^2)$, dobijamo kompleksnost $O(|E| \cdot \mathrm{log}(|V|))$. 
 
 \subsection{Dajkstrin algoritam}
 
 Ovaj algoritam se koristi za nalaženje najkraćih puteva u grafu i sličan je Primovom algoritmu. Generiše se tzv. SPT (eng. \emph{shortest path tree}) sa datim korjenim čvorom $s$, tako  što se formiraju dva disjunktna skupa čvorova, jedan koji sadrži čvorove uključene u SPT, dok su u drugom svi ostali čvorovi. 
 
+
 Inicijalno, svim čvorovima, osim korjenog, je dodijeljena vrijednost beskonačno, tj. $dist[u]=\ +\infty, \forall u \in V\setminus \{s\}$, $dist[s]=0$. 
 
 Neka je $Q = V$.  
-U svakom koraku algoritma nalazimo čvor $u$ koji je u skupu $Q$ sa minimalnom udaljenošću \emph{dist} od korjenog čvora $s$. Zatim se posmatraju njegovi susjedi, te težine grana koje polaze od čvora $u$. U slučaju da je zbirna vrijednost $dist[u]$  i težine grane $w(uv)$ manja od trenutne vrijednosti $dist[v]$, vrijednost $dist[v]$ se ažurira jer je nađen novi najkraći put od $s$ od $v$.  Čvor $u$ se zatim izbacuje iz skupa $Q$. Algoritam nastavlja sa istim koracima dok god $Q \neq \emptyset$. 
+U svakom koraku algoritma nalazimo čvor $u$ koji je u skupu $Q$ sa minimalnom udaljenošću \emph{dist} od korjenog čvora $s$. Zatim se posmatraju njegovi susjedi, te težine grana koje polaze od čvora $u$. U slučaju da je zbir vrijednosti vrijednosti $dist[u]$  i težine grane $w(u,v)$ manja od trenutne vrijednosti $dist[v]$, vrijednost $dist[v]$ se ažurira, jer je nađen novi najkraći put od $s$ od $v$.  Čvor $u$ se zatim izbacuje iz skupa $Q$. Algoritam nastavlja sa istim koracima dok god $Q \neq \emptyset$. 
+
 Svi koraci algoritma su dati u Algoritmu~\ref{alg:dijkstra-algorithm}. Nakon završetka algoritma, vrijednosti $dist$[$u$] odgovaraju težini najkraćeg puta od korjenog čvora $s$ do čvora $u$. 
 
 
@@ -6041,10 +6044,12 @@ Svi koraci algoritma su dati u Algoritmu~\ref{alg:dijkstra-algorithm}. Nakon zav
     		\caption{Dajkstra($G,s $)}\label{alg:dijkstra-algorithm}
 \end{algorithm}
 
-\emph{Vremenska kompleksnost}.  Implementacija Algoritma~\ref{alg:dijkstra-algorithm} ima vremensku kompleksnost $O(|V|^2)$. Ako je graf predstavljem listom susjedstva, i skup $Q$ (linija 6, Algoritam \ref{alg:dijkstra-algorithm}) je implementiran kao binarni hip, 
+\emph{Vremenska kompleksnost}.  Implementacija Algoritma~\ref{alg:dijkstra-algorithm} ima vremensku kompleksnost $O(|V|^2)$. Ako je graf predstavljem listom susjedstva, i skup $Q$  je implementiran kao binarni hip, 
 kompleksnost se redukuje na $O(|E| \cdot \log |V|)$.
 
 Napomenimo da Dajkstrin algoritam ne radi sa grafovima koji imaju negativne težine (pogledati  liniju 12).  Za ovakve grafove,  primjenjuje se Bellman–Ford-ov algoritam koji je baziran na dinamičkom programiranju. Njega ne pominjemo   u ovoj knjizi, ali čitaocu preporučujemo da se, koristeći se literaturom ili internetom, upozna i sa ovim važnim algoritmom.  %, o kojem ćemo nešto više reći u narednim sekcijama.
+
+\fixme{dovde sam stigao}
 
 \subsection{Frakcioni problem ruksaka}
 
