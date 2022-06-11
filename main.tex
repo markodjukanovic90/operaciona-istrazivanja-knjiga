@@ -5820,7 +5820,7 @@ Iz prethodne tabele pročitamo vrijednost dualnih promjenljivih: $y_1 =  \frac{1
 			2 & -3
 		\end{array}\right)  x   - 0 &= \max_{x \in X} (x_1  - x_1 ) = 0    
 	\end{align*} 
-  Iz ovoga zaključujemo da je $\hat{z}=0$, pa iz (\ref{dw8}) slijedi da imamo optimum za početni problem, gdje je optimalna tačka data sa 
+  Iz ovoga zaključujemo da je $\hat{z}=0$, pa iz (\ref{dw8}) slijedi da imamo optimum za početni problem, gdje je optimalna tačka ata sa 
 \begin{align*}
   	 x^* &= \frac{1}{2}  x^{(2)}+ \frac{1}{4} x^{(3)} + \frac{1}{4} x^{(4)} 
   	     = \frac{1}{2} \begin{pmatrix}
@@ -5915,7 +5915,7 @@ Uz pomoć DW dekompozicije riješiti sljedeći MILP problem
 
  \chapter{Metode za pronalaženje dopustivih rješenja}\label{chp:heuristike}
  
- U prethodnim poglavljima prikazane su najvažnije tehnike za egzaktno rješavanje problema iz oblasti linearnog i cjelobrojnog programiranja. Sa druge strane, u teoriji i praksi se često javljaju i problemi koji se, zbog svoje složenosti i dimenzionalnosti, ne mogu optimalno riješiti uz razuman utrošak memorijskih i vremenskih resursa. Kao što je već i ranije napominjano, u takvim situacijama se postavlja drugačiji cilj u istraživanju, odnosno, traži se dovoljno dobro \emph{dopustivo rješenje}. Pod dopustivim rješenjem podrazumijevamo ono rješenje koje zadovoljava uslove samog problema, ali ne postoji garancija da je to rješenje i optimalno.
+ U prethodnim poglavljima prikazane su najvažnije tehnike za egzaktno rješavanje problema iz oblasti linearnog i cjelobrojnog programiranja. Sa druge strane, u teoriji i praksi se često javljaju i problemi koji se, zbog svoje složenosti i dimenzionalnosti, ne mogu optimalno riješiti uz razuman utrošak memorijskih i vremenskih resursa. Kao što je već i ranije napominjano, u takvim situacijama se postavlja drugačiji cilj u istraživanju, odnosno, traži se dovoljno dobro \emph{dopustivo rješenje} u sklopu resursa sa kojima raspolažemo. Pod dopustivim rješenjem podrazumijevamo ono rješenje koje zadovoljava uslove samog problema, ali ne postoji garancija da je to rješenje i optimalno.
  
  U ovom poglavlju ćemo objasniti neke od tehnika za pronalaženje dopustivih rješenja. Čak i više od toga, prikazaćemo i neke od moćnih optimizacionih tehnika, koje ne garantuju  pronalazak optimalnog rješenja, ali su se u praksi pokazale kao izuzetno koristan alat za rješavanje problema iz oblasti operacionih istraživanja.
  
@@ -5927,7 +5927,7 @@ Pohlepni algoritmi su programska paradigma zasnovana na pristupu da se  rješenj
  
  %Kod ovakve strategije, u svakom koraku bira se komponenta koja je lokalno najbolji kandidat za proširivanje (parcijalnog) rješenja, u nadi da će takvi izbori na kraju dovesti i do kvalitetnog globalnog rješenja.
  
- Strategija pohlepnih algoritama isključuje ``vraćanje'' na neko prethodno (parcijalno) rješenje, odnosno ne vodi se računa o ``lošim'' odlukama, koje su eventualno napravljene u prethodnim iteracijama. Zbog toga se podrazumijeva da pohlepni algoritmi imaju polinomijalnu vremensku složenost, što je jedna od najvažnijih osobina ovakvih algoritam.
+ Osnovna strategija pohlepnih algoritama isključuje ``vraćanje'' na neko prethodno (parcijalno) rješenje, odnosno ne vodi se računa o ``lošim'' odlukama, koje su eventualno napravljene u prethodnim iteracijama. Zbog toga se podrazumijeva da pohlepni algoritmi imaju polinomijalnu vremensku složenost, što je jedna od najvažnijih osobina ovakvih algoritam.
  
  Zbog relativno jednostavne strategije na kojoj su zasnovani, ali i brzine izvršenja, ovi algoritmi se često koriste i u rješavanju teških optimizacionih problema i najčešće su prva strategija koja se primjenjuje, prije 
 upotrebe neke složenije paradigme. 
@@ -5955,7 +5955,7 @@ Neka je dat težinski graf $G=(V,E)$. Svaku težinu grane $uv \in E $ u grafu $G
 
 MST ima primjene u različitim oblastime teorije i prakse. Izdvajamo:
 \begin{enumerate}
- \item[($i$)] dizajniranje mreža (na primjer, telefonske mreže), gdje je do svakog domaćinstva. koje je predstavljeno jednim čvorom, potrebno obezbijediti liniju, tako da se, na kraju, u mrežu povežu sva domaćinstva, uz minimalnu potrošnju materijala potrebnog za infrastrukturu mreže;
+ \item[($i$)] dizajniranje mreža (na primjer, telefonske mreže), gdje je do svakog domaćinstva. koje je predstavljeno jednim čvorom, potrebno obezbijediti liniju, tako da se, na kraju, u mrežu povežu sva domaćinstva, uz minimalnu potrošnju materijala potrebnog za kreiranje infrastrukture mreže;
  \item[($ii$)] aproksimaciji drugih teških optimizacionih problema kao što je problem trgovačkog putnika (TSP). Ponovimo, u problemu TSP je potrebno naći najkraću konturu koja posjećuje sve čvorove u (težinskom) grafu. Primijetimo da su takvi putevi takođe MST. Težina MST je manja nego težina TSP, jer minimizujemo nad većim skupom rješenja, tako da se može pokazati da je nalazak MST-a u težinskom grafu aproksimira nalazak TSP-a (nad euklidskim težinskim grafovima); 
  \item[($iii$)] Klaster analiza. $k$-klaster problem  se može posmatrati kao problem nalaženja MST-a, a potom brisanja $k-1$ najskupljih grana iz MST. 
  \end{enumerate}
@@ -5967,11 +5967,11 @@ Primov algoritam je jedan od osnovnih algoritama koji se, zbog svoje važnosti, 
 \begin{enumerate}
 	\item Kreirati skup \emph{mstSkup}=$\emptyset$ da bi se pratili svi čvorovi koji su već uključeni u MST.
 	\item Dodijeliti vrijednosti svakom čvoru u ulaznom grafu: inicijalizovati vrijednosti na +$\infty$. 
-	      Dodijeli vrijednosti 0 za čvor koji je izabran prvi za MST;
+	      Dodijeli vrijednost  0 za čvor koji je izabran prvi za MST;
 	\item Dok god \emph{mstSkup} ne uključi sve čvorove iz $V$, ponavljamo sljedeće korake:
 	\begin{itemize}
 		\item Izabrati čvor $u\notin\emph{mstSkup} $ sa minimalnom vrijednošću (pohlepni korak);
-		\item \emph{mstSkup} = \emph{mstSkup}$\cup \{u\}$;
+		\item \emph{mstSkup} = \emph{mstSkup}$\cup \{u\}$ (proširivanje parcijalnog rješenja);
 		\item Ažurirati vrijednosti svih susjeda čvora $u$ na sljedeći način:
 		     Za svaki susjed $v$, ako je težina grane $uv$ manja od
 		             ranije vrijednosti za $v$, dodijeliti  čvoru $v$ vrijednost $w(uv)$. 		    
@@ -5989,12 +5989,11 @@ Ideja dodjele vrijednosti čvorovima koji još nisu prisutni u MST je u tome da 
 
 Kruskalov algoritam radi po principu izbora grana na osnovu njihove težine, gdje se u svakom koraku koristi pohlepna strategija da se bira odgovarajuća grana najmanje težine.
 Koraci algoritma su sljedeći.
-
-\fixme{Marko, malo sam mijenjao korake u ovim algoritmima, pa provjeri da li ti je dobro ovako.}
+ 
 
 \begin{enumerate}
 	
-	\item Sortirati sve grana polaznog grafa u neopadajućem poretku; Neka je tako formirana lista $S$ svih grana u grafu.
+	\item Sortirati sve grane polaznog grafa u neopadajućem poretku; Neka je tako formirana lista $S$ svih grana u grafu.
 	\item Postaviti $\emph{mstSkup} = \emptyset$. 
 	\item Odabrati najlakšu granu iz skupa $S$ (pohlepni korak). Provjeriti da li se formira ciklus ako se ta 
 	grana doda u skup grana koje su do sada ubačene u skup \emph{mstSkup}; Ako to nije slučaj, ubaciti granu u trenutni skup \emph{mstSkup}. 
@@ -6042,7 +6041,7 @@ Svi koraci algoritma su dati u Algoritmu~\ref{alg:dijkstra-algorithm}. Nakon zav
     		\caption{Dajkstra($G,s $)}\label{alg:dijkstra-algorithm}
 \end{algorithm}
 
-\emph{Vremenska kompleksnost}.  Implementacija Algoritma~\ref{alg:dijkstra-algorithm} ima vremensku kompleksnost $O(|V|^2)$. Ako je graf predstavljem listom susjedstva, i skup $Q$  je implementiran kao binarni hip, 
+\emph{Vremenska kompleksnost}.  Implementacija Algoritma~\ref{alg:dijkstra-algorithm} ima vremensku kompleksnost $O(|V|^2)$. Ako je graf predstavljen listom susjedstva, i skup $Q$  je implementiran kao binarni hip, 
 kompleksnost se redukuje na $O(|E| \cdot \log |V|)$.
 
 Napomenimo da Dajkstrin algoritam ne radi sa grafovima koji imaju negativne težine (pogledati  liniju 12).  Za ovakve grafove,  primjenjuje se Bellman–Ford-ov algoritam koji je baziran na dinamičkom programiranju. Njega ne pominjemo   u ovoj knjizi, ali čitaocu preporučujemo da se, koristeći se literaturom ili internetom, upozna i sa ovim važnim algoritmom.  %, o kojem ćemo nešto više reći u narednim sekcijama.
@@ -6054,9 +6053,9 @@ Napomenimo da Dajkstrin algoritam ne radi sa grafovima koji imaju negativne tež
   Neka je dato $n$ proizvoda sa svojim  težinama i vrijednostima, 
   te ruksak čiji je kapacitet $W$. \emph{Frakcioni problem ruksaka} podrazumijeva da se odaberu dijelovi   (nekih) proizvoda i stave u ruksak, tako da vrijednost proizvoda u ruksaku bude što veća ali da se pri tom ne naruši ograničenje vezano za ukupan kapacitet ruksaka.
 
-U 0-1 problemu ruksaka, koji će biti razmatran i u Primjeru~\ref{primjer:01ruksak} i dalje u ostatku ovog poglavlja,  ne dopušta se dijeljenje proizvoda. Dakle, ili se uzima cijeli proizvod (1) i stavlja u ruksak, ili se uopšte ne uzima (0). U  problemu frakcionog ruksaka, svaki proizvod posjeduje težinu i vrijednost, te se kao takav može podijeliti na dijelove (recimo dopušteno je da se uzme   pola od ukupne količine proizvoda). Primjeri takvih proizvoda bi bili mlijeko, so, šećer itd. Efikasno rješavanje ovog problema se izvodi primjenom pohlepnog algoritma na sljedeći način.
+U 0-1 problemu ruksaka, koji će biti razmatran i u Primjeru~\ref{primjer:01ruksak} i dalje u ostatku ovog poglavlja,  ne dopušta se dijeljenje proizvoda. Dakle, ili se uzima cijeli proizvod (1) i stavlja u ruksak, ili se uopšte ne uzima (0). U  problemu frakcionog ruksaka, svaki proizvod posjeduje težinu i vrijednost, te se kao takav može podijeliti na dijelove (recimo dopušteno je da se uzme   pola od ukupne količine proizvoda). Primjeri takvih proizvoda bi bili mlijeko, so, šećer, itd. Efikasno rješavanje ovog problema se izvodi primjenom pohlepnog algoritma na sljedeći način.
 \begin{enumerate}
-	\item Računaju se odnosi količina/vrijednost za svaki proizvod, te se proizvodi  sortiraju na osnovu tih vrijednosti.
+	\item Računaju se odnosi količina/vrijednost za svaki proizvod, te se proizvodi  sortiraju na osnovu tih vrijednosti, u opadajućem poretku. 
 	   \item Sve dok ruksak nije poptuno napunjen ponavljamo sljedeći postupak:
 	   	\begin{itemize}
 	   		\item  Iz liste sortiranih proizvoda, uzmemo onaj proizvod kod koga je izračunati odnos najveći;
@@ -6076,7 +6075,7 @@ String definišemo kao niz karaktera nad konačnom azbukom $\Sigma$.
 Problem najdužeg podniza (eng. \emph{Longest common subsequence} -- LCS), je problem koji na ulazu uzima  $n$ stringova (označimo ovaj skup sa $S$) proizvoljne dužine. Cilj je da se pronađe string maksimalne dužine tako da on predstavlja zajednički podniz za sve stringove iz skupa $S$. 
 
 \begin{primjer}\label{primjer:lcs}
- Neka su u ulazu data tri stringa dužine šest: $S = \{  \texttt{abbccb}, \texttt{abccab}, \texttt{abbbcb}   \}$. Rješenje problema je $s=\texttt{abcb}$. Primijetimo da je $s$ podniz za sva tri stringa iz $S$, a može se (direktno) provjeriti da je to najduži takav string. 
+ Neka su u ulazu data tri stringa dužine šest: $$S = \{  \texttt{abbccb}, \texttt{abccab}, \texttt{abbbcb}   \}.$$  Rješenje problema je $s=\texttt{abcb}$. Primijetimo da je $s$ podniz za sva tri stringa iz $S$, a može se (direktno) provjeriti da je to najduži takav string. 
  \end{primjer}
  
  Ovaj problem se može riješiti u $O(n^m)$ vremenu uz pomoć dinamičkog programiranja, gdje je $n$ dužina najdužeg stringa u ulazu, a $m$ broj stringova u ulazu. Specijalno, za  $m=2$, problem je rješiv u $O(n^2)$ vremenu. Za proizvoljnu dužinu ulaza, ovaj problem je NP-težak.  
@@ -6085,16 +6084,14 @@ Problem najdužeg podniza (eng. \emph{Longest common subsequence} -- LCS), je pr
 Jedan od najjednostavnijih pristupa za rješavanje ovog problema je  \emph{pohlepni pristup}, tzv. \emph{Best-Next} (BN) heuristika. Prije nego što navedemo detalje algoritma, uvedimo nekoliko definicija i oznaka koje će biti korištene u konstrukciji ovog algoritma. 
 
 Za cjelobrojni vektor $p^L = (p^L_1,\ldots, p^L_m)$, definišemo kolekciju stringova
-$S[p^L] = \{s_i[p^L_i, |s_i|] \mid i=1,\ldots,m\}$, gdje $|s|$ označava dužinu stringa $s$, a $s[x,y]$ podstring (sufiks) stringa $s$ koji počinje od karaktera na poziciji $x$, a završava sa karakterom na poziciji $y$. Konvencija je da se indeksi u stringu numerišu krenuvši od 1. Dakle, $s= [1, |s|]$ za svaki string $s$. Primjera radi, za (pozicioni) vektor $p^L=(1,2,3)$ i skup $S$ iz Primjera~\ref{primjer:lcs} imamo $S[ (1,2,3)] = \{ s_1[1, |s_1|], s_2[2, |s_2|], s_3[3, |s_3|]  \}= \{ \texttt{bbccb}, \texttt{ccab}, \texttt{bcb}\}$. 
-
-\fixme{marko, u prethodnoj verziji je u prethodnom paragrafu pisalo $p^L=(1,2,2)$, a ja vidim da si koristio $p^L=(1,2,3)$. Dalje, ako si stavio indekse 1, 2 i 3, ni Milani ni meni nije jasno kako si isjekao stringove, ako indeksi idu od 1. Valjda bi za ovaj primjer trebalo da bude $p^L=(2,3,4)$????}
+$S[p^L] = \{s_i[p^L_i, |s_i|] \mid i=1,\ldots,m\}$, gdje $|s|$ označava dužinu stringa $s$, a $s[x,y]$ podstring (sufiks) stringa $s$ koji počinje od karaktera na poziciji $x$, a završava sa karakterom na poziciji $y$. Konvencija je da se indeksi u stringu numerišu krenuvši od 1. Dakle, $s= [1, |s|]$ za svaki string $s$. Primjera radi, za (pozicioni) vektor $p^L=(2,3,4)$ i skup $S$ iz Primjera~\ref{primjer:lcs} imamo $S[ (1,2,3)] = \{ s_1[1, |s_1|], s_2[2, |s_2|], s_3[3, |s_3|]  \}= \{ \texttt{bbccb}, \texttt{ccab}, \texttt{bcb}\}$. 
 
  
 Dalje, sa $p^L_{i,a}$ definišemo poziciju prvog pojavljivanja karaktera $\texttt{a}\in \Sigma$ takav da je $p^L_{i,a} \geq p^L_i$ (ukoliko karakter ne postoji, dodijelimo vrijednost $n+1$). Skup karaktera $\Sigma_{p^L}$ koji se pojavljuju u svakom od stringova (u podproblemu) $S[p^L]$ se nazivaju dopustive ekstenzije u odnosu na pozicioni vektor $p^L$. 
 
-U konstrukciji pohlepnog algoritma, odredimo  skup dopustivih komponenti i (pohlepni) kriterijum odabira najbolje komponente u svakom od koraka algoritma. Inicijalno rješenje $s$ je prazan string, koji je, trivijalno, dopustivo rješenje za svaku instancu LCS problema. Ideja je u svakom koraku proširiti rješenje za jedan karakter tako da spojimo taj karakter (sa desna) sa $s$  dok god je to moguće i pri tome da je prošireni string i dalje LCS. Za spajanje stringa i karaktera ćemo koristiti standardni operator ($\cdot$).
+U konstrukciji pohlepnog algoritma, odredimo  skup dopustivih komponenti i (pohlepni) kriterijum odabira najbolje komponente u svakom koraku algoritma. Inicijalno rješenje $s$ je prazan string, koji je, trivijalno, dopustivo rješenje za svaku instancu LCS problema. Ideja je u svakom koraku proširiti rješenje za jedan karakter tako da spojimo taj karakter (sa desna) sa $s$  dok god je to moguće i pri tome da je prošireni string i dalje LCS. Za spajanje stringa i karaktera ćemo koristiti standardni operator ($\cdot$).
 
- Prema navedenom, krenemo sa pozicijom $p^L = (1, \ldots, 1)$ koja odgovara čitavom skupu $S=S[p^L]$ i praznim stringom $s =\varepsilon$ kao inicijalnim rješenjem. Dalje, da bismo očuvali dopustivost rješenja kada se rješenje proširi za jedan karakter, za komponente rješenja $\Sigma_{p^L}$ ćemo uzeti sve karaktere koji se nalaze u svim stringovima iz $S=S[p^L]$. Na taj način,  ekstenzija $s = s \cdot x$  će za bilo koji $x \in \Sigma_{p^L}$ dati dopustivo LCS rješenje. Među karakterima iz $\Sigma_{p^L}$ treba odabrati (lokalno) najboljeg kandidata za proširivanje rješenja. Treba imati na umu da se kandidat $x\in \Sigma_{p^L}$ može pojaviti na nekoliko pozicija u svakom stringu iz $S=S[p^L]$. Kako ne želimo ekstenzije koje vode ka podoptimalnim rješenjima, biramo karakter $x$ koji je najbliže početku u svakom od strinova iz $S=S[p^L]$, dakle na pozicijama $p^L_{i,a},i=1,\ldots,m$. 
+ Prema navedenom, krenemo sa pozicijom $p^L = (1, \ldots, 1)$ koja odgovara čitavom skupu $S=S[p^L]$ i praznim stringom $s =\varepsilon$ kao inicijalnim rješenjem. Dalje, da bismo očuvali dopustivost rješenja kada se rješenje proširi za jedan karakter, za komponente rješenja $\Sigma_{p^L}$ ćemo uzeti sve karaktere koji se nalaze u svim stringovima iz $S=S[p^L]$. Na taj način,  ekstenzija $s = s \cdot x$  će za bilo koji $x \in \Sigma_{p^L}$ dati dopustivo LCS rješenje. Među karakterima iz $\Sigma_{p^L}$ treba odabrati (lokalno) najboljeg kandidata za proširivanje rješenja. Treba imati na umu da se kandidat $x\in \Sigma_{p^L}$ može pojaviti na nekoliko pozicija u svakom stringu iz $S=S[p^L]$. Kako ne želimo ekstenzije koje vode ka podoptimalnim rješenjima, biramo karakter $x$ koji je najbliže početku u svakom od stringova iz $S=S[p^L]$, dakle na pozicijama $p^L_{i,a},i=1,\ldots,m$. 
 
  Ideja konstrukcije pohlepne funkcije $g$ se sastoji u odabiru onog karaktera za proširivanje rješenja $s$ koji preskače najmanji broj karaktera iz dalje pretrage. Sljedeći korak se sastoji u ažuriranju prostora pretrage za novi korak. Kako smo proširili rješenje za $x$, nove komponente rješenja koje su dopustive tražimo u skupu stringova $S[p^L_{1,x}+1,\ldots, p^L_{m, x}+1]$. Postupak nastavljamo dok god postoje komponente koje mogu proširiti trenutno rješenje $s$. 
 
