@@ -4065,8 +4065,8 @@ Rješavajući LP relaksaciju problema ($P3$), dobijamo rješenje $x^*=(\frac{9}{
 \section{Lagranžova relaksacija}
 U rješavanju problema optimizacije, pronalazak optimalnog rješenja je osnovni cilj. Međutim, za mnoge probleme nije realno očekivati da će se razumnom vremenu može doći do optimalnog rješenja. Umjesto toga, najbolje što se može učiniti je da se ponudi dobra  granica za optimalnu vrijednost. Ako je ta granica blizu optimuma, u mnogo slučajeva ona može da zamijeni optimum, čime štedimo resurse kojima raspolažemo, a dobijamo rješenje koje je prihvatljivo.  
 
-Ideja \emph{Lagranžove relaksacije} se sastoji u tome da u modelu ILP-a  koji ima  ograničenja koja problem čine teškim (ova procjena je najčešće stvar praktičnog iskustva),  posmatramo kao dio ciljne funkcije koju penalizujemo nekim parametrom.  %parametrom $\lambda>0$. 
-Ovo ograničenje potom brišemo iz skupa ograničenja modela, a zatim rješavamo ovakav problem. Na ovaj način, rješenje takvog problema je donja granica (za problem minimizacije)  optimalnog rješenja inicijalnog problema. Dobijena granica je često dovoljno blizu vrijednosti optimuma, što ovu metodu čini upotrebljivom u rješavanju praktičnih problema. 
+Ideja \emph{Lagranžove relaksacije} se sastoji u tome da u modelu ILP-a  koji ima  ograničenja koja problem čine teškim (ova procjena najčešće dolazi uz praktičnog iskustva),  posmatramo kao dio ciljne funkcije koji se penalizuje nekim parametrom.  %parametrom $\lambda>0$. 
+Ovo ograničenje potom brišemo iz skupa ograničenja modela, a zatim rješavamo ovakav (parametrizovan) problem. Fiksirajući parametar penalizacije, rješenje takvog problema predstavlja donju granicu (za problem minimizacije)  optimalnog rješenja inicijalnog problema. Dobijena granica je često dovoljno blizu vrijednosti optimuma, što ovu metodu čini upotrebljivom u rješavanju praktičnih problema. 
 
 \begin{primjer} Posmatrajmo problem \emph{najkraćeg puta sa ograničenjem} (eng. \emph{Constrained Shortest Path Problem}). Neka je dat usmjeren neciklični graf $G=(V,E)$. Za svaku granu $(i,j) \in E$ dodijelimo cijenu puta $c_{i,j}$ i vrijeme putovanja $t_{i,j}$. Pretpostavimo da je čvor $i=1$ startni (izvorni) čvor, a čvor $n = |V|$   završni čvor (terminalni čvor). Zadatak je da se nađe najjeftiniji put  od izvornog do terminalnog čvora, ali tako da se čitav put pređe u vremenskom periodu $T$.
 \end{primjer}
@@ -4102,23 +4102,24 @@ Primijetimo da je $L(\lambda) \leq z(\lambda)  \leq z^*$, za sve $\lambda > 0$, 
 Problem $L^* = \max \{ L(\lambda) \mid \lambda > 0  \}$ se naziva \emph{problem Lagranžovog multiplikatora}. Može se pokazati da vrijedi 
 $$ L(\lambda) \leq L^* \leq z^*.$$
 
-U praksi se pokazalo da je Lagranžova relaksacija dobra tehnika za dobijanje granica za optimalnu vrijednost problema. 
+U praksi se pokazalo da je Lagranžova relaksacija dobra tehnika za dobijanje granica optimalne vrijednosti problema. 
 
-\fixme{marko, ovo razmatranje u narednom primjeru mi nije bas jasno, mozemo zajedno prodiskutovati.}
+\fixme{marko, ovo razmatranje u narednom primjeru mi nije bas jasno, mozemo zajedno prodiskutovati. Marko: Detaljnije objasnjeno sada -- nadam se da je jasnije, pa pogledaj kako ti izgleda.}
 
 \begin{primjer}
-Primijenimo ovu tehniku na \emph{problem trgovačkog putnika}.  Razmotrimo  problem sa grafovske strane. Znamo da kolekcija grana formira rutu ako su svaka dva čvora grafa pokrivena sa dvije grane. Takođe, ako obrišemo grane incidentne sa čvorom 1, ostatak rute čini stablo koje pokriva graf  $G\setminus \{1\}$.  
+Primijenimo ovu tehniku na \emph{problem trgovačkog putnika} sa ulaznim težinskim grafom $G=(V,E)$. Razmotrimo  problem sa grafovske strane i pokušajmo da izvedemo njegovu relaksaciju. Neka je data kolekcija grana $T$. Kolekcija grana $T$ formira rutu ako su svaka dva čvora grafa $G$ pokrivena sa tačno dvije grane iz te kolekcije. Kada obrišemo grane incidentne sa čvorom 1 (ili nekim drugim), ostatak rute će činiti stablo koje pokriva graf  $G\setminus \{1\}$.  
 Definišimo sa $A(j)$ skup svih čvorova koji su incidentni sa čvorom $j$. 
 \end{primjer}
-Relaksacija: definišimo sa $T_1$ skup svih ruta koje nakon brisanja grana koje pokrivaju čvor $1$ formiraju drvo.  
+Relaksacija: definišimo sa $T_1$ skup svih ruta koje nakon brisanja grana koje pokrivaju čvor $1$ formiraju (pokrivajuće) stablo.  Dakle, prije samog rješavanja problema, enumerišimo sve ovakve rute u grafu $G$. 
 
 Shodno tome, konstruišemo sljedeći model
 \begin{align*}
     &z^* = \min \sum_{(i,j)\in E} c_{i,j} x_{i,j}\\
+    & t.d. \\
     & \sum_{ \{ i \mid (i,j) \in E \} } x_{i,j} = 2, \forall i \in \{1,\ldots, n \} \\
     & x \in T_1,
 \end{align*}
-gdje $x_{i,j} = 1$ ako grana $(i,j)$ pripada ruti, a 0 inače.
+gdje $x_{i,j} = 1$ ako grana $(i,j)$ pripada ruti, a 0 inače. Ako je $x=(i, j) \in T_1$, to znači da postoji neka ruta u $G$ u kojoj su čvorovi $i$ i $j$ susjedni, gdje se nakon brisanja grana čvora $1$, formira (pokrivajuće) stablo grafa $G$. 
 
 Lagranžova relaksacija za ovaj problem može se zadati sa 
 \begin{align*}
@@ -4133,6 +4134,7 @@ Konstruišimo još jednu Lagranžovu relaksaciju za ovaj problem,  uvodeći tzv.
 
 \begin{align*}
      & z^* = \min \sum_{(i,j)\in E} c_{i,j} x_{i,j} \\
+     & t.d. \\
      & \sum_{ \{ i \mid (i,j) \in E \} } x_{i,j} = 2, \forall i \in \{1,\ldots, n \} \\
      & \sum_{(i,j) \in E  \wedge i,j \in S} x_{i,j} \leq |S|-1, \forall S \subseteq V \\
      & x_{i,j} \in \{0, 1 \}, (i,j)\in E.
@@ -4140,6 +4142,7 @@ Konstruišimo još jednu Lagranžovu relaksaciju za ovaj problem,  uvodeći tzv.
 Lagranžova relaksacija prethodnog ILP-a ima oblik 
 \begin{align*}
  &L(\lambda) = \min \sum_{(i,j)\in E} c^\lambda_{i,j} x_{i,j} - 2 \sum_{i} \lambda_i \\
+ & t.d. \\
  & \sum_{(i,j) \in E} x_{i,j} \leq |S|-1, \forall S \in V \\
  & \sum_{(i,j) \in E} x_{i,j} = n
 \end{align*}
@@ -4621,10 +4624,7 @@ Ovo takođe daje i donju granicu za druge vrijednosti $y$ koje bismo mogli proba
 	(u^*)^T(c-By)>0
 \end{equation}
 gdje je ${(u^*)}^T$ vektor koji definiše pravac mogućih rješenja duž kog funkcija neograničeno raste. Ovakav pravac se naziva i \emph{ekstremni zrak}.
-
-\fixme{marko, pogledaj da li si saglasan sa ovakvim nacinom uvodjenja termina zrak}
-
-
+ 
 U ovom slučaju, cilj je eliminisati ovaj zrak iz daljeg razmatranja (budućih rješenja). Da bismo to uradili, potrebno je osigurati da izraz $(u^*)^T(c-By)$ bude manji ili jednak od nule u svim narednim koracima. Tako, master problemu dodajemo novu odsjecajuću ravan, definisanu sa
 \begin{equation}
 	\label{bender7}
