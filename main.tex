@@ -6834,10 +6834,8 @@ Kod uniformnog ukrštanja, za svaki par jedinki koje se ukrštaju, prvo se gener
 	\caption{Primjer operatora mutacije (uniformno mutiranje)}\label{tbl:unimut}
 \end{table}
 
-\emph{Operator selekcije}. \fxnote{Marko: stigao dovde.}
-
-Operator selekcije bira jedinke koje preživljavaju u procesu evolucije. Po pravilu, boljim jedinkama (jedinkama sa boljom prilagođenošću) se operatorom selekcije daje veća vjerovatnoća da će preživjeti u narednu generaciju, dok  slabije jedinke selekcijom dobijaju manju šansu da prežive, te se tako izbacuju iz populacije. Neke od popularnijih tehnika selekcije su rulet selekcija, turnirska, eliminacijska selekcija i elitizam.
-Rulet selekcija diktira da je vjerovatnoća da će jedinka preživjeti u narednu generaciju proporcionalna prilagođenosti. Kod turnirske selekcije se formiraju skupovi jedinki, od kojih samo ona sa najboljom prilagođenošću preživljava u sljedeću generaciju. Eliminacijska selekcija je primarno zasnovana na izbacivanju loših jedinki prije nego na odabiru boljih za narednu generaciju. Elitizam podrazumijeva da će nekoliko najboljih (elitnih) jedinki direktno preći u narednu generaciju, čime se daje pouzdana pretpostavka da  algoritam teži globalnom optimumu.
+\emph{Operator selekcije}.  Operator selekcije bira jedinke koje preživljavaju u procesu evolucije. Po pravilu, boljim jedinkama (jedinkama sa boljom prilagođenošću) se operatorom selekcije daje veća vjerovatnoća da će preživjeti u narednoj generaciji, dok  slabije jedinke selekcijom dobijaju manju šansu da prežive, te se tako izbacuju iz populacije. Neke od popularnijih tehnika selekcije su rulet selekcija, turnirska, eliminacijska selekcija i elitizam.
+Rulet selekcija diktira da je vjerovatnoća da će jedinka preživjeti u narednu generaciju proporcionalna prilagođenosti. Kod turnirske selekcije se formiraju skupovi jedinki, od kojih samo ona sa najboljom prilagođenošću preživljava u sljedećoj generaciji. Eliminacijska selekcija je primarno zasnovana na izbacivanju loših jedinki prije nego na odabiru boljih za narednu generaciju. Elitizam podrazumijeva da će nekoliko najboljih (elitnih) jedinki direktno preći u narednu generaciju, čime se daje pouzdana pretpostavka da  algoritam teži globalnom optimumu.
 
 Ilustrujmo rad rulet selekcije na našem primjeru 0-1 problemu ruksaka. Naprije pretpostavimo da je funkcija prilagođenosti jednaka vrijednosti funkcije cilja. Dalje, posmatrajmo populaciju od 4 jedinke, prikazane u Tabeli~\ref{tab:rulet}.
 
@@ -6846,7 +6844,7 @@ Ukupan fitnes svih jedinki (zbir vrijednosti funkcija prilagođenosti svih jedin
 Treba napomenuti da, iako se rulet selekcija na prvi pogled čini pogodnom za odabir jedinki koje preživljavaju u sljedećoj generaciju, ona ima i značajne nedostatke. Ovom selekcijom se jedinke sa slabom vrijednošću funkcije cilja često prerano odbacuju, iako možda sadrže potencijalno dobre gene, koji bi ukrštanjem sa drugim jedinkama mogli proizvesti još bolje potomke. Dalje, u kasnijim fazama algoritma, kada se javi više kvalitetnih jedinki koje imaju približno iste (ali ipak različite!) vrijednosti funkcije prilagođenosti, vjerovatnoće da će takve jedinke preživjeti su približno jednake, što dovodi do opasnosti da, nakon selekcije, najbolje jedinke i ne prežive u narednu generaciju. Stoga se u praksi značajno češće koristi turnirska selekcija, kojom se prevazilaze nedostaci rulet selekcije.
 
 
-Na kraju ovog odjeljka treba pomenuti da je višedecenijska primjena genetskih algoritama u rješavanju velikog broja problema kombinatorne optimizacije dovela je do pojave velikog broja različitih varijanti algoritma, koje se, između ostalog, razlikuju po operatorima koji se primjenjuju, načinu formiranja početne populacije, primjenama različitih strategija lokalnog pretraživanja, tehnike keširanja međurezultata itd. 
+Na kraju ovog odjeljka treba pomenuti da je višedecenijska primjena genetskih algoritama u rješavanju velikog broja problema kombinatorne optimizacije dovela je do pojave velikog broja različitih varijanti algoritma, koje se, između ostalog, razlikuju po operatorima koji se primjenjuju, načinu formiranja početne populacije, primjenama različitih strategija lokalnog pretraživanja, tehnike keširanja međurezultata, itd. 
 
 
 \begin{table}
@@ -6863,10 +6861,10 @@ Na kraju ovog odjeljka treba pomenuti da je višedecenijska primjena genetskih a
  
 \subsection{Metoda lokalne pretrage}\label{sec: local_search}
 
-Metoda lokalne pretrage je tehnika čija se strategija sastoji u izvođenju niza poboljšanja  rješenja, počevši od nekog unaprijed zadanog, radeći male promjene u trenutno najboljem rješenju. Uvedimo prvo koncept okolina i lokalnih rješenja kao baznih pojmova u metodologiji lokalne pretrage. Za dato rješenje $x$, definišimo skup (ne obavezno dopustivih) rješenja koja su ``blizu'' $x$ u odnosu na neku mjeru. Formalno, okolina predstavlja preslikavanje  $\mathcal{N}$ gdje svakom (dopustivom) rješenju pridružujemo skup rješenja, koje zovemo okolina od $x$.  Funkcija okoline se takođe može definisati preko operatora  $\Delta$, koji predstavlja kolekciju   funkcija $\Delta:\Phi \mapsto \Phi$,  gdje je $\Phi$ prostor pretrage (rješenja) razmatrane instance problema:
+Metoda lokalne pretrage je tehnika čija se strategija sastoji u izvođenju niza poboljšanja  rješenja, počevši od nekog unaprijed zadanog, radeći ``male'' promjene u strukturi trenutno najboljeg rješenja. Uvedimo prvo koncept okolina i lokalnih rješenja kao baznih pojmova u metodologiji lokalne pretrage. Za dato rješenje $x$, definišimo skup (ne obavezno dopustivih) rješenja koja su ``blizu'' $x$ u odnosu na neku mjeru. Formalno, okolina predstavlja preslikavanje  $\mathcal{N}$ gdje svakom (dopustivom) rješenju pridružujemo skup rješenja, koje zovemo okolina od $x$.  Funkcija okoline se takođe može definisati preko operatora  $\Delta$, koji predstavlja kolekciju   funkcija $\Delta:\Phi \mapsto \Phi$,  gdje je $\Phi$ prostor pretrage (rješenja) razmatrane instance problema:
 $$ x' \in \mathcal{N}(x) \Longleftrightarrow \exists \delta \in \Delta,\delta(x)=x'.$$
  
-Prirodan izbor u mnogim aplikacijama je $k$-promjenjiva (eng. \emph{k-exchange}) okolina: $x$ i $x^{'}$ pripadaju istoj okolini akko se razlikuju na tačno $k$ komponenti rješenja. Na primjer, za TSP problem, 2-{promjenjiva} okolina je prirodan izbor gdje su komponente rješenja grane datog grafa.  
+Prirodan izbor u mnogim aplikacijama je $k$-izmjenjena (eng. \emph{k-exchange}) okolina: $x$ i $x^{'}$ pripadaju istoj okolini akko se razlikuju na tačno $k$ komponenti rješenja. Na primjer, za TSP problem, 2-{izmijenjena} okolina je prirodan izbor gdje su komponente rješenja grane datog grafa.  
 
   
 Rješenje $x$ je \emph{lokalni optimum} u odnosu na okolinu $\mathcal{N}$ akko
@@ -6882,20 +6880,20 @@ $f(x) \leq f(x')$ ($f(x) \geq f(x')$), za sve $x' \in \mathcal{N}(x)$, ako minim
 	\end{algorithmic}
 \end{algorithm}
 
-Pseudokod lokalne pretrage je dat u Algoritmu~\ref{alg:ls}. Ulaz u algoritam je instanca problema i jedna definisana okolina. U svakoj iteraciji, lokalna pretraga poboljšava trenutno (najbolje) rješenje ako    rješenje u okolini  $\mathcal{N}(x)$ ima bolju vrijednost ciljne funkcije. Algoritam se prekida ako je trenutno rješenje lokalno najbolje u odnosu na definisanu okolinu.
+Pseudokod lokalne pretrage je dat u Algoritmu~\ref{alg:ls}. Ulaz u algoritam je instanca problema i jedna definisana okolina $\mathcal{N}$. U svakoj iteraciji, lokalna pretraga poboljšava trenutno (najbolje) rješenje ako    rješenje u okolini  $\mathcal{N}(x)$ ima bolju vrijednost ciljne funkcije. Algoritam se prekida ako je trenutno rješenje lokalno najbolje u odnosu na definisanu okolinu.
  Postoje dvije strategije za izbor rješenja koje će zamijeniti trenutno najbolje rješenje, pod pretpostavkom da postoji više od jednog rješenja sa boljom vrijednošću ciljne funkcije u posmatranoj okolini. Te strategije su:
  \begin{itemize}
- 	\item \emph{prvo poboljšanje} (eng. \emph{the first improvement strategy}) -- ova strategija prihvata prvo nađeno rješenje $x'$ u okolini $\mathcal{N}(x)$ sa boljom vrijednošću ciljne funkcije od $x$. Pretraga se rekurzivno seli u tačku  $x = x'$, odakle se pokreće nova iteracija lokalne pretrage.
+ 	\item \emph{prvo poboljšanje} (eng. \emph{the first improvement strategy}) -- ova strategija prihvata prvo nađeno rješenje $x'$ u okolini $\mathcal{N}(x)$ sa boljom vrijednošću ciljne funkcije od $x$. Pretraga se rekurzivno pomijera u tačku  $x = x'$, odakle se pokreće nova iteracija lokalne pretrage.
  	\item \emph{najbolje poboljšanje} (eng. \emph{the best improvement strategy}) --   ova strategija provjerava sva rješenja iz okoline $\mathcal{N}(x)$ i za novo najbolje rješenje bira ono koje je lokalno najbolje u toj okolini. Nalazak  najboljeg rješenja zahtijeva enumeraciju svih rješenja iz okoline. Stoga, upotreba ove strategije, u opštem slučaju, zahtijeva više procesorskog vremena, tako da ona nije uvijek primjenjiva. %Ipak, u praksi se pokazalo da strategija \emph{najboljeg poboljšanja} često vodi ka lokalnom optimumu problema u svega nekoliko iteracija lokalne pretrage. 
  \end{itemize}
-  Okolina kod koje se formira direktnom razmjenom vrijednosti dvije promjenljive u rješenju se često naziva i \emph{1-swap} okolina.
- \begin{primjer} U   problemu 0-1 ruksaka, za okolinu $\mathcal{N}$ bi mogli uzeti $1$-\emph{swap} okolinu. Recimo, za $n=4$ i rješenje $x=1100$ imali  bismo $$\mathcal{N}(x)= \{ 0100, 1000, 1110, 1101 \}.$$ 
+  Okolina kod koje se formira direktnom razmjenom vrijednosti dvije promjenljive u rješenju se često naziva i \emph{1-razmjena} (eng. \emph{swap}) okolina.
+ \begin{primjer} U   problemu 0-1 ruksaka, za okolinu $\mathcal{N}$ bi mogli uzeti $1$-\emph{exchange} okolinu. Recimo, za $n=4$ i rješenje $x=1100$ imali  bismo $$\mathcal{N}(x)= \{ 0100, 1000, 1110, 1101 \}.$$ 
  	\end{primjer}
   
 \subsection{Metoda promjenljivih okolina}\label{intro:vns}
 Metoda promjenljivih okolina (VNS) je metaheuristika uvedena od strane Nenada Mladenovića i Pjera Hansena u drugoj polovini devedesetih godina prošlog vijeka.
-Pretraga je zasnovana na sistematskoj promjeni okolina da bi se izbjegle situacije kada algoritam ``upada'' u podoptimalna rješenja. Efikasnost VNS algoritma je zasnovana na razmatranju da u mnogim praktičnim optimizacionim problemima postoji veza između lokalnih minimuma. Stoga, metoda promjenljivih okolina i ne prati unaprijed zadatu putanju, već ``skače'' na potencijalno bolja rješenja koja se nalaze u nekoj okolini trenutno najboljeg rješenja. Ovaj proces je poznat pod nazivom diversifikacija -- eng. \emph{diversification}.
-Na ovaj se način očuvavaju dobre osobine trenutnog rješenja (ako su neke promjenljive već dostigle optimalne vrijednosti), dok se u novim okolinama pokušavaju poboljšati preostale promjenljive. Ovaj sistem je dodatno ojačan sistemom lokalnog pretraživanja, kojim se prelazi iz trenutnog rješenja u najkvalitetnije rješenje u nekoj njegovoj okolini. Ovaj proces je poznat pod nazivom intenzifikacija -- eng. \emph{intensification}.
+Pretraga je zasnovana na sistematskoj promjeni okolina da bi se izbjegle situacije kada algoritam ``upada'' u podoptimalna rješenja. Efikasnost VNS algoritma je zasnovana na razmatranju da u mnogim praktičnim optimizacionim problemima postoji veza između lokalnih minimuma. Stoga, metoda promjenljivih okolina i ne prati unaprijed zadatu putanju, već ``skače'' na potencijalno bolja rješenja koja se nalaze u nekoj okolini trenutno najboljeg rješenja. Ovaj proces je poznat pod nazivom diversifikacija (eng. \emph{diversification}).
+Na ovaj se način očuvavaju dobre osobine trenutnog rješenja (ako su neke promjenljive već dostigle optimalne vrijednosti), dok se u novim okolinama pokušavaju poboljšati preostale promjenljive. Ovaj sistem je dodatno ojačan sistemom lokalnog pretraživanja, kojim se prelazi iz trenutnog rješenja u najkvalitetnije rješenje u nekoj njegovoj okolini. Ovaj proces je poznat pod nazivom intenzifikacija (eng. \emph{intensification}).
 
 Ponovimo da algoritam zasnovan na metodi promjenljivih okolina raspolaže jednom tačkom u jednoj iteraciji, a ne populacijom tačaka kao što je to slučaj sa genetskim algoritmom.
 
@@ -6937,7 +6935,7 @@ Najčešći kriterijumi za prekid   algoritma su: dostignuto maksimalno  vrijeme
 \begin{primjer} Da bismo ilustrovali način funkcionisanja metode promjenljivih okolina, možemo posmatrati isti primjer kao i u slučaju genetskog algoritma: 0-1 problem ruksaka. 
 \end{primjer}
 
-\emph{Reprezentacija rješenja}. Kao i u slučaju genetskog algoritma, rješenje problema se može predstaviti binarnim nizom. Ako $i$-ti element niza ima vrijednost 1, to znači da je $i$-ti proizvod uključen u rješenje, a u suprotnom, nije.
+\emph{Reprezentacija rješenja}. Kao i u slučaju genetskog algoritma, rješenje problema se može predstaviti binarnim nizom. Ako $i$-ti element niza ima vrijednost 1, to znači da je $i$-ti proizvod uključen u rješenje, a u suprotnom je izostavljen.
 
 \emph{Vrijednost funkcije cilja}. Slično kao u primjeru genetskog algoritma, vrijednost funkcije cilja se najlakše može definisati kao zbir vrijednosti proizvoda uključenih u rješenje. Eventualno, ako se u algoritmu dozvoljava rad sa nedopustivim rješenjima, funkcija cilja može da sadrži i dio za ``kažnjavanje'' nedopustivih rješenja. Razmatranje o kažnjavanju nedopustivih rješenja je slično kao u slučaju genetskog algoritma.
 
@@ -7006,20 +7004,19 @@ Postoje različite strategije koliko dugo se izvršava lokalna pretraga. U opšt
 		   \item %https://massivedatasets.files.wordpress.com/2011/04/approx1-exercisesf114.pdf
 		   Neka je dat kompletan neusmjeren graf $G = (V, E)$ u kojem težine grana zadovoljavaju nejednakost trougla i neka je $k$ pozitivan prirodan broj. Problem metričkog $k$-klasterovanja (eng. Metric $k$-clustering)  se sastoji od particionisanja skupa $V$ na $k$ disjunktnih skupova $V_1, \ldots, V_k$, na način da se  minimizuje najveća cijena grane  između dva čvora u istom skupu, simbolički zapisano
 		   $$ \min\max_{1 \leq i \leq k, u,v \in V_i} c(uv).$$
-		   Konstruisati 2--aproksimativni algoritam za ovaj problem (metričko $k$--klasterovanje). 
+		   Konstruisati 2--aproksimativni algoritam za problem metričkog $k$--klasterovanja. 
 		\item %https://www.ibr.cs.tu-bs.de/courses/ws1920/aa/exercises/exercise_03.pdf
-		 Neka je dat netežinski graf $G=(V,E)$. Naći particiju $V$ na $k$ skupova $V_1,\ldots, V_k$ tako da je broj grana koje su između dvije različite particije minimizovan. Konstruisati (pohlepni) algoritam koji je ($1-\frac{1}{k}$)--~aproksimativni. 
+		 Neka je dat   graf $G=(V,E)$. Naći particiju $V$ na $k$ skupova $V_1,\ldots, V_k$ tako da je broj grana koje su između dvije različite particije minimizovan. Konstruisati (pohlepni) algoritam koji je ($1-\frac{1}{k}$)--~aproksimativni. 
 		 
-		 \fixme{vec je bio zadatak sa bojenjem, pa bih ovaj dole zadatak izostavio. stavio sam ga u komentar}
+ 
 		 \begin{comment}
 		 \item U problemu bojenja grafa, u ulazu nam je dat neusmjeren graf $G = (V,E)$. Kažemo da je funkcija $f:V \mapsto \{1,\ldots, k\}$ $k$-bojenje akko ne postoje susjedni čvorovi grafa kojima je pridružen isti broj, tj. $f(u) \neq f(v)$, za $uv \in E$. Problem bojenja grafa traži za $k$-bojenje na grafu $G$, gdje je $k$ minimalan. Konstruisati pohlepni algoritam za koji je $k = \Delta + 1$, gdje je $\Delta$ maksimalni stepen čvora u $G$. 
 		 \end{comment}
-		 
-		 \fixme{U ovom narednom zadatku mi nije jasno sta se trazi. Otisao sam na referencu, ali ni tamo ne pise nista vise od odova. I njega sam iskomentarisao.}
-		 \begin{comment}
+ 
+		 %\begin{comment}
 		 \item %https://www.ibr.cs.tu-bs.de/courses/ws1920/aa/exercises/exercise_05.pdf
-		 Problem obilaska segmenata (eng. \emph{Segment tour problem}). Neka je dat skup segmenata $S = \{s_0 = (p_0, p_1), s_1 =(p_2, p_3),\ldots\}$ u $\mathbb{R}^2$. (geometrijski) obilazak minimalne dužine koji sadrži sve segmente iz skupa $S$. Konstruisati 3--aproksimativni algoritam. 
-		 \end{comment} 
+		 Problem obilaska segmenata (eng. \emph{Segment tour problem}). Neka je dat skup segmenata $S = \{s_0 = (p_0, p_1), s_1 =(p_2, p_3),\ldots\}$ u ravni. Naći put u ravni, koji (potpuno) sadrži svaki od segmenata iz $S$, a pri tom je minimalne dužine. Konstruisati 3--aproksimativni algoritam. Napomenimo da nalaženje ovakvog puta odgovara pronalasku redosljeda posjećivanja svakog od segmenata. 
+		%\end{comment} 
 		 \item Neka je dat kompletan težinski graf $G=(V,E)$ čije grane zadovoljavaju nejednakost trougla. $ k$ poštara treba da prođu grafom tako da svaka grana u datom podskupu grana $E' \subseteq E$ bude pređena  od strane barem jednog poštara. Startni i završni čvor za svakog od poštara je izabran na slučajan način. Zadatak ovog problema je naći šetnju u grafu sa minimalnom dužinom (za sve poštare). 
 		 Konstruisati 2--aproksimativni algoritam za ovaj problem. 
 		 \item %https://www.ibr.cs.tu-bs.de/courses/ws1920/aa/exercises/exercise_03.pdf
@@ -7029,7 +7026,7 @@ Postoje različite strategije koliko dugo se izvršava lokalna pretraga. U opšt
 		  
 		  Konstruisati $\frac{1}{4}$--aproksimativni algoritam.
 		  
-		  \fixme{Marko, je li u donjem zadatku treba max ili min. Vidio sam da i u referenci pise max, ali za r ne treba minimizovati ukupno vrijeme?}
+		  
 		 \item  %https://www.cs.cornell.edu/gomes/MYPAPERS/gomes-williams05.pdf
 		 Neka je data instanca problema sa pozitivnim prirodnim  brojem $k$ i multi-skupom 
 		 $T = \{t_1,\ldots, t_n\}$ vremena (procesiranja poslova/zadataka), $t_i \in \mathbb{Q}$ za sve $i=1,\ldots, n$. 
