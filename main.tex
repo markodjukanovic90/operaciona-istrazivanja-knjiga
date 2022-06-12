@@ -6537,10 +6537,10 @@ gdje je $w_f$ težina skupa $f$. U svakom koraku algoritma određuje se skup $f^
 
 Na kraju odjeljka o aproksimativnim algoritmima, razmotrimo i problem najkraćeg nadstringa.
 \begin{definition}
-   Neka je dat skup stringova $S=\{s_1,...,s_n\}$. Kod problema najkraćeg nadstringa potrebno je odrediti string  $s$ minimalne dužine koji sve stringove iz $S$ sadrži kao svoje podstrigove. 
+   Neka je dat skup stringova $S=\{s_1,...,s_n\}$. Kod problema najkraćeg nadstringa potrebno je odrediti string  $s$ minimalne dužine koji sve stringove iz $S$ sadrži kao svoje (ne obavezno neprekidne) podstrigove. 
   \end{definition}
-Pomenimo da je i ovaj problem NP--težak. 
- Da bismo konstruisali aproksimativni algoritam za ovaj problem, koristićemo tehnike razvijene za rješavanje Problem pokrivanja skupa iz prethodne sekcije i pokazaćemo da postoji $2\cdot H_n$--aproksimacija za problem najkraćeg nadstringa. 
+Napomenimo da je i ovaj problem NP--težak. 
+ Da bismo konstruisali aproksimativni algoritam za ovaj problem, koristićemo tehnike razvijene za rješavanje Problema pokrivanja skupa iz prethodne sekcije i pokazaćemo da postoji $2\cdot H_n$--aproksimacija za problem najkraćeg nadstringa. 
 
 Bez gubljenja opštosti, mozemo pretpostaviti da niti jedan string $s_i$ nije podstring stringa $s_j, i\neq j$.
 
@@ -6550,7 +6550,7 @@ $$set(\theta) = \{ s \in S \mid s \mbox{  podstring od }\theta \}.$$
 
 
 
- Odatle bi pokrivač skupa bila familija takvih skupova $set(\theta)$, iz kojih se konstruiše nadstring skupa $S$ spajajući sve $\theta$ stringove u jedan string. U svakom slučaju familija  $\mathcal{F}$ se ne može definisanti kao skup skupova $set(\theta)$ jer bi u suprotnom $\mathcal{F}$ bio beskonačan. Sa druge strane, ne možemo ograničiti sve stringove $\theta$ samo na one iz $S$, jer bismo u suprotnom dobili rješenje koje je jednako konkatenaciji svih stringova iz $S$, što je svakako  rješenje koje nije korisno. Za uspostavljanje balansa,  iz skupa $S=\{s_1,...,s_n\}$ uzmimo jedan par stringova $s_i$ i $s_j$. Pronađimo $k>0$,  tako da je posljednjih $k$ karaktera stringa $s_i$ jednako podnizu od prvih $k$ karaktera stringa $s_j$ (poklapanje). Označimo sa $\theta_{ijk}$ string koji se 
+ Odatle bi pokrivač skupa bila familija takvih skupova $set(\theta)$, iz kojih se konstruiše nadstring skupa $S$ spajajući sve $\theta$ stringove u jedan string. U svakom slučaju familija  $\mathcal{F}$ se ne može definisanti kao skup skupova $set(\theta)$ jer bi u suprotnom $\mathcal{F}$ bio beskonačan. Sa druge strane, ne možemo ograničiti sve stringove $\theta$ samo na one iz $S$, jer bismo u suprotnom dobili rješenje koje je jednako spajanju svih stringova iz $S$, što je svakako  rješenje koje nije korisno. Za uspostavljanje balansa,  iz skupa $S=\{s_1,...,s_n\}$ uzmimo jedan par stringova $s_i$ i $s_j$. Pronađimo $k>0$,  tako da je posljednjih $k$ karaktera stringa $s_i$ jednako podnizu   prvih $k$ karaktera stringa $s_j$ (postoji poklapanje ta dva stringa). Označimo sa $\theta_{ijk}$ string koji se 
 dobije preklapanjem stringova $s_i$ i $s_j$ na $k$ karaktera. Oznacimo sa $I$ skup strinova $\theta_{ijk}$  za validne izbore $i,j$ i $k$. Zatim definišemo $\mathcal{F}=\{set(\theta) \mid  \theta \in S \cup I\}$. Dodijeljena cijena svakog skupa $set(\theta)$ je jednaka $|\theta|$. Na osnovu prethodnog, dobijamo algoritam za rješavanje problema Najkraćeg nadstringa, prikazanog Algoritmom~\ref{alg:ss}. 
 
   \begin{algorithm}[!t] 
@@ -6613,7 +6613,8 @@ odakle slijedi da Algoritam~\ref{alg:ss} daje $2H_n$--aproksimaciju.
   
 \section{Heurističke metode}
  U prethodnom odjeljku smo vidjeli da za aproksimativne algoritme vrijedi važna osobina da se rješavanjem problema ne garantuje pronalazak optimalnog rješenja, ali postoji garancija da se rješenje nalazi unutar nekog faktora kvaliteta ($c$), u odnosu na optimalno rješenje.  
- Drugim riječima, za rješenja dobijena aproksimativnim algoritmima se zna koliko maksimalno mogu da odstupaju od optimalnog rješenja, a to odstupanje je određeno faktorom kvaliteta.
+ Drugim riječima, za rješenja dobijena aproksimativnim algoritmima se zna koliko njihov kvalitet maksimalno može da odstupa od kvaliteta optimalnog rješenja. 
+ %, a to odstupanje je određeno faktorom kvaliteta.
  
  Posebna vrsta približnih metoda, odnosno metoda koje ne daju i/ili ne garantuju pronalazak optimalnog rješenja pri smo završetku su tzv. heurističke metode. 
  
@@ -6638,7 +6639,7 @@ odakle slijedi da Algoritam~\ref{alg:ss} daje $2H_n$--aproksimaciju.
  
  Metaheuristika se formalno definiše kao iterativni proces koji koristi približne metode, kombinujući na inteligentan način različite koncepte za pretraživanje i iskorištavanje čitavog prostora rješenja, da bi se u razumnom vremenu, na efikasan način, odredilo rješenje što bliže optimalnom.
  
- Sa praktičnog, upotrebnog aspekta, cilj metaheuristika je pretraživanje skupa dopustivih rješenja, pri čemu je, ukoliko je potrebno, dozvoljeno i proširenje tog skupa i elementima koji nisu dopustivi, prelazak u rješenja slabijeg kvali\-teta kako bi se izbjegli lokalni optimumi koji nisu i globalni, kombinovanje sa drugim heuristikama itd.
+ Sa praktičnog, upotrebnog aspekta, cilj metaheuristika je pretraživanje skupa dopustivih rješenja, pri čemu je, ukoliko je potrebno, dozvoljeno i proširenje tog skupa i elementima koji nisu dopustivi, prelazak u rješenja slabijeg kvali\-teta kako bi se izbjegli lokalni optimumi koji nisu i globalni, kombinovanje sa drugim heuristikama, itd.
  
  \subsection{Klasifikacija metaheuristika}
  S obzirom na veliki broj raznih metaheuristika koje su razvijene u posljednje vrijeme, prirodno je očekivati da se za  njihov razvoj koriste vrlo različiti pristupi, počev od polazne motivacije, preko strategije pretraživanja, različitih namjena i klasa problema na kojima se primjenjuju.
@@ -6646,8 +6647,8 @@ odakle slijedi da Algoritam~\ref{alg:ss} daje $2H_n$--aproksimaciju.
  
  Klasifikacija metaheuristika prema polaznoj motivaciji identifikuje tzv. metaheuristike zasnovane na simulaciji prirodnih pojava (eng. \emph{nature inspired metaheuristics}), kao što su na primjer genetski algoritmi, mravlje ili pčelinje kolonije ili elektromagnetizam. Nasuprot njima, veliki broj metaheuristika nije motivisan prirodnim procesima (na primjer, tabu pretraživanje, iterativna lokalna pretraga itd.)
  
- Prema broju tačaka kojima se raspolaže unutar jedne iteracije, metaheuristike se dijele na dvije klase: metaheuristike zasnovane na populaciji (eng. \emph{population based}) i metaheuristike koje rade sa jednom tačkom unutar jedne iteracije (eng. \emph{single point search}). U prvoj klasi, u istom trenutku algoritam raspolaže sa više tačaka -- različitih rješenja problema. Pretraživanje prostora je zasnovano na primjeni različitih operatora rekombinovanja, pomjeranja, izmjena i odabira pojedinih tačaka, kako bi se u svakoj novoj iteraciji formirala nova populacija, sa potencijalno boljim jedinkama. Takve metaheuristike su: genetski algoritmi, mravlje kolonije, elektromagnetizam, jata ptica itd.
- U metaheuristikama koje raspolažu jednom tačkom, primjenjuje se strategija zasnovana na praćenju trajektorije (eng. \emph{trajectory methods}), koji podrazumijeva da se kroz iteracije formira niz rješenja, od kojih je svako naredno (po pravilu, ali ne i obavezno) bolje od prethodnog. Ovi algoritmi najčešće, (ali opet ne i obavezno) koriste i neke metode lokalnog pretraživanja, gdje se novo, potencijalno bolje rješenje bira unutar neke okoline trenutnog rješenja. Neke od metoda koje pripadaju ovoj klasi su metoda promjenljivih okolina, tabu pretraživanje, simulirano kaljenje itd.
+ Prema broju tačaka kojima se raspolaže unutar jedne iteracije, metaheuristike se dijele na dvije klase: metaheuristike zasnovane na populaciji (eng. \emph{population based}) i metaheuristike koje rade sa jednom tačkom unutar jedne iteracije (eng. \emph{single point search}). U prvoj klasi, u istom trenutku algoritam raspolaže sa više tačaka -- različitih rješenja problema. Pretraživanje prostora je zasnovano na primjeni različitih operatora rekombinovanja, pomjeranja, izmjena i odabira pojedinih tačaka, kako bi se u svakoj novoj iteraciji formirala nova populacija, sa potencijalno boljim jedinkama. Takve metaheuristike su: genetski algoritmi, mravlje kolonije, elektromagnetizam, jata ptica, itd.
+ U metaheuristikama koje raspolažu jednom tačkom, primjenjuje se strategija zasnovana na praćenju trajektorije (eng. \emph{trajectory methods}), koji podrazumijeva da se kroz iteracije formira niz rješenja, od kojih je svako naredno (po pravilu, ali ne i obavezno) bolje od prethodnog. Ovi algoritmi najčešće, (ali opet ne i obavezno) koriste i neke metode lokalnog pretraživanja, gdje se novo, potencijalno bolje rješenje bira unutar neke okoline trenutnog rješenja. Neke od metoda koje pripadaju ovoj klasi su metoda promjenljivih okolina, tabu pretraživanje, simulirano kaljenje, metoda promjenljivih okolina, itd.
  
  Prema tipu funkcije cilja, može se  metaheuristike se mogu klasifikovati na one koje koriste statičku, te one koje koriste dinamičku funkciju cilja.
  
@@ -6706,13 +6707,13 @@ $N_{pop}$ označava ukupan broj jedinki u populaciji.  $N_{elite}$ je broj elitn
 	\begin{algorithmic}[1]
 		 \STATE  $ P \gets GenerisiInicijalnuPopulaciju()$
 		 \WHILE{!$IspunjenKriterijZaustavljanja()$}
-		       \FOR{$i=N_{elite}+1; i<N_{pop}; ++i$}
+		       \FOR{$i=N_{elite}+1$ to  $N_{pop}$}
 		            \STATE $Obj_i \gets RacunajFunkcijuCilja(P_i)$
 		       \ENDFOR
 		       \STATE $RacunajFunkcijuPrilagodjenosti(P)$
 		       \STATE $IzvrsiSelekciju(P)$
+		       \STATE $IzvrsiUkrstanje(P)$		  
 		       \STATE $IzvrsiMutaciju(P)$
-		       \STATE $IzvrsiUkrstanje(P)$
 		 \ENDWHILE
 	\end{algorithmic}
     \caption{Osnovna šema GA.}
@@ -6763,7 +6764,7 @@ Treba napomenuti da se u rješavanju velikog broja problema kombinatorne optimiz
 
 U našem primjeru, pojavu nedopustivih rješenja, dakle, možemo riješiti automatskom dodjelom minimalne vrijednosti funkcije prilagođenosti, ili ``kažnjavanjem'' takvih rješenja smanjenjem vrijednosti funkcije fitnesa. Neke od strategije za ``kažnjavanje'' nedopustivih jedinki bi mogle biti zasnovane na procjeni broja proizvoda koje treba zamijeniti (ili izbaciti) iz datog rješenja, a da rješenje postane dopustivo. Na taj način bi se ona nedopustiva rješenja, koja se teže mogu popraviti u dopustiva, više kažnjavala (i samim tim češće i odbacivala), dok bi se perspektivnija nedopustiva rješenja zadržavala u populaciji, u nadi da će, primjenom nekog od genetskih operatora, prerasti u kvalitetna dopustiva rješenja. Uopšte, vrijednost kaznene funkcije bi trebalo da bude malo veća od minimalne cijene potrebne da se odgovarajuće nedopustivo rješenje ``popravi'' na dopustivo. Suprotno, ako bi vrijednost kaznene funkcije bila manja od cijene minimalne korekcije, nedopustiva rješenja se mogu javiti kao konačno rješenje, što naravno nije dopušteno. Sa druge strane, ako je vrijednost kaznene funkcije značajno veća od cijene minimalne popravke, nedopustiva rješenja su totalno diskriminisana i algoritam ih u startu odbacuje. 
 
-\emph{Računanje funkcije prilagođenosti}. Za posmatrani problem, najprirodnija fukcija prilagođenosti bi se mogla definisati na način da ona bude jednaka ukupnom zbiru vrijednosti proizvoda uključenih u rješenje (pod uslovom da je to rješenje dopustivo), a da je vrijednost funkcije prilagođenosti  nedopustivih rješenja   jednaka nuli. 
+\emph{Računanje funkcije prilagođenosti}. Za posmatrani problem, prirodna fukcija prilagođenosti bi se mogla definisati na način da ona bude jednaka ukupnom zbiru vrijednosti proizvoda uključenih u rješenje (pod uslovom da je to rješenje dopustivo), a da je vrijednost funkcije prilagođenosti  nedopustivih rješenja   jednaka nuli. 
 Imajući u vidu prethodno razmatranje o nedopustivim rješenjima, funkcija prilagođenosti može biti definisana i drugačije, tj. mogla bi da sadrži i dio vezan za  ``kažnjavanje'' nedopustivih rješenja, po nekom od predloženih (ili drugih) principa. Time bi nedopustiva rješenja bila uključena u pretragu.
 
 \emph{Operator ukrštanja}. Kao što je već pomenuto, osnovni operatori ukrštanja su tzv. jednopoziciono i dvopoziciono ukrštanje. Objasnimo primjerom jednopoziciono ukrštanje, koje bi moglo biti realizovano na sljedeći način
@@ -6833,7 +6834,7 @@ Kod uniformnog ukrštanja, za svaki par jedinki koje se ukrštaju, prvo se gener
 	\caption{Primjer operatora mutacije (uniformno mutiranje)}\label{tbl:unimut}
 \end{table}
 
-\emph{Operator selekcije}. 
+\emph{Operator selekcije}. \fxnote{Marko: stigao dovde.}
 
 Operator selekcije bira jedinke koje preživljavaju u procesu evolucije. Po pravilu, boljim jedinkama (jedinkama sa boljom prilagođenošću) se operatorom selekcije daje veća vjerovatnoća da će preživjeti u narednu generaciju, dok  slabije jedinke selekcijom dobijaju manju šansu da prežive, te se tako izbacuju iz populacije. Neke od popularnijih tehnika selekcije su rulet selekcija, turnirska, eliminacijska selekcija i elitizam.
 Rulet selekcija diktira da je vjerovatnoća da će jedinka preživjeti u narednu generaciju proporcionalna prilagođenosti. Kod turnirske selekcije se formiraju skupovi jedinki, od kojih samo ona sa najboljom prilagođenošću preživljava u sljedeću generaciju. Eliminacijska selekcija je primarno zasnovana na izbacivanju loših jedinki prije nego na odabiru boljih za narednu generaciju. Elitizam podrazumijeva da će nekoliko najboljih (elitnih) jedinki direktno preći u narednu generaciju, čime se daje pouzdana pretpostavka da  algoritam teži globalnom optimumu.
