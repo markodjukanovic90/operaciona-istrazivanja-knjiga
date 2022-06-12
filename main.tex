@@ -7355,8 +7355,8 @@ koji kontroliše maksimalno vrijeme izvršavanja rješavača, poruke o napretku 
  Optimalna vrijednost ove instance je 202.0, a dostiže se za vrijednost promjenljivih $x = (1, 0, 0)$, te $y_{11}= y_{12}= y_{13} = 1$, dok su ostale vrijednosti 0.
  
 Čitaocu se preporučuje da na linku \url{https://www.programcreek.com/python/example/96845/pulp.LpProblem}
-pronađe i analizira još nekoliko problema, koji su riješeni uz pomoć PuLp modula.
- . 
+pronađe i analizira još nekoliko problema, koji su riješeni uz pomoć PuLp modula. 
+ 
  \section{Primjena \textsc{Cplex} rješavača na problem stringova}
  
  % opisati RFLCS problem, modelovati ga:
@@ -7515,9 +7515,9 @@ int main( int argc, char **argv )
           or cplex.getStatus() == IloAlgorithm::Feasible)
       {
     	   if(cplex.getStatus() == IloAlgorithm::Optimal)
-    	        cout << "\textsc{Cplex} finds optimal" << endl;
+    	        cout << "Cplex finds optimal" << endl;
     	   else
-    	        cout << "\textsc{Cplex} finds feasible solution" << endl;
+    	        cout << "Cplex finds feasible solution" << endl;
     	      
     	  double lastVal = double(cplex.getObjValue());
     	   // print the objective point
@@ -7569,7 +7569,7 @@ Eksportovati rješenje problema u obliku skupa odabranih čvorova koji su kompon
      Neka je MILP model dat  sa:
      \begin{align*}
      	 &\min \sum_{j \in V_2}\sum_{i \in V_1} h_i d_{i,j} Y_{i,j} \\
-     	 &s.t. \\
+     	 &\mbox{t.d.} \\
      	 & \sum_{j \in V_2} Y_{i, j} = 1, \forall i \in V_1 \\
      	 & Y_{i,j} - X_j \leq 0, \forall i  \in V_1, \forall j \in V_2 \\     	 
      	 & \sum_{i \in V_2} X_j  = p \\
