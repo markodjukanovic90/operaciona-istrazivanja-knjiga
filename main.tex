@@ -6047,7 +6047,7 @@ kompleksnost se redukuje na $O(|E| \cdot \log |V|)$.
 Napomenimo da Dajkstrin algoritam ne radi sa grafovima koji imaju negativne težine (pogledati  liniju 12).  Za ovakve grafove,  primjenjuje se Bellman–Ford-ov algoritam koji je baziran na dinamičkom programiranju. Njega ne pominjemo   u ovoj knjizi, ali čitaocu preporučujemo da se, koristeći se literaturom ili internetom, upozna i sa ovim važnim algoritmom.  %, o kojem ćemo nešto više reći u narednim sekcijama.
 
 
-\subsection{Frakcioni problem ruksaka}
+\subsection{Frakcioni problem ruksaka}\label{sec:frkacruksak}
 
 
   Neka je dato $n$ proizvoda sa svojim  težinama i vrijednostima, 
@@ -6151,7 +6151,7 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje, što 
   
    U nastavku navodimo  aproksimativne algoritme za nekoliko poznatih problema kombinatorne optimizacije. 
   
-  \subsection{Aproksimativni algoritmi za problem pokrivanja čvorova}
+  \subsection{Aproksimativni algoritmi za problem pokrivanja čvorova}\label{sec:aprokspokrivanjecvorova}
   
     \begin{figure}
   	\centering
@@ -6863,14 +6863,14 @@ Na kraju ovog odjeljka treba pomenuti da je višedecenijska primjena genetskih a
  
 \subsection{Metoda lokalne pretrage}\label{sec: local_search}
 
-Metoda lokalne pretrage je tehnika čija se strategija sastoji u izvođenju niza poboljšanja  rješenja počevši od nekog unaprijed zadanog, radeći male promjene u trenutno najboljem rješenju. Uvedimo prvo koncept okolina i lokalnih rješenja kao baznih pojmova u metodologiji lokalne pretrage. Za dato rješenje $x$, definišimo skup (ne obavezno dopustivih) rješenja koja su ``blizu'' $x$ u odnosu na neku mjeru. Formalno, okolina predstavlja preslikavanje  $\mathcal{N}$ gdje svakom (dopustivom) rješenju pridružujemo skup rješenja, koje zovemo okolina od $x$.  Funkcija okoline se takođe može definisati preko operatora  $\Delta$, koji predstavlja kolekciju   funkcija $\Delta:\Phi \mapsto \Phi$,  gdje je $\Phi$ prostor pretrage (rješenja) razmatrane instance problema:
+Metoda lokalne pretrage je tehnika čija se strategija sastoji u izvođenju niza poboljšanja  rješenja, počevši od nekog unaprijed zadanog, radeći male promjene u trenutno najboljem rješenju. Uvedimo prvo koncept okolina i lokalnih rješenja kao baznih pojmova u metodologiji lokalne pretrage. Za dato rješenje $x$, definišimo skup (ne obavezno dopustivih) rješenja koja su ``blizu'' $x$ u odnosu na neku mjeru. Formalno, okolina predstavlja preslikavanje  $\mathcal{N}$ gdje svakom (dopustivom) rješenju pridružujemo skup rješenja, koje zovemo okolina od $x$.  Funkcija okoline se takođe može definisati preko operatora  $\Delta$, koji predstavlja kolekciju   funkcija $\Delta:\Phi \mapsto \Phi$,  gdje je $\Phi$ prostor pretrage (rješenja) razmatrane instance problema:
 $$ x' \in \mathcal{N}(x) \Longleftrightarrow \exists \delta \in \Delta,\delta(x)=x'.$$
  
-Prirodan izbor u mnogim aplikacijama je $k$-promjenjiva (eng. \emph{k-exchange}) okolina: $x$ i $x^{'}$ pripadaju istoj okolini akko se razlikuju na tačno $k$ komponenti rješenja. Npr. za TSP problem, 2-{promjenjiva} okolina je prirodan izbor gdje su komponente rješenja grane datog grafa.  
+Prirodan izbor u mnogim aplikacijama je $k$-promjenjiva (eng. \emph{k-exchange}) okolina: $x$ i $x^{'}$ pripadaju istoj okolini akko se razlikuju na tačno $k$ komponenti rješenja. Na primjer, za TSP problem, 2-{promjenjiva} okolina je prirodan izbor gdje su komponente rješenja grane datog grafa.  
 
   
 Rješenje $x$ je \emph{lokalni optimum} u odnosu na okolinu $\mathcal{N}$ akko
-$f(x) \leq f(x')$ ($f(x) \geq f(x')$), za sve $x' \in \mathcal{N}(x)$, ako minimizujemo (maksimizujemo) u odnosu na ciljnu funkciju $f$.  \emph{Globalni optimum} je rješenje koje je lokalni optimum u odnosu na bilo koju okolinu.  Iako je to većini čitalaca jasno, nije zgoreg  još jednom pomenuti da nije svaki lokalni optimum ujedno i globalni. 
+$f(x) \leq f(x')$ ($f(x) \geq f(x')$), za sve $x' \in \mathcal{N}(x)$, ako minimizujemo (maksimizujemo) ciljnu funkciju $f$.  \emph{Globalni optimum} je rješenje koje je lokalni optimum u odnosu na bilo koju okolinu.  Iako je to većini čitalaca jasno, nije zgoreg  još jednom pomenuti da nije svaki lokalni optimum ujedno i globalni. 
 
 \begin{algorithm}[!t] 
 	\caption{Lokalna pretraga (maksimizacija)}\label{alg:ls}
@@ -6882,28 +6882,28 @@ $f(x) \leq f(x')$ ($f(x) \geq f(x')$), za sve $x' \in \mathcal{N}(x)$, ako minim
 	\end{algorithmic}
 \end{algorithm}
 
-Pseudokod lokalne pretrage je dat u Algoritmu~\ref{alg:ls}. Ulaz u algoritam je instanca problema i jedna definisana okolona. U svakoj iteraciji, lokalna pretraga poboljšava trenutno (najbolje) rješenje ako    rješenje u okolini  $\mathcal{N}(x)$ ima bolju vrijednost ciljne funkcije. Algoritam se prekida ako je trenutno rješenje lokalno najbolje u odnosu na definisanu okolinu.
+Pseudokod lokalne pretrage je dat u Algoritmu~\ref{alg:ls}. Ulaz u algoritam je instanca problema i jedna definisana okolina. U svakoj iteraciji, lokalna pretraga poboljšava trenutno (najbolje) rješenje ako    rješenje u okolini  $\mathcal{N}(x)$ ima bolju vrijednost ciljne funkcije. Algoritam se prekida ako je trenutno rješenje lokalno najbolje u odnosu na definisanu okolinu.
  Postoje dvije strategije za izbor rješenja koje će zamijeniti trenutno najbolje rješenje, pod pretpostavkom da postoji više od jednog rješenja sa boljom vrijednošću ciljne funkcije u posmatranoj okolini. Te strategije su:
  \begin{itemize}
  	\item \emph{prvo poboljšanje} (eng. \emph{the first improvement strategy}) -- ova strategija prihvata prvo nađeno rješenje $x'$ u okolini $\mathcal{N}(x)$ sa boljom vrijednošću ciljne funkcije od $x$. Pretraga se rekurzivno seli u tačku  $x = x'$, odakle se pokreće nova iteracija lokalne pretrage.
- 	\item \emph{najbolje poboljšanje} (eng. \emph{the best improvement strategy}) --   ova strategija provjerava sva rješenja iz okoline $\mathcal{N}(x)$ i za novo najbolje rješenje bira ono koje je lokalno najbolje u toj okolini. Nalazak  najboljeg rješenja zahtjeva enumeraciju svih rješenja iz okoline pa često ovakav proces u praksi traje dosta dugo,  tako da ona nije uvijek primjenjiva. %Ipak, u praksi se pokazalo da strategija \emph{najboljeg poboljšanja} često vodi ka lokalnom optimumu problema u svega nekoliko iteracija lokalne pretrage. 
+ 	\item \emph{najbolje poboljšanje} (eng. \emph{the best improvement strategy}) --   ova strategija provjerava sva rješenja iz okoline $\mathcal{N}(x)$ i za novo najbolje rješenje bira ono koje je lokalno najbolje u toj okolini. Nalazak  najboljeg rješenja zahtijeva enumeraciju svih rješenja iz okoline. Stoga, upotreba ove strategije, u opštem slučaju, zahtijeva više procesorskog vremena, tako da ona nije uvijek primjenjiva. %Ipak, u praksi se pokazalo da strategija \emph{najboljeg poboljšanja} često vodi ka lokalnom optimumu problema u svega nekoliko iteracija lokalne pretrage. 
  \end{itemize}
-  
+  Okolina kod koje se formira direktnom razmjenom vrijednosti dvije promjenljive u rješenju se često naziva i \emph{1-swap} okolina.
  \begin{primjer} U   problemu 0-1 ruksaka, za okolinu $\mathcal{N}$ bi mogli uzeti $1$-\emph{swap} okolinu. Recimo, za $n=4$ i rješenje $x=1100$ imali  bismo $$\mathcal{N}(x)= \{ 0100, 1000, 1110, 1101 \}.$$ 
  	\end{primjer}
   
 \subsection{Metoda promjenljivih okolina}\label{intro:vns}
 Metoda promjenljivih okolina (VNS) je metaheuristika uvedena od strane Nenada Mladenovića i Pjera Hansena u drugoj polovini devedesetih godina prošlog vijeka.
-Pretraga je zasnovana na sistematskoj promjeni okolina da bi se izbjegle situacije kada algoritam ``upada'' u podoptimalna rješenja. Efikasnost VNS algoritma je zasnovana na razmatranju da u mnogim praktičnim optimizacionim problemima postoji veza između lokalnih minimuma. Stoga metod promjenljivih okolina i ne prati unaprijed zadatu putanju, već ``skače'' na potencijalno bolja rješenja koja se nalaze u nekoj okolini trenutno najboljeg rješenja. (Ovaj proces je poznat pod nazivom diversifikacija -- eng. \emph{diversification}.)
-Na ovaj se način očuvavaju dobre osobine trenutnog rješenja (ako su neke promjenljive već dostigle optimalne vrijednosti), dok se u novim okolinama pokušavaju poboljšati preostale promjenljive. Ovaj sistem je dodatno ojačan sistemom lokalnog pretraživanja, kojim se prelazi iz trenutnog rješenja u najkvalitetnije rješenje u nekoj njegovoj okolini. (Ovaj proces je poznat pod nazivom intenzifikacija -- eng. \emph{intensification}.)
+Pretraga je zasnovana na sistematskoj promjeni okolina da bi se izbjegle situacije kada algoritam ``upada'' u podoptimalna rješenja. Efikasnost VNS algoritma je zasnovana na razmatranju da u mnogim praktičnim optimizacionim problemima postoji veza između lokalnih minimuma. Stoga, metoda promjenljivih okolina i ne prati unaprijed zadatu putanju, već ``skače'' na potencijalno bolja rješenja koja se nalaze u nekoj okolini trenutno najboljeg rješenja. Ovaj proces je poznat pod nazivom diversifikacija -- eng. \emph{diversification}.
+Na ovaj se način očuvavaju dobre osobine trenutnog rješenja (ako su neke promjenljive već dostigle optimalne vrijednosti), dok se u novim okolinama pokušavaju poboljšati preostale promjenljive. Ovaj sistem je dodatno ojačan sistemom lokalnog pretraživanja, kojim se prelazi iz trenutnog rješenja u najkvalitetnije rješenje u nekoj njegovoj okolini. Ovaj proces je poznat pod nazivom intenzifikacija -- eng. \emph{intensification}.
 
-Ponovimo da algoritam zasnovan na metodi promjenljivih okolina raspolaže jednom tačkom u jednoj iteraciji (a ne populacijom tačaka kao što je to slučaj sa genetskim algoritmom).
+Ponovimo da algoritam zasnovan na metodi promjenljivih okolina raspolaže jednom tačkom u jednoj iteraciji, a ne populacijom tačaka kao što je to slučaj sa genetskim algoritmom.
 
 Tako, ideja da se pretraga usmjeri sa jednog na (moguće bolji) drugi lokalni optimum, koji je smješten u nekoj okolini polaznog lokalnog optimuma, predstavlja razuman  i, kao što je to slučaj u velikom broju raznih optimizacionih problema, opravdan pristup.
 Da bi se postigli pomenuti efekti ``izlaska'' iz lokalnog (pod)optimuma, kao i detaljno pretraživanje nove okoline trenutnog najboljeg rješenja, metoda promjenljivih okolina se najčešće realizuje pomoću dvije važne procedure: procedure razmrdavanja (eng. \emph{shaking}) i procedure lokalnog pretraživanja (eng. \emph{local search}). Kao i što je to slučaj sa svim metaheurističkim metodama, dugogodišnja primjena metode promjenljivih okolina na rješavanje različitih problema dovela je do pojave velikog broja različitih varijanti, koje, pored osnovnih metoda razmrdavanja i lokalnog pretraživanja, uključuju i mnoge druge strategije.
 
 Da bi se proširila pretraga,  VNS u potrazi za boljim lokalnim optimumom, obično koristi okoline rastuće kardinalnosti. Da bi se definisao skup okolina, pretpostavimo da je $x$ proizvoljno rješenje i $N_k$, za $k=k_{min},\ldots,k_{max}$, konačan skup struktura okolina. Tada se  $N_k(x)$ definiše kao skup rješenja u $k$-toj okolini tačke $x$. 
-Način funkcionisanja ove metode prikazan je Algoritmom~\ref{alg:vns}. 
+Način funkcionisanja ove metode, kojom se rješava problem maksimizacije, prikazan je Algoritmom~\ref{alg:vns}. 
 
 
 U svakom koraku algoritma, VNS započinje od nekog rješenja $x$ i cijelog broja $k$, $k_{min}\leqslant k\leqslant k_{max}$, koji označava trenutnu okolinu $N_k$. U proceduri razmrdavanja
@@ -6914,9 +6914,9 @@ Najčešći kriterijumi za prekid   algoritma su: dostignuto maksimalno  vrijeme
     \begin{algorithm}[!t] 
 	\caption{VNS metaheuristika}\label{alg:vns}
 	\begin{algorithmic}[1]
-		\STATE \textbf{Ulaz:} inicijalno rješenje $s$, okoline $\mathcal{N}_1,\ldots, \mathcal{N}_{k_{\max}}$ 
+		\STATE \textbf{Ulaz:} inicijalno rješenje $s$, okoline $\mathcal{N}_{k_{\min}},\ldots, \mathcal{N}_{k_{\max}}$ 
 		\STATE \textbf{Izlaz:} (poboljšano) rješenje $s$
-		\WHILE{$\neg$ (\emph{IspunjenKriterijZaustavljanja()})}
+		\WHILE{!(\emph{IspunjenKriterijZaustavljanja()})}
 		\STATE $k \gets  k_{\min}$
 		\WHILE{$k \leq k_{\max}$}
 		\STATE  $s' \gets$ izabrati random rješenje iz $\mathcal{N}_k(s)$ \hspace{0.3cm}//\,shaking phase 
@@ -6939,7 +6939,7 @@ Najčešći kriterijumi za prekid   algoritma su: dostignuto maksimalno  vrijeme
 
 \emph{Reprezentacija rješenja}. Kao i u slučaju genetskog algoritma, rješenje problema se može predstaviti binarnim nizom. Ako $i$-ti element niza ima vrijednost 1, to znači da je $i$-ti proizvod uključen u rješenje, a u suprotnom, nije.
 
-\emph{Vrijednost funkcije cilja}. Slično kao u primjeru genetskog algoritma, vrijednost funkcije cilja se najlakše može definisati kao zbir vrijednosti proizvoda uključenih u rješenje. Eventualno, ako se u algoritmu dozvoljava rad sa nedopustivim rješenjima, funkcija cilja može da sadrži i dio za ``kažnjavanje'' nedopustivih rješenja. Razmatranje o kažnjavanju nodupistivih rješenja je slično kao u slučaju genetskog algoritma.
+\emph{Vrijednost funkcije cilja}. Slično kao u primjeru genetskog algoritma, vrijednost funkcije cilja se najlakše može definisati kao zbir vrijednosti proizvoda uključenih u rješenje. Eventualno, ako se u algoritmu dozvoljava rad sa nedopustivim rješenjima, funkcija cilja može da sadrži i dio za ``kažnjavanje'' nedopustivih rješenja. Razmatranje o kažnjavanju nedopustivih rješenja je slično kao u slučaju genetskog algoritma.
 
 \emph{Razmrdavanje}. Može se primijeniti više različitih tehnika razmrdavanja, a u ovom primjeru ćemo objasniti jedan pristup. 
 U okviru procedure razmrdavanja, kreira se novo rješenje $x'$, ($x' \in N_k(x)$) zasno\-vano na trenutno najboljem rješenju  $x$.
@@ -6962,19 +6962,19 @@ Postoje različite strategije koliko dugo se izvršava lokalna pretraga. U opšt
 
 \begin{enumerate}
 	\item Na šahovskoj tabli dimenzije 8x8 je postavljeno nekoliko topova, tako da se nikoja dva topa međusobno ne napadaju. Dodati na tu tablu još topova, tako da ih bude maksimalno 8, a da se i dalje nikoja dva topa ne napadaju.
-	\item Istraži na internetu problem vraćanja kusura pomoću minimalnog broja novčanica (kovanica). Koristi google pretragu \textit{change-making problem} ili \textit{coin change problem}. Napiši pohlepni algoritam koji rješava ovaj problem. Ispitaj pod kojim uslovima pohlepni algoritam uvijek daje optimalno rješenje. Pronađi kontraprimjer kada pohlepni algoritam neće dati optimalno rješenje.
-	\item Bojenje grafa je procedura koja svakom čvoru grafa dodjeljuje jednu boju, poštujući pravilo da susjedni čvorovi nisu obojeni istom bojom. Napiši pohlepni algoritam pomoću kog se vrši bojenje grafa, tako da se iskoristi što je manje moguće boja. Pokušaj da okarakterišeš neku klasu grafova za koju tvoj pohlepni algoritam uvijek daje optimalno rješenje. Konstruiši kontraprimjer kada pohlepni algoritam neće dati optimalno rješenje.
+	\item Istražiti na internetu problem vraćanja kusura pomoću minimalnog broja novčanica (kovanica). Koristi google pretragu \textit{change-making problem} ili \textit{coin change problem}. Napisati pohlepni algoritam koji rješava ovaj problem. Ispitati pod kojim uslovima pohlepni algoritam uvijek daje optimalno rješenje i pronaći kontraprimjer, kada pohlepni algoritam neće dati optimalno rješenje.
+
 	
-	\item Osmisli pohlepni algoritam koji rješava problem trgovačkog putnika. Pronađi kontraprimjer kada taj algoritam ne pronalazi optimalno rješenje.
+	\item Osmisliti pohlepni algoritam koji rješava problem trgovačkog putnika. Pronaći kontraprimjer kada taj algoritam ne pronalazi optimalno rješenje.
 	
-	\item Osmisliti pohlepni algoritam koji rješava problem određivanja maksimalnog nezavisnog skupa čvorova u grafu. Odredi neke klase grafova za koje tvoj pohlepni algoritam uvijek pronalazi optimalno rješenje. Pronađi kontraprimjer kada pohlepni algoritam ne pronalazi optimalno rješenje.
+	\item Osmisliti pohlepni algoritam koji rješava problem određivanja maksimalnog nezavisnog skupa čvorova u grafu. Odredi neke klase grafova za koje taj pohlepni algoritam uvijek pronalazi optimalno rješenje. Pronaći kontraprimjer kada pohlepni algoritam ne pronalazi optimalno rješenje.
 	
 	\item Svaki razlomak se može napisati kao zbir razlomaka od kojih svaki ima jedinicu u brojiocu. Taj zapis su koristili još i stari Egipćani, po kojima se taj zapis i zove ``egipatski razlomak''. 
 	Napisati pohlepni algoritam koji proizvoljan razlomak zapisuje kao ``egipatski razlomak'', odnosno kao zbir razlomaka koji imaju jedinicu u brojiocu.
 	
 	\item Zadat je skup $S$ koji se sastoji od $n$ brojeva. Koristeći pohlepni algoritam, podijeliti skup $S$ na dva podskupa, tako da se zbirovi elemenata u prvom i drugom podskupu što manje razlikuju.
 	
-	\item Neka je dato $N$ kajakaša koji su teški redom $1\leqslant w_1\leqslant w_2\leqslant \cdots \leqslant W_N$. Cilj je rasporediti kajakaše u što manje kajaka--dvosjeda. Maksimalna težina koju jedan kajak može da izdrži je $k$. Pretpostavka je da je $w_i\leqslant k$. Napisati pohlepni algoritam koji rješava ovaj zadatak.
+	\item Neka je dato $N$ kajakaša koji su teški redom $1\leqslant w_1\leqslant w_2\leqslant \cdots \leqslant W_N$. Cilj je rasporediti kajakaše u što manje kajaka--dvosjeda. Maksimalna težina koju jedan kajak može da izdrži je $k$. Pretpostavka je da je za svako $i$, $w_i\leqslant k$. Napisati pohlepni algoritam koji rješava ovaj zadatak.
 	
 		%http://poincare.matf.bg.ac.rs/~ezivkovm/nastava/12_asp-pohlepni-algoritmi.pdf
 	\item  Napisati pohlepni algoritam koji ispituje da li je jedna riječ podriječ druge riječi.
@@ -6982,41 +6982,58 @@ Postoje različite strategije koliko dugo se izvršava lokalna pretraga. U opšt
 	\item Poznate su visine $n$ momaka i $n$ djevojaka. Napisati program koji
 	određuje koliko se najviše plesnih parova može formirati tako da je momak uvijek
 	viši od djevojke.
-	\item Konstruisati primjer za 0-1 problem ruksaka, koji se ne može do optimalnosti riješiti pohlepnim algorimom, koji se koristi za rješavanje frakcionog problema ruksaka.
+	\item Konstruisati primjer za 0-1 problem ruksaka, koji se ne može do optimalnosti riješiti pohlepnim algorimom prikazanom u Odjeljku~\ref{sec:frkacruksak}, koji se koristi za rješavanje frakcionog problema ruksaka.
 	
 	\item   U literaturi ili na internetu, pronaći primjere problema za koji postoji apsolutni apriksimativni algoritam (na primjer, bojenje planarnog grafa, eng. \emph{Planar graph coloring}), odnosno primjer problema za koji postoji relativni apriksimativni algoritam.
 	
 	\item Implementirati aproksimativne algoritme pomenute u Odjeljku~\ref{sec:binpack} i analizirati rješenja na različitim instancama problema.
 	\item Problem postavljanja kraljica na šahovsku tablu podrazumijeva pozicioniranje kraljica tako da se nikoje dvije kraljice ne napadaju. Osmisliti genetski algoritam koji rješava ovaj problem.
-	\item Osmisliti genetski algoritam i metodu promjenljivih okolina kojima se rješava problem bojenja čvorova grafa.
+		\item Bojenje grafa je procedura koja svakom čvoru grafa dodjeljuje jednu boju, poštujući pravilo da susjedni čvorovi nisu obojeni istom bojom. 
+		\begin{enumerate}
+			\item 	Napisati pohlepni algoritam pomoću kog se vrši bojenje grafa, tako da se iskoristi što je manje moguće boja.  Okarakterisati neku klasu grafova za koju  pohlepni algoritam uvijek daje optimalno rješenje. Konstruisati kontraprimjer kada pohlepni algoritam neće dati optimalno rješenje.
+	\item Osmisliti genetski algoritam za rješavanje problema bojenja čvorova grafa.
+	\item Osmisliti metodu promjenljivih okolina kojom se rješava ovaj problem
+		\end{enumerate}
 	
 	\item Osmisliti genetski algoritam i metodu promjenljivih okolina kojima se rješava problem određivanja maksimalne klike u grafu.
 	
 		\item Osmisliti genetski algoritam i metodu promjenljivih okolina kojima se rješava problem određivanja maksimalnog nezavisnog skupa čvorova u grafu.
 		\item %https://www.mpi-inf.mpg.de/fileadmin/inf/d1/teaching/winter15/ApproxAlg/ex01.pdf
 		   Neka je dat ruksak čija je veličina jednaka $C$ i skup proizvoda $I = \{1,\ldots, n\}$, gdje proizvod $i$ ima svoju cijenu $c_i>0$ i veličinu $s_i>0$. Pokrivač ruksaka je skup proizvoda $I' \subseteq I$ tako da je $\sum_{i \in I'} s_i > C$.  Problem pokrivača ruksaka traži podskup proizvoda koji je pokrivač ruksaka sa minimalnom    cijenom.   Pretpostavimo da ne postoji proizvod čija je cijena veća od    cijene optimalnog rješenja. Konstruisati 2--aproksimativni algoritam za ovaj problem pod prethodnom pretpostavkom. 
-		   \item Pokazali smo da postoji 2--aproksimativni algoritam za problem pokrivanja čvorova. Da li se može konstruisati instanca na kojoj (jedan od dva aproksimativna algoritma koja su obrađena u prethodnoj glavi za ovaj problem) ne daje bolju aproksimaciju od faktora 2? 
+		   \item Pokazali smo da postoji 2--aproksimativni algoritam za problem pokrivanja čvorova. Da li se može konstruisati instanca na kojoj neki od dva aproksimativna algoritma prikazana u Odjeljku~\ref{sec:aprokspokrivanjecvorova}, ne daje bolju aproksimaciju od faktora 2? 
+		   
+		   \fixme{Marko, tekst sljedeceg zadatka sam malo vise prepravljao}
 		   \item %https://massivedatasets.files.wordpress.com/2011/04/approx1-exercisesf114.pdf
-		   Neka je dat kompletan nedirektan graf $G = (V, E)$ u kojem težine grana zadovoljavaju nejednakost trougla i neka je $k$ pozitivan prirodan broj. Probem se sastoji u particionisanju skupa $V$ na $k$ disjunktnih skupova $V_1, \ldots, V_k$ da bi se minimizirala grana najveće cijene između dva čvora u istom skupu,  simbolički zapisano sa
-		   $$ \max_{1 \leq i \leq k, u,v \in V_i} c(uv).$$
+		   Neka je dat kompletan neusmjeren graf $G = (V, E)$ u kojem težine grana zadovoljavaju nejednakost trougla i neka je $k$ pozitivan prirodan broj. Problem metričkog $k$-klasterovanja (eng. Metric $k$-clustering)  se sastoji od particionisanja skupa $V$ na $k$ disjunktnih skupova $V_1, \ldots, V_k$, na način da se  minimizuje najveća cijena grane  između dva čvora u istom skupu, simbolički zapisano
+		   $$ \min\max_{1 \leq i \leq k, u,v \in V_i} c(uv).$$
 		   Konstruisati 2--aproksimativni algoritam za ovaj problem (metričko $k$--klasterovanje). 
 		\item %https://www.ibr.cs.tu-bs.de/courses/ws1920/aa/exercises/exercise_03.pdf
-		 Neka je dat netežinski graf $G=(V,E)$. Naći particiju $V$ na $k$ skupova $V_1,\ldots, V_k$ tako da je broj grana koje su između dvije različite particije minimizovan. Konstruisati (pohlepni) algoritam koji je $1-\frac{1}{k}$--aproksimativni. 
+		 Neka je dat netežinski graf $G=(V,E)$. Naći particiju $V$ na $k$ skupova $V_1,\ldots, V_k$ tako da je broj grana koje su između dvije različite particije minimizovan. Konstruisati (pohlepni) algoritam koji je ($1-\frac{1}{k}$)--~aproksimativni. 
+		 
+		 \fixme{vec je bio zadatak sa bojenjem, pa bih ovaj dole zadatak izostavio. stavio sam ga u komentar}
+		 \begin{comment}
 		 \item U problemu bojenja grafa, u ulazu nam je dat neusmjeren graf $G = (V,E)$. Kažemo da je funkcija $f:V \mapsto \{1,\ldots, k\}$ $k$-bojenje akko ne postoje susjedni čvorovi grafa kojima je pridružen isti broj, tj. $f(u) \neq f(v)$, za $uv \in E$. Problem bojenja grafa traži za $k$-bojenje na grafu $G$, gdje je $k$ minimalan. Konstruisati pohlepni algoritam za koji je $k = \Delta + 1$, gdje je $\Delta$ maksimalni stepen čvora u $G$. 
+		 \end{comment}
+		 
+		 \fixme{U ovom narednom zadatku mi nije jasno sta se trazi. Otisao sam na referencu, ali ni tamo ne pise nista vise od odova. I njega sam iskomentarisao.}
+		 \begin{comment}
 		 \item %https://www.ibr.cs.tu-bs.de/courses/ws1920/aa/exercises/exercise_05.pdf
-		 Problem obilaska segmenata (eng. \emph{Segment tour problem}). Neka je dat skup segmenata $S = \{s_0 = (p_0, p_1), s_1 =(p_2, p_3),\ldots\}$ u $\mathbb{R}^2$. Problem traži da se nađe (geometrijski) obilazak minimalne dužine koji sadrži sve segmente iz skupa $S$. Konstruisati 3--aproksimativni algoritam.  
+		 Problem obilaska segmenata (eng. \emph{Segment tour problem}). Neka je dat skup segmenata $S = \{s_0 = (p_0, p_1), s_1 =(p_2, p_3),\ldots\}$ u $\mathbb{R}^2$. (geometrijski) obilazak minimalne dužine koji sadrži sve segmente iz skupa $S$. Konstruisati 3--aproksimativni algoritam. 
+		 \end{comment} 
 		 \item Neka je dat kompletan težinski graf $G=(V,E)$ čije grane zadovoljavaju nejednakost trougla. $ k$ poštara treba da prođu grafom tako da svaka grana u datom podskupu grana $E' \subseteq E$ bude pređena  od strane barem jednog poštara. Startni i završni čvor za svakog od poštara je izabran na slučajan način. Zadatak ovog problema je naći šetnju u grafu sa minimalnom dužinom (za sve poštare). 
 		 Konstruisati 2--aproksimativni algoritam za ovaj problem. 
 		 \item %https://www.ibr.cs.tu-bs.de/courses/ws1920/aa/exercises/exercise_03.pdf
-		 Neka je dat usmjereni graf $G = (V,E) $ sa nenegativnim težinama grana $w:E\mapsto\mathbb{R}$. Zadatak je naći  podskup čvorova $S \subseteq V$ tako da je suma grana iz $S$ u $V\setminus S$ najveća moguća, tj. 
+		 Neka je dat usmjereni graf $G = (V,E) $ sa nenegativnim težinama na granama, gdje je sa $w(uv)$ označena težina grane $uv\in E$. Zadatak je naći podskup čvorova $S \subseteq V$ tako da je suma težina grana iz $S$ u $V\setminus S$ najveća moguća, tj. suma
 		  $$ \sum_{s \in S, t \notin S, st \in E }w(st)$$
 		  je maksimizovana.  
 		  
 		  Konstruisati $\frac{1}{4}$--aproksimativni algoritam.
+		  
+		  \fixme{Marko, je li u donjem zadatku treba max ili min. Vidio sam da i u referenci pise max, ali za r ne treba minimizovati ukupno vrijeme?}
 		 \item  %https://www.cs.cornell.edu/gomes/MYPAPERS/gomes-williams05.pdf
 		 Neka je data instanca problema sa pozitivnim prirodnim  brojem $k$ i multi-skupom 
 		 $T = \{t_1,\ldots, t_n\}$ vremena (procesiranja poslova/zadataka), $t_i \in \mathbb{Q}$ za sve $i=1,\ldots, n$. 
-		 Problem se svodi na dodijelu zadataka svakoj od $k$ mašina (dakle, funkcija $f:\{1,\ldots, n\} \mapsto \{1,\ldots, k\}$) tako da je vrijeme završetka svih zadataka na mašinama minimizovano, pod uslovom da one mogu izvršavati zadataka paralelno, tj. funkcija cilja koja se minimizuje je data sa 
+		 Potrebno je dodijeliti zadatke svakoj od $k$ mašina (dakle, funkcija $f:\{1,\ldots, n\} \mapsto \{1,\ldots, k\}$) tako da je vrijeme završetka svih zadataka na mašinama minimizovano, pod uslovom da one mogu izvršavati zadatke paralelno. Simbolički zapisano, funkcija cilja koja se minimizuje je data sa 
 		 $$\max \{\sum_{i: f(i) = j } t_i \mid j=1,\ldots, k \}$$
 		 Konstruisati 2--aproksimativni algoritam.
 \end{enumerate}
@@ -7025,29 +7042,29 @@ Postoje različite strategije koliko dugo se izvršava lokalna pretraga. U opšt
 
  \chapter{Optimizacioni Rješavači}
  
- Kao što smo i pomenuli u uvodnoj sekciji, konstrukcija modela koji (najčešće) odgovara idealizivanoj verziji realnog problema je 
- dio koji uzima najveći dio vremena u operacionim istraživanjima. Kada dođemo do modela koji približno odgovara potrebama uprave koja naručuje sistem, rješavanje modela se svodi na pozivanje odgovarajućih rješavača. Neki od najpoznatijih su 
- CPLEX koji može biti pozivan u Javi, $C$++ i Python-u uz pomoć odgovarajućih API-ja, zatim Lindo, Gurobi te modul PuLP u Python-u, među ostalima.  
+ Kao što smo i pomenuli u uvodnom poglavlju, konstrukcija modela koji (najčešće) odgovara idealizivanoj verziji realnog problema je 
+ dio koji uzima najveći dio vremena u operacionim istraživanjima. Kada dođemo do modela koji približno odgovara potrebama uprave koja naručuje sistem, rješavanje modela se svodi na pozivanje odgovarajućih rješavača. Neki od najpoznatijih su: 
+ CPLEX koji može biti pozivan u Javi, $C$++ i Python-u uz pomoć odgovarajućih API-ja, zatim Lindo, Gurobi, te modul PuLP u Python-u.
  
- U nastavku opisujemo korištenje CPLEX i PuLP rješavača za implementaciji modela i njihovog rješavanja. 
+ U nastavku opisujemo korištenje CPLEX i PuLP rješavača za implementaciju modela i njihovog rješavanja. 
  %https://realpython.com/linear-programming-python/
  %https://www.ibm.com/products/ilog-cplex-optimization-studio
  %https://www.youtube.com/watch?v=J7tNzCsYgy8
  
  \section{Optimizacioni rješavač CPLEX}
- CPLEX alat je generalni rješavač za rješavanje optimizacionih problema, a među njima izdvajamo klase problema LP, ILP i MILP-a. Konstruisan je za komercijalnu upotrebu od strane kompanije IBM. Različite verzije ovog programa, uključujući i besplatnu verziju koja sadrži određena ograničenja u mogućnostima, mogu se preuzeti preko linka koji je dat u referenci~\cite{cite_key24}. 
+ CPLEX alat je opšti rješavač za koji se koristi za rješavanje optimizacionih problema. Iako se CPLEX može koristiti i za rješavanje i nekih drugih klasa problema, u ovom poglavlju ćemo razmatrati  LP, ILP i MILP probleme. Konstruisan je za komercijalnu upotrebu od strane kompanije IBM. Različite verzije ovog programa, uključujući i besplatnu verziju koja sadrži određena ograničenja u mogućnostima, mogu se preuzeti preko linka koji je prikazan u Literaturi.
  
-\emph{IBM ILOG CPLEX Optimization Studio} uključuje i druge opcije poput \emph{Constraint Programming} (CP) solver.
+%\emph{IBM ILOG CPLEX Optimization Studio} uključuje i druge opcije poput \emph{Constraint Programming} (CP) solver.
  
  U nastavku opisujemo proces same implementacije modela u CPLEX-u kroz programski jezik $C$++ u Linux okruženju.
- Da bismo uključili CPLEX u $C$++ kod, nepohodno je koristiti sljedeći kod:
+ Da bismo uključili CPLEX u $C$++ kod, nepohodno je koristiti sljedeći k\^od:
  \begin{verbatim}
  	#include<ilcplex/ilocplex.h>
  	ILOSTLBEGIN
  \end{verbatim}
 ili umjesto prve linije uključiti (pomoću \#include) ilocplex.h fajl sa apsolutnom putanjom do njega. 
 
- Da bi se inicijalizovao LP model, neophodno je prvo inicijalizovati okrizenje za modelovanje. Dakle, konstruišemo objekat klase \emph{IloEnv} sa: 
+ Da bi se inicijalizovao LP model, neophodno je prvo inicijalizovati okruženje za modelovanje. Dakle, konstruišemo objekat klase \emph{IloEnv} sljedećim k\^odom
  \begin{verbatim}
  	IloEnv env;
  	try{
@@ -7058,36 +7075,40 @@ ili umjesto prve linije uključiti (pomoću \#include) ilocplex.h fajl sa apsolu
  	}
  \end{verbatim}
  
- \noindent Unutar \emph{try-catch} bloka deklarišemo prvo objekat modela (instanca klase \emph{IloModel}), a zatim se model uvlači u rješavač CPLEX (kreira se objekat klase \emph{IloColex}) i rješava pozivanjem odgovarajuće metode (\emph{solve}).
- Model je instanca klase \emph{IloModel} čiji konstruktor uzima objekat klase \emph{IloEnv} kao parameter dok je model koji se rješava pomoću CPLEX-a instanca klase \emph{IloCplex} koji uzima instancu klase \emph{IloModel} kao vrijednost svog parametra.  Ako bismo željeli da riješimo model pomoću CP solvera, mjesto \emph{IloCplex} bismo pozvali klasu \emph{IloCP}. 
+ \noindent Unutar \emph{try-catch} bloka deklarišemo prvo objekat modela (instanca klase \emph{IloModel}), a zatim se model uvlači u rješavač CPLEX (kreira se objekat klase \emph{IloColex}) i rješava pozivanjem odgovarajuće metode \emph{solve}.
+ 
+ Model je instanca klase \emph{IloModel}, čiji konstruktor uzima objekat klase \emph{IloEnv} kao parametar. Model koji se rješava pomoću CPLEX-a je instanca klase \emph{IloCplex}, koji uzima instancu klase \emph{IloModel} kao vrijednost svog parametra.  
+ 
+ \fixme{ne bih sad uvodio i CP, jer to nismo nigdje ranije u knjizi imali. Zato sam iskomentarisao sljedecu recenicu.}
+ %Ako bismo željeli da riješimo model pomoću CP solvera, mjesto \emph{IloCplex} bismo pozvali klasu \emph{IloCP}. 
  
 
  \begin{verbatim}
  	IloModel model(env); //def. modela
- 	// potrebno deklarisati ciljnu funkciju, varijable i ogranjčenja
+ 	// potrebno deklarisati ciljnu funkciju, promjenljive i ograničenja
  	IloCplex cplex(model);
  	if(!cplex.solve()){ // poziv cplex  solver-a
- 		    env.error() << " Problem nije optimizovana." << endl;
+ 		    env.error() << " Problem nije optimizovan." << endl;
  		    throw(-1);
  	}
  	//cplex zavrsio sa optimizovanjem problema ... ispis rjesenja
  \end{verbatim}
  
- \noindent Sljedeći korak je implementacija varijabli, funkcije cilja i ograničenja u modelu. 
+ \noindent Sljedeći korak je implementacija promjenljivih, funkcije cilja i ograničenja u modelu. 
  
- \noindent \textbf{\emph{Implementacija varijabli u modelu}}. Ako želimo da deklarisemo (realnu) varijablu $x$ gdje je, na primjer, $0 \leq x \leq 40$, koristimo klasu \emph{IloNumVar}, što odgovara sljedećoj liniji koda:
+ \noindent \textbf{\emph{Implementacija promjenljivih u modelu}}. Ako želimo da deklarišemo realnu promjenljivu $x$ gdje je, na primjer, $0 \leq x \leq 40$, koristimo klasu \emph{IloNumVar} i pišemo sljedeći k\^od
  \begin{verbatim}
  	IloNumVar x = IloNumVar(env, 0.0, 40.0);
  \end{verbatim}
- Ova definicija je ekvivalentna dodavanjem  \texttt{ILOFLOAT} konstante kao četvrti argument u prethodnom konstruktoru. 
-Ako je potrebno implementirati varijablu za koju je $x \geq 0$ to radimo kao u prethodnom primjeru uz korištenje  \emph{IloInfinity} konstante.
+ Ova definicija je ekvivalentna dodavanjem i \texttt{ILOFLOAT} konstante kao četvrtog argumenta u  konstruktoru. 
+Ako je potrebno implementirati promjenljivu za koju je $x \geq 0$ to radimo kao u prethodnom primjeru uz korištenje  \emph{IloInfinity} konstante.
  
- Ako želimo da implementiramo varijablu koja je cjelobrojna, recimo binarna varijabla, imamo sljedeći kod:
+ Ako želimo da implementiramo promjenljivu koja je cjelobrojna binarna promjenljiva, koristimo sljedeći k\^od
  \begin{verbatim}
  	IloNumVar x = IloNumVar(env, 0.0, 1.0, ILOINT);
  \end{verbatim}
  
- \noindent Ako je potrebno definisati vektor promjenjivih $x=(x_1,...,x_n)$, gdje je, recimo, $x_i \geq 1$, onda se definiše objekat klase \emph{IloNumVarArray}, tj.:
+ \noindent Ako je potrebno definisati vektor promjenjivih $x=(x_1,...,x_n)$, gdje je, recimo, $x_i \geq 1$, onda se definiše objekat klase \emph{IloNumVarArray},
  \begin{verbatim}
  	IloNumVarArray x(env);
  	for(int i = 0; i < n; ++i){
@@ -7095,7 +7116,7 @@ Ako je potrebno implementirati varijablu za koju je $x \geq 0$ to radimo kao u p
  	}
  \end{verbatim}
  
- \noindent Ako želimo da deklarišemo visedimenzionalne promjenjive kao što je $x_{i,j}, i=1,...,n$ i $j=1,...,m$, onda pozivamo templejt klasu $\textbf{IloArray}<>$ na sljedeći način:
+ \noindent Ako želimo da deklarišemo visedimenzionalne promjenjive kao što je $x_{i,j}, i=1,...,n$ i $j=1,...,m$, onda pozivamo templejt klasu ${IloArray}<>$ na sljedeći način
  
  \begin{verbatim}
  	typedef IloArray<IloNumVarArray> FloatMatrix; // x_ij 
@@ -7120,8 +7141,8 @@ Ako je potrebno implementirati varijablu za koju je $x \geq 0$ to radimo kao u p
  	model.add(obj);
  \end{verbatim}
  
- \noindent Za deklarisanje izraza $expr$ možemo koristiti operator  ``+='', gdje se trenutni izraz sabira sa nekim objektom \emph{IloNumVar} klase -- dakle varijablom (eventualno pomnoženom sa nekim koeficijentom). 
- Recimo, ako želimo da implementiramo funkciju cilja $\sum_{i=1}^n c_i x_i$, implementacija bi bila ovakva:
+ \noindent Za formiranje izraza $expr$ možemo koristiti operator  ``+='', gdje se trenutni izraz sabira sa nekim objektom \emph{IloNumVar} klase -- dakle promjenljivom (eventualno pomnoženom sa nekim koeficijentom). 
+ Na primjer, ako želimo da implementiramo funkciju cilja $\sum_{i=1}^n c_i x_i$, koristili bismo sljedeću implementaciju
  
  \begin{verbatim}
  	IloExpr expr(env);
@@ -7134,10 +7155,13 @@ Ako je potrebno implementirati varijablu za koju je $x \geq 0$ to radimo kao u p
  	model.add(obj); // dodavanje funkcije cilja u model
  \end{verbatim}
  
- \noindent \textbf{\emph{Implementacija ograničenja u modelu}}. Ograničenja se direktno mogu dodati  u model uz pomoć funkcije \emph{add}, tj. kao 
- model.add($expr1 <= expr2$). Umjesto relacije ``$<=$'' mogu biti ravnopravno korištene i relacije ``=='' ili ``$>=$''. Umjesto izraza $expr1$ ili $expr2$ takođe može da stoji i skalar. Pretpostavimo da želimo implementirati sljedeće ograničenje:
+ \noindent \textbf{\emph{Implementacija ograničenja u modelu}}. Ograničenja se direktno mogu dodati  u model uz pomoć funkcije \emph{add}, na primjer
+ \begin{verbatim}
+ 	 model.add(expr1 <= expr2).
+ \end{verbatim} 	 
+ 	  Umjesto relacije ``$<=$'' mogu biti ravnopravno korištene i relacije ``=='' ili ``$>=$''. Umjesto izraza $expr1$ ili $expr2$ takođe može da stoji i skalar. Pretpostavimo da želimo implementirati sljedeće ograničenje:
  $$s_j = \sum_{t=1}^n t \cdot x_{jt}, \forall j \in \{1,\ldots,N\}.$$ 
- Sljedeća implementacija odgovara ovim ograničenjima: 
+ Implementacija koja odgovara ovim ograničenjima data je k\^odom
  \begin{verbatim}
  	// neka je prethodno definisan i popunjen niz s[]
  	// neka su prethodno deklarisane varaijble x_ij
@@ -7150,7 +7174,7 @@ Ako je potrebno implementirati varijablu za koju je $x \geq 0$ to radimo kao u p
  	}
  \end{verbatim}
  Još jedan od načina dodavanja ograničenja u model je implementacija preko kontejnera \emph{IloRangeArray} u koji dodajemo ograničenja preko funkcije \emph{add}.   
- Recimo da je potrebno dodati ograničenja $x_i + x_j \leq 1$ za sve $i<j, i.j \in [n]$ u IloCplex model
+ Na primjer, pretpostavimo da je potrebno dodati ograničenja $x_i + x_j \leq 1$, za sve $i<j, i,j \in {0,...,n-1}$ u IloCplex model
  
  \begin{verbatim}
  	     IloRangeArray constr(env);
@@ -7161,23 +7185,13 @@ Ako je potrebno implementirati varijablu za koju je $x \geq 0$ to radimo kao u p
       	 model.add(constr); //dodavanje ograničenja u model
  \end{verbatim}
  
- \noindent \textbf{\emph{Metode za eksport rješenja (statistike) iz modela}}. Metod \emph{getStatus()} (koji se poziva na instancu klase \emph{IloCplex})  pokazuje da li je rješenje koje je nađeno dopustivo, ograničeno ili optimalno ili je CPLEX pokazao da je model nedopustiv ili neograničen.
- 
- \begin{verbatim}
- 	// prethodno: kreiranje modela i poziv metoda solve()
-    env.out << cplex.getStatus() << endl;
- 	IloNumArray xval(env); // ovdje ce se cuvati rjesenje
- 	env.out() << "Status rjesenja = " << cplex.getStatus() << endl;
- 	env.out() << "Vrijednost = " << cplex.getObjValue() << endl;
- 	env.out() << "Vrijeme = " << timer.getTime() << endl;
- 	cplex.getValues(xval, x);
- 	env.out() << "x vrijednosti = " << xval << endl;
- 	env.out() << "gap vrijednost: " << cplex.getMIPRelativeGap() * 100 << endl; 
- 	// vraca gap (ako nije rijeseno do optimalnosti, onda > 0)
- \end{verbatim}
+ \noindent \textbf{\emph{Metode za eksport rješenja (statistike) iz modela}}. Objasnimo najvažnije metode koje se koriste za dobijanje informacija o  rješenju, statusu i ostalim parametrima samog izvršenja.
+  
+
 \begin{itemize}
-	\item Metod \emph{getObjValue}: vraća optimalnu vrijednost funkcije cilja (ili najbolju vrijednost nađenu u toku unaprijed definisanog intervala vremena).
-	\item Metod \emph{getStatus}: vraća status rješenja koje je CPLEX našao u zadanom vremenu (dopustivo, optimalno, nedopustivo itd.).
+	\item Metod \emph{getStatus()}, koji se poziva na instancu klase \emph{IloCplex},  pokazuje da li je rješenje koje je nađeno dopustivo, ograničeno ili optimalno ili je CPLEX pokazao da je model nedopustiv ili neograničen.
+	\item Metod \emph{getObjValue()} vraća optimalnu vrijednost funkcije cilja (ili najbolju vrijednost nađenu u toku unaprijed definisanog intervala vremena).
+%	\item Metod \emph{getStatus}: vraća status rješenja koje je CPLEX našao u zadanom vremenu (dopustivo, optimalno, nedopustivo itd.).
 	\item Metod \emph{getValues}(\emph{vals, var}): 
 	\begin{itemize}
 	 	  \item \emph{vals} -- numerički niz (najčešće instanca klase \emph{IloNumArray}) u koju će se kopirati krajnja rješenja koje je CPLEX našao;    
@@ -7187,9 +7201,26 @@ Ako je potrebno implementirati varijablu za koju je $x \geq 0$ to radimo kao u p
      \begin{itemize}
      	\item \emph{vals} -- numerički niz (najčešće instanca klase \emph{IloNumArray}) u koju će se kopirati rješenja odgovarajućih dualnih promjenjivih;
      	\item \emph{con} -- ograničenja u modelu (instanca klase \emph{IloRangeArray}) za koje se računaju koeficijenti odgovarajućih dualnih promjenjivih;
-     	\item \emph{getMIPRelativeGap()}: vraća vrijednost relativne udaljenosti (realna vrijednost iz intervala $[0, 1]$) između najboljeg dopustivog rješenja (nađenog od strane CPLEX-a) i dokazane gornje granice optimalnog rješenja (koje su rezultat raznih internih tehnika -- kao što je na primjer B\&B -- pozvane od strane rješavača).
-     \end{itemize}
+     	   \end{itemize}
+     	\item \emph{getMIPRelativeGap()} vraća vrijednost relativne udaljenosti (realna vrijednost iz intervala $[0, 1]$) između najboljeg dopustivog rješenja (nađenog od strane CPLEX-a) i dokazane gornje granice optimalnog rješenja (koje su rezultat raznih internih tehnika -- kao što je na primjer B\&B -- pozvane od strane rješavača).
+  
 \end{itemize}
+
+Narednim k\^odom je ilustrovana upotreba nekih od navedenih metoda.
+	\begin{verbatim}
+	// prethodno: kreiranje modela i poziv metoda solve()
+	env.out << cplex.getStatus() << endl;
+	IloNumArray xval(env); // ovdje ce se cuvati rjesenje
+	env.out() << "Status rjesenja = " << cplex.getStatus() << endl;
+	env.out() << "Vrijednost = " << cplex.getObjValue() << endl;
+	env.out() << "Vrijeme = " << timer.getTime() << endl;
+	cplex.getValues(xval, x);
+	env.out() << "x vrijednosti = " << xval << endl;
+	env.out() << "gap vrijednost: " << cplex.getMIPRelativeGap() * 100 << endl; 
+	// vraca gap (ako nije rijeseno do optimalnosti, onda > 0)
+\end{verbatim}
+
+
 Eksportovanje modela za eventualno ponovno korištenje se može dobiti pozivom metoda \emph{exportModel}, čiji je očekivani argument naziv fajla u koji će se model upisati (.$lp$ ekstenzija).  
 
 \emph{\textbf{Podešavanje parametara rješavača}} \textrm{CPLEX}. Podešavanje limita za vrijeme izvršavanja rješavača (recimo, na 2h) se definiše na sljedeći način
