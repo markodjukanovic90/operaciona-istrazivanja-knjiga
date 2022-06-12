@@ -228,7 +228,7 @@ Koncept operacionih istraživanja potiče iz vremena Drugog svjetskog rata, gdje
 Proces u operacionom istraživanju se ugrubo može predstaviti sljedećim koracima:
 \begin{itemize}
     \item Opisivanje problema koji rješavamo.
-    \item Konstrukcija modela problema koji izražava taj problem preko varijabli i relacija između njih. 
+    \item Konstrukcija modela problema koji izražava taj problem preko promjenljivih i relacija između njih. 
     \item Korištenje modela za generisanje rješenja problema.
     \item Testiranje svakog od rješenja i analiziranje njihovih  kvaliteta.
     \item Implementacija odabranog rješenja datog problema. 
@@ -343,7 +343,7 @@ Matematički model je približni opis nekih pojava ili objekata u stvarnom svije
 se sastoji od sistema jednačina i matematičkih izraza koji opisuju osnov problema. Na primjer, postoji $n$ mjerljivih odluka koje treba odrediti, a koje su predstavljene pomoću nepoznatih promjenjljivih $x_1,\ldots, x_n$.  Odgovarajuća mjera učinka (profita) je izražena preko matematičkih funkcija nepoznatih koje odgovaraju  odlukama (npr. $3x_1 + 5x_2 + x_3$). Ova funkcija se naziva \emph{ciljna} (objektivna) funkcija, ili \emph{funkcija cilja}. Ograničenja  vrijednosti promjenjivih se takođe izražavaju matematičkim izrazima, (npr. $x_1 + x_2 + x_3 \leq 1$).  Ovakvi matematički izrazi za ograničenja se tako i nazivaju -- \emph{ograničenja} (eng. \emph{constraints}). Konstante u ograničenjima, te u ciljnoj funkciji, se nazivaju \emph{parametri} modela.
 
 Prema tome, rješavanje matematičkog modela 
-podrazumijeva izbor vrijednosti varijabli (odluka), tako da se maksimizuje/minimizuje vrijednost funkcije cilja u odnosu na određena ograničenja. Takvi modeli, sa manjim varijacijama, karakterišu i modele koji su prisutni u OR polju. 
+podrazumijeva izbor vrijednosti promjenljivih odlučivanja, tako da se maksimizuje/minimizuje vrijednost funkcije cilja u odnosu na određena ograničenja. Takvi modeli, sa manjim varijacijama, karakterišu i modele koji su prisutni u OR polju. 
 Određivanje odgovarajućih vrijednosti, koje se dodjeljuju parametrima modela, je kritični dio procesa konstrukcije modela.
 
 Za razliku od problema koji su već definisani u udžbenicima, u kojima su ove vrijednosti unaprijed poznate,   određivanje parametara u stvarnim situacijama najprije zahtijeva prikupljanje relevantnih podataka. Kao što je objašnjeno u prethodnoj sekciji,  prikupljanje tačnih podataka je veoma izazovan proces. Dodijeljena vrijednost parametru često predstavlja  samo grubu procjenu stvarne situacije. Zbog nepouzdanosti vrijednosti parametara, važno je analizirati kako se rješenje, koje je izvedeno iz modela, mijenja pri malim promjenama vrijednosti parametara. 
@@ -365,7 +365,7 @@ analizi i rješavanju problema. Zapravo, računarski programi za rješavanje raz
 On podrazumijeva razvijanje kvantitativne mjere uspješnosti u odnosu na svaki   krajnji cilj, koji je identifikovan tokom definisanja problema.
 Ako postoji više ciljeva, njihove se mjere obično transformišu
 i kombinuju u jednu složenu mjeru.  Ukupna mjera može biti nešto opipljivo (npr. dobit), što odgovara višem cilju
-organizacije.  Nakon što se razvije cjelokupna mjera,  ciljna funkcija se izražava kao matematička funkcija čiji su argumenti varijable odluke. 
+organizacije.  Nakon što se razvije cjelokupna mjera,  ciljna funkcija se izražava kao matematička funkcija čiji su argumenti promjenljive odlučivanja. 
 
 % primjer preuzet iz: http://www.mathos.unios.hr/~mdjumic/uploads/diplomski/ČOR03.pdf
 \begin{primjer}
@@ -380,7 +380,7 @@ riječima, treba napraviti plan proizvodnje koji će maksimizovati profit.
 Model za ovaj problem bi se mogao konstruisati na sljedeći način:
 \begin{itemize}
     \item 
-Varijable odluke: $x_1$ i $x_2$ koje označavaju koliko stotina litara gustog soka i koliko litara bistrog soka proizvođač treba da napravi, respektivno.  
+Promjenljive odlučivanja: $x_1$ i $x_2$ koje označavaju koliko stotina litara gustog soka i koliko litara bistrog soka proizvođač treba da napravi, respektivno.  
 \item Funkcija cilja: $f(x_1, x_2) = c_1x_1 + c_2 x_2$, gdje su $c_1 = 100$ i  $c_2 = 125$ koeficijenti. Funkciju $f$ treba maksimizovati. 
 \item Ograničenja: $0 \leq x_1 \leq 5, 0 \leq x_2 \leq 4$,   $3 x_1 + 6 x_2 \leq 30$ i $8 x_1 + 4 x_2 \leq 44.$
 \end{itemize}
@@ -425,7 +425,7 @@ i ispraviti što više njegovih nedostataka.  Ovaj postupak ispitivanja i pobolj
 Budući da OR tim može provesti mjesece na izradi svih detalja modela, može se desiti i da dođe do odstupanja od suštine modela. Stoga, nakon što su detalji uključeni u 
 početnu verziju modela, dobar način za početak provjere valjanosti je ponovni pogled na cjelokupni model kako bi se provjerilo da li model sadrži  očigledne greške i propuste. U cilju što objektivnijeg pristupa, poželjno je da grupa koja radi ovaj pregled uključi barem jednog pojedinca koji nije učestvovao u konstrukciji modela. Preispitivanje definicije
 problema i poređenje sa modelom mogu pomoći u otkrivanju nekih pogrešaka.  Ponekad se  dodatni uvid u valjanost modela dobija i 
-mijenjanjem vrijednosti parametara i/ili varijabli odluke, kao i provjerom da li se  izlaz iz modela ponaša na očekivan način. To se često može otkriti kada se parametrima ili varijablama dodjeljuju ekstremne vrijednosti u blizini njihovih maksimuma ili minimuma (takozvani ``korner slučajevi'' -- eng. \textit{corner cases}). 
+mijenjanjem vrijednosti parametara i/ili promjenljivih odlučivanja, kao i provjerom da li se  izlaz iz modela ponaša na očekivan način. To se često može otkriti kada se parametrima ili promjenljivima dodjeljuju ekstremne vrijednosti u blizini njihovih maksimuma ili minimuma (takozvani ``korner slučajevi'' -- eng. \textit{corner cases}). 
 
 Sistematski pristup u ispitivanju modela podrazumijeva upotrebu retrospektivnog testa. Ovaj test uključuje upotrebu istorijskih podataka koji prate konstrukciju modela, a zatim procjenjuje koliko bi dobro funkcionisali model i rezultujuće rješenje, ako bi ono  bilo korišteno u praksi.  Ovaj pristup može da ukaže na dijelove modela koji sadrži određene nedostatkke, što bi dalje zahtijevalo dodatne izmjene i poboljšanja. 
 Sa druge strane, nedostatak retrospektivnog test je taj što koristi iste podatke kao i oni koji su korišteni za formulacijumodela. %Ključno je pitanje da li prošlost zaista reprezentuje budućnost. %Da bi se zaobišao   nedostatak retrospektivnog testiranja, ponekad je korisno privremeno nastaviti sa statusom quo. To će dati nove podatke koji nisu bili dostupni kada  je
@@ -523,7 +523,7 @@ Dalje, trebalo je procijeniti konstante (parametre)  u modelu; ovo je ostvareno 
     \label{tab:procjene-1}
 \end{table}
 
-U nastavku konstruišemo model problema. Uvedimo varijablu $x_1$ za broj serija proizvoda 1 proizvedenog na sedmičnom nivou, te $x_2$ broj serija proizvoda 2 koji je proizveden na sedmičnom nivou. Funkcija profita je jednaka $f(x_1, x_2) = 3 x_1 + 5 x_2$, dok se rješenja traže pod ograničenjima
+U nastavku konstruišemo model problema. Uvedimo promjenljivu $x_1$ za broj serija proizvoda 1 proizvedenog na sedmičnom nivou, te $x_2$ broj serija proizvoda 2 koji je proizveden na sedmičnom nivou. Funkcija profita je jednaka $f(x_1, x_2) = 3 x_1 + 5 x_2$, dok se rješenja traže pod ograničenjima
 \begin{itemize}
     \item $x_1, x_2 \geq 0$
     \item  $x_1 \leq 4, 2 x_2 \leq 12$
@@ -534,7 +534,7 @@ Dakle, na osnovu realnog problema, formirali smo odgovarajući matematički mode
 
 %https://www.desmos.com/calculator
 \section{Grafički metod}
- Problem iz prethodne sekcije je malih dimenzija jer sadrži samo dvije varijable odluke. Samim tim,  moguća rješenja mogu biti predstavljena u dvije dimenzije. U ovom slučaju možemo koristiti \emph{grafički metod} za rješavanje problema. Postupak uključuje rad u dvodimenzionalnom Dekartovom koordinatnom sistemu sa osama $x_1$ i $x_2$.  Prvi korak je identifikovati vrijednosti ($x_1$, $x_2$) koje zadovoljavaju data ograničenja, odnosno, treba odrediti skup \emph{dopustivih rješenja}.    U narednoj sekciji ovog poglavlja ćemo preciznije definisati navedeni termin, ali je, u ovom trenutku, pod ovim skupom dovoljno smatrati ona rješenja koja zadovoljavaju sva ograničenja modela  problema. Predstavimo grafički svako od ograničenja, odakle dobijamo oblast koja uključuje svih 5 ograničenja, vidjeti Sliku~\ref{fig:fig1}.  Rezultujući region rješenja $(x_1, x_2)$ je \emph{dopustivi region} ovog problema.
+ Problem iz prethodne sekcije je malih dimenzija jer sadrži samo dvije promjenljive odlučivanja. Samim tim,  moguća rješenja mogu biti predstavljena u dvije dimenzije. U ovom slučaju možemo koristiti \emph{grafički metod} za rješavanje problema. Postupak uključuje rad u dvodimenzionalnom Dekartovom koordinatnom sistemu sa osama $x_1$ i $x_2$.  Prvi korak je identifikovati vrijednosti ($x_1$, $x_2$) koje zadovoljavaju data ograničenja, odnosno, treba odrediti skup \emph{dopustivih rješenja}.    U narednoj sekciji ovog poglavlja ćemo preciznije definisati navedeni termin, ali je, u ovom trenutku, pod ovim skupom dovoljno smatrati ona rješenja koja zadovoljavaju sva ograničenja modela  problema. Predstavimo grafički svako od ograničenja, odakle dobijamo oblast koja uključuje svih 5 ograničenja, vidjeti Sliku~\ref{fig:fig1}.  Rezultujući region rješenja $(x_1, x_2)$ je \emph{dopustivi region} ovog problema.
  
  Posljednji korak se sastoji u odabiru tačke u ovom regionu  koja maksimizuje vrijednost (ciljne) funkcije $f = 3x_1 + 5x_2$. 
 
@@ -547,7 +547,7 @@ Dakle, na osnovu realnog problema, formirali smo odgovarajući matematički mode
 \end{figure}
 Pogledajmo sada niz (implicitnih) funkcija $3x_1 + 5 x_2 = c$, za $c \in \{3,20, 36\}$, kao na Slici~\ref{fig:fig2}. Jasno se vidi da prava $f = 36$ prolazi kroz tačku (vrh) regiona $(2,6)$, koja je svakako dopustiva. Takođe, vidimo da niti jedna druga funkcija $f=c, c > 36$ ne presijeca dopustiv region, odakle zaključujemo da je tačka $(2, 6)$ optimalno rješenje problema. Dakle, funkcija cilja ima maksimalnu vrijednost 36 i dostiže se u tački $(x_1, x_2)=(2,6)$.
 
-Ovaj se postupak često naziva \emph{grafičkom metodom za linearno programiranje}. Ona se može koristiti za rješavanje bilo kojeg problema linearnog programiranja sa dvije varijable. Uz dodatni angažman,  ovu metodu je moguće   proširiti na problem sa tri varijable, što je krajnji domet grafičke metode. Za uopšten slučaj se koriste naprednije metode,  o kojima će biti riječi u narednim sekcijama.
+Ovaj se postupak često naziva \emph{grafičkom metodom za linearno programiranje}. Ona se može koristiti za rješavanje bilo kojeg problema linearnog programiranja sa dvije promjenljive. Uz dodatni angažman,  ovu metodu je moguće   proširiti na problem sa tri promjenljive, što je krajnji domet grafičke metode. Za uopšten slučaj se koriste naprednije metode,  o kojima će biti riječi u narednim sekcijama.
 
 \section{Standardna forma linearnog programiranja}
 
@@ -600,18 +600,18 @@ Treba imati na umu da se ograničenja (\ref{eq:LP-c1}) mogu zapisati i na sljede
 \begin{itemize}
     \item $Ax \geq b$;
     \item $Ax = b$;
-    \item neke od varijabli $x_i\leqslant 0$.
+    \item neke od promjenljivih $x_i\leqslant 0$.
 \end{itemize}
-Bilo koji problem koji koristi neke od prethodna tri ograničenja predstavlja i dalje problem linearnog programiranja. Dodavajući tzv. \emph{izravnavajuće varijabe} $s \in \mathbb{R}^m$ u linearni program sa ograničenjima $Ax \leq b$, dobijamo linearni program sa ograničenjima $Ax + s = b, s \geq 0$. Isto tako, linearni program sa ograničenja $Ax \geq b$ se može transformisati u ograničenja sa jednakostima dodavanjem izravnavajućih varijabli kao $Ax - s = b, s\geq 0$.
+Bilo koji problem koji koristi neke od prethodna tri ograničenja predstavlja i dalje problem linearnog programiranja. Dodavajući tzv. \emph{izravnavajuće promjenljive} $s \in \mathbb{R}^m$ u linearni program sa ograničenjima $Ax \leq b$, dobijamo linearni program sa ograničenjima $Ax + s = b, s \geq 0$. Isto tako, linearni program sa ograničenja $Ax \geq b$ se može transformisati u ograničenja sa jednakostima dodavanjem izravnavajućih promjenljivih kao $Ax - s = b, s\geq 0$.
 
  Forma linearnog programa sa ograničenjima $Ax = b$ se naziva \emph{kanonska forma} linearnog programiranja. 
  
  Takođe, ako u linearnom
-programu postoji varijabla koja ne zadovoljava uslov nenegativnosti, ona se može zamijeniti razlikom dve nove nenegativne promenljive. Kanonski oblik linearnog programiranja je pogodan za efikasno izvođenje Gausovih transformacija  nad matricom problema, što se, na primjer, koristi u konstrukciji simpleks metoda.   %, jer je svaki broj razlika dva nenegativna broja.
+programu postoji promjenljiva koja ne zadovoljava uslov nenegativnosti, ona se može zamijeniti razlikom dve nove nenegativne promenljive. Kanonski oblik linearnog programiranja je pogodan za efikasno izvođenje Gausovih transformacija  nad matricom problema, što se, na primjer, koristi u konstrukciji simpleks metoda.   %, jer je svaki broj razlika dva nenegativna broja.
 
  U nastavku koristimo sljedeću terminologiju linearnog programiranja (LP):
 \begin{itemize}
-    \item \emph{Rješenje} u standardnom matematičkom značenju najčešće označava rezultat izračunavanja, odnosno krajnje rješenje posmatranog problema. Međutim, u rješavanju problema LP-a to  nije slučaj. Bilo koja specifikacija vrijednosti varijabli  $(x_1,\ldots, x_n)$ se smatra rješenjem, bez obzira da li je riječ o željenom krajnjem rješenju ili čak o nekom rješenju koje i ne zadovoljava sva ograničenja. U zavisnosti od toga, rješenja  možemo podijeliti na:
+    \item \emph{Rješenje} u standardnom matematičkom značenju najčešće označava rezultat izračunavanja, odnosno krajnje rješenje posmatranog problema. Međutim, u rješavanju problema LP-a to  nije slučaj. Bilo koja specifikacija vrijednosti promjenljivih  $(x_1,\ldots, x_n)$ se smatra rješenjem, bez obzira da li je riječ o željenom krajnjem rješenju ili čak o nekom rješenju koje i ne zadovoljava sva ograničenja. U zavisnosti od toga, rješenja  možemo podijeliti na:
     \begin{itemize}
         \item \emph{dopustiva rješenja} (eng. \emph{feasible solution}) -- podrazumijevanju ona rješenja koja zadovoljavaju sva ograničenja u modelu;
         \item \emph{nedopustiva rješenja} (eng. \emph{infreasible solution}) -- ona rješenja koja ne zadovoljavaju barem jedno od ograničenja u modelu. 
@@ -645,7 +645,7 @@ Prije toga, za početak, razmotrimo bilo koji problem LP-a sa dopustivim rješen
 
 Treba imati na umu da (optimalno) rješenje LP-a ne mora da bude cjelobrojno. Budući da svaka promjenljiva odluke predstavlja nivo odgovarajuće aktivnosti, pretpostavlja se da se aktivnosti mogu izvoditi i na razlomljenim nivoima, odnosno, aktivnost  se ne dijeli samo na diskretne dijelove. 
 
-Ako su sve promjenljive u LP-u cjelobrojne, riječ je o modelu \emph{Cjelobrojnog programiranja}. Ako pored cjelobrojnih, postoje i neke varijable koje su neprekidne, riječ je o modelima \emph{Mješovitog--cjelobrojnog linearnog programiranja}. Veliki broj realnih problema koji dolaze iz prakse su upravo problemi Mješovitog--cjelobrojnog linearnog programiranja.
+Ako su sve promjenljive u LP-u cjelobrojne, riječ je o modelu \emph{Cjelobrojnog programiranja}. Ako pored cjelobrojnih, postoje i neke promjenljive koje su neprekidne, riječ je o modelima \emph{Mješovitog--cjelobrojnog linearnog programiranja}. Veliki broj realnih problema koji dolaze iz prakse su upravo problemi Mješovitog--cjelobrojnog linearnog programiranja.
  
 %\section{Modelovanje nekih problema paradigmom linearnog programiranja}\label{sec:modeli_lp}
 
@@ -660,7 +660,7 @@ Koliko je koje namirnice potrebno kupiti za (dnevnu) prehranu da bi se zadovolji
 potreba za svim nutritivnim elementima, a da se pri tome minimizuje cijena prehrane?
 \end{primjer}
  
- \emph{Rješenje.}  Uvedimo realne varijable $x_j \geq 0$ za količinu hrane namirnice $N_j$, $j = 1, \ldots, n$, koja će se koristiti za prehranu. Funkcija cilja treba da odgovara minimizaciji cijene prehrane:
+ \emph{Rješenje.}  Uvedimo realne promjenljive $x_j \geq 0$ za količinu hrane namirnice $N_j$, $j = 1, \ldots, n$, koja će se koristiti za prehranu. Funkcija cilja treba da odgovara minimizaciji cijene prehrane:
  $$f(x) = c_1 x_1 + \cdots + c_n x_n.$$
  
  Ograničenja problema su vezana za zahtjev da se zadovolji dnevna potreba za unosom svakog nutritivnog elementa. Odavde, slijedi da za $i$-ti element treba da bude zadovoljeno
@@ -1040,7 +1040,7 @@ svaku slobodnu promjenljivu ćemo zapisati kao razliku dvije pozitivne promjenlj
 	&  x_i^+, x_i^- \geq 0, \forall j\in J. \label{eq:lp_abs_transformed}
 \end{align}
 
-Pretpostavimo da je $x_j^*$, $j \in J$ optimalno rješenje LP-a (\ref{eq:lp_abs}).  Lako je vidjeti da je ekvivalentno optimalno rješenje LP-a (\ref{eq:lp_abs_transformed}) tada dato u obliku $(x_j^+)^* = x_j^*$  ako je $x_j^* \geq 0$, a inače $(x_j^+)^* = 0$. Slično imamo $(x_j^-)^* = - x_j^*$  ako je $x_j^* \leq 0$, a inače $(x_j^-)^* = 0$. Naime, lako se provjeri da su vrijednosti ova dva rješenja u odnosu na odgovarajuće funkcije cilja jednake. Kako je takođe jasno da su optimalne tačke LP-a (\ref{eq:lp_abs_transformed}) one za koje je barem jedna od varijabli $x_j^+$ ili $x_j^-$, $j \in J$  jednaka 0 (pogledati funkciju cilja koja se minimizuje), pod uslovom da LP (\ref{eq:lp_abs}) ima barem jedno dopustivo rješenje, zaključujemo da je ova transformacija validna. Ostalo je još primijetiti da iz  nedopustivosti jednog modela slijedi nedopustivost drugog modela i obrnuto. %u smislu jednake optimalne vrijednosti. 
+Pretpostavimo da je $x_j^*$, $j \in J$ optimalno rješenje LP-a (\ref{eq:lp_abs}).  Lako je vidjeti da je ekvivalentno optimalno rješenje LP-a (\ref{eq:lp_abs_transformed}) tada dato u obliku $(x_j^+)^* = x_j^*$  ako je $x_j^* \geq 0$, a inače $(x_j^+)^* = 0$. Slično imamo $(x_j^-)^* = - x_j^*$  ako je $x_j^* \leq 0$, a inače $(x_j^-)^* = 0$. Naime, lako se provjeri da su vrijednosti ova dva rješenja u odnosu na odgovarajuće funkcije cilja jednake. Kako je takođe jasno da su optimalne tačke LP-a (\ref{eq:lp_abs_transformed}) one za koje je barem jedna od promjenljivih $x_j^+$ ili $x_j^-$, $j \in J$  jednaka 0 (pogledati funkciju cilja koja se minimizuje), pod uslovom da LP (\ref{eq:lp_abs}) ima barem jedno dopustivo rješenje, zaključujemo da je ova transformacija validna. Ostalo je još primijetiti da iz  nedopustivosti jednog modela slijedi nedopustivost drugog modela i obrnuto. %u smislu jednake optimalne vrijednosti. 
 
 
 \emph{Min-max problem}. Neka je dat sljedeći model: 
@@ -1056,7 +1056,7 @@ Ovaj  model se transformiše u model LP-a uvođenjem promjenljive
 \begin{eqnarray}
 	\sum_{j \in J} a_{kj} x_j \leq z\ \forall k \in K.
 \end{eqnarray}
-Kada se $z$ minimizuje, ova ograničenja osiguravaju da je $z$ veće ili jednako  $\sum_{j \in J} c_{kj}x_j$, za sve $k$. Optimalna vrijednost $z$ neće biti veća od maksimuma svih $\sum_{j \in J} c_{kj}x_j$, jer  $z$ minimizujemo. Prema tome, optimalna vrijednost varijable $z$ će težiti da bude što manja moguća i jednaka maksimalnoj cijeni nad skupom $K$. Dakle, početni model se transformiše u:
+Kada se $z$ minimizuje, ova ograničenja osiguravaju da je $z$ veće ili jednako  $\sum_{j \in J} c_{kj}x_j$, za sve $k$. Optimalna vrijednost $z$ neće biti veća od maksimuma svih $\sum_{j \in J} c_{kj}x_j$, jer  $z$ minimizujemo. Prema tome, optimalna vrijednost promjenljive $z$ će težiti da bude što manja moguća i jednaka maksimalnoj cijeni nad skupom $K$. Dakle, početni model se transformiše u:
 \begin{align*}
 	&\max z \\
     &{t.d.} \nonumber \\
@@ -1090,7 +1090,7 @@ Množeći prvo ograničenje sa $t>0$ te uvodeći smjenu $y_j = t x_j$, dobijamo 
 	& t > 0 \\
 	& x \geq 0.
 \end{align*}
-Da bi LP model bio validan, potrebno je staviti $t \geq 0$ i na kraju provjeriti optimalnu vrijednost varijable $t$, odnosno, da li je $t>0$.   \\
+Da bi LP model bio validan, potrebno je staviti $t \geq 0$ i na kraju provjeriti optimalnu vrijednost promjenljive $t$, odnosno, da li je $t>0$.   \\
 \emph{Domenske granice u ograničenjima}. Neka je dat model
 \begin{align*}
 	&\min_{j \in J } c_j x_j \\
@@ -1183,7 +1183,7 @@ Osim toga, da bi se održala ravnoteža aviona, teret  se mora ravnomjerno raspo
 \end{table}
 Bilo koji dio ovih tereta se može   prihvatiti za transport. Cilj je utvrditi koju količinu svakog tereta $C_1$, $C_2$, $C_3$ i $C_4$ treba prihvatiti i kako ga rasporediti po odjeljcima, da bi ukupna dobit na letu bila maksimalna.
 
-Uputstvo. Definisati varijable odluke $x_{i,j}$ koje predstavljaju broj (tona) tereta $i$   (za $C_i, i=1, \ldots,4$,  respektivno) koji se skladišti  u odjeljak $j$, $j=1,2,3$ (prednji, srednji, zadnji).  % http://people.brunel.ac.uk/~mastjjb/jeb/or/lpmore.html 
+Uputstvo. Definisati promjenljive odlučivanja $x_{i,j}$ koje predstavljaju broj (tona) tereta $i$   (za $C_i, i=1, \ldots,4$,  respektivno) koji se skladišti  u odjeljak $j$, $j=1,2,3$ (prednji, srednji, zadnji).  % http://people.brunel.ac.uk/~mastjjb/jeb/or/lpmore.html 
 \item Kompanija proizvodi četiri proizvoda ($1,2,3,4$) na dvije mašine ($X$ i $Y$). Vrijeme (u minutama) za obradu jednog proizvoda na svakoj mašini je dato tabelom:
 \begin{table}[!ht]
 	\centering	
@@ -1203,7 +1203,7 @@ Zahtjevi kupaca su specifični. Količina proizvoda 3 je povezana sa količinom 
 Pretpostaviti da radna sedmica ima ukupno 35 sati. Formulisati model proizvodnje ovih proizvoda preko linearnog programa, u cilju maksimizovanja profita. 
 
 Uputstvo. Promjenljive odluke se vezuju za količinu proizvoda koji se proizvode na svakoj od mašina.  Dakle, 
-promjenljive $x_i$ označava broj proizvoda $i$ koji se proizvode na sedmičnom nivou na mašini $X$, dok je $y_j$ označava  broj proizvoda $j$ koji se proizvode na sedmičnom nivou na mašini $Y$, $i \in \{1,2,3,4\}$, $j \in \{2,3,4\}$. Varijablu $y_1$ ne definišemo jer se proizvod 1 izvršava na obje mašine.  
+promjenljive $x_i$ označava broj proizvoda $i$ koji se proizvode na sedmičnom nivou na mašini $X$, dok je $y_j$ označava  broj proizvoda $j$ koji se proizvode na sedmičnom nivou na mašini $Y$, $i \in \{1,2,3,4\}$, $j \in \{2,3,4\}$. Promjenljivu $y_1$ ne definišemo jer se proizvod 1 izvršava na obje mašine.  
 
 	\item Grafičkom metodom riješiti sljedeći problem
 	\begin{align*}
@@ -1231,7 +1231,7 @@ promjenljive $x_i$ označava broj proizvoda $i$ koji se proizvode na sedmičnom 
 
 
 \newpage 
-\chapter{Simpleks Metod}
+\chapter{Simpleks Metod}\label{chp:simpleks}
 
 Simpleks metod je jedan od najpoznatijih i najefikasnijih algoritama za rješavanje problema linearnog programiranja. Ideja za pronalaženje optimalnog rješenja problema LP-a simpleks metodom je zasnovana na  obilasku vrhova dopustivog regiona problema. Vrhovi se sukcesivno obilaze tako da se, prelaskom u novi vrh, vrijednost funkcije cilja smanjuje (ako je dat zadatak minimizacije). Simpleks metod je razvio George Dantzig 1947. godine, a s obzirom na njegovu važnost u rješavanju problema linearnog programiranja, spada među najznačajnije matematičke algoritme XX vijeka.
 
@@ -1267,7 +1267,7 @@ odakle je $d_B = -  B^{-1} \cdot A_j $.  Za ovako odabran $d$ imamo zadovoljen u
     \item Ako je $x$ degenerativno bazno dopustivo rješenje, slijedi da je više od $n-m$ kompomenti od $x$ jednako 0. Kao i u prvom slučaju, za nebazni slučaj pokazujemo uslov nenegativnosti. Tada za bazne kompomenete vektora $x +\lambda d$  postoji bazni indeks $i$ za koji je $x_{p_i} = 0$, pa ako bi bilo $d_{p_i}< 0$, onda ne bismo mogli naći $\lambda>0$, tako da $x_{p_i} + \lambda d_{p_i} >0$, čime je narušena dopustivost. Pojavljivanje ovakvog slučaja se može zaobići primjenom određenih pravila izbora nove bazne koordinate umjesto koordinate $j$, što će biti i pokazano u nastavku ove sekcije. 
 \end{itemize}
 Da bi se pravilno izabrala nebazna promjenljiva $x_j$, koristimo  uslov optimalnosti $c^T ( x + \lambda d ) < c^T x $, odakle slijedi $c^T d < 0$.  Dakle, $$c^T d = c_B^T d_B + c_j = c^T ( - B^{-1} A_j ) + c_j < 0.$$
- Prema tome, biramo (nebazni) indeks $j$ tako da je zadovoljeno $ \overline{c_j} = c_j - c_B^T B^{-1}A_j < 0$. Vektor $\overline{c}=[\overline{c_1}, \ldots, \overline{c_n}]^T$ se naziva \emph{vektor doprinosa}, dok je vrijednost $\overline{c_j}$ \emph{doprinos nebazne varijable} $x_j$. 
+ Prema tome, biramo (nebazni) indeks $j$ tako da je zadovoljeno $ \overline{c_j} = c_j - c_B^T B^{-1}A_j < 0$. Vektor $\overline{c}=[\overline{c_1}, \ldots, \overline{c_n}]^T$ se naziva \emph{vektor doprinosa}, dok je vrijednost $\overline{c_j}$ \emph{doprinos nebazne promjenljive} $x_j$. 
  
 Iz sljedeće teoreme dobijamo uslove optimalnosti rješenja.
 
@@ -1371,7 +1371,7 @@ Transformišimo standardni oblik problema LP-a
     & Ax \leq b \\
     & x \geq 0\\
 \end{align*}
-na kanonski oblik pogodan simpleks metodi $(A {x} = b)$ dodavanjem ``izjednačavajućih'' varijabli $s$ na sljedeći način:
+na kanonski oblik pogodan simpleks metodi $(A {x} = b)$ dodavanjem ``izjednačavajućih'' promjenljivih $s$ na sljedeći način:
 \begin{align}
     & c^T x \rightarrow \max \\
     & Ax + s =  b \\
@@ -1460,7 +1460,7 @@ Bazne promjenljive sada lako prepoznajemo iz Tabele~\ref{tab:simpleks_tabela2}, 
  
  Iz posljednje simpleks tabele (Tabela~\ref{tab:simpleks_tabela3}) se može uočiti i sljedeće:
  \begin{itemize}
-     \item Jedinična matrica $m \times m$   ugrađena u gornju lijevu podmatricu simpleks tabele (blok sa elementima $\overline{a}_{i,j}$) sadrži kolone koje čine vektore baznih varijabli.
+     \item Jedinična matrica $m \times m$   ugrađena u gornju lijevu podmatricu simpleks tabele (blok sa elementima $\overline{a}_{i,j}$) sadrži kolone koje čine vektore baznih promjenljivih.
      \item U odgovarajućim kolonama u posljednjoj vrsti (ciljna vrsta) se nalaze nule.
  \end{itemize}
  Prema tome, vektori $x_i$, koji su bazni vektori (kolone baze $B$), su napisani preko nebaznih vektora $x_i \in N$. Kako je $x_i  = 0$, za sve $i \in N$, vrijednosti baznih vektora $x_i$, tj. kolona baze $B$, se trivijano izračunavaju.
@@ -1537,14 +1537,14 @@ $$\begin{array}{ccccc|c}
 \end{array}$$
  
 
-Ovdje počinju problemi. Pivotiranje bi trebalo da ide oko nekog elementa u prvoj koloni. Kako tu imamo samo jedan element strogo veći od 0, a to je $\overline{a}_{3,1}=7$, on je ujedno i pivot. Izvršavajući operaciju pivotiranja, varijable $\overline{b}$ neće promijeniti svoje vrijednosti, tj. dobijamo sljedeću tabelu:
+Ovdje počinju problemi. Pivotiranje bi trebalo da ide oko nekog elementa u prvoj koloni. Kako tu imamo samo jedan element strogo veći od 0, a to je $\overline{a}_{3,1}=7$, on je ujedno i pivot. Izvršavajući operaciju pivotiranja, promjenljive $\overline{b}$ neće promijeniti svoje vrijednosti, tj. dobijamo sljedeću tabelu:
 $$\begin{array}{ccccc|c}
      0 & 1 & \frac{1}{7}  & 0 & \frac{1}{7} & 3 \\
      0 & 0 & \frac{8}{7}  & 1 & \frac{1}{7} & 8 \\
      1 & 0 & -\frac{6}{7} & 0 & \frac{1}{7} & 0 \\ \hline
      0 & 0 & \frac{9}{7}  & 0 & -\frac{5}{7} & -9 \\
 \end{array}$$
-Geometrijski gledano, razlog za ovakvu situaciju su tri prave $x=0$, $-x+y=3$ i $x+6y=18$ koje se susreću u tački $(0,3)$ (Slika~\ref{fig:deg-sol}). U prošlom koraku, kada su $x$ i $s_1$ bile nebazne varijable, tačka (0,3) je posmatrana kao presjek $x=0$ i $-x +y =3$. Nakon sljedećeg koraka $s_1$ i $s_3$ postaju nebazne, pa se pomjeramo u tački presjeka pravih 
+Geometrijski gledano, razlog za ovakvu situaciju su tri prave $x=0$, $-x+y=3$ i $x+6y=18$ koje se susreću u tački $(0,3)$ (Slika~\ref{fig:deg-sol}). U prošlom koraku, kada su $x$ i $s_1$ bile nebazne promjenljive, tačka (0,3) je posmatrana kao presjek $x=0$ i $-x +y =3$. Nakon sljedećeg koraka $s_1$ i $s_3$ postaju nebazne, pa se pomjeramo u tački presjeka pravih 
 $-x+y=3$ i $x+6y=18$, što je opet ista tačka (prema tome, nema ni poboljšanja vrijednosti funkcije cilja). 
  Ovo pivotiranje se naziva \emph{degenerativno pivotiranje}. U ovom primjeru, napustićemo vrh $(0,3)$ nakon sljedeće iteracije  pivotiranja. U komplikovanijim primjerima, kada se mnoga ograničenja mogu sresti u jednom vrhu, ostanak u istom vrhu u narednim simpleks koracima je velika opasnost. Ovaj slučaj se može izbjeći poštovanjem 
  Blandovog pravila. Primijetimo da koristeći Blandovo pravilo u prvom koraku simpleks metode -- uzimajući za pivota elemente iz kolone 1, a ne kolone 2 --  degenerativno pivotiranje se ne bi pojavilo.  
@@ -1698,7 +1698,7 @@ Sljedeći primjer demonstrira odgovarajuće geometrijske korake (``šetanje'') p
  	& 3x + 4y \leq 26 \\
  	& x, y \geq 0.
  \end{align*}
- Dodajmo izjednačavajuće varijable u početni LP, odakle dobijamo 
+ Dodajmo izjednačavajuće promjenljive u početni LP, odakle dobijamo 
   \begin{align*}
  	&\max 2x + 3y \\
  	& t.d. \\
@@ -1717,7 +1717,7 @@ $$\begin{array}{cccccc| c}
 	-z  & 2 & 3 & 0 & 0 & 0 & 0 \\
 \end{array}
 $$ 
-Kao što je već pomenuto, izjednačavajuće varijable čine pogodne bazne promjenljive za početak simpleks metode, jer one formiraju jediničnu podmatricu u gornjoj blok matrici 
+Kao što je već pomenuto, izjednačavajuće promjenljive čine pogodne bazne promjenljive za početak simpleks metode, jer one formiraju jediničnu podmatricu u gornjoj blok matrici 
 simpleks tabele. Prema tome, bazno rješenje je
 $(x, y, s_1, s_2, s_3) = (0, 0, 3, 2, 26)$, koje je ujedno i dopustivo.
 Na Slici~\ref{fig:step-1} je prikazan dopustivi region problema. Nakon prvog koraka, nalazimo se u tački $A=(0,0)$, koja je dopustiva. Trenutna najbolja vrijednost je jednaka 0. 
@@ -2026,7 +2026,7 @@ Pokažimo da važi i naredno tvrđenje, koje ćemo koristiti u dokazu Teoreme ja
          Primijenimo simpleks metod, pa posmatrajmo posljednju  simpleks tabelu, odnosno tabelu iz koje se dobija rješenje $x^*$.
          
          $$\begin{array}{c |c | c}
-         \overbrace{\ \ \ \ \ \hspace{1.5cm}}_{x \mbox{ varijable}}     &  \overbrace{\ \ \ \ \ \hspace{1.5cm}}_{s \mbox{ varijable}} &   \\
+         \overbrace{\ \ \ \ \ \hspace{1.5cm}}_{x \mbox{ promjenljive}}     &  \overbrace{\ \ \ \ \ \hspace{1.5cm}}_{s \mbox{ promjenljive}} &   \\
                                                            & &   \\
          \hline
              c_1^*\ c_2^* \ldots c_n^*            & -y_1^* -y_2^* \ldots -y_m^*  & -f^*
@@ -2056,7 +2056,7 @@ Dalje, važi i $c^T x = ((c^*)^T + (y^*)^T A ) x$, odnosno     $ c = A^T y^* + c
  
     
 \end{proof} 
-Primijetimo da koeficijenti $y^*$ posljednje vrste završne simpleks tabele odgovaraju  ``izjednačavajućim''   varijablama i one nam daju rješenje problema  ($D$).  
+Primijetimo da koeficijenti $y^*$ posljednje vrste završne simpleks tabele odgovaraju  ``izjednačavajućim''   promjenljivima i one nam daju rješenje problema  ($D$).  
 
 \begin{primjer} Moguće je da problem ($P$) i njegov   dual ($D$) nemaju dopustivo rješenje. Pogledajte sljedeći primjer:
 	\end{primjer}
@@ -2105,7 +2105,7 @@ Uslovi (\ref{eq:slackness-1}) i (\ref{eq:slackness-2}) se nazivaju \emph{uslovi 
          Kako je $A^Ty \geq c$, $\sum_i (A^T y - c)_i x_i$ je suma nenegativnih komponenti, odakle slijedi da   $(A^T y - c)_i x_i= 0$ za sve $i$. Takođe, slično vrijedi i za drugu sumu, jer $Ax - b \leq 0$, pa je svaki  $(Ax - b)_j y_j$ negativan, odakle slijedi da je $(Ax - b)_j y_j = 0$ za sve $j$.
 \end{proof}
 
-\emph{Komentar}.  Nekada je lakse riješiti jedan od problema, ($P$)  ili  ($D$).  Na primjer, lakše je riješiti dualni problem sa dvije varijable i 4 ograničenja (grafički metod), nego primalni  ($P$)  problem sa 4 varijable i 2 ograničenja. 
+\emph{Komentar}.  Nekada je lakse riješiti jedan od problema, ($P$)  ili  ($D$).  Na primjer, lakše je riješiti dualni problem sa dvije promjenljive i 4 ograničenja (grafički metod), nego primalni  ($P$)  problem sa 4 promjenljive i 2 ograničenja. 
 
 \begin{primjer} Posmatrajmo primarni  ($P$)  i dualni ($D$) problem, gdje su
 	\end{primjer}
@@ -2149,7 +2149,7 @@ $$\begin{array}{llll}
      &                       & x_1,\ldots, x_4 \geq 0.                                 &
 \end{array}
 $$
-Ovaj problem ima 4 promjenljive i 2 ograničenja. Prema tome, ima smisla razmatrati dualni problem  ($D$)  datog primala  ($P$),  jer u tom slučaju dobijamo linearni program od samo dvije varijable koji se može lako riješiti grafičkom metodom.  Odgovarajući problem ($D$) je dat sa:
+Ovaj problem ima 4 promjenljive i 2 ograničenja. Prema tome, ima smisla razmatrati dualni problem  ($D$)  datog primala  ($P$),  jer u tom slučaju dobijamo linearni program od samo dvije promjenljive koji se može lako riješiti grafičkom metodom.  Odgovarajući problem ($D$) je dat sa:
 
 $$\begin{array}{lll}
     &\min                    &  210 y_1 + 210 y_2      \\
@@ -2281,7 +2281,7 @@ gdje je $X = diag (x_1, \ldots, x_n)$, $S= diag(s_1,\ldots s_m)$, $\mathbf{1}=(1
 U nastavku navodimo pojam barijernog problema preko kojeg razvijamo metod unutrašnje tačke. Zamijenimo ograničenja nenegativnosti u primalnom problemu sa $-ln x_j$, $j=1,\ldots,n$.   
 Tada vrijedi 
 $$\min e^{-\sum_{j=1}^n ln x_j} \Leftrightarrow \max \prod_{j} x_j $$
-Dakle, minimizacija izraza $-\sum_{j=1}^n x_j$ je ekvivalentna maksimizaciji proizvoda udaljenosti od svih hiperravni koje definišu prvi ortant (skup svih vektora kojima su koordinate nenegativne). Dakle, ovako definisan optimizacioni problem će onemogućiti da se vrijednost neke od varijabli $x_j$ približi nuli (uprkos nenegativnim ograničenjima).  Na osnovu ovih činjenica, definišimo sljedeći optimizacioni problem. 
+Dakle, minimizacija izraza $-\sum_{j=1}^n x_j$ je ekvivalentna maksimizaciji proizvoda udaljenosti od svih hiperravni koje definišu prvi ortant (skup svih vektora kojima su koordinate nenegativne). Dakle, ovako definisan optimizacioni problem će onemogućiti da se vrijednost neke od promjenljivih $x_j$ približi nuli (uprkos nenegativnim ograničenjima).  Na osnovu ovih činjenica, definišimo sljedeći optimizacioni problem. 
 
 \begin{definition}
 	Barijerni program  primala je dat u obliku 
@@ -2637,7 +2637,7 @@ Problem dopustivosti može da služi i da odgovorimo na sljedeće pitanje:
 \emph{Da li je optimalna vrijednost funkcije cilja problema LP-a veća od neke unaprijed zadate  vrijednosti k?}
  Na ovo pitanje možemo odgovoriti pomoću  \emph{Furije–Mockinove} eliminacije. Ova metoda je strukturalno drugačija  od simpleks metode. Ideja algoritma je zasnovana na redukciji problema sa $n$ promjenljivih na ekvivalentan problem sa $n-1$ promjenljivih. Ekvivalentnost podrazumijeva da početni problem ima rješenje akko  ga ima i redukovani problem. Eliminacija promjenljivih se vrši iterativno, odnosno, u svakom koraku se smanjuje broj (nepoznatih)  promjenljivih. Na kraju se početni sistem svodi na sistem sa jednom promjenljivom, za koji se lako može provjeriti da li sadrži dopustivo rješenje.
  
- Ponovimo, glavni korak ovog metoda je redukcija problema na ekvivalentan problem sa manjim brojem promjenljivih. Pretpostavimo da su ograničenja data sa varijablama $x_1,\ldots, x_n$ i da želimo da eliminišemo varijablu $x_n$. Za svako od ograničenja
+ Ponovimo, glavni korak ovog metoda je redukcija problema na ekvivalentan problem sa manjim brojem promjenljivih. Pretpostavimo da su ograničenja data sa promjenljivima $x_1,\ldots, x_n$ i da želimo da eliminišemo promjenljivu $x_n$. Za svako od ograničenja
  \begin{equation}\label{eq:inequality_i}
       a_{i,1} x_1 + \cdots + a_{i,n} x_n \leq b_i
  \end{equation}
@@ -2654,7 +2654,7 @@ Problem dopustivosti može da služi i da odgovorimo na sljedeće pitanje:
      \max\{L_1,\ldots, L_k \} \leq x_n \leq \min \{ U_1, \ldots, U_l \},
    \end{equation}
    %https://faculty.math.illinois.edu/~mlavrov/docs/482-fall-2019/lecture19.pdf
- jer bi tada postojalo nešto između najveće donje granice i najmanje gornje granice za za vrijednost varijable $x_n$. Međutim, kako su sve donje i gornje granice izražene preko nepoznatih varijabli $x_1, \ldots, x_{n-1}$, ne može se ustanoviti koje od njih su veće, a koje manje. Kompromis postižemo dodavanjem  sljedećih nejednakosti 
+ jer bi tada postojalo nešto između najveće donje granice i najmanje gornje granice za za vrijednost promjenljive $x_n$. Međutim, kako su sve donje i gornje granice izražene preko nepoznatih promjenljivih $x_1, \ldots, x_{n-1}$, ne može se ustanoviti koje od njih su veće, a koje manje. Kompromis postižemo dodavanjem  sljedećih nejednakosti 
  $$\begin{array}{cccc}
        L_1 \leq U_1 & L_1 \leq U_2   &  \cdots   & L_1 \leq U_l \\
        L_2 \leq U_1 & L_2  \leq U_2  &  \cdots   & L_2 \leq U_l \\
@@ -2664,7 +2664,7 @@ Problem dopustivosti može da služi i da odgovorimo na sljedeće pitanje:
 Ako postoji neka vrijednost  $x_n$ koja zadovoljava sva ograničenja (\ref{eq:min_max_xi}), onda je za sve $i,j$, 
 $L_i \leq x_n \leq U_j$. Obrnuto, ako svih $k \cdot l$ nejednakosti vrijede, onda vrijedi i (\ref{eq:min_max_xi}), pa se može izabrati neki $x_n$ između $\max$ i $\min$ gornje granice. 
 
-Prema tome, početni problem je redukovan na sistem od $n-1$ varijabli sa dodatnih  $k \cdot l$ nejednakosti izraženih gore, uz originalna ograničenja koja ne uključuju $x_n$. Ovaj proces nastavimo iterativno, dok ne dobijemo samo jednu promjenjivu sa dodatnim ograničenjima  i potom (trivijalno) riješimo sistem. 
+Prema tome, početni problem je redukovan na sistem od $n-1$ promjenljivih sa dodatnih  $k \cdot l$ nejednakosti izraženih gore, uz originalna ograničenja koja ne uključuju $x_n$. Ovaj proces nastavimo iterativno, dok ne dobijemo samo jednu promjenjivu sa dodatnim ograničenjima  i potom (trivijalno) riješimo sistem. 
 
 \begin{primjer} Pretpostavimo da nam je dat sistem nejednačina:
 	\end{primjer}
@@ -2801,7 +2801,7 @@ $$
 \end{aligned}$$
 \end{enumerate}
 %\newpage
-\chapter{Cjelobrojno Programiranje}
+\chapter{Cjelobrojno Programiranje}\label{chp:ilp}
 
 %https://www.google.com/url?sa=t&source=web&rct=j&url=https://web.mit.edu/15.053/www/AMP-Chapter-09.pdf&ved=2ahUKEwiN0cef_f7xAhU0CRAIHWLqCw0QFjAfegQILBAC&usg=AOvVaw1cQCbZJQbc55Z0VLPue2ul
 U mnogim realnim problemima, promjenljive odluke ne dobijaju neprekidne, već isključivo diskretne vrijednosti. Na primjer, kod problema dodjele poslova određenim mašinama, zahtijevaju se promjenljive koje su diskretnog tipa, kojima se definiše koji posao će biti dodijeljen kojoj mašini. U slučaju da su u nekom modelu sve promjenljive odluke cjelobrojne, tada kažemo da je riječ o problemu \emph{cjelobrojnog programiranja} (eng. \emph{Integer programming}). 
@@ -2956,7 +2956,7 @@ Sljedeći primjer spada u modele \emph{binarnog linearnog programiranja}.
 \begin{primjer}
 	
 \emph{Problem postrojenja sa neograničenim kapacitetom.}
-Čest slučaj je varijacija prethodnog problema lokacija gdje je $ u_{i} = + \infty,i=1\ldots,m$. U ovom slučaju optimalna strategija se sastoji u zadovoljenju kompletne (neparcijalne) potražnje kupca $j$ iz najbližeg otvorenog objekta. Zbog toga, neprekidne promjenljive  $y_{ij}$ možemo zamijeniti binarnim varijablama $z_{ij}$, $i=1,\ldots,n, j=1,\ldots,m$ pri čemu promjenljiva dobija vrijednost 1 ako je kupac $j$ snabdjeven od strane postrojenja $i$. Prema tome, model izgleda ovako:
+Čest slučaj je varijacija prethodnog problema lokacija gdje je $ u_{i} = + \infty,i=1\ldots,m$. U ovom slučaju optimalna strategija se sastoji u zadovoljenju kompletne (neparcijalne) potražnje kupca $j$ iz najbližeg otvorenog objekta. Zbog toga, neprekidne promjenljive  $y_{ij}$ možemo zamijeniti binarnim promjenljivima $z_{ij}$, $i=1,\ldots,n, j=1,\ldots,m$ pri čemu promjenljiva dobija vrijednost 1 ako je kupac $j$ snabdjeven od strane postrojenja $i$. Prema tome, model izgleda ovako:
 
 \begin{align*}
 	&\sum_{i=1}^n f_i x_i  + \sum_{i,j} c_{ij} z_{ij} d_j \rightarrow \min\\
@@ -2975,7 +2975,7 @@ koji pohađa $j$-to predavanje tokom $n$-tog vremenskog perioda (recimo, vrijeme
 \end{primjer}
 Posmatrajmo ipak malo specifičniji problem u odnosu na najopštiji (koji je dosta težak i za modeovanje, a kamoli za rješavanje). 
 Razmotrimo raspoređivanje osoblja zaduženog za upravljanje letom aviona. 
-Avionska kompanija treba da rasporedi svoje osoblje na rutama koje pokrivaju letove. Treba paziti, na primjer, da jedna posada treba da upravlja letom iz  Beograda u Zagreb (u 10:00), a zatim letom iz Zagreba u Cirih (u 14:00). Dakle, jedna posada bi trebalo da je uključena u rutu na kojoj upravlja različitim letovima. Prema tome, raspoređivanje posade na rutu $j$ se modeluje uz pomoć binarne varijable 
+Avionska kompanija treba da rasporedi svoje osoblje na rutama koje pokrivaju letove. Treba paziti, na primjer, da jedna posada treba da upravlja letom iz  Beograda u Zagreb (u 10:00), a zatim letom iz Zagreba u Cirih (u 14:00). Dakle, jedna posada bi trebalo da je uključena u rutu na kojoj upravlja različitim letovima. Prema tome, raspoređivanje posade na rutu $j$ se modeluje uz pomoć binarne promjenljive 
 $$x_j = \begin{cases}
     1,& \mbox{ ako je barem jedna posada pridružena ruti } j \\
     0,& \mbox{ inače}. 
@@ -3023,7 +3023,7 @@ $$  \sum_{j=1}^n x_{ij} = 1, \forall i =1,\ldots, n$$
  \section{Tehnike transformacija nekih nelinearnih ograničenja u  ILP-u}\label{sec:transformILP}
  
  U prethodnom odjeljku je objašnjeno modelovanje nekih problema pomoću cjelobrojnog linearnog programiranja. Kao što se može vidjeti, modeli nekih problema pravolinijski slijede iz definicije samog problema, dok je za modelovanje nekih drugih, kompleksnijih problema, potrebno uključiti veći broj dodatnih promjenljivih i ograničenja. U ovom odjeljku ćemo prikazati neke standardne transformacije i tehnike, kojima različite (nelinearne) izraze transformišemo i modelujemo ih pomoću cjelobrojnih promjenljivih i linearnih ograničenja.
- %\emph{Binarne varijable.} 
+ %\emph{Binarne promjenljive.} 
  
   
  
@@ -3039,14 +3039,14 @@ Pretpostavimo da proizvođač lijekova treba da odluči hoće li koristiti rezer
 \end{comment}
 %\emph{Logička ograničenja}. 
 \subsection{Logička ograničenja}
-Jedno od najprostijih logičkih pitanja u matematičkom programiranju je da li dati izbor varijabli odluka zadovoljava ograničenje
+Jedno od najprostijih logičkih pitanja u matematičkom programiranju je da li dati izbor promjenljivih odlučivanja zadovoljava ograničenje
 
 \begin{equation}\label{eq:constr-ex-1-ilp}
    f(x_1,\ldots, x_n )\leq b
 \end{equation}
  ili   ograničenje vrijedi u generalnom slučaju (ograničenje je invarijantno). 
  
- Da bismo modelovali ograničenja koja odgovaraju ovakvom zahtjevu, uvedimo binarnu varijablu $y$ na sljedeći način:
+ Da bismo modelovali ograničenja koja odgovaraju ovakvom zahtjevu, uvedimo binarnu promjenljivu $y$ na sljedeći način:
  
 $$y =\begin{cases}
 1, \mbox{ ako je poznato da je ograničenje zadovoljeno}, \\
@@ -3149,16 +3149,16 @@ Uslov $y_1 + y_2 + y_3 \leq 2$ nam upravo ograničava da rješenje $(x_1, x_2)$ 
 
 U ovom odjeljku ćemo analizirati način na koji se neke nelinearne funkcije mogu predstaviti pomoću odgovarajućih linearnih funkcija, zajedno sa linearnim ograničenjima. 
 
-($i$) \emph{Uključivanje fiksnih cijena u funkciju cilja}. Kod nekih problema, funkcija cilja problema minimizacije može da sadrži i neke fiksne troškove, kao što su fiksni troškovi ulaganja ili fiksni troškovi postavljanja opreme. Na primjer, trošak proizvodnje $x$ jedinica određenog proizvoda može da se sastoji od fiksnih troškova postavljanja opreme i promjenjivih troškova koji se tiču proizvedene robe na opremi (mašinama). Pretpostavimo da oprema ima kapacitet proizvodnje od $B$ jedinica (nekog proizvoda). Neka je $y$ binarna varijabla koja ukazuje na to kada nastaje fiksni trošak, pri čemu  je $y=1$ ako je $x >0$, dok je $y=0$ ako je $x=0$. Tada se doprinos cijeni proizvodnje od $x$ jedinica proizvoda može predstaviti sa
+($i$) \emph{Uključivanje fiksnih cijena u funkciju cilja}. Kod nekih problema, funkcija cilja problema minimizacije može da sadrži i neke fiksne troškove, kao što su fiksni troškovi ulaganja ili fiksni troškovi postavljanja opreme. Na primjer, trošak proizvodnje $x$ jedinica određenog proizvoda može da se sastoji od fiksnih troškova postavljanja opreme i promjenjivih troškova koji se tiču proizvedene robe na opremi (mašinama). Pretpostavimo da oprema ima kapacitet proizvodnje od $B$ jedinica (nekog proizvoda). Neka je $y$ binarna promjenljiva koja ukazuje na to kada nastaje fiksni trošak, pri čemu  je $y=1$ ako je $x >0$, dok je $y=0$ ako je $x=0$. Tada se doprinos cijeni proizvodnje od $x$ jedinica proizvoda može predstaviti sa
 $$ yB + c x $$ pod uslovima:
 \begin{align}
      &x \leq By \\
      & x \geq 0 \\
      & y \in \{0, 1\}.
 \end{align}
-Primijetimo da je ovaj model pripada \emph{Mješovitom-cjelobrojnom programiranju}, gdje postoje obje vrste varijabli, neprekidne i cjelobrojne. O ovoj paradigmi će biti više riječi u narednim sekcijama. 
+Primijetimo da je ovaj model pripada \emph{Mješovitom-cjelobrojnom programiranju}, gdje postoje obje vrste promjenljivih, neprekidne i cjelobrojne. O ovoj paradigmi će biti više riječi u narednim sekcijama. 
 
-($ii$) \emph{{Po dijelovima linearna funkcija}}. Druga vrsta nelinearne funkcije koja se može predstaviti cjelobrojnim varijablama je po-dijelovima-linearna funkcija.  To znači da funkcija sama po sebi nije linearna, ali kada joj se domen podijeli na segmente (intervale), ona postaje linearna na svakom od tih segmenata. Napomenimo da se svaka neprekidna relana funkcija može aproksimirati skupom po-dijelovima-linearnih funkcija.  
+($ii$) \emph{{Po dijelovima linearna funkcija}}. Druga vrsta nelinearne funkcije koja se može predstaviti cjelobrojnim promjenljivima je po-dijelovima-linearna funkcija.  To znači da funkcija sama po sebi nije linearna, ali kada joj se domen podijeli na segmente (intervale), ona postaje linearna na svakom od tih segmenata. Napomenimo da se svaka neprekidna relana funkcija može aproksimirati skupom po-dijelovima-linearnih funkcija.  
 
 Radi jednostavnosti, posmatrajmo primjer zadat u ravni. Pretpostavimo da je funkcija definisana preko tri linearne funkcije na sljedeći način.
 $$f(x) = \begin{cases}
@@ -3219,7 +3219,7 @@ pa se ograničenja (\ref{eq: piecewise-constraints}) mogu napisati u obliku
  
  Jasno je da proizvod dvije ili više promjenljivih narušavaju linearnost modela, te je korisno poznavati mehanizam kako se takvi proizvodi mogu izbjeći, odnosno transformisati u odgovarajuće linearizovane relacije. U ovom odjeljku ćemo prezentovati kako se proizvod dvije promjenljive može zamijeniti jednom promjenljivom  sa dodatnim ograničenjima. Taj metod se, po potrebi, može proširiti i na proizvod više od dvije promjenljive. Razlikujemo nekoliko slučajeva:
  \begin{itemize}
- 	\item $x_1$ i $x_2$ su binarne varijable. Uvedemo smjenu $y=x_1 x_2$, uz sljedeće uslove za promjenljivu $y$:
+ 	\item $x_1$ i $x_2$ su binarne promjenljive. Uvedemo smjenu $y=x_1 x_2$, uz sljedeće uslove za promjenljivu $y$:
  	  \begin{align*}
  		      &y \leq x_1 \\
  		      &y \leq x_2 \\
@@ -3262,7 +3262,7 @@ U sljedećem primjeru primijenimo nekoliko navedenih transformacija ograničenja
 \end{primjer}
 Zadatak: \emph{Potrebno je odabrati lokacije gdje će se podići vatrogasni domovi za svaki od okruga. O funkciji cilja i dodatnim ograničenjima ćemo diskutovati u toku modelovanja samog problema.}
 
-Definišimo binarne varijable 
+Definišimo binarne promjenljive 
 $$y_j = \begin{cases}
               1, \mbox{ ako je lokacija } j \mbox{ odabrana za izgradnju doma} \\
               0, \mbox{ inače}
@@ -3341,7 +3341,7 @@ gdje su $x_2, \ldots, x_{n-2}$  proizvoljne bulove promjenjive (literali).
    \end{thm}
    \begin{proof}
    	   Izvedimo polinomnu redukciju instance 3-SAT problema na instancu problema ILP-a. Neka je dat 3--SAT izraz sa literalima  
-   	   $x_1,\ldots, x_n$.  Konstruišimo ILP instancu sa varijablama $z_1, \ldots, z_n$.
+   	   $x_1,\ldots, x_n$.  Konstruišimo ILP instancu sa promjenljivima $z_1, \ldots, z_n$.
    	   Svaka klauzula $\phi_i(x)$ se pretvara u nejednakost (ograničenje)  $C_i$ na sljedeći način:
    	   \begin{itemize}
    	   	\item $z_i = x_i$, ako je literal $x_i$ pojavljuje u klauzuli $\phi$; 
@@ -3667,11 +3667,11 @@ Na Slici~\ref{fig:bnb_ilp} je prikazano B\&B drvo sljedećeg ILP-a:
 
 
 \section{Implicitna enumeracija}
-Posmatrajmo sada specijalnu B\&B proceduru koja se može primijeniti na rješavanje problema binarnog cjelobrojnog programiranja, gdje diskretne promjenljive modeluju logičke odluke (da ili ne). Ovaj algoritam ne zahtijeva da se posmatraju rješenja LP-relaksacija, već se, umjesto toga, radi sa enumeracijom. U totalnoj enumeraciji bismo izlistali sve moguće kombinacije vrijednosti koje promjenljive mogu da dobiju, pa bi se izabrala ona koja je dopustiva i daje optimalnu vrijednost za ciljnu funkciju. Ovaj pristup se može koristiti na problemima malih dimenzija, gdje postoji svega nekoliko binarnih varijabli. Primijetimo da je u problemu sa $n$ binarnih promjenljivih, ukupan broj kombinacija za vrijednosti promjenljivih je jednak $2^n$, odnosno raste eksponencijalno u odnosu na veličinu ulaza. 
+Posmatrajmo sada specijalnu B\&B proceduru koja se može primijeniti na rješavanje problema binarnog cjelobrojnog programiranja, gdje diskretne promjenljive modeluju logičke odluke (da ili ne). Ovaj algoritam ne zahtijeva da se posmatraju rješenja LP-relaksacija, već se, umjesto toga, radi sa enumeracijom. U totalnoj enumeraciji bismo izlistali sve moguće kombinacije vrijednosti koje promjenljive mogu da dobiju, pa bi se izabrala ona koja je dopustiva i daje optimalnu vrijednost za ciljnu funkciju. Ovaj pristup se može koristiti na problemima malih dimenzija, gdje postoji svega nekoliko binarnih promjenljivih. Primijetimo da je u problemu sa $n$ binarnih promjenljivih, ukupan broj kombinacija za vrijednosti promjenljivih je jednak $2^n$, odnosno raste eksponencijalno u odnosu na veličinu ulaza. 
 
 Prisjetimo se da je, u standardnoj B\&B proceduri, podjela na manje probleme izvedena dodavanjem dodatnih ograničenja u početni model, a potom su izbačena ograničenja za cjelobrojnost. 
 U implicitnoj enumeraciji se primjenjuje suprotna taktika, zadržavaju se 0-1 restrikcije za promjenljive, ali se  u modelu ignorišu linearna ograničenja. 
-Ideja implicitne enumeracije je uključiti B\&B proces tako što se fiksiraju neke od varijabli na 0 ili 1. Promjenljive koje su još neodređene se nazivaju \emph{slobodne varijable}.  B\&B kreće od slučaja da ne postoje promjenljive koje nisu slobodne. U svakom koraku fiksiramo jednu od promjenljivih i rješavamo problem bez razmatranja ograničenja sa nejednakostima. Potom, provjeravamo da li je to rješenje dopustivo (zadovoljava ograničenja sa nejednakostima). U narednim podjelama  prethodne (ne-slobodne) varijable ostaju i dalje fiksirane. 
+Ideja implicitne enumeracije je uključiti B\&B proces tako što se fiksiraju neke od promjenljivih na 0 ili 1. Promjenljive koje su još neodređene se nazivaju \emph{slobodne promjenljive}.  B\&B kreće od slučaja da ne postoje promjenljive koje nisu slobodne. U svakom koraku fiksiramo jednu od promjenljivih i rješavamo problem bez razmatranja ograničenja sa nejednakostima. Potom, provjeravamo da li je to rješenje dopustivo (zadovoljava ograničenja sa nejednakostima). U narednim podjelama  prethodne (ne-slobodne) promjenljive ostaju i dalje fiksirane. 
 %, dobijajući dva nova podproblema koja treba da budu riješena te implicitno određivanje da li su neophodna dalja fiksiranja.  
 
 
@@ -3897,7 +3897,7 @@ $$
     0    &  0  &  0   &    \frac{1}{2}  &  7  &   0 &  \frac{29}{2}
 \end{array}
 $$
-Sada za varijablu $x_4$ (četvrta kolona), pivotiramo oko elementa $\overline{a}_{4,4}$, pa dobijamo simpleks tabelu 
+Sada za promjenljivu $x_4$ (četvrta kolona), pivotiramo oko elementa $\overline{a}_{4,4}$, pa dobijamo simpleks tabelu 
 
 $$
 \begin{array}{cccccc|c}
@@ -3996,7 +3996,7 @@ $$ \begin{array}{ccccccc| c}\vspace{1mm}
 0    &   0   &   0   &   \frac{1}{8}   &   0    &    \frac{5}{8}     & -1 & \frac{7}{8} \\ \hline\vspace{1mm}
 0    &   0   &   0   &   \frac{1}{8}   &   0    &     \frac{21}{8}   & 0 & \frac{255}{8}   
 \end{array} $$
-I ovdje nije očigledno koju   varijablu treba dodati u bazne varijable (bazu), pa primijenimo dvofazni simpleks metod, odakle dobijamo 
+I ovdje nije očigledno koju   promjenljivu treba dodati u bazne promjenljive (bazu), pa primijenimo dvofazni simpleks metod, odakle dobijamo 
 
 $$ \begin{array}{ccccccc| c}\vspace{1mm}
     1    &   0   &   0   &  0 &  1  &   0    &    0    & 5  \\\vspace{1mm}
@@ -4336,7 +4336,7 @@ ILP model koji odgovara gore ulaznim podacima je sljedeći:
 \end{pmatrix} \\
 & x_i \geq 0, x_i \in \mathbb{Z}, i=1,\ldots,6.
 \end{align*}
- Uzmimo prve tri varijable $x_1, x_2$ i $x_3$ koji će generisati početni skup kolona $I$.
+ Uzmimo prve tri promjenljive $x_1, x_2$ i $x_3$ koji će generisati početni skup kolona $I$.
  Dakle, imamo sljedeći restrikovani MP:
  \begin{align*}
  	 &\min x_1 + x_2 + x_3 \\
@@ -5622,7 +5622,7 @@ Optimalna vrijednost problema (\ref{eq:cg-1}) je jednaka $\hat{z}=1$, i dostiže
                1\\
  \end{pmatrix}
 \end{align}
-Kada pogledamo prethodne vrijednosti kolone i master problem (\ref{primjer:dw5}), jasno je da ona odgovara koeficijentima varijable $\lambda_2$. Dakle, prethodna kolona je data u odnosu na $\lambda_2$, ali je sada prebacimo na trenutnu bazu datu sa $s_1, s_2$ i $\lambda_1$, gdje je $B^{-1} =  \begin{pmatrix}
+Kada pogledamo prethodne vrijednosti kolone i master problem (\ref{primjer:dw5}), jasno je da ona odgovara koeficijentima promjenljive $\lambda_2$. Dakle, prethodna kolona je data u odnosu na $\lambda_2$, ali je sada prebacimo na trenutnu bazu datu sa $s_1, s_2$ i $\lambda_1$, gdje je $B^{-1} =  \begin{pmatrix}
 	1 & 0 & 0 \\
 	0 & 1 & 0  \\
 	0 & 0 & 1  \\
@@ -5730,7 +5730,7 @@ Dakle, dobijamo tabelu
 	\end{tabular}
  
 \end{center} 
-Sada nađimo pivota oko kolone koja je dodana. Kandidati za izlazak iz baze su ili $s_1$ ili $\lambda_2$ dok će mjesto njih ući varijabla $\lambda_3$. Kako je $\frac{\frac94}{\frac92}=\frac{1}{2} > \frac{1}{\frac52}=\frac{2}{5}$, imamo da je $\frac{5}{2}$ pivot element. Sada pivotiramo oko tog elementa, tako da se, elementarnim transformacijama po vrstama, kolona transformiše  na kolonu sa svim nulama osim na poziciji pivota, gdje treba da stoji jedinica. Na taj način, simpleks tabela se transformiše u novu simpleks tabelu 
+Sada nađimo pivota oko kolone koja je dodana. Kandidati za izlazak iz baze su ili $s_1$ ili $\lambda_2$ dok će mjesto njih ući promjenljiva $\lambda_3$. Kako je $\frac{\frac94}{\frac92}=\frac{1}{2} > \frac{1}{\frac52}=\frac{2}{5}$, imamo da je $\frac{5}{2}$ pivot element. Sada pivotiramo oko tog elementa, tako da se, elementarnim transformacijama po vrstama, kolona transformiše  na kolonu sa svim nulama osim na poziciji pivota, gdje treba da stoji jedinica. Na taj način, simpleks tabela se transformiše u novu simpleks tabelu 
 
 \begin{center}
 	
@@ -6679,7 +6679,7 @@ Osnovni okvir za funkcionisanje genetskih algoritama je prezentovan još 1975. g
 
 Svakoj jedinki se dodjeljuje brojna vrijednost, tzv. prilagođenost (eng.  \emph{fitness}), koja ocjenjuje kvalitet posmatrane jedinke. Cilj genetskog algoritma je da se, iz iteracije u iteraciju, pronalaze jedinke sa sve boljom prilagođenošću, pod čime se smatra i pojedinačno poboljšanje svake jedinke, ali i prosječna prilagođenost kompletne populacije, što se postiže standardnim genetskim operatorima: \textit{selekcijom}, \textit{ukrštanjem} i \textit{mutacijom}.
 
-Populacija je centralna struktura kod genetskog algoritma i ona  obično broji od nekoliko, pa do nekoliko stotina jedinki (u rijetkim situacijama i do hiljadu). Svaka jedinka se predstavlja genetskim kodom, koji se zapisuje nad nekom konačnom azbukom (najčešće binarnom ili pak cjelobrojnom).
+Populacija je centralna struktura kod genetskog algoritma i ona  obično broji od nekoliko, pa do nekoliko stotina jedinki (u rijetkim situacijama i do hiljadu). Svaka jedinka se predstavlja genetskim k\^odom, koji se zapisuje nad nekom konačnom azbukom (najčešće binarnom ili pak cjelobrojnom).
 
 
 Početna populacija se obično kreira na slučajan način, čime se omogućava kreiranje raznovrsnog genetskog materijala, korisnog za kasnije faze algoritma i raznovrsnost samih jedinki. U nekim slučajevima se za generisanje polaznih jedinki koristi i neka druga heuristika, čime se pretraga od početka usmjerava ka onim oblastima pretraživanja za koje se pretpostavlja da sadrže kvalitetnija rješenja.
@@ -6688,7 +6688,7 @@ Tokom rada algoritma, na populaciju se primjenjuju genetski operatori selekcije,
 
 \emph{Operator selekcije} bira jedinke koje preživljavaju u procesu evolucije. Po pravilu, boljim jedinkama (jedinkama sa boljom prilagođenošću) se operatorom selekcije daje veća vjerovatnoća da će preživjeti u narednoj generaciji, dok  slabije jedinke selekcijom dobijaju manju šansu da prežive, te se tako izbacuju iz populacije. Postoji veći broj tehnika selekcije, a najpoznatije su: jednostavna (ili rulet) selekcija, turnirska, eliminacijska selekcija i elitizam. Rulet selekcija diktira da je vjerovatnoća da će jedinka preživjeti za narednu generaciju proporcionalna prilagođenosti. Kod turnirske selekcije se formiraju skupovi jedinki, od kojih samo ona sa najboljom prilagođenošću opstaje i ulazi u sljedeću generaciju. Eliminacijska selekcija je primarno zasnovana na izbacivanju loših jedinki, prije nego na odabiru boljih za narednu generaciju. Elitizam podrazumijeva da će nekoliko najboljih (elitnih) jedinki direktno preći u narednu generaciju, čime se daje pouzdana pretpostavka da  algoritam teži globalnom optimumu.
 
-\emph{Ukrštanjem} se rekombinuju geni jedinki. Rezultat ukrštanja jedinki su nove jedinke, koje potencijalno sadrže ``dobre'' gene  roditelja od kojih su nastale. Ovim mehanizmom  i jedinke slabije prilagođenosti, ali koje sadrže dobre gene, dobijaju šansu da učestvuju u reprodukciji i prenesu ``dobar'' genetski materijal na sljedeću generaciju. Najčešće korišteni operatori ukrštanja su tzv. jednopoziciono, odnosno dvopoziciono ukrštanje, kod kojih se određuje jedna, odnosno dvije tačke prekida na kojima se odvija razmjena genetskih kodova roditelja, respektivno.
+\emph{Ukrštanjem} se rekombinuju geni jedinki. Rezultat ukrštanja jedinki su nove jedinke, koje potencijalno sadrže ``dobre'' gene  roditelja od kojih su nastale. Ovim mehanizmom  i jedinke slabije prilagođenosti, ali koje sadrže dobre gene, dobijaju šansu da učestvuju u reprodukciji i prenesu ``dobar'' genetski materijal na sljedeću generaciju. Najčešće korišteni operatori ukrštanja su tzv. jednopoziciono, odnosno dvopoziciono ukrštanje, kod kojih se određuje jedna, odnosno dvije tačke prekida na kojima se odvija razmjena genetskih k\^odova roditelja, respektivno.
 
 \emph{Mutacijom} se vrši slučajna promjena određenog gena (sa nekom malom vjerovatnoćom da će se mutacija desiti), čime se postiže mogućnost vraćanja dobrog genetskog materijala, ukoliko je on izgubljen primjenom operatora selekcije i ukrštanja. Time se proces pretrage izvlači iz preuranjene konvergencije i usmjerava ka onim oblastima pretraživanja koje sadrže potencijalno bolje jedinke.
 
@@ -6751,8 +6751,8 @@ Konstrukciju elemenata genetskog algoritma ćemo prikazati služeći se konkretn
 	\end{center}\caption{Primjer instance za 0-1 problem ruksaka}\label{tbl:01ruksak}
 \end{table} 
 
-\emph{Kodiranje}. Genetski k\^od svake jedinke ćemo prikazati binarnim nizom dužine $n$ (u primjeru je $n=7$). Tako, na primjer, genetski kod 1100100 označava da su proizvodi pod rednim brojem 1, 2 i 5 uključeni u ruksak, dok ostali proizvodi nisu uključeni u ruksak. Vrijednost funkcije cilja za ovo rješenje je 5+8+7=20, dok je ukupna težina 7+8+4 = 19. 
-Primijetimo da ovakav sistem kodiranja može da dovede do nedopustivih rješenja. Na primjer, genetski kod 0101010 označava da su proizvodi pod rednim brojem 2, 4 i 6 uključeni u rješenje, čija je ukupna težina 8+10+6 = 24, što je više od maksimalno dozvoljenog kapaciteta za ruksaka.
+\emph{Kodiranje}. Genetski k\^od svake jedinke ćemo prikazati binarnim nizom dužine $n$ (u primjeru je $n=7$). Tako, na primjer, genetski k\^od 1100100 označava da su proizvodi pod rednim brojem 1, 2 i 5 uključeni u ruksak, dok ostali proizvodi nisu uključeni u ruksak. Vrijednost funkcije cilja za ovo rješenje je 5+8+7=20, dok je ukupna težina 7+8+4 = 19. 
+Primijetimo da ovakav sistem kodiranja može da dovede do nedopustivih rješenja. Na primjer, genetski k\^od 0101010 označava da su proizvodi pod rednim brojem 2, 4 i 6 uključeni u rješenje, čija je ukupna težina 8+10+6 = 24, što je više od maksimalno dozvoljenog kapaciteta za ruksaka.
 
 Treba napomenuti da se u rješavanju velikog broja problema kombinatorne optimizacije pomoću genetskih algoritama (ali i drugih heurističkih metoda) često dozvoljava rad sa nedopustivim rješenjima. Razlog za to leži u činjenici da nisu sva nedopustiva rješenja ``podjednako loša'', a nekada je lakše popraviti nedopustivo rješenje u dopustivo rješenje visokog kvaliteta, nego vršiti pretragu samo na prostoru dopustivih rješenja slabijeg kvaliteta.  Zbog toga se za prevazilaženje pojave nedopustivih rješenja najčešće koristi jedna od sljedeće dvije strategije: 
 \begin{itemize}
@@ -6778,7 +6778,7 @@ Imajući u vidu prethodno razmatranje o nedopustivim rješenjima, funkcija prila
 \end{tabular}
 	\caption{Primjer operatora ukrštanja: jednopoziciono ukrštanje.}
 \end{table}
-U ovom generičkom primjeru možemo vidjeti jednopoziciono ukrštanje u pozicijama $(3, 3).$  Specifičnije, pretpostavimo da imamo dva rješenja (jedinke) konstruisane u algoritamskom procesu: 1100100 i 0100011. Na osnovu jednopozicionog ukrštanja, one produkuju dva nova rješenja (dva potomka), tako što se lijevi dio genetskog koda prvog roditelja spaja sa desnim dijelom genetskog koda drugog roditelja i obrnuto, lijevi dio genetskog koda drugog roditelja se spaja sa desnim dijelom prvog roditelja. 
+U ovom generičkom primjeru možemo vidjeti jednopoziciono ukrštanje u pozicijama $(3, 3).$  Specifičnije, pretpostavimo da imamo dva rješenja (jedinke) konstruisane u algoritamskom procesu: 1100100 i 0100011. Na osnovu jednopozicionog ukrštanja, one produkuju dva nova rješenja (dva potomka), tako što se lijevi dio genetskog k\^oda prvog roditelja spaja sa desnim dijelom genetskog k\^oda drugog roditelja i obrnuto, lijevi dio genetskog k\^oda drugog roditelja se spaja sa desnim dijelom prvog roditelja. 
 Treba napomenuti da se primjenom ovakvog operatora ukrštanja takođe mogu dobiti potomci koji su nedopustive jedinke (bez obzira na to da li su jedinke roditelja dopustive ili ne), a njihova dalja egzistencija u populaciji ponovo zavisi od načina konstruisanja funkcije prilagođenosti. 
 
 Kod dvopozicionog ukrštanja postoje dvije pozicije u svakoj od jedinki na osnovu kojih se radi ukrštanje. Generička procedura ovakvog ukrštanja je data Tabelom~\ref{tbl:dvopozukr}
@@ -6813,7 +6813,7 @@ Kod uniformnog ukrštanja, za svaki par jedinki koje se ukrštaju, prvo se gener
 
 
 
-\emph{Mutacija}. Kao što je pomenuto, mutacije podrazumijevaju male promjene u genetskom kodu, čija je osnovna namjena izlazak iz lokalnih podoptimalnih rješenja i omogućavanje dalje pretrage u cilju pronalaženja boljih rješenja. Najčešće se mutacija realizuje kao promjena vrijednosti jednog gena. U slučaju  0-1 problemu ruksaka, predstavljenog u Primjeru~\ref{primjer:01ruksak}, u zavisnosti od drugih elemenata algoritma, mogao bi se konstruisati veći broj različitih operatora mutacije: 
+\emph{Mutacija}. Kao što je pomenuto, mutacije podrazumijevaju male promjene u genetskom k\^odu, čija je osnovna namjena izlazak iz lokalnih podoptimalnih rješenja i omogućavanje dalje pretrage u cilju pronalaženja boljih rješenja. Najčešće se mutacija realizuje kao promjena vrijednosti jednog gena. U slučaju  0-1 problemu ruksaka, predstavljenog u Primjeru~\ref{primjer:01ruksak}, u zavisnosti od drugih elemenata algoritma, mogao bi se konstruisati veći broj različitih operatora mutacije: 
 \begin{itemize}
 	\item Mutacija 1: prelazak neke nule u jedinicu. Ova mutacija bi modifikovala trenutnu jedinku na način da se neki proizvod, koji nije bio u rješenju, uključi u rješenje. Time bi se povećala ukupna vrijednost ruksaka, ali postoji opasnost da jedinka postane nedopustiva.
 	\item  Mutacija 2: prelazak neke jedinice u nulu. Ova mutacija bi modifikovala trenutnu jedinku na način da se neki proizvod, koji je bio u rješenju, isključi iz rješenja. Ovo bi dovelo do smanjenja ukupne vrijednosti ruksaka, ali bi, u slučaju rada sa nedopustivim jedinkama, postojala mogućnost da nedopustivo rješenje postane dopustivo (ili da se poboljša kvalitet nedopustivog rješenja).
@@ -6880,7 +6880,7 @@ $f(x) \leq f(x')$ ($f(x) \geq f(x')$), za sve $x' \in \mathcal{N}(x)$, ako minim
 	\end{algorithmic}
 \end{algorithm}
 
-Pseudokod lokalne pretrage je dat u Algoritmu~\ref{alg:ls}. Ulaz u algoritam je instanca problema i jedna definisana okolina $\mathcal{N}$. U svakoj iteraciji, lokalna pretraga poboljšava trenutno (najbolje) rješenje ako    rješenje u okolini  $\mathcal{N}(x)$ ima bolju vrijednost ciljne funkcije. Algoritam se prekida ako je trenutno rješenje lokalno najbolje u odnosu na definisanu okolinu.
+Pseudok\^od lokalne pretrage je dat u Algoritmu~\ref{alg:ls}. Ulaz u algoritam je instanca problema i jedna definisana okolina $\mathcal{N}$. U svakoj iteraciji, lokalna pretraga poboljšava trenutno (najbolje) rješenje ako    rješenje u okolini  $\mathcal{N}(x)$ ima bolju vrijednost ciljne funkcije. Algoritam se prekida ako je trenutno rješenje lokalno najbolje u odnosu na definisanu okolinu.
  Postoje dvije strategije za izbor rješenja koje će zamijeniti trenutno najbolje rješenje, pod pretpostavkom da postoji više od jednog rješenja sa boljom vrijednošću ciljne funkcije u posmatranoj okolini. Te strategije su:
  \begin{itemize}
  	\item \emph{prvo poboljšanje} (eng. \emph{the first improvement strategy}) -- ova strategija prihvata prvo nađeno rješenje $x'$ u okolini $\mathcal{N}(x)$ sa boljom vrijednošću ciljne funkcije od $x$. Pretraga se rekurzivno pomijera u tačku  $x = x'$, odakle se pokreće nova iteracija lokalne pretrage.
@@ -7015,7 +7015,7 @@ Postoje različite strategije koliko dugo se izvršava lokalna pretraga. U opšt
  
 		 %\begin{comment}
 		 \item %https://www.ibr.cs.tu-bs.de/courses/ws1920/aa/exercises/exercise_05.pdf
-		 Problem obilaska segmenata (eng. \emph{Segment tour problem}). Neka je dat skup segmenata $S = \{s_0 = (p_0, p_1), s_1 =(p_2, p_3),\ldots\}$ u ravni. Naći put u ravni, koji (potpuno) sadrži svaki od segmenata iz $S$, a pri tom je minimalne dužine. Konstruisati 3--aproksimativni algoritam. Napomenimo da nalaženje ovakvog puta odgovara pronalasku redosljeda posjećivanja svakog od segmenata. 
+		 U ovom zadatku se rješava Problem obilaska segmenata (eng. \emph{Segment tour problem}). Neka je dat skup segmenata $S = \{s_0 = (p_0, p_1), s_1 =(p_2, p_3),\ldots\}$ u ravni. Naći put u ravni, koji (potpuno) sadrži svaki od segmenata iz $S$, a pri tom je minimalne dužine. Konstruisati 3--aproksimativni algoritam. Napomenimo da nalaženje ovakvog puta odgovara pronalasku redosljeda posjećivanja svakog od segmenata. 
 		%\end{comment} 
 		 \item Neka je dat kompletan težinski graf $G=(V,E)$ čije grane zadovoljavaju nejednakost trougla. $ k$ poštara treba da prođu grafom tako da svaka grana u datom podskupu grana $E' \subseteq E$ bude pređena  od strane barem jednog poštara. Startni i završni čvor za svakog od poštara je izabran na slučajan način. Zadatak ovog problema je naći šetnju u grafu sa minimalnom dužinom (za sve poštare). 
 		 Konstruisati 2--aproksimativni algoritam za ovaj problem. 
@@ -7054,7 +7054,7 @@ Postoje različite strategije koliko dugo se izvršava lokalna pretraga. U opšt
 %\emph{IBM ILOG CPLEX Optimization Studio} uključuje i druge opcije poput \emph{Constraint Programming} (CP) solver.
  
  U nastavku opisujemo proces same implementacije modela u CPLEX-u kroz programski jezik $C$++ u Linux okruženju.
- Da bismo uključili CPLEX u $C$++ kod, nepohodno je koristiti sljedeći k\^od:
+ Da bismo uključili CPLEX u $C$++ k\^od, nepohodno je koristiti sljedeći zapis
  \begin{verbatim}
  	#include<ilcplex/ilocplex.h>
  	ILOSTLBEGIN
@@ -7175,7 +7175,7 @@ Ako je potrebno implementirati promjenljivu za koju je $x \geq 0$ to radimo kao 
  
  \begin{verbatim}
  	     IloRangeArray constr(env);
- 	     // neka su prethodno definisane varijable x (IloNumVarArray) 
+ 	     // neka su prethodno definisane promjenljive x (IloNumVarArray) 
  	     for (i = 0; i < n-1; ++i)
  	          for(j = i+1; i < n; ++j)
  	               constr.add( x[i] + x[j] <= 1)     
@@ -7192,7 +7192,7 @@ Ako je potrebno implementirati promjenljivu za koju je $x \geq 0$ to radimo kao 
 	\item Metod \emph{getValues}(\emph{vals, var}): 
 	\begin{itemize}
 	 	  \item \emph{vals} -- numerički niz (najčešće instanca klase \emph{IloNumArray}) u koju će se kopirati krajnja rješenja koje je CPLEX našao;    
-          \item \emph{var} -- varijable u modelu.
+          \item \emph{var} -- promjenljive u modelu.
     \end{itemize}
      \item Metod \emph{getDuals(vals, con)}:
      \begin{itemize}
@@ -7233,12 +7233,10 @@ O ostalim parametrima kojima podešavamo rješavač može se pročitati iz \text
  \section{PuLP alat}
  % http://www.optimization-online.org/DB_FILE/2011/09/3178.pdf
  % https://coin-or.github.io/pulp/main/the_optimisation_process.html
- PuLP je biblioteka visokog nivoa za implementaciju modela i njihovo rješavanje, izgrađena u programskom jeziku Python.  
- Ona omogućava korisniku da kreira programe koristeći izraze prirodne za ovaj programski jezik. Biblioteka PuLP je fokusirana na podršku modelovanju i rješavanju LP i MILP modela. Interesantno je da PuLP 
- ne zavisi od  drugih softverskih paketa.   Podržava veći broj komercijalnih i nekomercijalnih rješavača, te može biti proširena da podržava i dodatne rješavače. 
+ PuLP je Python-ova biblioteka visokog nivoa za implementaciju i rješavanje modela, sa fokusom na LP i MILP modele.   Podržava veći broj komercijalnih i nekomercijalnih rješavača, a može se proširiti i na dodatne rješavače. Interesantno je i da PuLP  ne zavisi od  drugih softverskih paketa. 
  
- PuLP radi na principu modularnog pristupa prevođenja modela napisanog prema definisanim pravilima na njegovu vektorsku prezentaciju (koja koristi vektore, rijetke matrice itd.), nakon čega je tako konvertovani model proslijeđen u interfejs klase nekog od rješavača. Kako je interfejs mnogih rješavača sličan, ili se sa njima rukuje tako što se model napiše u standardnim .$lp$ ili .$mps$  formatima  datoteka, generičke klase rješavača su uključene  u PuLP biblioteku, pored njenih specifičnih interfejsa.  %popularnih rješavača. 
- Ove generičke klase se, uz minimalan trud, mogu proširiti od strane korisnika koji žele da koristi nove rješavače.   
+ PuLP radi na principu modularnog pristupa prevođenja modela, napisanog prema definisanim pravilima, na njegovu vektorsku reprezentaciju (koja koristi vektore, rijetke matrice itd.). Konvertovani model se prosljeđuje u interfejs klase nekog od rješavača. Kako je interfejs mnogih rješavača sličan, ili se sa njima rukuje tako što se model reprezentuje u standardnim .$lp$ ili .$mps$  formatima  datoteka, pored specifičnih interfejsa popularnih rješavača, u PuLP biblioteku su uključene i  generičke klase rješavača. %popularnih rješavača. 
+ Ove generičke klase se, uz minimalan trud, mogu proširiti od strane korisnika koji žele da koriste nove rješavače.   
  
  Da bismo koristili PuLP biblioteku, treba da je importujemo na sljedeći način:
  \begin{verbatim}
@@ -7246,39 +7244,43 @@ O ostalim parametrima kojima podešavamo rješavač može se pročitati iz \text
  \end{verbatim}
  Konkretno, ovaj paket se (u Linux-u) može instalirati pozivom: \emph{sudo pip install pulp} ili \emph{sudo apt-get install glpk-utils}. 
  % https://www.coin-or.org/PuLP/CaseStudies/index.html (za primjere) 
- Kreiranje jedne instance problema se izvodi sljedećim kodom:
+ Kreiranje jedne instance problema se izvodi sljedećim k\^odom:
  \begin{verbatim}
  	prob = LpProblem("Naziv problema", LpMinimize)
  \end{verbatim}
-Ovdje znači da je riječ o modelu čija se funkcija cilja minimizuje. Ako bi bilo potrebno da maksimizujemo, drugi argument bi tada bio \texttt{LpMaximize}. 
+ Ako se rješava problem maksimizacije, drugi argument bi tada bio \texttt{LpMaximize}. 
 
-\textbf{\emph{Implementacija varijabli u modelu}}.  Za inicijalizaciju varijabli koristi se klasa \emph{LpVariable}. Ona ima četiri atributa: prvi je naziv varijable, drugi označava donju granicu vrijednosti varijable, treći označava gornju granicu vrijednosti varijable, dok četvrti označava tip varijable. Tip varijable, koji je se može odabrati je \texttt{LpContinuous} ili \texttt{LpInteger}, označavajući neprekidnu (realnu) i diskretnu varijablu, redom.  
-Ako želimo deklarisati varijablu $x_1\geq 0$, koja je neprekidna, to radimo sljedećom linijom koda:
+\textbf{\emph{Implementacija promjenljivih u modelu}}.  Za inicijalizaciju promjenljivih koristi se klasa \emph{LpVariable}. Ona ima četiri atributa: prvi je naziv promjenljive, drugi označava donju granicu vrijednosti promjenljive, treći označava gornju granicu vrijednosti promjenljive, dok četvrti označava tip promjenljive. Tip promjenljive, koji se može odabrati je \texttt{LpContinuous} ili \texttt{LpInteger}, označavajući neprekidnu (realnu) i diskretnu promjenljivu, redom.  
+Na primjer, ako želimo deklarisati neprekidnu promjenljivu $x_1\geq 0$, to radimo sljedećom linijom k\^oda:
 \begin{verbatim}
 	 x1 = LpVariable( "x1", 0, None, LpContinuous)
 \end{verbatim}
-\textbf{\emph{Implementacija funkcije cilja u modelu}}. Uz pomoć definisanih varijabli, koristeći operatore iz skupa $\{+,-, \cdot \}$, dodajemo takvu funkciju na instancu problema (koristeći operator +=). Primjera radi, ako želimo da modelujemo funkciju cilja $x_1 + x_2$, gdje su obje varijable neprekidne i pozitivne, to bi uradili na sljedeći način:
+\textbf{\emph{Implementacija funkcije cilja u modelu}}. Uz pomoć definisanih promjenljivih, koristeći operatore iz skupa $\{+,-, \cdot\}$, instanci problema dodajemo odgovarajuću funkciju  koristeći operator +=. Primjera radi, ako želimo da modelujemo funkciju cilja $x_1 + x_2$, gdje su obje promjenljive neprekidne i pozitivne, to bismo uradili na sljedeći način
 \begin{verbatim}
 	 x1 = LpVariable("x1", 0, None)
 	 x2 = LpVariable("x2", 0, None) 
 	 prob += (x1 + x2) # dodavanje funkcije cilja x1+x2 
 \end{verbatim} \\ \vspace{-1.5cm}
-\textbf{\emph{Implementacija ograničenja u modelu}}.  Na sličan način kao i za funkciju cilja, ograničenja se  u model dodaju pomoću operatora +=. Implementacija ograničenja je bliska ograničenjima u modelu, dakle prvo se konstruišu izrazi koji su vezani nekim operatorom poređenja. Primjera radi, ako bi željeli dodati ograničenja $x_1 + 2 x_2 \leq 2$ i $x_1-x_2 \geq 0$   u prethodni model, imamo sljedeći kod:
+\textbf{\emph{Implementacija ograničenja u modelu}}.  Na sličan način kao i za funkciju cilja, ograničenja se  u model dodaju pomoću operatora +=. Sintaksa ograničenja je bliska matematičkom zapisu ograničenja u modelu. Prvo se konstruišu izrazi koji su vezani nekim operatorom poređenja. Primjera radi, ako bismo u prethodni model željeli dodati ograničenja $x_1 + 2 x_2 \leq 2$ i $x_1-x_2 \geq 0$, koristimo sljedeći k\^od
 \begin{verbatim}
 	 prob +=  x1 + 2 * x2 <=2, "Ogranicenje 1"
 	 prob +=  x1 - x2 >= 0, "Ogranicenje 2" 
 \end{verbatim}
-Upisivanje modela u .$lp$ format se vrši pozivom funkcije \emph{writeLP()}, čiji je očekivani argument naziv fajla. 
+Upisivanje modela u .$lp$ format se vrši pozivom funkcije \emph{writeLP()}, čiji je (očekivani) argument naziv fajla. 
 
- \noindent \textbf{\emph{Metode za eksport rješenja (statistike) iz modela}}. Rješavanje modela se inicira pozivom funkcije \emph{solve}() na instancu modela. Kriterijumi za zaustavljanje izvršavanja rješavača postavljamo kao parametar metoda \emph{solve}()  uz pomoć sljedeće linije koda:
+ \noindent \textbf{\emph{Metode za eksport rješenja (statistike) iz modela}}. Rješavanje modela se inicira pozivom funkcije \emph{solve}() na instancu modela. Kriterijumi za zaustavljanje izvršavanja rješavača postavljamo kao parametar metoda \emph{solve}()  uz pomoć sljedeće linije k\^oda
  \begin{verbatim}
     PULP_CBC_CMD(maxSeconds=1000, msg=1, fracGap=0) 
 \end{verbatim}
 koji kontroliše maksimalno vrijeme izvršavanja rješavača, poruke o napretku rješavača prilikom pronalaženja novih najboljih rješenja, te maksimalni željeni \emph{gap} -- nakon čijeg dostizanja rješavač prekida izvršavanje.
 
- Napomenimo da je po defaultu \emph{COIN Branch and Cut} (CBC) rješavač izabran za rješavanje u PuLP modulu. Više o podešavanju solvera pročitati na linku \cite{cite_key19}.   %https://coin-or.github.io/pulp/technical/solvers.html
+ Napomenimo da je rješavač \emph{COIN Branch and Cut} (CBC) difoltni (podrazumijevani)  rješavač u PuLP modulu. 
+ 
+ \fixme{PRebacio sam u zadatak da se posjeti ova stranica}
+ 
+ %Više o podešavanju rješavača se može pročitati na linku \cite{cite_key19}.   %https://coin-or.github.io/pulp/technical/solvers.html
  %which controls the maximum time (in seconds), the level of messaging (to see the progress CBC makes) and the max GAP you desire to have (another stop condition in addition to maxSeconds).
- Čitanje svih varijabli iz modela se postiže pomoću funkcije \emph{variables()}. Svaka varijabla za atribute ima svoj naziv (atribut \emph{name}), te vrijednost, koju je dobila pri rješavanju modela nekim od rješavača (atribut \emph{varValue}). Atribut \emph{objective} instance modela čuva (najbolju) vrijednost funkcije cilja dobijene rješavanjem modela. Status rješavanja se dobija na osnovu atributa \emph{status} objekta modela. 
+ Čitanje svih promjenljivih iz modela se postiže pomoću funkcije \emph{variables()}. Svaka promjenljiva za atribute ima svoj naziv (atribut \emph{name}), te vrijednost, koju je dobila pri rješavanju modela nekim od rješavača (atribut \emph{varValue}). Atribut \emph{objective} instance modela čuva (najbolju) vrijednost funkcije cilja dobijene rješavanjem modela. Status rješavanja se dobija na osnovu atributa \emph{status} objekta modela. 
  
  \begin{verbatim}
  	print "Status:", LpStatus[prob.status]
@@ -7288,10 +7290,10 @@ koji kontroliše maksimalno vrijeme izvršavanja rješavača, poruke o napretku 
   
  \end{verbatim}
  \section{Primjena alata PuLP na rješavanje jednog problema lokacija sa ograničenim kapacitetima}%Capacitated Facility Location
- Posmatrajmo već modelovan problem lokacija iz Sekcije~\ref{sec:modeli_lp} uz pomoć PuLP rješavača. Model ovog problema je dat sa:
+ Posmatrajmo već modelovan problem i riješimo ga uz pomoć PuLP rješavača. Model ovog problema je dat sa:
  \begin{align*}
  	   & \min \sum_{i=1}^n f_i x_i  + \sum_{i,j} c_{ij} y_{ij} d_j  \\
- 	   &s.t. \nonumber \\
+ 	   &t.d \nonumber \\
  	   & \sum_{i} y_{ij} = 1, \forall j\in\{1,\ldots,m\} \\
  	   & \sum_{j} d_j y_{ij} \leq u_i x_i, \forall i \in \{1,\ldots,n\} \\
  	   & x_i \in \{0, 1\}, \forall i \in \{1, \ldots, n\} \\
@@ -7324,7 +7326,7 @@ koji kontroliše maksimalno vrijeme izvršavanja rješavača, poruke o napretku 
     }
     # modelovanje:
     model = LpProblem("Lokacijski problem", LpMinimize) 
-    # varijable:
+    # promjenljive:
     x = LpVariable.dicts("x_vars", locations, 0, 1, LpBinary)
     y = LpVariable.dicts("y_vars", [ (i, j) for i in locations \ 
                                             for j in customers ],\  
@@ -7353,27 +7355,28 @@ koji kontroliše maksimalno vrijeme izvršavanja rješavača, poruke o napretku 
              print(y[ (i, j) ].varValue)
     print("Vrijednost: ", value(model.objective))    
  \end{verbatim}
- Optimalna vrijednost ove instance je 202.0, a dostiže se za vrijednost varijabli $x = (1, 0, 0)$, te $y_{11}= y_{12}= y_{13} = 1$, dok su ostale vrijednosti 0.
+ Optimalna vrijednost ove instance je 202.0, a dostiže se za vrijednost promjenljivih $x = (1, 0, 0)$, te $y_{11}= y_{12}= y_{13} = 1$, dok su ostale vrijednosti 0.
  
-Preporučujemo da na linku \url{https://www.programcreek.com/python/example/96845/pulp.LpProblem}
-pronađete još nekoliko problema, koji su riješeni uz pomoć PuLp modula.
+Čitaocu se preporučuje da na linku \url{https://www.programcreek.com/python/example/96845/pulp.LpProblem}
+pronađe i analizira još nekoliko problema, koji su riješeni uz pomoć PuLp modula.
  . 
  \section{Primjena CPLEX rješavača na problem stringova}
  
  % opisati RFLCS problem, modelovati ga:
- U ovoj sekciji modelujemo problem \emph{najdužeg zajedničkog podniza bez ponavljanja}. Ovaj problem kao ulaz prihvata dva (proizvoljna) stringa $s_1$ i $s_2$ nad proizvoljnom abecedom, a kao izlaz vraća string $s$ maksimalne dužine sa sljedećim karakteristikama:  
+ U ovoj sekciji modelujemo problem \emph{najdužeg zajedničkog podniza bez ponavljanja}. Ovaj problem kao ulaz prihvata dva (proizvoljna) stringa $s_1$ i $s_2$ nad proizvoljnim alfabetom, a kao izlaz vraća string $s$ maksimalne dužine sa sljedećim karakteristikama:  
  \begin{itemize}
  	\item $s$ je zajednički podniz oba stringa; 
  	\item $s$ ne sadrži karakter koji se u njemu pojavljuje dva ili više puta.
  \end{itemize}
 Za ovaj problem je poznato da je NP-težak, ili preciznije pripada $\mathcal{APX}$ klasi. Zainteresovanom čitaocu preporučujemo da se, koristeći se internet resursima, upozna sa specifičnostima $\mathcal{APX}$ klase problema.
 
-Za primjer, neka su data dva stringa $s_1 = \texttt{abdcccab}$ i $s_2=\texttt{abccacd}$, rješenje ovog problema je $s=\texttt{abc}$. Primijetimo da je $s$ zajednički podniz za oba ulazna stringa te da ispunjava uslov o ``neponavljajućim'' karakterima u sebi. Takođe, može se provjeriti da ne postoji duži zajednički podniz sa takvim svojstvom za ove ulazne stringove, što znači da je ovo rješenje optimalno. Konstruišimo sada jedan model binarnog cjelobrojnog programiranja za ovaj problem. 
+Na primjer, neka su data dva stringa $s_1 = \texttt{abdcccab}$ i $s_2=\texttt{abccacd}$, rješenje ovog problema je $s=\texttt{abc}$. Primijetimo da je $s$ zajednički podniz za oba ulazna stringa te da ispunjava uslov o ``neponavljajućim'' karakterima u sebi. Takođe, može se provjeriti da ne postoji duži zajednički podniz sa takvim svojstvom za ove ulazne stringove, što znači da je ovo rješenje optimalno. Konstruišimo sada jedan model binarnog cjelobrojnog programiranja za ovaj problem. 
 
 Nazovimo par $(a, b), 1 \leq i \leq |s_1|, 1 \leq j \leq |s_2|$ \emph{mečing} akko je $s_1[a]=s_2[b], a < b$. Dalje, sa $\mathcal{M}$ označimo skup svih mečinga za dati ulaz $S=\{s_1, s_2\}$. Takođe, označimo sa  $\mathcal{M}_{\texttt{a}} \subseteq \mathcal{M}$  skup svih mečinga koji pokrivaju isto slovo, tj. 
-$\mathcal{M}_{\texttt{a}} = \{ (i, j) \mid s_1[i]=s_2[j]=\texttt{a}\}$, $\texttt{a} \in \Sigma$. Za svaki mečing $p=(p_1(a),p_2(a))$, pridružimo jednu binarnu varijablu $z_{p} \in \{0, 1\}$. Označimo $l(z_p)= s_1[ p_1(a) ], Z_{\texttt{a}} = \{ z_p \mid p \in \mathcal{M} \ \wedge\  l(z_p) = \texttt{a}\}, \texttt{a}\in \Sigma$, te skup svih varijabli sa $Z = \cup_{\texttt{a} \in \Sigma} Z_{\texttt{a}}$. 
+$\mathcal{M}_{\texttt{a}} = \{ (i, j) \mid s_1[i]=s_2[j]=\texttt{a}\}$, $\texttt{a} \in \Sigma$. Svakom mečingu $p=(p_1(a),p_2(a))$, pridružimo jednu binarnu promjenljivu $z_{p} \in \{0, 1\}$. Označimo $l(z_p)= s_1[ p_1(a) ], Z_{\texttt{a}} = \{ z_p \mid p \in \mathcal{M} \ \wedge\  l(z_p) = \texttt{a}\}, \texttt{a}\in \Sigma$, te skup svih promjenljivih sa $Z = \cup_{\texttt{a} \in \Sigma} Z_{\texttt{a}}$. 
 
-Za svake dvije binarne varijable $z_{q}$ i $z_{r}$ kažemo da su u \emph{konflitu} akko vrijedi sljedeće: $$ q_1(a) \geq r_1(b) \mbox{ i } q_2(b) \leq r_2(a)     $$ 
+Za svake dvije binarne promjenljive $z_{q}$ i $z_{r}$ kažemo da su u \emph{konfliktu} akko vrijedi sljedeće
+ $$ q_1(a) \geq r_1(b) \mbox{ i } q_2(b) \leq r_2(a) $$ 
 ili 
  $$ q_1(a) \leq r_1(b) \mbox{ i } q_2(b) \geq r_2(a)$$ 
 ili 
@@ -7383,7 +7386,7 @@ Sada možemo formirati ograničenja u modelu. Uslov da je svaki karakter prisuta
 \begin{equation}\label{eq:rflcs-max-1}
 	 \sum_{z \in  Z_{\texttt{a} }} z \leq 1, \forall \texttt{a} \in \Sigma 
 \end{equation}
-Takođe, s obzirom da rješenje problema odgovara nalasku skupa (međusobno) nekonfliktnih mečinga (odgovarajućih $z$-varijabli) maksimalne kardinalnosti, dodajemo ograničenje
+Takođe, s obzirom da rješenje problema odgovara pronalasku skupa (međusobno) nekonfliktnih mečinga (odgovarajućih $z$-promjenljivih) maksimalne kardinalnosti, dodajemo ograničenje
 \begin{equation}\label{eq:rflce-non-conflict}
 	 z_{p} + z_q \leq 1, \forall p,q \in Z, p\neq q, p\mbox{ je u konfliktu sa } q.
 \end{equation}
@@ -7393,7 +7396,7 @@ Kako tražimo skup maksimalne kardinalnosti, funkciju cilja (koja se maksimizuje
 \end{equation}
 Dakle, uz funkciju cilja (\ref{eq:rflcs-objective}), ograničenja (\ref{eq:rflcs-max-1})--(\ref{eq:rflce-non-conflict}) sa uslovom $z \in \{0, 1\}, z \in Z$, dobili smo model problema najdužeg stringa bez ponavljanja. 
 
- Implementirajmo ovaj model, uz pretpostavku da je svaki string u ulazu narednog programa dat svojom numeričkom reprezentacijom. To znači da je svakom karakteru stringa pridružen jedinstven broj i kao takav se importuje i koristi u programu. Primjera radi, za string $s_1=\texttt{abbcba}$, pridružen je numerički niz (vektor) 011210. kao što i pretpostavljate, ovo je moguće riješiti i na drugačiji način, bez korištenja konverzije stringa. 
+ Implementirajmo ovaj model, uz pretpostavku da je svaki string u ulazu narednog programa dat svojom numeričkom reprezentacijom. To znači da je svakom karakteru stringa pridružen jedinstven broj i kao takav se importuje i koristi u programu. Primjera radi, za string $s_1=\texttt{abbcba}$, pridružen je numerički niz (vektor) 011210.
  
  Model je implementiran u programskom jeziku C++, a riješen uz pomoć CPLEX rješavača. 
  
@@ -7546,22 +7549,26 @@ int main( int argc, char **argv )
 %\vspace{1cm} \\
 \section{Zadaci}
 \begin{enumerate}
-	\item Istraži na internetu dostupne optimizacione  rješavače za probleme linearnog, cjelobrojnog (i mješovitog cjelobrojno--linearnog) programiranja. Procijeni njihov kvalitet, upotrebnu vrijednost i prepoznaj njihove prednosti i nedostatke u svakog od njih u odnosu na ostale.
+	\item Istražiti na internetu dostupne  rješavače za probleme linearnog, cjelobrojnog (i mješovitog cjelobrojno--linearnog) programiranja. Procijeniti njihov kvalitet, upotrebnu vrijednost i prepoznati njihove prednosti i nedostatke svakog od njih.
+	\item Istražiti mogućnosti PuLP biblioteke, na stranici\\ https://coin-or.github.io/pulp/main/index.html i drugim relevantnim internet resursima.
 	
-	\item Koristeći neki od rješavača, provjeri ispravnost rješenja zadataka iz Glave 4 i 6.
+	\item Koristeći neki od rješavača, provjeriti ispravnost rješenja zadataka iz Poglavlja~\ref{chp:simpleks} i \ref{chp:ilp}.
 	
-	\item Neka je u ulazu dat graf  $G = (V, E)$ kao instanca problema. Implementirati sljedeći ILP model:
+	\item Neka je na ulazu dat graf  $G = (V, E)$ kao instanca problema. Implementirati sljedeći ILP model
 	\begin{align*}
 		& \max \sum_{v \in V} x_v \\
-		& s.t. \\
+		& \mbox{t.d.} \\
 		& x_{v'} + x_{v''} \leq 1, \forall (v' v'')\in E \\
 		& x_v \in \{0, 1 \}, \forall v \in  V.
 	\end{align*}
-Izbaciti rješenje problema u obliku skupa odabranih čvorova koji su komponeneta (optimalnog) rješenja. Riješiti relaksaciju datog ILP-a. Zaokružiti dobijeno rješenje, tj. transformisati ga u najbliže cjelobrojno rješenje (gledajući po koordinatama).  Model implementirati:
+Eksportovati rješenje problema u obliku skupa odabranih čvorova koji su komponeneta optimalnog rješenja. Riješiti relaksaciju datog ILP-a. Zaokružiti dobijeno rješenje, tj. transformisati ga u najbliže cjelobrojno rješenje (gledajući po koordinatama).  Model implementirati:
+\begin{enumerate}
+	\item[(a))]  uz pomoć CPLEX-a; 
+	\item[(b)] uz pomoć PuLP modula.
+\end{enumerate}
 
- ($a$) uz pomoć CPLEX-a; ($b$) uz pomoć PuLP modula.
 \item % http://courses.ieor.berkeley.edu/ieor151/lecture_notes/ieor151_lec13.pdf
-     Neka je dat usmjerenim težinskim grafom $G= (V_1 \cup V_2, E)$ kao instanca problema modelovan sljedećim modelom, gdje su $V_1$ i $V_2$ disjunktni skupovi. Neka je dat prirodan broj $p\geq 1$. Težine grana između čvorova $i$ i $j$ je data sa $d_{i,j}\geq 0 $ i postoje samo grane između čvorova iz skupa $V_1$ u skup $V_2$. Svakom čvoru iz skupa $V_1$ pridružena je težina $h_{i}$. 
+     Neka je dat usmjeren težinski graf $G= (V_1 \cup V_2, E)$, gdje su $V_1$ i $V_2$ disjunktni skupovi. Neka je dat prirodan broj $p\geq 1$. Težine grana između čvorova $i$ i $j$ je data sa $d_{i,j}\geq 0 $ i postoje samo grane između čvorova iz skupa $V_1$ u skup $V_2$. Svakom čvoru iz skupa $V_1$ pridružena je težina $h_{i}$. 
      Neka je MILP model dat  sa:
      \begin{align*}
      	 &\min \sum_{j \in V_2}\sum_{i \in V_1} h_i d_{i,j} Y_{i,j} \\
@@ -7572,16 +7579,19 @@ Izbaciti rješenje problema u obliku skupa odabranih čvorova koji su komponenet
      	 & X_j \in \{0, 1\}, \forall j \in V_2 \\
      	 & Y_{i,j} \in \{0, 1\}, \forall i \in V_1, \forall j \in V_2.
      \end{align*}
-      Model implementirati:
+      Model implementirati
       
-      ($a$) uz pomoć CPLEX-a; ($b$) uz pomoć PuLP modula. 
+      \begin{enumerate}
+      	\item[(a))]  uz pomoć CPLEX-a; 
+      	\item[(b)] uz pomoć PuLP modula.
+      \end{enumerate}
    \item   %https://www.researchgate.net/publication/220316431_An_efficient_ILP_formulation_for_the_single_machine_scheduling_problem
-   Neka je u ulazu dat skup $V$ poslova koji treba da budu urađeni na mašini. Svaki posao $j$ je dat intervalom $[r_j, d_j]$, $r_j < d_j$, gdje $r_j$ označava dopustivo vrijeme puštanja posla u rad (na mašini) dok $d_j$ označava vrijeme do kada se posao mora završiti.  
+   Neka je na ulazu dat skup $V$ poslova koji treba da budu urađeni na mašini. Svaki posao $j$ je dat intervalom $[r_j, d_j]$, $r_j < d_j$, gdje $r_j$ označava dopustivo vrijeme puštanja posla u rad (na mašini) dok $d_j$ označava vrijeme do kada se posao mora završiti.  
    Vrijeme procesiranja posla $j$ je dato sa $p_j$. 
-   Odrediti za sve poslove $j  \in V$ dopustiv redosljed njihovog izvršavanja (na mašini) tako što ćete odrediti startna vremena izvršenja $s_j$ ($s_j \geq r_j \wedge s_j + p_j \leq d_j$) za sve $j \in V$. Ovaj problem je modelovan iz pomoć sljedećeg modela:
+   Odrediti za sve poslove $j  \in V$ dopustiv redoslijed njihovog izvršavanja (na mašini) tako što treba odrediti startna vremena izvršenja $s_j$ ($s_j \geq r_j \wedge s_j + p_j \leq d_j$) za sve $j \in V$. Problem je modelovan na sljedeći način
    \begin{align*}
           &\max D - R \\
-          & s.t. \\
+          & \mbox{t.d.} \\
           & R \geq r_i, \forall i \in V \\
           & D \leq d_i, \forall i \in V \\
           & R \geq r_i + \sum_{ \{ j \in V \setminus \{t\} \mid r_j \geq r_i \} } p_j x_j^+, \forall i \in V \\
@@ -7590,36 +7600,45 @@ Izbaciti rješenje problema u obliku skupa odabranih čvorova koji su komponenet
           &   x_j^+, x_j^- \in \{0, 1\}, \forall i \in V \\
           & D, R \in \mathbb{Z}. 
    \end{align*} 
-          Model implementirati:
-    
-    ($a$) uz pomoć CPLEX-a; ($b$) uz pomoć PuLP modula. 
+        Model implementirati
+  
+  \begin{enumerate}
+  	\item[(a))]  uz pomoć CPLEX-a; 
+  	\item[(b)] uz pomoć PuLP modula.
+  \end{enumerate}
     \item Neka je data instanca koja se sastoji  $n$ brojeva iz skupa $\mathbb{R}^p$, $p\in \mathbb{N}$. Sa $w_{i}=(w_{i1},\ldots, w_{ip})$ označimo $i$-ti element u skupu $S$. 
-    Neka je $s_j = \sum_{i=1}^n w_{ij}, j=1,\ldots, p$ i neka je dat model:
+    Neka je $s_j = \sum_{i=1}^n w_{ij}, j=1,\ldots, p$ i neka je dat model
     \begin{align*}
     	&\min t  \\
-    	& s.t. \\
+    	& \mbox{t.d.} \\
     	&-0.5 \cdot t + \sum_{i=1}^n w_{i,j}    x_i  \leq 0.5 \cdot s_j, j=1,\ldots,p \\
     	& 0.5 \cdot t + \sum_{i=1}^n w_{i,j} x_i  \geq 0.5 \cdot s_j, j=1,\ldots,p \\
     	& x_j \in \{0, 1\}, j = 1,\ldots,n.
     \end{align*}
-             Model implementirati:
-     
-     ($a$) uz pomoć CPLEX-a; ($b$) uz pomoć PuLP modula.
+    Model implementirati
+          
+          \begin{enumerate}
+          	\item[(a))]  uz pomoć CPLEX-a; 
+          	\item[(b)] uz pomoć PuLP modula.
+          \end{enumerate}
     \item %http://elib.mi.sanu.ac.rs/files/journals/publ/119/publn119p51-58.pdf
-    Neka je data instanca koja se sastoji od grafa $G=(V,E)$ %pri čemu je svakom od čvorova grafa data težina $f(v)  \in \{0, 1, 2\}, v \in V$. 
-    Neka je dat ILP model:
+    Neka je dat $G=(V,E)$ kao instanca problema. %pri čemu je svakom od čvorova grafa data težina $f(v)  \in \{0, 1, 2\}, v \in V$. 
+    Neka je dat ILP model
     \begin{align*}
           &\min \sum_{i \in V} x_i + \sum_{i \in V} y_i \\
-          &s.t. \\
+          &\mbox{t.d.} \\
           & x_i + \sum_{j \in N_i } y_j  \geq 1, i \in V \\
           & y_i \leq x_i, i \in V \\
           &x_i, y_i \in \{0, 1\}, i \in V,
     \end{align*}
 gdje $N_i$ označava susjede čvora $i$ u grafu $G$. 
 
-Model implementirati:
+    Model implementirati
 
-($a$) uz pomoć CPLEX-a; ($b$) uz pomoć PuLP modula. 
+\begin{enumerate}
+	\item[(a))]  uz pomoć CPLEX-a; 
+	\item[(b)] uz pomoć PuLP modula.
+\end{enumerate}
 \end{enumerate}
 \begin{thebibliography}{widest entry}
 	\bibitem[1]{cite_key1}  \url{https://towardsdatascience.com/the-big-picture-of-operations-research-8652d5153aad}
