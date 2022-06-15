@@ -662,7 +662,9 @@ Ako su sve promjenljive u LP-u cjelobrojne, riječ je o modelu \emph{Cjelobrojno
  
 %\section{Modelovanje nekih problema paradigmom linearnog programiranja}\label{sec:modeli_lp}
 
+
 U naredna dva primjera opisani su modeli linearnog programiranja za dva poznata problema. 
+
 \begin{primjer}
 \emph{Problem optimalne prehrane.} Pretpostavimo da su nam na raspolaganju namirnice $N_1, \ldots, N_n$. Jedinična cijena namirnice $N_j$ je $c_j>0, j = 1, \ldots, n$. U namirnicama su prisutni nutritivni elementi $e_i,i=1,\ldots,m$ pri čemu
 namirnica $N_j$ sadrži $a_{ij} \geq 0$ nutritivnog elementa $e_i$, $i = 1, \ldots, n$, $j = 1, \ldots, m$. Svaka osoba u toku dana treba da unese barem $b_i$
@@ -688,7 +690,7 @@ k, l \in \mathbb{R}$ koja, u smislu $l_1$ norme, najbolje aproksimira date podat
 \emph{Rješenje}.
 Označimo sa $z_i = |k x_i + l - y_i| = \max\{k x_i + l - y_i, y_i - k x_i - l \}$, $i=1,\ldots,n$. 
 
-Primijetimo da apsolutna vrijednost ne odgovara direktno problemu LP-a, bilo da je prisutna u funkciji cilja ili ograničenjima, jer ona ne predstavlja linearnu funkciju (već je  linearna po dijelovima). Međutim, elementarnim transformacijama, polazni problem možemo da preformulišemo na sljedeći  problem linearnog programiranja: % ogranizenje |kx_i + l - y_i | <= z_i <=> dalje se svodi na dva ogranicenja...
+Primijetimo da apsolutna vrijednost ne odgovara direktno problemu LP-a, bilo da je prisutna u funkciji cilja ili ograničenjima, jer ona ne predstavlja linearnu funkciju (već je  linearna po dijelovima). Međutim, elementarnim transformacijama, polazni problem možemo da preformulišemo na sljedeći  problem minimizacije linearnog programiranja: % ogranizenje |kx_i + l - y_i | <= z_i <=> dalje se svodi na dva ogranicenja...
 
 $f(x) = c^T w$, pod uslovima
 \begin{itemize}
@@ -863,7 +865,7 @@ Dakle, ekstremna tačka poliedra se ne može napisati kao netrivijalna konveksna
 \begin{definition}\label{def:vrhPoliedra}
    Neka je dat poliedar $P \subseteq \mathbb{R}^n$. Tačku $x \in P$ nazivamo vrh (poliedra) ako postoji linearna funkcija  $c^T x$ koja je strogo minimizovana u toj tački, tj. za sve  $y\in P, y \neq x$, vrijedi $c^T x < c^T y$. 
 \end{definition}
-Geometrijski posmatrano,  vrh poliedra $P$ je ona tačka poliedra  kroz koju možemo provući poluravan sa svojstvom da se sve tačke iz $P$ (izuzev vrha) nalaze sa iste strane te poluravni.
+Geometrijski posmatrano,  vrh poliedra $P$ je ona tačka poliedra  kroz koju možemo provući poluravan (hiperravan) sa svojstvom da se sve tačke iz $P$ (izuzev vrha) nalaze sa iste strane te poluravni.
 
 Uvedimo sada nekoliko novih pojmova koji će nam pomoći da definišemo bazno dopustivo rješenje.
 
@@ -937,7 +939,7 @@ Pokažimo sada da  vrhovi, ekstremne tačke poliedra i bazna dopustiva rješenja
        \end{equation}
      Iz toga vidimo da je $x^*$ rješenje LP problema minimizacije. Jednakost u (\ref{eq:3_impl_1}) vrijedi ako i samo ako je $a_i^T x = b_i$ za sve $i \in I$. Kako je $x^*$ BDR, broj linearno nezavisnih vektora $a_i, i \in I$ koji su  aktivni u $x^*$ je jednak $n$, pa sistem $a_i^T x = b_i, i \in I$ ima jedinstveno rješenje koje je upravo $x^*$. Prema tome, pokazano je da postoji vektor $c \in \mathbb{R}^n$ za koji vrijedi $c^T x > c^T x^*$ za sve $x \neq x^*$, $x \in P$, odake, na osnovu definicije vrha poliedra, slijedi tvrdnja. 
 \end{proof}
-U nastavku ćemo dati uslove koji treba da vrijede za postojanje BDR-a, tj. 
+U nastavku ćemo dati potrebne uslove za postojanje BDR-a, tj. 
  ekstremne tačke poliedra. Takođe, daćemo i postupak za konstrukciju BDR-a, te ćemo uvesti pojam degenerativnog rješenja.
 
 \begin{thm}
@@ -972,7 +974,7 @@ Definišimo sada pojam \emph{degenerativnog} rješenja i degenerativnog baznog r
 \end{definition}
 
 \begin{definition}
-      Neka je $P = \{ x \in \mathbb{R}^n \mid A x = b, x \geq 0\}, A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m$    i neka je $x$ bazno rješenje. Vektor $x$ nazivamo degenerativno bazno rješenje ako je više od $n-m$ komponenti u vektoru $x$   jednako 0.
+      Neka je $P = \{ x \in \mathbb{R}^n \mid A x = b,  x_i \geq 0, i=1,\ldots,m \}, A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m$    i neka je $x$ bazno rješenje. Vektor $x$ nazivamo degenerativno bazno rješenje ako je više od $n-m$ komponenti u vektoru $x$   jednako 0.
 \end{definition}
 U sljedećem primjeru ćemo pokazati kako se pronalazi bazno rješenje, te kako izgleda degenerativno bazno rješenje.
 
