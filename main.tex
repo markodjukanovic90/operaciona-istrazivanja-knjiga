@@ -477,9 +477,8 @@ Ostatak ove knjige je fokusiran na  matematičke modele i odgovarajuće metode z
 
 \chapter{Linearno Programiranje} \label{chp:lp}
   
-  Razvoj linearnog programiranja počinje sredinom dvadesetog vijeka. Sovjetski matematičar i ekonomista Leonid Kantorovič je tokom Drugog svjetskog rata formulisao problem ekvivalentan problemu linearnog programiranja u cilju boljeg upravljanja resursima i smanjenja vojnih troškova. Neposredno nakon drugog svjetskog rata, američki matematičar Džordž Dencig razvija čuveni simpleks algoritam, čime se otvara prostor za efikasno rješavanje problema linearnog programiranja. U periodu koji je uslijedio, pa sve do danas, linearno programiranje se koristi kao standardan alat za rješavanje raznih problema u industriji i ekonomiji uopšte, što je dovelo do   milionskih ušteda ogromnom broju kompanija širom svijeta. Stoga se 
-razvoj linearnog programiranja  smatra jednim od najvažnijih naučnih dostignu\-ća XX vijeka.  Napisano je na desetine, pa i stotine udžbenika
-o linearnom programiranju i objavljeno je na hiljade naučnih radova koji   ovu paradigmu primjenjuju na probleme iz raznih naučnih i praktičnih domena. 
+  Razvoj linearnog programiranja počinje sredinom dvadesetog vijeka. Sovjetski matematičar i ekonomista Leonid Kantorovič je tokom Drugog svjetskog rata formulisao problem ekvivalentan problemu linearnog programiranja u cilju boljeg upravljanja resursima i smanjenja vojnih troškova. Neposredno nakon Drugog svjetskog rata, američki matematičar Džordž Dencig razvija čuveni simpleks algoritam, čime se otvara prostor za efikasno rješavanje problema linearnog programiranja. U periodu koji je uslijedio, pa sve do danas, linearno programiranje se koristi kao standardan alat za rješavanje raznih problema u industriji i ekonomiji uopšte, što je dovelo do   milionskih ušteda ogromnom broju kompanija širom svijeta. Stoga se razvoj linearnog programiranja  smatra jednim od najvažnijih naučnih dostignu\-ća XX vijeka.  Napisane su stotine udžbenika o linearnom programiranju kao i hiljade naučnih radova koji ovu paradigmu primjenjuju na probleme iz raznih naučnih i praktičnih domena. 
+
 
 Linearno programiranje koristi matematički model za opisivanje problema. Pridjev ``linearno'' podrazumijeva da su  matematičke funkcije korištene u modelu linearne funkcije. Riječ ``programiranje'' se ne odnosi na računarsko programiranje, već je to sinonim za planiranje i optimizaciju. Dakle, linearno programiranje uključuje planiranje aktivnosti u cilju postizanja optimalnog rezultata, tj. rezultata koji najbolje postiže navedeni cilj (prema matematičkom modelu) među svim mogućim alternativama.  Za rješavanje problema linearnog programiranja razvijeno je dosta efikasnih metoda. Iako jedan od nastarijih,  \emph{simpleks metod} se i danas koristi za rješavanje problema velikih dimenzija te je zaslužan za ogroman uticaj linearnog  programiranja u raznim oblastima nauke i privrede.
 
@@ -494,10 +493,11 @@ Zbog pada zarade, rukovodstvo firme   odlučilo je da izmijeni liniju proizvoda 
 \end{itemize}
 Uslovi i zahtjevi proizvodnje su sljedeći:
 \begin{itemize}
-    \item Proizvod 1 zahtijeva   korištenje proizvodnih kapaciteta u postrojenjima 1 i 3, ali ne koristi postrojenje 2; 
-    \item Proizvod 2 za proizvodnju koristi   postrojenja 2 i 3. 
+    \item Proizvod 1 zahtijeva   korištenje proizvodnih kapaciteta u pogonima 1 i 3, ali ne koristi postrojenje 2; 
+    \item Proizvod 2 za proizvodnju koristi  pogone 2 i 3. 
 \end{itemize}
-    Rukovodstvo kompanije je zaključilo da bi kompanija mogla prodati sve proizvode koje bi mogla proizvesti u postrojenjima. Međutim, budući da   oba proizvoda koriste proizvodni kapacitet u postrojenju 3, nije očigledno jasno koja bi kombinacija proizvodnje dva proizvoda bila najisplativija. %Stoga je formiran tim za proučavanje ovog pitanja, te davanja adekvatnog odgovora.
+    
+    Rukovodstvo kompanije je došlo do zaključka da bi kompanija mogla prodati sve proizvode koje je u mogućnosti da proizvede u svojim pogonima. Međutim, budući da   oba proizvoda koriste proizvodni kapacitet u postrojenju 3, nije očigledno jasno koja bi kombinacija proizvodnje dva proizvoda bila najisplativija. %Stoga je formiran tim za proučavanje ovog pitanja, te davanja adekvatnog odgovora.
 
 Nakon razgovora sa upravom, utvrđeni su glavni ciljevi istraživanja. Definicija  (idealizovanog) problema koji treba da se riješi je sljedeća:
 \begin{itemize}
@@ -508,14 +508,14 @@ Nakon razgovora sa upravom, utvrđeni su glavni ciljevi istraživanja. Definicij
 
 U cilju razvijanja modela, neophodno je prikupiti sljedeće informacije:
 \begin{itemize}
-	\item[($i$)]   Broj radnih sati u sedmici dostupan u svakom pogonu za proizvodnju proizvoda.  
-	\item[($ii$)]   Broj radnih sati koji je neophodno utrošiti  za proizvodnju jedne serije proizvoda u svakom pogonu.
-	\item[($iii$)] Dobit po proizvedenoj seriji svakog novog proizvoda. Odlučeno je da dobit po proizvedenoj seriji bude   odgovarajuća mjera -- zaključak je da dobit svake dodatne proizvedene serije  raste približno konstantno bez obzira na ukupan broj proizvedenih serija.
+		\item[($i$)]   Broj radnih sati u sedmici dostupan u svakom pogonu za proizvodnju proizvoda.  
+	\item[($ii$)]   Broj radnih sati koji je neophodno utrošiti  za proizvodnju jedne serije proizvoda u svakom pogonu.	\item[($iii$)] Dobit po proizvedenoj seriji svakog novog proizvoda. Odlučeno je da dobit po proizvedenoj seriji bude   odgovarajuća mjera -- zaključak je da dobit svake dodatne proizvedene serije  raste približno konstantno bez obzira na ukupan broj proizvedenih serija.
 \end{itemize} 
 
 Budući da značajniji troškovi za pokretanje proizvodnje i promovisanje novih proizvoda nisu postojali, ukupna dobit je aproksimirana dobiti po proizvedenoj seriji koja je pomnožena sa brojem serija proizvodnje.  
 
-Dalje, trebalo je procijeniti konstante (parametre)  u modelu; ovo je ostvareno u komunikaciji između uprave firme i tima zaduženog za rješavanje problema. Pomoć stručnog osoblja iz raznih odjela firme je odigrala ključnu ulogu u dobijanju razumnih procjena.
+
+Dalje, trebalo je procijeniti konstante (parametre)  u modelu; ovo je ostvareno u komunikaciji između uprave firme i tima zaduženog za rješavanje problema. Pomoć stručnog osoblja iz raznih odjela firme je odigrala ključnu ulogu u dobijanju razumnih procjena za konstante. 
  Osoblje u proizvodnom odjelu   je obezbijedilo informacije o podacima za stavku ($i$). Za procjenu slučaja ($ii$), ključna je bila analiza proizvodnih inženjera koji su uključeni u dizajniranje proizvodnih procesa novih proizvoda. Analizirajući podatke o resursima i uključivanjem  marketinškog odjela firme,  data je procjena za slučaj ($iii$). Tabela~\ref{tab:procjene-1} pokazuje sve ove procjene. 
 
 
@@ -571,7 +571,7 @@ Ovaj se postupak često naziva \emph{grafičkom metodom za linearno programiranj
     \label{fig:fig2}
 \end{figure}
 
-U ovoj sekciji govorimo o opštoj formi modela linearnog programiranja. Uvedimo neke ključne pojmove koji se standardno koriste u modelovanju i rješavanju problema linearnog programiranja. 
+U ovoj sekciji govorimo o standardnoj formi modela linearnog programiranja. Uvedimo neke ključne pojmove koji se obično koriste u modelovanju i rješavanju problema linearnog programiranja. 
 
 Pođimo od pojmova \textit{resursi} i \textit{aktivnosti}. Pretpostavimo da u našem razmatranju imamo $m$ resursa i $n$ aktivnosti. Neki standardni resursi su vrijeme, novac, oprema, mašine, radnici itd. Aktivnosti uključuju ulaganje novca u određene projekte, dodjelu posla nekoj mašini ili radniku,  dostavljanje robe iz jednog u drugo mjesto, itd. 
  Najčešći tip primjene linearnog programiranja uključuje povezivanje resursa i aktivnosti, odnosno dodjelu resursa određenim aktivnostima. Dostupna količina svakog resursa je najčešće ograničena, pa aktivnosti trebaju biti pažljivo raspoređene u odnosu na odgovarajuće resurse.  Utvrđivanje ove raspodjele uključuje odabir vrsta i nivoa aktivnosti za koje se postiže najbolja moguća vrijednost ukupne mjere učinka. Ukupna mjera učinka može biti mjerenje dobiti (profita), mjerenje vremena realizacije aktivnosti, mjerenje broja proizvedenih proizvoda itd.
@@ -587,7 +587,7 @@ U nastavku navodimo notaciju koja se najčešće koriste u formiranju opšteg ob
     \item $a_{ij}$: količina resursa $i$ koja se uzima od strane jedinične (vrijednosti) aktivnosti $j$.
 \end{itemize}
 Prema ovoj notaciji, matematički modeli problema linearnog programiranja ima sljedeću postavku:
-
+  
 \begin{align} 
       &f = c_1 x_1 + \cdots + c_n x_n \rightarrow \max \label{form:LP-1}\\
       & \mbox{t.d.} \nonumber \\
@@ -620,7 +620,7 @@ Bilo koji problem koji koristi neke od prethodna tri ograničenja predstavlja i 
  Forma linearnog programa sa ograničenjima $Ax = b$ se naziva \emph{kanonska forma} linearnog programiranja. 
  
  Takođe, ako u linearnom
-programu postoji promjenljiva koja ne zadovoljava uslov nenegativnosti, ona se može zamijeniti razlikom dve nove nenegativne promenljive. Kanonski oblik linearnog programiranja je pogodan za efikasno izvođenje Gausovih transformacija  nad matricom problema, što se, na primjer, koristi u konstrukciji simpleks metoda.   %, jer je svaki broj razlika dva nenegativna broja.
+programu postoji promjenljiva koja ne zadovoljava uslov nenegativnosti, ona se može zamijeniti razlikom dve nove nenegativne promenljive. Kanonski oblik linearnog programiranja je pogodan za efikasno izvođenje Gausovih transformacija  nad matricom problema, što se, na primjer, koristi u glavnim iteracijama simpleks metoda.   %, jer je svaki broj razlika dva nenegativna broja.
 
  U nastavku koristimo sljedeću terminologiju linearnog programiranja (LP):
 \begin{itemize}
