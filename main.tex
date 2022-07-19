@@ -522,7 +522,8 @@ Nakon razgovora sa upravom, utvrđeni su glavni ciljevi istraživanja. Definicij
 U cilju razvijanja modela, neophodno je prikupiti sljedeće informacije:
 \begin{itemize}
 		\item[($i$)]   Broj radnih sati u sedmici dostupan u svakom pogonu za proizvodnju proizvoda.  
-	\item[($ii$)]   Broj radnih sati koji je neophodno utrošiti  za proizvodnju jedne serije proizvoda u svakom pogonu.	\item[($iii$)] Dobit po proizvedenoj seriji svakog novog proizvoda. Odlučeno je da dobit po proizvedenoj seriji bude   odgovarajuća mjera -- zaključak je da dobit svake dodatne proizvedene serije  raste približno konstantno bez obzira na ukupan broj proizvedenih serija.
+	\item[($ii$)]   Broj radnih sati koji je neophodno utrošiti  za proizvodnju jedne serije proizvoda u svakom pogonu.	\item[($iii$)] Dobit po proizvedenoj seriji svakog novog proizvoda. Odlučeno je da dobit po proizvedenoj seriji bude   odgovarajuća mjera -- ukupna dobit  raste približno konstantno svakom dodatnom serijom. %  bez obzira na ukupan broj proizvedenih serija.
+	
 \end{itemize} 
 
 Budući da značajniji troškovi za pokretanje proizvodnje i promovisanje novih proizvoda nisu postojali, ukupna dobit je aproksimirana dobiti po proizvedenoj seriji koja je pomnožena sa brojem serija proizvodnje.  
@@ -549,14 +550,14 @@ Dalje, trebalo je procijeniti konstante (parametre)  u modelu; ovo je ostvareno 
     \label{tab:procjene-1}
 \end{table}
 
-U nastavku konstruišemo model problema. Uvedimo promjenljivu $x_1$ za broj serija proizvoda 1 proizvedenog na sedmičnom nivou, te $x_2$ broj serija proizvoda 2 koji je proizveden na sedmičnom nivou. Funkcija profita je jednaka $f(x_1, x_2) = 3 x_1 + 5 x_2$, dok se rješenja traže pod ograničenjima
+U nastavku konstruišemo model problema. Uvedimo promjenljivu $x_1$ za broj serija proizvoda 1 proizvedenog na sedmičnom nivou, te $x_2$ broj serija proizvoda 2 koji je proizveden na sedmičnom nivou. Funkcija cilja je jednaka $f(x_1, x_2) = 3 x_1 + 5 x_2$, dok se rješenja traže pod ograničenjima
 \begin{itemize}
     \item $x_1, x_2 \geq 0$
     \item  $x_1 \leq 4, 2 x_2 \leq 12$
     \item $3 x_1 + 2 x_2 \leq 18$
 \end{itemize}
 
-Dakle, na osnovu realnog problema, formirali smo odgovarajući matematički model (idealizovanog problema) koji sadrži  linearnu funkciju dvije promjenljive i nekoliko ograničenja, koja su zapisana preko linearnih nejednačina. Cilj rješavanja ovog matematičkog modela je pronalaženje onih vrijednosti promjenljivih $x_1$ i $x_2$ koji se uklapaju u ograničenja i za koje posmatrana funkcija ima maksimalnu vrijednost.
+Dakle, na osnovu realnog problema, formirali smo odgovarajući matematički model (idealizovanog problema) koji sadrži  linearnu funkciju dvije promjenljive i nekoliko ograničenja, koja su zapisana preko linearnih nejednačina. Cilj rješavanja ovog matematičkog modela je pronalaženje onih vrijednosti promjenljivih $x_1$ i $x_2$ koji se uklapaju u ograničenja i za koje posmatrana funkcija cilja ima maksimalnu vrijednost.
 
 %https://www.desmos.com/calculator
 \section{Grafički metod}
@@ -587,32 +588,31 @@ Ovaj se postupak često naziva \emph{grafičkom metodom za linearno programiranj
 U ovoj sekciji govorimo o standardnoj formi modela linearnog programiranja. Uvedimo neke ključne pojmove koji se obično koriste u modelovanju i rješavanju problema linearnog programiranja. 
 
 Pođimo od pojmova \textit{resursi} i \textit{aktivnosti}. Pretpostavimo da u našem razmatranju imamo $m$ resursa i $n$ aktivnosti. Neki standardni resursi su vrijeme, novac, oprema, mašine, radnici itd. Aktivnosti uključuju ulaganje novca u određene projekte, dodjelu posla nekoj mašini ili radniku,  dostavljanje robe iz jednog u drugo mjesto, itd. 
- Najčešći tip primjene linearnog programiranja uključuje povezivanje resursa i aktivnosti, odnosno dodjelu resursa određenim aktivnostima. Dostupna količina svakog resursa je najčešće ograničena, pa aktivnosti trebaju biti pažljivo raspoređene u odnosu na odgovarajuće resurse.  Utvrđivanje ove raspodjele uključuje odabir vrsta i nivoa aktivnosti za koje se postiže najbolja moguća vrijednost ukupne mjere učinka. Ukupna mjera učinka može biti mjerenje dobiti (profita), mjerenje vremena realizacije aktivnosti, mjerenje broja proizvedenih proizvoda itd.
+ Najčešći tip primjene linearnog programiranja uključuje povezivanje resursa i aktivnosti, odnosno dodjelu resursa određenim aktivnostima. Dostupna količina svakog resursa je najčešće ograničena, pa aktivnosti trebaju biti pažljivo raspoređene u odnosu na odgovarajuće resurse.  Utvrđivanje ove raspodjele uključuje odabir vrsta i nivoa aktivnosti za koje se postiže najbolja moguća vrijednost  funkcije cilja. Funkcija cilja može da predstavlja mjeru dobiti (profita), mjeru vremena realizacije aktivnosti, mjeru broja proizvedenih proizvoda, itd.
 
 U nastavku navodimo notaciju koja se najčešće koriste u formiranju opšteg oblika modela linearnog programiranja (LP):
 
 \begin{itemize}
     \item $f$: funkcija cilja (dobiti) 
     \item $x_j$: količina aktivnosti $j$ ($j = 1,\ldots,n$);
-    \item $c_j$: povećanje u profitu ako se količna aktivnosti $j$ poveća za jediničnu vrijednost;
-    %dragan: ostavio sam termin jedinična vrijednost
-    \item $b_i$: ukupna količina resursa $i$ ($i=1,\ldots,m$) koja je dozvoljena za pridruživanje aktivnosti;
-    \item $a_{ij}$: količina resursa $i$ koja se uzima od strane jedinične (vrijednosti) aktivnosti $j$.
+    \item $c_j$: povećanje u profitu ako se količna aktivnosti $j$ poveća za jedan %jediničnu vrijednost;
+    \item $b_i$: ukupna količina resursa $i$ ($i=1,\ldots,m$) koja je dozvoljena za pridruživanje aktivnostima;
+    \item $a_{ij}$: količina resursa $i$ koja se uzima od strane aktivnosti $j$.
 \end{itemize}
-Prema ovoj notaciji, matematički modeli problema linearnog programiranja ima sljedeću postavku:
+Prema ovoj notaciji, matematički model problema linearnog programiranja ima sljedeću postavku:
   
 \begin{align} 
       &f = c_1 x_1 + \cdots + c_n x_n \rightarrow \max \label{form:LP-1}\\
       & \mbox{t.d.} \nonumber \\
-      & a_{11}x_1 + a_{12} x_{12} + \cdots + a_{1n}x_n \leq b_1 \label{form:LP-2} \\
-      &\vdots \nonumber \\
-      & a_{m1}x_1 + a_{12} x_{m2} + \cdots + a_{mn}x_n \leq b_m \label{form:LP-3} \\
+      & a_{i1}x_1 + a_{i2} x_{2} + \cdots + a_{in}x_n \leq b_i, i=1,\ldots,m \label{form:LP-2} \\
+      %&\vdots \nonumber \\
+      %& a_{m1}x_1 + a_{12} x_{m2} + \cdots + a_{mn}x_n \leq b_m \label{form:LP-3} \\
       & x_i \geq 0,\ i=1,\ldots,n.\label{form:LP-4}
 \end{align}
 
-Postavka (\ref{form:LP-1})--(\ref{form:LP-4}) se još naziva i \emph{standardna forma} problema linearnog programiranja. Funkcija (\ref{form:LP-1}) se naziva funkcija cilja koju je potrebno maksimizovati pod uslovima (\ref{form:LP-2})--(\ref{form:LP-3}), koji se nazivaju \emph{funkcionalna ograničenja}. Ograničenja (\ref{form:LP-4}) se nazivaju \emph{nenegativna ograničenja}. 
+Postavka (\ref{form:LP-1})--(\ref{form:LP-4}) se još naziva i \emph{standardna forma} problema linearnog programiranja. Funkcija (\ref{form:LP-1}) se naziva funkcija cilja koju je potrebno maksimizovati pod uslovima (\ref{form:LP-2}), koji se nazivaju \emph{funkcionalna ograničenja}. Ograničenja (\ref{form:LP-4}) se nazivaju \emph{nenegativna ograničenja}. 
 
-Kompaktiniji oblik standardne forme je dat sa:
+Kompaktiniji oblik standardne forme LP-a je dat sa:
 \begin{align}
     & f = c^T x \rightarrow \max \label{eq:LP-o1}\\
     & \mbox{t.d.} \nonumber \\
@@ -628,7 +628,7 @@ Treba imati na umu da se ograničenja (\ref{eq:LP-c1}) mogu zapisati i na sljede
     \item $Ax = b$;
     \item neke od promjenljivih $x_i\leqslant 0$.
 \end{itemize}
-Bilo koji problem koji koristi neke od prethodna tri ograničenja predstavlja i dalje problem linearnog programiranja. Dodavajući tzv. \emph{izravnavajuće promjenljive} $s \in \mathbb{R}^m$ u linearni program sa ograničenjima $Ax \leq b$, dobijamo linearni program sa ograničenjima $Ax + s = b, s \geq 0$. Isto tako, linearni program sa ograničenja $Ax \geq b$ se može transformisati u ograničenja sa jednakostima dodavanjem izravnavajućih promjenljivih kao $Ax - s = b, s\geq 0$.
+Bilo koji problem koji koristi neke od prethodna tri ograničenja predstavlja i dalje problem linearnog programiranja. Dodavajući tzv. \emph{izravnavajuće promjenljive} (eng. slack variables) $s \in \mathbb{R}^m$ u linearni program sa ograničenjima $Ax \leq b$, dobijamo linearni program sa ograničenjima $Ax + s = b, s \geq 0$. Isto tako, linearni program sa ograničenja $Ax \geq b$ se može transformisati u ograničenja sa jednakostima dodavanjem izravnavajućih promjenljivih kao $Ax - s = b, s\geq 0$.
 
  Forma linearnog programa sa ograničenjima $Ax = b$ se naziva \emph{kanonska forma} linearnog programiranja. 
  
@@ -643,7 +643,7 @@ programu postoji promjenljiva koja ne zadovoljava uslov nenegativnosti, ona se m
         \item \emph{nedopustiva rješenja} (eng. \emph{infreasible solution}) -- ona rješenja koja ne zadovoljavaju barem jedno od ograničenja u modelu. 
     \end{itemize}
   \item \emph{Dopustivi region}: označava skup svih rješenja koja su dopustiva. Ovo je prostor koji pretražujemo u svrhu pronalaska najboljeg rješenja modela. Takođe, može se desiti da problem nema niti jedno dopustivo rješenje. Za takav problem se kaže da je \emph{nedopustiv} (eng. infeasible). 
-  \item \emph{Optimalno rješenje} je ono rješenje iz dopustivog regiona za koje je funkcija cilja najveća (pod pretpostavkom da maksimizujemo funkciju cilja), odnosno najmanja (pod pretpostavkom da minimizujemo funkciju cilja). Treba napomenuti da ova vrijednost ne mora biti jedinstvena.  Npr. na Slici~\ref{fig:multi_solution} je prikazan dopustiv region sa ograničenjima $x_1, x_2 \geq 0, x_1 \leq 4 $ i $3 x_1 + 2 x_2 \leq 14$, dok je funkcija cilja, koja se maksimizuje, data sa $f = 3x_1 + 2 x_2$.  
+  \item \emph{Optimalno rješenje} je ono rješenje iz dopustivog regiona za koje je funkcija cilja najveća (pod pretpostavkom da maksimizujemo funkciju cilja), odnosno najmanja (pod pretpostavkom da minimizujemo funkciju cilja). Treba napomenuti da optimalno rješenje ne mora biti jedinstveno.  Npr. na Slici~\ref{fig:multi_solution} je prikazan dopustiv region sa ograničenjima $x_1, x_2 \geq 0, x_1 \leq 4 $ i $3 x_1 + 2 x_2 \leq 14$, dok je funkcija cilja, koja se maksimizuje, data sa $f = 3x_1 + 2 x_2$.  
  \end{itemize}
  
  \begin{figure}
@@ -664,6 +664,7 @@ programu postoji promjenljiva koja ne zadovoljava uslov nenegativnosti, ona se m
      \label{fig:unbounded_solution}
  \end{figure}
  
+\fxnote{Marko: došao do ovog dijela.}
 Uvedimo sada pojam \emph{ekstremnih tačaka}, koje igraju bitnu ulogu u simpleks metodi. Za rješenje $x$ kažemo da je \emph{ekstremna tačka} ako se nalazi u vrhu dopustivog regiona, odnosno u presjeku granica dopustivog regiona.
 
 Postoji važna povezanost između ovih tačaka i optimalnog rješenja LP-a, o čemu će biti riječi u nastavku ove knjige.
