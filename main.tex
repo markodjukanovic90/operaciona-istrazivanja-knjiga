@@ -602,7 +602,7 @@ U nastavku navodimo notaciju koja se najčešće koriste u formiranju opšteg ob
 Prema ovoj notaciji, matematički model problema linearnog programiranja ima sljedeću postavku:
   
 \begin{align} 
-      &f = c_1 x_1 + \cdots + c_n x_n \rightarrow \max \label{form:LP-1}\\
+      &\max  c_1 x_1 + \cdots + c_n x_n  \label{form:LP-1}\\
       & \mbox{t.d.} \nonumber \\
       & a_{i1}x_1 + a_{i2} x_{2} + \cdots + a_{in}x_n \leq b_i, i=1,\ldots,m \label{form:LP-2} \\
       %&\vdots \nonumber \\
@@ -614,7 +614,7 @@ Postavka (\ref{form:LP-1})--(\ref{form:LP-4}) se još naziva i \emph{standardna 
 
 Kompaktiniji oblik standardne forme LP-a je dat sa:
 \begin{align}
-    & f = c^T x \rightarrow \max \label{eq:LP-o1}\\
+    & \max c^T x  \label{eq:LP-o1}\\
     & \mbox{t.d.} \nonumber \\
     &  A x \leq b \label{eq:LP-c1} \\
     & x \geq 0 \label{eq:LP-c2},
@@ -664,15 +664,15 @@ programu postoji promjenljiva koja ne zadovoljava uslov nenegativnosti, ona se m
      \label{fig:unbounded_solution}
  \end{figure}
  
-\fxnote{Marko: došao do ovog dijela.}
-Uvedimo sada pojam \emph{ekstremnih tačaka}, koje igraju bitnu ulogu u simpleks metodi. Za rješenje $x$ kažemo da je \emph{ekstremna tačka} ako se nalazi u vrhu dopustivog regiona, odnosno u presjeku granica dopustivog regiona.
+ 
+%Uvedimo sada pojam \emph{ekstremnih tačaka}, koje igraju bitnu ulogu u simpleks metodi. Za rješenje $x$ kažemo da je \emph{ekstremna tačka} ako se nalazi u vrhu dopustivog regiona, odnosno u presjeku granica dopustivog regiona.
 
-Postoji važna povezanost između ovih tačaka i optimalnog rješenja LP-a, o čemu će biti riječi u nastavku ove knjige.
-Prije toga, za početak, razmotrimo bilo koji problem LP-a sa dopustivim rješenjima i ograničenim dopustivim regionom. Kao što će uskoro biti i pokazano, u tom slučaju ćemo da raspolažemo barem jednom tačkom vrh tog regiona i barem jednim optimalnim rješenjem. Nadalje, jedan od vrhova mora biti optimalno rješenje. Dakle, ako problem ima tačno jedno optimalno rješenje, to rješenje je tačka koja je vrh regiona. Ako problem ima više optimalnih rješenja, barem dva moraju biti rješenja koja su tačke  vrhova dopustivog regiona.
+%Postoji važna povezanost između ovih tačaka i optimalnog rješenja LP-a, o čemu će biti riječi u nastavku ove knjige.
+%Prije toga, za početak, razmotrimo bilo koji problem LP-a sa dopustivim rješenjima i ograničenim dopustivim regionom. Kao što će uskoro biti i pokazano, u tom slučaju ćemo da raspolažemo barem jednom tačkom vrh tog regiona i barem jednim optimalnim rješenjem. Nadalje, jedan od vrhova mora biti optimalno rješenje. Dakle, ako problem ima tačno jedno optimalno rješenje, to rješenje je tačka koja je vrh regiona. Ako problem ima više optimalnih rješenja, barem dva moraju biti rješenja koja su tačke  vrhova dopustivog regiona.
 
 Treba imati na umu da (optimalno) rješenje LP-a ne mora da bude cjelobrojno. Budući da svaka promjenljiva odluke predstavlja nivo odgovarajuće aktivnosti, pretpostavlja se da se aktivnosti mogu izvoditi i na razlomljenim nivoima, odnosno, aktivnost  se ne dijeli samo na diskretne dijelove. 
 
-Ako su sve promjenljive u LP-u cjelobrojne, riječ je o modelu \emph{Cjelobrojnog programiranja}. Ako pored cjelobrojnih, postoje i neke promjenljive koje su neprekidne, riječ je o modelima \emph{Mješovitog--cjelobrojnog linearnog programiranja}. Veliki broj realnih problema koji dolaze iz prakse su upravo problemi Mješovitog--cjelobrojnog linearnog programiranja.
+Ako su domeni svih promjenljivih LP-a cjelobrojne vrijednosti, riječ je o modelu \emph{cjelobrojnog programiranja}. Ako pored cjelobrojnih, postoje i neke promjenljive koje uzimaju neprekidne vrijednosti, riječ je o modelima \emph{mješovitog--cjelobrojnog linearnog programiranja}. Veliki broj realnih problema koji dolaze iz prakse su upravo problemi mješovitog--cjelobrojnog linearnog programiranja.
  
 %\section{Modelovanje nekih problema paradigmom linearnog programiranja}\label{sec:modeli_lp}
 
@@ -680,7 +680,7 @@ Ako su sve promjenljive u LP-u cjelobrojne, riječ je o modelu \emph{Cjelobrojno
 U naredna dva primjera opisani su modeli linearnog programiranja za dva poznata problema. 
 
 \begin{primjer}
-\emph{Problem optimalne prehrane.} Pretpostavimo da su nam na raspolaganju namirnice $N_1, \ldots, N_n$. Jedinična cijena namirnice $N_j$ je $c_j>0, j = 1, \ldots, n$. U namirnicama su prisutni nutritivni elementi $e_i,i=1,\ldots,m$ pri čemu
+\emph{Problem optimalne dijete.} Pretpostavimo da su nam na raspolaganju namirnice $N_1, \ldots, N_n$. Jedinična cijena namirnice $N_j$ je $c_j>0, j = 1, \ldots, n$. U namirnicama su prisutni nutritivni elementi $e_i,i=1,\ldots,m$ pri čemu
 namirnica $N_j$ sadrži $a_{ij} \geq 0$ nutritivnog elementa $e_i$, $i = 1, \ldots, n$, $j = 1, \ldots, m$. Svaka osoba u toku dana treba da unese barem $b_i$
 jedinica nutritivnog elementa $e_i$. Potrebno je modelovati
 sljedeći problem: 
@@ -697,31 +697,33 @@ potreba za svim nutritivnim elementima, a da se pri tome minimizuje cijena prehr
  $$ a_{i,1} x_1 + \ldots + a_{i,n} x_n \geq b_i $$
  
  za svako $i=1,\ldots,m$. Dodajući još uslove nenegativnosti, $x_i \geq 0$, formulisali smo linearni model za ovaj problem.  
- \begin{primjer}
-\emph{Problem najboljeg pravca (problem linearne regresije)}. Zadani su podaci $(x_i, y_i), i = 1, \ldots , n$. Potrebno je odrediti pravu sa jednačinom $y = k x + l,
-k, l \in \mathbb{R}$ koja, u smislu $l_1$ norme, najbolje aproksimira date podatke. Drugim riječima, potrebno je minimizovati  funkciju cilja $$f(k, l) = \sum_{i=1}^n |k x_i + l - y_i|.$$
-\end{primjer}
+  \begin{primjer}
+ \emph{Problem najboljeg pravca (problem linearne regresije)}. Zadani su podaci $(x_i, y_i), i = 1, \ldots , n$. Potrebno je odrediti pravu sa jednačinom $y = k x + l,
+k, l \in \mathbb{R}$ koja, u smislu $l_1$ norme, najbolje aproksimira date podatke.  Napomenimo da umjesto $l_1$ često stoje i neke druge norme, poput euklidske, $l_2$ norme. Drugim riječima, potrebno je minimizovati  funkciju cilja $$f(k, l) = \sum_{i=1}^n |k x_i + l - y_i|.$$
+ \end{primjer}
+
 \emph{Rješenje}.
 Označimo sa $z_i = |k x_i + l - y_i| = \max\{k x_i + l - y_i, y_i - k x_i - l \}$, $i=1,\ldots,n$. 
 
-Primijetimo da apsolutna vrijednost ne odgovara direktno problemu LP-a, bilo da je prisutna u funkciji cilja ili ograničenjima, jer ona ne predstavlja linearnu funkciju (već je  linearna po dijelovima). Međutim, elementarnim transformacijama, polazni problem možemo da preformulišemo na sljedeći  problem minimizacije linearnog programiranja: % ogranizenje |kx_i + l - y_i | <= z_i <=> dalje se svodi na dva ogranicenja...
 
-$f(x) = c^T w$, pod uslovima
+Primijetimo da apsolutna vrijednost ne odgovara direktno problemu LP-a, bilo da je prisutna u funkciji cilja ili ograničenjima, jer ona ne predstavlja linearnu funkciju (već je  linearna po dijelovima). Međutim, polazni problem možemo da preformulišemo na sljedeći  problem minimizacije linearnog programiranja: % ogranizenje |kx_i + l - y_i | <= z_i <=> dalje se svodi na dva ogranicenja...
+
+$f(x) = c^T w = z_1 + z_2 + \ldots + z_n + 0\cdot k + 0 \cdot l$, pod uslovima
 \begin{itemize}
-    \item $ -w_i \leq k x_i + l - y_i$ 
-    \item $ k x_i + l - y_i \leq w_i $
+    \item $ -z_i \leq k x_i + l - y_i$ 
+    \item $ k x_i + l - y_i \leq z_i $, $i=1, \ldots, n$
 \end{itemize}
-za sve $i = 1, \ldots, n$ gdje je 
-$w_i = z_i, i=1,\ldots,n$, $w_{n+1} = k, w_{n+2} = l$, dok 
-$c_i = 1, i=1,\ldots,n$, i $c_{n+1} = 0, c_{n+2} = 0$. 
+%% gdje je 
+% $w_i = z_i, i=1,\ldots,n$, $w_{n+1} = k, w_{n+2} = l$, dok 
+%  $c_i = 1, i=1,\ldots,n$, i $c_{n+1} = 0, c_{n+2} = 0$. 
 
 
  
 Na kraju ove sekcije, navednimo nekoliko osnovnih implicitnih pretpostavki o problemima linearnog programiranja. 
-\begin{enumerate}
+\begin{enumerate} 
     \item \emph{Proporcionalnost.} Doprinos svake aktivnosti ciljnoj funkciji $f$ proporcionalan je njenom koeficijentu doprinosa, tj. $c_ix_i$. Doprinos svake aktivnosti svakom od  ograničenja u modelu proporcionalan je njenom  koeficijentu doprinosa, tj. $a_ix_i$.
     \item  \emph{Aditivnost.} Svaka funkcija u modelu je zbir  doprinosa pojedinih aktivnosti, npr. $f(x) = \sum_i a_i x_i$.
-    \item \emph{Djeljivost}. Promjenljive odluke se mogu podijeliti na vrijednosti koje nisu cijele, uzimajući u obzir  razlomljene vrijednosti, dok god su ograničenja zadovoljena.  
+    \item \emph{Djeljivost}. Promjenljive odlučivanja se mogu podijeliti na vrijednosti koje nisu cijele, uzimajući u obzir  razlomljene vrijednosti, dok god su ograničenja zadovoljena.  
 
     \item \emph{Pouzdanost}. Pretpostavljamo da su vrijednosti parametara u modelu poznate
     sa velikom dozom pouzdanosti ili se barem tako tretiraju. Dobijeno optimalno rješenje je optimalno za razmatrani problem. Ako su vrijednosti parametara pogrešne, tada rezultujuće rješenje po pravilu ima malu (upotrebnu)  vrijednost.  
@@ -729,10 +731,11 @@ Na kraju ove sekcije, navednimo nekoliko osnovnih implicitnih pretpostavki o pro
 %Ako model zadovoljava prethodne 4 pretpostavke, onda je riješ o modelu linearnog programiranja. 
 
 \section{Teorija linearnog programiranja}
-U ovom poglavlju ćemo formalno izvesti opšte uslove pod kojima se problem linearnog programiranja može riješiti. U osnovi, pokazaćemo da, ako je problem
-linearnog programiranja dopustiv i ograničen i ako postoje vrhovi, onda postoji i optimalno rješenje  problema LP-a. Kako smo ranije neformalno pomenuli,  to rješenje se nalazi upravo u jednom od vrhova poliedra.
+U ovom poglavlju ćemo formalno izvesti opšte uslove pod kojima se problem linearnog programiranja može riješiti. Prije nego što krenemo sa teoremama vezanim sa tim, kao i egzistenciju optimalnog rješenja u LP-u, navedimo nekoliko osnovnih definicija i pratećih teorema. 
+ \begin{definition}
+	Neka je $A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m$. Skup $P=\{x \in \mathbb{R}^n \mid Ax \geq b\}$ se naziva poliedar u $\mathbb{R}^n$. 
+\end{definition}
 
-Prije nego što ovo i formalno pokažemo, uvedimo nekoliko osnovnih definicija i pratećih teorema. 
 
 \begin{definition}
   Za skup $S \in \mathbb{R}^n$ kažemo da je konveksan akko za sve $x,y\in S$ i $\lambda\in [0, 1]$ vrijedi $\lambda x + (1 - \lambda)y \in S$
@@ -742,7 +745,7 @@ Prije nego što ovo i formalno pokažemo, uvedimo nekoliko osnovnih definicija i
    $$ f( \lambda x + (1-\lambda) y) \leq \lambda f(x) + (1 -\lambda) f(y),$$
    za svaki $x,y \in \mathbb{R}^n$ i svaki $\lambda \in [0,1].$
 \end{definition}
-Primijetimo da je svaka funkcija oblika $f(x_1, \ldots, x_n) = \sum_{i=1}^n c_i x_i$ za neke $c_i \in \mathbb{R}$, konveksna, što se lako provjerava na osnovu definicije konveksnosti. Dakle, LP u svom opštem obliku  ima ciljnu funkciju koja je konveksna. Geometrijska interpretacija konveksnosti funkcije je prikazana na Slici~\ref{fig:convex_function}.
+ Primijetimo da je svaka funkcija oblika $f(x_1, \ldots, x_n) = \sum_{i=1}^n c_i x_i = c^T x$ za neke $c_i \in \mathbb{R}$, konveksna, što se lako provjerava na osnovu definicije konveksnosti. Dakle, LP u svom opštem obliku  ima ciljnu funkciju koja je konveksna. Geometrijska interpretacija konveksnosti funkcije je prikazana na Slici~\ref{fig:convex_function}.
 
 %\begin{figure}
 %    \centering
@@ -788,7 +791,7 @@ Primijetimo da je svaka funkcija oblika $f(x_1, \ldots, x_n) = \sum_{i=1}^n c_i 
 \end{figure}
 
 \begin{definition}
-   Neka su dati vektori $z^i \in \mathbb{R}^n$,  te $\lambda_i \in [0,1]$ $i=1,\ldots,m$ tako da je $\sum_{i=1}^m \lambda_i = 1.$ Vektor $x =  \sum_{i=1}^m \lambda_i z^i$ se naziva konveksna kombinacija vektora $z^i$.
+   Neka su dati vektori $z^{(i)} \in \mathbb{R}^n$,  te $\lambda_i \in [0,1]$ $i=1,\ldots,m$ tako da je $\sum_{i=1}^m \lambda_i = 1.$ Vektor $x =  \sum_{i=1}^m \lambda_i z^{(i)}$ se naziva konveksna kombinacija vektora $z^(i), i=1,\ldots, n$. 
 \end{definition}
 
 Konveksne funkcije imaju lijepa svojstva sa stanovišta teorije i u kombinaciji sa konveksnim skupovima čine osnov  teorije optimalnosti. Inače, vrijedi sljedeća teorema.
@@ -803,31 +806,30 @@ Konveksne funkcije imaju lijepa svojstva sa stanovišta teorije i u kombinaciji 
  $z(\lambda) = \lambda x + (1 - \lambda) x^*$ za neki $\lambda \in [0, 1]$. Kako je $S$ konveksan, slijedi da je $z \in S$.  Definišimo $\lambda_0 <  \min\{1, r ||x - x^*||^{-1}\}$, $\lambda_0 \in (0, 1]$. Tada za svaki $\lambda \in (0, \lambda_0)$ vrijedi 
  \begin{equation}
      ||z(\lambda) - x^* ||  =  || \lambda ( x - x^*) ||  = \lambda ||x - x^* || \leq \lambda_0 ||x - x^* ||  \leq r.
- \end{equation}
+ \end{equation} 
  Dakle, pokazano je da je $z(\lambda) \in S \cap K(x^*, r)$. Prema tome, vrijedi 
- \begin{equation}
+ \begin{equation} 
      f(x^*) \leq f(z(\lambda)) = \lambda f(x) + (1-\lambda) f(x^*) 
- \end{equation}
+ \end{equation} 
  odakle slijedi 
- \begin{equation}
+ \begin{equation} 
       \lambda f(x^*) \leq   \lambda f(x) \Rightarrow f(x^*) \leq f(x),  
  \end{equation}
  za proizvoljno odabrano $x \in S$, čime smo pokazali teoremu. 
-\end{proof}
+\end{proof} 
 % http://home.ku.edu.tr/~mturkay/indr262/Indr262LectureNotes_2-LPModels.pdf
 % (Assumptions of Linear Programming)
-\\
+\\ 
 U sljedeće dvije definicije definišimo pojmove poliedra, hiperravni i poluprostora. 
 \end{comment}
+
 \begin{definition}
-   Neka je $A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m$. Skup $P=\{x \in \mathbb{R}^n \mid Ax \geq b\}$ se naziva poliedar u $\mathbb{R}^n$. 
-\end{definition}
-\begin{definition}
-   Neka je $a\in \mathbb{R}^n $ i $b \in \mathbb{R}$. Skup $\{ x \in \mathbb{R}^n \mid a^T x = b \}$ se naziva hiperravan u $\mathbb{R}^n$ čiji je vektor  normale $a$, dok se $\{ x \in \mathbb{R}^n \mid a^T x \geq b \}$ naziva poluprostor. 
+   Neka je $a\in \mathbb{R}^n $ i $b \in \mathbb{R}$. Skup $\{ x \in \mathbb{R}^n \mid a^T x = b \}$ se naziva hiperravan u $\mathbb{R}^n$ čiji je vektor normale $a$, dok se $\{ x \in \mathbb{R}^n \mid a^T x \geq b \}$ naziva poluprostor.  
 \end{definition}
 
 
-Pokažimo sada da je poliedar konveksan skup. To je važna karakteristika, jer se uslovima problema LP-a formira upravo poliedar kao skup dopustivih rješenja. Kako je poliedar konveksan skup, Teorema~\ref{thm:globalopt} nam garantuje da, uz pretpostavku da postoji lokalni minimum (maksimum), onda postoji  i globalni minimum (maksimum), odnosno optimalno rješenje zadanog problema LP-a. 
+Pokažimo sada da je poliedar svakog LP-a konveksan skup. To je važna karakteristika, jer se uslovima problema LP-a formira upravo poliedar kao skup dopustivih rješenja.
+
 
 \begin{prop} Vrijede sljedeće tvrdnje: \\
   ($i$)  Poluprostor u $\mathbb{R}^n$ je konveksan skup.  \\
@@ -857,13 +859,13 @@ Iz prethodne propozicije vrijedi sljedeća posljedica.
 Poliedar $P$ nekog problema LP-a je konveksan skup.	
 \end{poslje}
  
-\begin{proof}
-  Definišimo $S_i:= \{(x_1,\ldots, x_n) \in \mathbb{R}^n \mid c^T x \geq b_i \}$, gdje je  $c = (a_{i,1}, \ldots, a_{i, n}),$  $ i=1,\ldots, m$. Kako je $\cap_{i=1}^m S_i$ poliedar koji odgovara problemu LP-a, na osnovu prethodne propozicije ($ii$), slijedi tvrdnja. 
-\end{proof}
+ \begin{proof}
+   Definišimo $S_i:= \{(x_1,\ldots, x_n) \in \mathbb{R}^n \mid c^T x \geq b_i \}$, gdje je  $c = (a_{i,1}, \ldots, a_{i, n}),$  $ i=1,\ldots, m$. Kako je $\cap_{i=1}^m S_i$ poliedar koji odgovara problemu LP-a, na osnovu prethodne propozicije ($ii$), slijedi tvrdnja. 
+ \end{proof}
 
-
-
-Nadalje, formalno definišimo ekstremne tačke, vrhove i bazna dopustiva rješenja koja su već ranije pomenuta u ne tako strogom kontekstu. 
+ Kako je poliedar konveksan skup, Teorema~\ref{thm:globalopt} nam garantuje da, uz pretpostavku da postoji lokalni minimum (maksimum), onda postoji  i globalni minimum (maksimum), odnosno optimalno rješenje zadanog problema LP-a. 
+ 
+ Nadalje, formalno definišimo ekstremne tačke, vrhove i bazna dopustiva rješenja koja igraju bitnu ulogu u teoriji linearnog programiranja. 
 
 
 \begin{definition}
@@ -902,7 +904,7 @@ Uvedimo sada nekoliko novih pojmova koji će nam pomoći da definišemo bazno do
 \begin{definition}
 	 Bazno dopustivo rješenje $x^*$ je bazno rješenje koje zadovoljava  uslove linearnog programa. 
 \end{definition}
-Pokažimo sada da  vrhovi, ekstremne tačke poliedra i bazna dopustiva rješenja predstavljaju ekvivalentne pojmove kada je riječ o LP-u.
+Pokažimo sada da  vrhovi, ekstremne tačke poliedra i bazna dopustiva rješenja predstavljaju ekvivalentne pojmove kada je riječ o linearnom programiranju.
 
 \begin{thm}
    Neka je $P$ poliedar i neka je $x^* \in P$. Sljedeće tri tvrdnje su ekvivalentne:
@@ -1008,9 +1010,16 @@ $x^*$ aktivan u sva tri uslova $x_2 - x_1 = 0, x_1 + x_2 +  x_3 = 2$ i $x_3 = 0$
 
 U nastavku govorimo o egzistenciji optimalnog rješenja problema LP-a. Definišimo prvo pojam pravca u poliedru.
 
-\begin{definition}
-      Poliedar $P$ sadrži pravac akko postoji $x \in P$ i $d \in \mathbb{R}^n \setminus \{0\}$ tako da je $x + \lambda d \in P$, za sve $\lambda \in \mathbb{R}$. 
-\end{definition}
+ \begin{definition}
+       Poliedar $P$ sadrži pravac akko postoji $x \in P$ i $d \in \mathbb{R}^n \setminus \{0\}$ tako da je $x + \lambda d \in P$, za sve $\lambda \in \mathbb{R}$. 
+ \end{definition}
+Primejer pravca koji se pojavljuje u poliedru je dat na Slici~\ref{fig:extreme-ray}. 
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=200pt,height=200pt]{extremerays.eps}
+	\caption{Pravac u poliedru}
+		\label{fig:extreme-ray}
+\end{figure}
 
 Sljedeću teoremu, koja daje vezu između ekstremnih tačaka poliedra i dopustivih pravaca, navodimo bez dokaza.
 
@@ -1054,22 +1063,25 @@ Kako ćemo vidjeti u narednom poglavlju, simpleks metoda je zasnovana na iterati
 
 \emph{Apsolutna vrijednost u funkciji cilja}.   Pretpostavimo da imamo model zadat sa 
 \begin{align}
-	&\min \sum_{j \in J} c_j |x_j| \nonumber \\
+	&\min \sum_{j \in J}   |x_j| \nonumber \\
 	& t.d. \nonumber \\
 	& \sum_{j\in J} a_{ij} x_j \leq b_i, \forall i\in I  \nonumber \\
 	& x_j \in \mathbb{R}, \forall j \in J. \label{eq:lp_abs}
 \end{align} 
  
 Kao što znamo, apsolutna vrijednost nije linearna funkcija, ali se ovaj model može transformisati u model linearnog programiranja na sljedeći način: 
-svaku slobodnu promjenljivu ćemo zapisati kao razliku dvije pozitivne promjenljive, tj.  $x_j = x_j^+ - x_j^-$, a apsolutnu vrijednost kao zbir dvije pozitivne promjenljive, tj. $|x_j|= x_j^+ + x_j^-$. Prema tome, prethodni model se transformiše  u 
+svaku   promjenljivu ćemo zapisati kao razliku dvije pozitivne promjenljive, tj.  $x_j = x_j^+ - x_j^-$, a apsolutnu vrijednost kao zbir dvije pozitivne promjenljive, tj. $|x_j|= x_j^+ + x_j^-$. Prema tome, prethodni model se transformiše  u ekvivalentan (u smislu optimalnog rješenja) model  
 \begin{align}
-	&\min \sum_{j \in J} c_j  (x_i^+ + x_i^-) \nonumber \\
+	&\min \sum_{j \in J}  (x_i^+ + x_i^-) \nonumber \\
 	& t.d. \nonumber \\
 	&\sum_{j\in J} a_{ij} (  x_i^+ - x_i^- ) \leq b_i, \forall i \in I \nonumber \\
 	&  x_i^+, x_i^- \geq 0, \forall j\in J. \label{eq:lp_abs_transformed}
 \end{align}
-
-Pretpostavimo da je $x_j^*$, $j \in J$ optimalno rješenje LP-a (\ref{eq:lp_abs}).  Lako je vidjeti da je ekvivalentno optimalno rješenje LP-a (\ref{eq:lp_abs_transformed}) tada dato u obliku $(x_j^+)^* = x_j^*$  ako je $x_j^* \geq 0$, a inače $(x_j^+)^* = 0$. Slično imamo $(x_j^-)^* = - x_j^*$  ako je $x_j^* \leq 0$, a inače $(x_j^-)^* = 0$. Naime, lako se provjeri da su vrijednosti ova dva rješenja u odnosu na odgovarajuće funkcije cilja jednake. Kako je takođe jasno da su optimalne tačke LP-a (\ref{eq:lp_abs_transformed}) one za koje je barem jedna od promjenljivih $x_j^+$ ili $x_j^-$, $j \in J$  jednaka 0 (pogledati funkciju cilja koja se minimizuje), pod uslovom da LP (\ref{eq:lp_abs}) ima barem jedno dopustivo rješenje, zaključujemo da je ova transformacija validna. Ostalo je još primijetiti da iz  nedopustivosti jednog modela slijedi nedopustivost drugog modela i obrnuto. %u smislu jednake optimalne vrijednosti. 
+ 
+ Može se pokazati da za optimalno rješenje vrijedi  $x^{+}\cdot x^{-}= 0$.  
+   Pretpostavimo da je $x_j^*$, $j \in J$ optimalno rješenje LP-a (\ref{eq:lp_abs}).  Lako je vidjeti da je ekvivalentno rješenje LP-a (\ref{eq:lp_abs_transformed})  dato u obliku 
+  $(x_j^+)^* = x_j^*$  ako je $x_j^* \geq 0$, a inače $(x_j^+)^* = 0$ takođe dopustivo, ali i optimalno za model (\ref{eq:lp_abs_transformed}). Slično imamo $(x_j^-)^* = - x_j^*$  ako je $x_j^* \leq 0$, a inače $(x_j^-)^* = 0$. Lako se provjeri da su vrijednosti ova dva rješenja u odnosu na odgovarajuće funkcije cilja jednake. Ako bi  optimalna tačka LP-a bila neka tačka $(x^+, x^-)$,  za koju postoji neko $j$ tako da  $x^{+}_j, x^{-}_j \geq 0$, onda bi zamijena jedne od optimalnih vrijednosti $x^+_j$ ili $x^-_j$  sa $x^{+}_j - x^{-}_j$
+  dodatno doprinijelo smanjenu funkcije cilja za $|x^{+}_j - x^{-}_j|>0$, što je kontradikcija. Dakle,   optimalne tačke LP-a (\ref{eq:lp_abs_transformed}) su jedino one za koje je barem jedna od promjenljivih $x_j^+$ ili $x_j^-$, $j \in J$  jednaka 0, pod uslovom da LP (\ref{eq:lp_abs}) ima barem jedno dopustivo rješenje. Zaključujemo da je ova transformacija validna. Primijetimo  još da iz  nedopustivosti jednog modela slijedi nedopustivost drugog modela i obrnuto. %u smislu jednake optimalne vrijednosti. 
 
 
 \emph{Min-max problem}. Neka je dat sljedeći model: 
@@ -1080,10 +1092,10 @@ Pretpostavimo da je $x_j^*$, $j \in J$ optimalno rješenje LP-a (\ref{eq:lp_abs}
 	& x_j \geq 0\ \forall j \in J.
 \end{align*}
 Ovaj  model se transformiše u model LP-a uvođenjem promjenljive 
- $$z=\max_{k \in K} \sum_{j \in J} a_{kj}x_j,$$
+ $$z=\max_{k \in K} \sum_{j \in J} c_{kj}x_j,$$
   koja označava maksimalnu cijenu. Da bi se, nakon uvedene smjene, ograničila vrijednost promjenljive $z$, u početni model potrebno je uključiti sljedeća ograničenja: 
 \begin{eqnarray}
-	\sum_{j \in J} a_{kj} x_j \leq z\ \forall k \in K.
+	\sum_{j \in J} c_{kj} x_j \leq z\ \forall k \in K.
 \end{eqnarray}
 Kada se $z$ minimizuje, ova ograničenja osiguravaju da je $z$ veće ili jednako  $\sum_{j \in J} c_{kj}x_j$, za sve $k$. Optimalna vrijednost $z$ neće biti veća od maksimuma svih $\sum_{j \in J} c_{kj}x_j$, jer  $z$ minimizujemo. Prema tome, optimalna vrijednost promjenljive $z$ će težiti da bude što manja moguća i jednaka maksimalnoj cijeni nad skupom $K$. Dakle, početni model se transformiše u:
 \begin{align*}
@@ -1094,7 +1106,7 @@ Kada se $z$ minimizuje, ova ograničenja osiguravaju da je $z$ veće ili jednako
 	& x \geq 0.
 \end{align*}
 
-\emph{Frakciona funkcija cilja}. Neka je dat sljedeći model:
+\emph{Razlomljena funkcija cilja}. Neka je dat sljedeći model:
 \begin{align*}
 	& \min \frac{\sum_{j \in J} c_j x_j + \alpha}{ \sum_{j \in J} d_j x_j + \beta} \\
 		& t.d. \nonumber \\
@@ -1237,7 +1249,7 @@ promjenljive $x_i$ označava broj proizvoda $i$ koji se proizvode na sedmičnom 
 	\item Grafičkom metodom riješiti sljedeći problem
 	\begin{align*}
 		&\max   x + 2 y \\
-		& s.t. \\
+		& t.d. \\
 		& x \leq 10 \\
 		& 2 x + y\geq 0 \\
 		& x,y \geq 0.
@@ -1246,18 +1258,14 @@ promjenljive $x_i$ označava broj proizvoda $i$ koji se proizvode na sedmičnom 
 	\item Grafičkom metodom riješiti sljedeći problem 
 	\begin{align*}
 		& \max  8 x + y \\
-		& s.t. \\
+		& t.d. \\
 		&  x + y \leq 40 \\
 		& 2x + y \leq 60 \\
 		& x,y \geq 0.
 	\end{align*}
-\\
 
 \item Neka je dat poliedar $P= \{ (x_1,x_2,x_3, x_4)^T \in \mathbb{R}^4 \mid x_2 - x_1 = 0, x_4 - x_3 = 0,  x_1 + x_2 +   x_3 + x_4 = 2, x_1,x_2,x_3, x_4 \geq 0 \}$.  Pronaći bazna dopustiva rješenja i ispitati da li su ona degenerativna.  
-  
 \end{enumerate}
-
-
 
 \newpage 
 \chapter{Simpleks Metod}\label{chp:simpleks}
