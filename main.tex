@@ -1079,9 +1079,10 @@ svaku   promjenljivu ćemo zapisati kao razliku dvije pozitivne promjenljive, tj
 \end{align}
  
  Može se pokazati da za optimalno rješenje vrijedi  $x^{+}\cdot x^{-}= 0$.  
-   Pretpostavimo da je $x_j^*$, $j \in J$ optimalno rješenje LP-a (\ref{eq:lp_abs}).  Lako je vidjeti da je ekvivalentno rješenje LP-a (\ref{eq:lp_abs_transformed})  dato u obliku 
-  $(x_j^+)^* = x_j^*$  ako je $x_j^* \geq 0$, a inače $(x_j^+)^* = 0$ takođe dopustivo, ali i optimalno za model (\ref{eq:lp_abs_transformed}). Slično imamo $(x_j^-)^* = - x_j^*$  ako je $x_j^* \leq 0$, a inače $(x_j^-)^* = 0$. Lako se provjeri da su vrijednosti ova dva rješenja u odnosu na odgovarajuće funkcije cilja jednake. Ako bi  optimalna tačka LP-a bila neka tačka $(x^+, x^-)$,  za koju postoji neko $j$ tako da  $x^{+}_j, x^{-}_j \geq 0$, onda bi zamijena jedne od optimalnih vrijednosti $x^+_j$ ili $x^-_j$  sa $x^{+}_j - x^{-}_j$
-  dodatno doprinijelo smanjenu funkcije cilja za $|x^{+}_j - x^{-}_j|>0$, što je kontradikcija. Dakle,   optimalne tačke LP-a (\ref{eq:lp_abs_transformed}) su jedino one za koje je barem jedna od promjenljivih $x_j^+$ ili $x_j^-$, $j \in J$  jednaka 0, pod uslovom da LP (\ref{eq:lp_abs}) ima barem jedno dopustivo rješenje. Zaključujemo da je ova transformacija validna. Primijetimo  još da iz  nedopustivosti jednog modela slijedi nedopustivost drugog modela i obrnuto. %u smislu jednake optimalne vrijednosti. 
+   Pretpostavimo da je $x_j^*$, $j \in J$ optimalno rješenje LP-a (\ref{eq:lp_abs}). Rješenje za LP  (\ref{eq:lp_abs_transformed})  dato u obliku 
+  $(x_j^+)^* = x_j^*$  ako je $x_j^* \geq 0$, a inače $(x_j^+)^* = 0$ i slično $(x_j^-)^* = - x_j^*$  ako je $x_j^* \leq 0$, a inače $(x_j^-)^* = 0$ je dopustivo za (\ref{eq:lp_abs_transformed}). Lako se provjeri da su vrijednosti ova dva rješenja u odnosu na odgovarajuće funkcije cilja jednake. Pokažimo da je rješenje  $((x^+)^*, (x^-)^*)$ ujedno i optimalno rješenje modela (\ref{eq:lp_abs_transformed}).   Neka je rješenje $(x^+, x^-)$ optimalano za model  (\ref{eq:lp_abs_transformed}) za koje postoji neko $j$ tako da  $x^{+}_j, x^{-}_j > 0$. Bez smanjenja opštosti, pretpostavimo da je $x^{+}_j \geq x^{-}_j$. 
+  Rješenje $(y^+, y^-)$  za koje je $y^+_i = x^+_i$ i $(y^-_i = x^-_i)$ za sve $i \neq j$
+   i $y^+_j = x^{+}_j - x^{-}_j \geq 0$ i $(y^-_j)^*=0$ će dati istu ili manju vrijednost funkcije cilja nego rješenje prije transformacije. Prema tome, ukoliko postoje, optimalna rješenja LP-a (\ref{eq:lp_abs_transformed}) su među onim rješenjima za koje vrijedi da  barem jedna od promjenljivih $x_j^+$ ili $x_j^-$, $j \in J$  jednaka 0. Sva ostala rješenja su suboptimalna za model (3.15) i sigurno mogu da budu izuzeta iz domena rješenja (\ref{eq:lp_abs_transformed}) bez gubitka optimalnosti.   Prema tome, za svako dopustivo rješenja $x$ za (\ref{eq:lp_abs}) postoji dopustivo rješenje  $(x^+, x^-)$ za (\ref{eq:lp_abs_transformed}) i obrnuto. Pri tome, vrijednosti funkcija cilja ovakvih rješenja su jednake. Prema tome, ova dva modela su ekvivalenta. 
 
 
 \emph{Min-max problem}. Neka je dat sljedeći model: 
@@ -1290,12 +1291,13 @@ gdje su $A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m, c \in \mathbb{R}^n, 
 
 \section{Konstrukcija simpleks metode}
 
- Neka je $x = [x_1,\ldots, x_n]^T$ bazno dopustivo rješenje problema (\ref{eq:lp_equality_constraint}), gdje je $B$ matrica baze, $x_B$ bazni dio vektora $x$, pri čemu su na mjestima nebaznih indeksa iz skupa $N$ postavljene nule.  Kao što je rečeno, ideja simpleks metode je  ``šetanje'' po vrhovima poliedra,  dok ne nađemo optimalno rješenje. Krenimo pravcem $d$ u iz tačke $x$  pri čemu trebamo obratiti  pažnju na to da je zadovoljeno sljedeće:
+ Neka je $x = [x_1,\ldots, x_n]^T$ bazno dopustivo rješenje problema (\ref{eq:lp_equality_constraint}), gdje je $B$ matrica baze, $x_B$ bazni dio vektora $x$, pri čemu su na mjestima nebaznih indeksa iz skupa $N$ postavljene nule.  Kao što je rečeno, ideja simpleks metode je  ,,šetanje'' po vrhovima poliedra,  dok ne nađemo optimalno rješenje. Krenimo pravcem $d$  iz tačke $x$  pri čemu trebamo obratiti  pažnju na to da je zadovoljeno sljedeće:
 \begin{itemize}
     \item \emph{uslov optimalnosti}, tj. $c^T (x + \lambda d) \leq c^T x, \lambda>0$, što znači da idemo u pravcu smanjenja vrijednosti funkcije cilja;
     \item \emph{uslov dopustivosti}, potrebno je da pravac $d$ dopustiv u tački $x$, tj. $ (x + \lambda d) \in P$, za neko $\lambda>0$. Dakle, uvijek se krećemo samo tačkama dopustivog regiona. 
 \end{itemize}
-Birajmo neku nebaznu koordinatu u $x$. Neka je to $x_j, j \in N$. Definišemo $d=(d_B,  d_N)$, gdje su koordinate od (nebaznog dijela) $d_N$ jednake 0, osim na koordinati $j$, gdje je postavljena vrijednost 1.   Bazni dio vektora $d$, koji je označen sa $d_B$, izvešćemo iz uslova dopustivosti i pretpostavke da ``šetamo'' pravcem koji se poklapa sa granicom dopustivog regiona, tj. poliedra $P$: $Ax + \lambda Ad = b$, odakle je $Ad = 0$. Tada vrijedi
+Birajmo neku nebaznu koordinatu u $x$, koja će služiti kao pravac pri pokušaju nalaska boljeg dopustivog rješenja problema. 
+ Neka je to $x_j, j \in N$. Označimo $d=(d_B,  d_N)^T$, gdje su koordinate    (nebaznog dijela) $d_N$ jednake 0, osim na koordinati $j$, koja je postavljena na vrijednost 1.   Bazni dio vektora $d$, koji je označen sa $d_B$, izvešćemo iz uslova dopustivosti i pretpostavke da ,,šetamo'' pravcem koji se poklapa sa granicom dopustivog regiona, tj. poliedra $P$: $Ax + \lambda Ad = b$, odakle je $Ad = 0$. Tada vrijedi
 $$ Ad = \sum_{i=1}^n A_i d_i = \sum_{i=1}^m A_{p_i} d_i + A_j = B d_B + A_j = 0$$ za one koordinate $p_i$ koje pripadaju indeksima koordinata baznog dijela, 
 odakle je $d_B = -  B^{-1} \cdot A_j $.  Za ovako odabran $d$ imamo zadovoljen uslov dopustivosti za ograničenje $A( x + \lambda d )  =b$. Posmatrajmo sada ograničenje nenegativnosti, tj. da li je zadovoljeno $x + \lambda d \geq 0$:
 \begin{itemize}
@@ -1341,7 +1343,7 @@ Navedimo sada osnovne korake jedne iteracije simpleks metoda:
           $j \in N$. Ako za sve $j$, $\overline{c_j} \geq 0$, optimum je pronađen, pa algoritam prestaje sa radom. Inače, odabrati neki $j$  td. $\overline{c_j}<0$.
     \item Izračunati $d = -B^{-1}A_j = -u$. Ako je svaki $d_i \geq  0$, funkcija cilja  $f = - \infty$, te se završava izvršenje algoritma. 
     \item Ako je za barem neki $i$, $d_i < 0$, tada računamo 
-             $$ \lambda^* = \min_{ \{i\in [m] \mid d_{p_i} < 0  \}} - \frac{x_{p_i}}{d_{p_i}} =  \min_{ \{i\in [m] \mid u_{p_i} < 0  \}} \frac{x_{p_i}}{u_{p_i}} $$
+             $$ \lambda^* = \min_{ \{i\in [m] \mid d_{p_i} < 0  \}} - \frac{x_{p_i}}{d_{p_i}} =  \min_{ \{i\in [m] \mid u_{p_i} < 0  \}} \frac{x_{p_i}}{u_{p_i}}.$$
     \item Neka je $\lambda^* = \frac{x_{p_l}}{u_{p_l}}$. Nova baza se formira tako što na mjesto kolone $A_{p_l}$ stavimo kolonu $A_j$. Novo bazno rješenje 
     $y = x + \lambda^*d $ je dato sa $y_j = \lambda^*$, $y_{p_l} = x_{p_l} + \lambda^* d_{p_l}$, za indeks $l$ koji je bazni indeks, te $y_i = 0$, za $i \in N \setminus \{j\}$. 
 \end{enumerate}
@@ -1359,6 +1361,7 @@ Naredna iteracija metode koristi novu bazu i bazno rješenje $y$ i izvodi (po po
 %\fxnote{i ja se slazem da nam je ova slika malo bez veze}
 
 \section{Tabelarni oblik simpleks metoda}
+\fxnote{Marko: stigao ovdje!}
 
 Simpleks algoritam podrazumijeva stalnu zamjenu jedne kolone baze $B$ nekim nebaznim vektorom u iterativnoj šemi, u cilju smanjenja trenutne vrijednosti cilje funkcije, dok god je to moguće. 
 U praktičnom računanju, za simpleks metodu se zbog kompaktnosti zapisa,  umjesto transformisanja standardnog oblika LP-a, obično koristi tabelarni prikaz.
