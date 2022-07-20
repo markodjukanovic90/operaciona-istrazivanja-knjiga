@@ -2239,7 +2239,7 @@ jednog problema i promjenljivih u drugom problemu je data sljedećom tabelom.
 Međutim, rješavanje problema LP-a je moguće u polinomijalnom vremenu, uz pomoć metoda \emph{unutrašnje tačke} (eng. interior point method), konstruisan od strane N. Karmakar-a sredinom 80ih godina prošlog vijeka. Radi kompleksnosti samog algoritma i njegovog izvođenja, mi ga ne prikazujemo u glavnom dijelu knjige, već u apendiksu~\ref{appendix:interior_point} gdje čitalac kojeg interesuje ovaj metod može da vidi i prouči ideju i glavne korake konstrukcije ovog značajnog algoritma. 
 
 \section{Farkašova lema}
-Još jedna primjena teorije dualnosti LP-a se ogleda u dokazivanju Farkašove teoreme alternative. U suštini, njena geometirijska interpretacija kaže sljedeće: svaki vektor pripada datom zatvorenom konveksnom konusu, ili postoji hiperravan koja razdvaja vektor od konusa; druge mogućnosti ne postoje. 
+Još jedna primjena teorije dualnosti LP-a se ogleda u dokazivanju Farkašove teoreme alternative. U suštini, njena geometirijska interpretacija kaže sljedeće: svaki vektor pripada datom zatvorenom konveksnom konusu (specijalan slučaj je ograničeni konveksni skup), ili postoji hiperravan koja razdvaja vektor od konusa; druge mogućnosti ne postoje. 
 
 \begin{thm}
 	Neka je $A\in \mathbb{R}^{m \times n}$ matrica i $c\in \mathbb{R}^n$. Onda jedan i samo jedan od  sljedeća dva sistema ima rješenje:
@@ -2302,18 +2302,20 @@ Pogledajmo kako izgleda sistem iz slučaja \ref{case:2}. Taj sistem je dat sa:
 	\caption{Geometrijska interpretacija Farkašove leme.}
 	\label{fig:farkas-slika}
 \end{figure}
-Iz geometrijske interpretacije slijedi da se vektor $c =(1,4)^T$ može predstaviti kao linearna kombinacija vekotora vrsta matrice $A$, kao što vidimo na Slici~\ref{fig:farkas-slika}. Vektor $c =(1,4)^T$ se nalazi unutar prostora $S^A = span\{a_1, \ldots, a_n \}$. što implicira da početni sistem nema rješenje. 
+Iz geometrijske interpretacije slijedi da se vektor $c =(1,4)^T$ može predstaviti kao linearna kombinacija vekotora vrsta matrice $A$, kao što vidimo na Slici~\ref{fig:farkas-slika}. Vektor $c =(1,4)^T$ se nalazi unutar linearnog pokrivača $S^A = span\{a_1, \ldots, a_n \} = \{\sum_{i=1}^n \lambda_i a_i \mid \lambda_i \in \mathbb{R}\}$. što implicira da početni sistem nema rješenje. 
 Kada bismo posmatrali $c=(5,0)^T$, zaključili bi da se on ne može izraziti kao linearna kombinacija vektora vrste matrice $A$, jer je van prostora  $S^A $. Prema tome, rješenje početnog problema za ovu konfiguraciju bi postojalo.  
 
 %Furije–Mockin elimination ==> Problem dopustivosti...
 \section{Furije–Mockinova eliminacija}
 %https://faculty.math.illinois.edu/~mlavrov/docs/482-fall-2019/lecture19.pdf
 Jedno od važnih pitanja vezano za problem  LP-a je sljedeće. 
-\emph{Neka su date matrica $A$ i vektor $b$, da li je skup $P = \{x \in \mathbb{R}^n \colon A x \leq b\}$ neprazan?} Dakle, da li postoji barem jedno dopustivo rješenje linearnog programa? 
+\emph{Neka su date matrica $A \in \mathbb{R}^{m \times n}$ i vektor $b \in \mathbb{R}^m$, da li je skup $P = \{x \in \mathbb{R}^n \colon A x \leq b\}$ neprazan?} Dakle, da li postoji barem jedno dopustivo rješenje linearnog programa? 	
 
 Problem dopustivosti može da služi i da odgovorimo na sljedeće pitanje: 
 \emph{Da li je optimalna vrijednost funkcije cilja problema LP-a veća od neke unaprijed zadate  vrijednosti k?}
- Na ovo pitanje možemo odgovoriti pomoću  \emph{Furije–Mockinove} eliminacije. Ova metoda je strukturalno drugačija  od simpleks metode. Ideja algoritma je zasnovana na redukciji problema sa $n$ promjenljivih na ekvivalentan problem sa $n-1$ promjenljivih. Ekvivalentnost podrazumijeva da početni problem ima rješenje akko  ga ima i redukovani problem. Eliminacija promjenljivih se vrši iterativno, odnosno, u svakom koraku se smanjuje broj (nepoznatih)  promjenljivih. Na kraju se početni sistem svodi na sistem sa jednom promjenljivom, za koji se lako može provjeriti da li sadrži dopustivo rješenje.
+ Na ovo pitanje možemo odgovoriti pomoću  \emph{Furije–Mockinove} eliminacije. Pored osnovne primjerne, ovaj algoritam može poslužiti za dokazivanje Farkašove leme. Praktična primjena ove metode je u teoriji informacija, konkretno u informaciono-teorijskim dokazima ostvarivosti koji se opisuju uslovima pod kojima je zagarantovano postojanje šeme kodiranja sa dobrim performansama. Ovi uslovi se često opisuju linearnim sistemom nejednakosti, koji su upravo ulazne vrijednosti  \emph{Furije–Mockinove} eliminacije. 
+ 
+ Metoda  \emph{Furije–Mockinove} eliminacije strukturalno drugačija  od simpleks metode. Ideja algoritma je zasnovana na redukciji problema sa $n$ promjenljivih na ekvivalentan problem koji sadrži $n-1$ promjenljivih. Ekvivalentnost se posmatra u odnosu na svojstvo da početni problem ima rješenje akko ga ima i redukovani problem. Eliminacija promjenljivih se vrši iterativno, odnosno, u svakom koraku se redukuje broj promjenljivih za jedan. Na kraju se početni sistem svodi na sistem sa jednom promjenljivom, za koji se lako može provjeriti da li sadrži dopustivo rješenje.
  
  Ponovimo, glavni korak ovog metoda je redukcija problema na ekvivalentan problem sa manjim brojem promjenljivih. Pretpostavimo da su ograničenja data sa promjenljivima $x_1,\ldots, x_n$ i da želimo da eliminišemo promjenljivu $x_n$. Za svako od ograničenja
  \begin{equation}\label{eq:inequality_i}
@@ -2324,7 +2326,7 @@ Problem dopustivosti može da služi i da odgovorimo na sljedeće pitanje:
  	 \item  $x_n \geq \frac{b_i - a_{i,1}x_1- \cdots - a_{i, n-1} x_{n-1} }{a_{i,n}}=U_i$ ili 
  	 \item   $x_n \leq \frac{b_i - a_{i,1}x_1- \cdots - a_{i, n-1} x_{n-1} }{a_{i,n}}=L_i$
  \end{itemize}
- $i=1,\ldots, m$, zavisno od toga da li je $a_{i,n} >0$ ili $a_{i,n} <0$. U slučaju da je $a_{i,n} = 0$,  ostavljamo  ograničenje (\ref{eq:inequality_i}) nepromijenjeno, jer tada $x_n$ i ne učestvuje u datom ograničenju. Na ovaj način ćemo dobiti najviše $m$ gornjih i donjih granica za $x_n$ koje se mogu izraziti preko $n-1$ promjenljivih, tj. 
+ $i=1,\ldots, m$, zavisno od toga da li je $a_{i,n} >0$ ili $a_{i,n} <0$. U slučaju da je $a_{i,n} = 0$,  ostavljamo  ograničenje (\ref{eq:inequality_i}) nepromijenjeno, jer   $x_n$  ne učestvuje u datom ograničenju. Na ovaj način ćemo dobiti najviše $m$ gornjih i donjih granica za $x_n$ koje se mogu izraziti preko $n-1$ promjenljivih, tj. 
  $$  x_n \geq L_1, \ldots, x_n\geq L_k \mbox{ te }  x_n \leq U_1, \ldots, x_n \leq U_l,$$
   za neke $k,l \in \mathbb{N}$, $k+l \leq m$.
  Moguće je izabrati $x_n$ koje zadovoljava gornja ograničenja akko 
@@ -2455,7 +2457,7 @@ $$\langle Ax^0-b,y^0\rangle=\langle A^Ty^0-c,x^0\rangle=0$$
 
 \item Formirati dualan LP za problem
 $$\min -x_1+2x_2+3x_3$$
-pri uslovima
+t.d.
 \begin{align}
 	& x_1-x_2+2x_3=1\nonumber\\
 	& 2x_1+x_2\leqslant 3\nonumber \\
