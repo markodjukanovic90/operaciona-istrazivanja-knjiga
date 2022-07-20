@@ -2233,376 +2233,13 @@ jednog problema i promjenljivih u drugom problemu je data sljedećom tabelom.
   
     \caption{Odnos promjenljivih i ograničenja problema ($P$) i odgovarajućeg problema ($D$).}  \label{tab:primal-dual-relation}
 \end{table}
-
-
-\section{Metod unutrašnje tačke}
-\fxnote{Marko: stigao dovde!}
-Simpleks metod ne garantuje   rješavanje proizvoljnog problema LP u polinomijalnom broju koraka u odnosu na veličinu ulaza. % V. Klee and G. Minty constructed an example LP: simplex method needs 2^n iterations to solve it 
+\\
+\textit{Napomena}. Simpleks metod ne garantuje   rješavanje proizvoljnog problema LP u polinomijalnom broju koraka u odnosu na veličinu ulaza (pogledati zadatak 6, u prethodnoj glavi). % V. Klee and G. Minty constructed an example LP: simplex method needs 2^n iterations to solve it 
 %Dakle, iz njega se ne može zaključiti da je problem rješavanja generalnog LP problema   polinomijalno rješiv. 
+Međutim, rješavanje problema LP-a je moguće u polinomijalnom vremenu, uz pomoć metoda \emph{unutrašnje tačke} (eng. interior point method), konstruisan od strane N. Karmakar-a sredinom 80ih godina prošlog vijeka. Radi kompleksnosti samog algoritma i njegovog izvođenja, mi ga ne prikazujemo u glavnom dijelu knjige, već u apendiksu~\ref{appendix:interior_point} gdje čitalac kojeg interesuje ovaj metod može da vidi i prouči ideju i glavne korake konstrukcije ovog značajnog algoritma. 
 
-U ovoj sekciji ćemo prikazati konstrukciju  \emph{Metoda unutrašnje tačke}, koji  bilo koji problem LP-a rješava  u polinomijanom vremenu.
-%, čime se pokazuje da rješavanje problema LP-a pripada klasi $\mathcal{P}$. 
-%Iako u praksi često ne postiže dobre  performanse kao simpleks metod, ovaj metod je veoma važan sa teorijskog aspekta, 
-
-%\fixme{izbacio sam prethodnu recenicu, jer ona mozda nije ni tacna, jer sam nasao na par mjesta recenicu da je on i prilicno efikasan}
-
-   \emph{Metod unutrašnje tačke} (eng. \emph{Interior point metod}) je dizajniran 50-ih godina XX vijeka. Sve do 80-ih godina XX vijeka nije smatran algoritmom koji efikasno  rješava probleme velikih dimenzija. Tek 1984. godine, N. Karmakar, inžinjer u IBM-u,  formalno dokazuje da se ovaj algoritam izvršava u polinomijalnom broju koraka za unaprijed zadatu preciznost optimalne vrijednosti. U današnje vrijeme, zbog ekstremnog poboljšanja performansi mašina, pokazalo se da je {metod unutrašnje tačke} kompetentan sa simpleks metodom u situacijama kada se radi o problemima izuzetno velikih dimenzija, gdje matrice problema sadrže $10^9$ i više elemenata.
-
-Za razliku od simpleks metoda, koji ``šeta'' po granicama poliedra (dopustivog regiona) u potrazi za optimalnim rješenjem, {metod unutrašnje tačke}, kako i samo ime kaže, se kreće po unutrašnjim tačkama poliedra,  dok ne naiđe na  optimalno rješenje. 
-
-Postoji nekoliko metoda ove vrste, kao što su: metod centralne putanje, redukcija potencijala, afino skaliranje, itd. U ovoj sekciji ćemo razmatrati metod centralne putanje. Napomenimo i da ćemo se baviti rješavanjem problema LP-a koji je dat u obliku (\ref{eq:lp_equality_constraint}). Napomenimo da razumijevanje procesa konstrukcije metode  unutrašnje tačke zahtjeva poznavanje osnovnih pojmova i teorema klasične matematičke analize sa više promjenjivih, kao i iterativnih numeričkih metoda za rješavanje (nelinearnih) sistema jednačina. Dalje, kako je konstrukcija ovog algoritma iznimno zahtjevna, neke teoreme, ili dijelovi teorema koji koriste ovoj svrsi, će biti  navedeni bez dokaza i ulaženja u detalje. Dakle, više ćemo se fokusirati na ideju i razumijevanje glavnih koraka u konstrukciji ovog algoritma.
-
-Neka je par Primal-dual linearnih programa dat sa
-
-$$ \begin{array}{llll}
-	&\mbox{Primal}            &\quad &\mbox{Dual}     \\
-	&\min  c^T x              &\quad &\max  b^T y \\
-\mbox{t.d.\ }	&  Ax = b      &\quad \mbox{t.d.\ } &   A^Ty + s = c \\
-	& x \geq 0                &\quad &  s \geq 0
-\end{array}
-$$
-
-  
-\begin{definition}
-Lagranžijan primal-dual linearnih programa se definiše sa 
-\begin{equation}
-	L(x,y) = c^Tx - y^T(Ax - b) - s^T x.
-\end{equation}
-\end{definition}
-
-Postoji niz teorema koje obezbjeđuju dovoljne  uslove za nalazak optimalnog rješenja LP-a. U nastavku navodimo najvažnije od njih. 
-%http://www.optimization-online.org/DB_FILE/2008/06/2024.pdf
-\begin{thm}
-	 Pretpostavimo da postoje $y \in \mathbb{R}^m, s \in \mathbb{R}^n$ tako da je 
-	 \begin{align*}
-	 	    &A^Ty + s = c \\
-	 	    & s \geq 0.
-	 \end{align*}
- Ako je $x$ dopustivo rješenje za Primal, onda vrijedi 
- $$ c^T x - b^T y = s^T x \geq 0 .$$
-\end{thm}
-\begin{proof}
-	 Pretpostavimo da je $x$ dopustivo za Primal ($P$). Tada vrijedi
-	 $$ c^Tx = (A^Ty + s)^Tx = s^Tx + y^Tb \geq b^T y.$$
-	 Dakle, pokazali smo tvrdnju. Štaviše, vrijednost $b^Ty$ je donja granica za optimalnu vrijednost Primal-a. Takođe, ako je $s^T x = 0$ donja granica je dostignuta, te je $x$ je optimalno rješenje Primal-a.
-\end{proof}
-\begin{thm}
-	Pretpostavimo da Primal ima barem jedno optimalno rješenje. Vektor $x \in \mathbb{R}^n$ je optimalno rješenje za Primal akko postoje $y \in \mathbb{R}^m, s\in \mathbb{R}^n$ tako da 
-	\begin{align}
-		  &A x= b \label{eq:oc1}\\
-		  & x \geq 0 \label{eq:oc2}\\
-		  & A^T y + s =c \label{eq:oc3}\\
-		  & s \geq 0 \label{eq:oc4}\\
-		  & s^T x = 0. \label{eq:oc5} 
-	\end{align}
-Optimalna vrijednost je data sa $b^T y$.
-\end{thm}
-\begin{proof}
- Za potrebne uslove, neka je $\tilde{x}$ optimalno rješenje za Primal. Zbog uslova dopustivosti za Primal, treba da vrijedi (\ref{eq:oc1}) i (\ref{eq:oc2}). Iz Teoreme 5.4, imamo da je optimalna vrijednost Primala  jednaka $b^Ty$ te dodatno da je $\tilde{x}$ optimalno samo ako je $s^T \tilde{x}=0$, pa vrijedi i (\ref{eq:oc5}).
- 
- 	Dovoljni uslovi se mogu pokazati na osnovu koraka konstrukcije simpleks metode  i teoreme o komplementarnosti. Ovaj dokaz ne navodimo ovdje, jer je tehnički dosta zahtjevan. 
- 	
- 	 Prema tome, ako postoje $x, y, s$ koji zadovoljavaju uslove optimalnosti, onda je $x$ optimalno rješenje.
-\end{proof}
-
-Drugi način da se dođe do uslova optimalnosti posmatrati Lagranžijan $L$ para Primal-Dual i naći stacionarne tačke za $L$, odakle nalazimo optimalno rješenje oba problema.  Uslovi za nalaženje stacionarne tačke se dobijaju iz sistema
-\begin{align}
-	&\triangledown_x L(x,y) = 0\\
-	&\triangledown_y L(x,y) = 0,
-\end{align} 
-što nas, uz uslov komplementarnosti za $x$ i $y$, ponovo dovodi do sistema
-\begin{align}
-	&Ax = b \\
-	&A^T y + s = c \\
-	&XS\mathbf{1} = 0 \ (x_j \cdot s_j =0 , \forall j) \\
-	&  (x, s ) \geq 0,
-\end{align}
-gdje je $X = diag (x_1, \ldots, x_n)$, $S= diag(s_1,\ldots s_m)$, $\mathbf{1}=(1,\ldots, 1)$. Ovaj sistem nazivamo \emph{uslov optimalnosti prvog reda za primal-dual par}. 
-
-U nastavku navodimo pojam barijernog problema preko kojeg razvijamo metod unutrašnje tačke. Zamijenimo ograničenja nenegativnosti u primalnom problemu sa $-ln x_j$, $j=1,\ldots,n$.   
-Tada vrijedi 
-$$\min e^{-\sum_{j=1}^n ln x_j} \Leftrightarrow \max \prod_{j} x_j $$
-Dakle, minimizacija izraza $-\sum_{j=1}^n x_j$ je ekvivalentna maksimizaciji proizvoda udaljenosti od svih hiperravni koje definišu prvi ortant (skup svih vektora kojima su koordinate nenegativne). Dakle, ovako definisan optimizacioni problem će onemogućiti da se vrijednost neke od promjenljivih $x_j$ približi nuli (uprkos nenegativnim ograničenjima).  Na osnovu ovih činjenica, definišimo sljedeći optimizacioni problem. 
-
-\begin{definition}
-	Barijerni program  primala je dat u obliku 
-	\begin{align*}
-		&\min c^T x - \mu \sum_{j=1}^n ln(x_j) \\
-		&{t.d. \ } A x = b \\
-		& x \geq 0
-	\end{align*}
-\end{definition}
-za neki $\mu >0$. Lagranžijan barijernog problema je dat sa 
-$$  L(x, y, \mu) = c^T x - \mu \sum_{j=1}^n ln(x_j)  - y^T(Ax - b) $$
-Sljedeća teoremu koja razmatra skalarne funkcije sa više promjenjivih sa uslovnim ekstremima je važna u daljem razmatranju; navodimo  je bez dokaza. 
-\begin{thm}
-	Neka je data skalarna funkcija  $f:\mathbb{R}^n \mapsto \mathbb{R}$ na skupu $g_1(x)=g_2(x)= \cdots = g_m(x) =0$ koja ima minimum u $x^*$. Onda vrijedi 
-	$$ \triangledown f (x^*) = \sum_{i=1}^m y_i \triangledown g_i(x^*),$$
-	gdje se $y_i$ nazivaju Lagranžovi množitelji. 
-\end{thm}
-
-Primijetimo da u barijarnom problemu imamo sljedeće:
-\begin{itemize}
-	\item $f(x) =   c^T x - \mu \sum_{j=1}^n ln(x_j) $;
-	\item $g_i(x) = a_i x - b_i$.
-\end{itemize}
-Izračunajmo Lagranžove množitelje ovih funkcija. Vrijedi:
-
-$$c + \mu \left(\frac{1}{x_1}, \frac{1}{x_2}, \ldots, \frac{1}{x_n} \right) = \triangledown f (x) =\sum_{i=1}^m y_i \triangledown g_i(x) = \sum_{i} y_i a_i = A^T y.$$ 
-
-Uvedimo nenegativni vektor $s =\mu \cdot \left(\frac{1}{x_1}, \frac{1}{x_2}, \ldots, \frac{1}{x_n}\right)$, pa imamo da bilo koje optimalno rješenje početnog problema treba da zadovoljava \emph{uslove optimalnosti prvog reda za barijerni problem}:
-\begin{align}
-	&A x = b \nonumber \\
-	&A^T y + s = c  \nonumber \\
-	& (s_1 x_1, \ldots, s_m x_m) = (\mu, \ldots, \mu) \label{eq:primal-dual-central-path-problem} \\
-	& x, s \geq 0. \nonumber
-\end{align}
-Primijetimo da ovaj uslov aproksimira iste uslove za primal-dual par.  
-Interesantno je da parametar $\mu$ kontroliše udaljenost od optimalnosti, tj. 
-$$ c^T x - b^T y = c^T x - x^T A y = x^T(c- A^Ty ) = x^T s = n \mu.$$
-Primijetimo da uslovi~(\ref{eq:primal-dual-central-path-problem}) ne daju linearni sistem, jer treće ograničenje  nije linearno, što otežava rješavanje sistema.
-
-\begin{definition}
-	Primal-dual centralni put $\{(x(\mu), y(\mu), s(\mu)) \in \mathbb{R}^{2n + m} \mid \mu > 0, x(\mu) >0, s(\mu)>0 \}$ je (jedinstveno) rješenje sistema  (\ref{eq:primal-dual-central-path-problem}) parametrizovanog sa $\mu$. 
-\end{definition}
-
-Primijetimo sljedeće, ako se u problemu (\ref{eq:primal-dual-central-path-problem}) stavi $\mu = 0$, onda imamo 
-\begin{align*}
-	&(s_1 x_1, \ldots, s_m x_m) = (0, \ldots, 0) \\
-	&\Longleftrightarrow s^T x = 0  \Longleftrightarrow (A^T y - c)^T x = 0 \\
-	&\Longleftrightarrow y^T A x - c^T x = 0 \Longleftrightarrow y^T b = c^Tx
-\end{align*}
-jer je $Ax = b$. Pimijetimo da   vrijednost (optimalnih) dualnih promjenjivih $y$ upravo odgovara vrijednosti Lagranžovih množitelja. Takođe, kako $\mu$ teži ka nuli,  rješenja (nelinearnog) sistema  (\ref{eq:primal-dual-central-path-problem})   sve preciznije aproksimiraJU rješenje početnog problema (\ref{eq:lp_equality_constraint}). 
-
-Da bi došli do koraka samog algoritma, uvedimo notaciju 
-$$ F(x, y, s) = \left (\begin{array}{c}
-	Ax - b           \\
-	A^T y + s - c     \\
-	X S \textbf{1}                   
-\end{array} \right ),$$
-gdje je  $X = diag (x_1, \ldots, x_n ), S = diag(s_1,\ldots, s_n)$ i 
-$\textbf{1} = diag (1,\ldots, 1)$. Primijetimo da  je $X S \textbf{1}=\sum_{i} s_i x_i$. 
-Potrebno je riješiti $F(x, y, s ) = 0, x,s \geq 0$. Korjen ove (nelinearne) jednačine ćemo naći uz pomoć \emph{Njutnovog metoda} (za nelinearni sistem jednačina).  %, tj. riješimo (\ref{eq:primal-dual-central-path-problem}) uz pomoć ovog metoda. 
-
-U nastavku u sažetom obliku izlažemo ideju Njutnovog metoda, jednog od najefikasnijih metoda za rješavanje ovakvih (nelinearnih) sistema jednačina. Neka je data diferencijalna funkcija $f: \mathbb{R}^n \mapsto \mathbb{R}$.   Tangentna linija 
-$$z - f(x^k) = \triangledown f(x^k) (x - x^k) $$
-je lokalna aproksimacija grafa funkcije $f(x)$ oko date tačke. Stavjajući $z=0$, definiše se nova tačka 
-\begin{equation} \label{eq:newton-step}
-	x^{k+1} = x^k - (\triangledown f(x^k))^{-1} f(x^k).
-\end{equation}
-Pokazuje se da niz $\{x^k\}_{k \in \mathbb{N}}$ definisan na osnovu (\ref{eq:newton-step}) konvergira ka stacionarnoj tački funkcije $f(x)$. Simulacija koraka Njutnovog metoda je data na Slici~\ref{fig:newton}. 
-
-\begin{figure}[!ht]
-	%    \centering
-	\begin{tikzpicture}[thick,yscale=0.6,xscale=0.8]
-		
-		% Axes
-		\draw[-latex,name path=xaxis] (-1,0) -- (12,0) node[above]{\large $x$};
-		\draw[-latex] (0,-2) -- (0,8)node[right]{\large $y$};;
-		
-		% Function plot
-		\draw[ultra thick, orange,name path=function]  plot[smooth,domain=1:9.5] (\x, {0.1*\x^2-1.5}) node[left]{$f(x)$};
-		
-		% plot tangent line
-		\node[violet,right=0.2cm] at (8,4.9) { tangenta};
-		
-		\draw[gray,thin,dotted] (8,0) -- (8,4.9) node[circle,fill,inner sep=2pt]{};
-		\draw[dashed, violet,name path=Tfunction]  plot[smooth,domain=4.25:9.5] (\x, {1.6*\x-7.9});
-		
-		% x-axis labels
-		\draw (8,0.1) -- (8,-0.1) node[below] {$x^{k}$};
-		\draw [name intersections={of=Tfunction and xaxis}] ($(intersection-1)+(0,0.1)$) -- ++(0,-0.2) node[below,fill=white] {$x^{k+1}$} ;
-	\end{tikzpicture}
-	\caption{Njutnova metoda u ravni.}
-	\label{fig:newton}
-\end{figure}
-%\begin{figure}[!ht]
-%    \centering
-%    \includegraphics[width=170pt,height=170pt]{newton.jpg}
-%    \caption{Demonstracija njutnovog metoda u ravni.}
-%    \label{fig:newton}
-%\end{figure}
-Rješavanje nelinearnih sistema se može generalizovati na funkcije više promjenjivih.\footnote{Za  više informacija pogledati na  \url{http://www.ohiouniversityfaculty.com/youngt/IntNumMeth/lecture13.pdf}.} nPrimijenimo ovu metodu na nalaženje nule funkcije $F(x,y,s)$. Tada imamo
-$$ \triangledown F =\left ( \begin{array}{ccc}
-	A   & 0      &  0      \\
-	0   & A^T    &  I      \\
-	S   & 0      & X       \\
-\end{array} \right ) 
-$$
-Prema tome, u fiksnoj tački $(x,y,s)$, Njutnov pravac (pomjeraj)
-$
-\begin{pmatrix}
-	\bigtriangleup  x  \\
-	\bigtriangleup  y  \\
-	\bigtriangleup  s  \\
-\end{pmatrix}
-$
-%$\bigtriangleup x = x^{k+1} - x^{k}, \bigtriangleup y = y^{k+1} - y^{k}, \bigtriangleup s = s^{k+1} - s^{k}$
-se izračunava rješavajući sistem linearnih jednačina
-
-\begin{equation}
-	\begin{pmatrix}
-		A   & 0      &  0      \\
-		0   & A^T    &  I      \\
-		S   & 0      & X       \\
-	\end{pmatrix}  
-	\begin{pmatrix} 
-		\bigtriangleup  x  \\
-		\bigtriangleup  y  \\
-		\bigtriangleup  s  \\
-	\end{pmatrix} 
-	= 
-	\begin{pmatrix} 
-		b - Ax             \\
-		c - A^T y - s      \\
-		- X S \textbf{1}  \\                   
-	\end{pmatrix} 
-\end{equation}
-iz koga se potom računaju tačke naredne  iteracije. 
-Njutnov metod   u nekoj iteracija obično narušava uslove nenegativnosti $x,s \geq 0$, ali to se može izbjeći kako će biti  prikazano u nastavku.   
-Prethodno   se može lako proširiti i na slučaj kada ne vrijedi $s_ix_i = 0$, ili preciznije kada je $\frac{1}{n}s_ix_i = \mu, \mu > 0$, $i=1,\ldots,n$. Na sličan način računamo Njutnov pravac kada je $s_i x_i \approx \mu \theta$  za  $\theta >0$, iz sistema 
-
-\begin{equation} \label{eq:newton-interior-system-k}    
-	\begin{pmatrix}
-		A   & 0      &  0      \\
-		0   & A^T    &  I      \\
-		S   & 0      & X       \\
-	\end{pmatrix} 
-	\cdot 
-	\begin{pmatrix}
-		\bigtriangleup  x  \\
-		\bigtriangleup  y  \\
-		\bigtriangleup  s  \\
-	\end{pmatrix} 
-	=
-	\begin{pmatrix}
-		b - Ax           \\
-		c - A^T y - s      \\
-		\theta \mu \mathbf{1} - X S \textbf{1}                      
-	\end{pmatrix}
-\end{equation}
-
-%https://www.youtube.com/watch?v=Zf_bn3jJFKY&list=WL&index=9&t=647s
-Prema tome, \emph{algoritam unutrašnje tačke} izvršava sljedeće korake:
-\begin{enumerate}
-	\item Inicijalizujemo $k=0$, te proizvoljno  $(x^k, y^k, s^k), x^k, s^k \geq 0$, $x^k,s^k \in \mathbb{R}^n, y^k \in \mathbb{R}^m$.
-	\item Izaberimo $ \theta^k \in [0, 1)$ te riješimo sistem (\ref{eq:newton-interior-system-k}) za $(x^k,y^k,s^k)$ i odabran $\theta = \theta_k$ te $\mu = \mu^k = (y^k)^T s^k $,  odakle   dobijamo
-	$  
-	\begin{pmatrix}
-		\bigtriangleup x^k      \\
-		\bigtriangleup y^k       \\
-		\bigtriangleup s^k       \\
-	\end{pmatrix}    
-	$
-	
-	\item $ 
-	\begin{pmatrix}
-		x^{k+1}  \\
-		y^{k+1}   \\
-		s^{k+1}   \\
-	\end{pmatrix} \approx
-	\begin{pmatrix}
-		x^k  \\
-		y^k  \\
-		s^k  \\
-	\end{pmatrix} +   
-	\alpha_k 
-	\begin{pmatrix}
-		\bigtriangleup x^k       \\
-		\bigtriangleup y^k       \\
-		\bigtriangleup s^k       \\
-	\end{pmatrix}  
-	$, gdje je $\alpha_k$ izabran na taj način da $(x^{k+1}, s^{k+1}) > 0$, tj. da bi se očuvala dopustivost rješenja. 
-	\item Ažurirajmo $k = k + 1$, te se vratimo na korak 2.
-\end{enumerate}
-Primijetimo da $\mu \rightarrow 0$, kako $k \rightarrow \infty$. U praksi se često stavlja $\theta^k = 1 - \frac{\beta}{n}$, za $\beta \in (0,1)$, a najčešće $\beta= 0.1$.  Parametar $\beta$ upravlja brzinom progresa prema optimalnom rješenju.  
-
-
-Sljedeća teorema   karakteriše \emph{metod unutrašnje tačke}.
-
-\begin{thm} Za metod unutrašnje tačke vrijedi sljedeće:
-	\begin{itemize}
-		\item Algoritam unutrašnje tačke konvergira ka optimalnom rješenju problema (\ref{eq:lp_equality_constraint}). %Dualna granica se smanjuje $1 - \frac{\beta}{n}$ pri svakom koraku.
-		\item U svim iteracijama, algoritam generiše dopustive tačke.
-		\item Kompleksnost algoritma je $O(\sqrt{n})$. %Dakle,  broj iteracija  proporcionalan $\sqrt{n}$ je neophodan  algoritmu unutrašnje tačke riješi problem. 
-	\end{itemize}
-\end{thm}
-
-Da bi se uvidjele sličnosti i razlike između Simpleks metode i Metode unutrašnje tačke, pogledajte Slike \ref{fig:optimality-approaching-simplex} i  \ref{fig:optimality-approaching-interior}. U njima možete vidjeti kako ova dva metoda pristupaju pretrazi optimalnih rješenja. 
-
-\begin{figure}
-	\centering
-	 	\begin{subfigure}{.45\textwidth}
-	 	\centering
-	 	% include first image
-	 	\includegraphics[width=.9\linewidth]{interior-1}  
-	 \end{subfigure}
- 	 	\begin{subfigure}{.45\textwidth}
- 	\centering
- 	% include first image
- 	\includegraphics[width=.9\linewidth]{interior-2}  
- \end{subfigure}
-  \caption{Prilazak optimalnosti kod Simpleks metode.}
-   \label{fig:optimality-approaching-simplex}
-\end{figure}
-
-
-\begin{figure}
-	\centering
-	\begin{subfigure}{.45\textwidth}
-	\centering
-	% include first image
-	\includegraphics[width=.9\linewidth]{interior-3}  
-\end{subfigure}
-\begin{subfigure}{.45\textwidth}
-	\centering
-	% include first image
-	\includegraphics[width=.9\linewidth]{interior-4}  
-\end{subfigure}
-  \caption{Prilazak optimalnosti kod Metoda unutrašnje tačke.}
-   \label{fig:optimality-approaching-interior}
-\end{figure}
-Paralelizovani objektno orjentisani optimizacioni siftver baziran na metodi unutrašnje tačke se može naći na 
-linku koji je dat pod referencom~\cite{cite_key25}. %\url{https://www.maths.ed.ac.uk/~gondzio/parallel/solver.html}.  \\
-
-%https://optimization.cbe.cornell.edu/index.php?title=Interior-point_method_for_LP
-\begin{comment}
-
-\emph{\textbf{Primjer.}} Riješimo sljedeći primjer LP-a pomoću metoda unutrašnje tačke:
-\begin{align*}
-	&\max 3 x_1 + 3 x_2 \\
-	&\mbox{s.t.} \\
-	& x_1 + x_2 \leq 4 \\
-	& x_1, x_2 \geq 0.
-\end{align*}
-
-\emph{Rješenje.}  Formirajmo Lagranžovu funkciju početnog problema koristeći ciljnu funkciju barijernog problema sa:  
-\begin{align*}
-   L(x, y, \mu) = 	  3 x_1 + 3 x_2 -\mu ln x_1 - \mu ln x_2 + y_1(4- x_1 - x_2 - s_1).  
-\end{align*}
-Barijerna funkcija je uvijek konkavna, a kako maksimizujemo,  tako da posjeduje tačno rješenje.  Sada nađimo maksimum date funkcije što radimo derivirajući funkciju $L$ (nalaženje parcijalnih derivacija):
-\begin{align*}
-	 &\triangledown_{x_1} L   =  3 - \frac{\mu}{x_1}  - y_1 = 0 \\
-	 &\triangledown_{x_2} L   =  3 - \frac{\mu}{x_2} - y_1 = 0 \\
-	 &\triangledown_{y} L   = {4-x_1-x_2 - s_1} = 0 \\
-	 &\triangledown_{s} L   = { y_1} = 0 
-\end{align*}
-Odakle imamo zbog simetrije prve i druge jednakosti, da je  $x_1 = x_2$, dok je $y(\mu) = 0$. pa prema tome je 
-%$$  3 - \frac{\mu}{x_1}  = 0$$
-%što je ekvivalentno   sa:
-%\begin{align} \label{eq:example-interior-point}
-%   3x_1 - \mu = 0 \Rightarrow x_1 = x_2 = \frac{\mu}{3}.
-%\end{align} 
-Iz trečeg uslova   $x_1(\mu)=x_2(\mu)=2$, što je i optimum. Primijetimo da ovdje nije bilo potrebe za iterativnim postupkom i računanja Njutnovog koraka (koji je konstantan u svim iteracijama). 
-%Kako je ovo kvadratna jednačina, koja je može eksplicitno riješiti, ne treba primjenjivati Njutnov iteracioni postupak (iako bi rješavanje ovakve jednačine takođe bilo moguće pomoću takvog metoda). Dakle, rješenje jednačine (\ref{eq:example-interior-point}) je:
-%\begin{align}
-%	x_1 = \frac{3(4-\mu) \pm \sqrt{9(4-\mu)^2 - 96 \mu}} { 12} = x_2
-%\end{align}
-% dualni simpleks metod ==> 4.7 PRIMAL-DUAL ALGORITHMS
-% Ako bi uzeli $\mu = 1$, rješenje koje se dobije je 
- \end{comment}
 \section{Farkašova lema}
-Još jedna primjena teorije dualnosti u LP-u se ogleda u dokazivanju sljedeće teoreme alternative.
+Još jedna primjena teorije dualnosti LP-a se ogleda u dokazivanju Farkašove teoreme alternative. U suštini, njena geometirijska interpretacija kaže sljedeće: svaki vektor pripada datom zatvorenom konveksnom konusu, ili postoji hiperravan koja razdvaja vektor od konusa; druge mogućnosti ne postoje. 
 
 \begin{thm}
 	Neka je $A\in \mathbb{R}^{m \times n}$ matrica i $c\in \mathbb{R}^n$. Onda jedan i samo jedan od  sljedeća dva sistema ima rješenje:
@@ -2619,7 +2256,7 @@ Još jedna primjena teorije dualnosti u LP-u se ogleda u dokazivanju sljedeće t
 	  	 & A x \geq 0.
 	  \end{align*}
  Ako pogledamo desnu stranu ograničenja, vidimo da je vektor $x = 0$ 
-  dopustivo rješenje problema, tako da problem ima barem jedno dopustivo rješenje. Zaključujemo da dati LP može da bude ili ima optimalno rješenje ili je neograničen. Posmatrajmo njegov dual   dat sa 
+  dopustivo rješenje problema, tako da problem ima barem jedno dopustivo rješenje. Zaključujemo da dati LP  ili ima optimalno rješenje ili je neograničen. Posmatrajmo njegov dual   dat sa 
   \begin{align*}
   	   &\max 0 \\
   	   &\mbox{t.d.} \\
@@ -7676,10 +7313,380 @@ gdje $N_i$ označava susjede čvora $i$ u grafu $G$.
     Model implementirati
 
 \begin{enumerate}
-	\item[(a))]  uz pomoć \textsc{Cplex}-a; 
+	\item[(a) ]  uz pomoć \textsc{Cplex}-a; 
 	\item[(b)] uz pomoć PuLP modula.
 \end{enumerate}
 \end{enumerate}
+
+\appendix
+
+\chapter{Metod unutrašnje tačke} \label{appendix:interior_point}
+
+
+
+U ovoj sekciji ćemo prikazati konstrukciju  \emph{Metoda unutrašnje tačke}, koji  bilo koji problem LP-a rješava  u polinomijanom vremenu.
+%, čime se pokazuje da rješavanje problema LP-a pripada klasi $\mathcal{P}$. 
+%Iako u praksi često ne postiže dobre  performanse kao simpleks metod, ovaj metod je veoma važan sa teorijskog aspekta, 
+
+%\fixme{izbacio sam prethodnu recenicu, jer ona mozda nije ni tacna, jer sam nasao na par mjesta recenicu da je on i prilicno efikasan}
+
+\emph{Metod unutrašnje tačke} (eng. \emph{Interior point metod}) je dizajniran 50-ih godina XX vijeka. Sve do 80-ih godina XX vijeka nije smatran algoritmom koji efikasno  rješava probleme velikih dimenzija. Tek 1984. godine, N. Karmakar, inžinjer u IBM-u,  formalno dokazuje da se ovaj algoritam izvršava u polinomijalnom broju koraka za unaprijed zadatu preciznost optimalne vrijednosti. U današnje vrijeme, zbog ekstremnog poboljšanja performansi mašina, pokazalo se da je {metod unutrašnje tačke} kompetentan sa simpleks metodom u situacijama kada se radi o problemima izuzetno velikih dimenzija, gdje matrice problema sadrže $10^9$ i više elemenata.
+
+Za razliku od simpleks metoda, koji ``šeta'' po granicama poliedra (dopustivog regiona) u potrazi za optimalnim rješenjem, {metod unutrašnje tačke}, kako i samo ime kaže, se kreće po unutrašnjim tačkama poliedra,  dok ne naiđe na  optimalno rješenje. 
+
+Postoji nekoliko metoda ove vrste, kao što su: metod centralne putanje, redukcija potencijala, afino skaliranje, itd. U ovoj sekciji ćemo razmatrati metod centralne putanje. Napomenimo i da ćemo se baviti rješavanjem problema LP-a koji je dat u obliku (\ref{eq:lp_equality_constraint}). Napomenimo da razumijevanje procesa konstrukcije metode  unutrašnje tačke zahtjeva poznavanje osnovnih pojmova i teorema klasične matematičke analize sa više promjenjivih, kao i iterativnih numeričkih metoda za rješavanje (nelinearnih) sistema jednačina. Dalje, kako je konstrukcija ovog algoritma iznimno zahtjevna, neke teoreme, ili dijelovi teorema koji koriste ovoj svrsi, će biti  navedeni bez dokaza i ulaženja u detalje. Dakle, više ćemo se fokusirati na ideju i razumijevanje glavnih koraka u konstrukciji ovog algoritma.
+
+Neka je par Primal-dual linearnih programa dat sa
+
+$$ \begin{array}{llll}
+	&\mbox{Primal}            &\quad &\mbox{Dual}     \\
+	&\min  c^T x              &\quad &\max  b^T y \\
+	\mbox{t.d.\ }	&  Ax = b      &\quad \mbox{t.d.\ } &   A^Ty + s = c \\
+	& x \geq 0                &\quad &  s \geq 0
+\end{array}
+$$
+
+
+\begin{definition}
+	Lagranžijan primal-dual linearnih programa se definiše sa 
+	\begin{equation}
+		L(x,y) = c^Tx - y^T(Ax - b) - s^T x.
+	\end{equation}
+\end{definition}
+
+Postoji niz teorema koje obezbjeđuju dovoljne  uslove za nalazak optimalnog rješenja LP-a. U nastavku navodimo najvažnije od njih. 
+%http://www.optimization-online.org/DB_FILE/2008/06/2024.pdf
+\begin{thm}
+	Pretpostavimo da postoje $y \in \mathbb{R}^m, s \in \mathbb{R}^n$ tako da je 
+	\begin{align*}
+		&A^Ty + s = c \\
+		& s \geq 0.
+	\end{align*}
+	Ako je $x$ dopustivo rješenje za Primal, onda vrijedi 
+	$$ c^T x - b^T y = s^T x \geq 0 .$$
+\end{thm}
+\begin{proof}
+	Pretpostavimo da je $x$ dopustivo za Primal ($P$). Tada vrijedi
+	$$ c^Tx = (A^Ty + s)^Tx = s^Tx + y^Tb \geq b^T y.$$
+	Dakle, pokazali smo tvrdnju. Štaviše, vrijednost $b^Ty$ je donja granica za optimalnu vrijednost Primal-a. Takođe, ako je $s^T x = 0$ donja granica je dostignuta, te je $x$ je optimalno rješenje Primal-a.
+\end{proof}
+\begin{thm}
+	Pretpostavimo da Primal ima barem jedno optimalno rješenje. Vektor $x \in \mathbb{R}^n$ je optimalno rješenje za Primal akko postoje $y \in \mathbb{R}^m, s\in \mathbb{R}^n$ tako da 
+	\begin{align}
+		&A x= b \label{eq:oc1}\\
+		& x \geq 0 \label{eq:oc2}\\
+		& A^T y + s =c \label{eq:oc3}\\
+		& s \geq 0 \label{eq:oc4}\\
+		& s^T x = 0. \label{eq:oc5} 
+	\end{align}
+	Optimalna vrijednost je data sa $b^T y$.
+\end{thm}
+\begin{proof}
+	Za potrebne uslove, neka je $\tilde{x}$ optimalno rješenje za Primal. Zbog uslova dopustivosti za Primal, treba da vrijedi (\ref{eq:oc1}) i (\ref{eq:oc2}). Iz Teoreme 5.4, imamo da je optimalna vrijednost Primala  jednaka $b^Ty$ te dodatno da je $\tilde{x}$ optimalno samo ako je $s^T \tilde{x}=0$, pa vrijedi i (\ref{eq:oc5}).
+	
+	Dovoljni uslovi se mogu pokazati na osnovu koraka konstrukcije simpleks metode  i teoreme o komplementarnosti. Ovaj dokaz ne navodimo ovdje, jer je tehnički dosta zahtjevan. 
+	
+	Prema tome, ako postoje $x, y, s$ koji zadovoljavaju uslove optimalnosti, onda je $x$ optimalno rješenje.
+\end{proof}
+
+Drugi način da se dođe do uslova optimalnosti posmatrati Lagranžijan $L$ para Primal-Dual i naći stacionarne tačke za $L$, odakle nalazimo optimalno rješenje oba problema.  Uslovi za nalaženje stacionarne tačke se dobijaju iz sistema
+\begin{align}
+	&\triangledown_x L(x,y) = 0\\
+	&\triangledown_y L(x,y) = 0,
+\end{align} 
+što nas, uz uslov komplementarnosti za $x$ i $y$, ponovo dovodi do sistema
+\begin{align}
+	&Ax = b \\
+	&A^T y + s = c \\
+	&XS\mathbf{1} = 0 \ (x_j \cdot s_j =0 , \forall j) \\
+	&  (x, s ) \geq 0,
+\end{align}
+gdje je $X = diag (x_1, \ldots, x_n)$, $S= diag(s_1,\ldots s_m)$, $\mathbf{1}=(1,\ldots, 1)$. Ovaj sistem nazivamo \emph{uslov optimalnosti prvog reda za primal-dual par}. 
+
+U nastavku navodimo pojam barijernog problema preko kojeg razvijamo metod unutrašnje tačke. Zamijenimo ograničenja nenegativnosti u primalnom problemu sa $-ln x_j$, $j=1,\ldots,n$.   
+Tada vrijedi 
+$$\min e^{-\sum_{j=1}^n ln x_j} \Leftrightarrow \max \prod_{j} x_j $$
+Dakle, minimizacija izraza $-\sum_{j=1}^n x_j$ je ekvivalentna maksimizaciji proizvoda udaljenosti od svih hiperravni koje definišu prvi ortant (skup svih vektora kojima su koordinate nenegativne). Dakle, ovako definisan optimizacioni problem će onemogućiti da se vrijednost neke od promjenljivih $x_j$ približi nuli (uprkos nenegativnim ograničenjima).  Na osnovu ovih činjenica, definišimo sljedeći optimizacioni problem. 
+
+\begin{definition}
+	Barijerni program  primala je dat u obliku 
+	\begin{align*}
+		&\min c^T x - \mu \sum_{j=1}^n ln(x_j) \\
+		&{t.d. \ } A x = b \\
+		& x \geq 0
+	\end{align*}
+\end{definition}
+za neki $\mu >0$. Lagranžijan barijernog problema je dat sa 
+$$  L(x, y, \mu) = c^T x - \mu \sum_{j=1}^n ln(x_j)  - y^T(Ax - b) $$
+Sljedeća teoremu koja razmatra skalarne funkcije sa više promjenjivih sa uslovnim ekstremima je važna u daljem razmatranju; navodimo  je bez dokaza. 
+\begin{thm}
+	Neka je data skalarna funkcija  $f:\mathbb{R}^n \mapsto \mathbb{R}$ na skupu $g_1(x)=g_2(x)= \cdots = g_m(x) =0$ koja ima minimum u $x^*$. Onda vrijedi 
+	$$ \triangledown f (x^*) = \sum_{i=1}^m y_i \triangledown g_i(x^*),$$
+	gdje se $y_i$ nazivaju Lagranžovi množitelji. 
+\end{thm}
+
+Primijetimo da u barijarnom problemu imamo sljedeće:
+\begin{itemize}
+	\item $f(x) =   c^T x - \mu \sum_{j=1}^n ln(x_j) $;
+	\item $g_i(x) = a_i x - b_i$.
+\end{itemize}
+Izračunajmo Lagranžove množitelje ovih funkcija. Vrijedi:
+
+$$c + \mu \left(\frac{1}{x_1}, \frac{1}{x_2}, \ldots, \frac{1}{x_n} \right) = \triangledown f (x) =\sum_{i=1}^m y_i \triangledown g_i(x) = \sum_{i} y_i a_i = A^T y.$$ 
+
+Uvedimo nenegativni vektor $s =\mu \cdot \left(\frac{1}{x_1}, \frac{1}{x_2}, \ldots, \frac{1}{x_n}\right)$, pa imamo da bilo koje optimalno rješenje početnog problema treba da zadovoljava \emph{uslove optimalnosti prvog reda za barijerni problem}:
+\begin{align}
+	&A x = b \nonumber \\
+	&A^T y + s = c  \nonumber \\
+	& (s_1 x_1, \ldots, s_m x_m) = (\mu, \ldots, \mu) \label{eq:primal-dual-central-path-problem} \\
+	& x, s \geq 0. \nonumber
+\end{align}
+Primijetimo da ovaj uslov aproksimira iste uslove za primal-dual par.  
+Interesantno je da parametar $\mu$ kontroliše udaljenost od optimalnosti, tj. 
+$$ c^T x - b^T y = c^T x - x^T A y = x^T(c- A^Ty ) = x^T s = n \mu.$$
+Primijetimo da uslovi~(\ref{eq:primal-dual-central-path-problem}) ne daju linearni sistem, jer treće ograničenje  nije linearno, što otežava rješavanje sistema.
+
+\begin{definition}
+	Primal-dual centralni put $\{(x(\mu), y(\mu), s(\mu)) \in \mathbb{R}^{2n + m} \mid \mu > 0, x(\mu) >0, s(\mu)>0 \}$ je (jedinstveno) rješenje sistema  (\ref{eq:primal-dual-central-path-problem}) parametrizovanog sa $\mu$. 
+\end{definition}
+
+Primijetimo sljedeće, ako se u problemu (\ref{eq:primal-dual-central-path-problem}) stavi $\mu = 0$, onda imamo 
+\begin{align*}
+	&(s_1 x_1, \ldots, s_m x_m) = (0, \ldots, 0) \\
+	&\Longleftrightarrow s^T x = 0  \Longleftrightarrow (A^T y - c)^T x = 0 \\
+	&\Longleftrightarrow y^T A x - c^T x = 0 \Longleftrightarrow y^T b = c^Tx
+\end{align*}
+jer je $Ax = b$. Pimijetimo da   vrijednost (optimalnih) dualnih promjenjivih $y$ upravo odgovara vrijednosti Lagranžovih množitelja. Takođe, kako $\mu$ teži ka nuli,  rješenja (nelinearnog) sistema  (\ref{eq:primal-dual-central-path-problem})   sve preciznije aproksimiraJU rješenje početnog problema (\ref{eq:lp_equality_constraint}). 
+
+Da bi došli do koraka samog algoritma, uvedimo notaciju 
+$$ F(x, y, s) = \left (\begin{array}{c}
+	Ax - b           \\
+	A^T y + s - c     \\
+	X S \textbf{1}                   
+\end{array} \right ),$$
+gdje je  $X = diag (x_1, \ldots, x_n ), S = diag(s_1,\ldots, s_n)$ i 
+$\textbf{1} = diag (1,\ldots, 1)$. Primijetimo da  je $X S \textbf{1}=\sum_{i} s_i x_i$. 
+Potrebno je riješiti $F(x, y, s ) = 0, x,s \geq 0$. Korjen ove (nelinearne) jednačine ćemo naći uz pomoć \emph{Njutnovog metoda} (za nelinearni sistem jednačina).  %, tj. riješimo (\ref{eq:primal-dual-central-path-problem}) uz pomoć ovog metoda. 
+
+U nastavku u sažetom obliku izlažemo ideju Njutnovog metoda, jednog od najefikasnijih metoda za rješavanje ovakvih (nelinearnih) sistema jednačina. Neka je data diferencijalna funkcija $f: \mathbb{R}^n \mapsto \mathbb{R}$.   Tangentna linija 
+$$z - f(x^k) = \triangledown f(x^k) (x - x^k) $$
+je lokalna aproksimacija grafa funkcije $f(x)$ oko date tačke. Stavjajući $z=0$, definiše se nova tačka 
+\begin{equation} \label{eq:newton-step}
+	x^{k+1} = x^k - (\triangledown f(x^k))^{-1} f(x^k).
+\end{equation}
+Pokazuje se da niz $\{x^k\}_{k \in \mathbb{N}}$ definisan na osnovu (\ref{eq:newton-step}) konvergira ka stacionarnoj tački funkcije $f(x)$. Simulacija koraka Njutnovog metoda je data na Slici~\ref{fig:newton}. 
+
+\begin{figure}[!ht]
+	%    \centering
+	\begin{tikzpicture}[thick,yscale=0.6,xscale=0.8]
+		
+		% Axes
+		\draw[-latex,name path=xaxis] (-1,0) -- (12,0) node[above]{\large $x$};
+		\draw[-latex] (0,-2) -- (0,8)node[right]{\large $y$};;
+		
+		% Function plot
+		\draw[ultra thick, orange,name path=function]  plot[smooth,domain=1:9.5] (\x, {0.1*\x^2-1.5}) node[left]{$f(x)$};
+		
+		% plot tangent line
+		\node[violet,right=0.2cm] at (8,4.9) { tangenta};
+		
+		\draw[gray,thin,dotted] (8,0) -- (8,4.9) node[circle,fill,inner sep=2pt]{};
+		\draw[dashed, violet,name path=Tfunction]  plot[smooth,domain=4.25:9.5] (\x, {1.6*\x-7.9});
+		
+		% x-axis labels
+		\draw (8,0.1) -- (8,-0.1) node[below] {$x^{k}$};
+		\draw [name intersections={of=Tfunction and xaxis}] ($(intersection-1)+(0,0.1)$) -- ++(0,-0.2) node[below,fill=white] {$x^{k+1}$} ;
+	\end{tikzpicture}
+	\caption{Njutnova metoda u ravni.}
+	\label{fig:newton}
+\end{figure}
+%\begin{figure}[!ht]
+%    \centering
+%    \includegraphics[width=170pt,height=170pt]{newton.jpg}
+%    \caption{Demonstracija njutnovog metoda u ravni.}
+%    \label{fig:newton}
+%\end{figure}
+Rješavanje nelinearnih sistema se može generalizovati na funkcije više promjenjivih.\footnote{Za  više informacija pogledati na  \url{http://www.ohiouniversityfaculty.com/youngt/IntNumMeth/lecture13.pdf}.} nPrimijenimo ovu metodu na nalaženje nule funkcije $F(x,y,s)$. Tada imamo
+$$ \triangledown F =\left ( \begin{array}{ccc}
+	A   & 0      &  0      \\
+	0   & A^T    &  I      \\
+	S   & 0      & X       \\
+\end{array} \right ) 
+$$
+Prema tome, u fiksnoj tački $(x,y,s)$, Njutnov pravac (pomjeraj)
+$
+\begin{pmatrix}
+	\bigtriangleup  x  \\
+	\bigtriangleup  y  \\
+	\bigtriangleup  s  \\
+\end{pmatrix}
+$
+%$\bigtriangleup x = x^{k+1} - x^{k}, \bigtriangleup y = y^{k+1} - y^{k}, \bigtriangleup s = s^{k+1} - s^{k}$
+se izračunava rješavajući sistem linearnih jednačina
+
+\begin{equation}
+	\begin{pmatrix}
+		A   & 0      &  0      \\
+		0   & A^T    &  I      \\
+		S   & 0      & X       \\
+	\end{pmatrix}  
+	\begin{pmatrix} 
+		\bigtriangleup  x  \\
+		\bigtriangleup  y  \\
+		\bigtriangleup  s  \\
+	\end{pmatrix} 
+	= 
+	\begin{pmatrix} 
+		b - Ax             \\
+		c - A^T y - s      \\
+		- X S \textbf{1}  \\                   
+	\end{pmatrix} 
+\end{equation}
+iz koga se potom računaju tačke naredne  iteracije. 
+Njutnov metod   u nekoj iteracija obično narušava uslove nenegativnosti $x,s \geq 0$, ali to se može izbjeći kako će biti  prikazano u nastavku.   
+Prethodno   se može lako proširiti i na slučaj kada ne vrijedi $s_ix_i = 0$, ili preciznije kada je $\frac{1}{n}s_ix_i = \mu, \mu > 0$, $i=1,\ldots,n$. Na sličan način računamo Njutnov pravac kada je $s_i x_i \approx \mu \theta$  za  $\theta >0$, iz sistema 
+
+\begin{equation} \label{eq:newton-interior-system-k}    
+	\begin{pmatrix}
+		A   & 0      &  0      \\
+		0   & A^T    &  I      \\
+		S   & 0      & X       \\
+	\end{pmatrix} 
+	\cdot 
+	\begin{pmatrix}
+		\bigtriangleup  x  \\
+		\bigtriangleup  y  \\
+		\bigtriangleup  s  \\
+	\end{pmatrix} 
+	=
+	\begin{pmatrix}
+		b - Ax           \\
+		c - A^T y - s      \\
+		\theta \mu \mathbf{1} - X S \textbf{1}                      
+	\end{pmatrix}
+\end{equation}
+
+%https://www.youtube.com/watch?v=Zf_bn3jJFKY&list=WL&index=9&t=647s
+Prema tome, \emph{algoritam unutrašnje tačke} izvršava sljedeće korake:
+\begin{enumerate}
+	\item Inicijalizujemo $k=0$, te proizvoljno  $(x^k, y^k, s^k), x^k, s^k \geq 0$, $x^k,s^k \in \mathbb{R}^n, y^k \in \mathbb{R}^m$.
+	\item Izaberimo $ \theta^k \in [0, 1)$ te riješimo sistem (\ref{eq:newton-interior-system-k}) za $(x^k,y^k,s^k)$ i odabran $\theta = \theta_k$ te $\mu = \mu^k = (y^k)^T s^k $,  odakle   dobijamo
+	$  
+	\begin{pmatrix}
+		\bigtriangleup x^k      \\
+		\bigtriangleup y^k       \\
+		\bigtriangleup s^k       \\
+	\end{pmatrix}    
+	$
+	
+	\item $ 
+	\begin{pmatrix}
+		x^{k+1}  \\
+		y^{k+1}   \\
+		s^{k+1}   \\
+	\end{pmatrix} \approx
+	\begin{pmatrix}
+		x^k  \\
+		y^k  \\
+		s^k  \\
+	\end{pmatrix} +   
+	\alpha_k 
+	\begin{pmatrix}
+		\bigtriangleup x^k       \\
+		\bigtriangleup y^k       \\
+		\bigtriangleup s^k       \\
+	\end{pmatrix}  
+	$, gdje je $\alpha_k$ izabran na taj način da $(x^{k+1}, s^{k+1}) > 0$, tj. da bi se očuvala dopustivost rješenja. 
+	\item Ažurirajmo $k = k + 1$, te se vratimo na korak 2.
+\end{enumerate}
+Primijetimo da $\mu \rightarrow 0$, kako $k \rightarrow \infty$. U praksi se često stavlja $\theta^k = 1 - \frac{\beta}{n}$, za $\beta \in (0,1)$, a najčešće $\beta= 0.1$.  Parametar $\beta$ upravlja brzinom progresa prema optimalnom rješenju.  
+
+
+Sljedeća teorema   karakteriše \emph{metod unutrašnje tačke}.
+
+\begin{thm} Za metod unutrašnje tačke vrijedi sljedeće:
+	\begin{itemize}
+		\item Algoritam unutrašnje tačke konvergira ka optimalnom rješenju problema (\ref{eq:lp_equality_constraint}). %Dualna granica se smanjuje $1 - \frac{\beta}{n}$ pri svakom koraku.
+		\item U svim iteracijama, algoritam generiše dopustive tačke.
+		\item Kompleksnost algoritma je $O(\sqrt{n})$. %Dakle,  broj iteracija  proporcionalan $\sqrt{n}$ je neophodan  algoritmu unutrašnje tačke riješi problem. 
+	\end{itemize}
+\end{thm}
+
+Da bi se uvidjele sličnosti i razlike između Simpleks metode i Metode unutrašnje tačke, pogledajte Slike \ref{fig:optimality-approaching-simplex} i  \ref{fig:optimality-approaching-interior}. U njima možete vidjeti kako ova dva metoda pristupaju pretrazi optimalnih rješenja. 
+
+\begin{figure}
+	\centering
+	\begin{subfigure}{.45\textwidth}
+		\centering
+		% include first image
+		\includegraphics[width=.9\linewidth]{interior-1}  
+	\end{subfigure}
+	\begin{subfigure}{.45\textwidth}
+		\centering
+		% include first image
+		\includegraphics[width=.9\linewidth]{interior-2}  
+	\end{subfigure}
+	\caption{Prilazak optimalnosti kod Simpleks metode.}
+	\label{fig:optimality-approaching-simplex}
+\end{figure}
+
+
+\begin{figure}
+	\centering
+	\begin{subfigure}{.45\textwidth}
+		\centering
+		% include first image
+		\includegraphics[width=.9\linewidth]{interior-3}  
+	\end{subfigure}
+	\begin{subfigure}{.45\textwidth}
+		\centering
+		% include first image
+		\includegraphics[width=.9\linewidth]{interior-4}  
+	\end{subfigure}
+	\caption{Prilazak optimalnosti kod Metoda unutrašnje tačke.}
+	\label{fig:optimality-approaching-interior}
+\end{figure}
+Paralelizovani objektno orjentisani optimizacioni siftver baziran na metodi unutrašnje tačke se može naći na 
+linku koji je dat pod referencom~\cite{cite_key25}. %\url{https://www.maths.ed.ac.uk/~gondzio/parallel/solver.html}.  \\
+
+%https://optimization.cbe.cornell.edu/index.php?title=Interior-point_method_for_LP
+\begin{comment}
+	
+	\emph{\textbf{Primjer.}} Riješimo sljedeći primjer LP-a pomoću metoda unutrašnje tačke:
+	\begin{align*}
+		&\max 3 x_1 + 3 x_2 \\
+		&\mbox{s.t.} \\
+		& x_1 + x_2 \leq 4 \\
+		& x_1, x_2 \geq 0.
+	\end{align*}
+	
+	\emph{Rješenje.}  Formirajmo Lagranžovu funkciju početnog problema koristeći ciljnu funkciju barijernog problema sa:  
+	\begin{align*}
+		L(x, y, \mu) = 	  3 x_1 + 3 x_2 -\mu ln x_1 - \mu ln x_2 + y_1(4- x_1 - x_2 - s_1).  
+	\end{align*}
+	Barijerna funkcija je uvijek konkavna, a kako maksimizujemo,  tako da posjeduje tačno rješenje.  Sada nađimo maksimum date funkcije što radimo derivirajući funkciju $L$ (nalaženje parcijalnih derivacija):
+	\begin{align*}
+		&\triangledown_{x_1} L   =  3 - \frac{\mu}{x_1}  - y_1 = 0 \\
+		&\triangledown_{x_2} L   =  3 - \frac{\mu}{x_2} - y_1 = 0 \\
+		&\triangledown_{y} L   = {4-x_1-x_2 - s_1} = 0 \\
+		&\triangledown_{s} L   = { y_1} = 0 
+	\end{align*}
+	Odakle imamo zbog simetrije prve i druge jednakosti, da je  $x_1 = x_2$, dok je $y(\mu) = 0$. pa prema tome je 
+	%$$  3 - \frac{\mu}{x_1}  = 0$$
+	%što je ekvivalentno   sa:
+	%\begin{align} \label{eq:example-interior-point}
+	%   3x_1 - \mu = 0 \Rightarrow x_1 = x_2 = \frac{\mu}{3}.
+	%\end{align} 
+	Iz trečeg uslova   $x_1(\mu)=x_2(\mu)=2$, što je i optimum. Primijetimo da ovdje nije bilo potrebe za iterativnim postupkom i računanja Njutnovog koraka (koji je konstantan u svim iteracijama). 
+	%Kako je ovo kvadratna jednačina, koja je može eksplicitno riješiti, ne treba primjenjivati Njutnov iteracioni postupak (iako bi rješavanje ovakve jednačine takođe bilo moguće pomoću takvog metoda). Dakle, rješenje jednačine (\ref{eq:example-interior-point}) je:
+	%\begin{align}
+	%	x_1 = \frac{3(4-\mu) \pm \sqrt{9(4-\mu)^2 - 96 \mu}} { 12} = x_2
+	%\end{align}
+	% dualni simpleks metod ==> 4.7 PRIMAL-DUAL ALGORITHMS
+	% Ako bi uzeli $\mu = 1$, rješenje koje se dobije je 
+\end{comment}
+
+
 \begin{thebibliography}{widest entry}
 	\bibitem[1]{cite_key1}  \url{https://towardsdatascience.com/the-big-picture-of-operations-research-8652d5153aad}
 	\bibitem[2]{cite_key2} Hillier, Frederick S. Introduction to operations research. Tata McGraw-Hill Education, 2012.

@@ -22,60 +22,60 @@
 \contentsline {section}{\numberline {4.6}Zadaci}{61}%
 \contentsline {chapter}{\numberline {5}Dualnost \& Dopustivost}{65}%
 \contentsline {section}{\numberline {5.1}Teoreme dualnosti}{67}%
-\contentsline {section}{\numberline {5.2}Metod unutrašnje tačke}{72}%
-\contentsline {section}{\numberline {5.3}Farkašova lema}{79}%
-\contentsline {section}{\numberline {5.4}Furije–Mockinova eliminacija}{80}%
-\contentsline {section}{\numberline {5.5}Zadaci}{83}%
-\contentsline {chapter}{\numberline {6}Cjelobrojno Programiranje}{87}%
-\contentsline {section}{\numberline {6.1}Modelovanje nekih problema cjelobrojnog linearnog programiranja}{88}%
-\contentsline {section}{\numberline {6.2}Tehnike transformacija nekih nelinearnih ograničenja u ILP-u}{94}%
-\contentsline {subsection}{\numberline {6.2.1}Prepoznavanje binarnih promjenljivih}{95}%
-\contentsline {subsection}{\numberline {6.2.2}Logička ograničenja}{95}%
-\contentsline {subsection}{\numberline {6.2.3}Alternativna ograničenja}{96}%
-\contentsline {subsection}{\numberline {6.2.4}Uslovna ograničenja}{96}%
-\contentsline {subsection}{\numberline {6.2.5}K-alternative}{97}%
-\contentsline {subsection}{\numberline {6.2.6}Složene alternative}{97}%
-\contentsline {subsection}{\numberline {6.2.7}Predstavljanje nekih nelinearnih funkcija}{98}%
-\contentsline {subsection}{\numberline {6.2.8}Eliminacija proizvoda promjenljivih}{100}%
-\contentsline {section}{\numberline {6.3}Kompleksnost rješavanja cjelobrojnog programiranja}{103}%
-\contentsline {section}{\numberline {6.4}Zadaci}{104}%
-\contentsline {chapter}{\numberline {7}Algoritamske tehnike za rješavanje ILP-a}{109}%
-\contentsline {section}{\numberline {7.1}Metoda grananja i ograničavanja (B\&B)}{110}%
-\contentsline {subsection}{\numberline {7.1.1}Bazni B\&B za rješavanje problema ILP-a}{110}%
-\contentsline {section}{\numberline {7.2}Implicitna enumeracija}{113}%
-\contentsline {section}{\numberline {7.3}Metoda odsjecajućih ravni}{116}%
-\contentsline {section}{\numberline {7.4}B\&C algoritam za rješavanje ILP-a}{123}%
-\contentsline {section}{\numberline {7.5}Lagranžova relaksacija}{125}%
-\contentsline {section}{\numberline {7.6}Metod generisanja kolona}{128}%
-\contentsline {section}{\numberline {7.7}Zadaci}{135}%
-\contentsline {chapter}{\numberline {8}Dekompozicioni Metodi}{139}%
-\contentsline {section}{\numberline {8.1}Benderova dekompozicija}{139}%
-\contentsline {section}{\numberline {8.2}Dantzig--Wolfe dekompozicija}{152}%
-\contentsline {section}{\numberline {8.3}Zadaci}{164}%
-\contentsline {chapter}{\numberline {9}Metode za pronalaženje dopustivih rješenja}{167}%
-\contentsline {section}{\numberline {9.1}Pohlepni algoritmi}{167}%
-\contentsline {subsection}{\numberline {9.1.1}Algoritmi za pronalaženje MST}{168}%
-\contentsline {subsubsection}{Primov algoritam}{169}%
-\contentsline {subsubsection}{Kruskalov algoritam}{169}%
-\contentsline {subsection}{\numberline {9.1.2}Dajkstrin algoritam}{170}%
-\contentsline {subsection}{\numberline {9.1.3}Frakcioni problem ruksaka}{171}%
-\contentsline {subsection}{\numberline {9.1.4}Pohlepni pristup za rješavanje LCS problema}{172}%
-\contentsline {section}{\numberline {9.2}Aproksimativni algoritmi}{174}%
-\contentsline {subsection}{\numberline {9.2.1}Aproksimativni algoritmi za problem pokrivanja čvorova}{175}%
-\contentsline {subsection}{\numberline {9.2.2}Aproksimativni algoritmi za problem trgovačkog putnika}{177}%
-\contentsline {subsection}{\numberline {9.2.3}Aproksimativni algoritmi za problem binarnog pakovanja}{180}%
-\contentsline {subsection}{\numberline {9.2.4}Aproksimativni algoritmi za problem pokrivanja skupa}{181}%
-\contentsline {subsection}{\numberline {9.2.5}Aproksimativni algoritam za problem najkraćeg nadstringa}{183}%
-\contentsline {section}{\numberline {9.3}Heurističke metode}{184}%
-\contentsline {section}{\numberline {9.4}Metaheurističke metode}{185}%
-\contentsline {subsection}{\numberline {9.4.1}Klasifikacija metaheuristika}{185}%
-\contentsline {subsection}{\numberline {9.4.2}Genetski algoritmi}{187}%
-\contentsline {subsection}{\numberline {9.4.3}Metoda lokalne pretrage}{194}%
-\contentsline {subsection}{\numberline {9.4.4}Metoda promjenljivih okolina}{195}%
-\contentsline {section}{\numberline {9.5}Zadaci}{198}%
-\contentsline {chapter}{\numberline {10}Optimizacioni Rješavači}{203}%
-\contentsline {section}{\numberline {10.1}Optimizacioni rješavač \textsc {Cplex}}{203}%
-\contentsline {section}{\numberline {10.2}PuLP alat}{208}%
-\contentsline {section}{\numberline {10.3}Primjena alata PuLP na rješavanje jednog problema lokacija sa ograničenim kapacitetima}{210}%
-\contentsline {section}{\numberline {10.4}Primjena \textsc {Cplex} rješavača na problem stringova}{212}%
-\contentsline {section}{\numberline {10.5}Zadaci}{216}%
+\contentsline {section}{\numberline {5.2}Farkašova lema}{72}%
+\contentsline {section}{\numberline {5.3}Furije–Mockinova eliminacija}{74}%
+\contentsline {section}{\numberline {5.4}Zadaci}{77}%
+\contentsline {chapter}{\numberline {6}Cjelobrojno Programiranje}{81}%
+\contentsline {section}{\numberline {6.1}Modelovanje nekih problema cjelobrojnog linearnog programiranja}{82}%
+\contentsline {section}{\numberline {6.2}Tehnike transformacija nekih nelinearnih ograničenja u ILP-u}{88}%
+\contentsline {subsection}{\numberline {6.2.1}Prepoznavanje binarnih promjenljivih}{89}%
+\contentsline {subsection}{\numberline {6.2.2}Logička ograničenja}{89}%
+\contentsline {subsection}{\numberline {6.2.3}Alternativna ograničenja}{90}%
+\contentsline {subsection}{\numberline {6.2.4}Uslovna ograničenja}{90}%
+\contentsline {subsection}{\numberline {6.2.5}K-alternative}{91}%
+\contentsline {subsection}{\numberline {6.2.6}Složene alternative}{91}%
+\contentsline {subsection}{\numberline {6.2.7}Predstavljanje nekih nelinearnih funkcija}{92}%
+\contentsline {subsection}{\numberline {6.2.8}Eliminacija proizvoda promjenljivih}{94}%
+\contentsline {section}{\numberline {6.3}Kompleksnost rješavanja cjelobrojnog programiranja}{97}%
+\contentsline {section}{\numberline {6.4}Zadaci}{98}%
+\contentsline {chapter}{\numberline {7}Algoritamske tehnike za rješavanje ILP-a}{103}%
+\contentsline {section}{\numberline {7.1}Metoda grananja i ograničavanja (B\&B)}{104}%
+\contentsline {subsection}{\numberline {7.1.1}Bazni B\&B za rješavanje problema ILP-a}{104}%
+\contentsline {section}{\numberline {7.2}Implicitna enumeracija}{107}%
+\contentsline {section}{\numberline {7.3}Metoda odsjecajućih ravni}{110}%
+\contentsline {section}{\numberline {7.4}B\&C algoritam za rješavanje ILP-a}{117}%
+\contentsline {section}{\numberline {7.5}Lagranžova relaksacija}{119}%
+\contentsline {section}{\numberline {7.6}Metod generisanja kolona}{122}%
+\contentsline {section}{\numberline {7.7}Zadaci}{129}%
+\contentsline {chapter}{\numberline {8}Dekompozicioni Metodi}{133}%
+\contentsline {section}{\numberline {8.1}Benderova dekompozicija}{133}%
+\contentsline {section}{\numberline {8.2}Dantzig--Wolfe dekompozicija}{146}%
+\contentsline {section}{\numberline {8.3}Zadaci}{158}%
+\contentsline {chapter}{\numberline {9}Metode za pronalaženje dopustivih rješenja}{161}%
+\contentsline {section}{\numberline {9.1}Pohlepni algoritmi}{161}%
+\contentsline {subsection}{\numberline {9.1.1}Algoritmi za pronalaženje MST}{162}%
+\contentsline {subsubsection}{Primov algoritam}{163}%
+\contentsline {subsubsection}{Kruskalov algoritam}{163}%
+\contentsline {subsection}{\numberline {9.1.2}Dajkstrin algoritam}{164}%
+\contentsline {subsection}{\numberline {9.1.3}Frakcioni problem ruksaka}{165}%
+\contentsline {subsection}{\numberline {9.1.4}Pohlepni pristup za rješavanje LCS problema}{166}%
+\contentsline {section}{\numberline {9.2}Aproksimativni algoritmi}{168}%
+\contentsline {subsection}{\numberline {9.2.1}Aproksimativni algoritmi za problem pokrivanja čvorova}{169}%
+\contentsline {subsection}{\numberline {9.2.2}Aproksimativni algoritmi za problem trgovačkog putnika}{171}%
+\contentsline {subsection}{\numberline {9.2.3}Aproksimativni algoritmi za problem binarnog pakovanja}{174}%
+\contentsline {subsection}{\numberline {9.2.4}Aproksimativni algoritmi za problem pokrivanja skupa}{175}%
+\contentsline {subsection}{\numberline {9.2.5}Aproksimativni algoritam za problem najkraćeg nadstringa}{177}%
+\contentsline {section}{\numberline {9.3}Heurističke metode}{178}%
+\contentsline {section}{\numberline {9.4}Metaheurističke metode}{179}%
+\contentsline {subsection}{\numberline {9.4.1}Klasifikacija metaheuristika}{179}%
+\contentsline {subsection}{\numberline {9.4.2}Genetski algoritmi}{181}%
+\contentsline {subsection}{\numberline {9.4.3}Metoda lokalne pretrage}{188}%
+\contentsline {subsection}{\numberline {9.4.4}Metoda promjenljivih okolina}{189}%
+\contentsline {section}{\numberline {9.5}Zadaci}{192}%
+\contentsline {chapter}{\numberline {10}Optimizacioni Rješavači}{197}%
+\contentsline {section}{\numberline {10.1}Optimizacioni rješavač \textsc {Cplex}}{197}%
+\contentsline {section}{\numberline {10.2}PuLP alat}{202}%
+\contentsline {section}{\numberline {10.3}Primjena alata PuLP na rješavanje jednog problema lokacija sa ograničenim kapacitetima}{204}%
+\contentsline {section}{\numberline {10.4}Primjena \textsc {Cplex} rješavača na problem stringova}{206}%
+\contentsline {section}{\numberline {10.5}Zadaci}{210}%
+\contentsline {chapter}{\numberline {A}Metod unutrašnje tačke}{215}%
