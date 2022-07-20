@@ -1,0 +1,17 @@
+This is 8-bit Big BibTeX version 0.99d
+Implementation:  C for Unix
+Release version: 3.71 (04 mar 2019)
+
+Error: cannot open CS file: 88591lat.csf
+The top-level auxiliary file: main.aux
+I found no \bibdata command---while reading file main.aux
+I found no \bibstyle command---while reading file main.aux
+
+Here's how much of BibTeX's memory you used:
+ Cites:                 1 out of 750
+ Fields:                0 out of 5000
+ Hash table:       200000 out of 200000
+ Strings:              82 out of 200000
+ Free string pool:    475 out of 65000
+ Wizard functions:      0 out of 3000
+(There were 2 error messages)

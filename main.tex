@@ -568,7 +568,7 @@ Dakle, na osnovu realnog problema, formirali smo odgovarajući matematički mode
 %) The resulting region of permissible values of (x1, x2), called the feasible region,
 \begin{figure}
     \centering
-    \includegraphics[width=150pt,height=150pt]{fig1.eps}
+    \includegraphics[width=180pt,height=180pt]{fig1.eps}
     \caption{Dopustiv region.}
     \label{fig:fig1}
 \end{figure}
@@ -580,7 +580,7 @@ Ovaj se postupak često naziva \emph{grafičkom metodom za linearno programiranj
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=160pt, height=160pt]{fig2.eps}
+    \includegraphics[width=180pt, height=180pt]{fig2.eps}
     \caption{Dodavanje $f = c$ i nalazak optimuma transliranjem po dopustivom regionu.}
     \label{fig:fig2}
 \end{figure}
@@ -865,7 +865,7 @@ Poliedar $P$ nekog problema LP-a je konveksan skup.
 
  Kako je poliedar konveksan skup, Teorema~\ref{thm:globalopt} nam garantuje da, uz pretpostavku da postoji lokalni minimum (maksimum), onda postoji  i globalni minimum (maksimum), odnosno optimalno rješenje zadanog problema LP-a. 
  
- Nadalje, formalno definišimo ekstremne tačke, vrhove i bazna dopustiva rješenja koja igraju bitnu ulogu u teoriji linearnog programiranja. 
+ Nadalje, formalno definišimo pojmove ekstremne tačke (eng. extreme point), vrha (eng. vertex) i baznog dopustivog rješenja koji igraju bitnu ulogu u teoriji linearnog programiranja. 
 
 
 \begin{definition}
@@ -1361,9 +1361,9 @@ Naredna iteracija metode koristi novu bazu i bazno rješenje $y$ i izvodi (po po
 %\fxnote{i ja se slazem da nam je ova slika malo bez veze}
 
 \section{Tabelarni oblik simpleks metoda}
-\fxnote{Marko: stigao ovdje!}
+ 
 
-Simpleks algoritam podrazumijeva stalnu zamjenu jedne kolone baze $B$ nekim nebaznim vektorom u iterativnoj šemi, u cilju smanjenja trenutne vrijednosti cilje funkcije, dok god je to moguće. 
+Simpleks algoritam podrazumijeva stalnu zamjenu jedne kolone baze $B$ nekim nebaznim vektorom u iterativnoj šemi, u cilju smanjenja trenutne vrijednosti ciljne funkcije, dok god je to moguće. 
 U praktičnom računanju, za simpleks metodu se zbog kompaktnosti zapisa,  umjesto transformisanja standardnog oblika LP-a, obično koristi tabelarni prikaz.
 Generički tabelarni  prikaz simpleks metode se može vidjeti u Tabeli~\ref{tab:simplex_tabelau}. Ovakva tabela se naziva  simpleks tabela.
 
@@ -1491,7 +1491,7 @@ Bazne promjenljive sada lako prepoznajemo iz Tabele~\ref{tab:simpleks_tabela2}, 
  \begin{figure}[!ht]
      \centering
      \includegraphics[width=170pt, height=170pt]{simpleks-region-2.eps}
-     \caption{Region (bazna rješenja označena).}
+     \caption{Region pretrage (bazna rješenja označena).}
      \label{fig:simplex_region} 
  \end{figure}
  
@@ -1607,7 +1607,7 @@ $-x+y=3$ i $x+6y=18$, što je opet ista tačka (prema tome, nema ni poboljšanja
 Ako postoji jedinična podmatrica $I_m$ u gornjoj lijevoj blok matrici simpleks tabele, onda je jasno da je odgovor na prvo pitanje pozitivan. U primjeru~\ref{primjer:simpl1} su linearnom programu, koji sadrži ograničenja $Ax \leq b, x\geq 0$ pridodate izjednačavajuće promjenljive, kako bi se uslovi nejednakosti u ograničenjima transformirasali u potrebne jednakosti.  Na taj način je formirana i jedinična matrica, pa je i bazu jednostavno odrediti.
  
  
- Međutim, šta ako je linearan program direktno dat u kanonskom obliku, tj. ograničenjima oblika $Ax = b, x \geq 0$? Bez smanjenja opštosti, pretpostavimo da je $b \geq 0$. Ako ne postoji očigledno bazno dopustivo rješenje ovog problema, onda uvodimo \emph{vještačke} promjenljive $s = (s_1,\ldots, s_m)$. Nakon toga, rješavamo sljedeći problem LP-a:
+ Međutim, šta ako je linearan program direktno dat u kanonskom obliku, tj. ograničenjima oblika $Ax = b, x \geq 0$? Bez smanjenja opštosti, pretpostavimo da je $b \geq 0$. Ako ne postoji očigledno bazno dopustivo rješenje ovog problema, onda uvodimo \emph{vještačke} promjenljive (eng. auxiliary variables) $s = (s_1,\ldots, s_m)$. Nakon toga, rješavamo sljedeći problem LP-a:
  \begin{align}
       &\sum_{i=1}^m s_i \rightarrow \min_{x,s} \nonumber \\
       & {t.d.}\label{eq:artificial_lp_simplex}\\
@@ -1648,7 +1648,7 @@ Dodajmo vještačke promjenljive na početni problem, uz prethodno množenje ogr
 	&\min x_1 + x_2 - x_3 - x_4 \\
 	&\mbox{t.d.} \\
 	&x_1 + 2x_2 + x_3 + x_4 + s_1 = 7 \\
-	& -2x_1 + x_2 + x_3 + 3x_4 + s_2 = -1 \\
+	& -2x_1 + x_2 + x_3 + 3x_4 + s_2 =  1 \\
 	& x_1,x_2,x_3,x_4, s_1, s_2\geq 0.
 \end{align*}
 Prva faza metoda je rješavanje problema 
@@ -1817,8 +1817,7 @@ y   &  0   &  1    &  \frac{3}{7}    &  0   & \frac{1}{7}   & 5  \\ \hline
 \end{array}
 $$ 
 
-Kako ne postoje koordinate čiji su doprinosi pozitivni, našli smo optimum, koji se dostiže u tački $C=(2,5)$. Prethodna simpleks tabela odgovara Slici~\ref{fig:step-4}, dok sve iteracije u simpleks metodi odgovaraju 
-hodu $A \rightarrow E \rightarrow D \rightarrow C$. 
+Kako ne postoje koordinate čiji su doprinosi pozitivni, našli smo optimum, koji se dostiže u tački $C=(2,5)$. Prethodna simpleks tabela odgovara Slici~\ref{fig:step-4}, dok sve iteracije u simpleks metodi odgovaraju putanji $A \rightarrow E \rightarrow D \rightarrow C$. 
 
 \begin{figure}[H]
 	\centering
@@ -1971,7 +1970,7 @@ Kako su svi koeficijenti doprinosa ($\overline{c}$ varijable) manje od 0, simple
 \end{comment}
  % \newpage
  \chapter{Dualnost \& Dopustivost}\label{chp:dualnost}
- 
+ \fxnote{Marko: dosao sam dovde.}
  %Dualnost je pojam koji je vezan za dobijanje gornjih granica optimalne vrijednosti funkcije cilja. 
  U teoriji linearnog programiranja, ali i teoriji optimizacije uopšte, pod dualnošću podrazumijevamo da se neki problem može posmatrati s dva različita aspekta: kao primalni i kao dualni problem. 
 Preciznije, teorija dualnosti povezuje dva problema linearnog programiranja -- jedan od njih je problem linearnog programiranja koji maksimizuje funkciju cilja, dok je drugi linearan program  koji minimizuje (ne obavezno istu) funkciju cilja.  Na osnovu istih ulaznih podataka, svaki problem LP-a se može navesti u drugom, ekvivalentnom obliku. Ponekad rješavanje dualnog problema LP-a može da bude puno lakše nego rješavanje početnog problema.  Dualnost implicira da svaki problem linearnog programiranja možemo analizirati na dva potpuno različita načina, ali sa ekvivalentnim (optimalnim) rješenjima. 
