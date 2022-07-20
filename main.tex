@@ -284,7 +284,7 @@ Na početku razvoja operacionih istraživanja kao naučne discipline nije bilo s
  \emph{Paradigma modelovanja}. Kod generičkih problema koji su definisani jezikom višeg nivoa, notacija je najčešće vezana za problem koji se razmatra.
  Npr. resursi i aktivnosti nisu nešto što se može definisati u poznatom problemu trgovačkog putnika. U osnovi, svaki od ovih generičkih problema se može opisati nekom od paradigmi modelovanja. Paradigma modelovanja predstavlja skup pravila koja omogućuju da predstavimo probleme višeg nivoa, koristeći strukture nižeg nivoa, kao što su, na primjer, matrice. Kada se primjenjuje ova paradigma, problem se izražava upotrebom matematičke notacije ili algebarskog jezika modelovanja (eng. \emph{Algebraic Modelling Language} (AML)), koji konvertuje matematičku notaciju u matrice koje su proslijeđene sljedećem nivou (\emph{algoritamska rješenja}), koji generiše rješenja. Najpoznatije paradigme modelovanja su sljedeće: \textit{linearno}, \textit{cjelobrojno} i \textit{mješovito-cjelobrojno programiranje}. Postoje i druge paradigme poput modelovanja ograničenjima (eng. \emph{Constraint Programming}) i mrežnog modelovanja (eng. \emph{Network models}). 
 
- \emph{Algoritamska rješenja}.   Algoritam je konačan niz instrukcija čijim izvršavanjem možemo riješiti problem ili njegov dio. Neki algoritmi su opšti, kao, na primjer, sortiranje ili pretraživanje,  dok su drugi vezani uz specifične probleme. Algoritmi pretrage su izuzetno važni u rješavanju problema operacionih istraživanja. Među njima se izdvajaju ``Branch \& X''-tip algoritama koji rješavaju Cjelobrojne, Mješovito-cjelobrojne probleme kao i probleme zasnovane na modelovanju ograničenjima. Specifično, među ove algoritme spadaju Branch \& Bound (za rješavanje problema cjelobrojnog programiranja), Branch \& Cut, Branch \& Price (tj. metod generisanja kolona), itd.
+ \emph{Algoritamska rješenja}.   Algoritam je konačan niz instrukcija čijim izvršavanjem možemo riješiti problem ili njegov dio. Neki algoritmi su opšti, kao, na primjer, sortiranje ili pretraživanje,  dok su drugi vezani uz specifične probleme. Algoritmi pretrage su izuzetno važni u rješavanju problema operacionih istraživanja. Među njima se izdvajaju ,,Branch \& X''-tip algoritama koji rješavaju Cjelobrojne, Mješovito-cjelobrojne probleme kao i probleme zasnovane na modelovanju ograničenjima. Specifično, među ove algoritme spadaju Branch \& Bound (za rješavanje problema cjelobrojnog programiranja), Branch \& Cut, Branch \& Price (tj. metod generisanja kolona), itd.
 
 \emph{Dinamičko programiranje} je još jedna značajna programska paradigma  koja se primjenjuje za rješavanje problema u oblasti operacionih istraživanja. Ova familija algoritama rješava probleme tako što eksploatiše optimalnu pod-strukturu problema. Drugim riječima, polazni problem razbijemo na manje podprobleme, koje rješavamo rekurzivno. U rješavanju glavnog problema, koristimo pronađena optimalna rješenja podproblema, izbjegavajući ponovno rješavanje podproblema koji su već jednom bili rješavani. Ova programska paradigma ima značajnu ulogu u rješavanju grafovskih problema. 
 %Jedan od najpoznatijih takvih algoritama je \emph{Bellman-Ford}-ov algoritam, nazvan po izumitelju  paradigme dinamičkog programiranja, Ričardu Belmanu. 
@@ -331,7 +331,7 @@ Izvještaj koji se predaje poslodavcu, najčešće sadrži osnovno rješenje, al
 OR istraživanje podrazumijevano traži ona rješenja koja su optimalna, ali se optimalnost može odnositi samo za određenu komponentu procesa za koji se sistem razvija. Prema tome, ciljevi koji su formulisani bi trebali da traže optimalna rješenja čitavog procesa koji se optimizuje.  U praksi, ovakav zahtjev nije trivijalan, te se problem svodi na razmatranje dijela inicijalno definisanog problema (ili njegove pojednostavljene varijante). Drugim riječima, analiza bi mogla postati pretjerano glomazna ako bi zadani ciljevi bili previše uopšteni. Umjesto toga, ciljevi bi trebalo da budu specifični, koliko god je to moguće, ali da se pri tome obuhvate glavni ciljevi donosilaca odluka. 
 
 
-Kada su u pitanju  organizacije, jedan od mogućih pristupa zaobilaženja problema pod-optimizacije je korištenje dugoročne maksimizacije profita. Riječ ``dugoročno'' ukazuje da cilj pruža fleksibilnost u razmatranju aktivnosti koje ne donose momentalnu dobit, ali omogućuju krajnji profit. Ovakav cilj je dovoljno specifičan, a ipak i dovoljno širok da obuhvati osnovni cilj   organizacija, dolazak do (zadovoljavajuće) zarade. Zapravo, svi drugi legitimni ciljevi ovakvih organizacija mogu se podvesti u prethodno pomenuti. Međutim, u praksi   organizacije rijetko koriste ovaj pristup. Velik broj   organizacija prilagođava zadovoljavajući profit sa drugim ciljevima, umjesto fokusiranja na maksimizovanje dugoročne zarade. Neki od takvih ciljeva su: izgradnja stabilnog profita, povećanje udjela na tržištu, zadržavanje stabilnosti cijena, povećanje uticaja kompanije, povećanje ponude proizvoda, itd. 
+Kada su u pitanju  organizacije, jedan od mogućih pristupa zaobilaženja problema pod-optimizacije je korištenje dugoročne maksimizacije profita. Riječ ,,dugoročno'' ukazuje da cilj pruža fleksibilnost u razmatranju aktivnosti koje ne donose momentalnu dobit, ali omogućuju krajnji profit. Ovakav cilj je dovoljno specifičan, a ipak i dovoljno širok da obuhvati osnovni cilj   organizacija, dolazak do (zadovoljavajuće) zarade. Zapravo, svi drugi legitimni ciljevi ovakvih organizacija mogu se podvesti u prethodno pomenuti. Međutim, u praksi   organizacije rijetko koriste ovaj pristup. Velik broj   organizacija prilagođava zadovoljavajući profit sa drugim ciljevima, umjesto fokusiranja na maksimizovanje dugoročne zarade. Neki od takvih ciljeva su: izgradnja stabilnog profita, povećanje udjela na tržištu, zadržavanje stabilnosti cijena, povećanje uticaja kompanije, povećanje ponude proizvoda, itd. 
 Dalje, treba napomenuti i dodatna razmatranja, poput društvenih odgovornosti, koje nisu direktno motivisane profitom.  
 
 Postoji nekoliko strana kojih se direktno tiču poslovi firme: (1) vlasnici (dioničari, itd.), koji žele profit;   (2) zaposlenici koji žele stalno zaposlenje, stabilan posao, te razumne plate; (3) kupci koji žele proizvod zadovoljavajućeg kvaliteta po razumnoj cijeni;
@@ -381,7 +381,7 @@ Matematički modeli imaju još jednu prednost u odnosu na jezički opis problema
 model čini most za primjenu moćnih matematičkih tehnika i računara u
 analizi i rješavanju problema. Zapravo, računarski programi za rješavanje raznih tipova modela su  u današnje vrijeme  široko dostupni (na primjer, poznati rješavači kao što su \textsc{Cplex}, Gurobi, Lindo itd.). 
 
-  Postoje i ``zamke'', na koje treba paziti, kada koristimo matematičke modele. Ako želimo da, na kraju, formirani model bude upotrebljiv za rješavanje problema, često  su neophodne aproksimacije i pojednostavljivanja pretpostavki. Stoga se mora paziti da model ostane valjan prikaz problema nakon primjene svih pojednostavljenja. To znači da treba da postoji značajna korelacija između onoga što model predviđa i onoga što bi se zapravo i dobija primjenom modela u stvarnoj situaciji. Da bi se utvrdilo da li je ovaj zahtjev zadovoljen, potrebno je izvršiti značajna ispitivanja i posljedične izmjene u inicijalnom modelu. O ovome ćemo govoriti u narednim sekcijama. U osnovi, provjera valjanosti modela zapravo se provodi tokom svih  faza izrade modela. 
+  Postoje i ,,zamke'', na koje treba paziti, kada koristimo matematičke modele. Ako želimo da, na kraju, formirani model bude upotrebljiv za rješavanje problema, često  su neophodne aproksimacije i pojednostavljivanja pretpostavki. Stoga se mora paziti da model ostane valjan prikaz problema nakon primjene svih pojednostavljenja. To znači da treba da postoji značajna korelacija između onoga što model predviđa i onoga što bi se zapravo i dobija primjenom modela u stvarnoj situaciji. Da bi se utvrdilo da li je ovaj zahtjev zadovoljen, potrebno je izvršiti značajna ispitivanja i posljedične izmjene u inicijalnom modelu. O ovome ćemo govoriti u narednim sekcijama. U osnovi, provjera valjanosti modela zapravo se provodi tokom svih  faza izrade modela. 
   
  U razvoju modela, preporučljiv pristup je da se započne sa pojednostavljenom verzijom, te  evolucionim načinom ići prema složenijim modelima, koji će bolje odražavati  stvarni problem. Ovaj proces obogaćivanja modela se nastavlja dok god je model rješiv. Kompromis, kojeg se pridržavamo, je odnos između preciznosti modela i mogućnosti njegovog rješavanja. Ključni korak u razvoju modela je konstrukcija funkcije cilja.
 On podrazumijeva razvijanje kvantitativne mjere uspješnosti u odnosu na svaki krajnji cilj, koji je identifikovan tokom definisanja problema.
@@ -419,7 +419,7 @@ izvođenje rješenja na osnovu konstruisanog modela. Nekada je to relativno jedn
 Nakon dobijanja rezultata, potrebno ih je analizirati. Postupak analize rezultata ćemo, takođe, objasniti u nastavku udžbenika. 
 
 Uobičajeni zadatak u OR oblasti je potraga za optimalnim (najboljim) rješenjem i razvoj odgovarajućih postupaka koji služe za pronala\-ženje optimalnih rješenja zadatog modela. Treba imati na umu da su ta rješenja optimalna samo za dati model. Kako model ne mora da u potpunosti odgovara stvarnom problemu, ne postoji garancija da će se pronađeno optimalno rješenje modela pokazati i najboljim mogućim rješenjem za stvarni problem koji se razmatra. Međutim, ako je
-model dobro formulisan i testiran, rezultujuće rješenje  bi trebalo da bude prihvatljivo. U praksi se često pokaže da je ``dovoljno dobro'' rješenje čak prihvatljivije nego trošenje nerazumno mnogo vremena za traženje optimalnog.
+model dobro formulisan i testiran, rezultujuće rješenje  bi trebalo da bude prihvatljivo. U praksi se često pokaže da je ,,dovoljno dobro'' rješenje čak prihvatljivije nego trošenje nerazumno mnogo vremena za traženje optimalnog.
 
 Najčešće se prvo postavi lista zahtjeva, koje dati model treba da ispuni, a rješenje, koje zadovoljava te uslove (zahtjeve), najčešće se   uzima kao prihvatljivo. U procesu donošenja odluka, pokušava se što više  koristiti naučni pristup, sa primarnim ciljem pronalaska globalnog optimuma za posmatrani model. Međutim,  uslov da se u razumnom vremenu dođe do modela koji generiše rješenje  zadovoljavajućeg kvaliteta, najčešće ima prednost u odnosu na pronalazak optimuma u nerealno dugom vremenskom roku. Osoba koja rukovodi procesom treba da razmotri troškove procesa razvoja modela, a zatim
 pokuša da maksimizuje korist u oba smjera. Povremeno se koriste   približni (heuristički) pristupi rješavanju problema. Ovakvi pristupi su intuitivno dizajnirani postupci kojima se ne garantuje dobijanje optimalnog rješenja. Posljednjih nekoliko decenija postignut je velik napredak u razvoju efiksanih heurističkih postupaka (uključujući tzv. metaheuristike o kojima će više biti riječi u Glavi~\ref{chp:heuristike}), a njihova upotreba u ovom polju iz dana u dan sve više dobija na značaju.  
@@ -493,7 +493,7 @@ Ostatak ove knjige je fokusiran na  matematičke modele i odgovarajuće metode z
   Razvoj linearnog programiranja počinje sredinom dvadesetog vijeka. Sovjetski matematičar i ekonomista Leonid Kantorovič je tokom Drugog svjetskog rata formulisao problem ekvivalentan problemu linearnog programiranja u cilju boljeg upravljanja resursima i smanjenja vojnih troškova. Neposredno nakon Drugog svjetskog rata, američki matematičar Džordž Dencig razvija čuveni simpleks algoritam, čime se otvara prostor za efikasno rješavanje problema linearnog programiranja. U periodu koji je uslijedio, pa sve do danas, linearno programiranje se koristi kao standardan alat za rješavanje raznih problema u industriji i ekonomiji uopšte, što je dovelo do   milionskih ušteda ogromnom broju kompanija širom svijeta. Stoga se razvoj linearnog programiranja  smatra jednim od najvažnijih naučnih dostignu\-ća XX vijeka.  Napisane su stotine udžbenika o linearnom programiranju kao i hiljade naučnih radova koji ovu paradigmu primjenjuju na probleme iz raznih naučnih i praktičnih domena. 
 
 
-Linearno programiranje koristi matematički model za opisivanje problema. Pridjev ``linearno'' podrazumijeva da su  matematičke funkcije korištene u modelu linearne funkcije. Riječ ``programiranje'' se ne odnosi na računarsko programiranje, već je to sinonim za planiranje i optimizaciju. Dakle, linearno programiranje uključuje planiranje aktivnosti u cilju postizanja optimalnog rezultata, tj. rezultata koji najbolje postiže navedeni cilj (prema matematičkom modelu) među svim mogućim alternativama.  Za rješavanje problema linearnog programiranja razvijeno je dosta efikasnih metoda. Iako jedan od nastarijih,  \emph{simpleks metod} se i danas koristi za rješavanje problema velikih dimenzija te je zaslužan za ogroman uticaj linearnog  programiranja u raznim oblastima nauke i privrede.
+Linearno programiranje koristi matematički model za opisivanje problema. Pridjev ,,linearno'' podrazumijeva da su  matematičke funkcije korištene u modelu linearne funkcije. Riječ ,,programiranje'' se ne odnosi na računarsko programiranje, već je to sinonim za planiranje i optimizaciju. Dakle, linearno programiranje uključuje planiranje aktivnosti u cilju postizanja optimalnog rezultata, tj. rezultata koji najbolje postiže navedeni cilj (prema matematičkom modelu) među svim mogućim alternativama.  Za rješavanje problema linearnog programiranja razvijeno je dosta efikasnih metoda. Iako jedan od nastarijih,  \emph{simpleks metod} se i danas koristi za rješavanje problema velikih dimenzija te je zaslužan za ogroman uticaj linearnog  programiranja u raznim oblastima nauke i privrede.
 
 \begin{primjer}\label{primjer:graficki} U ovom primjeru opisujemo jedan industrijski projekat 
 naziva {WYNDOR--GLASS CO projekat}, ilustrujući kako OR  može da, upotrebom linearnog programiranja, riješi ozbiljne probleme u industriji.
@@ -550,7 +550,7 @@ Dalje, trebalo je procijeniti konstante (parametre)  u modelu; ovo je ostvareno 
     \label{tab:procjene-1}
 \end{table}
 
-U nastavku konstruišemo model problema. Uvedimo promjenljivu $x_1$ za broj serija proizvoda 1 proizvedenog na sedmičnom nivou, te $x_2$ broj serija proizvoda 2 koji je proizveden na sedmičnom nivou. Funkcija cilja je jednaka $f(x_1, x_2) = 3 x_1 + 5 x_2$, dok se rješenja traže pod ograničenjima
+U nastavku konstruišemo model problema. Uvedimo promjenljivu $x_1$ za broj serija proizvoda 1 proizvedenog na sedmičnom nivou, te $x_2$ broj serija proizvoda 2 koji je proizveden na sedmičnom nivou. Funkcija cilja je jednaka $f(x_1, x_2) = 3000 x_1 + 5000 x_2$, dok se rješenja traže pod ograničenjima
 \begin{itemize}
     \item $x_1, x_2 \geq 0$
     \item  $x_1 \leq 4, 2 x_2 \leq 12$
@@ -1114,7 +1114,7 @@ Kada se $z$ minimizuje, ova ograničenja osiguravaju da je $z$ veće ili jednako
 	& \sum_{j \in J} a_{ij} x_j \leq b_i,  \forall i \in I \\
 	& x_j \geq 0, \forall j \in J.
 \end{align*}
-Ovdje je funkcija cilja data kao količnik dvije linearne funkcije. Ovakvi modeli su česta pojava u modelovanju finansijskog planiranja. Objasnimo postupak transformacije frakcione funkcije cilja u linearnu. Pretpostavimo da je $\sum_{j \in J}d_j x_j + \beta \neq 0$ za sve tačke iz dopustivog regiona. Glavni trik u transformaciji je uvođenje nove promjenljive $y_j$ i parametra $t$, tako da je $y_j = t x_j$. U nastavku, pretpostavljamo da je imenilac u funkciji cilja pozitivan. Slično je izvođenje i sa negativnim imeniocem, s tim da imamo znak ``-'' ispred, što će promijeniti znak nejednakosti u ograničenjima krajnjeg modela. Dakle, uvedemo $t = \frac{1}{\sum_{j \in J} d_j x_j + \beta }$. Time dobijamo model
+Ovdje je funkcija cilja data kao količnik dvije linearne funkcije. Ovakvi modeli su česta pojava u modelovanju finansijskog planiranja. Objasnimo postupak transformacije frakcione funkcije cilja u linearnu. Pretpostavimo da je $\sum_{j \in J}d_j x_j + \beta \neq 0$ za sve tačke iz dopustivog regiona. Glavni trik u transformaciji je uvođenje nove promjenljive $y_j$ i parametra $t$, tako da je $y_j = t x_j$. U nastavku, pretpostavljamo da je imenilac u funkciji cilja pozitivan. Slično je izvođenje i sa negativnim imeniocem, s tim da imamo znak ,,-'' ispred, što će promijeniti znak nejednakosti u ograničenjima krajnjeg modela. Dakle, uvedemo $t = \frac{1}{\sum_{j \in J} d_j x_j + \beta }$. Time dobijamo model
 \begin{align*}
 	&\min \sum_{j \in J} c_j x_j t + \alpha t \\
 	& t.d. \nonumber \\
@@ -1166,7 +1166,7 @@ Konačno, dobijamo ekvivalentan LP model
 
 \section{Zadaci}
 \begin{enumerate}
-	\item  Kompanija ``Zdrav ljubimac'' proizvodi dvije vrste hrane za pse: Gricko i NjamNjam. Svako pakovanje Gricko hrane sadrži 2 kg žitarica i 3 kg mesa; svako pakovanje NjamNjam-a sadrži 3 kg žitarica i 1,5 kg mesa. Kompanija vjeruje da može prodati onoliko hrane za pse koliko može napraviti. Gricko se prodaje za   2,80 KM po paketu, a NjamNjam  za 2,00 KM po paketu. Proizvodnja kompanije je ograničena na nekoliko načina. Prvo, kompanija može kupiti samo do 400.000 kg žitarica svakog mjeseca za 0,20 KM po kg. Dalje, kompanija može
+	\item  Kompanija ,,Zdrav ljubimac'' proizvodi dvije vrste hrane za pse: Gricko i NjamNjam. Svako pakovanje Gricko hrane sadrži 2 kg žitarica i 3 kg mesa; svako pakovanje NjamNjam-a sadrži 3 kg žitarica i 1,5 kg mesa. Kompanija vjeruje da može prodati onoliko hrane za pse koliko može napraviti. Gricko se prodaje za   2,80 KM po paketu, a NjamNjam  za 2,00 KM po paketu. Proizvodnja kompanije je ograničena na nekoliko načina. Prvo, kompanija može kupiti samo do 400.000 kg žitarica svakog mjeseca za 0,20 KM po kg. Dalje, kompanija može
 	kupiti samo do 300.000 kg mesa mjesečno za 0,50 KM po kg. Osim toga, za proizvodnju hrane Gricko  potrebna je posebna mašina, a proizvodni kapacitet ove mašine je 90.000 paketa mjesečno. Varijabilni troškovi miješanja i pakovanja hrane za pse iznose 0,25 KM po pakovanju za hranu Gricko i 0,20 KM po paketu za hranu NjamNjam.  
 	Pretpostavimo da ste vođa odjela hrane za pse  ove kompanije. Na koji način biste  upravljali odjelom proizvodnje kako bi maksimizovali profit? 
 	\item %LP_zadaci_za_knjigu.pdf ==> pogledati 
@@ -1411,7 +1411,7 @@ Transformišimo standardni oblik problema LP-a
     & Ax \leq b \\
     & x \geq 0\\
 \end{align*}
-na kanonski oblik pogodan simpleks metodi $(A {x} = b)$ dodavanjem ``izjednačavajućih'' promjenljivih $s$ na sljedeći način:
+na kanonski oblik pogodan simpleks metodi $(A {x} = b)$ dodavanjem ,,izjednačavajućih'' promjenljivih $s$ na sljedeći način:
 \begin{align}
     & c^T x \rightarrow \max \\
     & Ax + s =  b \\
@@ -1728,7 +1728,7 @@ Pošto su svi doprinosi svi veći od 0,  našli smo optimalnu simpleks tabelu.  
  
  \section{Geometrija i simpleks metod}
  
-Sljedeći primjer demonstrira odgovarajuće geometrijske korake (``šetanje'') po dopustivom regionu, u skladu sa iteracijama simpleks metode.   %pratiti https://faculty.math.illinois.edu/~mlavrov/docs/482-fall-2019/lecture5.pdf (strana 2 i 3) 
+Sljedeći primjer demonstrira odgovarajuće geometrijske korake (,,šetanje'') po dopustivom regionu, u skladu sa iteracijama simpleks metode.   %pratiti https://faculty.math.illinois.edu/~mlavrov/docs/482-fall-2019/lecture5.pdf (strana 2 i 3) 
  Neka je dat problem:
  \begin{align*}
  	&\max 2x + 3y \\
@@ -2095,7 +2095,7 @@ Dalje, važi i $c^T x = ((c^*)^T + (y^*)^T A ) x$, odnosno     $ c = A^T y^* + c
  
     
 \end{proof} 
-Primijetimo da koeficijenti $y^*$ posljednje vrste završne simpleks tabele odgovaraju  ``izjednačavajućim''   promjenljivima i one nam daju rješenje problema  ($D$).  
+Primijetimo da koeficijenti $y^*$ posljednje vrste završne simpleks tabele odgovaraju  ,,izjednačavajućim''   promjenljivima i one nam daju rješenje problema  ($D$).  
 
 \begin{primjer} Moguće je da problem ($P$) i njegov   dual ($D$) nemaju dopustivo rješenje. Pogledajte sljedeći primjer:
 	\end{primjer}
@@ -2481,7 +2481,7 @@ $$
 \end{aligned}$$
 \end{enumerate}
 %\newpage
-\chapter{Cjelobrojno Programiranje}\label{chp:ilp}
+\chapter{Cjelobrojno linearno programiranje}\label{chp:ilp}
 
 %https://www.google.com/url?sa=t&source=web&rct=j&url=https://web.mit.edu/15.053/www/AMP-Chapter-09.pdf&ved=2ahUKEwiN0cef_f7xAhU0CRAIHWLqCw0QFjAfegQILBAC&usg=AOvVaw1cQCbZJQbc55Z0VLPue2ul
 U mnogim realnim problemima, promjenljive odluke ne dobijaju neprekidne, već isključivo diskretne vrijednosti. Npr. kod problema dodjele poslova određenim mašinama, zahtijevaju se promjenljive koje su diskretnog tipa, kojima se definiše koji posao će biti dodijeljen kojoj mašini. U slučaju da su u nekom modelu sve promjenljive odluke cjelobrojne, tada kažemo da je riječ o problemu \emph{cjelobrojnog programiranja} (eng. \emph{Integer programming}). 
@@ -2493,12 +2493,12 @@ U ovoj glavi ćemo analizirati koncepte   \emph{cjelobrojnog linearnog programir
     & x_i \in \mathbb{Z}, \mbox{ za sve } i. \label{ilp-formulation}
 \end{align}
 
-Problemi cjelobrojnog linearnog programiranja se veoma često sreću i u teoriji i u praksi, te je, samim tim, važno poznavati i tehnike rješavanje ovih problema. Sa druge strane, pokazuje se da je rješavanje ovih problema u velikom broju slučajeva značajno teže nego rješavanje klasičnih problema linearnog programiranja. U narednom odjeljku ćemo modelovati nekoliko poznatih optimizationih problema pomoću koncepta cjelobrojnog linearnog programiranja. U Odjeljku~\ref{sec:transformILP} ćemo prikazati neke korisne tehnike transformacije nekih nelinearnih izraza u ILP-u. U Odjeljku~\ref{sec:kompleksnostILP} ćemo pokazati da je rješavanje ILP-a NP težak problem. Tehnike rješavanja ILP-a ćemo detaljnije razmatrati u Glavi~\ref{chap:rjesavanjeILP}.
+Problemi cjelobrojnog linearnog programiranja se veoma često sreću i u teoriji i u praksi, te je, samim tim, važno poznavati i tehnike rješavanje ovih problema. Sa druge strane, pokazuje se da je rješavanje ovih problema u velikom broju slučajeva značajno teže nego rješavanje klasičnih problema linearnog programiranja. U narednom odjeljku ćemo modelovati nekoliko poznatih optimizationih problema pomoću koncepta cjelobrojnog linearnog programiranja. U Odjeljku~\ref{sec:transformILP} ćemo prikazati neke korisne tehnike transformacije nekih nelinearnih izraza u IP kako bi se dobio ekvivalentan ILP model. U Odjeljku~\ref{sec:kompleksnostILP} ćemo pokazati da je rješavanje ILP-a NP težak problem. Tehnike rješavanja ILP-a ćemo detaljnije razmatrati u Glavi~\ref{chap:rjesavanjeILP}.
 \section{Modelovanje nekih problema cjelobrojnog linearnog programiranja}
 
 
 \begin{primjer}
-\emph{Cjelobrojni problem ruksaka.} Neka je dato $n$ proizvoda i neka je težina $i$-tog proizvoda jednaka $w_i$, dok je vrijednost $i$-tog proizvoda jednaka $c_i$, $i=1,\ldots,n$. Koje od proizvoda treba da stavimo u ruksak , ?iji je kapacitet $C>0$, tako da   vrijednost proizvoda u ruksaku bude maksimalna, poštujući  kapacitet  ruksaka? 
+\emph{Cjelobrojni problem jednodimenzionalnog ruksaka.} Neka je dato $n$ proizvoda i neka je težina $i$-tog proizvoda jednaka $w_i$, dok je vrijednost $i$-tog proizvoda jednaka $c_i$, $i=1,\ldots,n$. Koje od proizvoda treba da stavimo u ruksak , čija je maksimalna težina (kapacitet) $C>0$, tako da   vrijednost proizvoda u ruksaku bude maksimalna, poštujući  kapacitet  ruksaka? 
 
 \emph{Rješenje}. Definišimo promjenljive odluke $x_i$, koje dobijaju vrijednost 1 ako  $i$-ti proizvod uključujemo u ruksak, odnosno, vrijednost 0, ako $i$-ti proizvod nije uključen u ruksak, za $i=1,\ldots,n$. Ograničenje kapaciteta ruksaka se modeluje sa $\sum_{i=1}^n w_i x_i \leq C$. Funkcija cilja maksimizuje ukupnu vrijednost odabranih proizvoda i modeluje se uz pomoć linearne kombinacije $f(x) = \sum_{i=1}^n c_i x_i$. 
 \end{primjer}
@@ -2506,7 +2506,7 @@ Problemi cjelobrojnog linearnog programiranja se veoma često sreću i u teoriji
 \emph{Jedan problem rasporeda radnika u dežurstvu}. Uprava bolnice želi da napravi raspored dežurstva po sedmičnim noćnim smjenama za svoje medicinske sestre.  Potrebno je da broj medicinskih sestara u noćnoj smjeni za $j$--ti dan bude barem (cio broj) $d_j, j = 1,\ldots 7$. Svaka
 medicinska sestra radi pet dana zaredom u noćnoj smjeni. 
 
-\emph{Pronaći minimalan broj medicinskih sestara koje bolnica treba da zaposli, da bi se takve smjene mogle napraviti.}
+\emph{Pronaći minimalan broj medicinskih sestara koje bolnica treba da zaposli, da bi se takve smjene mogle organizovati.}
 
 \emph{Rješenje}. Označimo sa $x_i$ broj medicinskih sestara koje svoju noćnu smjenu započinju na $i$-ti dan. Potrebno je minimizovati funkciju 
 $f = \sum_{i=1}^7 x_i$ pod uslovima da su ispunjeni zahtjevi za brojem medicinskih sestara, što je modelovano sa:
@@ -2523,7 +2523,8 @@ uz nenegativne uslove
 \begin{itemize}
 	\item $x_i \geq 0, x_i \in \mathbb{Z}$, $j=1,\ldots,7.$
 \end{itemize}
-Primijetimo da su u ovom problemu promjenljive  cjelobrojne. %Ovaj model pripada paradigmi cjelobrojnog linearnog programiranja.
+Primijetimo da su u ovom problemu promjenljive  cjelobrojne. Primijetimo da sve varijable figurišu u tačno pet ograničenja., što odgovara uslovu da svaka od sestara rati pet dana zaredom u noćnoj smjeni.
+%Ovaj model pripada paradigmi cjelobrojnog linearnog programiranja.
 \end{primjer}
 \begin{primjer}
 \emph{Problem oglašavanja}. Kompanija želi da se oglašava u medijima. Postoji nekoliko načina oglašavanja:  televizijsko, novinsko i radio oglašavanje. Cijena svakog medija sa pokrivenošću publike navedena je u Tabeli~\ref{tab:tab_model_advertising}.
@@ -2545,7 +2546,7 @@ Novine ograničavaju broj oglasa za kompanije na deset (po sedmici). Štaviše, 
 \emph{Koliko oglasa treba zakupiti za svaku od tri vrste medija sa ciljem povećanja ukupnog broja gledalaca?}
 
 \emph{Rješenje}.   Označimo sa $x_1$ broj oglasa na televiziji, sa $x_2$ broj oglasa u novinama i $x_3$ broj oglasa na radiju. Potrebno je maksimizovati   uspješnost oglašavanja, tj. funkciju 
-$f(x) = 10 x_1 + 4 x_2 + 1.8 x_3.$ Uslovi pod kojima tražimo rješenja su modelovani na sljedeći način:
+$f(x) = 10000 x_1 + 4000 x_2 + 18000 x_3.$ Uslovi pod kojima tražimo rješenja su modelovani na sljedeći način:
 \begin{itemize}
 	\item $2000 x_1 + 600 x_2 + 300 x_3 \leq 18200$ (uslov za cijenu);
 	\item  $ x_2 \leq 10$ (limit na broj reklama u novinama);
@@ -2554,8 +2555,8 @@ $f(x) = 10 x_1 + 4 x_2 + 1.8 x_3.$ Uslovi pod kojima tražimo rješenja su model
 	\item $x_i \geq 0, x_i \in \mathbb{Z}, i=1,2,3$.
 \end{itemize}
 
-U ovom problemu možemo još primijetiti da u funkciji cilja   
-nisu korišteni egzaktni koeficijenti (za broj gledalaca) već brojevi koji su proporcionalni nekoj vrijednosti (1000). Takve transformacije su invarijantne i ne utiču na potragu za optimalnim rješenjem  problema, a doprinose većoj čitljivosti modela.
+%U ovom problemu možemo još primijetiti da u funkciji cilja   
+%nisu korišteni egzaktni koeficijenti (za broj gledalaca) već brojevi koji su proporcionalni nekoj vrijednosti (1000). Takve transformacije su invarijantne i ne utiču na potragu za optimalnim rješenjem  problema, a doprinose većoj čitljivosti modela.
 \end{primjer}
 \begin{primjer}
 
@@ -2587,20 +2588,22 @@ Prijemnici prepoznaju samo signale čija je jačina najmanje   $d>0$. Nadalje, n
 	\item $J$: skup oblasti;
 	\item $\sigma_{ij}$ : indikator nivoa signala antene   smještene u mjestu $i \in I$ u oblasti $j \in J$;
 	\item $d$: parametar koji označava minimalnu jačinu signala;
-	\item $N$: parametar koji označava maksimalni broj signala iznad granice koju prijemnik može da prepozna (u našoj instanci imamo da je $N=1$);
+	\item $N$: parametar koji označava maksimalni broj signala iznad granice koju prijemnik u jednoj oblasti može da prepozna (u našoj instanci imamo da je $N=1$);
 	\item $x_i$: binarna promjenljiva koja uzima vrijednost 1 ako je antena smještena u mjestu $i\in I$, 0 inače;
 	\item  $z_j$ : binarna promjenljiva koja uzima vrijednost 1 ako je oblast $j \in J$ pokrivena signalom, 0 inače;
-	\item $M_j$: dovoljno veliki parametar, npr. za svako mjesto $j \in J$, $M_j= |\{ i \in I \mid \sigma_{ij} \geq d\}|$.
+	\item $M_j$: dovoljno veliki parametar, npr. za svako mjesto $j \in J$, $M_j= |\{ i \in I \mid \sigma_{ij} \geq d\}|$. Primijetimo da $M_j$ označava gornje ograničenje za broj mijesta iz kojih se dovoljno jak signal može poslati predajniku u oblasti $j\in J$. 
 \end{itemize}
 Formulišimo sada (cjelobrojni) linearni program ovog problema. 
 Funkcija cilja je data sa:
-$$ f(x) = \sum_{j \in J} z_j \rightarrow \min $$
-pod sljedećim uslovima 
-\begin{itemize}
-	\item  $ \sum_{\{i \in I \mid \sigma_{ij} \geq d \}} x_i \geq z_i, \forall j \in J $ (barem jedna antena treba da bude uključena da bi se oblast pokrila signalom)
-	\item $ \sum_{\{i \in I \mid \sigma_{ij} \geq d \}} x_i  \leq N + M_j( 1 - z_j), \forall j \in J $ (maksimalan broj signala koje prijemnici mogu obraditi)  
-	\item $x_i, z_j \in\{0, 1\}, \forall i \in I, \forall j \in J$
-\end{itemize}
+$$ f(x) = \min \sum_{j \in J} z_j $$
+tako da
+\begin{enumerate}
+	\item[(1)]  $ \sum_{\{i \in I \mid \sigma_{ij} \geq d \}} x_i \geq z_j, \forall j \in J $. Ovaj uslov zahtjeva da   ukoliko je oblast pokrivena signalom, tj. ako je $z_j = 1$, tada mora postojati neko mjesto $i \in I$ koji ima antenu jačine barem $d$ koja pokriva tu oblast. U slučaju da je $z_j=0$, ovo ograničenje je redundantno. 
+	
+	\item[(2)] $ \sum_{\{i \in I \mid \sigma_{ij} \geq d \}} x_i  \leq N + M_j( 1 - z_j), \forall j \in J $. Ovo ograničenje govori o maksimalnom broju signala koje prijemnici u oblasti $j\in J$ mogu obraditi. Opširnije, ako je objast $j\in J$ pokrivena, tj. $z_j=1$, onda   svakako ne može više od $N$ (dovoljno jakih) signala da bude prihvaćeno predajnikom u oblasti $j \in J$. U slučaju da je $z_j = 0$, ovo ograničenje postaje redundantno, jer je ova oblast isključena iz rješenja, pa nas broj signala koji se šalje predajniku u toj oblasti ne tiče. Ovo je takozvano big-M ograničenje, i sa njim ćemo se pozabaviti u narednom sekcijama. 
+	  
+	\item[(3)] $x_i, z_j \in\{0, 1\}, \forall i \in I, \forall j \in J$: Ovo su logičke varijable, čija je svrha prethodno objašnjena. 
+\end{enumerate}
 %\printbibliography[heading=subbibliography,notkeyword=this]
 \begin{primjer}
 \emph{Jedan lokacijski problem}. Lokacijski problemi se često postavljaju na sljedeći način: pretpostavimo da postoji $n$ postrojenja (prodavnica)  i  $m$ kupaca. Dva pitanja koja treba da budu obuhvaćena rješenjem su:
@@ -2612,22 +2615,33 @@ Prije nego što modelujemo ovaj problem, uvedimo sljedeću notaciju.
 \begin{itemize}
 	\item  $f_{i}$: označava (fiksni) trošak otvaranja postrojenja $i$, za  $ i = 1,  \ldots, n$;
 	\item $c_{ij}$: označava troškove zadovoljenja potražnje  kupca $j$ od strane postrojenja $i$ (cijena dostave, cijena proizvoda,  itd.), $i = 1, \ldots, n$, $j = 1,  \ldots, m$;
-	\item $d_{j}$: označava potražnju kupca $j$, $j = 1, \ldots, m$;
+	\item $d_{j}$: označava ukupnu potražnju kupca $j$, $j = 1, \ldots, m$;
 	\item $u_{i}$: označava maksimalnu količinu proizvoda (kapacitet zadovoljenja) koji se mogu nabaviti u postrojenju $i$, tj. $u_{i}$ je kapacitet postrojenja $i$.
 \end{itemize}
+Definišimo sljedeće varijable odlučivanja:
 
-\emph{Rješenje}. Funkcija cilja ima sljedeći oblik:
-$$ f(x) = \sum_{i=1}^n f_i x_i  + \sum_{i,j} c_{ij} y_{ij} d_j,$$
-gdje je
 \begin{itemize}
-	\item $x_i$: binarna promjenljiva, koja označava da li je (1) ili nije (0) otvoreno postrojenje $i$;
-	\item $y_{ij} \in \mathbb{R}^+$ realna promjenljiva, koja označava dio potražnje $d_j$ kupca $j$ koja je ostvarena u prodavnici $i$.
+	\item $x_i \in \{0,1\}$, gdje je $x_i = 1$ ak je postrojenje $i$ otvoreno, a inače 0.
+	\item $y_{ij} \in \mathbb{R}^+$  označava dio ukupne potražnje $d_j$ kupca $j$ koja je ispunjena u prodavnici $i$.  
 \end{itemize}
-Ograničenja ovog modela su sljedeća:
-\begin{itemize}
-	\item $\sum_{i} y_{ij} = 1, \forall j\in\{1,\ldots,m\}$ (zahtjevi kupaca treba da se ispune);
-	\item $\sum_{j} d_j y_{ij} \leq u_i x_i, \forall i \in \{1,\ldots,n\}$.
-\end{itemize}
+
+\emph{Rješenje}. Funkcija cilja problema je data sa:
+\begin{align}
+ \min f = \sum_{i=1}^n f_i x_i  + \sum_{i,j} c_{ij} y_{ij} d_j, \label{const:location-objective}
+ \end{align}
+pod uslovima
+ 
+\begin{align}
+	  &\sum_{i} y_{ij} = 1, \forall j\in\{1,\ldots,m\}\label{const:location-1} \\
+	  &~\sum_{j} d_j y_{ij} \leq u_i x_i, \forall i \in \{1,\ldots,n\}\label{const:location-2}.
+\end{align}
+
+Funkcija cilja (\ref{const:location-objective}) minimizuje ukupnu cijenu zadovojenja  (dijela) potreba kupaca u postrojenjima i cijene otvaranja postrojenja. 
+
+Ograničenje (\ref{const:location-1}) daje da su potrebe svakog kupca zadovoljene.  
+Ograničenje (\ref{const:location-2}) ograničava da, ukoliko je postrojenje $i$ otovoreno, ono može da ponudi kupcima onoliko koliko mu njegov kapacitet dozvoljava.  
+
+
 Ovaj model pripada modelu \emph{mješovitnog linearnog programiranja}, gdje u istom modelu postoje i cjelobrojne i neprekidne promjenljive.
 \end{primjer}
 
@@ -2640,18 +2654,19 @@ Sljedeći primjer spada u modele \emph{binarnog linearnog programiranja}.
 
 \begin{align*}
 	&\sum_{i=1}^n f_i x_i  + \sum_{i,j} c_{ij} z_{ij} d_j \rightarrow \min\\
-	& s.t. \nonumber \\
+	& t.d. \nonumber \\
 	& \sum_{i} z_{ij} = 1, \forall j\in\{1,\ldots,m\} \\
 	& \sum_{j} d_j z_{ij} \leq M x_i, \forall i \in \{1,\ldots,n\} \\
 	& x_i, z_{ij} \in \{0,1\} \mbox{ za } i = 1, \ldots, n, j = 1,  \ldots, m.
 \end{align*}
-Vrijednost $M>0$ je konstanta koja uzima neku veliku vrijednost (zbir količine potražnji svih kupaca). Međutim, u praksi se često izbjegava upotreba $M$-konstante, te se tako ovo ograničenje zamjenjuje sa $ z_{ij} \leq x_i$ 
-za $ i = 1, \ldots, n, j = 1,  \ldots, m$. Ovakav pristup osigurava bolje performanse, jer se generišu preciznije linearne relaksacije o kojima će biti riječi u narednim sekcijama.
+Vrijednost $M>0$ je konstanta koja uzima neku veliku vrijednost (npr. zbir količine potražnji svih kupaca). Međutim, u praksi se često  izbjegava upotreba $M$-konstante, te se tako 
+ ovo ograničenje zamjenjuje sa $ z_{ij} \leq x_i$ 
+za $ i = 1, \ldots, n, j = 1,  \ldots, m$. % Ovakav pristup osigurava bolje performanse, jer se generišu preciznije linearne relaksacije o kojima će biti riječi u narednim sekcijama.
 \end{primjer}
 \begin{primjer}
-\emph{Problem rasporeda}. Čitava klasa problema koja se naziva sekvenciranje, raspoređivanje i usmjeravanje u osnovi su predstavljeni modelima cjelobrojnog programiranja. U ove probleme, na primjer, spadaju problemi rasporeda časova ili rasporeda ispita na fakultetima. Kod ovih problema postoje ograničenja u pogledu broja i kapaciteta učionica dostupnih u bilo kom trenutku, dostupnosti predavača na fakultetu u određeno vrijeme i preferencijama studenata za određene rasporede. Kriterijumi za određivanje funkcije cilja mogu da budu različiti. Kod rasporeda polaganja ispita, može se minimizovati broj potrebnih termina za održavanje ispita, uz osnovni uslov da dva ispita moraju biti u različitim terminima ako postoji barem jedan student koji planira da polaže oba ispita.  Kod jednog problema rasporeda časova, raspoređivanje studenata u  učionice se može vršiti na  način da se minimizuje broj učenika koji ne mogu pohađati nastavu iz predmeta koji je njihov prvi izbor, u odnosu na ostale izbore.
+\emph{Problem rasporeda} (eng. scheduling problems). Čitava klasa problema koja se naziva sekvenciranje, raspoređivanje i usmjeravanje u osnovi su predstavljeni modelima cjelobrojnog programiranja. U ove probleme, na primjer, spadaju problemi rasporeda časova ili rasporeda ispita na fakultetima. Kod ovih problema postoje ograničenja u pogledu broja i kapaciteta učionica dostupnih u bilo kom trenutku, dostupnosti predavača na fakultetu u određeno vrijeme i preferencijama studenata za određene rasporede. Kriterijumi za određivanje funkcije cilja mogu da budu različiti. Kod rasporeda polaganja ispita, može se minimizovati broj potrebnih termina za održavanje ispita, uz osnovni uslov da dva ispita moraju biti u različitim terminima ako postoji barem jedan student koji planira da polaže oba ispita.  Kod jednog problema rasporeda časova, raspoređivanje studenata u  učionice se može vršiti na  način da se minimizuje broj učenika koji ne mogu pohađati nastavu iz predmeta koji je njihov prvi izbor, u odnosu na ostale izbore.
  U tom slučaju, jasno je da imamo promjenljivu $X_{i,j,n}$ za   $i$-tog učenika 
-koji pohađa $j$-to predavanje tokom $n$-tog vremenskog perioda (recimo, vrijeme je diskretizovano po 45 min/čas) -- koja je jednaka 1 ako se student uklapa u takav raspored, inače 0. 
+koji pohađa $j$-to predavanje tokom $n$-tog vremenskog perioda (recimo, vr	ijeme je diskretizovano po 45 min/čas) -- koja je jednaka 1 ako se student uklapa u takav raspored, inače 0. 
 \end{primjer}
 Posmatrajmo ipak malo specifičniji problem u odnosu na najopštiji (koji je dosta težak i za modeovanje, a kamoli za rješavanje). 
 Razmotrimo raspoređivanje osoblja zaduženog za upravljanje letom aviona. 
@@ -2671,15 +2686,18 @@ Neka je $c_j$ cijena zaduživanja neke posade ruti $j$. Ovdje $a_{ij}$ definišu
 
 Model ovakvog problema je dat sa 
 \begin{align}
-    &\min \sum_{i=1}^n c_j x_j \nonumber\\
+    &\min \sum_{j=1}^n c_j x_j \nonumber\\
+    &t.d. \nonumber \\
     & \sum_{j=1}^n a_{ij} x_j \geq 1, \forall i \in \{1,\ldots, n\} \label{ineq:set_cover} \\
     %&   a_{ij} \geq  x_j, \forall j \in \{1,\ldots, m\}  \\
     & x_i \in \{0, 1 \}, \forall i \in \{1, \ldots, n\} \\
     & a_{ij} \in \{0, 1\}, \forall i \in \{1, \ldots, n\}, j \in\{1,\ldots, m\} \nonumber
 \end{align}
-Ograničenje (\ref{ineq:set_cover}) je poznato ograničenje koje se javlja u problemu pokrivanju  skupa (eng. \emph{set covering problem}).
+
+Ograničenje (\ref{ineq:set_cover}) nam govori da za svaki let $i$ mora postojati barem jedna ruta $j$ za koju je barem jedna posada zadužena. Svakako,  više letova može da bude pridruženo jednoj ruti, pa je otuda suma na lijevoj strani veća ili jednaka 1. 
+  %Ograničenje (\ref{ineq:set_cover}) je poznato ograničenje koje se javlja u problemu pokrivanju  skupa (eng. \emph{set covering problem}).
 \begin{primjer}
-\emph{Problem trgovačkog putnika} (eng. \emph{Traveling Salesman Problem - TSP)}. Neka je dato $n$ gradova. Krenuvši od svog mjesta, putnik želi da posjeti ostalih $n-1$ gradova pod minimalnim troškovima i da se na kraju vrati na isto mjesto. U suštini, ovo je problem grafovske prirode, gdje je ulaz (bez smanjenja opštosti) kompletan težinski graf, a potrebno je naći Hamiltonovu konturu minimalne težine u datom grafu. Pod težinom konture se podrazumijeva zbir težina njenih grana. 
+\emph{Problem trgovačkog putnika} (eng.  {Traveling Salesman Problem -- TSP)}. Neka je dato $n$ gradova. Krenuvši od svog mjesta, putnik želi da posjeti ostalih $n-1$ gradova pod minimalnim troškovima i da se na kraju vrati u početni grad. U suštini, ovo je problem grafovske prirode, gdje je ulaz (bez smanjenja opštosti) kompletan težinski graf, a potrebno je naći Hamiltonovu konturu minimalne težine u datom grafu. Pod težinom konture se podrazumijeva zbir težina njenih grana. 
 \end{primjer}
 \emph{Rješenje}. Označimo težinu grane od grada $i$ do grada $j$ sa $c_{ij}$.  Definišimo (binarne) promjenljive 
 $$x_{ij} = \begin{cases}
@@ -2691,17 +2709,17 @@ $$  \sum_{i=1}^n x_{ij} = 1, \forall j =1,\ldots, n,$$
 što znači da se iz tačno jednog grada dolazi u svaki grad $j$, dok sličnim jednakostima nametnemo da se iz grada $j$ odlazi u tačno jedan drugi grad sa:
 
 $$  \sum_{j=1}^n x_{ij} = 1, \forall i =1,\ldots, n$$ 
- uz uslove $x_{ij}\geq 0$. Primijetimo sljedeće, ovakvi uslovi ne sprečavaju pojavu rješenja koja predstavljaju uniju disjunktnih podruta, što nije dopustivo rješenje za TSP. Ako pretpostavimo da je rješenje dato u obliku podruta $R_1, \ldots, R_k$, gdje je $R_i = \{ v_{i_1}, \ldots, v_{i_k} \}$, onda se pojava podruta  može izbjeći  dodavanjem dodatnih ograničenja u početni model problema. Tako problem sukcesivno rješavamo dodavanjem ograničenja, sve dok ne dobijemo rješenje koje nije sastavljeno od više od jedne rute. Recimo, eliminacija pojave podrute $R_2$ (u odnosu na podrutu $R_1$) se vrši dodavanjem ograničenja
- $$ \sum_{l=1}^{1_k}\sum_{t=1}^{2_k} x_{1_l, 2_t} \geq 1.$$
- U najgorem slučaju, potrebno je dodati $2^n-1$ ovakvih ograničenja da bi se dobilo dopustivo rješenje. 
- Generalno ograničenje koje služi za eliminaciju podtura u modelu TSP-a se može dodati sa:
+ uz uslove $x_{ij}\geq 0$. Primijetimo sljedeće, ovakvi uslovi ne sprečavaju pojavu rješenja koja predstavljaju uniju disjunktnih podruta, što nije dopustivo rješenje za TSP. Ako pretpostavimo da je rješenje dato u obliku podruta $R_1, \ldots, R_k$, gdje je $R_i = \{ v_{i_1}, \ldots, v_{i_{p_i}} \}$, onda se pojava podruta  može izbjeći  dodavanjem dodatnih ograničenja u početni model problema. Tako problem sukcesivno rješavamo dodavanjem ograničenja, sve dok ne dobijemo rješenje koje je u stvari jedna ruta koja obuhvata sve gradove. Recimo, eliminacija pojave podrute $R_2$ (u odnosu na podrutu $R_1$) se vrši dodavanjem ograničenja
+ $$ \sum_{l=1}^{ {p_1}}\sum_{t=1}^{ {p_2}} x_{1_l, 2_t} \geq 1.$$
+ U najgorem slučaju, potrebno je dodati $2^n-1$ ovakvih ograničenja prije nego se dobije dopustivo rješenje. 
+ Generalno ograničenje koje služi za eliminaciju podruta u modelu TSP-a se može dodati sa:
  \begin{align}
  	  \sum_{i \in S} \sum_{j \notin S} x_{ij} \geq 2, \forall S \subset [n].
  \end{align}
   %Postoje i druga ograničenja koja mogu da se dodaju za eliminaciju podruta, bez gore pomenutog iterativnog procesa, ali o njima će biti riječi u narednim sekcijama. 
  
  \section{Tehnike transformacija nekih nelinearnih ograničenja u  ILP-u}\label{sec:transformILP}
- 
+ \fxnote{Marko: stigao sa dovde. }
  U prethodnom odjeljku je objašnjeno modelovanje nekih problema pomoću cjelobrojnog linearnog programiranja. Kao što se može vidjeti, modeli nekih problema pravolinijski slijede iz definicije samog problema, dok je za modelovanje nekih drugih, kompleksnijih problema, potrebno uključiti veći broj dodatnih promjenljivih i ograničenja. U ovom odjeljku ćemo prikazati neke standardne transformacije i tehnike, kojima različite (nelinearne) izraze transformišemo i modelujemo ih pomoću cjelobrojnih promjenljivih i linearnih ograničenja.
  %\emph{Binarne promjenljive.} 
  
@@ -2709,7 +2727,7 @@ $$  \sum_{j=1}^n x_{ij} = 1, \forall i =1,\ldots, n$$
  
 \subsection{Prepoznavanje binarnih promjenljivih}
  Pretpostavimo da je potrebno uključiti sljedeće aktivnosti: (1) izgraditi novo postrojenje ili
-(2) pokrenuti reklamnu kampanju ili (3) razviti novi proizvod. Jasno je da su u pitanju logičke odluke, odnosno odluke tipa ``da ili ne'', pa ih, prema tome, modelujemo   uvođenjem  binarnih promjenljivih $x_i \in \{0, 1 \}$, $i=1,2,3$. Često se nameće uslov da se najviše jedna od ovih odluka izvrši, što se modeluje izrazom $\sum_{i=1}^3 x_i \leq 1$. Ovo ograničenje se obično naziva \emph{ograničenjem sa višestrukim izborom} (eng. \emph{multiple choice constraint}), jer se njime ograničava izbor odluka na najviše jednu od, u ovom slučaju, tri dostupne alternative. Ukoliko se zahtijeva da se tačno jedna od ovih odluka izvrši, onda se znak nejednakosti u posljednjem izrazu mijenja znakom jednakosti, odnosno, ograničenje postaje $\sum_{i=1}^3 x_i = 1$.
+(2) pokrenuti reklamnu kampanju ili (3) razviti novi proizvod. Jasno je da su u pitanju logičke odluke, odnosno odluke tipa ,,da ili ne'', pa ih, prema tome, modelujemo   uvođenjem  binarnih promjenljivih $x_i \in \{0, 1 \}$, $i=1,2,3$. Često se nameće uslov da se najviše jedna od ovih odluka izvrši, što se modeluje izrazom $\sum_{i=1}^3 x_i \leq 1$. Ovo ograničenje se obično naziva \emph{ograničenjem sa višestrukim izborom} (eng. \emph{multiple choice constraint}), jer se njime ograničava izbor odluka na najviše jednu od, u ovom slučaju, tri dostupne alternative. Ukoliko se zahtijeva da se tačno jedna od ovih odluka izvrši, onda se znak nejednakosti u posljednjem izrazu mijenja znakom jednakosti, odnosno, ograničenje postaje $\sum_{i=1}^3 x_i = 1$.
 
 
 \begin{comment}
@@ -3026,7 +3044,7 @@ gdje su $x_2, \ldots, x_{n-2}$  proizvoljne bulove promjenjive (literali).
    	   \begin{itemize}
    	   	\item $z_i = x_i$, ako je literal $x_i$ pojavljuje u klauzuli $\phi$; 
    	   	\item $z_i = 1 - x_i$ ako se $\neg x_i$ pojavljuje u klauzuli $\phi$;
-   	   	\item znak disjunkcije se mijenja znakom sabiranja ``+'';
+   	   	\item znak disjunkcije se mijenja znakom sabiranja ,,+'';
    	   	\item vrijednost konstruisanog izraza treba da bude $\geq 1$. 
    	   \end{itemize}
    	   	       Primjera radi, ako je data instanca problema 3-SAT sa 
@@ -3116,7 +3134,7 @@ gdje su $x_2, \ldots, x_{n-2}$  proizvoljne bulove promjenjive (literali).
 	
 	%https://www.utc.fr/~dnace/dokuwiki/_media/fr/upt-cours-2012lp.pdf
 	\item U ovom zadatku je potrebno modelovati \emph{Problem totalnog pokrivanja}. %Neka je dato $n$ mijesta, te $m$ zahtjeva koji treba da budu ispunjeni ($d_1,\ldots, d_m$).  
-	Sa $D_c$ označimo maksimalnu daljinu koja se može pokriti instalacijom $c$. Pod instalacijom podrazumijevamo skladiše, antene i sl. Pod ``pokrivanjem'' podrazumijevamo ispunjavanje zahtjeva klijenata, koji žive u nekom mjestu. Sa $c_i$ označimo cijenu postavljanja instalacije na mjesto $i$. Sa $d_{ij}$ označimo udaljenost između mjesta $i$ i $j$. Zadatak ovog problema je da se odredi koja mjesta da se odaberu za instalacije, tako da su sva (ostala) mjesta pokrivena, ali da pri tome minimizujemo troškove instalacija. Sa jednog odabranog mjesta $c$ se pokrivaju sva susjedna mjesta koja su u okviru radijusa $D_c$.  
+	Sa $D_c$ označimo maksimalnu daljinu koja se može pokriti instalacijom $c$. Pod instalacijom podrazumijevamo skladiše, antene i sl. Pod ,,pokrivanjem'' podrazumijevamo ispunjavanje zahtjeva klijenata, koji žive u nekom mjestu. Sa $c_i$ označimo cijenu postavljanja instalacije na mjesto $i$. Sa $d_{ij}$ označimo udaljenost između mjesta $i$ i $j$. Zadatak ovog problema je da se odredi koja mjesta da se odaberu za instalacije, tako da su sva (ostala) mjesta pokrivena, ali da pri tome minimizujemo troškove instalacija. Sa jednog odabranog mjesta $c$ se pokrivaju sva susjedna mjesta koja su u okviru radijusa $D_c$.  
 	\item U ovom zadatku se modeluje  \emph{Problem maksimalnog pokrivanja} (eng. \emph{maximum coverage problem}). Neka je na ulazu data kolekcija skupova  $S=\{ S_1, \ldots, S_m\}$ te broj $k \in \mathbb{N}$. Potrebno je naći podskup $S' \subseteq S$, tako da je $|S'|\leq k$, a broj pokrivenih elemenata $|\bigcup_{s' \in S'} s'|$ je maksimizovan. 
 	
 	\emph{Uputstvo}. Sa $x_j \in \{0, 1\}$ označimo promjenljivu koja dobija vrijednost 1 ako je skup $S_i$ odabran u rješenje $S'$, inače 0. Dodatno, sa $y_j \in \{0, 1 \}$ definišemo promjenljivu koja dobija vrijednost 1 ako je   element $e_j$ pokriven rješenjem.  
@@ -3231,8 +3249,8 @@ Metode za egzaktno rješavanje ILP-a se mogu klasifikovati na sljedeći način:
 
 
 \section{Metoda grananja i ograničavanja (B\&B)}\label{sec:bb}
-Metoda grananja i ograničavanja (eng. branch and bound, skraćeno B\&B) je zasnovana na poznatom principu ``zavadi pa vladaj'' (eng. divide and conquer) gdje se problem, rekurzivno, rastavlja na manje dijelove. Kasnije se (optimalna rješenja) manjih problema kombinuju na odgovarajući način za dobijanje optimalnog rješenja početnog problema.  U B\&B metodi važan dodatak je upotreba strategije da se 
-problem nikada ne rastavlja na manje podprobleme ako se može procijeniti da će rješenje podproblema biti suboptimalno (ograničavanje). Drugim riječima, algoritam ``ne ulazi'' u one grane, za koje se unaprijed može pokazati da sadrže samo  rješenja koja su lošija od trenutno najboljeg dopustivog rješenja. Očigledno, na taj način dolazi do uštede u broju operacija koje je potrebno izvršiti u toku izvođenja algoritma, a, samim tim, dolazi i do uštede memorije i vremena izvršenja. U rješavanju ILP-a, dopustiv skup se dijeli na manje skupove, dodavanjem specijalnih ograničenja u model. Rekurzivni postupak se izvršava sve  dok se ne dobiju podproblemi, čije relaksacije obezbjeđuju cjelobrojno rješenje ili se zaključi da podproblemi nisu dopustivi. Ovakvi pristupi se razlikuju u načinu podjele dopustivog skupa i zbog toga  u literaturi  postoji nekoliko različitih B\&B procedura. 
+Metoda grananja i ograničavanja (eng. branch and bound, skraćeno B\&B) je zasnovana na poznatom principu ,,zavadi pa vladaj'' (eng. divide and conquer) gdje se problem, rekurzivno, rastavlja na manje dijelove. Kasnije se (optimalna rješenja) manjih problema kombinuju na odgovarajući način za dobijanje optimalnog rješenja početnog problema.  U B\&B metodi važan dodatak je upotreba strategije da se 
+problem nikada ne rastavlja na manje podprobleme ako se može procijeniti da će rješenje podproblema biti suboptimalno (ograničavanje). Drugim riječima, algoritam ,,ne ulazi'' u one grane, za koje se unaprijed može pokazati da sadrže samo  rješenja koja su lošija od trenutno najboljeg dopustivog rješenja. Očigledno, na taj način dolazi do uštede u broju operacija koje je potrebno izvršiti u toku izvođenja algoritma, a, samim tim, dolazi i do uštede memorije i vremena izvršenja. U rješavanju ILP-a, dopustiv skup se dijeli na manje skupove, dodavanjem specijalnih ograničenja u model. Rekurzivni postupak se izvršava sve  dok se ne dobiju podproblemi, čije relaksacije obezbjeđuju cjelobrojno rješenje ili se zaključi da podproblemi nisu dopustivi. Ovakvi pristupi se razlikuju u načinu podjele dopustivog skupa i zbog toga  u literaturi  postoji nekoliko različitih B\&B procedura. 
 
 \subsection{Bazni B\&B za rješavanje problema ILP-a}
 
@@ -3764,7 +3782,7 @@ Ovaj problem se modeluje pomoću sljedećeg ILP-a:
 \end{align} 
 
 Binarna promjenljiva $x_{i,j}$ dobija vrijednost 1 ako je  na   putu odabrana grana $(i,j)$, a 0 inače. 
-Prvo ograničenje u modelu osigurava da je dopustivo rješenje upravo put od izvornog do terminalnog čvora. Drugo ograničenje nam modeluje uslov da vrijeme prelaska puta treba da bude u  granicama dopustivog. Ovo ograničenje spada u ``teška'' ograničenja. Kao što znamo,  pronalazak najkraćeg puta u usmjerenim grafovima, sa unaprijed definisanim izvornim čvorom, je polinomijalno rješiv (na primjer, uz pomoć Dajkstrinog algoritma). Međutim,  dodavanjem ograničenja o vremenu, taj problem postaje NP-težak. Stoga, ideja je  relaksirati ovaj problem uz prebacivanje ograničenja za vrijeme u funkciju cilja, koja se zatim penalizuje. 
+Prvo ograničenje u modelu osigurava da je dopustivo rješenje upravo put od izvornog do terminalnog čvora. Drugo ograničenje nam modeluje uslov da vrijeme prelaska puta treba da bude u  granicama dopustivog. Ovo ograničenje spada u ,,teška'' ograničenja. Kao što znamo,  pronalazak najkraćeg puta u usmjerenim grafovima, sa unaprijed definisanim izvornim čvorom, je polinomijalno rješiv (na primjer, uz pomoć Dajkstrinog algoritma). Međutim,  dodavanjem ograničenja o vremenu, taj problem postaje NP-težak. Stoga, ideja je  relaksirati ovaj problem uz prebacivanje ograničenja za vrijeme u funkciju cilja, koja se zatim penalizuje. 
 Dakle, Lagranžova relaksacija problema je data sa
 
 \begin{align*}
@@ -3840,7 +3858,7 @@ Dakle, ono što je potrebno da znamo su ograničenja, čije su odgovarajuće dua
  
 
 \begin{itemize}
-   % \item ¸Krenimo sa ``obećavajućim'' podskupom $S$ kolona matrice $A$; 
+   % \item ¸Krenimo sa ,,obećavajućim'' podskupom $S$ kolona matrice $A$; 
    \item Izaberimo podskup $S$ kolona matrice $A$ u cilju određivanja potencijalno dobrog inicijalnog baznog dopustivog rješenja
     \item Riješimo restrikovani LP na odabrnom podskupu kolona $S$.
     \item Procijenimo ostale kolone i dodajmo u $S$ one sa negativnim 
@@ -3854,7 +3872,7 @@ Tehnički zapisano, krećemo od \emph{restrikovanog master problema} (RMP)
     & \sum_{i \in I} A_i x_i  \leq b \hspace{2cm} (RMP)\\
     & x \geq 0. 
 \end{align*}
-gdje $I$ inicijalizujemo kao skup kolona koje čine inicijalno bazno dopustivo rješenje  za RMP. Po mogućnosti, dodajemo i neke druge kolone za koje smatramo da su ``bitne'' u kontekstu problema.  Riješimo RMP,  te izračunamo odgovarajuće optimalno dualno rješenje. Sada je potrebno naći promjenljivu $x_j$ i odgovarajuću kolonu $A_j$ za koju je koeficijent doprinosa negativan, tj. $\overline{c_j} = c_j - c_B^T B^{-1}A_j < 0$.
+gdje $I$ inicijalizujemo kao skup kolona koje čine inicijalno bazno dopustivo rješenje  za RMP. Po mogućnosti, dodajemo i neke druge kolone za koje smatramo da su ,,bitne'' u kontekstu problema.  Riješimo RMP,  te izračunamo odgovarajuće optimalno dualno rješenje. Sada je potrebno naći promjenljivu $x_j$ i odgovarajuću kolonu $A_j$ za koju je koeficijent doprinosa negativan, tj. $\overline{c_j} = c_j - c_B^T B^{-1}A_j < 0$.
 %Pogledati: https://www.youtube.com/watch?v=0SV99VJaGzw
 Ovo se može uraditi rješavanjem tzv. podproblema generisanog kolonama (eng. \emph{column generating subproblem -- CGSP}):
 $$\min_{a \in C} \overline{c_j} = \min_{a \in C} c_a - c_B^T B^{-1} a,$$
@@ -4218,7 +4236,7 @@ Neka je dat problem ILP-a
 	& x_1, x_2 \geq 0 \\
 	& x_1, x_2 \in \mathbb{Z}.
 \end{align*}
-Definisati Lagranžovu relaksaciju za ovaj problem (npr. uzeti prvo ograničenje za ``teško''). Riješiti početni problem sa jednom od tehnika za rješavanje ILP-a. Potom, riješiti Lagranžovu relaksaciju problema za $\lambda=0.25$. Šta možemo zaključiti na osnovu rješenja Lagranžove relaksacije i početnog problema? 
+Definisati Lagranžovu relaksaciju za ovaj problem (npr. uzeti prvo ograničenje za ,,teško''). Riješiti početni problem sa jednom od tehnika za rješavanje ILP-a. Potom, riješiti Lagranžovu relaksaciju problema za $\lambda=0.25$. Šta možemo zaključiti na osnovu rješenja Lagranžove relaksacije i početnog problema? 
 \item   Pomoću CG okvira (generisanje kolona), riješiti jedni instancu \emph{Cutting stock} problema gdje je  
 $W = 20$, te postoje tri narudžbe za sječenje: 1. stavka: $b_1=60$ rolni dužine 7; 2. stavka: $b_2=40$ rolni dužine 8; 3. stavka: $b_3=70$ rolni dužine 10. 
 
@@ -4237,7 +4255,7 @@ Treba napomenuti da i savremeni MILP rješavači, o čemu će biti govora kasnij
  \section{Benderova dekompozicija}
  
  Benderova metoda je uvedena šezdesetih godina dvadesetog vijeka, kao algoritam za rješavanje MILP programa. 
- Osnovna ideja Benderove dekompozicije primijenjenog na MILP program je podjela skupa promjenljivih na dva podskupa, od kojih se jedan skup promjenljivih (skup cjelobrojnih promjenljivih) smatra ``komplikovanim'', odnosno skupom promjenljivih čijim se fiksiranjem dolazi do značajnog pojednostavljenja polaznog problema. Prvi problem, koji se naziva i master problem,  rješava se nad prvim skupom promjenljivih, dok se vrijednosti promjenljivih iz drugog skupa,  za dato rješenje prvog podproblema, određuju rješavanjem drugog podproblema. Uspješnu primjenu Benderove dekompozicije, između ostalog, obezbjeđuje i teorija dualnosti, odnosno teoreme o slaboj i jakoj dualnosti.
+ Osnovna ideja Benderove dekompozicije primijenjenog na MILP program je podjela skupa promjenljivih na dva podskupa, od kojih se jedan skup promjenljivih (skup cjelobrojnih promjenljivih) smatra ,,komplikovanim'', odnosno skupom promjenljivih čijim se fiksiranjem dolazi do značajnog pojednostavljenja polaznog problema. Prvi problem, koji se naziva i master problem,  rješava se nad prvim skupom promjenljivih, dok se vrijednosti promjenljivih iz drugog skupa,  za dato rješenje prvog podproblema, određuju rješavanjem drugog podproblema. Uspješnu primjenu Benderove dekompozicije, između ostalog, obezbjeđuje i teorija dualnosti, odnosno teoreme o slaboj i jakoj dualnosti.
  
 
  Posmatrajmo sada sljedeću formulaciju MILP programa
@@ -4990,7 +5008,7 @@ $$x =\left(\begin{array}{c}
  
  gdje je skup $X$ poliedar. Iako za DW dekompoziciju nije neophodno, u daljem razmatranju, radi lakše analize DW dekompozicije, smatraćemo da je $X$ ograničen poliedar, odnosno politop.
  
- Dalje, navešćemo i sljedeću pretpostavku. Ako bismo iz skupa ograničenja izbacili ograničenja $Ax=b$, tada bi rješavanje problema bilo jednostavno. Drugim riječima, skup $X$ je opisan nekim ``jednostavnim'' ograničenjima, dok ograničenja $Ax=b$ čine problem značajno težim, pa ćemo ih, zbog toga, zvati ``komplikovanim ograničenjima''. 
+ Dalje, navešćemo i sljedeću pretpostavku. Ako bismo iz skupa ograničenja izbacili ograničenja $Ax=b$, tada bi rješavanje problema bilo jednostavno. Drugim riječima, skup $X$ je opisan nekim ,,jednostavnim'' ograničenjima, dok ograničenja $Ax=b$ čine problem značajno težim, pa ćemo ih, zbog toga, zvati ,,komplikovanim ograničenjima''. 
  
  Posmatrajmo sada konfiguraciju za primjenu Teoreme o reprezentaciji za konveksne poliedre na skup $X$.
  
@@ -5038,7 +5056,7 @@ odnosno
  
  Samom reformulacijom polaznog problema~(\ref{dw1}) u DW formulaciju~(\ref{dw3}) nismo mnogo postigli, jer broj vrhova politopa, a time i broj $\lambda$ promjenljivih može biti jako veliki.
  
- Međutim, pravi razlog za DW dekompoziciju leži u činjenici da za rješavanje problema~(\ref{dw3}) ne moramo eksplicitno da koristimo sve vrhove politopa $X$. Umjesto toga, krenućemo od jednog   manjeg podskupa, a samim tim i podskupom skupa $\lambda$ promjenljivih. Nakon toga, primijenićemo tehniku ``generisanja kolona'' (eng. \emph{column generation}), kako bismo u razmatranje uključili nove vrhove politopa $X$, koji će pomoći poboljšanju rješenja tzv. ograničenog master problema (eng. \emph{Restricted master problema} -- RMP).
+ Međutim, pravi razlog za DW dekompoziciju leži u činjenici da za rješavanje problema~(\ref{dw3}) ne moramo eksplicitno da koristimo sve vrhove politopa $X$. Umjesto toga, krenućemo od jednog   manjeg podskupa, a samim tim i podskupom skupa $\lambda$ promjenljivih. Nakon toga, primijenićemo tehniku ,,generisanja kolona'' (eng. \emph{column generation}), kako bismo u razmatranje uključili nove vrhove politopa $X$, koji će pomoći poboljšanju rješenja tzv. ograničenog master problema (eng. \emph{Restricted master problema} -- RMP).
  
 
  Označimo sada problem formulisan  sa~(\ref{dw3}) kao \emph{Master problem} (MP). Na osnovu master problema formiramo RMP sa manjim brojem $\lambda$ promjenljivih.
@@ -5087,7 +5105,7 @@ Da bi se odredili   koeficijenti doprinosa za $\lambda_j$, odredimo šta se dobi
  
 jer je rješenje problema na desnoj strani jednakosti upravo u nekom od vrhova politopa $X$.
 
-Prisjetimo se sada da smo za jednu od polaznih pretpostavki imali da je skup $X$ opisan kao skup sa ``jednostavnim'' ograničenjima, što znači da je problem na desnoj strani jednakosti (\ref{dw6}) jednostavan za rješavanje.
+Prisjetimo se sada da smo za jednu od polaznih pretpostavki imali da je skup $X$ opisan kao skup sa ,,jednostavnim'' ograničenjima, što znači da je problem na desnoj strani jednakosti (\ref{dw6}) jednostavan za rješavanje.
 
 Reformulišimo  CG podproblem sada kao problem maksimizacije, gdje ćemo za funkciju cilja uzeti negativnu vrijednost funkcije cilja minimizacije, tj.
  
@@ -5133,8 +5151,8 @@ $x\in X$ i $Ax=b$, pa imamo da vrijedi %Za to rješenje $x$ važi
  	\end{aligned}
  \end{equation}
  
- Vidimo da u ovom problemu imamo dva ``komplikovana'' ograničenja ($x_1+3x_2\leqslant \frac94$ i
- $2x_1-3x_2\leqslant 0$). Dalje, vidimo da je skup $X$ definisan kao jedinični kvadrat, što u našem slučaju to znači da je riječ o ``jednostavnom'' ograničenju. 
+ Vidimo da u ovom problemu imamo dva ,,komplikovana'' ograničenja ($x_1+3x_2\leqslant \frac94$ i
+ $2x_1-3x_2\leqslant 0$). Dalje, vidimo da je skup $X$ definisan kao jedinični kvadrat, što u našem slučaju to znači da je riječ o ,,jednostavnom'' ograničenju. 
  
  \begin{figure}\label{fig:dw1}
  	
@@ -5607,7 +5625,7 @@ Pohlepni algoritmi su programska paradigma zasnovana na pristupu da se  rješenj
  
  %Kod ovakve strategije, u svakom koraku bira se komponenta koja je lokalno najbolji kandidat za proširivanje (parcijalnog) rješenja, u nadi da će takvi izbori na kraju dovesti i do kvalitetnog globalnog rješenja.
  
- Osnovna strategija pohlepnih algoritama isključuje ``vraćanje'' na neko prethodno (parcijalno) rješenje, odnosno ne vodi se računa o ``lošim'' odlukama, koje su eventualno napravljene u prethodnim iteracijama. Zbog toga se podrazumijeva da pohlepni algoritmi imaju polinomijalnu vremensku složenost, što je jedna od najvažnijih osobina ovakvih algoritam.
+ Osnovna strategija pohlepnih algoritama isključuje ,,vraćanje'' na neko prethodno (parcijalno) rješenje, odnosno ne vodi se računa o ,,lošim'' odlukama, koje su eventualno napravljene u prethodnim iteracijama. Zbog toga se podrazumijeva da pohlepni algoritmi imaju polinomijalnu vremensku složenost, što je jedna od najvažnijih osobina ovakvih algoritam.
  
  Zbog relativno jednostavne strategije na kojoj su zasnovani, ali i brzine izvršenja, ovi algoritmi se često koriste i u rješavanju teških optimizacionih problema i najčešće su prva strategija koja se primjenjuje, prije 
 upotrebe neke složenije paradigme. 
@@ -6303,8 +6321,8 @@ odakle slijedi da Algoritam~\ref{alg:ss} daje $2H_n$--aproksimaciju.
  Snaga heurističkih algoritama leži u smanjenju prostora pretraživanja i usmjeravanju procesa pretraživanja u one regione koji sadrže bolje rješenja, čime se značajno ubrzava proces pronalaženja rješenja. Naravno, ne postoji univerzalna strategija koja garantuje uspjeh heurističkog algoritma, tj. ne postoji garancija da će heuristički algoritam uvijek pronaći dovoljno dobro rješenje u razumnom vremenu. Ipak, višedecenijski razvoj i upotreba različitih heurističkih algoritama ukazuju na činjenicu da ove metode zauzimaju veoma važno mjesto u oblasti kombinatorne optimizacije, a njihova uspješna primjena u širokom spektru različitih problema dokazuje njihovu stvarnu upotrebnu vrijednost.
  
  
- Svaka heuristička metoda mora da zadovolji dva pravila: da je rešenje ``dovoljno
- dobro'' i da se algoritam pokrenut na ulazni problem izvršava u realnom, polinomijalnom vremenu. Treba napomenuti da se pod  ``dovoljno
+ Svaka heuristička metoda mora da zadovolji dva pravila: da je rešenje ,,dovoljno
+ dobro'' i da se algoritam pokrenut na ulazni problem izvršava u realnom, polinomijalnom vremenu. Treba napomenuti da se pod  ,,dovoljno
  dobrim'' rješenjem podrazumijevaju različite procjene, koje mogu biti subjektivne (npr. zasnovane na ličnoj ili profesionalnoj procjeni stručnjaka koji razvija ili koristi metodu), objektivne (npr.  rješenje je dobro ako od optimalnog rješenja odstupa u dozvoljenim granicama) ili zavisne od drugih uslova (na primjer, traži se rješenje problema takvo da je ono ekonomski prihvatljivo, bez obzira na to da li je blizu optimalnog rješenja ili ne). 
  Za neke metode, kvalitet dobijenog rješenja je moguće utvrditi samo eksperimentalno, na primjer, poređenjem sa rješenjima dobijenim uz pomoć drugih metoda. Nekada je cilj heurističke metode samo da se pronađe jedno dopustivo rješenje, dok se kvalitet samog rješenja ne razmatra.
  
@@ -6314,7 +6332,7 @@ odakle slijedi da Algoritam~\ref{alg:ss} daje $2H_n$--aproksimaciju.
  
  \section{Metaheurističke metode}
  
- Široku klasu heurističkih metoda čine tzv. ``univerzalne'' heurističke metode, koje se, uz blage modifikacije i prilagođavanje, mogu koristiti za rješavanje više različitih problema. Takve metode nazivamo \emph{metaheurističkim} metodama, ili metaheuristikama.  
+ Široku klasu heurističkih metoda čine tzv. ,,univerzalne'' heurističke metode, koje se, uz blage modifikacije i prilagođavanje, mogu koristiti za rješavanje više različitih problema. Takve metode nazivamo \emph{metaheurističkim} metodama, ili metaheuristikama.  
  
  Metaheuristika se formalno definiše kao iterativni proces koji koristi približne metode, kombinujući na inteligentan način različite koncepte za pretraživanje i iskorištavanje čitavog prostora rješenja, da bi se u razumnom vremenu, na efikasan način, odredilo rješenje što bliže optimalnom.
  
@@ -6354,7 +6372,7 @@ U nastavku ovog poglavlja, detaljnije će biti objašnjena po jedna metaheuristi
 Genetski algoritmi spadaju u klasu populacionih i evolucijskih algoritama, čije je ponašanje inspirisano procesom evolucije koji se odvija u prirodi.
 Kao što je već rečeno, u osnovi se podrazumijeva rad sa populacijom jedinki, gdje svaka jedinka predstavlja potencijalno rješenje polaznog problema, dok je populacija  podskup ukupnog prostora pretraživanja. Populacija se u iterativnom postupku mijenja tako što se stare jedinke mijenjaju novim, potencijalno boljim jedinkama.
 
-Osnovni okvir za funkcionisanje genetskih algoritama je prezentovan još 1975. godine od strane Džona Holanda, u čuvenoj knjizi ``Adaptation in natural and artificial system''.
+Osnovni okvir za funkcionisanje genetskih algoritama je prezentovan još 1975. godine od strane Džona Holanda, u čuvenoj knjizi ,,Adaptation in natural and artificial system''.
 
 Svakoj jedinki se dodjeljuje brojna vrijednost, tzv. prilagođenost (eng.  \emph{fitness}), koja ocjenjuje kvalitet posmatrane jedinke. Cilj genetskog algoritma je da se, iz iteracije u iteraciju, pronalaze jedinke sa sve boljom prilagođenošću, pod čime se smatra i pojedinačno poboljšanje svake jedinke, ali i prosječna prilagođenost kompletne populacije, što se postiže standardnim genetskim operatorima: \textit{selekcijom}, \textit{ukrštanjem} i \textit{mutacijom}.
 
@@ -6367,7 +6385,7 @@ Tokom rada algoritma, na populaciju se primjenjuju genetski operatori selekcije,
 
 \emph{Operator selekcije} bira jedinke koje preživljavaju u procesu evolucije. Po pravilu, boljim jedinkama (jedinkama sa boljom prilagođenošću) se operatorom selekcije daje veća vjerovatnoća da će preživjeti u narednoj generaciji, dok  slabije jedinke selekcijom dobijaju manju šansu da prežive, te se tako izbacuju iz populacije. Postoji veći broj tehnika selekcije, a najpoznatije su: jednostavna (ili rulet) selekcija, turnirska, eliminacijska selekcija i elitizam. Rulet selekcija diktira da je vjerovatnoća da će jedinka preživjeti za narednu generaciju proporcionalna prilagođenosti. Kod turnirske selekcije se formiraju skupovi jedinki, od kojih samo ona sa najboljom prilagođenošću opstaje i ulazi u sljedeću generaciju. Eliminacijska selekcija je primarno zasnovana na izbacivanju loših jedinki, prije nego na odabiru boljih za narednu generaciju. Elitizam podrazumijeva da će nekoliko najboljih (elitnih) jedinki direktno preći u narednu generaciju, čime se daje pouzdana pretpostavka da  algoritam teži globalnom optimumu.
 
-\emph{Ukrštanjem} se rekombinuju geni jedinki. Rezultat ukrštanja jedinki su nove jedinke, koje potencijalno sadrže ``dobre'' gene  roditelja od kojih su nastale. Ovim mehanizmom  i jedinke slabije prilagođenosti, ali koje sadrže dobre gene, dobijaju šansu da učestvuju u reprodukciji i prenesu ``dobar'' genetski materijal na sljedeću generaciju. Najčešće korišteni operatori ukrštanja su tzv. jednopoziciono, odnosno dvopoziciono ukrštanje, kod kojih se određuje jedna, odnosno dvije tačke prekida na kojima se odvija razmjena genetskih k\^odova roditelja, respektivno.
+\emph{Ukrštanjem} se rekombinuju geni jedinki. Rezultat ukrštanja jedinki su nove jedinke, koje potencijalno sadrže ,,dobre'' gene  roditelja od kojih su nastale. Ovim mehanizmom  i jedinke slabije prilagođenosti, ali koje sadrže dobre gene, dobijaju šansu da učestvuju u reprodukciji i prenesu ,,dobar'' genetski materijal na sljedeću generaciju. Najčešće korišteni operatori ukrštanja su tzv. jednopoziciono, odnosno dvopoziciono ukrštanje, kod kojih se određuje jedna, odnosno dvije tačke prekida na kojima se odvija razmjena genetskih k\^odova roditelja, respektivno.
 
 \emph{Mutacijom} se vrši slučajna promjena određenog gena (sa nekom malom vjerovatnoćom da će se mutacija desiti), čime se postiže mogućnost vraćanja dobrog genetskog materijala, ukoliko je on izgubljen primjenom operatora selekcije i ukrštanja. Time se proces pretrage izvlači iz preuranjene konvergencije i usmjerava ka onim oblastima pretraživanja koje sadrže potencijalno bolje jedinke.
 
@@ -6433,18 +6451,18 @@ Konstrukciju elemenata genetskog algoritma ćemo prikazati služeći se konkretn
 \emph{Kodiranje}. Genetski k\^od svake jedinke ćemo prikazati binarnim nizom dužine $n$ (u primjeru je $n=7$). Tako, na primjer, genetski k\^od 1100100 označava da su proizvodi pod rednim brojem 1, 2 i 5 uključeni u ruksak, dok ostali proizvodi nisu uključeni u ruksak. Vrijednost funkcije cilja za ovo rješenje je 5+8+7=20, dok je ukupna težina 7+8+4 = 19. 
 Primijetimo da ovakav sistem kodiranja može da dovede do nedopustivih rješenja. Npr. genetski k\^od 0101010 označava da su proizvodi pod rednim brojem 2, 4 i 6 uključeni u rješenje, čija je ukupna težina 8+10+6 = 24, što je više od maksimalno dozvoljenog kapaciteta za ruksaka.
 
-Treba napomenuti da se u rješavanju velikog broja problema kombinatorne optimizacije pomoću genetskih algoritama (ali i drugih heurističkih metoda) često dozvoljava rad sa nedopustivim rješenjima. Razlog za to leži u činjenici da nisu sva nedopustiva rješenja ``podjednako loša'', a nekada je lakše popraviti nedopustivo rješenje u dopustivo rješenje visokog kvaliteta, nego vršiti pretragu samo na prostoru dopustivih rješenja slabijeg kvaliteta.  Zbog toga se za prevazilaženje pojave nedopustivih rješenja najčešće koristi jedna od sljedeće dvije strategije: 
+Treba napomenuti da se u rješavanju velikog broja problema kombinatorne optimizacije pomoću genetskih algoritama (ali i drugih heurističkih metoda) često dozvoljava rad sa nedopustivim rješenjima. Razlog za to leži u činjenici da nisu sva nedopustiva rješenja ,,podjednako loša'', a nekada je lakše popraviti nedopustivo rješenje u dopustivo rješenje visokog kvaliteta, nego vršiti pretragu samo na prostoru dopustivih rješenja slabijeg kvaliteta.  Zbog toga se za prevazilaženje pojave nedopustivih rješenja najčešće koristi jedna od sljedeće dvije strategije: 
 \begin{itemize}
 	\item
 	nedopustiva rješenja (po automatizmu) dobijaju minimimalnu vrijednost funkcije prilagođenosti, čime se omogućava da sam genetski algoritam odbaci takva rješenja u procesu selekcije. 
 	
-	\item uvodi se tzv. kaznena funkcija, (eng. penalty function), kojom se ``kažnjavaju'' nedopustiva rješenja (najčešće smanjenjem vrijednosti funkcije prilagođenosti), ali se ona ne izbacuju iz razmatranja, u nadi da perspektivnija nedopustiva rješenja mogu prerasti u kvalitetna dopustiva rješenja.
+	\item uvodi se tzv. kaznena funkcija, (eng. penalty function), kojom se ,,kažnjavaju'' nedopustiva rješenja (najčešće smanjenjem vrijednosti funkcije prilagođenosti), ali se ona ne izbacuju iz razmatranja, u nadi da perspektivnija nedopustiva rješenja mogu prerasti u kvalitetna dopustiva rješenja.
 \end{itemize}
 
-U našem primjeru, pojavu nedopustivih rješenja, dakle, možemo riješiti automatskom dodjelom minimalne vrijednosti funkcije prilagođenosti, ili ``kažnjavanjem'' takvih rješenja smanjenjem vrijednosti funkcije fitnesa. Neke od strategije za ``kažnjavanje'' nedopustivih jedinki bi mogle biti zasnovane na procjeni broja proizvoda koje treba zamijeniti (ili izbaciti) iz datog rješenja, a da rješenje postane dopustivo. Na taj način bi se ona nedopustiva rješenja, koja se teže mogu popraviti u dopustiva, više kažnjavala (i samim tim češće i odbacivala), dok bi se perspektivnija nedopustiva rješenja zadržavala u populaciji, u nadi da će, primjenom nekog od genetskih operatora, prerasti u kvalitetna dopustiva rješenja. Uopšte, vrijednost kaznene funkcije bi trebalo da bude malo veća od minimalne cijene potrebne da se odgovarajuće nedopustivo rješenje ``popravi'' na dopustivo. Suprotno, ako bi vrijednost kaznene funkcije bila manja od cijene minimalne korekcije, nedopustiva rješenja se mogu javiti kao konačno rješenje, što naravno nije dopušteno. Sa druge strane, ako je vrijednost kaznene funkcije značajno veća od cijene minimalne popravke, nedopustiva rješenja su totalno diskriminisana i algoritam ih u startu odbacuje. 
+U našem primjeru, pojavu nedopustivih rješenja, dakle, možemo riješiti automatskom dodjelom minimalne vrijednosti funkcije prilagođenosti, ili ,,kažnjavanjem'' takvih rješenja smanjenjem vrijednosti funkcije fitnesa. Neke od strategije za ,,kažnjavanje'' nedopustivih jedinki bi mogle biti zasnovane na procjeni broja proizvoda koje treba zamijeniti (ili izbaciti) iz datog rješenja, a da rješenje postane dopustivo. Na taj način bi se ona nedopustiva rješenja, koja se teže mogu popraviti u dopustiva, više kažnjavala (i samim tim češće i odbacivala), dok bi se perspektivnija nedopustiva rješenja zadržavala u populaciji, u nadi da će, primjenom nekog od genetskih operatora, prerasti u kvalitetna dopustiva rješenja. Uopšte, vrijednost kaznene funkcije bi trebalo da bude malo veća od minimalne cijene potrebne da se odgovarajuće nedopustivo rješenje ,,popravi'' na dopustivo. Suprotno, ako bi vrijednost kaznene funkcije bila manja od cijene minimalne korekcije, nedopustiva rješenja se mogu javiti kao konačno rješenje, što naravno nije dopušteno. Sa druge strane, ako je vrijednost kaznene funkcije značajno veća od cijene minimalne popravke, nedopustiva rješenja su totalno diskriminisana i algoritam ih u startu odbacuje. 
 
 \emph{Računanje funkcije prilagođenosti}. Za posmatrani problem, prirodna fukcija prilagođenosti bi se mogla definisati na način da ona bude jednaka ukupnom zbiru vrijednosti proizvoda uključenih u rješenje (pod uslovom da je to rješenje dopustivo), a da je vrijednost funkcije prilagođenosti  nedopustivih rješenja   jednaka nuli. 
-Imajući u vidu prethodno razmatranje o nedopustivim rješenjima, funkcija prilagođenosti može biti definisana i drugačije, tj. mogla bi da sadrži i dio vezan za  ``kažnjavanje'' nedopustivih rješenja, po nekom od predloženih (ili drugih) principa. Time bi nedopustiva rješenja bila uključena u pretragu.
+Imajući u vidu prethodno razmatranje o nedopustivim rješenjima, funkcija prilagođenosti može biti definisana i drugačije, tj. mogla bi da sadrži i dio vezan za  ,,kažnjavanje'' nedopustivih rješenja, po nekom od predloženih (ili drugih) principa. Time bi nedopustiva rješenja bila uključena u pretragu.
 
 \emph{Operator ukrštanja}. Kao što je već pomenuto, osnovni operatori ukrštanja su tzv. jednopoziciono i dvopoziciono ukrštanje. Objasnimo primjerom jednopoziciono ukrštanje, koje bi moglo biti realizovano na sljedeći način
 \begin{table}[H]
@@ -6540,7 +6558,7 @@ Na kraju ovog odjeljka treba pomenuti da je višedecenijska primjena genetskih a
  
 \subsection{Metoda lokalne pretrage}\label{sec: local_search}
 
-Metoda lokalne pretrage je tehnika čija se strategija sastoji u izvođenju niza poboljšanja  rješenja, počevši od nekog unaprijed zadanog, radeći ``male'' promjene u strukturi trenutno najboljeg rješenja. Uvedimo prvo koncept okolina i lokalnih rješenja kao baznih pojmova u metodologiji lokalne pretrage. Za dato rješenje $x$, definišimo skup (ne obavezno dopustivih) rješenja koja su ``blizu'' $x$ u odnosu na neku mjeru. Formalno, okolina predstavlja preslikavanje  $\mathcal{N}$ gdje svakom (dopustivom) rješenju pridružujemo skup rješenja, koje zovemo okolina od $x$.  Funkcija okoline se takođe može definisati preko operatora  $\Delta$, koji predstavlja kolekciju   funkcija $\Delta:\Phi \mapsto \Phi$,  gdje je $\Phi$ prostor pretrage (rješenja) razmatrane instance problema:
+Metoda lokalne pretrage je tehnika čija se strategija sastoji u izvođenju niza poboljšanja  rješenja, počevši od nekog unaprijed zadanog, radeći ,,male'' promjene u strukturi trenutno najboljeg rješenja. Uvedimo prvo koncept okolina i lokalnih rješenja kao baznih pojmova u metodologiji lokalne pretrage. Za dato rješenje $x$, definišimo skup (ne obavezno dopustivih) rješenja koja su ,,blizu'' $x$ u odnosu na neku mjeru. Formalno, okolina predstavlja preslikavanje  $\mathcal{N}$ gdje svakom (dopustivom) rješenju pridružujemo skup rješenja, koje zovemo okolina od $x$.  Funkcija okoline se takođe može definisati preko operatora  $\Delta$, koji predstavlja kolekciju   funkcija $\Delta:\Phi \mapsto \Phi$,  gdje je $\Phi$ prostor pretrage (rješenja) razmatrane instance problema:
 $$ x' \in \mathcal{N}(x) \Longleftrightarrow \exists \delta \in \Delta,\delta(x)=x'.$$
  
 Prirodan izbor u mnogim aplikacijama je $k$-izmjenjena (eng. \emph{k-exchange}) okolina: $x$ i $x^{'}$ pripadaju istoj okolini akko se razlikuju na tačno $k$ komponenti rješenja. Npr. za TSP problem, 2-{izmijenjena} okolina je prirodan izbor gdje su komponente rješenja grane datog grafa.  
@@ -6571,20 +6589,20 @@ Pseudok\^od lokalne pretrage je dat u Algoritmu~\ref{alg:ls}. Ulaz u algoritam j
   
 \subsection{Metoda promjenljivih okolina}\label{intro:vns}
 Metoda promjenljivih okolina (VNS) je metaheuristika uvedena od strane Nenada Mladenovića i Pjera Hansena u drugoj polovini devedesetih godina prošlog vijeka.
-Pretraga je zasnovana na sistematskoj promjeni okolina da bi se izbjegle situacije kada algoritam ``upada'' u podoptimalna rješenja. Efikasnost VNS algoritma je zasnovana na razmatranju da u mnogim praktičnim optimizacionim problemima postoji veza između lokalnih minimuma. Stoga, metoda promjenljivih okolina i ne prati unaprijed zadatu putanju, već ``skače'' na potencijalno bolja rješenja koja se nalaze u nekoj okolini trenutno najboljeg rješenja. Ovaj proces je poznat pod nazivom diversifikacija (eng. \emph{diversification}).
+Pretraga je zasnovana na sistematskoj promjeni okolina da bi se izbjegle situacije kada algoritam ,,upada'' u podoptimalna rješenja. Efikasnost VNS algoritma je zasnovana na razmatranju da u mnogim praktičnim optimizacionim problemima postoji veza između lokalnih minimuma. Stoga, metoda promjenljivih okolina i ne prati unaprijed zadatu putanju, već ,,skače'' na potencijalno bolja rješenja koja se nalaze u nekoj okolini trenutno najboljeg rješenja. Ovaj proces je poznat pod nazivom diversifikacija (eng. \emph{diversification}).
 Na ovaj se način očuvavaju dobre osobine trenutnog rješenja (ako su neke promjenljive već dostigle optimalne vrijednosti), dok se u novim okolinama pokušavaju poboljšati preostale promjenljive. Ovaj sistem je dodatno ojačan sistemom lokalnog pretraživanja, kojim se prelazi iz trenutnog rješenja u najkvalitetnije rješenje u nekoj njegovoj okolini. Ovaj proces je poznat pod nazivom intenzifikacija (eng. \emph{intensification}).
 
 Ponovimo da algoritam zasnovan na metodi promjenljivih okolina raspolaže jednom tačkom u jednoj iteraciji, a ne populacijom tačaka kao što je to slučaj sa genetskim algoritmom.
 
 Tako, ideja da se pretraga usmjeri sa jednog na (moguće bolji) drugi lokalni optimum, koji je smješten u nekoj okolini polaznog lokalnog optimuma, predstavlja razuman  i, kao što je to slučaj u velikom broju raznih optimizacionih problema, opravdan pristup.
-Da bi se postigli pomenuti efekti ``izlaska'' iz lokalnog (pod)optimuma, kao i detaljno pretraživanje nove okoline trenutnog najboljeg rješenja, metoda promjenljivih okolina se najčešće realizuje pomoću dvije važne procedure: procedure razmrdavanja (eng. \emph{shaking}) i procedure lokalnog pretraživanja (eng. \emph{local search}). Kao i što je to slučaj sa svim metaheurističkim metodama, dugogodišnja primjena metode promjenljivih okolina na rješavanje različitih problema dovela je do pojave velikog broja različitih varijanti, koje, pored osnovnih metoda razmrdavanja i lokalnog pretraživanja, uključuju i mnoge druge strategije.
+Da bi se postigli pomenuti efekti ,,izlaska'' iz lokalnog (pod)optimuma, kao i detaljno pretraživanje nove okoline trenutnog najboljeg rješenja, metoda promjenljivih okolina se najčešće realizuje pomoću dvije važne procedure: procedure razmrdavanja (eng. \emph{shaking}) i procedure lokalnog pretraživanja (eng. \emph{local search}). Kao i što je to slučaj sa svim metaheurističkim metodama, dugogodišnja primjena metode promjenljivih okolina na rješavanje različitih problema dovela je do pojave velikog broja različitih varijanti, koje, pored osnovnih metoda razmrdavanja i lokalnog pretraživanja, uključuju i mnoge druge strategije.
 
 Da bi se proširila pretraga,  VNS u potrazi za boljim lokalnim optimumom, obično koristi okoline rastuće kardinalnosti. Da bi se definisao skup okolina, pretpostavimo da je $x$ proizvoljno rješenje i $N_k$, za $k=k_{min},\ldots,k_{max}$, konačan skup struktura okolina. Tada se  $N_k(x)$ definiše kao skup rješenja u $k$-toj okolini tačke $x$. 
 Način funkcionisanja ove metode, kojom se rješava problem maksimizacije, prikazan je Algoritmom~\ref{alg:vns}. 
 
 
 U svakom koraku algoritma, VNS započinje od nekog rješenja $x$ i cijelog broja $k$, $k_{min}\leqslant k\leqslant k_{max}$, koji označava trenutnu okolinu $N_k$. U proceduri razmrdavanja
-se na slučajan način bira rješenje  $x'$ iz okoline  $N_k(x)$. Zatim se na to rješenje primjenjuje procedura lokalnog pretraživanja. Najbolje rješenje koje se dobije u lokalnom pretraživanju se dalje poredi sa trenutno najboljim rješenjem i ukoliko je ono bolje od trenutno najboljeg rješenja, ono se proglašava novim najboljim rješenjem i algoritam nastavlja sa daljim izvršavanjem. Postoje različite strategije kada algoritam prelazi u narednu okolinu (u proceduri razmrdavanja), kao i kada se okoline ``resetuju'', tj. kada se algoritam vraća na razmatranje najmanje okoline. 
+se na slučajan način bira rješenje  $x'$ iz okoline  $N_k(x)$. Zatim se na to rješenje primjenjuje procedura lokalnog pretraživanja. Najbolje rješenje koje se dobije u lokalnom pretraživanju se dalje poredi sa trenutno najboljim rješenjem i ukoliko je ono bolje od trenutno najboljeg rješenja, ono se proglašava novim najboljim rješenjem i algoritam nastavlja sa daljim izvršavanjem. Postoje različite strategije kada algoritam prelazi u narednu okolinu (u proceduri razmrdavanja), kao i kada se okoline ,,resetuju'', tj. kada se algoritam vraća na razmatranje najmanje okoline. 
 
 Najčešći kriterijumi za prekid   algoritma su: dostignuto maksimalno  vrijeme, dostignut maksimalan broj iteracija, maksimalni broj iteracija između dva poboljšanja najboljeg rješenja. %ili maksimalan broj ponavljanja najboljeg rješenja.
 
@@ -6616,7 +6634,7 @@ Najčešći kriterijumi za prekid   algoritma su: dostignuto maksimalno  vrijeme
 
 \emph{Reprezentacija rješenja}. Kao i u slučaju genetskog algoritma, rješenje problema se može predstaviti binarnim nizom. Ako $i$-ti element niza ima vrijednost 1, to znači da je $i$-ti proizvod uključen u rješenje, a u suprotnom je izostavljen.
 
-\emph{Vrijednost funkcije cilja}. Slično kao u primjeru genetskog algoritma, vrijednost funkcije cilja se najlakše može definisati kao zbir vrijednosti proizvoda uključenih u rješenje. Eventualno, ako se u algoritmu dozvoljava rad sa nedopustivim rješenjima, funkcija cilja može da sadrži i dio za ``kažnjavanje'' nedopustivih rješenja. Razmatranje o kažnjavanju nedopustivih rješenja je slično kao u slučaju genetskog algoritma.
+\emph{Vrijednost funkcije cilja}. Slično kao u primjeru genetskog algoritma, vrijednost funkcije cilja se najlakše može definisati kao zbir vrijednosti proizvoda uključenih u rješenje. Eventualno, ako se u algoritmu dozvoljava rad sa nedopustivim rješenjima, funkcija cilja može da sadrži i dio za ,,kažnjavanje'' nedopustivih rješenja. Razmatranje o kažnjavanju nedopustivih rješenja je slično kao u slučaju genetskog algoritma.
 
 \emph{Razmrdavanje}. Može se primijeniti više različitih tehnika razmrdavanja, a u ovom primjeru ćemo objasniti jedan pristup. 
 U okviru procedure razmrdavanja, kreira se novo rješenje $x'$, ($x' \in N_k(x)$) zasno\-vano na trenutno najboljem rješenju  $x$.
@@ -6646,8 +6664,8 @@ Postoje različite strategije koliko dugo se izvršava lokalna pretraga. U opšt
 	
 	\item Osmisliti pohlepni algoritam koji rješava problem određivanja maksimalnog nezavisnog skupa čvorova u grafu. Odredi neke klase grafova za koje taj pohlepni algoritam uvijek pronalazi optimalno rješenje. Pronaći kontraprimjer kada pohlepni algoritam ne pronalazi optimalno rješenje.
 	
-	\item Svaki razlomak se može napisati kao zbir razlomaka od kojih svaki ima jedinicu u brojiocu. Taj zapis su koristili još i stari Egipćani, po kojima se taj zapis i zove ``egipatski razlomak''. 
-	Napisati pohlepni algoritam koji proizvoljan razlomak zapisuje kao ``egipatski razlomak'', odnosno kao zbir razlomaka koji imaju jedinicu u brojiocu.
+	\item Svaki razlomak se može napisati kao zbir razlomaka od kojih svaki ima jedinicu u brojiocu. Taj zapis su koristili još i stari Egipćani, po kojima se taj zapis i zove ,,egipatski razlomak''. 
+	Napisati pohlepni algoritam koji proizvoljan razlomak zapisuje kao ,,egipatski razlomak'', odnosno kao zbir razlomaka koji imaju jedinicu u brojiocu.
 	
 	\item Zadat je skup $S$ koji se sastoji od $n$ brojeva. Koristeći pohlepni algoritam, podijeliti skup $S$ na dva podskupa, tako da se zbirovi elemenata u prvom i drugom podskupu što manje razlikuju.
 	
@@ -6814,7 +6832,7 @@ Ako je potrebno implementirati promjenljivu za koju je $x \geq 0$ to radimo kao 
  	model.add(obj);
  \end{verbatim}
  
- \noindent Za formiranje izraza $expr$ možemo koristiti operator  ``+='', gdje se trenutni izraz sabira sa nekim objektom \emph{IloNumVar} klase -- dakle promjenljivom (eventualno pomnoženom sa nekim koeficijentom). 
+ \noindent Za formiranje izraza $expr$ možemo koristiti operator  ,,+='', gdje se trenutni izraz sabira sa nekim objektom \emph{IloNumVar} klase -- dakle promjenljivom (eventualno pomnoženom sa nekim koeficijentom). 
  Npr. ako želimo da implementiramo funkciju cilja $\sum_{i=1}^n c_i x_i$, koristili bismo sljedeću implementaciju:
  
  \begin{verbatim}
@@ -6832,7 +6850,7 @@ Ako je potrebno implementirati promjenljivu za koju je $x \geq 0$ to radimo kao 
  \begin{verbatim}
  	 model.add(expr1 <= expr2).
  \end{verbatim} 	 
- 	  Umjesto relacije ``$<=$'' mogu biti ravnopravno korištene i relacije ``=='' ili ``$>=$''. Umjesto izraza $expr1$ ili $expr2$ takođe može da stoji i skalar. Pretpostavimo da želimo implementirati sljedeće ograničenje:
+ 	  Umjesto relacije ,,$<=$'' mogu biti ravnopravno korištene i relacije ,,=='' ili ,,$>=$''. Umjesto izraza $expr1$ ili $expr2$ takođe može da stoji i skalar. Pretpostavimo da želimo implementirati sljedeće ograničenje:
  $$s_j = \sum_{t=1}^n t \cdot x_{jt}, \forall j \in \{1,\ldots,N\}.$$ 
  Implementacija koja odgovara ovim ograničenjima data je k\^odom
  \begin{verbatim}
@@ -7049,7 +7067,7 @@ pronađe i analizira još nekoliko problema, koji su riješeni uz pomoć PuLp mo
  \end{itemize}
 Za ovaj problem je poznato da je NP-težak, ili preciznije pripada $\mathcal{APX}$ klasi. Zainteresovanom čitaocu preporučujemo da se, koristeći se internet resursima, upozna sa specifičnostima $\mathcal{APX}$ klase problema.
 
-Npr. neka su data dva stringa $s_1 = \texttt{abdcccab}$ i $s_2=\texttt{abccacd}$, rješenje ovog problema je $s=\texttt{abc}$. Primijetimo da je $s$ zajednički podniz za oba ulazna stringa te da ispunjava uslov o ``neponavljajućim'' karakterima u sebi. Takođe, može se provjeriti da ne postoji duži zajednički podniz sa takvim svojstvom za ove ulazne stringove, što znači da je ovo rješenje optimalno. Konstruišimo sada jedan model binarnog cjelobrojnog programiranja za ovaj problem. 
+Npr. neka su data dva stringa $s_1 = \texttt{abdcccab}$ i $s_2=\texttt{abccacd}$, rješenje ovog problema je $s=\texttt{abc}$. Primijetimo da je $s$ zajednički podniz za oba ulazna stringa te da ispunjava uslov o ,,neponavljajućim'' karakterima u sebi. Takođe, može se provjeriti da ne postoji duži zajednički podniz sa takvim svojstvom za ove ulazne stringove, što znači da je ovo rješenje optimalno. Konstruišimo sada jedan model binarnog cjelobrojnog programiranja za ovaj problem. 
 
 Nazovimo par $(a, b), 1 \leq i \leq |s_1|, 1 \leq j \leq |s_2|$ \emph{mečing} akko je $s_1[a]=s_2[b], a < b$. Dalje, sa $\mathcal{M}$ označimo skup svih mečinga za dati ulaz $S=\{s_1, s_2\}$. Takođe, označimo sa  $\mathcal{M}_{\texttt{a}} \subseteq \mathcal{M}$  skup svih mečinga koji pokrivaju isto slovo, tj. 
 $\mathcal{M}_{\texttt{a}} = \{ (i, j) \mid s_1[i]=s_2[j]=\texttt{a}\}$, $\texttt{a} \in \Sigma$. Svakom mečingu $p=(p_1(a),p_2(a))$, pridružimo jednu binarnu promjenljivu $z_{p} \in \{0, 1\}$. Označimo $l(z_p)= s_1[ p_1(a) ], Z_{\texttt{a}} = \{ z_p \mid p \in \mathcal{M} \ \wedge\  l(z_p) = \texttt{a}\}, \texttt{a}\in \Sigma$, te skup svih promjenljivih sa $Z = \cup_{\texttt{a} \in \Sigma} Z_{\texttt{a}}$. 
@@ -7334,7 +7352,7 @@ U ovoj sekciji ćemo prikazati konstrukciju  \emph{Metoda unutrašnje tačke}, k
 
 \emph{Metod unutrašnje tačke} (eng. \emph{Interior point metod}) je dizajniran 50-ih godina XX vijeka. Sve do 80-ih godina XX vijeka nije smatran algoritmom koji efikasno  rješava probleme velikih dimenzija. Tek 1984. godine, N. Karmakar, inžinjer u IBM-u,  formalno dokazuje da se ovaj algoritam izvršava u polinomijalnom broju koraka za unaprijed zadatu preciznost optimalne vrijednosti. U današnje vrijeme, zbog ekstremnog poboljšanja performansi mašina, pokazalo se da je {metod unutrašnje tačke} kompetentan sa simpleks metodom u situacijama kada se radi o problemima izuzetno velikih dimenzija, gdje matrice problema sadrže $10^9$ i više elemenata.
 
-Za razliku od simpleks metoda, koji ``šeta'' po granicama poliedra (dopustivog regiona) u potrazi za optimalnim rješenjem, {metod unutrašnje tačke}, kako i samo ime kaže, se kreće po unutrašnjim tačkama poliedra,  dok ne naiđe na  optimalno rješenje. 
+Za razliku od simpleks metoda, koji ,,šeta'' po granicama poliedra (dopustivog regiona) u potrazi za optimalnim rješenjem, {metod unutrašnje tačke}, kako i samo ime kaže, se kreće po unutrašnjim tačkama poliedra,  dok ne naiđe na  optimalno rješenje. 
 
 Postoji nekoliko metoda ove vrste, kao što su: metod centralne putanje, redukcija potencijala, afino skaliranje, itd. U ovoj sekciji ćemo razmatrati metod centralne putanje. Napomenimo i da ćemo se baviti rješavanjem problema LP-a koji je dat u obliku (\ref{eq:lp_equality_constraint}). Napomenimo da razumijevanje procesa konstrukcije metode  unutrašnje tačke zahtjeva poznavanje osnovnih pojmova i teorema klasične matematičke analize sa više promjenjivih, kao i iterativnih numeričkih metoda za rješavanje (nelinearnih) sistema jednačina. Dalje, kako je konstrukcija ovog algoritma iznimno zahtjevna, neke teoreme, ili dijelovi teorema koji koriste ovoj svrsi, će biti  navedeni bez dokaza i ulaženja u detalje. Dakle, više ćemo se fokusirati na ideju i razumijevanje glavnih koraka u konstrukciji ovog algoritma.
 
@@ -7694,18 +7712,18 @@ linku koji je dat pod referencom~\cite{cite_key25}. %\url{https://www.maths.ed.a
 	\bibitem[2]{cite_key2} Hillier, Frederick S. Introduction to operations research. Tata McGraw-Hill Education, 2012.
 	\bibitem[3]{cite_key3}  \url{https://faculty.math.illinois.edu/~mlavrov/}
 	 \bibitem[4]{cite_key4}  Bisschop, Johannes. AIMMS optimization modeling. Lulu. com, 2006.
-	  \bibitem[5]{cite_key5} Feillet, Dominique. ``A tutorial on column generation and branch-and-price for vehicle routing problems.'' 4or 8.4 (2010): 407-424.
+	  \bibitem[5]{cite_key5} Feillet, Dominique. ,,A tutorial on column generation and branch-and-price for vehicle routing problems.'' 4or 8.4 (2010): 407-424.
 	  \bibitem[6]{cite_key6}  Rebeka Čordaš. Linearno programiranje i primjene. Sveu\v cili\v ste J.J.Strossmayera u Osijeku, diplomski rad (2012)
-	  \bibitem[7]{cite_key7}   Manual, \textsc{Cplex} User’S. ``Ibm ilog cplex optimization studio.'' Version 12 (1987): 1987-2018.
+	  \bibitem[7]{cite_key7}   Manual, \textsc{Cplex} User’S. ,,Ibm ilog cplex optimization studio.'' Version 12 (1987): 1987-2018.
 	  \bibitem[8]{cite_key8} Mitchell, Stuart, Michael OSullivan, and Iain Dunning. "PuLP: a linear programming toolkit for python." The University of Auckland, Auckland, New Zealand (2011): 65.
 	  \bibitem[9]{cite_key9}    Talbi, El-Ghazali. Metaheuristics: from design to implementation. Vol. 74. John Wiley \& Sons, 2009.
 	  \bibitem[10]{cite_key10}     Vazirani, Vijay V. Approximation algorithms. Springer Science \& Business Media, 2013.
-	   \bibitem[11]{cite_key11}     Blum, Christian, Maria J. Blesa, and Manuel Lopez-Ibanez. ``Beam search for the longest common subsequence problem.'' Computers \& Operations Research 36.12 (2009): 3178-3186.
+	   \bibitem[11]{cite_key11}     Blum, Christian, Maria J. Blesa, and Manuel Lopez-Ibanez. ,,Beam search for the longest common subsequence problem.'' Computers \& Operations Research 36.12 (2009): 3178-3186.
 	 % Odjel za matematiku
-	   \bibitem[12]{cite_key12}   Raidl, Günther R., and Jakob Puchinger. ``Combining (integer) linear programming techniques and metaheuristics for combinatorial optimization.'' Hybrid metaheuristics (2008): 31-62.
+	   \bibitem[12]{cite_key12}   Raidl, Günther R., and Jakob Puchinger. ,,Combining (integer) linear programming techniques and metaheuristics for combinatorial optimization.'' Hybrid metaheuristics (2008): 31-62.
 	     \bibitem[13]{cite_key13}      Rahmaniani, Ragheb, et al. "The Benders decomposition algorithm: A literature review." European Journal of Operational Research 259.3 (2017): 801--817.
-	     \bibitem[14]{cite_key14}    Raidl, Günther R. ``Decomposition based hybrid metaheuristics.'' European journal of operational research 244.1 (2015): 66-76.
-	      \bibitem[15]{cite_key15}  Hansen, Pierre, Nenad Mladenović, and José A. Moreno Pérez. ``Variable neighbourhood search: methods and applications.'' 4OR 6.4 (2008): 319--360.
+	     \bibitem[14]{cite_key14}    Raidl, Günther R. ,,Decomposition based hybrid metaheuristics.'' European journal of operational research 244.1 (2015): 66-76.
+	      \bibitem[15]{cite_key15}  Hansen, Pierre, Nenad Mladenović, and José A. Moreno Pérez. ,,Variable neighbourhood search: methods and applications.'' 4OR 6.4 (2008): 319--360.
 	      \bibitem[16]{cite_key15} \url{https://www.tu-chemnitz.de/mathematik/discrete/manuals/cplex/doc/}%userman/html/cpxUserAppendixA.html
 	      \bibitem[17]{cite_key17} \url{https://coin-or.github.io/pulp/main/the\_optimisation\_process.html}
 	      \bibitem[18]{cite_key18} \url{https://www.coin-or.org/PuLP/CaseStudies/index.html}
@@ -7719,9 +7737,9 @@ linku koji je dat pod referencom~\cite{cite_key25}. %\url{https://www.maths.ed.a
    \bibitem[25]{cite_key25}   \url{https://www.maths.ed.ac.uk/~gondzio/parallel/solver.html}
    
     \bibitem[26]{cite_key26} \url{https://homepages.rpi.edu/~mitchj/handouts/gomorycuts/gomorycuts.html}
-   \bibitem[27]{cite_key27}  Williamson, David P., and David B. Shmoys. ``The design of approximation algorithms.'' Cambridge university press, 2011.
-    \bibitem[28]{cite_key28} Adi, Said S., et al. ``Repetition-free longest common subsequence.'' Discrete Applied Mathematics 158.12 (2010): 1315--1324.
-     \bibitem[29]{cite_key29}  Cornuéjols, Gérard, George Nemhauser, and Laurence Wolsey. ``The uncapicitated facility location problem.'' Cornell University Operations Research and Industrial Engineering, 1983.
+   \bibitem[27]{cite_key27}  Williamson, David P., and David B. Shmoys. ,,The design of approximation algorithms.'' Cambridge university press, 2011.
+    \bibitem[28]{cite_key28} Adi, Said S., et al. ,,Repetition-free longest common subsequence.'' Discrete Applied Mathematics 158.12 (2010): 1315--1324.
+     \bibitem[29]{cite_key29}  Cornuéjols, Gérard, George Nemhauser, and Laurence Wolsey. ,,The uncapicitated facility location problem.'' Cornell University Operations Research and Industrial Engineering, 1983.
     \bibitem[30]{cite_key30} Asghari, M., Fathollahi-Fard, A. M., Mirzapour Al-e-hashem, S. M. J., \& Dulebenets, M. A. (2022). Transformation and Linearization Techniques in Optimization: A State-of-the-Art Survey. Mathematics, 10(2), 283.
 \end{thebibliography}
 
