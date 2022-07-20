@@ -1970,7 +1970,7 @@ Kako su svi koeficijenti doprinosa ($\overline{c}$ varijable) manje od 0, simple
 \end{comment}
  % \newpage
  \chapter{Dualnost \& Dopustivost}\label{chp:dualnost}
- \fxnote{Marko: dosao sam dovde.}
+ 
  %Dualnost je pojam koji je vezan za dobijanje gornjih granica optimalne vrijednosti funkcije cilja. 
  U teoriji linearnog programiranja, ali i teoriji optimizacije uopšte, pod dualnošću podrazumijevamo da se neki problem može posmatrati s dva različita aspekta: kao primalni i kao dualni problem. 
 Preciznije, teorija dualnosti povezuje dva problema linearnog programiranja -- jedan od njih je problem linearnog programiranja koji maksimizuje funkciju cilja, dok je drugi linearan program  koji minimizuje (ne obavezno istu) funkciju cilja.  Na osnovu istih ulaznih podataka, svaki problem LP-a se može navesti u drugom, ekvivalentnom obliku. Ponekad rješavanje dualnog problema LP-a može da bude puno lakše nego rješavanje početnog problema.  Dualnost implicira da svaki problem linearnog programiranja možemo analizirati na dva potpuno različita načina, ali sa ekvivalentnim (optimalnim) rješenjima. 
@@ -2006,7 +2006,7 @@ Sabirajući ove dvije nejednakosti i grupišući sabirke dobijamo
      x_1 ( 4 y_1 + y_2 ) + x_2 ( 3 y_1 + y_2 ) \leq 9 y_1 + 8 y_2 
 \end{equation}
 Posmatrajući funkciju cilja i koeficijente uz promjenljive u (\ref{eq:dual-1}), jasno je da treba da vrijedi 
-$4 y_1 + y_2 \geq 1$ i $3 y_1 + y_2 \geq 1$. Da bi ocjena gornje granice u izrazu  (\ref{eq:dual-1}) bila što bolja, odnosno koeficijent na desnoj strani što veći, potrebno je minimizovati izraz $9y_1 + 8 y_2$, prema gore navedenim uslovima. Prema tome, početnom problemu, koji označavamo sa ($P$), odgovara dualni problem ($D$)
+$4 y_1 + y_2 \geq 1$ i $3 y_1 + y_2 \geq 1$. Da bi ocjena gornje granice   izraza sa lijeve strane nejednakosti (\ref{eq:dual-1}) bila što bolja,   potrebno je minimizovati izraz $9y_1 + 8 y_2$, prema prethodno pomenuta (dva) uslova. Prema tome, početnom problemu, koji označavamo sa ($P$), odgovara dualni problem ($D$)
 $$\begin{array}{ll}
      \min                    &  9 y_1+ 8 y_2        \\
        \mbox{t.d.}   &  4 y_1     +   y_2 \geq 1   \\
@@ -2117,32 +2117,34 @@ Množeći drugo ograničenje sa -1, dobijamo $y_1 -y_2 \leq 1$, što u kombinaci
 
 Analizirajmo sada i koncept  \emph{komplementarnosti} (eng. \emph{complementary slackness}), koji nam omogućava da uspostavimo još neke važne odnose između promjenljivih i ograničenja primarnog i dualnog problema. 
 \begin{thm}[Teorema komplementarnosti]
+	
       Neka su $x$ i $y$ dopustiva rješenja problema ($P$) i  ($D$), redom. Vektori $x$ i $y$ su optimalna rješenja ova dva problema akko vrijedi 
       
-            \begin{equation}\label{eq:slackness-2}
-      	(Ax - b)_i y_i = 0, i=1,\ldots,m
-      \end{equation}
-   i
-      \begin{equation}\label{eq:slackness-1}
-           (A^Ty - c)_j x_j = 0, j=1,\ldots,n
-      \end{equation}   
+            \begin{equation}\label{eq:slackness-2} 
+      	(Ax - b)_i y_i = (a_{i1}x_1 + \cdots + a_{in}x_n - b_i)y_i = 0, i=1,\ldots,m 
+      \end{equation} 
+   i 
+      \begin{equation}\label{eq:slackness-1} 
+           (A^Ty - c)_j x_j =  ( a_{1 j}y_1 + \cdots a_{m j}y_m - c_j  ) x_j =  
+           0, j=1,\ldots,n 
+      \end{equation}    
 
-\end{thm}
-Uslovi (\ref{eq:slackness-1}) i (\ref{eq:slackness-2}) se nazivaju \emph{uslovi komplementarnosti}.
+\end{thm} 
+Uslovi (\ref{eq:slackness-1}) i (\ref{eq:slackness-2}) se nazivaju \emph{uslovi komplementarnosti}. 
 
 \begin{proof}
-         Iz teoreme o slaboj dualnosti imamo: 
-         \begin{equation}
-             c^Tx \leq ( A^T y)^T x = y^T A x \leq b^T y. 
-         \end{equation}
-         Dalje, iz teoreme jake dualnosti imamo  
-         \begin{align*}
-             &x \mbox{ i } y \mbox{ su oba optimalna } \Longleftrightarrow c^T x = b^T y \Longleftrightarrow c^Tx = y^TA x = b^Ty \\
-             &\Longleftrightarrow (y^T A - c^T) x = 0 \wedge y^T(Ax - b )  = 0\\
-             & \Longleftrightarrow \sum_i (A^T y - c)_i x_i = 0 \wedge \sum_j (Ax - b)_j y_j = 0
-         \end{align*}
-         Kako je $A^Ty \geq c$, $\sum_i (A^T y - c)_i x_i$ je suma nenegativnih komponenti, odakle slijedi da   $(A^T y - c)_i x_i= 0$ za sve $i$. Takođe, slično vrijedi i za drugu sumu, jer $Ax - b \leq 0$, pa je svaki  $(Ax - b)_j y_j$ negativan, odakle slijedi da je $(Ax - b)_j y_j = 0$ za sve $j$.
-\end{proof}
+         Iz teoreme o slaboj dualnosti imamo:  
+         \begin{equation} 
+             c^Tx \leq ( A^T y)^T x = y^T A x \leq b^T y.  
+         \end{equation} 
+         Dalje, iz teoreme jake dualnosti imamo   
+         \begin{align*} 
+             &x \mbox{ i } y \mbox{ su oba optimalna } \Longleftrightarrow c^T x = b^T y  \Longleftrightarrow c^Tx = y^TA x = b^Ty \\ 
+             &\Longleftrightarrow (y^T A - c^T) x = 0 \wedge y^T(Ax - b )  = 0\\ 
+             & \Longleftrightarrow \sum_i (A^T y - c)_i x_i = 0 \wedge \sum_j (Ax - b)_j y_j = 0 
+         \end{align*} 
+         Kako je $A^Ty \geq c$, $\sum_i (A^T y - c)_i x_i$ je suma nenegativnih komponenti, odakle  slijedi da   $(A^T y - c)_i x_i= 0$ za sve $i$. Takođe, slično vrijedi i za drugu sumu, jer $Ax - b \leq 0$, pa je svaki  $(Ax - b)_j y_j$ negativan, odakle slijedi da je $(Ax - b)_j y_j = 0$ za sve $j$.
+\end{proof} 
 
 \emph{Komentar}.  Nekada je lakse riješiti jedan od problema, ($P$)  ili  ($D$).  Npr. lakše je riješiti dualni problem sa dvije promjenljive i 4 ograničenja (grafički metod), nego primalni  ($P$)  problem sa 4 promjenljive i 2 ograničenja. 
 
@@ -2234,7 +2236,7 @@ jednog problema i promjenljivih u drugom problemu je data sljedećom tabelom.
 
 
 \section{Metod unutrašnje tačke}
-
+\fxnote{Marko: stigao dovde!}
 Simpleks metod ne garantuje   rješavanje proizvoljnog problema LP u polinomijalnom broju koraka u odnosu na veličinu ulaza. % V. Klee and G. Minty constructed an example LP: simplex method needs 2^n iterations to solve it 
 %Dakle, iz njega se ne može zaključiti da je problem rješavanja generalnog LP problema   polinomijalno rješiv. 
 
