@@ -3474,7 +3474,7 @@ Prodiskutujmo ovo rješenje po čvorovima dobijenog stabla:
  \begin{definition}{Validna nejednakost} za ILP je svako ograničenje koje ne eliminiše niti   jedno moguće cjelobrojno rješenje problema.
  \end{definition}
  Drugi naziv za \emph{validnu nejednakost} je \emph{odsjecajuća ravan}.
-\fxnote{Marko: stigao dovde}
+
 \begin{primjer}
 Za sljedeći problem ILP-a
 \end{primjer}
@@ -3489,7 +3489,7 @@ jedna njegova validna nejednakost je $z \leq 5$.
 \begin{definition}
       Konveksni omotač za problem  ~(\ref{ilp-formulation}) je najmanji (dopustivi) poliedar nekog LP-a koji sadrži sve cjelobrojne tačke tog problema.
 \end{definition}
-Ako riješimo LP problem čiji je dopustivi skup konveksni omotač cjelobrojnih tačaka, onda je to rješenje optimalno za odgovarajući ILP. Međutim problem nalaska ovakvog konveksnog omotača je takođe  NP-težak, pa prema tome nije očekivano da se takav   omotač može naći u opštem slučaju. Nalazak korisnih ograničenja (ne svih) koja učestvuju u izgradnji konveksnog omotača je takođe veoma težak zadatak, mada je ovo ponekad i moguće, kao u slučaju problema trgovačkog putnika. Prema tome, zadatak se svodi na nalazak korisnih odsjecajućih ravni, nezavisno od problema pronalaska konveksnog omotača, što se najčeše i radi  u praksi. 
+Ako riješimo LP problem čiji je dopustivi skup konveksni omotač cjelobrojnih tačaka, onda je to rješenje optimalno za odgovarajući ILP. Međutim problem nalaska ovakvog konveksnog omotača je takođe  NP-težak, pa prema tome nije očekivano da se takav   omotač može naći u opštem slučaju. Nalazak korisnih ograničenja (ne svih) koja učestvuju u izgradnji konveksnog omotača je takođe veoma težak zadatak, mada je ovo ponekad i moguće. Prema tome, zadatak se svodi na nalazak korisnih odsjecajućih ravni, nezavisno od problema pronalaska konveksnog omotača, što se najčeše i radi  u praksi. 
 
 \begin{primjer}
 Posmatrajmo   \emph{problem pakovanja skupa} dat na sljedeći način. Neka je data kolekcija $D$ rombova (u $\mathbb{R}^2$). 
@@ -3770,7 +3770,7 @@ U rješavanju problema optimizacije, pronalazak optimalnog rješenja je osnovni 
 Ideja \emph{Lagranžove relaksacije} se sastoji u tome da u modelu ILP-a  koji ima  ograničenja koja problem čine teškim (ova procjena najčešće dolazi uz praktičnog iskustva),  posmatramo kao dio ciljne funkcije koji se penalizuje nekim parametrom.  %parametrom $\lambda>0$. 
 Ovo ograničenje potom brišemo iz skupa ograničenja modela, a zatim rješavamo ovakav (parametrizovan) problem. Fiksirajući parametar penalizacije, rješenje takvog problema predstavlja donju granicu (za problem minimizacije)  optimalnog rješenja inicijalnog problema. Dobijena granica je često dovoljno blizu vrijednosti optimuma, što ovu metodu čini upotrebljivom u rješavanju praktičnih problema. 
 
-\begin{primjer} Posmatrajmo problem \emph{najkraćeg puta sa ograničenjem} (eng. \emph{Constrained Shortest Path Problem}). Neka je dat usmjeren neciklični graf $G=(V,E)$. Za svaku granu $(i,j) \in E$ dodijelimo cijenu puta $c_{i,j}$ i vrijeme putovanja $t_{i,j}$. Pretpostavimo da je čvor $i=1$ startni (izvorni) čvor, a čvor $n = |V|$   završni čvor (terminalni čvor). Zadatak je da se nađe najjeftiniji put  od izvornog do terminalnog čvora, ali tako da se čitav put pređe u vremenskom periodu $T$.
+\begin{primjer} Posmatrajmo problem \emph{najkraćeg puta sa ograničenjem} (eng. \emph{Constrained Shortest Path Problem}). Neka je dat usmjeren neciklični graf $G=(V,E)$. Za svaku granu $(i,j) \in E$ dodijelimo cijenu puta $c_{i,j}$ i vrijeme putovanja $t_{i,j}$. Pretpostavimo da je čvor $i=1$ početni (izvorni) čvor, a čvor $n = |V|$   završni čvor (terminalni čvor). Zadatak je da se nađe najjeftiniji put  od izvornog do terminalnog čvora, ali tako da se čitav put pređe u vremenskom periodu $T$.
 \end{primjer}
 Ovaj problem se modeluje pomoću sljedećeg ILP-a:
  \begin{align}
@@ -3780,13 +3780,13 @@ Ovaj problem se modeluje pomoću sljedećeg ILP-a:
                                                1, \mbox{ ako } i=1 \\
                                               -1, \mbox{ ako } i=n \\
                                                0, \mbox{ inače }
-                                            \end{cases} \\
-    & \sum_{(i,j) \in E} t_{i,j} x_{i,j} \leq T \\
+                                            \end{cases},  \forall j \in V \\ 
+    & \sum_{(i,j) \in E} t_{i,j} x_{i,j} \leq T, \forall j \in V \\
     & x_{i,j} \in \{0, 1 \}, \forall (i,j) \in E.
 \end{align} 
 
 Binarna promjenljiva $x_{i,j}$ dobija vrijednost 1 ako je  na   putu odabrana grana $(i,j)$, a 0 inače. 
-Prvo ograničenje u modelu osigurava da je dopustivo rješenje upravo put od izvornog do terminalnog čvora. Drugo ograničenje nam modeluje uslov da vrijeme prelaska puta treba da bude u  granicama dopustivog. Ovo ograničenje spada u ,,teška'' ograničenja. Kao što znamo,  pronalazak najkraćeg puta u usmjerenim grafovima, sa unaprijed definisanim izvornim čvorom, je polinomijalno rješiv (na primjer, uz pomoć Dajkstrinog algoritma). Međutim,  dodavanjem ograničenja o vremenu, taj problem postaje NP-težak. Stoga, ideja je  relaksirati ovaj problem uz prebacivanje ograničenja za vrijeme u funkciju cilja, koja se zatim penalizuje. 
+Prvo ograničenje u modelu osigurava da je dopustivo rješenje upravo put od izvornog do terminalnog čvora. Drugo ograničenje nam modeluje uslov da vrijeme prelaska puta treba da bude u  granicama dopustivog. Ova ograničenja spadaju u ,,teška'', jer se njihovim dodavanjem u model, njegovo rješavanje značajno otežava (vrijeme potrebno za rješavanje se drastično povećava i/ili  kompleksnost problema se teorijski povećava -- npr. sa P na NP). Kao što znamo,  pronalazak najkraćeg puta u usmjerenim grafovima, sa unaprijed definisanim izvornim čvorom, je polinomijalno rješiv (na primjer, uz pomoć Dajkstrinog algoritma). Međutim,  dodavanjem ograničenja u vezi vremena, taj problem postaje NP-težak~\cite{cite_key31}. Stoga, ideja je  relaksirati ovaj problem uz prebacivanje ograničenja za vrijeme u funkciju cilja, koja se zatim kažnjava penalom. 
 Dakle, Lagranžova relaksacija problema je data sa
 
 \begin{align*}
@@ -3795,22 +3795,22 @@ Dakle, Lagranžova relaksacija problema je data sa
     & \sum_{i} x_{i,j} - \sum_{i} x_{j,i} = \begin{cases}  
                                                1, \mbox{ ako } i=1 \\
                                               -1, \mbox{ ako } i=n \\
-                                               0, \mbox{ inače }
-                                            \end{cases} \\
+                                               0, \mbox{ inače},
+                                            \end{cases} \forall j \in V\\
      & x_{i,j} \in \{0, 1 \}, \forall (i,j) \in E.
 \end{align*}
 Primijetimo da je $L(\lambda) \leq z(\lambda)  \leq z^*$, za sve $\lambda > 0$, gdje je $z(\lambda)$ problem koji ima funkciju cilja $L(\lambda)$ uz uključeno ograničenje o vremenu u skup ograničenja modela. Dakle, za $\lambda >0$, $L(\lambda)$ nam daje donju granicu za optimalno rješenje početnog problema. 
 
-Problem $L^* = \max \{ L(\lambda) \mid \lambda > 0  \}$ se naziva \emph{problem Lagranžovog multiplikatora}. Može se pokazati da vrijedi 
+Problem $L^* = \max \{ L(\lambda) \mid \lambda > 0  \}$ se naziva \emph{problem Lagranžovog množioca}. Može se pokazati da vrijedi 
 $$ L(\lambda) \leq L^* \leq z^*.$$
 
 U praksi se pokazalo da je Lagranžova relaksacija dobra tehnika za dobijanje granica optimalne vrijednosti problema. 
  
 \begin{primjer}
-Primijenimo ovu tehniku na \emph{problem trgovačkog putnika} sa ulaznim težinskim grafom $G=(V,E)$, gdje je $V=\{1, \ldots, n\}$.  Razmotrimo  problem sa grafovske strane i pokušajmo da izvedemo njegovu relaksaciju. Neka je data kolekcija grana $T$. Kolekcija grana $T$ formira rutu ako su svaka dva čvora grafa $G$ pokrivena sa tačno dvije grane iz te kolekcije. Kada obrišemo grane incidentne sa čvorom 1 (ili nekim drugim), ostatak rute će činiti stablo koje pokriva graf  $G\setminus \{1\}$.  
-Definišimo sa $A(j)$ skup svih čvorova koji su incidentni sa čvorom $j$. 
+Primijenimo ovu tehniku na \emph{problem trgovačkog putnika} sa ulaznim težinskim grafom $G=(V,E)$, gdje je $V=\{1, \ldots, n\}$.  Razmotrimo  problem sa grafovske strane i pokušajmo da izvedemo njegovu relaksaciju. %Neka je data kolekcija grana $T. Kolekcija grana $T$ formira konturu ako su svaka dva čvora grafa $G$ pokrivena sa tačno dvije grane iz te kolekcije. Kada obrišemo grane incidentne sa čvorom 1 (ili nekim drugim), ostatak rute će činiti stablo koje pokriva graf  $G\setminus \{1\}$.  
+% Definišimo sa $A(j)$ skup svih čvorova koji su incidentni sa čvorom $j$. 
 \end{primjer}
-Relaksacija: definišimo sa $T_1$ skup svih ruta koje nakon brisanja grana koje pokrivaju čvor $1$ formiraju (pokrivajuće) stablo.  Dakle, prije samog rješavanja problema, enumerišimo sve ovakve rute u grafu $G$. 
+Relaksacija: definišimo sa $T_1$ skup svih ruta  u $G$  koje nakon brisanja grana koje pokrivaju čvor $1$ formiraju (pokrivajuće) stablo.  Dakle, prije samog rješavanja problema, enumerišimo sve ovakve rute u grafu $G$. 
 
 Shodno tome, konstruišemo sljedeći model
 \begin{align*}
@@ -3823,21 +3823,21 @@ gdje $x_{i,j} = 1$ ako grana $(i,j)$ pripada ruti, a 0 inače. Ako je $x=(i, j) 
 
 Lagranžova relaksacija za ovaj problem može se zadati sa 
 \begin{align*}
-     &L(\lambda) = \min \sum_{(i,j)\in E} c^\lambda_{i,j} x_{i,j} - 2 \sum_{i} \lambda_i \\
+     &L(\lambda) = \min \sum_{(i,j)\in E} c^\lambda_{i,j} x_{i,j} - 2 \sum_{i} \lambda_i \label{eq:tsp-lagrangean}\\
      & x \in T_1
 \end{align*}
 gdje je $\lambda=(\lambda_1, \ldots, \lambda_n)$ i $c^\lambda_{i,j} = c_{i,j} + \lambda_i + \lambda_j$. 
 
 U praksi se pokazalo da su rješenja dobijena Lagranžovom relaksacijom blizu optimalnim rješenju problema. Optimalno pokrivajuće stablo Lagranžovog problema $L(\lambda^*)$ za optimalno $\lambda^*$ će nam,  u praksi, često dati rješenje sa  nekoliko visećih čvorova. 
 
-Konstruišimo još jednu Lagranžovu relaksaciju za ovaj problem,  uvodeći tzv. \emph{ograničenja pokrivanja}. Neka je dat skup $S\subseteq V$. Ograničenje pokrivanja u odnosu na skup $S$ osiguravaju da postoji najviše $|S|-1$ grana u svakoj ruti kojima oba kraja pripadaju jednom od čvorova iz $S$. Ovom smo ograničili pojavljivanje ciklusa među čvorovima u konačnom rješenju.
-Prethodni scenario modelijemo sljedećim modelom 
+Konstruišimo još jednu Lagranžovu relaksaciju za ovaj problem,  uvodeći tzv. \emph{ograničenja pokrivanja}. Neka je dat skup $S\subseteq V$. Ograničenje pokrivanja u odnosu na skup $S$ osiguravaju postojanje najviše $|S|-1$ grana u svakoj ruti kojima oba kraja pripadaju čvorovima iz $S$. Ovom smo ograničili pojavljivanje ciklusa među čvorovima u konačnom rješenju.
+Prethodni scenario modelujemo sljedećim modelom 
 \begin{align*}
      & z^* = \min \sum_{(i,j)\in E} c_{i,j} x_{i,j} \\
      & t.d. \\
      & \sum_{ \{ i \mid (i,j) \in E \} } x_{i,j} = 2, \forall i \in \{1,\ldots, n \} \\
-     & \sum_{(i,j) \in E \ \wedge\ i,j \in S} x_{i,j} \leq |S|-1, \forall S \subseteq V \\
-     &  & \sum_{(i,j) \in E} x_{i,j} = n \\
+     & \sum_{(i,j) \in E \ \wedge\ i,j \in S} x_{i,j} \leq |S|-1, \forall S \subseteq V  \\
+     &   \sum_{(i,j) \in E} x_{i,j} = n  \\
      & x_{i,j} \in \{0, 1 \}, (i,j)\in E.
 \end{align*}
 Lagranžova relaksacija prethodnog ILP-a ima oblik 
@@ -3864,7 +3864,7 @@ Dakle, ono što je potrebno da znamo su ograničenja, čije su odgovarajuće dua
 \begin{itemize}
    % \item ¸Krenimo sa ,,obećavajućim'' podskupom $S$ kolona matrice $A$; 
    \item Izaberimo podskup $S$ kolona matrice $A$ u cilju određivanja potencijalno dobrog inicijalnog baznog dopustivog rješenja
-    \item Riješimo restrikovani LP na odabrnom podskupu kolona $S$.
+    \item Riješimo restrikovani LP na podskupu kolona $S$.
     \item Procijenimo ostale kolone i dodajmo u $S$ one sa negativnim 
           cijenama doprinosa.
     \item Itrerativno pozivamo perthodna dva koraka dok god postoje kolone   sa negativnim doprinosom koje nisu u $S$.
@@ -3906,14 +3906,23 @@ Iterativni proces rješavanja RMP problema se može prekinuti i ranije, bez dost
  \end{primjer}
 
  \emph{Rješenje.} Na Slici~\ref{fig:cuting_stock_solutions} je dato rješenje jedne instance ovog problema. 
- U ovom problemu, kolone predstavljaju dopustive obrasce (kombinacije rezanja). Jedan dio obrasca sa slike bi bio $1820$ x $2$ (rolne) u prvoj koloni.
+ U ovom problemu, kolone predstavljaju dopustive obrasce (kombinacije rezanja). Jedan dio obrasca sa slike bi bio $1820\times 2$ (rolne) u prvoj koloni.
  Primijetimo da broj različitih obrazaca raste eksponencijalno u odnosu na broj narudžbi.  Ako bismo izvršili enumeraciju svih mogućih obrazaca, trebali bismo riješiti sljedeći ILP model
  \begin{align*}
       & \min \sum_{i} x_i \\
       & \sum_{ij} a_{i,j }x_j \geq b_i, \forall i \hspace{2cm} (CSILP)\\
       &  x_j \geq 0, x_{j} \in \mathbb{Z} 
  \end{align*}
- Parametar $a_{i,j}$ predstavlja onaj broj, koliko se puta  narudžba $i$ pojavljuje u obrascu $j$ (vrsta na slici). Promjenljivom $x_j$ se označava koliko puta je obrazac $j$ korišten. Primjera radi, na  Slici~\ref{fig:cuting_stock_solutions} je $a_{1,1}=3$ i $x_1 = 2$, dok je $a_{1,2}=0$; $a_{1,5}=1$ i $ x_5 = 12$.
+ Parametar $a_{i,j}$ predstavlja onaj broj, koliko se puta u narudžbi $i$ (određena širina -- visina --  sječenja rolne) pojavljuje obrazac $j$ (odgovara vrsti na Slici ~\ref{fig:cuting_stock_solutions}). Promjenljivom $x_j$ se određuje širina j-tog sječenja rolne. 
+ 
+ Primjera radi, na  Slici~\ref{fig:cuting_stock_solutions} indeks $1$ odgovara obrascu (dužine) $1820$, indeks $2$ obrascu (dužine) $1380$, indeks 3 obrascu $2150$, indeks 4 obrascu $1930$,   itd.  Nadalje prvo sječenje  odgovara 
+ sljedećim vrijednostima: $a_{1,1}=3, a_{1,2}=a_{1,3}=\ldots =0$, i $x_1 = 2$. Ovo znači da u prvom sječenju visine 2, obrazac 1 (tj. dužina $1820$) se pojavljuje tri puta, dok se ostali obrasci ne pojavljuju ovdje. Drugo sječenje (narudžba) odgovara sljedećim vrijednostima: $a_{1,1}= 0, a_{1,2}=1, a_{1,3}=1, a_{1,4}=0=a_{1,5}=\ldots = 0$, dok je  $x_2 = 3$. Ovo znači da u drugom sječenju visine 3, obrazac $1820$ ne pojavljuje, obrazac $1380$ pojavljuje jednom, kao i obrasci $2150$  i $1930$, dok se ostali obrasci ne pojavljuju.  
+  \begin{figure}[ht]
+ 	\centering
+ 	\includegraphics[width=230pt, height=230pt]{cutting_stock.eps}
+ 	\caption{Rješenje jedne instance.}
+ 	\label{fig:cuting_stock_solutions}
+ \end{figure}
  
  Ideja je da se obrasci ne formiraju na početku, već da se generišu prema potrebi (po kolonama), koristeći \emph{metodu generisanja kolona}. Kolona $a$ odgovara dopustivom obrascu akko vrijedi 
  $$ \sum_{i=1}^m a_i w_i \leq W,$$
@@ -3935,12 +3944,7 @@ $$ \begin{array}{lll}
  
  Ovaj problem je poznat pod nazivom \emph{cjelobrojni problem ruksaka} (eng. integer knapsack problem). Iako je NP-težak, on se u praksi relativno efikasno rješava  uz pomoć dinamičkog programiranja. 
  
- \begin{figure}[!ht]
-     \centering
-     \includegraphics[width=230pt, height=230pt]{cutting_stock.eps}
-     \caption{Rješenje jedne instance.}
-     \label{fig:cuting_stock_solutions}
- \end{figure}
+
  Za ovaj problem je lako naći inicijalno bazno dopustivo rješenje.
  Za $i$-tu baznu kolonu uzimamo $i$-ti jedinični vektor, tj. obrazac dobijen rezanjem jedne rolne dužine $w_i$. Ovakav skup kolona formira inicijalnu dopustivu bazu. Svakako, malo je vjerovatno da će ove kolone biti korištene u optimalnom rješenju, ali to nije ni očekivano od inicijalnog rješenja. 
  Algoritam za rješavanje ovog problema je sljedeći.
@@ -4285,7 +4289,7 @@ Treba napomenuti da i savremeni MILP rješavači, o čemu će biti govora kasnij
 \end{equation}
 
  
-Posmatrajmo dualni problem podproblema~(\ref{bender2}), ignorišući term $g^T\overline{y}$, koji je konstantan.
+Posmatrajmo dualni problem podproblema~(\ref{bender2}), ignorišući sabirak $g^T\overline{y}$, koji je konstantan.
 
 \begin{equation}
 	\begin{aligned}\label{bender3}
@@ -4361,20 +4365,20 @@ Sada možemo definisati master problem koji nastaje dodavanjem svih odsjecajući
  		$$	\begin{aligned}
  			\max\ &u^T (c-B\overline{y})\\
  			t.d.\ &u^TA\leqslant f\\
- 			&u\geqslant 0
+ 			&u\geqslant 0.
  			\end{aligned}$$
  		
- 		\IF{Podproblem nema dopustivo rješenje}
+ 		\IF{podproblem nema dopustivo rješenje}
  		\STATE  KRAJ // nema  rješenja  
  		\ENDIF
- 		\IF{Podproblem ima optimalno rješenje}
+ 		\IF{podproblem ima optimalno rješenje}
  		\STATE $UB \gets \min\{UB,g^Ty+(u^k)^T(c-By)\}$
- 		\STATE Generiši Benderovu odsjecajuću ravan $z\geqslant g^Ty+(u^k)^T(c-By)$ i dodaj je u master problem
+ 		\STATE Generiši Benderovu odsjecajuću ravan $z\geqslant g^Ty+(u^k)^T(c-By)$ i dodaj je u master problem.
  		\ENDIF
-		 \IF{Podproblem nije ograničen}
-		\STATE Generiši Benderovu dopustivu ravan 	$(u^k)^T(c-By)\leqslant 0$ i dodaj je u master problem
+		 \IF{podproblem nije ograničen}
+		\STATE Generiši Benderovu dopustivu ravan 	$(u^k)^T(c-By)\leqslant 0$ i dodaj je u master problem.
 		\ENDIF
-		\STATE Riješi Benderov master problem
+		\STATE Riješi Benderov master problem:
 			$$\begin{aligned}
 			&\min\ z\\
 			& {t.d.}\\
@@ -4404,7 +4408,9 @@ Iako je Algoritmom~\ref{alg:bender} opisan postupak rješavanja problema minimiz
 \end{itemize}
 Postavlja se pitanje kako treba uložiti početnu količinu novca, tako da se ostvari maksimalna dobit.
 
-S obzirom na postavku zadatka, jasno je da bi optimalno rješenje trebalo da podrazumijeva da se uloži u dionice $f_5,\ldots,f_{10}$ sa maksimalnim mogućim ulaganjem (po 100KM), dok se ostatak novca oročava sa kamatom od  4.5\%.
+\emph{Napomena}. Prije nego krenemo na rješavanje zadatka, naglasimo da ovaj problem predstavlja pojednostavljenu, i ne previše realističnu verziju problema portfelja u ekonomiji, konkretno oblasti optimizacije protfelja (eng. protfolio optimization). Inače, relani problem ulaganja novca pripada dvo-kriterijumskoj optimizaciji, gdje se pored maksimizacije prinosa, minimizuje i rizik ulaganja.  
+
+\emph{Rješenje}. S obzirom na postavku zadatka, jasno je da bi optimalno rješenje trebalo da podrazumijeva da se uloži u dionice $f_5,\ldots,f_{10}$ sa maksimalnim mogućim ulaganjem (po 100KM), dok se ostatak novca oročava sa kamatom od  4.5\%.
 
 Sada ćemo problem formalno definisati i riješiti ga metodom Benderove dekompozicije.
 
@@ -7745,6 +7751,7 @@ linku koji je dat pod referencom~\cite{cite_key25}. %\url{https://www.maths.ed.a
     \bibitem[28]{cite_key28} Adi, Said S., et al. ,,Repetition-free longest common subsequence.'' Discrete Applied Mathematics 158.12 (2010): 1315--1324.
      \bibitem[29]{cite_key29}  Cornuéjols, Gérard, George Nemhauser, and Laurence Wolsey. ,,The uncapicitated facility location problem.'' Cornell University Operations Research and Industrial Engineering, 1983.
     \bibitem[30]{cite_key30} Asghari, M., Fathollahi-Fard, A. M., Mirzapour Al-e-hashem, S. M. J., \& Dulebenets, M. A. (2022). Transformation and Linearization Techniques in Optimization: A State-of-the-Art Survey. Mathematics, 10(2), 283.
+    \bibitem[31]{cite_key31} Lozano, L., Medaglia, A. L. (2013). On an exact method for the constrained shortest path problem. Computers \& Operations Research, 40(1), 378-384.
 \end{thebibliography}
 
 \end{document}
