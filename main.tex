@@ -6941,10 +6941,10 @@ Za one koji koriste Linux sistem, za kompajliranje programa koji je baziran na p
  % https://coin-or.github.io/pulp/main/the_optimisation_process.html
  PuLP je Python-ova biblioteka visokog nivoa za implementaciju i rješavanje modela, sa fokusom na LP i MILP modele.   Podržava veći broj komercijalnih i nekomercijalnih rješavača, a može se proširiti i na dodatne rješavače. Interesantno je i da PuLP  ne zavisi od  drugih softverskih paketa. 
  
- PuLP radi na principu modularnog pristupa prevođenja modela, napisanog prema definisanim pravilima, na njegovu vektorsku reprezentaciju (koja koristi vektore, rijetke matrice itd.). Konvertovani model se prosljeđuje u interfejs klase nekog od rješavača. Kako je interfejs mnogih rješavača sličan, ili se sa njima rukuje tako što se model reprezentuje u standardnim .$lp$ ili .$mps$  formatima  datoteka, pored specifičnih interfejsa popularnih rješavača, u PuLP biblioteku su uključene i  generičke klase rješavača. %popularnih rješavača. 
+ PuLP radi na principu modularnog pristupa prevođenja modela, napisanog prema definisanim pravilima, na njegovu vektorsku reprezentaciju (koja koristi vektore, rijetke matrice itd.). Konvertovani model se prosljeđuje u interfejs klase nekog od rješavača. Kako je šablon mnogih rješavača sličan, ili se sa njima rukuje tako što se model predstavlja u standardnim .$lp$ ili .$mps$  formatima  datoteka, pored specifičnih interfejsa popularnih rješavača, u PuLP biblioteku su uključene i  generičke klase rješavača. %popularnih rješavača. 
   Ove generičke klase se, uz minimalan trud, mogu korisnički proširiti u cilju pozivanja novih rješavača.    
  
- Da bismo koristili PuLP biblioteku, treba da je importujemo na sljedeći način:
+ Da bismo koristili PuLP biblioteku, treba da je uvezemo na sljedeći način:
  \begin{verbatim}
  	  from pulp import *
  \end{verbatim}
@@ -6977,7 +6977,7 @@ Npr. ako želimo deklarisati neprekidnu promjenljivu $x_1\geq 0$, to radimo slje
 \end{verbatim}
 Upisivanje modela u .$lp$ format se vrši pozivom funkcije \emph{writeLP()}, čiji je (očekivani) argument naziv datoteke. 
 
- \noindent  {\emph{Metode za eksport rješenja (statistike) iz modela}}. Rješavanje modela se inicira pozivom funkcije \emph{solve}() na instancu modela. Kriterijumi za zaustavljanje izvršavanja rješavača postavljamo kao parametar metoda \emph{solve}()  uz pomoć sljedeće linije k\^oda
+ \noindent  {\emph{Metode za izvoz rješenja (statistike) iz modela}}. Rješavanje modela se inicira pozivom funkcije \emph{solve}() na instancu modela. Kriterijumi za zaustavljanje izvršavanja rješavača postavljamo kao parametar metoda \emph{solve}()  uz pomoć sljedeće linije koda
  \begin{verbatim}
     PULP_CBC_CMD(maxSeconds=1000, msg=1, fracGap=0) 
 \end{verbatim}
@@ -7079,10 +7079,10 @@ pronađe i analizira još nekoliko problema, koji su riješeni uz pomoć PuLp mo
  \end{itemize}
 Za ovaj problem je poznato da je NP-težak, ili preciznije pripada $\mathcal{APX}$ klasi. Zainteresovanom čitaocu preporučujemo da se, koristeći se internet resursima, upozna sa specifičnostima $\mathcal{APX}$ klase problema.
 
-Npr. neka su data dva stringa $s_1 = \texttt{abdcccab}$ i $s_2=\texttt{abccacd}$, rješenje ovog problema je $s=\texttt{abc}$. Primijetimo da je $s$ zajednički podniz za oba ulazna stringa te da ispunjava uslov o ,,neponavljajućim'' karakterima u sebi. Takođe, može se provjeriti da ne postoji duži zajednički podniz sa takvim svojstvom za ove ulazne stringove, što znači da je ovo rješenje optimalno. Konstruišimo sada jedan model binarnog cjelobrojnog programiranja za ovaj problem. 
+Npr. neka su data dva stringa $s_1 = \texttt{abdcccab}$ i $s_2=\texttt{abccacd}$, rješenje ovog problema je $s=\texttt{abc}$. Primijetimo da je $s$ zajednički podniz za oba ulazna stringa te da ispunjava uslov o ,,neponavljajućim'' karakterima u sebi. Takođe, može se provjeriti da ne postoji duži zajednički podniz sa takvim svojstvom za ove ulazne stringove, što znači da je ovo rješenje optimalno. Konstruišimo sada jedan model binarnog cjelobrojnog programiranja ovog problema. 
 
-Nazovimo par $(a, b), 1 \leq i \leq |s_1|, 1 \leq j \leq |s_2|$ \emph{mečing} akko je $s_1[a]=s_2[b], a < b$. Dalje, sa $\mathcal{M}$ označimo skup svih mečinga za dati ulaz $S=\{s_1, s_2\}$. Takođe, označimo sa  $\mathcal{M}_{\texttt{a}} \subseteq \mathcal{M}$  skup svih mečinga koji pokrivaju isto slovo, tj. 
-$\mathcal{M}_{\texttt{a}} = \{ (i, j) \mid s_1[i]=s_2[j]=\texttt{a}\}$, $\texttt{a} \in \Sigma$. Svakom mečingu $p=(p_1(a),p_2(a))$, pridružimo jednu binarnu promjenljivu $z_{p} \in \{0, 1\}$. Označimo $l(z_p)= s_1[ p_1(a) ], Z_{\texttt{a}} = \{ z_p \mid p \in \mathcal{M} \ \wedge\  l(z_p) = \texttt{a}\}, \texttt{a}\in \Sigma$, te skup svih promjenljivih sa $Z = \cup_{\texttt{a} \in \Sigma} Z_{\texttt{a}}$. 
+Nazovimo par $(a, b), 1 \leq i \leq |s_1|, 1 \leq j \leq |s_2|$ \emph{odgovarajući} akko je $s_1[a]=s_2[b], a < b$. Dalje, sa $\mathcal{M}$ označimo skup svih odgovarajućih parova karaktera za dati ulaz $S=\{s_1, s_2\}$. Takođe, označimo sa  $\mathcal{M}_{\texttt{a}} \subseteq \mathcal{M}$  skup svih odgovarajućih parova koji pokrivaju slovo $\texttt{a}$, tj. 
+$\mathcal{M}_{\texttt{a}} = \{ (i, j) \mid s_1[i]=s_2[j]=\texttt{a}\}$, $\texttt{a} \in \Sigma$. Svakom odgovarajućem paru $p=(p_1(a),p_2(a))$, pridružimo jednu binarnu promjenljivu $z_{p} \in \{0, 1\}$. Označimo $l(z_p)= s_1[ p_1(a) ], Z_{\texttt{a}} = \{ z_p \mid p \in \mathcal{M} \ \wedge\  l(z_p) = \texttt{a}\}, \texttt{a}\in \Sigma$, te skup svih promjenljivih sa $Z = \cup_{\texttt{a} \in \Sigma} Z_{\texttt{a}}$. 
 
 Za svake dvije binarne promjenljive $z_{q}$ i $z_{r}$ kažemo da su u \emph{konfliktu} akko vrijedi sljedeće
  $$ q_1(a) \geq r_1(b) \mbox{ i } q_2(b) \leq r_2(a) $$ 
@@ -7095,7 +7095,7 @@ Sada možemo formirati ograničenja u modelu. Uslov da je svaki karakter prisuta
 \begin{equation}\label{eq:rflcs-max-1}
 	 \sum_{z \in  Z_{\texttt{a} }} z \leq 1, \forall \texttt{a} \in \Sigma 
 \end{equation}
-Takođe, s obzirom da rješenje problema odgovara pronalasku skupa (međusobno) nekonfliktnih mečinga (odgovarajućih $z$-promjenljivih) maksimalne kardinalnosti, dodajemo ograničenje
+Takođe, s obzirom da rješenje problema podrazumijeva pronalazak skupa (međusobno) nekonfliktnih odgovarajućih parova karaktera (odgovarajućih $z$-promjenljivih) maksimalne kardinalnosti, dodajemo ograničenje
 \begin{equation}\label{eq:rflce-non-conflict}
 	 z_{p} + z_q \leq 1, \forall p,q \in Z, p\neq q, p\mbox{ je u konfliktu sa } q.
 \end{equation}
@@ -7103,7 +7103,7 @@ Kako tražimo skup maksimalne kardinalnosti, funkciju cilja (koja se maksimizuje
 \begin{equation}\label{eq:rflcs-objective}
 	 \max \sum_{z \in Z } z 
 \end{equation}
-Dakle, uz funkciju cilja (\ref{eq:rflcs-objective}), ograničenja (\ref{eq:rflcs-max-1})--(\ref{eq:rflce-non-conflict}) sa uslovom $z \in \{0, 1\}, z \in Z$, dobili smo model problema najdužeg stringa bez ponavljanja. 
+Dakle, uz funkciju cilja (\ref{eq:rflcs-objective}), ograničenja (\ref{eq:rflcs-max-1})--(\ref{eq:rflce-non-conflict}) sa uslovom $z \in \{0, 1\}, z \in Z$, dobijamo model problema najdužeg stringa bez ponavljanja. 
 
  Implementirajmo ovaj model, uz pretpostavku da je svaki string u ulazu narednog programa dat svojom numeričkom reprezentacijom. To znači da je svakom karakteru stringa pridružen jedinstven broj i kao takav se importuje i koristi u programu. Primjera radi, za string $s_1=\texttt{abbcba}$, pridružen je numerički niz (vektor) 011210.
  
@@ -7246,7 +7246,8 @@ int main( int argc, char **argv )
          cout << " } \n";  
      }
      cout << "Objektivna vrijednost: " << lastVal << endl;
-     cout << "Dualna vrijednost: " << double(cplex.getBestObjValue()) << endl;
+     cout << "Dualna vrijednost: " 
+          << double(cplex.getBestObjValue()) << endl;
    catch(IloException& e) {
      	cerr  << " ERROR: " << e << endl;
    }
@@ -7718,11 +7719,19 @@ linku koji je dat pod referencom~\cite{cite_key25}. %\url{https://www.maths.ed.a
 	% Ako bi uzeli $\mu = 1$, rješenje koje se dobije je 
 \end{comment}
 
-\chapter{Makefile za kompajliranje CPLEX programa}\label{appendix:makefile-cplex}
+\chapter{Makefile za kompajliranje \textsc{Cplex} programa}\label{appendix:makefile-cplex}
 
-\fxnote{TODO}
+\begin{center}
+	\includegraphics[width=420pt,height=300pt]{cplex_makefile.png}
+\end{center}
 
-
+Sljedeće se podazumijeva ukoliko želite pokrenuti progam uz pomoć makefile (komande make)
+\begin{itemize}
+	\item Instaliran je C++, sa kompajlerom GCC (verzija 9, recimo).
+	\item Intaliran je \textsc{Cplex}. 
+	\item U varijablama CPLEXDIR i CONCERTDIR (linije 8 i 9), podešene su putanje ka cplex i concert direktorijumima, redom.
+	\item Napisan je program cplex\_rfrcs.cpp i dodatni .cpp za mjerenje vremena izvršavanja algoritma, nazvan Timer.cpp. (Pisanje Timer.cpp nije obavezno, u tom slučaju varijabla OBJS na liniji 3 je prazna.)
+\end{itemize}
 
 \begin{thebibliography}{widest entry}
 	\bibitem[1]{cite_key1}  \url{https://towardsdatascience.com/the-big-picture-of-operations-research-8652d5153aad}
