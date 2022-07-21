@@ -221,17 +221,17 @@ Na kraju, želimo da se zahvalimo recenzentima, doc. dr Milani Grbić i doc. dr 
 
 \chapter*{Notacija}
 
-Prije svega, uvedimo neke notacijske napomene i konvencije koje smo koristili u knjizi.
+Yvedimo neke notacijske napomene i konvencije koje smo koristili u knjizi.
 
 \begin{itemize}
-	\item Što se tiče oznake za vektore, smatraćemo da je vektor uvijek dat u kolonskoj notaciji, tj. 
+	\item Smatraćemo da je vektor uvijek dat u kolonskoj notaciji, tj. 
 	$x= \left (\begin{matrix}
 		     x_1 \\
 		     x_2 \\
 		     \vdots\\
 		     x_n
 	\end{matrix} \right ) \in \mathbb{R}^n,$ dok je njegov odgovarajući transponovani vektor $x^T=(x_1,\ldots, x_n) \in \mathbb{R}^{1\times n}$. 
-   \item Što se tiče skalara i vektora, nećemo koristiti drugačije oznake da bismo ih razlikovali. Jednostano, biće jasno iz konteksta da li je riječ o jednom ili drugom. Dakle, nula vektor ćemo takođe označavati sa $x = (0, \ldots, 0)^T := 0$, dok je $x=(1,\ldots, 1):=1$.  
+   \item Što se tiče skalara i vektora, nećemo koristiti drugačije oznake da bismo ih razlikovali. Jednostavno, biće jasno iz konteksta da li je riječ o jednom ili drugom. Dakle, nula vektor ćemo takođe označavati sa $x = (0, \ldots, 0)^T := 0$, dok je $x^T=(1,\ldots, 1):=1$.  
    \item   Ako je $x \in \mathbb{R}^n$, notacija  $x \geq 0$ podrazumijeva da je svaka koordinatna vrijednost vektora $x$ veća ili jednaka 0, tj. $x_i \geq 0$, za sve $i=1,\ldots,n$. 
 \end{itemize} 
 
@@ -261,7 +261,7 @@ Glavne karakteristike operacionih istraživanja su:
      \item \emph{Optimizacija:} %Uloga operacionih istraživanja je   dohvatiti najbolje performanse pod unaprijed zadanim resursima (limit u vremenu, memoriji, itd.). 
        uključuje poređenja i navođenje pretrage prema potencijalno boljim opcijama u okviru zadanih resursa.
      \item \emph{Simulacija}:  podrazumijeva izgradnju modela problema iz koga se dobijaju rješenja, koja se nakon toga provjeravaju prije nego što se implementiraju u realnoj situaciji.
-     \item \emph{Vjerovatnoća i statistika}:  podrazumijeva ($i$) upotrebu matematičkih algoritama i podataka u smislu otkrivanja korisnih informacijakoje služe za dobijanje pouzdanih predviđanja u realnom svijetu; ($ii$) testiranje kvaliteta i upotrebljivosti rješenja.
+     \item \emph{Vjerovatnoća i statistika}:  podrazumijeva ($i$) upotrebu matematičkih algoritama i podataka u smislu otkrivanja korisnih informacija koje služe za dobijanje pouzdanih predviđanja u realnom svijetu; ($ii$) testiranje kvaliteta i upotrebljivosti rješenja.
 \end{itemize}
  
  Operaciona istraživanja imaju nezamjenjivu ulogu u nizu obasti kao što su problemi raspoređivanja, urbanog planiranja, optimizacije na mrežama i inženjeringu, rutiranja paketa, upravljanja rizicima, upravljanja lancem snabdjevanja i mnogim drugim. 
@@ -277,7 +277,7 @@ Jedna od najmoćnijih tehnika koje se mogu koristiti u operacionim istraživanji
       \item algoritamska rješenja. 
   \end{enumerate}
   
- Pod \emph{poslovni problemima}  se ne podrazumijevaju samo problemi iz domena ekonomije, što samo ime možda nameće, već svi problemi koji imaju primjenu u stvarnom svijetu. Pojam ,,poslovni'' više odgovara tome da problem nema svoju preciznu matematičku formulaciju, nego je neformalno definisan kroz jezički (deskriptivan) opis.  Najčešće, ovi problemi proizilaze iz problema u ekonomiji ili industriji i kao takvi se i opisuju. Npr. u neformalnom opisu problema raspoređivanja medicinskog osoblja u (tri) smjene, navode se uslovi poput toga da svaki radnik mora da odradi 40 sati sedmično ili da niti jedan radnik ne smije da radi više od dvije noćne smjene u toku sedmice. Nakon opisnog, neformalnog definisanja, naredni korak 
+ Pod \emph{poslovnim problemima}  se ne podrazumijevaju samo problemi iz domena ekonomije, što samo ime možda nameće, već svi problemi koji imaju primjenu u stvarnom svijetu. Pojam ,,poslovni'' više odgovara tome da problem nema svoju preciznu matematičku formulaciju, nego je neformalno definisan kroz jezički (deskriptivan) opis.  Najčešće, ovi problemi proizilaze iz problema u ekonomiji ili industriji i kao takvi se i opisuju. Npr. u neformalnom opisu problema raspoređivanja medicinskog osoblja u (tri) smjene, navode se uslovi poput toga da svaki radnik mora da odradi 40 sati sedmično ili da niti jedan radnik ne smije da radi više od dvije noćne smjene u toku sedmice. Nakon opisnog, neformalnog definisanja, naredni korak 
  je formalno definisanje problema, odnosno, spuštanje (opisa) problema na niži nivo apstrakcije. U praksi se ovaj proces odvija iterativno i povezuje se sa terminom \emph{generički problemi}. Npr. problem pravljenja rasporeda časova, koji je poslovni problem, se može prevesti u generički OR problem bojenja grafa.
 
 Na početku razvoja operacionih istraživanja kao naučne discipline nije bilo strogog matematičkog formalizma. Matematičari su prepoznali da se većina poslovnih problema može  preslikati u generičke familije problema nižeg nivoa. Na kraju se završilo sa nekoliko opšteprihvaćenih generičkih klasa na koje se preslikava gotovo svaki poslovni problem. U praksi, najveći dio vremena se provodi u prevođenju poslovnog problema u jedan od tipova generičkih problema. Nakon toga, rješavanje problema je manje-više standardna procedura. Generički problemi operacionih istraživanja su dovoljno koncizni da se mogu predstaviti  matematičkom notacijom. Međutim, u svrhu boljeg razumijevanja, u praksi se koristi jezik modelovanja koji je na višem nivou apstrakcije. Npr. problemi raspoređivanja se obično opisuju upotrebom ,,stvarnih'' termina, kao što su resursi, aktivnosti, prioriteti, uslovi raspoređivanja i sl.  
@@ -332,7 +332,7 @@ Izvještaj koji se predaje poslodavcu, najčešće sadrži osnovno rješenje, al
 OR istraživanje podrazumijevano traži ona rješenja koja su optimalna, ali se optimalnost može odnositi samo za određenu komponentu procesa za koji se sistem razvija. Prema tome, ciljevi koji su formulisani bi trebali da traže optimalna rješenja čitavog procesa koji se optimizuje.  U praksi, ovakav zahtjev nije trivijalan, te se problem svodi na razmatranje dijela inicijalno definisanog problema (ili njegove pojednostavljene varijante). Drugim riječima, analiza bi mogla postati pretjerano glomazna ako bi zadani ciljevi bili previše uopšteni. Umjesto toga, ciljevi bi trebalo da budu specifični, koliko god je to moguće, ali da se pri tome obuhvate glavni ciljevi donosilaca odluka. 
 
 
-Kada su u pitanju  organizacije, jedan od mogućih pristupa zaobilaženja problema pod-optimizacije je korištenje dugoročne maksimizacije profita. Riječ ,,dugoročno'' ukazuje da cilj pruža fleksibilnost u razmatranju aktivnosti koje ne donose momentalnu dobit, ali omogućuju krajnji profit. Ovakav cilj je dovoljno specifičan, a ipak i dovoljno širok da obuhvati osnovni cilj   organizacija, dolazak do (zadovoljavajuće) zarade. Zapravo, svi drugi legitimni ciljevi ovakvih organizacija mogu se podvesti u prethodno pomenuti. Međutim, u praksi   organizacije rijetko koriste ovaj pristup. Velik broj   organizacija prilagođava zadovoljavajući profit sa drugim ciljevima, umjesto fokusiranja na maksimizovanje dugoročne zarade. Neki od takvih ciljeva su: izgradnja stabilnog profita, povećanje udjela na tržištu, zadržavanje stabilnosti cijena, povećanje uticaja kompanije, povećanje ponude proizvoda, itd. 
+Jedan od mogućih pristupa zaobilaženja problema pod-optimizacije je korištenje dugoročne maksimizacije profita. Riječ ,,dugoročno'' ukazuje da cilj pruža fleksibilnost u razmatranju aktivnosti koje ne donose momentalnu dobit, ali omogućuju krajnji profit. Ovakav cilj je dovoljno specifičan, a ipak i dovoljno širok da obuhvati osnovni cilj   organizacija, dolazak do (zadovoljavajuće) zarade. Zapravo, svi drugi legitimni ciljevi ovakvih organizacija mogu se podvesti u prethodno pomenuti. Međutim, u praksi   organizacije rijetko koriste ovaj pristup. Velik broj   organizacija prilagođava zadovoljavajući profit sa drugim ciljevima, umjesto fokusiranja na maksimizovanje dugoročne zarade. Neki od takvih ciljeva su: izgradnja stabilnog profita, povećanje udjela na tržištu, zadržavanje stabilnosti cijena, povećanje uticaja kompanije, povećanje ponude proizvoda, itd. 
 Dalje, treba napomenuti i dodatna razmatranja, poput društvenih odgovornosti, koje nisu direktno motivisane profitom.  
 
 Postoji nekoliko strana kojih se direktno tiču poslovi firme: (1) vlasnici (dioničari, itd.), koji žele profit;   (2) zaposlenici koji žele stalno zaposlenje, stabilan posao, te razumne plate; (3) kupci koji žele proizvod zadovoljavajućeg kvaliteta po razumnoj cijeni;
@@ -344,7 +344,7 @@ preciznosti podataka, da bi se proces nastavio sa najboljim mogućim resursima i
 
 \begin{primjer}
  OR studija je urađena za policijsku upravu jednog grada %San Francisca 
-na razvoj računarskog sistema za optimalno raspoređivanje i postavljanje patrolnih službenika. U procjeni   ove studije, identifikovani su sljedeći glavni ciljevi:
+za razvoj računarskog sistema za optimalno raspoređivanje i postavljanje patrolnih službenika. U procjeni   ove studije, identifikovani su sljedeći glavni ciljevi:
 \begin{enumerate}
     \item  Održavati visok nivo sigurnosti građana.
     \item  Održavati visok nivo zadovoljstva u policiji.
@@ -384,7 +384,7 @@ analizi i rješavanju problema. Zapravo, računarski programi za rješavanje raz
 
   Postoje i ,,zamke'', na koje treba paziti, kada koristimo matematičke modele. Ako želimo da, na kraju, formirani model bude upotrebljiv za rješavanje problema, često  su neophodne aproksimacije i pojednostavljivanja pretpostavki. Stoga se mora paziti da model ostane valjan prikaz problema nakon primjene svih pojednostavljenja. To znači da treba da postoji značajna korelacija između onoga što model predviđa i onoga što bi se zapravo i dobija primjenom modela u stvarnoj situaciji. Da bi se utvrdilo da li je ovaj zahtjev zadovoljen, potrebno je izvršiti značajna ispitivanja i posljedične izmjene u inicijalnom modelu. O ovome ćemo govoriti u narednim sekcijama. U osnovi, provjera valjanosti modela zapravo se provodi tokom svih  faza izrade modela. 
   
- U razvoju modela, preporučljiv pristup je da se započne sa pojednostavljenom verzijom, te  evolucionim načinom ići prema složenijim modelima, koji će bolje odražavati  stvarni problem. Ovaj proces obogaćivanja modela se nastavlja dok god je model rješiv. Kompromis, kojeg se pridržavamo, je odnos između preciznosti modela i mogućnosti njegovog rješavanja. Ključni korak u razvoju modela je konstrukcija funkcije cilja.
+ Preporučljiv pristup u razvoju modela je da se započne sa pojednostavljenom verzijom, a  evolucionim načinom ići prema složenijim modelima, koji će bolje odražavati  stvarni problem. Ovaj proces obogaćivanja modela se nastavlja dok god je model rješiv. Kompromis, kojeg se pridržavamo, je odnos između preciznosti modela i mogućnosti njegovog rješavanja. Ključni korak u razvoju modela je konstrukcija funkcije cilja.
 On podrazumijeva razvijanje kvantitativne mjere uspješnosti u odnosu na svaki krajnji cilj, koji je identifikovan tokom definisanja problema.
 Ako postoji više ciljeva, njihove se mjere obično transformišu
 i kombinuju u jednu složenu mjeru.  Ukupna mjera može biti nešto opipljivo (npr. dobit), što odgovara višem cilju
@@ -392,10 +392,10 @@ organizacije.  Nakon što se razvije cjelokupna mjera,  ciljna funkcija se izra�
 
 % primjer preuzet iz: http://www.mathos.unios.hr/~mdjumic/uploads/diplomski/ČOR03.pdf
 \begin{primjer}
-Uzmimo jednog proizvođača negaziranih pića. On pravi dvije vrste soka: multivitaminski gusti i multivitaminski bistri sok, od sastojaka $A$ i $B$, te vode. Da bi se napravilo 100$l$ multimitaminskog gustog soka potrebno je 3$l$
+Uzmimo jednog proizvođača negaziranih pića. On pravi dvije vrste soka: multivitaminski gusti i multivitaminski bistri sok, od sastojaka $A$ i $B$, te vode. Da bi se napravilo 100$l$ multivitaminskog gustog soka potrebno je 3$l$
 sastojka $A$ i 8$l$ sastojka $B$, a za bistri sok je potrebno 6$l$ sastojka $A$ i 4$l$ sastojka $B$. Sto litara gustog soka nosi zaradu od 100KM, a 100$l$ bistrog zaradu od 125KM. Proizvođač u skladištu
 ima na raspolaganju 30$l$ sastojka $A$ i 44$l$ sastojka $B.$ Napravljene sokove sipa u burad. Za
-gusti sok ima bure u koje stane 500$l$, a za bistri sok bure kapaciteta 400$l$.  Cilj proizvođača sokova je naći količinu soka kojeg treba napraviti da bi se  maksimizovao profit,  uzimajući u obzir data ograničenja. Drugim
+gusti sok ima bure u koje stane 500$l$, a za bistri sok bure kapaciteta 400$l$.  Cilj proizvođača sokova je odrediti količinu soka kojeg treba napraviti da bi se  maksimizovala profit,  uzimajući u obzir data ograničenja. Drugim
 riječima, treba konstruisati plan proizvodnje u cilju maksimizacije profita.
 	
 \end{primjer}
@@ -425,7 +425,7 @@ model dobro formulisan i testiran, rezultujuće rješenje  bi trebalo da bude pr
 Najčešće se prvo postavi lista zahtjeva, koje dati model treba da ispuni, a rješenje, koje zadovoljava te uslove (zahtjeve), najčešće se   uzima kao prihvatljivo. U procesu donošenja odluka, pokušava se što više  koristiti naučni pristup, sa primarnim ciljem pronalaska globalnog optimuma za posmatrani model. Međutim,  uslov da se u razumnom vremenu dođe do modela koji generiše rješenje  zadovoljavajućeg kvaliteta, najčešće ima prednost u odnosu na pronalazak optimuma u nerealno dugom vremenskom roku. Osoba koja rukovodi procesom treba da razmotri troškove procesa razvoja modela, a zatim
 pokuša da maksimizuje korist u oba smjera. Povremeno se koriste   približni (heuristički) pristupi rješavanju problema. Ovakvi pristupi su intuitivno dizajnirani postupci kojima se ne garantuje dobijanje optimalnog rješenja. Posljednjih nekoliko decenija postignut je velik napredak u razvoju efiksanih heurističkih postupaka (uključujući tzv. metaheuristike o kojima će više biti riječi u Glavi~\ref{chp:heuristike}), a njihova upotreba u ovom polju iz dana u dan sve više dobija na značaju.  
 
-Kao što je već nekoliko puta pomenuto,  i optimalno rješenje za konstruisani model može biti daleko od idealnog za stvarni problem, pa su potrebne dodatne analize. Stoga je analiza ,,postoptimalnosti'' (analiza provedena nakon pronalaska optimalnog rješenja) vrlo važan dio OR studija.  Ova analiza se ponekad naziva i šta--ako analiza (eng. what-if analysis), jer uključuje postavljanje pitanja o tome što bi bilo sa optimalnim rješenjem ako se uvedu različite pretpostavke, što implicira dodavanje novih ograničenja u postojeći model. Ova pitanja često postavlja poslodavac koji donosi konačne odluke u vezi procesa dodavanja uslova. % , dok tim koji radi na modelovanju .
+Kao što je već nekoliko puta pomenuto,  i optimalno rješenje za konstruisani model može biti daleko od idealnog za stvarni problem, pa su potrebne dodatne analize. Stoga je analiza ,,postoptimalnosti'' (analiza provedena nakon pronalaska optimalnog rješenja) vrlo važan dio OR studija.  Ova analiza se ponekad naziva i \emph{šta--ako analiza} (eng. what-if analysis), jer uključuje postavljanje pitanja o tome što bi bilo sa optimalnim rješenjem ako se uvedu različite pretpostavke, što implicira dodavanje novih ograničenja u postojeći model. Ova pitanja često postavlja poslodavac koji donosi konačne odluke u vezi procesa dodavanja uslova. % , dok tim koji radi na modelovanju .
 
 Pojava softvera koji rade sa proračunskim tabelama (prvenstveno Excel-a) odigralo je centralnu ulogu u provođenju analize postoptimalnosti. Jedna od velikih prednosti ovakvih softvera je jednostavnost u korišćenju, gdje se lako dobija analiza šta se događa sa optimalnim rješenjem kada se naprave promjene na modelu.  Ovakva eksperimentisanja sa promjenama u modelu mogu biti od velike pomoći u razumijevanju ponašanja samog modela i uvjeravanja u njegovu valjanost.  Analiza postoptimalnosti dijelom  uključuje provođenje analize osjetljivosti, radi utvrđivanja koji parametri modela su najkritičniji (,,osjetljivi parametri'') u određivanju rješenja. Uobičajena definicija osjetljivog parametra je sljedeća:
 
@@ -523,7 +523,7 @@ Nakon razgovora sa upravom, utvrđeni su glavni ciljevi istraživanja. Definicij
 U cilju razvijanja modela, neophodno je prikupiti sljedeće informacije:
 \begin{itemize}
 		\item[($i$)]   Broj radnih sati u sedmici dostupan u svakom pogonu za proizvodnju proizvoda.  
-	\item[($ii$)]   Broj radnih sati koji je neophodno utrošiti  za proizvodnju jedne serije proizvoda u svakom pogonu.	\item[($iii$)] Dobit po proizvedenoj seriji svakog novog proizvoda. Odlučeno je da dobit po proizvedenoj seriji bude   odgovarajuća mjera -- ukupna dobit  raste približno konstantno svakom dodatnom serijom. %  bez obzira na ukupan broj proizvedenih serija.
+	\item[($ii$)]   Broj radnih sati koji je neophodno utrošiti  za proizvodnju jedne serije proizvoda u svakom pogonu.	\item[($iii$)] Dobit po proizvedenoj seriji svakog novog proizvoda. Odlučeno je da je dobit svake dodatne proizvedene serije približno konstantna, bez ozbira na ukupan broj proizvedenih serija.
 	
 \end{itemize} 
 
@@ -596,7 +596,7 @@ U nastavku navodimo notaciju koja se najčešće koriste u formiranju opšteg ob
 \begin{itemize}
     \item $f$: funkcija cilja (dobiti) 
     \item $x_j$: količina aktivnosti $j$ ($j = 1,\ldots,n$);
-    \item $c_j$: povećanje u profitu ako se količna aktivnosti $j$ poveća za jedan %jediničnu vrijednost;
+    \item $c_j$: povećanje u profitu ako se količna aktivnosti $j$ poveća za jedan; %jediničnu vrijednost;
     \item $b_i$: ukupna količina resursa $i$ ($i=1,\ldots,m$) koja je dozvoljena za pridruživanje aktivnostima;
     \item $a_{ij}$: količina resursa $i$ koja se uzima od strane aktivnosti $j$.
 \end{itemize}
@@ -605,7 +605,7 @@ Prema ovoj notaciji, matematički model problema linearnog programiranja ima slj
 \begin{align} 
       &\max  c_1 x_1 + \cdots + c_n x_n  \label{form:LP-1}\\
       & \mbox{t.d.} \nonumber \\
-      & a_{i1}x_1 + a_{i2} x_{2} + \cdots + a_{in}x_n \leq b_i, i=1,\ldots,m \label{form:LP-2} \\
+      & a_{i1}x_1 + a_{i2} x_{2} + \cdots + a_{in}x_n \leq b_i,\ i=1,\ldots,m \label{form:LP-2} \\
       %&\vdots \nonumber \\
       %& a_{m1}x_1 + a_{12} x_{m2} + \cdots + a_{mn}x_n \leq b_m \label{form:LP-3} \\
       & x_i \geq 0,\ i=1,\ldots,n.\label{form:LP-4}
@@ -640,7 +640,7 @@ programu postoji promjenljiva koja ne zadovoljava uslov nenegativnosti, ona se m
 \begin{itemize}
     \item \emph{Rješenje} u standardnom matematičkom značenju najčešće označava rezultat izračunavanja, odnosno krajnje rješenje posmatranog problema. Međutim, u rješavanju problema LP-a to  nije slučaj. Bilo koja specifikacija vrijednosti promjenljivih  $(x_1,\ldots, x_n)$ se smatra rješenjem, bez obzira da li je riječ o željenom krajnjem rješenju ili čak o nekom rješenju koje i ne zadovoljava sva ograničenja. U zavisnosti od toga, rješenja  možemo podijeliti na:
     \begin{itemize}
-        \item \emph{dopustiva rješenja} (eng. \emph{feasible solution}) -- podrazumijevanju ona rješenja koja zadovoljavaju sva ograničenja u modelu;
+        \item \emph{dopustiva rješenja} (eng. \emph{feasible solution}) -- podrazumijevaju ona rješenja koja zadovoljavaju sva ograničenja u modelu;
         \item \emph{nedopustiva rješenja} (eng. \emph{infreasible solution}) -- ona rješenja koja ne zadovoljavaju barem jedno od ograničenja u modelu. 
     \end{itemize}
   \item \emph{Dopustivi region}: označava skup svih rješenja koja su dopustiva. Ovo je prostor koji pretražujemo u svrhu pronalaska najboljeg rješenja modela. Takođe, može se desiti da problem nema niti jedno dopustivo rješenje. Za takav problem se kaže da je \emph{nedopustiv} (eng. infeasible). 
@@ -792,7 +792,7 @@ U ovom poglavlju ćemo formalno izvesti opšte uslove pod kojima se problem line
 \end{figure}
 
 \begin{definition}
-   Neka su dati vektori $z^{(i)} \in \mathbb{R}^n$,  te $\lambda_i \in [0,1]$ $i=1,\ldots,m$ tako da je $\sum_{i=1}^m \lambda_i = 1.$ Vektor $x =  \sum_{i=1}^m \lambda_i z^{(i)}$ se naziva konveksna kombinacija vektora $z^(i), i=1,\ldots, n$. 
+   Neka su dati vektori $z^{(i)} \in \mathbb{R}^n$,  te $\lambda_i \in [0,1]$ $i=1,\ldots,m$ tako da je $\sum_{i=1}^m \lambda_i = 1.$ Vektor $x =  \sum_{i=1}^m \lambda_i z^{(i)}$ se naziva konveksna kombinacija vektora $z^{(i)}, i=1,\ldots, n$. 
 \end{definition}
 
 Konveksne funkcije imaju lijepa svojstva sa stanovišta teorije i u kombinaciji sa konveksnim skupovima čine osnov  teorije optimalnosti. Inače, vrijedi sljedeća teorema.
