@@ -5631,21 +5631,21 @@ Uz pomoć DW dekompozicije riješiti sljedeći MILP problem
 \section{Pohlepni algoritmi}
  
 Pohlepni algoritmi su programska paradigma zasnovana na pristupu da se  rješenje iterativno formira dio po dio (komponenta po komponenta) tako da se naredna komponenta, koja se dodaje u postojeće rješenje, bira 
- po nekom pohlepnom kriterijumu. Preciznije, u svakoj iteraciji se u rješenje uključuje ona komponenta koja donosi najveću korist u odnosu na sve ostale komponente, koje se razmatraju za proširenje  trenutnog parcijalnog rješenja, u nadi da će takvi izbori na kraju dovesti i do kvalitetnog globalnog rješenja.
+ po nekom pohlepnom kriterijumu. Preciznije, u svakoj iteraciji se u rješenje uključuje ona komponenta koja donosi najveću korist u odnosu na sve ostale komponente, koje se razmatraju za proširenje  trenutnog parcijalnog rješenja, u nadi da će takvi izbori na kraju dovesti i do kvalitetnog cjelokupnog (kompletnog) rješenja.
  
  %Kod ovakve strategije, u svakom koraku bira se komponenta koja je lokalno najbolji kandidat za proširivanje (parcijalnog) rješenja, u nadi da će takvi izbori na kraju dovesti i do kvalitetnog globalnog rješenja.
  
- Osnovna strategija pohlepnih algoritama isključuje ,,vraćanje'' na neko prethodno (parcijalno) rješenje, odnosno ne vodi se računa o ,,lošim'' odlukama, koje su eventualno napravljene u prethodnim iteracijama. Zbog toga se podrazumijeva da pohlepni algoritmi imaju polinomijalnu vremensku složenost, što je jedna od najvažnijih osobina ovakvih algoritam.
+ Osnovna strategija pohlepnih algoritama isključuje ,,vraćanje'' na neko prethodno (parcijalno) rješenje, odnosno ne vodi se računa o ,,lošim'' odlukama, koje su eventualno napravljene u prethodnim iteracijama. Zbog toga se podrazumijeva da pohlepni algoritmi imaju polinomijalnu vremensku složenost, što je jedna od najvažnijih osobina ovakvih algoritama.
  
  Zbog relativno jednostavne strategije na kojoj su zasnovani, ali i brzine izvršenja, ovi algoritmi se često koriste i u rješavanju teških optimizacionih problema i najčešće su prva strategija koja se primjenjuje, prije 
 upotrebe neke složenije paradigme. 
-U nekim situacijama se može pokazati da se optimalno rješenje uvijek može dobiti primjenom pohlepnog algoritma. Primjer takvog problema je \emph{frakcioni problem ruksaka}, a u nastavku će biti prikazani još neki važni problemi koji se optimlalno rješavaju upravo pohlepnim algoritmima.
- 
-Sa druge strane, većina optimizacionih problema se ne može optimalno riješiti pomoću pohlepnih algoritama. U tim slučajevima, ova paradigma se koristi da bi se u kratkom vremenskom periodu obezbijedila dobra aproksimaciona rješenja, ili da se konstruiše neko polazno dopustivo rješenje, koje će se kasnije unapređivati naprednijim i složenijim algoritamskim tehnikama. 
+U nekim situacijama se može pokazati da se optimalno rješenje uvijek može dobiti primjenom pohlepnog algoritma. Primjer takvog problema je \emph{razlomljeni problem jednodimenzionalnog ruksaka}, a u nastavku će biti prikazani još neki važni problemi koji se optimlalno rješavaju upravo paradigmom pohlepnih algoritama.
+
+Sa druge strane, većina optimizacionih problema se ne može optimalno riješiti pomoću pohlepnih algoritama. U tim slučajevima, ova paradigma se koristi da bi se u kratkom vremenskom periodu obezbijedila dobra približna rješenja, ili da se konstruiše neko polazno dopustivo rješenje, koje će se kasnije unapređivati naprednijim i složenijim algoritamskim tehnikama. 
 
 U ovoj sekciji razmatramo nekoliko poznatih pohlepnih algoritama:
 \begin{itemize}
-	\item  \emph{Primov algoritam} za pronalaženje minimalnog pokrivajućeg stabla grafa ( eng. minimum spanning tree -- MST);
+	\item  \emph{Primov algoritam} za pronalaženje minimalnog pokrivajućeg tabla grafa ( eng. minimum spanning tree -- MST);
 	\item  \emph{Kruskalov algoritam} za pronalaženje MST;
 	\item  \emph{Dajkstrin algoritam} za pronalaženje najkraćih puteva u grafu;
 	\item  Pohlepni algoritam za rješavanje problema \emph{najdužeg zajedničkog podniza}, za proizvoljan skup stringova u ulazu.
@@ -5654,22 +5654,24 @@ U ovoj sekciji razmatramo nekoliko poznatih pohlepnih algoritama:
 
 \subsection{Algoritmi za pronalaženje MST}
 
-Definišimo prvo pojam pokrivajućeg stabla, pa potom i minimalnog pokrivajućeg stabla (eng. \emph{minimum spanning tree} - MST).
+Definišimo prvo pojam pokrivajućeg drveta, pa potom i minimalnog pokrivajućeg drveta (eng. \emph{minimum spanning tree} -- MST).
 
-Neka je dat težinski graf $G=(V,E)$. Svaku težinu grane $uv \in E $ u grafu $G$, označimo sa $w(uv)$. 
+Neka je dat težinski graf $G=(V,E)$. Svaku težinu grane $(u,v) \in E $ u grafu $G$, označimo sa $w(uv)$. 
+\begin{definition}
   Stablo $T =(V_1, E_1)$ je pokrivajuće za graf $G=(V,E)$ akko
   $V_1 = V$ i $E_1 \subseteq E$. Pokrivajuće stablo $T$ grafa $G$ sa minimalnim zbirom težina svojih grana, tj. 
   $\sum_{e \in E_1} w(e)$, se naziva minimalno pokrivajuće stablo (MST) grafa $G$. 
+\end{definition}
 
-MST ima primjene u različitim oblastime teorije i prakse. Izdvajamo:
+MST ima primjene u različitim oblastime teorije i prakse. Izdvajamo neke od njih.
 \begin{enumerate}
- \item[($i$)] dizajniranje mreža (na primjer, telefonske mreže), gdje je do svakog domaćinstva. koje je predstavljeno jednim čvorom, potrebno obezbijediti liniju, tako da se, na kraju, u mrežu povežu sva domaćinstva, uz minimalnu potrošnju materijala potrebnog za kreiranje infrastrukture mreže;
- \item[($ii$)] aproksimaciji drugih teških optimizacionih problema kao što je problem trgovačkog putnika (TSP). Ponovimo, u problemu TSP je potrebno naći najkraću konturu koja posjećuje sve čvorove u (težinskom) grafu. Primijetimo da su takvi putevi takođe MST. Težina MST je manja nego težina TSP, jer minimizujemo nad većim skupom rješenja, tako da se može pokazati da je nalazak MST-a u težinskom grafu aproksimira nalazak TSP-a (nad euklidskim težinskim grafovima); 
- \item[($iii$)] Klaster analiza. $k$-klaster problem  se može posmatrati kao problem nalaženja MST-a, a potom brisanja $k-1$ najskupljih grana iz MST. 
+ \item[($i$)] Dizajniranje mreža (npr. telefonske mreže), gdje je do svakog domaćinstva, koje je predstavljeno čvorom grafa, potrebno obezbijediti liniju, tako da se, na kraju, u mrežu povežu sva domaćinstva, uz minimalnu potrošnju materijala potrebnog za kreiranje infrastrukture mreže;
+ \item[($ii$)] Aproksimaciji drugih teških optimizacionih problema, kao što je problem trgovačkog putnika (TSP), je potrebno naći najkraću konturu koja posjećuje sve čvorove u (težinskom) grafu tačno jednom. Primijetimo da su putevi generisani iz ovakvih kontura takođe MST. Težina rješenja MST je manja nego težina rješenja TSP, jer minimizujemo nad većim skupom rješenja. Na ovaj način  se može pokazati da je nalazak MST-a u težinskom grafu aproksimira nalazak TSP-a (nad euklidskim težinskim grafovima).
+ \item[($iii$)] Klaster analiza, konkretno za $k$-klaster problem, se može posmatrati kao problem nalaženja MST-a, a potom brisanja $k-1$ najskupljih grana iz MST. 
  \end{enumerate}
 
 \subsubsection{Primov algoritam}
-
+\fxnote{Marko: dosao do ovde!}
 Primov algoritam je jedan od osnovnih algoritama koji se, zbog svoje važnosti, ali i jednostavnosti, izučava u teoriji algoritama. Navešćemo ključne korake algoritma, bez detaljnije analize validnosti algoritma. Algoritam se sastoji od sljedećih koraka:
 
 \begin{enumerate}
@@ -7725,7 +7727,7 @@ linku koji je dat pod referencom~\cite{cite_key25}. %\url{https://www.maths.ed.a
 	\includegraphics[width=420pt,height=300pt]{cplex_makefile.png}
 \end{center}
 
-Sljedeće se podazumijeva ukoliko želite pokrenuti progam uz pomoć makefile (komande make)
+Sljedeće se podazumijeva ukoliko želite pokrenuti progam uz pomoć makefile (komande make). 
 \begin{itemize}
 	\item Instaliran je C++, sa kompajlerom GCC (verzija 9, recimo).
 	\item Intaliran je \textsc{Cplex}. 
