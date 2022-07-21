@@ -6745,7 +6745,7 @@ Postoje različite strategije koliko dugo se izvršava lokalna pretraga. U opšt
  \chapter{Optimizacioni Rješavači}
  
  Kao što smo i pomenuli u uvodnom poglavlju, konstrukcija modela koji (najčešće) odgovara idealizivanoj verziji realnog problema je 
- dio koji uzima najveći dio vremena u operacionim istraživanjima. Kada dođemo do modela koji približno odgovara potrebama uprave koja naručuje sistem, rješavanje modela se svodi na pozivanje odgovarajućih rješavača. Neki od najpoznatijih su: 
+ dio koji uzima najveći dio vremena u operacionim istraživanjima. Kada dođemo do modela koji približno odgovara potrebama, rješavanje modela se svodi na pozivanje odgovarajućih rješavača. Neki od najpoznatijih su: 
  \textsc{Cplex} koji može biti pozivan u Javi, $C$++ i Python-u uz pomoć odgovarajućih API-ja, zatim Lindo, Gurobi, te modul PuLP u Python-u.
  
  U nastavku opisujemo korištenje \textsc{Cplex} i PuLP rješavača za implementaciju MILP modela i njihovog rješavanja. 
@@ -6754,7 +6754,7 @@ Postoje različite strategije koliko dugo se izvršava lokalna pretraga. U opšt
  %https://www.youtube.com/watch?v=J7tNzCsYgy8
  
  \section{Optimizacioni rješavač \textsc{Cplex}}
- \textsc{Cplex} alat je opšti rješavač za koji se koristi za rješavanje optimizacionih problema. Iako se \textsc{Cplex} može koristiti i za rješavanje nekih drugih klasa problema, u ovom poglavlju ćemo razmatrati  LP, ILP i MILP probleme. Konstruisan je za komercijalnu upotrebu od strane kompanije IBM-a. Različite verzije ovog programa, uključujući i besplatnu verziju koja sadrži određena ograničenja u mogućnostima, mogu se preuzeti preko linka koji je prikazan u Literaturi.
+ \textsc{Cplex} alat je opšti rješavač   koji se koristi za rješavanje optimizacionih problema. Iako se \textsc{Cplex} može koristiti i za rješavanje nekih drugih klasa problema, u ovom poglavlju ćemo razmatrati  LP, ILP i MILP probleme.  Različite verzije ovog programa, uključujući i besplatnu verziju koja sadrži određena ograničenja u mogućnostima, mogu se preuzeti preko adrese koja je prikazana u Literaturi.
  
 %\emph{IBM ILOG \textsc{Cplex} Optimization Studio} uključuje i druge opcije poput \emph{Constraint Programming} (CP) solver.
  
@@ -6764,9 +6764,9 @@ Postoje različite strategije koliko dugo se izvršava lokalna pretraga. U opšt
  	#include<ilcplex/ilocplex.h>
  	ILOSTLBEGIN
  \end{verbatim}
-ili umjesto prve linije uključiti (pomoću \#include) ilocplex.h fajl sa apsolutnom putanjom do datog fajla. 
+ili umjesto prve linije uključiti (pomoću \#include) ilocplex.h fajl sa apsolutnom putanjom do date  datoteke. 
 
- Da bi se inicijalizovao LP model, neophodno je prvo inicijalizovati okruženje za modelovanje. Dakle, konstruišemo objekat klase \emph{IloEnv} sljedećim k\^odom
+ Da bi se inicijalizovao LP model, neophodno je prvo inicijalizovati okruženje za modelovanje. Dakle, konstruišemo objekat klase \emph{IloEnv} sljedećim kodom
  \begin{verbatim}
  	IloEnv env;
  	try{
@@ -6816,7 +6816,7 @@ Ako je potrebno implementirati promjenljivu za koju je $x \geq 0$ to radimo kao 
  	}
  \end{verbatim}
  
- \noindent Ako želimo da deklarišemo visedimenzionalne promjenjive kao što je $x_{i,j}, i=1,...,n$ i $j=1,...,m$, onda pozivamo templejt klasu ${IloArray}<>$ na sljedeći način
+ \noindent Ako želimo da deklarišemo visedimenzionalne promjenjive kao što je $x_{i,j}, i=1,...,n$ i $j=1,...,m$, onda pozivamo šablon klasu ${IloArray}<>$ na sljedeći način
  
  \begin{verbatim}
  	typedef IloArray<IloNumVarArray> FloatMatrix; // x_ij 
@@ -6885,7 +6885,7 @@ Ako je potrebno implementirati promjenljivu za koju je $x \geq 0$ to radimo kao 
       	 model.add(constr); //dodavanje ograničenja u model
  \end{verbatim}
  
- \noindent  {\emph{Metode za eksport rješenja (statistike) iz modela}}. Objasnimo najvažnije metode koje se koriste za dobijanje informacija o  rješenju, statusu i ostalim parametrima samog izvršenja.
+ \noindent  {\emph{Metode za izvoz rješenja (statistike) iz modela}}. Objasnimo najvažnije metode koje se koriste za dobijanje informacija o  rješenju, statusu i ostalim parametrima samog izvršenja.
   
 
 \begin{itemize}
@@ -6906,7 +6906,7 @@ Ako je potrebno implementirati promjenljivu za koju je $x \geq 0$ to radimo kao 
   
 \end{itemize}
 
-Narednim k\^odom je ilustrovana upotreba nekih od navedenih metoda.
+Narednim kodom je ilustrovana upotreba nekih od navedenih metoda.
 	\begin{verbatim}
 	// prethodno: kreiranje modela i poziv metoda solve()
 	env.out << cplex.getStatus() << endl;
@@ -6921,7 +6921,7 @@ Narednim k\^odom je ilustrovana upotreba nekih od navedenih metoda.
 \end{verbatim}
 
 
-Eksportovanje modela za eventualno ponovno korištenje se može dobiti pozivom metoda \emph{exportModel}(), čiji je očekivani argument naziv fajla u koji će se model upisati (.$lp$ ekstenzija).  
+Izvoz modela za eventualno ponovno korištenje se može dobiti pozivom metoda \emph{exportModel}(), čiji je očekivani argument naziv datoteke u koju će se model upisati (.$lp$ ekstenzija).  
 
 \emph{ {Podešavanje parametara rješavača}} \textrm{\textsc{Cplex}}. Podešavanje limita za vrijeme izvršavanja rješavača (recimo, na 2h) se definiše na sljedeći način
 \begin{verbatim}
@@ -6932,6 +6932,9 @@ dok recimo podešavanje broja jezgara pri izvršavanju \textsc{Cplex}-a
 	cplex.setParam(IloCplex::Param::Threads, 1);
 \end{verbatim}
 O ostalim parametrima kojima podešavamo rješavač može se pročitati iz \textrm{\textsc{Cplex}} manuala čiji je link dat  među referencama na kraju knjige.
+
+Za one koji koriste Linux sistem, za kompajliranje programa koji je baziran na pozivanju \textsc{Cplex} rješavanjča, bice neophodno ,,uvući'' ilocplex biblioteku, koja treba da se kompajlira sa galvnim programom, da bi program uspješno pozivao \textsc{Cplex} solver. U tu svrhu u apendiksu~\ref{appendix:makefile-cplex} dodali smo makefile, koji sadrži neophodna kod za uspješnu kompilaciju programa baziranih na pozivanju \textsc{Cplex} rješavača.  
+
 %\url{https://www.tu-chemnitz.de/mathematik/discrete/manuals/cplex/doc/userman/html/cpxUserAppendixA.html}. 
  \section{PuLP alat}
  % http://www.optimization-online.org/DB_FILE/2011/09/3178.pdf
@@ -6972,7 +6975,7 @@ Npr. ako želimo deklarisati neprekidnu promjenljivu $x_1\geq 0$, to radimo slje
 	 prob +=  x1 + 2 * x2 <=2, "Ogranicenje 1"
 	 prob +=  x1 - x2 >= 0, "Ogranicenje 2" 
 \end{verbatim}
-Upisivanje modela u .$lp$ format se vrši pozivom funkcije \emph{writeLP()}, čiji je (očekivani) argument naziv fajla. 
+Upisivanje modela u .$lp$ format se vrši pozivom funkcije \emph{writeLP()}, čiji je (očekivani) argument naziv datoteke. 
 
  \noindent  {\emph{Metode za eksport rješenja (statistike) iz modela}}. Rješavanje modela se inicira pozivom funkcije \emph{solve}() na instancu modela. Kriterijumi za zaustavljanje izvršavanja rješavača postavljamo kao parametar metoda \emph{solve}()  uz pomoć sljedeće linije k\^oda
  \begin{verbatim}
@@ -7006,7 +7009,7 @@ koji kontroliše maksimalno vrijeme izvršavanja rješavača, poruke o napretku 
  	   & y_{ij} \geq 0, \forall i \in \{1,\ldots,n \}, j \in \{1, \ldots, m\}.
  \end{align*}
  Ulazni parametri problema su konstante $m, n$, vektor $f$ koji odgovara cijeni otvaranja postrojenja, vektor $d$ koji odgovara potražnji svakog od kupaca, vektor $u$ koji odgovara kapacitetu postrojenja, te matrica $c_{ij}$ koja 
- odgovara cijeni zadovoljenja potreba kupca $j$ od strane postrojenja $i$ (kao što je, recimo, cijena isporuke).  Definišimo kroz program jednu instancu (obično se ona čita iz zasebnog fajla). 
+ odgovara cijeni zadovoljenja potreba kupca $j$ od strane postrojenja $i$ (kao što je, recimo, cijena isporuke).  Definišimo kroz program jednu instancu (obično se ona čita iz zasebne  datoteke). 
  \begin{verbatim}
     from pulp import *
  	  locations = [1, 2, 3]
@@ -7115,7 +7118,7 @@ Dakle, uz funkciju cilja (\ref{eq:rflcs-objective}), ograničenja (\ref{eq:rflcs
 #include <unordered_map>
 #include <map>
 
-#include "path-to-ilocplex.h" // Ovdje ide staza fo ilocplex.h fajla
+#include "path-to-ilocplex.h" // Ovdje ide staza fo ilocplex.h datoteke
 
 ILOSTLBEGIN	
 struct Point2d // point for structure
@@ -7714,6 +7717,11 @@ linku koji je dat pod referencom~\cite{cite_key25}. %\url{https://www.maths.ed.a
 	% dualni simpleks metod ==> 4.7 PRIMAL-DUAL ALGORITHMS
 	% Ako bi uzeli $\mu = 1$, rješenje koje se dobije je 
 \end{comment}
+
+\chapter{Makefile za kompajliranje CPLEX programa}\label{appendix:makefile-cplex}
+
+\fxnote{TODO}
+
 
 
 \begin{thebibliography}{widest entry}
@@ -14493,7 +14501,7 @@ Postoje različite strategije koliko dugo se izvršava lokalna pretraga. U opšt
  	#include<ilcplex/ilocplex.h>
  	ILOSTLBEGIN
  \end{verbatim}
-ili umjesto prve linije uključiti (pomoću \#include) ilocplex.h fajl sa apsolutnom putanjom do datog fajla. 
+ili umjesto prve linije uključiti (pomoću \#include) ilocplex.h fajl sa apsolutnom putanjom do date  datoteke. 
 
  Da bi se inicijalizovao LP model, neophodno je prvo inicijalizovati okruženje za modelovanje. Dakle, konstruišemo objekat klase \emph{IloEnv} sljedećim k\^odom
  \begin{verbatim}
@@ -14650,7 +14658,7 @@ Narednim k\^odom je ilustrovana upotreba nekih od navedenih metoda.
 \end{verbatim}
 
 
-Eksportovanje modela za eventualno ponovno korištenje se može dobiti pozivom metoda \emph{exportModel}(), čiji je očekivani argument naziv fajla u koji će se model upisati (.$lp$ ekstenzija).  
+Eksportovanje modela za eventualno ponovno korištenje se može dobiti pozivom metoda \emph{exportModel}(), čiji je očekivani argument naziv datoteke u koji će se model upisati (.$lp$ ekstenzija).  
 
 \emph{ {Podešavanje parametara rješavača}} \textrm{\textsc{Cplex}}. Podešavanje limita za vrijeme izvršavanja rješavača (recimo, na 2h) se definiše na sljedeći način
 \begin{verbatim}
@@ -14701,7 +14709,7 @@ Npr. ako želimo deklarisati neprekidnu promjenljivu $x_1\geq 0$, to radimo slje
 	 prob +=  x1 + 2 * x2 <=2, "Ogranicenje 1"
 	 prob +=  x1 - x2 >= 0, "Ogranicenje 2" 
 \end{verbatim}
-Upisivanje modela u .$lp$ format se vrši pozivom funkcije \emph{writeLP()}, čiji je (očekivani) argument naziv fajla. 
+Upisivanje modela u .$lp$ format se vrši pozivom funkcije \emph{writeLP()}, čiji je (očekivani) argument naziv datoteke. 
 
  \noindent  {\emph{Metode za eksport rješenja (statistike) iz modela}}. Rješavanje modela se inicira pozivom funkcije \emph{solve}() na instancu modela. Kriterijumi za zaustavljanje izvršavanja rješavača postavljamo kao parametar metoda \emph{solve}()  uz pomoć sljedeće linije k\^oda
  \begin{verbatim}
@@ -14735,7 +14743,7 @@ koji kontroliše maksimalno vrijeme izvršavanja rješavača, poruke o napretku 
  	   & y_{ij} \geq 0, \forall i \in \{1,\ldots,n \}, j \in \{1, \ldots, m\}.
  \end{align*}
  Ulazni parametri problema su konstante $m, n$, vektor $f$ koji odgovara cijeni otvaranja postrojenja, vektor $d$ koji odgovara potražnji svakog od kupaca, vektor $u$ koji odgovara kapacitetu postrojenja, te matrica $c_{ij}$ koja 
- odgovara cijeni zadovoljenja potreba kupca $j$ od strane postrojenja $i$ (kao što je, recimo, cijena isporuke).  Definišimo kroz program jednu instancu (obično se ona čita iz zasebnog fajla). 
+ odgovara cijeni zadovoljenja potreba kupca $j$ od strane postrojenja $i$ (kao što je, recimo, cijena isporuke).  Definišimo kroz program jednu instancu (obično se ona čita iz zasebne datoteke). 
  \begin{verbatim}
     from pulp import *
  	  locations = [1, 2, 3]
@@ -14844,7 +14852,7 @@ Dakle, uz funkciju cilja (\ref{eq:rflcs-objective}), ograničenja (\ref{eq:rflcs
 #include <unordered_map>
 #include <map>
 
-#include "path-to-ilocplex.h" // Ovdje ide staza fo ilocplex.h fajla
+#include "path-to-ilocplex.h" // Ovdje ide staza fo ilocplex.h datoteke
 
 ILOSTLBEGIN	
 struct Point2d // point for structure
