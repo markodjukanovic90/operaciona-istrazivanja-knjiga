@@ -3054,12 +3054,12 @@ gdje su $x_2, \ldots, x_{n-2}$  proizvoljne bulove promjenjive (literali).
    	   	       Primjera radi, ako je data instanca problema 3-SAT sa 
    	   	      $\phi(x) = (x_1 \vee \neg x_2 \vee \neg x_3) \wedge ( x_2 \vee \neg x_4 \vee x_5 )$, transformišemo je (u polinomnom vremenu) na instancu ILP-a
    	   	      \begin{align*}
-   	   	      	     & \min 0 \\
+   	   	      	     & \min f \\
    	   	         	 &C_1: z_1 + (1- z_2) + (1 - z_3 ) \geq 1 \\
    	   	         	 & C_2: z_2 + (1-z_4)  + z_5 \geq 1 \\
    	   	         	 & C_3: z_i \in \{0,1\}, i=1,\ldots,5.
    	   	      \end{align*} 
-%%https://cims.nyu.edu/~regev/teaching/lattices_fall_2004/ln/integer_programming.pdf
+%%https://cims.nyu.edu/~regev/teaching/lattices_fall_2004/ln/integer_programming.pdf :Aco
    	    Dakle, iz gornje redukcije,  provjera dopustivosti ILP instance odgovara provjeri zadovoljivosti 3--CNF izraza $\phi$.   Prema tome, problem rješavanja ILP-a je NP-težak, s obzirom da je 3--SAT problem NP-kompletan. 
  \end{proof} 
  Može se pokazati i sljedeća teorema.
@@ -3239,7 +3239,7 @@ U osnovni model uključiti i sljedeća ograničenja:
  \chapter{Algoritamske tehnike za rješavanje ILP-a}\label{chap:rjesavanjeILP}
  
  U ovom poglavlju će biti analizirane različite tehnike kojima se rješavaju problemi cjelobrojnog linearnog programiranja.
- Za razliku od problema LP-a, koji se efikasno rješava simpleks metodom, za rješavanje problema Cjelobrojnog programiranja ne postoji generalno efikasna metoda. Drugim riječima, efikasnost metoda, kojima se rješava ovaj problem, u velikoj mjeri zavisi od karakteristika samog problema. 
+ Za razliku od problema LP-a, koji se efikasno rješava simpleks metodom, za rješavanje problema cjelobrojnog linearnog programiranja ne postoji generalno efikasna metoda. Drugim riječima, efikasnost metoda, kojima se rješava ovaj problem, u velikoj mjeri zavisi od karakteristika samog problema. 
  
 Tehnike za rješavanje su uglavnom zasnovane na tzv. relaksaciji ILP-a u odgovarajući LP, koji se od polaznog problema (ili nekog od podproblema generisanog u toku rješavanja) dobija zanemarivanjem uslova o cjelobrojnosti promjenljivih.  Iako se dobijena  LP relaksacija može efikasno riješiti uz pomoć simpleks metoda, to ne znači da se iz rješenja relaksacije može lako doći do rješenja polaznog ILP-a. Npr. ako rješenje LP relaksacije označimo sa $x^*$, zaokruživanjem svake koordinate vektora $x^*$ na njenu najbližu cjelobrojnu vrijednost, dobijamo cjelobrojni vektor  $\overline{x}$.  U uvom slučaju, uslov cjelobrojnosti jeste zadovoljen, ali ne postoji nikakva garancija da će, u opštem slučaju,  ovakvo rješenje izvedeno iz LP relaksacije problema (\ref{ilp-formulation}), biti i  dopustivo za početni ILP. Međutim, skaliranjem desnih strana ILP-a, kao i koeficijenata funkcije cilja na odgovarajući način, moguće je konstruisati problem, čije je optimalno cjelobrojno rješenje proizvoljno udaljeno od zaokruženog rješenja LP relaksacije. 
  
@@ -3307,10 +3307,9 @@ Primijetimo da ovom metodom formiramo drvo enumeracije koje nam garantuje nalaza
 		\IF{$x^j$ je dopustivo}
 		\STATE $LB \gets z^*_j$;
 		\STATE $x^* \gets x^j$;
-		\ENDIF
-		\ENDIF
-		\IF{$z^*_j  > LB$}
-		\IF{$x^j$ nije dopustivo}
+		\ELSE 
+		%\IF{$z^*_j  > LB$} // nije dopustivo
+		%\IF{$x^j$ nije dopustivo}
 		\STATE $v_j^{'}, v_j^{''},\ldots, v_j^{(')^k}  \gets$ Generisati podprobleme (čvorove) problema koji odgovara problemu čvora $v_j$ (branch procedura);
 		\STATE Označi aktivnim nove čvorove; 
 		\ENDIF
@@ -3370,7 +3369,7 @@ Na Slici~\ref{fig:bnb_ilp} je prikazano B\&B drvo sljedećeg ILP-a:
 
 
 \section{Implicitna enumeracija}
-Posmatrajmo sada specijalnu B\&B proceduru koja se može primijeniti na rješavanje problema binarnog cjelobrojnog programiranja, gdje diskretne promjenljive modeluju logičke odluke (da ili ne). Ovaj algoritam ne zahtijeva da se posmatraju rješenja LP-relaksacija, već se, umjesto toga, radi sa enumeracijom. U totalnoj enumeraciji bismo izlistali sve moguće kombinacije vrijednosti koje promjenljive mogu da dobiju, pa bi se izabrala ona koja je dopustiva i daje optimalnu vrijednost za ciljnu funkciju. Ovaj pristup se može koristiti na problemima malih dimenzija, gdje postoji svega nekoliko binarnih promjenljivih. Primijetimo da je u problemu sa $n$ binarnih promjenljivih, ukupan broj kombinacija za vrijednosti promjenljivih je jednak $2^n$, odnosno raste eksponencijalno u odnosu na veličinu ulaza. 
+Posmatrajmo sada specijalnu B\&B proceduru koja se može primijeniti na rješavanje problema binarnog cjelobrojnog programiranja, gdje diskretne promjenljive modeluju logičke odluke (da ili ne). Ovaj algoritam ne zahtijeva da se posmatraju rješenja LP-relaksacija, već se, umjesto toga, radi sa enumeracijom. U totalnoj enumeraciji bismo izlistali sve moguće kombinacije vrijednosti koje promjenljive mogu da dobiju, pa bi se izabrala ona koja je dopustiva i daje optimalnu vrijednost za ciljnu funkciju. Ovaj pristup se može koristiti na problemima malih dimenzija, gdje postoji svega nekoliko binarnih promjenljivih. Primijetimo da je u problemu sa $n$ binarnih promjenljivih, ukupan broj kombinacija za vrijednosti promjenljivih   jednak $2^n$, odnosno raste eksponencijalno u odnosu na veličinu ulaza. 
 
 Prisjetimo se da je, u standardnoj B\&B proceduri, podjela na manje probleme izvedena dodavanjem dodatnih ograničenja u početni model, a potom su izbačena ograničenja za cjelobrojnost. 
 U implicitnoj enumeraciji se primjenjuje suprotna taktika, zadržavaju se 0-1 restrikcije za promjenljive, ali se  u modelu ignorišu linearna ograničenja. 
@@ -3475,7 +3474,7 @@ Prodiskutujmo ovo rješenje po čvorovima dobijenog stabla:
  \begin{definition}{Validna nejednakost} za ILP je svako ograničenje koje ne eliminiše niti   jedno moguće cjelobrojno rješenje problema.
  \end{definition}
  Drugi naziv za \emph{validnu nejednakost} je \emph{odsjecajuća ravan}.
-
+\fxnote{Marko: stigao dovde}
 \begin{primjer}
 Za sljedeći problem ILP-a
 \end{primjer}
