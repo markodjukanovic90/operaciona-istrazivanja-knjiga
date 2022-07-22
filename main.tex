@@ -2851,7 +2851,7 @@ ispunjeno.
 
 \subsection{Fiksne cijene u funkciji cilja}
 
-($i$)    Kod nekih problema, funkcija cilja problema minimizacije može da sadrži i neke fiksne troškove, kao što su fiksni troškovi ulaganja ili fiksni troškovi postavljanja opreme. Npr. trošak proizvodnje $x$ jedinica određenog proizvoda može da se sastoji od fiksnih troškova postavljanja opreme i promjenjivih troškova koji se tiču proizvedene robe na opremi (mašinama). Pretpostavimo da oprema ima kapacitet proizvodnje od $B$ jedinica (nekog proizvoda). Neka je $y$ binarna promjenljiva koja ukazuje na to kada nastaje fiksni trošak, pri čemu  je $y=1$ ako je $x >0$, dok je $x=0$ ako je $y=0$. Tada se doprinos cijeni proizvodnje od $x$ jedinica proizvoda može predstaviti sa
+ Kod nekih problema, funkcija cilja problema minimizacije može da sadrži i neke fiksne troškove, kao što su fiksni troškovi ulaganja ili fiksni troškovi postavljanja opreme. Npr. trošak proizvodnje $x$ jedinica određenog proizvoda može da se sastoji od fiksnih troškova postavljanja opreme i promjenjivih troškova koji se tiču proizvedene robe na opremi (mašinama). Pretpostavimo da oprema ima kapacitet proizvodnje od $B$ jedinica (nekog proizvoda). Neka je $y$ binarna promjenljiva koja ukazuje na to kada nastaje fiksni trošak, pri čemu  je $y=1$ ako je $x >0$, dok je $x=0$ ako je $y=0$. Tada se doprinos cijeni proizvodnje od $x$ jedinica proizvoda može predstaviti sa
 $$ yB + c x $$ pod uslovima:
 \begin{align}
 	&x \leq By \\
@@ -2860,13 +2860,9 @@ $$ yB + c x $$ pod uslovima:
 \end{align}
 Primijetimo da je ovaj model pripada \emph{Mješovitom-cjelobrojnom programiranju}, gdje postoje obje vrste promjenljivih, neprekidne i cjelobrojne. O ovoj paradigmi će biti više riječi u narednim sekcijama. 
 
-\subsection{Predstavljanje nekih nelinearnih funkcija} 
+\subsection{Po-dijelovima-linearna funkcija} 
 
-U ovom odjeljku ćemo analizirati način na koji se neke nelinearne funkcije mogu predstaviti pomoću odgovarajućih linearnih funkcija, zajedno sa linearnim ograničenjima. 
-
-
-
-($ii$) \emph{{Po dijelovima linearna funkcija}}. Druga vrsta nelinearne funkcije koja se može predstaviti cjelobrojnim promjenljivima je po-dijelovima-linearna funkcija.  To znači da funkcija sama po sebi nije linearna, ali kada joj se domen podijeli na segmente (intervale), ona postaje linearna na svakom od tih segmenata. Napomenimo da se svaka neprekidna relana funkcija može aproksimirati skupom po-dijelovima-linearnih funkcija.  
+ Po-dijelovima-linearna funkcija sama po sebi nije linearna. Međutim, kada joj se domen podijeli na segmente (intervale), ona postaje linearna na svakom od tih segmenata. Napomenimo da se svaka neprekidna relana funkcija može aproksimirati skupom po-dijelovima-linearnih funkcija.  
 
 Radi jednostavnosti, posmatrajmo primjer zadat u ravni. Pretpostavimo da je funkcija definisana preko tri linearne funkcije na sljedeći način.
 $$f(x) = \begin{cases}
