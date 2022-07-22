@@ -1079,11 +1079,11 @@ svaku   promjenljivu ćemo zapisati kao razliku dvije pozitivne promjenljive, tj
 	&  x_i^+, x_i^- \geq 0, \forall j\in J. \label{eq:lp_abs_transformed}
 \end{align}
  
- Može se pokazati da za optimalno rješenje vrijedi  $x^{+}\cdot x^{-}= 0$.  
+ Može se pokazati da za optimalno rješenje prethodnog modela vrijedi  $x^{+}\cdot x^{-}= 0$.  
    Pretpostavimo da je $x_j^*$, $j \in J$ optimalno rješenje LP-a (\ref{eq:lp_abs}). Rješenje za LP  (\ref{eq:lp_abs_transformed})  dato u obliku 
   $(x_j^+)^* = x_j^*$  ako je $x_j^* \geq 0$, a inače $(x_j^+)^* = 0$ i slično $(x_j^-)^* = - x_j^*$  ako je $x_j^* \leq 0$, a inače $(x_j^-)^* = 0$ je dopustivo za (\ref{eq:lp_abs_transformed}). Lako se provjeri da su vrijednosti ova dva rješenja u odnosu na odgovarajuće funkcije cilja jednake. Pokažimo da je rješenje  $((x^+)^*, (x^-)^*)$ ujedno i optimalno rješenje modela (\ref{eq:lp_abs_transformed}).   Neka je rješenje $(x^+, x^-)$ optimalano za model  (\ref{eq:lp_abs_transformed}) za koje postoji neko $j$ tako da  $x^{+}_j, x^{-}_j > 0$. Bez smanjenja opštosti, pretpostavimo da je $x^{+}_j \geq x^{-}_j$. 
   Rješenje $(y^+, y^-)$  za koje je $y^+_i = x^+_i$ i $(y^-_i = x^-_i)$ za sve $i \neq j$
-   i $y^+_j = x^{+}_j - x^{-}_j \geq 0$ i $(y^-_j)^*=0$ će dati istu ili manju vrijednost funkcije cilja nego rješenje prije transformacije. Prema tome, ukoliko postoje, optimalna rješenja LP-a (\ref{eq:lp_abs_transformed}) su među onim rješenjima za koje vrijedi da  barem jedna od promjenljivih $x_j^+$ ili $x_j^-$, $j \in J$  jednaka 0. Sva ostala rješenja su suboptimalna za model (3.15) i sigurno mogu da budu izuzeta iz domena rješenja (\ref{eq:lp_abs_transformed}) bez gubitka optimalnosti.   Prema tome, za svako dopustivo rješenja $x$ za (\ref{eq:lp_abs}) postoji dopustivo rješenje  $(x^+, x^-)$ za (\ref{eq:lp_abs_transformed}) i obrnuto. Pri tome, vrijednosti funkcija cilja ovakvih rješenja su jednake. Prema tome, ova dva modela su ekvivalenta. 
+   i $y^+_j = x^{+}_j - x^{-}_j \geq 0$ i $(y^-_j)^*=0$ je dopustivo, i daće istu ili manju vrijednost funkcije cilja nego rješenje prije transformacije. Prema tome, ukoliko postoje, optimalna rješenja LP-a (\ref{eq:lp_abs_transformed}) su među onim rješenjima za koje vrijedi da  barem jedna od promjenljivih $x_j^+$ ili $x_j^-$, $j \in J$  jednaka 0. Sva ostala rješenja su podoptimalna za model (3.15) i sigurno mogu da budu izuzeta iz domena rješenja (\ref{eq:lp_abs_transformed}) bez gubitka optimalnosti.   Prema tome, za svako dopustivo rješenja $x$ za (\ref{eq:lp_abs}) postoji dopustivo rješenje  $(x^+, x^-)$ za (\ref{eq:lp_abs_transformed}) i obrnuto. Pri tome, vrijednosti funkcija cilja ovakvih rješenja su jednake. Prema tome, ova dva modela su ekvivalenta. Može se pokazati da transformacija vrijedi i opštiji slučaj, tj. kada je funkcija cilja data sa $f(x)= \sum_{j \in J} c_j |x_j|, c_j \geq 0, j \in J$.
 
 
 \emph{Min-max problem}. Neka je dat sljedeći model: 
@@ -1276,7 +1276,7 @@ Simpleks metod je jedan od najpoznatijih i najefikasnijih algoritama za rješava
 
 Neka je dat problem LP-a u kanonskom obliku
 \begin{align}
-    &c^Tx \rightarrow \min \nonumber \\ 
+    &\min c^Tx  \nonumber \\ 
     & A x = b \nonumber \\
     & x \geq 0, \label{eq:lp_equality_constraint}
 \end{align}
@@ -1407,20 +1407,20 @@ Prema tome, ako  problem maksimizacije rješavamo simpleks metodom, koraci metod
 %Kako je standardni poliedar LP-a dat sa svim onim $x \in \mathbb{R}^n$ tako da $Ax \leq (\geq) b$, 
 Transformišimo standardni oblik problema LP-a
   \begin{align*}
-    & c^T x \rightarrow \max \\
+    & \max c^T x  \\
     & {t.d} \nonumber \\
     & Ax \leq b \\
     & x \geq 0\\
 \end{align*}
 na kanonski oblik pogodan simpleks metodi $(A {x} = b)$ dodavanjem ,,izjednačavajućih'' promjenljivih $s$ na sljedeći način:
 \begin{align}
-    & c^T x \rightarrow \max \\
+    &  \max  c^T x   \\
     & Ax + s =  b \\
     & x \geq 0, s \geq 0. \\
 \end{align}
 što u matričnom obliku odgovara zapisu
 \begin{align}
-    & c^T x \rightarrow \max \\
+    & \max c^T x  \\
     & (A | I) \cdot \left (\begin{array}{c}
          x  \\
          s 
@@ -1430,7 +1430,7 @@ na kanonski oblik pogodan simpleks metodi $(A {x} = b)$ dodavanjem ,,izjednačav
 
 \begin{primjer}\label{primjer:simpl1} Neka je dat problem LP-a:
 \begin{align*}
-    &f= x_1 + x_2 \rightarrow \max \nonumber \\
+    &\max f= x_1 + x_2  \nonumber \\
     & x_1 + 3 x_2 \leq 9 \nonumber \\
     & 2x_1 + x_2 \leq 8  \nonumber \\
     & x_1, x_2 \geq 0. \nonumber \\
@@ -1610,7 +1610,7 @@ Ako postoji jedinična podmatrica $I_m$ u gornjoj lijevoj blok matrici simpleks 
  
  Međutim, šta ako je linearan program direktno dat u kanonskom obliku, tj. ograničenjima oblika $Ax = b, x \geq 0$? Bez smanjenja opštosti, pretpostavimo da je $b \geq 0$. Ako ne postoji očigledno bazno dopustivo rješenje ovog problema, onda uvodimo \emph{vještačke} promjenljive (eng. auxiliary variables) $s = (s_1,\ldots, s_m)$. Nakon toga, rješavamo sljedeći problem LP-a:
  \begin{align}
-      &\sum_{i=1}^m s_i \rightarrow \min_{x,s} \nonumber \\
+      & \min_{x,s} \sum_{i=1}^m s_i  \nonumber \\
       & {t.d.}\label{eq:artificial_lp_simplex}\\
       & A x + s = b \nonumber \\
       &  x, s \geq 0. \nonumber
@@ -2314,7 +2314,7 @@ Jedno od važnih pitanja vezano za problem  LP-a je sljedeće.
 
 Problem dopustivosti može da služi i da odgovorimo na sljedeće pitanje: 
 \emph{Da li je optimalna vrijednost funkcije cilja problema LP-a veća od neke unaprijed zadate  vrijednosti k?}
- Na ovo pitanje možemo odgovoriti pomoću  \emph{Furije–Mockinove} eliminacije. Pored osnovne primjerne, ovaj algoritam može poslužiti za dokazivanje Farkašove leme. Praktična primjena ove metode je u teoriji informacija, konkretno u informaciono-teorijskim dokazima ostvarivosti koji se opisuju uslovima pod kojima je zagarantovano postojanje šeme kodiranja sa dobrim performansama. Ovi uslovi se često opisuju linearnim sistemom nejednakosti, koji su upravo ulazne vrijednosti  \emph{Furije–Mockinove} eliminacije. 
+ Na ovo pitanje možemo odgovoriti pomoću  \emph{Furije–Mockinove} eliminacije. Pored osnovne primjerne, ovaj algoritam može poslužiti za dokazivanje Farkašove leme. Jedna od praktičnih primjena  ove metode je u teoriji informacija, konkretno u informaciono-teorijskim dokazima ostvarivosti koji se opisuju uslovima pod kojima je zagarantovano postojanje šeme kodiranja sa dobrim performansama. Ovi uslovi se često opisuju linearnim sistemom nejednakosti, koji su upravo ulazne vrijednosti  \emph{Furije–Mockinove} eliminacije. 
  
  Metoda  \emph{Furije–Mockinove} eliminacije strukturalno drugačija  od simpleks metode. Ideja algoritma je zasnovana na redukciji problema sa $n$ promjenljivih na ekvivalentan problem koji sadrži $n-1$ promjenljivih. Ekvivalentnost se posmatra u odnosu na svojstvo da početni problem ima rješenje akko ga ima i redukovani problem. Eliminacija promjenljivih se vrši iterativno, odnosno, u svakom koraku se redukuje broj promjenljivih za jedan. Na kraju se početni sistem svodi na sistem sa jednom promjenljivom, za koji se lako može provjeriti da li sadrži dopustivo rješenje.
  
@@ -2524,7 +2524,7 @@ uz nenegativne uslove
 \begin{itemize}
 	\item $x_i \geq 0, x_i \in \mathbb{Z}$, $j=1,\ldots,7.$
 \end{itemize}
-Primijetimo da su u ovom problemu promjenljive  cjelobrojne. Primijetimo da sve varijable figurišu u tačno pet ograničenja., što odgovara uslovu da svaka od sestara rati pet dana zaredom u noćnoj smjeni.
+Primijetimo da su u ovom problemu promjenljive  cjelobrojne. Primijetimo da sve varijable figurišu u tačno pet ograničenja, što odgovara uslovu da svaka od sestara radi pet dana zaredom u noćnoj smjeni.
 %Ovaj model pripada paradigmi cjelobrojnog linearnog programiranja.
 \end{primjer}
 \begin{primjer}
@@ -2598,13 +2598,18 @@ Formulišimo sada (cjelobrojni) linearni program ovog problema.
 Funkcija cilja je data sa:
 $$ f(x) = \min \sum_{j \in J} z_j $$
 tako da
-\begin{enumerate}
-	\item[(1)]  $ \sum_{\{i \in I \mid \sigma_{ij} \geq d \}} x_i \geq z_j, \forall j \in J $. Ovaj uslov zahtjeva da   ukoliko je oblast pokrivena signalom, tj. ako je $z_j = 1$, tada mora postojati neko mjesto $i \in I$ koji ima antenu jačine barem $d$ koja pokriva tu oblast. U slučaju da je $z_j=0$, ovo ograničenje je redundantno. 
-	
-	\item[(2)] $ \sum_{\{i \in I \mid \sigma_{ij} \geq d \}} x_i  \leq N + M_j( 1 - z_j), \forall j \in J $. Ovo ograničenje govori o maksimalnom broju signala koje prijemnici u oblasti $j\in J$ mogu obraditi. Opširnije, ako je objast $j\in J$ pokrivena, tj. $z_j=1$, onda   svakako ne može više od $N$ (dovoljno jakih) signala da bude prihvaćeno predajnikom u oblasti $j \in J$. U slučaju da je $z_j = 0$, ovo ograničenje postaje redundantno, jer je ova oblast isključena iz rješenja, pa nas broj signala koji se šalje predajniku u toj oblasti ne tiče. Ovo je takozvano big-M ograničenje, i sa njim ćemo se pozabaviti u narednom sekcijama. 
-	  
-	\item[(3)] $x_i, z_j \in\{0, 1\}, \forall i \in I, \forall j \in J$: Ovo su logičke varijable, čija je svrha prethodno objašnjena. 
-\end{enumerate}
+\begin{align}
+	   & \sum_{\{i \in I \mid \sigma_{ij} \geq d \}} x_i \geq z_j, \forall j \in J \label{const:ob-1}\\
+	   &\sum_{\{i \in I \mid \sigma_{ij} \geq d \}} x_i  \leq N + M_j( 1 - z_j), \forall j \in J \label{const:bound-2} \\ 
+	   & x_i, z_j \in\{0, 1\}, \forall i \in I, \forall j \in J   \label{const:vars-3}
+\end{align}
+
+Ograničenje (\ref{const:ob-1}) zahtjeva da ukoliko je oblast pokrivena signalom, tj. ako je $z_j = 1$, tada mora postojati neko mjesto $i \in I$ koji ima antenu jačine barem $d$ koja pokriva tu oblast. U slučaju da je $z_j=0$, ovo ograničenje je redundantno. 
+
+ Ograničenje~(\ref{const:bound-2}) ograničava maksimalnom broju signala koje prijemnici u oblasti $j\in J$ mogu obraditi. Opširnije, ako je objast $j\in J$ pokrivena, tj. $z_j=1$, onda     ne može više od $N$ (dovoljno jakih) signala da bude prihvaćeno predajnikom u oblasti $j \in J$. U slučaju da je $z_j = 0$, ovo ograničenje postaje redundantno, jer je ova oblast isključena iz rješenja, pa nas broj signala koji se šalje predajniku u toj oblasti ne tiče. Ovo je takozvano big-M ograničenje, i sa njim ćemo se pozabaviti u narednom sekcijama. 
+
+ U (\ref{const:vars-3}) su date logičke varijable, čija je svrha  već prethodno objašnjena. 
+ 
 %\printbibliography[heading=subbibliography,notkeyword=this]
 \begin{primjer}
 \emph{Jedan lokacijski problem}. Lokacijski problemi se često postavljaju na sljedeći način: pretpostavimo da postoji $n$ postrojenja (prodavnica)  i  $m$ kupaca. Dva pitanja koja treba da budu obuhvaćena rješenjem su:
@@ -2719,7 +2724,7 @@ $$  \sum_{j=1}^n x_{ij} = 1, \forall i =1,\ldots, n$$
  \end{align}
   %Postoje i druga ograničenja koja mogu da se dodaju za eliminaciju podruta, bez gore pomenutog iterativnog procesa, ali o njima će biti riječi u narednim sekcijama. 
  
- \section{Tehnike transformacija nekih nelinearnih ograničenja u  ILP-u}\label{sec:transformILP}
+ \section{Tehnike transformacija nekih nelinearnih izraza u ILP-u}\label{sec:transformILP}
   
  U prethodnom odjeljku je objašnjeno modelovanje nekih problema pomoću cjelobrojnog linearnog programiranja. Kao što se može vidjeti, modeli nekih problema pravolinijski slijede iz definicije samog problema, dok je za modelovanje nekih drugih, kompleksnijih problema, potrebno uključiti veći broj dodatnih promjenljivih i ograničenja. U ovom odjeljku ćemo prikazati neke standardne transformacije i tehnike, kojima različite (nelinearne) izraze transformišemo i modelujemo ih pomoću cjelobrojnih promjenljivih i linearnih ograničenja.
  %\emph{Binarne promjenljive.} 
@@ -3138,9 +3143,9 @@ gdje su $x_2, \ldots, x_{n-2}$  proizvoljne bulove promjenjive (literali).
 
 	
 	%https://www.utc.fr/~dnace/dokuwiki/_media/fr/upt-cours-2012lp.pdf
-	\item U ovom zadatku je potrebno modelovati \emph{Problem totalnog pokrivanja}. %Neka je dato $n$ mijesta, te $m$ zahtjeva koji treba da budu ispunjeni ($d_1,\ldots, d_m$).  
+	\item U ovom zadatku je potrebno modelovati \emph{problem totalnog pokrivanja}. %Neka je dato $n$ mijesta, te $m$ zahtjeva koji treba da budu ispunjeni ($d_1,\ldots, d_m$).  
 	Sa $D_c$ označimo maksimalnu daljinu koja se može pokriti instalacijom $c$. Pod instalacijom podrazumijevamo skladiše, antene i sl. Pod ,,pokrivanjem'' podrazumijevamo ispunjavanje zahtjeva klijenata, koji žive u nekom mjestu. Sa $c_i$ označimo cijenu postavljanja instalacije na mjesto $i$. Sa $d_{ij}$ označimo udaljenost između mjesta $i$ i $j$. Zadatak ovog problema je da se odredi koja mjesta da se odaberu za instalacije, tako da su sva (ostala) mjesta pokrivena, ali da pri tome minimizujemo troškove instalacija. Sa jednog odabranog mjesta $c$ se pokrivaju sva susjedna mjesta koja su u okviru radijusa $D_c$.  
-	\item U ovom zadatku se modeluje  \emph{Problem maksimalnog pokrivanja} (eng. \emph{maximum coverage problem}). Neka je na ulazu data kolekcija skupova  $S=\{ S_1, \ldots, S_m\}$ te broj $k \in \mathbb{N}$. Potrebno je naći podskup $S' \subseteq S$, tako da je $|S'|\leq k$, a broj pokrivenih elemenata $|\bigcup_{s' \in S'} s'|$ je maksimizovan. 
+	\item U ovom zadatku se modeluje  \emph{problem maksimalnog pokrivanja} (eng. \emph{maximum coverage problem}). Neka je na ulazu data kolekcija skupova  $S=\{ S_1, \ldots, S_m\}$ te broj $k \in \mathbb{N}$. Potrebno je naći podskup $S' \subseteq S$, tako da je $|S'|\leq k$, a broj pokrivenih elemenata $|\bigcup_{s' \in S'} s'|$ je maksimizovan. 
 	
 	\emph{Uputstvo}. Sa $x_j \in \{0, 1\}$ označimo promjenljivu koja dobija vrijednost 1 ako je skup $S_i$ odabran u rješenje $S'$, inače 0. Dodatno, sa $y_j \in \{0, 1 \}$ definišemo promjenljivu koja dobija vrijednost 1 ako je   element $e_j$ pokriven rješenjem.  
 %http://courses.ieor.berkeley.edu/ieor151/lecture_notes/ieor151_lec14.pdf
@@ -3471,23 +3476,24 @@ Prodiskutujmo ovo rješenje po čvorovima dobijenog stabla:
 \emph{Metoda odsjecajućih ravni} rješava problem cjelobrojnog  programiranja mijenjanjem rješenja njegove relaksacije, sve dok se ne dobije model čije je optimalno rješenje cjelobrojno. Metoda nije bazirana na principu dijeljenja dopustivog regiona problema na podregione, kao što je to slučaj sa B\&B metodama, već radi sa jednim linearnim programom, kojeg poboljšava iterativnim dodavanjem novih ograničenja. Nova ograničenja sukcesivno smanjuju dopustiv region, sve dok se ne pronađe cjelobrojno optimalno rješenje.   
  Istorijski gledano, to je prvi algoritam razvijen za probleme cjelobrojnog programiranja, za koji je formalno dokazano da konvergira ka optimumu u konačnom broju koraka. Iako se algoritam generalno smatra   neefikasnim, važan je sa metodološkog aspekta, jer je njegov razvoj kasnije doveo do konstrukcije drugih, efikasnijih algoritama.  
   
- \begin{definition}{Validna nejednakost} za ILP je svako ograničenje koje ne eliminiše niti   jedno moguće cjelobrojno rješenje problema.
+ \begin{definition}{Validna nejednakost} za ILP je svako ograničenje koje ne eliminiše niti   jedno  dopustivo cjelobrojno rješenje problema.
  \end{definition}
  Drugi naziv za \emph{validnu nejednakost} je \emph{odsjecajuća ravan}.
 
 \begin{primjer}
 Za sljedeći problem ILP-a
 \end{primjer}
-\begin{align*}
-    &\max z = 3x_1 + 4 x_2 \\
-    &\mbox{t.d.} \\
-    &5x_1 + 8x_1 \leq 24 \\
+  \begin{align*}
+    & \max z = 3x_1 + 4 x_2 \\
+    & \mbox{t.d.} \\
+    & 5x_1 + 8x_2\leq 24 \\
     & x_1, x_2 \geq 0, x_1,x_2\in \mathbb{Z},
-\end{align*}
-jedna njegova validna nejednakost je $z \leq 5$. 
+ \end{align*}
+jedna njegova validna nejednakost bi bila  $2z - x_1 = (6x_1 + 8x_1 ) - x_1 = 5x_1 + 8 x_2  \leq 24$, dakle $2z - x_1 \leq 24,$ a kako sigurno vrijedi $x_1 \leq 4$, dobijamo $2z \leq 24 + 5$, pa imamo $z \leq 14.5$, ili (zbog cjelobrojnosti funkcije cilja) $z \leq 14$.
+
 
 \begin{definition}
-      Konveksni omotač za problem  ~(\ref{ilp-formulation}) je najmanji (dopustivi) poliedar nekog LP-a koji sadrži sve cjelobrojne tačke tog problema.
+      Konveksni omotač za problem  ~(\ref{ilp-formulation}) je najmanji (dopustivi) poliedar nekog LP-a koji sadrži sve dopustive cjelobrojne tačke tog problema.
 \end{definition}
 Ako riješimo LP problem čiji je dopustivi skup konveksni omotač cjelobrojnih tačaka, onda je to rješenje optimalno za odgovarajući ILP. Međutim problem nalaska ovakvog konveksnog omotača je takođe  NP-težak, pa prema tome nije očekivano da se takav   omotač može naći u opštem slučaju. Nalazak korisnih ograničenja (ne svih) koja učestvuju u izgradnji konveksnog omotača je takođe veoma težak zadatak, mada je ovo ponekad i moguće. Prema tome, zadatak se svodi na nalazak korisnih odsjecajućih ravni, nezavisno od problema pronalaska konveksnog omotača, što se najčeše i radi  u praksi. 
 
@@ -3715,9 +3721,9 @@ gdje je lako uočiti da je optimalno bazno dopustivo rješenje $x=(5, 4, 1, 7, 0
 %https://homepages.rpi.edu/~mitchj/handouts/bc_algo/
 % http://www.mi.fu-berlin.de/wiki/pub/Main/GunnarKlauP1winter0708/discMath_klau_ILP_I.pdf
 U ovom odjeljku analiziramo metodu granjanja i odsijecanja (eng. branch and cut, skraćeno B\&C). U odnosu na B\&B metodu, koja je opisana u Odjeljku~\ref{sec:bb}, B\&C dodaje  i metod odsjecajućih ravni u rješavanju  podproblema koji odgovaraju čvorovima drveta. Dakle, ako  uzimamo trenutno aktivni čvor i rješavamo njegov podproblem, dijelimo ga na nekoliko podproblema (podjelom dopustivog regiona na više disjunktnih -- dodavanjem ograničenja) ili ga rješavamo rekurzivnim dodavanjem (Gomorijevih) odsjecajućih ravni. Ilustrujmo ovu ideju na primjeru rješavanja jednog ILP-a.
-
-\begin{primjer} Riješimo sljedeći ILP
-	\end{primjer}
+\begin{primjer} 
+	Riješimo sljedeći ILP
+\end{primjer}
 \begin{align*}
     &\max 6 x_1 + 5 x_2 \\
     &  \mbox{t.d. } \\
@@ -3729,7 +3735,6 @@ U ovom odjeljku analiziramo metodu granjanja i odsijecanja (eng. branch and cut,
 
 \emph{Rješenje}. B\&C procedura prvo rješava LP relaksaciju početnog problema (simpleks metodom), odakle dobijamo rješenje $x=(\frac{17}{7}, \frac{26}{7})$
 sa optimalnom vrijednošću $33\frac{1}{7}$. Nakon toga treba da se donese odluka, da li se problem rješava dodavanjem odsjecajućih ravni ili podjelom dopustivog regiona na manje (disjunktne) podregione. Podijelimo region po koordinati $x_1$, odakle ćemo dobiti dva podproblema 
-
 \begin{align*}
     &\max 6 x_1 + 5 x_2 \\
      &  \mbox{t.d. } \\
@@ -3915,16 +3920,18 @@ Iterativni proces rješavanja RMP problema se može prekinuti i ranije, bez dost
  \end{align*}
  Parametar $a_{i,j}$ predstavlja onaj broj, koliko se puta u narudžbi $i$ (određena širina -- visina --  sječenja rolne) pojavljuje obrazac $j$ (odgovara vrsti na Slici ~\ref{fig:cuting_stock_solutions}). Promjenljivom $x_j$ se određuje širina j-tog sječenja rolne. 
  
- Primjera radi, na  Slici~\ref{fig:cuting_stock_solutions} indeks $1$ odgovara obrascu (dužine) $1820$, indeks $2$ obrascu (dužine) $1380$, indeks 3 obrascu $2150$, indeks 4 obrascu $1930$,   itd.  Nadalje prvo sječenje  odgovara 
- sljedećim vrijednostima: $a_{1,1}=3, a_{1,2}=a_{1,3}=\ldots =0$, i $x_1 = 2$. Ovo znači da u prvom sječenju visine 2, obrazac 1 (tj. dužina $1820$) se pojavljuje tri puta, dok se ostali obrasci ne pojavljuju ovdje. Drugo sječenje (narudžba) odgovara sljedećim vrijednostima: $a_{1,1}= 0, a_{1,2}=1, a_{1,3}=1, a_{1,4}=0=a_{1,5}=\ldots = 0$, dok je  $x_2 = 3$. Ovo znači da u drugom sječenju visine 3, obrazac $1820$ ne pojavljuje, obrazac $1380$ pojavljuje jednom, kao i obrasci $2150$  i $1930$, dok se ostali obrasci ne pojavljuju.  
-  \begin{figure}[ht]
+   \begin{figure}[!hbt]
  	\centering
  	\includegraphics[width=230pt, height=230pt]{cutting_stock.eps}
  	\caption{Rješenje jedne instance.}
  	\label{fig:cuting_stock_solutions}
  \end{figure}
  
- Ideja je da se obrasci ne formiraju na početku, već da se generišu prema potrebi (po kolonama), koristeći \emph{metodu generisanja kolona}. Kolona $a$ odgovara dopustivom obrascu akko vrijedi 
+ Primjera radi, na  Slici~\ref{fig:cuting_stock_solutions} indeks $1$ odgovara obrascu (dužine) $1820$, indeks $2$ obrascu (dužine) $1380$, indeks 3 obrascu $2150$, indeks 4 obrascu $1930$,   itd.  Nadalje, prvo sječenje sa slike odgovara 
+ sljedećim vrijednostima: $a_{1,1}=3, a_{1,2}=a_{1,3}=\ldots =0$, i $x_1 = 2$. Ovo znači da u prvom sječenju visine 2, obrazac 1 (tj. dužina $1820$) se pojavljuje tri puta, dok se ostali obrasci ne pojavljuju ovdje. Drugo sječenje (narudžba) odgovara sljedećim vrijednostima: $a_{1,1}= 0, a_{1,2}=1, a_{1,3}=1, a_{1,4}=0=a_{1,5}=\ldots = 0$, dok je  $x_2 = 3$. Ovo znači da u drugom sječenju visine 3, obrazac $1820$ ne pojavljuje, obrazac $1380$ pojavljuje jednom, kao i obrasci $2150$  i $1930$, dok se ostali obrasci ne pojavljuju.  
+
+ 
+ Ideja kojom se vodimo pri konstrukciji algoritma je da se obrasci ne formiraju na početku procedure, već da se generišu prema potrebi (po kolonama), koristeći \emph{metodu generisanja kolona}. Kolona $a$ odgovara dopustivom obrascu akko vrijedi 
  $$ \sum_{i=1}^m a_i w_i \leq W,$$
  gdje vektor $a$ sadrži samo nenegativne (cjelobrojne) vrijednosti. 
  
@@ -4408,7 +4415,7 @@ Iako je Algoritmom~\ref{alg:bender} opisan postupak rješavanja problema minimiz
 \end{itemize}
 Postavlja se pitanje kako treba uložiti početnu količinu novca, tako da se ostvari maksimalna dobit.
 
-\emph{Napomena}. Prije nego krenemo na rješavanje zadatka, naglasimo da ovaj problem predstavlja pojednostavljenu, i ne previše realističnu verziju problema portfelja u ekonomiji, konkretno oblasti optimizacije protfelja (eng. protfolio optimization). Inače, relani problem ulaganja novca pripada dvo-kriterijumskoj optimizaciji, gdje se pored maksimizacije prinosa, minimizuje i rizik ulaganja.  
+\emph{Napomena}. Prije nego krenemo na rješavanje zadatka, naglasimo da ovaj zadatak predstavlja pojednostavljenu, i ne previše realističnu verziju problema portfelja u ekonomiji, koji pripada oblasti optimizacije protfelja (eng. protfolio optimization). Inače, relani problem ulaganja novca pripada dvo-kriterijumskoj optimizaciji, gdje se pored maksimizacije profita, minimizuje i rizik ulaganja.  
 
 \emph{Rješenje}. S obzirom na postavku zadatka, jasno je da bi optimalno rješenje trebalo da podrazumijeva da se uloži u dionice $f_5,\ldots,f_{10}$ sa maksimalnim mogućim ulaganjem (po 100KM), dok se ostatak novca oročava sa kamatom od  4.5\%.
 
@@ -5666,8 +5673,8 @@ Neka je dat težinski graf $G=(V,E)$. Svaku težinu grane $(u,v) \in E $ u grafu
 MST ima primjene u različitim oblastime teorije i prakse. Izdvajamo neke od njih.
 \begin{enumerate}
  \item[($i$)] Dizajniranje mreža (npr. telefonske mreže), gdje je do svakog domaćinstva, koje je predstavljeno čvorom grafa, potrebno obezbijediti liniju, tako da se, na kraju, u mrežu povežu sva domaćinstva, uz minimalnu potrošnju materijala potrebnog za kreiranje infrastrukture mreže;
- \item[($ii$)] Aproksimaciji drugih teških optimizacionih problema, kao što je problem trgovačkog putnika (TSP), je potrebno naći najkraću konturu koja posjećuje sve čvorove u (težinskom) grafu tačno jednom. Primijetimo da su putevi generisani iz ovakvih kontura takođe MST. Težina rješenja MST je manja nego težina rješenja TSP, jer minimizujemo nad većim skupom rješenja. Na ovaj način  se može pokazati da je nalazak MST-a u težinskom grafu aproksimira nalazak TSP-a (nad euklidskim težinskim grafovima).
- \item[($iii$)] Klaster analiza, konkretno za $k$-klaster problem, se može posmatrati kao problem nalaženja MST-a, a potom brisanja $k-1$ najskupljih grana iz MST. 
+ \item[($ii$)] Aproksimacija drugih teških optimizacionih problema, kao što je problem trgovačkog putnika (TSP), gdje je potrebno naći najkraću konturu koja posjećuje sve čvorove tačno jednom u (težinskom) grafu. Primijetimo da su putevi generisani iz ovakvih kontura (brisanjem jedne od grana) takođe MST. Težina ovakvog rješenja MST je manja nego težina rješenja TSP posmatranog grafa, jer je riječ o minimizaciji nad većim skupom rješenja. Na ovaj način  se može pokazati da nalazak MST-a u težinskom grafu aproksimira nalazak TSP-a (nad euklidskim težinskim grafovima).
+ \item[($iii$)] Klaster analiza, konkretno za $k$-klaster problem, se može posmatrati kao problem nalaženja MST-a, a potom brisanja $k-1$ najskupljih grana iz MST rješenja. 
  \end{enumerate}
 
 \subsubsection{Primov algoritam}
@@ -5676,22 +5683,21 @@ Primov algoritam je jedan od osnovnih algoritama koji se, zbog svoje važnosti, 
 
 \begin{enumerate}
 	\item Kreirati skup \emph{mstSkup}=$\emptyset$ da bi se pratili svi čvorovi koji su već uključeni u MST.
-	\item Dodijeliti vrijednosti svakom čvoru u ulaznom grafu: inicijalizovati vrijednosti na +$\infty$. 
-	      Dodijeli vrijednost  0 za čvor koji je izabran prvi za MST;
+	\item Dodijeliti vrijednost svakom čvoru u ulaznom grafu: inicijalizovati vrijednosti na +$\infty$.   Dodijeli vrijednost  0 za čvor koji se prvi ubacuje u MST. 
+	Ideja dodjele vrijednosti čvorovima koji još nisu prisutni u skupu MST je u efikasnom odabiru grane minimalne težine, koja treba da se doda u trenutno parcijalno rješenje. %Dakle, ažurirane vrijednosti težina grana pomažu da se u razmatranje uključe upravo one grane spajaju jedan čvor koji je već uključen u MST i jedan čvor koji nije uključen u MST.
 	\item Dok god \emph{mstSkup} ne uključi sve čvorove iz $V$, ponavljamo sljedeće korake:
 	\begin{itemize}
 		\item Izabrati čvor $u\notin\emph{mstSkup} $ sa minimalnom vrijednošću (pohlepni korak);
 		\item \emph{mstSkup} = \emph{mstSkup}$\cup \{u\}$ (proširivanje parcijalnog rješenja);
 		\item Ažurirati vrijednosti svih susjeda čvora $u$ na sljedeći način:
 		     Za svaki susjed $v$, ako je težina grane $uv$ manja od
-		             ranije vrijednosti za $v$, dodijeliti  čvoru $v$ vrijednost $w(uv)$. 		    
+		             trenutne vrijednosti za $v$, dodijeliti  čvoru $v$ vrijednost $w(uv)$. 		    
 	        
 	\end{itemize}
 \end{enumerate}
 
-Ideja dodjele vrijednosti čvorovima koji još nisu prisutni u MST je u tome da se efikasno izabere grana minimalne težine, koja treba da se doda u trenutno parcijalno rješenje. Dakle, ažurirane vrijednosti težina grana pomažu da se u razmatranje uključe upravo one grane spajaju jedan čvor koji je već uključen u MST i jedan čvor koji nije uključen u MST.
 
- \emph{Vremenska kompleksnost}. Ako se za predstavljanje grafa koristi lista susjedstva, složenost algoritma je $O(|V|^2)$. Ako  koristimo prioritetni red za nalaženje grane minimalne težine, imamo kompleksnost od $O( |E| \log(|V|))$. 
+ \emph{Vremenska složenost}. Ako se za predstavljanje grafa koristi lista susjedstva, složenost algoritma je $O(|V|^2)$. Ako  koristimo prioritetni red za nalaženje grane minimalne težine, dobijamo složenost od $O( |E| \log(|V|))$. 
 
 
 
@@ -5703,16 +5709,15 @@ Koraci algoritma su sljedeći.
 
 \begin{enumerate}
 	
-	\item Sortirati sve grane polaznog grafa u neopadajućem poretku; Neka je tako formirana lista $S$ svih grana u grafu.
+	\item Sortirati sve grane polaznog grafa u neopadajućem poretku; neka je tako formirana lista $S$ svih grana u grafu.
 	\item Postaviti $\emph{mstSkup} = \emptyset$. 
-	\item Odabrati najlakšu granu iz skupa $S$ (pohlepni korak). Provjeriti da li se formira ciklus ako se ta 
-	grana doda u skup grana koje su do sada ubačene u skup \emph{mstSkup}; Ako to nije slučaj, ubaciti granu u trenutni skup \emph{mstSkup}. 
+	\item Odabrati najlakšu granu iz skupa $S$ (pohlepni korak). Provjeriti da li se formira ciklus pri dodavanju grane u skup grana koje su do sada ubačene u skup \emph{mstSkup}; Ako to nije slučaj, ubaciti granu u trenutni skup \emph{mstSkup}. 
 	\item Iz liste $S$ ukloniti odabranu granu;
 	\item Ponoviti korak 3, dok se ne doda tačno $|V|-1$ grana u \emph{mstSkup}.
 \end{enumerate} 
 
- \emph{Vremenska kompleksnost}. Kruskalov algoritam se izvršava u $O(|E|\log |E|)$ ili $O(|E|\log |V|)$ vremenu. Sortiranje grana uzima $O(|E| \log|E|)$ vremena. Potom, za svaku granu 
-se primjenjuje operacija nalaženja i dodavanja grane u skup \emph{mst}. Ove dvije operacije se izvršavaju u $O(\log |V|)$ vremenu. Dakle, za izvršavanje algoritma treba $O(|E|\log |E| + |E|\log |V|)$ vremena. Kako je $|E|=O(|V|^2)$, dobijamo kompleksnost $O(|E| \cdot \mathrm{log}(|V|))$. 
+ \emph{Vremenska složenost}. Kruskalov algoritam se izvršava u $O(|E|\log |E|)$ ili $O(|E|\log |V|)$ vremenu. Sortiranje grana uzima $O(|E| \log|E|)$ vremena. Potom, za svaku granu 
+se primjenjuje operacija nalaženja i dodavanja grane u skup \emph{mst}. Ove dvije operacije se izvršavaju u $O(\log |V|)$ vremenu. Dakle, za izvršavanje algoritma treba $O(|E|\log |E| + |E|\log |V|)$ vremena. Kako je $|E|=O(|V|^2)$, dobijamo složenost $O(|E| \cdot \mathrm{log}(|V|))$. 
 
 \subsection{Dajkstrin algoritam}
 
@@ -5751,22 +5756,22 @@ Svi koraci algoritma su dati u Algoritmu~\ref{alg:dijkstra-algorithm}. Nakon zav
     		\caption{Dajkstra($G,s $)}\label{alg:dijkstra-algorithm}
 \end{algorithm}
 
-\emph{Vremenska kompleksnost}.  Implementacija Algoritma~\ref{alg:dijkstra-algorithm} ima vremensku kompleksnost $O(|V|^2)$. Ako je graf predstavljen listom susjedstva, i skup $Q$  je implementiran kao binarni hip, 
-kompleksnost se redukuje na $O(|E| \cdot \log |V|)$.
+\emph{Vremenska složenost}.  Implementacija Algoritma~\ref{alg:dijkstra-algorithm} ima vremensku složenost $O(|V|^2)$. Ako je graf predstavljen listom susjedstva, i skup $Q$  je implementiran kao binarni hip, 
+složenost se redukuje na $O(|E| \cdot \log |V|)$.
 
 Napomenimo da Dajkstrin algoritam ne radi sa grafovima koji imaju negativne težine (pogledati  liniju 12).  Za ovakve grafove,  primjenjuje se Bellman–Ford-ov algoritam koji je baziran na dinamičkom programiranju. Njega ne pominjemo   u ovoj knjizi, ali čitaocu preporučujemo da se, koristeći se literaturom ili internetom, upozna i sa ovim važnim algoritmom.  %, o kojem ćemo nešto više reći u narednim sekcijama.
 
 
 \subsection{Razlomljeni problem jednodimenzionalnog ruksaka}\label{sec:frkacruksak}
 
-
+\begin{definition}
   Neka je dato $n$ proizvoda sa svojim  težinama i vrijednostima, 
-  te ruksak čiji je kapacitet $W$. \emph{Razlomljeni problem ruksaka} podrazumijeva odabir razlomljenih dijelova proizvoda koji se stavljaju u ruksak, tako da vrijednost proizvoda u ruksaku bude što veća ali da se pri tom ne naruši ograničenje vezano za ukupan kapacitet ruksaka.
-
+  te ruksak čiji je kapacitet $W>0$. \emph{Razlomljeni problem jednodimenzionalnog ruksaka} podrazumijeva odabir proizvoljnih dijelova proizvoda koji se stavljaju u ruksak, tako da vrijednost proizvoda u ruksaku bude što veća, ali da se pri tom ne naruši ograničenje vezano za ukupan kapacitet ruksaka.
+\end{definition}
 U 0-1 problemu ruksaka, koji će biti razmatran i u Primjeru~\ref{primjer:01ruksak},  ne dopušta se dijeljenje proizvoda. Dakle, ili se uzima cijeli proizvod (1) i stavlja u ruksak, ili se uopšte ne uzima (0). U  problemu frakcionog ruksaka, svaki proizvod posjeduje težinu i vrijednost, te se kao takav može podijeliti na dijelove (recimo dopušteno je da se uzme   pola od ukupne količine proizvoda). Primjeri takvih proizvoda bi bili mlijeko, so, šećer, itd. Efikasno rješavanje ovog problema se izvodi primjenom pohlepnog algoritma na sljedeći način.
 \begin{enumerate}
 	\item Računaju se odnosi količina/vrijednost za svaki proizvod, te se proizvodi  sortiraju na osnovu tih vrijednosti, u opadajućem poretku. 
-	   \item Sve dok ruksak nije poptuno napunjen ponavljamo sljedeći postupak:
+	   \item Sve dok ruksak nije potpuno napunjen ponavljamo sljedeći postupak:
 	   	\begin{itemize}
 	   		\item  Iz liste sortiranih proizvoda, uzmemo onaj proizvod kod koga je izračunati odnos najveći;
 	   		\item  dodamo  ga u ruksak u maksimalnoj količini, vodeći računa da ne narušimo kapacitet ruksaka;
@@ -5781,8 +5786,11 @@ Može se pokazati sljedeća teorema.
 \end{thm}
 \subsection{Pohlepni pristup za rješavanje LCS problema}
 
-String definišemo kao niz karaktera nad konačnom azbukom $\Sigma$. 
-Problem najdužeg podniza (eng. \emph{Longest common subsequence} -- LCS), je problem koji na ulazu uzima  $n$ stringova (označimo ovaj skup sa $S$) proizvoljne dužine. Cilj je da se pronađe string maksimalne dužine tako da on predstavlja zajednički podniz za sve stringove iz skupa $S$. 
+String definišemo kao niz karaktera nad konačnom azbukom $\Sigma$.
+\begin{definition} 
+Problem najdužeg podniza (eng. \emph{Longest common subsequence} -- LCS), je problem koji u ulazu uzima $n$ stringova proizvoljne dužine. Cilj je da se pronađe string maksimalne dužine koji je zajednički podniz za sve stringove iz ulaznog skupa stringova. 
+\end{definition}
+
 
 \begin{primjer}\label{primjer:lcs}
  Neka su u ulazu data tri stringa dužine šest: $$S = \{  \texttt{abbccb}, \texttt{abccab}, \texttt{abbbcb}   \}.$$  Rješenje problema je $s=\texttt{abcb}$. Primijetimo da je $s$ podniz za sva tri stringa iz $S$, a može se (direktno) provjeriti da je to najduži takav string. 
@@ -5799,11 +5807,11 @@ $S[p^L] = \{s_i[p^L_i, |s_i|] \mid i=1,\ldots,m\}$, gdje $|s|$ označava dužinu
  
 Dalje, sa $p^L_{i,a}$ definišemo poziciju prvog pojavljivanja karaktera $\texttt{a}\in \Sigma$ takav da je $p^L_{i,a} \geq p^L_i$ (ukoliko karakter ne postoji, dodijelimo vrijednost $n+1$). Skup karaktera $\Sigma_{p^L}$ koji se pojavljuju u svakom od stringova (u podproblemu) $S[p^L]$ se nazivaju dopustive ekstenzije u odnosu na pozicioni vektor $p^L$. 
 
-U konstrukciji pohlepnog algoritma, odredimo  skup dopustivih komponenti i (pohlepni) kriterijum odabira najbolje komponente u svakom koraku algoritma koje se dodaje u postojeće parcijalno rješenje. Inicijalno rješenje $s$ je prazan string, koji je, trivijalno, dopustivo za svaku instancu LCS problema. Ideja je iterativno proširiti trenutno rješenje za jedan karakter, spajajući taj karakter sa rješenjem sa desna, dok god je to moguće. Pri tome prošireno rješenje je uvijek LCS, dakle, dopustivo. Za spajanje stringa i karaktera ćemo koristiti standardni operator ($\cdot$).
+U konstrukciji pohlepnog algoritma, odredimo  skup dopustivih komponenti i (pohlepni) kriterijum odabira najbolje komponente u svakom koraku algoritma koja se dodaje u postojeće parcijalno rješenje. Inicijalno rješenje $s$ je prazan string, koji je, trivijalno, dopustivo za svaku instancu LCS problema. Ideja se sastoji u iterativnom proširivanju trenutnog rješenja za jedan karakter, spajajući taj karakter sa rješenjem sa desna, dok god je to moguće. Pri tome prošireno rješenje mora uvijek biti LCS, dakle, dopustivo. Za spajanje stringa i karaktera ćemo koristiti standardni operator ($\cdot$).
 
- Prema navedenom, krenemo sa pozicijom $p^L = (1, \ldots, 1)$ koja odgovara čitavom skupu $S=S[p^L]$ i praznim stringom $s =\varepsilon$ kao inicijalnim rješenjem. Dalje, da bismo očuvali dopustivost rješenja kada se rješenje proširi za jedan karakter, za komponente rješenja $\Sigma_{p^L}$ ćemo uzeti sve karaktere koji se nalaze u svim stringovima iz $S=S[p^L]$, dakle sufiks stringove u odnosu na odgovarajuće pozicije u vektoru $p^L$. Na taj način,  ekstenzija $s = s \cdot x$  će za bilo koji $x \in \Sigma_{p^L}$ dati dopustivo LCS rješenje. Među karakterima iz $\Sigma_{p^L}$ treba odabrati (lokalno) najboljeg kandidata za proširivanje rješenja. Treba imati na umu da se kandidat $x\in \Sigma_{p^L}$ može pojaviti na nekoliko pozicija u svakom stringu iz $S=S[p^L]$. Kako ne želimo ekstenzije koje vode ka podoptimalnim rješenjima, biramo karakter $x$ koji je najbliže početku u svakom od stringova iz $S=S[p^L]$, dakle na pozicijama $p^L_{i,a},i=1,\ldots,m$. 
+ Prema navedenom, krenemo sa pozicijom $p^L = (1, \ldots, 1)$ koja odgovara čitavom skupu $S=S[p^L]$ i praznim stringom $s =\varepsilon$ kao inicijalnim rješenjem. Dalje, da bismo očuvali dopustivost rješenja kada se rješenje proširi za jedan karakter, za komponente rješenja $\Sigma_{p^L}$ ćemo uzeti sve karaktere koji se nalaze u svim stringovima iz $S=S[p^L]$, dakle u sufiks stringovima u odnosu na odgovarajuće pozicije vektora $p^L$. Na taj način,  ekstenzija $s = s \cdot x$  će za bilo koji $x \in \Sigma_{p^L}$ dati dopustivo LCS rješenje. Među karakterima iz $\Sigma_{p^L}$ treba odabrati (lokalno) najboljeg kandidata za proširivanje rješenja. Treba imati na umu da se kandidat $x\in \Sigma_{p^L}$ može pojaviti na nekoliko pozicija u svakom stringu iz $S=S[p^L]$. Kako ne želimo ekstenzije koje vode ka podoptimalnim rješenjima, biramo karakter $x$ čije pozicije su najbliže početku svakog od stringova iz $S=S[p^L]$, dakle na pozicijama $p^L_{i,a},i=1,\ldots,m$. 
 
- Ideja konstrukcije pohlepne funkcije $g()$ se sastoji u odabiru onog karaktera za proširivanje rješenja $s$ koji, na neki način, izbacuje najmanji broj karaktera iz dalje pretrage. U našem slučaju,  funkcija $g()$ procijenjuje relativno broj izbačenih karaktera u odnosu na veličinu sufiks stringova. 
+ Ideja konstrukcije pohlepne funkcije $g()$ se sastoji u odabiru onog karaktera za proširivanje rješenja $s$ koji, na neki način, izbacuje najmanji broj karaktera iz dalje pretrage. U našem slučaju,  funkcija $g()$ procjenjuje relativan broj izbačenih karaktera u odnosu na veličinu sufiks stringova. 
  Sljedeći korak se sastoji u ažuriranju prostora pretrage za novi korak. Kako smo proširili rješenje za $x$, nove komponente rješenja koje su dopustive tražimo u skupu stringova $S[p^L_{1,x}+1,\ldots, p^L_{m, x}+1]$. Postupak nastavljamo dok god postoje komponente koje mogu proširiti trenutno rješenje $s$. 
 
 
@@ -5824,8 +5832,8 @@ Algoritam vraća vrijednost $s$.
 
 Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje, što je ilustrovano sljedećim jednostavnim primjerom. 
 
-\begin{primjer} Neka su data dva stringa: $s_1 = \texttt{caba}, s_2 = \texttt{bacc}$. Prvo konstatujmo da su sva tri karaktera moguće opcije za proširenje (inicijalno praznog stringa). Izračunajmo za svakog od njih odgovarajući $g$-skor. Imamo: $g((1,1), \texttt{a}) = \frac{2}{4} + \frac{2}{4}= 1$, $g((1, 1), \texttt{b}) = \frac{3}{4} + \frac{1}{4}=1,$ $g((1,1), \texttt{c}) = \frac{1}{4} + \frac{3}{4} = 1$. Ovdje dolazi do situacije u kojoj, ukoliko ne postoji dodatni kriterij odlučivanja u slučaju jednakih vrijednosti minimalnog $g$-skora za više karaktera, algoritam nasumično donio odluku (u zavisnosti od internih koraka u algoritmu i korištenih struktura podataka). 
-	Ako bi izabrali $\texttt{c}$ kao karakter koji proširuje trenutno (prazno) rješenje u prvom koraku algoritma, u narednom koraku bi algoritam prekinuo sa radom, jer sufiksi koji preostaju za proširenje rješenja $\texttt{c}$ ne nude niti jedan karakter za proširenje rješenja \texttt{c}. Dakle, u tom slučaju algoritam vraća rješenje $\texttt{c}$, koje očigledno nije optimalno. Ako bi izabrali recimo karakter \texttt{b} u prvom koraku, naredni karakter koji proširuje rješenje je \texttt{a}, pa prema tome algoritam bi u tom slučaju vratio (optimalno) rješenje \texttt{ba}. 
+\begin{primjer} Neka su data dva stringa: $s_1 = \texttt{caba}, s_2 = \texttt{bacc}$. Prvo konstatujmo da su sva tri karaktera moguće opcije za proširenje (inicijalno praznog stringa $\varepsilon$). Izračunajmo za svakog od njih odgovarajući $g$-skor. Imamo: $g((1,1), \texttt{a}) = \frac{2}{4} + \frac{2}{4}= 1$, $g((1, 1), \texttt{b}) = \frac{3}{4} + \frac{1}{4}=1,$ $g((1,1), \texttt{c}) = \frac{1}{4} + \frac{3}{4} = 1$. Ovdje dolazi do situacije u kojoj, ukoliko ne postoji dodatni kriterij odlučivanja u slučaju jednakih vrijednosti minimalnog $g$-skora za više karaktera, algoritam nasumično donosi odluku o odabiru karaktera (u zavisnosti od internih koraka u algoritmu i korištenih struktura podataka). 
+	Ako bi izabrali $\texttt{c}$ kao karakter koji proširuje trenutno (prazno) rješenje u prvom koraku algoritma, u narednom koraku bi algoritam prekinuo sa radom, jer sufiksi koji preostaju za proširenje rješenja $\texttt{c}$ ne nude niti jedan karakter za proširenje. Dakle, u tom slučaju algoritam vraća rješenje $\texttt{c}$, koje očigledno nije optimalno. Ako bi izabrali recimo karakter \texttt{b} u prvom koraku, naredni (i jedini mogući) karakter koji proširuje rješenje je \texttt{a}, pa prema tome algoritam bi u tom slučaju vratio (optimalno) rješenje \texttt{ba}. 
 	\end{primjer}
 
 \section{Aproksimativni algoritmi} 
@@ -5871,7 +5879,12 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje, što 
 
   	\caption{Primjer pokrivača čvorova grafa.}   	\label{fig:vertex-cover}
   \end{figure}
-  Neka je dat graf $G=(V,E)$. Potrebno je naći podskup $C\subseteq V$ minimalne kardinalnosti, takav da barem jedan čvor svake grane pripada skupu $C$.  Dopustivo rješenje je svaki podskup $C$ koji zadovoljava uslov problema. Takav skup se naziva minimalni \emph{pokrivač} čvorova grafa $G$. Primjer minimalnog pokrivača jednog grafa je dat na Slici~\ref{fig:vertex-cover} gdje pokrivač uključuje sve čvorove crne boje. 
+Definišimo problem minimalnog pokrivanja čvorova.
+
+\begin{definition}
+  Neka je dat graf $G=(V,E)$. Potrebno je naći podskup $C\subseteq V$ minimalne kardinalnosti, takav da barem jedan čvor svake grane pripada skupu $C$. 
+\end{definition}  
+   Dopustivo rješenje je svaki podskup $C$ koji zadovoljava uslov problema. Takav skup se naziva minimalni \emph{pokrivač} čvorova grafa $G$. Primjer minimalnog pokrivača jednog grafa je dat na Slici~\ref{fig:vertex-cover} gdje pokrivač uključuje sve čvorove crne boje. 
 
   
   Posmatrajmo (pohlepni) algoritam za ovaj problem dat Algoritmom~\ref{alg:gridi-vc}. 
@@ -5881,9 +5894,9 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje, što 
   	\begin{algorithmic}[1]
   		\STATE $C \gets \emptyset$
   		\WHILE{$E \neq \emptyset$}
-  		\STATE $(u,v) \gets$ bilo koja grana iz $E$
+  		\STATE $(u,v)\gets$ bilo koja grana iz $E$
   		\STATE $C \gets C \cup \{u,v\}$
-  		\STATE ukloniti sve grane incidentne sa  $u$ ili $v$ iz grafa $G$
+  		\STATE $E \gets $ ukloniti sve grane incidentne sa  $u$ ili $v$ iz grafa $G$
   		\ENDWHILE
   		\STATE \textbf{return} $C$
   	\end{algorithmic}   
@@ -5905,7 +5918,7 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje, što 
   		\WHILE{$E \neq \emptyset$}
   		\STATE  $u \gets \textrm{argmin}_{u \in V(G)} deg(u)$
   		\STATE  $C \gets C \cup \{u\}$
-  		\STATE $G \gets$ ukloniti sve grane incidentne sa $u$ u $G$  
+  		\STATE $E \gets$ ukloniti sve grane incidentne sa $u$ u $G$  
   		\ENDWHILE
   		\STATE \textbf{return} $C$
   	\end{algorithmic}
@@ -5961,7 +5974,7 @@ TSP kod koga grane zadovoljavaju nejednakost trougla se naziva \emph{metrički} 
 
 Posmatrajmo \emph{algoritam najbližeg dodavanja} koji aproksimira TSP, dat Algoritmom~\ref{alg:tsp-a1}. 
   
-   \begin{algorithm}[!t] 
+   \begin{algorithm}[!hbt] 
   
   	\begin{algorithmic}[1]
   		\STATE \textbf{Ulaz}: Kompletan težinski graf $G$
@@ -5992,7 +6005,7 @@ Dakle, završna kontura ima cijenu koja dostiže cijenu barem dva puta veću od 
 
  \noindent Pokušajmo poboljšati 2--aproksimativni Algoritam~\ref{alg:tsp-a1} uz pomoć \emph{Double tree algoritma}, čije detalje objašnjavamo u nastavku. Prije toga ćemo uvesti nekoliko definicija i teorema od bitnog značaja u konstrukciji algoritma. 
  \begin{definition}
- 	  Neka je dat graf $G=(V,E)$. Ojlerova kontura $T^o$ grafa $G$ je kontura $e_1e_2...,e_me_1$ koja obilazi sve grane grafa $G$. 
+ 	  Neka je dat graf $G=(V,E)$. Ojlerova kontura $T^o$ grafa $G$ je kontura $e_1e_2,...,e_me_1$ koja obilazi sve grane grafa $G$. 
  \end{definition}
 Vrijedi sljedeća karaketrizacija grafova koji sadrže Ojlerovu konturu. 
 \begin{thm}
@@ -6065,7 +6078,7 @@ Koraci su prikazani Algoritmom~\ref{alg:tsp-a3}.
 		\STATE \textbf{Ulaz}: Graf $G$
 		\STATE \textbf{Izlaz}: Hamiltonova kontura $T$ 
 		\STATE $T \gets$ Naći MST grafa $G$
-		\STATE $M \gets$ Naći minimalan mečing svih čvorova u $T$ neparnog stepena
+		\STATE $M \gets$ Naći minimalno uparivanje svih čvorova u $T$ neparnog stepena
 		\STATE $T' \gets$ Dodamo grane od $M$ u $T$
 		\STATE $T^o\gets$ Nađimo Ojlerovu konturu u $T'$
 		\STATE $T \gets$ Izbaciti duple čvorove iz $T^o$
@@ -6090,8 +6103,10 @@ U literaturi je pokazano da ne postoji  aproksimacioni algoritam sa faktorom  $c
  \subsection{Aproksimativni algoritmi za problem binarnog pakovanja}\label{sec:binpack}
 % Zadatak: https://scipbook.readthedocs.io/en/latest/bpp.html
 
-Definišimo \emph{problem binarnog pakovanja}.  Neka je dato $n$ proizvoda veličine $a_1,a_2,\ldots,a_n$ ($0<a_i<1$). Potrebno je spakovati sve proizvode u pakovanja koja su sva jediničnog kapaciteta, tako da je ukupan broj korištenih pakovanja  minimalan.  
-
+Definišimo \emph{problem binarnog pakovanja}.  
+\begin{definition}
+    Neka je dato $n$ proizvoda veličine $a_1,a_2,\ldots,a_n$ ($0<a_i \leq 1$). Potrebno je spakovati sve proizvode u pakovanja koja su sva jediničnog kapaciteta, tako da je ukupan broj korištenih pakovanja  minimalan.  
+\end{definition}
 
   Primjer jedne instance problema pakovanja je dat na Slici~\ref{fig:bin-packing}.
  
@@ -6755,7 +6770,7 @@ Postoje različite strategije koliko dugo se izvršava lokalna pretraga. U opšt
  dio koji uzima najveći dio vremena u operacionim istraživanjima. Kada dođemo do modela koji približno odgovara potrebama, rješavanje modela se svodi na pozivanje odgovarajućih rješavača. Neki od najpoznatijih su: 
  \textsc{Cplex} koji može biti pozivan u Javi, $C$++ i Python-u uz pomoć odgovarajućih API-ja, zatim Lindo, Gurobi, te modul PuLP u Python-u.
  
- U nastavku opisujemo korištenje \textsc{Cplex} i PuLP rješavača za implementaciju MILP modela i njihovog rješavanja. 
+ U nastavku opisujemo korištenje \textsc{Cplex} i PuLP rješavača za implementaciju (M)ILP modela i njihovog rješavanja. 
  %https://realpython.com/linear-programming-python/
  %https://www.ibm.com/products/ilog-cplex-optimization-studio
  %https://www.youtube.com/watch?v=J7tNzCsYgy8
@@ -13443,7 +13458,7 @@ Primov algoritam je jedan od osnovnih algoritama koji se, zbog svoje važnosti, 
 
 Ideja dodjele vrijednosti čvorovima koji još nisu prisutni u MST je u tome da se efikasno izabere grana minimalne težine, koja treba da se doda u trenutno parcijalno rješenje. Dakle, ažurirane vrijednosti težina grana pomažu da se u razmatranje uključe upravo one grane spajaju jedan čvor koji je već uključen u MST i jedan čvor koji nije uključen u MST.
 
- \emph{Vremenska kompleksnost}. Ako se za predstavljanje grafa koristi lista susjedstva, složenost algoritma je $O(|V|^2)$. Ako  koristimo prioritetni red za nalaženje grane minimalne težine, imamo kompleksnost od $O( |E| \log(|V|))$. 
+ \emph{Vremenska složenost}. Ako se za predstavljanje grafa koristi lista susjedstva, složenost algoritma je $O(|V|^2)$. Ako  koristimo prioritetni red za nalaženje grane minimalne težine, dobijamo složenost $O( |E| \log(|V|))$. 
 
 
 
@@ -13463,7 +13478,7 @@ Koraci algoritma su sljedeći.
 	\item Ponoviti korak 3, dok se ne doda tačno $|V|-1$ grana u \emph{mstSkup}.
 \end{enumerate} 
 
- \emph{Vremenska kompleksnost}. Kruskalov algoritam se izvršava u $O(|E|\log |E|)$ ili $O(|E|\log |V|)$ vremenu. Sortiranje grana uzima $O(|E| \log|E|)$ vremena. Potom, za svaku granu 
+ \emph{Vremenska složenost}. Kruskalov algoritam se izvršava u $O(|E|\log |E|)$ ili $O(|E|\log |V|)$ vremenu. Sortiranje grana uzima $O(|E| \log|E|)$ vremena. Potom, za svaku granu 
 se primjenjuje operacija nalaženja i dodavanja grane u skup \emph{mst}. Ove dvije operacije se izvršavaju u $O(\log |V|)$ vremenu. Dakle, za izvršavanje algoritma treba $O(|E|\log |E| + |E|\log |V|)$ vremena. Kako je $|E|=O(|V|^2)$, dobijamo kompleksnost $O(|E| \cdot \mathrm{log}(|V|))$. 
 
 \subsection{Dajkstrin algoritam}
@@ -13503,8 +13518,8 @@ Svi koraci algoritma su dati u Algoritmu~\ref{alg:dijkstra-algorithm}. Nakon zav
     		\caption{Dajkstra($G,s $)}\label{alg:dijkstra-algorithm}
 \end{algorithm}
 
-\emph{Vremenska kompleksnost}.  Implementacija Algoritma~\ref{alg:dijkstra-algorithm} ima vremensku kompleksnost $O(|V|^2)$. Ako je graf predstavljen listom susjedstva, i skup $Q$  je implementiran kao binarni hip, 
-kompleksnost se redukuje na $O(|E| \cdot \log |V|)$.
+\emph{Vremenska složenost}.  Implementacija Algoritma~\ref{alg:dijkstra-algorithm} ima vremensku kompleksnost $O(|V|^2)$. Ako je graf predstavljen listom susjedstva, i skup $Q$  je implementiran kao binarni hip, 
+složenost se redukuje na $O(|E| \cdot \log |V|)$.
 
 Napomenimo da Dajkstrin algoritam ne radi sa grafovima koji imaju negativne težine (pogledati  liniju 12).  Za ovakve grafove,  primjenjuje se Bellman–Ford-ov algoritam koji je baziran na dinamičkom programiranju. Njega ne pominjemo   u ovoj knjizi, ali čitaocu preporučujemo da se, koristeći se literaturom ili internetom, upozna i sa ovim važnim algoritmom.  %, o kojem ćemo nešto više reći u narednim sekcijama.
 
