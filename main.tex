@@ -1270,15 +1270,16 @@ promjenljive $x_i$ označava broj proizvoda $i$ koji se proizvode na sedmičnom 
 \end{enumerate}
 
 \newpage 
+\newpage 
 \chapter{Simpleks metoda}\label{chp:simpleks}
 
 Simpleks metod je jedan od najpoznatijih i najefikasnijih algoritama za rješavanje problema linearnog programiranja. Ideja za pronalaženje optimalnog rješenja problema LP-a simpleks metodom je zasnovana na  obilasku vrhova dopustivog regiona problema. Vrhovi se sukcesivno obilaze tako da se, prelaskom u novi vrh, vrijednost funkcije cilja smanjuje (ako je dat zadatak minimizacije). Simpleks metod je razvio George Dantzig 1947. godine, a s obzirom na njegovu važnost u rješavanju problema linearnog programiranja, spada među najznačajnije matematičke algoritme XX vijeka.
 
 Neka je dat problem LP-a u kanonskom obliku
 \begin{align}
-    &\min c^Tx  \nonumber \\ 
-    & A x = b \nonumber \\
-    & x \geq 0, \label{eq:lp_equality_constraint}
+	&\min c^Tx  \nonumber \\ 
+	& A x = b \nonumber \\
+	& x \geq 0, \label{eq:lp_equality_constraint}
 \end{align}
 gdje su $A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m, c \in \mathbb{R}^n, x\in \mathbb{R}^n$ uz pretpostavku da je poliedar $P=\{ x \in \mathbb{R}^n \mid A x = b , x \geq 0 \}$ datog problema LP-a neprazan.  U ovom poglavlju, osim ako drugačije nije naznačeno, strogo ćemo poštovati ovu notaciju. 
 
@@ -1287,43 +1288,43 @@ gdje su $A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^m, c \in \mathbb{R}^n, 
 %\end{definition}
 
 \begin{definition}
-      Za pravac $d\in \mathbb{R}^n$ kažemo da je dopustiv pravac u vektoru $x \in P$ akko postoji skalar $\lambda > 0$ tako da $x + \lambda d \in P$.
+	Za pravac $d\in \mathbb{R}^n$ kažemo da je dopustiv pravac u vektoru $x \in P$ akko postoji skalar $\lambda > 0$ tako da $x + \lambda d \in P$.
 \end{definition}
 
 \section{Konstrukcija simpleks metode}
 
- Neka je $x = [x_1,\ldots, x_n]^T$ bazno dopustivo rješenje problema (\ref{eq:lp_equality_constraint}), gdje je $B$ matrica baze, $x_B$ bazni dio vektora $x$, pri čemu su na mjestima nebaznih indeksa iz skupa $N$ postavljene nule.  Kao što je rečeno, ideja simpleks metode je  ,,šetanje'' po vrhovima poliedra,  dok ne nađemo optimalno rješenje. Krenimo pravcem $d$  iz tačke $x$  pri čemu trebamo obratiti  pažnju na to da je zadovoljeno sljedeće:
+Neka je $x = [x_1,\ldots, x_n]^T$ bazno dopustivo rješenje problema (\ref{eq:lp_equality_constraint}), gdje je $B$ matrica baze, $x_B$ bazni dio vektora $x$, pri čemu su na mjestima nebaznih indeksa iz skupa $N$ postavljene nule.  Kao što je rečeno, ideja simpleks metode je  ,,šetanje'' po vrhovima poliedra,  dok ne nađemo optimalno rješenje. Krenimo pravcem $d$  iz tačke $x$  pri čemu trebamo obratiti  pažnju na to da je zadovoljeno sljedeće:
 \begin{itemize}
-    \item \emph{uslov optimalnosti}, tj. $c^T (x + \lambda d) \leq c^T x, \lambda>0$, što znači da idemo u pravcu smanjenja vrijednosti funkcije cilja;
-    \item \emph{uslov dopustivosti}, potrebno je da pravac $d$ dopustiv u tački $x$, tj. $ (x + \lambda d) \in P$, za neko $\lambda>0$. Dakle, uvijek se krećemo samo tačkama dopustivog regiona. 
+	\item \emph{uslov optimalnosti}, tj. $c^T (x + \lambda d) \leq c^T x, \lambda>0$, što znači da idemo u pravcu smanjenja vrijednosti funkcije cilja;
+	\item \emph{uslov dopustivosti}, potrebno je da pravac $d$ dopustiv u tački $x$, tj. $ (x + \lambda d) \in P$, za neko $\lambda>0$. Dakle, uvijek se krećemo samo tačkama dopustivog regiona. 
 \end{itemize}
 Birajmo neku nebaznu koordinatu u $x$, koja će služiti kao pravac pri pokušaju nalaska boljeg dopustivog rješenja problema. 
- Neka je to $x_j, j \in N$. Označimo $d=(d_B,  d_N)^T$, gdje su koordinate    (nebaznog dijela) $d_N$ jednake 0, osim na koordinati $j$, koja je postavljena na vrijednost 1.   Bazni dio vektora $d$, koji je označen sa $d_B$, izvešćemo iz uslova dopustivosti i pretpostavke da ,,šetamo'' pravcem koji se poklapa sa granicom dopustivog regiona, tj. poliedra $P$: $Ax + \lambda Ad = b$, odakle je $Ad = 0$. Tada vrijedi
+Neka je to $x_j, j \in N$. Označimo vektor $d=(d_B,  d_N)^T$, gdje je $d_B$ bazni dio, a $d_N$ nebazni dio.  Koordinate nebaznog dijela $d_N$ su jednake 0, osim na koordinati $j$, koja je postavljena na vrijednost 1.   Bazni dio vektora $d$ izvešćemo iz uslova dopustivosti i pretpostavke da ,,šetamo'' pravcem koji se poklapa sa granicom dopustivog regiona, tj. poliedra $P$: $Ax + \lambda Ad = b$, odakle je $Ad = 0$. Tada vrijedi
 $$ Ad = \sum_{i=1}^n A_i d_i = \sum_{i=1}^m A_{p_i} d_i + A_j = B d_B + A_j = 0$$ za one koordinate $p_i$ koje pripadaju indeksima koordinata baznog dijela, 
 odakle je $d_B = -  B^{-1} \cdot A_j $.  Za ovako odabran $d$ imamo zadovoljen uslov dopustivosti za ograničenje $A( x + \lambda d )  =b$. Posmatrajmo sada ograničenje nenegativnosti, tj. da li je zadovoljeno $x + \lambda d \geq 0$:
 \begin{itemize}
-    \item Ako je $x$ nedegenerativno, onda postoji tačno $n-m$ komponenti koje su jednake 0, pa je za nebazni dio komponenti $x_i + \lambda d_i = 0$, za $i \in N \setminus \{j\}$ i $x_j + \lambda d_j = 0$, pa imamo ispunjen uslov nenegativnosti ($x + \lambda d\in P$). Za bazne komponente imamo $x_{p_i} \cdot d_{p_i} > 0 $ ako je $d_{p_i}>0$. U suprotnom, možemo odabrati  malu vrijednost  $\lambda>0$ (pogledati definiciju dopustivog pravca $x +\lambda d$) tako da $x_{p_i} \cdot d_{p_i} >0$, a time i $x_{p_i} + \lambda d_{p_i}>0$, te je uslov nenegativnosti zadovoljen.
- 
-    \item Ako je $x$ degenerativno bazno dopustivo rješenje, slijedi da je više od $n-m$ kompomenti od $x$ jednako 0. Kao i u prvom slučaju, za nebazni slučaj pokazujemo uslov nenegativnosti. Tada za bazne kompomenete vektora $x +\lambda d$  postoji bazni indeks $i$ za koji je $x_{p_i} = 0$, pa ako bi bilo $d_{p_i}< 0$, onda ne bismo mogli naći $\lambda>0$, tako da $x_{p_i} + \lambda d_{p_i} >0$, čime je narušena dopustivost. Pojavljivanje ovakvog slučaja se može zaobići primjenom određenih pravila izbora nove bazne koordinate umjesto koordinate $j$, što će biti i pokazano u nastavku ove sekcije. 
+	\item Ako je $x$ nedegenerativno, onda postoji tačno $n-m$ komponenti koje su jednake 0, pa je za nebazni dio komponenti $x_i + \lambda d_i = 0$, za $i \in N \setminus \{j\}$ i $x_j + \lambda d_j = 0$, pa imamo ispunjen uslov nenegativnosti ($x + \lambda d\in P$). Za bazne komponente imamo $x_{p_i} \cdot d_{p_i} > 0 $ ako je $d_{p_i}>0$. U suprotnom, možemo odabrati  malu vrijednost  $\lambda>0$ (pogledati definiciju dopustivog pravca $x +\lambda d$) tako da $x_{p_i} \cdot d_{p_i} >0$, a time i $x_{p_i} + \lambda d_{p_i}>0$, te je uslov nenegativnosti zadovoljen.
+	
+	\item Ako je $x$ degenerativno bazno dopustivo rješenje, slijedi da je više od $n-m$ kompomenti od $x$ jednako 0. Kao i u prvom slučaju, za nebazni slučaj pokazujemo uslov nenegativnosti. Tada za bazne kompomenete vektora $x +\lambda d$  postoji bazni indeks $i$ za koji je $x_{p_i} = 0$, pa ako bi bilo $d_{p_i}< 0$, onda ne bismo mogli naći $\lambda>0$, tako da $x_{p_i} + \lambda d_{p_i} >0$, čime je narušena dopustivost. Pojavljivanje ovakvog slučaja se može zaobići primjenom određenih pravila izbora nove bazne koordinate umjesto koordinate $j$, što će biti i pokazano u nastavku ove sekcije. 
 \end{itemize}
 Da bi se pravilno izabrala nebazna promjenljiva $x_j$, koristimo  uslov optimalnosti $c^T ( x + \lambda d ) < c^T x $, odakle slijedi $c^T d < 0$.  Dakle, $$c^T d = c_B^T d_B + c_j = c^T ( - B^{-1} A_j ) + c_j < 0.$$
- Prema tome, biramo (nebazni) indeks $j$ tako da je zadovoljeno $ \overline{c_j} = c_j - c_B^T B^{-1}A_j < 0$. Vektor $\overline{c}=[\overline{c_1}, \ldots, \overline{c_n}]^T$ se naziva \emph{vektor doprinosa}, dok je vrijednost $\overline{c_j}$ \emph{doprinos nebazne promjenljive} $x_j$. 
- 
+Prema tome, biramo (nebazni) indeks $j$ tako da je zadovoljeno $ \overline{c_j} = c_j - c_B^T B^{-1}A_j < 0$. Vektor $\overline{c}=[\overline{c_1}, \ldots, \overline{c_n}]^T$ se naziva \emph{vektor doprinosa}, dok je vrijednost $\overline{c_j}$ \emph{doprinos nebazne promjenljive} $x_j$. 
+
 Iz sljedeće teoreme dobijamo uslove optimalnosti rješenja.
 
 \begin{thm}
-  Neka je x bazno dopustivo rješenje i neka je $B$ bazna matrica, a $\overline{c}$ vektor doprinosa. Tada vrijedi sljedeće
-  \begin{itemize}
-      \item Ako je $\overline{c} >0$, onda je $x$ optimalno rješenje.
-      \item Ako je x optimalno nedegenerativno rješenje, onda je $\overline{c} \geq 0$.
-  \end{itemize}
+	Neka je x bazno dopustivo rješenje i neka je $B$ bazna matrica, a $\overline{c}$ vektor doprinosa. Tada vrijedi sljedeće
+	\begin{itemize}
+		\item Ako je $\overline{c} >0$, onda je $x$ optimalno rješenje.
+		\item Ako je x optimalno nedegenerativno rješenje, onda je $\overline{c} \geq 0$.
+	\end{itemize}
 \end{thm}
 
 Ostalo nam je još da odredimo dužinu   pravca $d$, tj. vrijednost $\lambda>0$. Ideja je da se krene nekim smjerom dok god se ne dođe do drugog vrha, tj. treba odrediti dužinu vektora $d$ koji je jednak $\lambda^* = \max \{ \lambda \in \mathbb{R} \mid x + \lambda d \geq 0 \}$. Razlikujemo sljedeće slučajeve:
 \begin{itemize}
-    \item Ako je $d >0$, onda je $  x + \lambda d \geq 0$, za sve $\lambda > 0$, pa je $\lambda^* = \infty$, tj. ciljna funkcija je neograničena.
-    \item Ako postoji indeks $i$, takav da je $d_i < 0$, onda za dovoljno malu vrijednost $\lambda>0$, takvo da $x_i + \lambda d_i \geq 0$, imamo $\lambda \leq -\frac{x_i}{d_i}$. Prema tome 
-    $$ \lambda^* = \min_{ \{i\in [m] \mid d_{p_i} < 0  \}} - \frac{x_{p_i}}{d_{p_i}} $$
+	\item Ako je $d >0$, onda je $  x + \lambda d \geq 0$, za sve $\lambda > 0$, pa je $\lambda^* = \infty$, tj. ciljna funkcija je neograničena.
+	\item Ako postoji indeks $i$, takav da je $d_i < 0$, onda za dovoljno malu vrijednost $\lambda>0$, takvo da $x_i + \lambda d_i \geq 0$, imamo $\lambda \leq -\frac{x_i}{d_i}$. Prema tome 
+	$$ \lambda^* = \min_{ \{i\in [m] \mid d_{p_i} < 0  \}} - \frac{x_{p_i}}{d_{p_i}} $$
 \end{itemize}
 Za indeks $l$ za koji se postiže ovaj minimum, vrijedi $x_{p_l} + \lambda^* d_{p_l}=0$.
 %Da je ovo upravo bazno dopustivo rješenje problema, slijedi iz sljedeće teoreme. 
@@ -1332,21 +1333,21 @@ Može se pokazati sljedeća teorema, koja slijedi iz konstrukcije simpleks metod
 
 %\fxnote{Marko, ako ja dobro razumijem, ovo je sve tvrdjenje na osnovu prethodne konstrukcije. Milana je pitala da li je prva recenica pretpostavka, ili tvrdnja teoreme}
 \begin{thm}
-    Kolone $A_{p_i}, i\not = l$, $i=1,\ldots,m$ i $A_{j}$ su linearno nezavisne, pa je matrica 
-    $[A_{p_1},\ldots, A_{p_{l-1}}, A_j, A_{p_{l+1}}, \ldots, A_{p_m}]$
-    regularna. Vektor $x + \lambda^* d$ predstavlja bazno dopustivo rješenje problema (\ref{eq:lp_equality_constraint}). 
+	Kolone $A_{p_i}, i\not = l$, $i=1,\ldots,m$ i $A_{j}$ su linearno nezavisne, pa je matrica 
+	$[A_{p_1},\ldots, A_{p_{l-1}}, A_j, A_{p_{l+1}}, \ldots, A_{p_m}]$
+	regularna. Vektor $x + \lambda^* d$ predstavlja bazno dopustivo rješenje problema (\ref{eq:lp_equality_constraint}). 
 \end{thm}
 
 Navedimo sada osnovne korake jedne iteracije simpleks metoda:
 \begin{enumerate}
-    \item Inicijalizacija: za bazne indekse $p_1,\ldots,p_m \in [n]$, riješiti sistem i dobiti bazno dopustivo rješenje $x$. 
-    \item Izračunati doprinos za sve $\overline{c_j} = c_j - c_B^T B^{-1}A_j $
-          $j \in N$. Ako za sve $j$, $\overline{c_j} \geq 0$, optimum je pronađen, pa algoritam prestaje sa radom. Inače, odabrati neki $j$  td. $\overline{c_j}<0$.
-    \item Izračunati $d = -B^{-1}A_j = -u$. Ako je svaki $d_i \geq  0$, funkcija cilja  $f = - \infty$, te se završava izvršenje algoritma. 
-    \item Ako je za barem neki $i$, $d_i < 0$, tada računamo 
-             $$ \lambda^* = \min_{ \{i\in [m] \mid d_{p_i} < 0  \}} - \frac{x_{p_i}}{d_{p_i}} =  \min_{ \{i\in [m] \mid u_{p_i} < 0  \}} \frac{x_{p_i}}{u_{p_i}}.$$
-    \item Neka je $\lambda^* = \frac{x_{p_l}}{u_{p_l}}$. Nova baza se formira tako što na mjesto kolone $A_{p_l}$ stavimo kolonu $A_j$. Novo bazno rješenje 
-    $y = x + \lambda^*d $ je dato sa $y_j = \lambda^*$, $y_{p_l} = x_{p_l} + \lambda^* d_{p_l}$, za indeks $l$ koji je bazni indeks, te $y_i = 0$, za $i \in N \setminus \{j\}$. 
+	\item Inicijalizacija: za bazne indekse $p_1,\ldots,p_m \in [n]$, riješiti sistem i dobiti bazno dopustivo rješenje $x$. 
+	\item Izračunati doprinos za sve $\overline{c_j} = c_j - c_B^T B^{-1}A_j $
+	$j \in N$. Ako za sve $j$, $\overline{c_j} \geq 0$, optimum je pronađen, pa algoritam prestaje sa radom. Inače, odabrati neki $j$  td. $\overline{c_j}<0$.
+	\item Izračunati $d = -B^{-1}A_j = -u$. Ako je svaki $d_i \geq  0$, funkcija cilja  $f = - \infty$, te se završava izvršenje algoritma. 
+	\item Ako je za barem neki $i$, $d_i < 0$, tada računamo 
+	$$ \lambda^* = \min_{ \{i\in [m] \mid d_{p_i} < 0  \}} - \frac{x_{p_i}}{d_{p_i}} =  \min_{ \{i\in [m] \mid u_{p_i} < 0  \}} \frac{x_{p_i}}{u_{p_i}}.$$
+	\item Neka je $\lambda^* = \frac{x_{p_l}}{u_{p_l}}$. Nova baza se formira tako što na mjesto kolone $A_{p_l}$ stavimo kolonu $A_j$. Novo bazno rješenje 
+	$y = x + \lambda^*d $ je dato sa $y_j = \lambda^*$, $y_{p_l} = x_{p_l} + \lambda^* d_{p_l}$, za indeks $l$ koji je bazni indeks, te $y_i = 0$, za $i \in N \setminus \{j\}$. 
 \end{enumerate}
 
 Naredna iteracija metode koristi novu bazu i bazno rješenje $y$ i izvodi (po potrebi) korake 2--5. 
@@ -1362,32 +1363,32 @@ Naredna iteracija metode koristi novu bazu i bazno rješenje $y$ i izvodi (po po
 %\fxnote{i ja se slazem da nam je ova slika malo bez veze}
 
 \section{Tabelarni oblik simpleks metoda}
- 
+
 
 Simpleks algoritam podrazumijeva stalnu zamjenu jedne kolone baze $B$ nekim nebaznim vektorom u iterativnoj šemi, u cilju smanjenja trenutne vrijednosti ciljne funkcije, dok god je to moguće. 
 U praktičnom računanju, za simpleks metodu se zbog kompaktnosti zapisa,  umjesto transformisanja standardnog oblika LP-a, obično koristi tabelarni prikaz.
 Generički tabelarni  prikaz simpleks metode se može vidjeti u Tabeli~\ref{tab:simplex_tabelau}. Ovakva tabela se naziva  simpleks tabela.
 
 \begin{table}[!ht]
-    \centering
-    \begin{tabular}{c c c | c} \\ \hline
-            $\mid$          &       $\mid$ &  $\mid$             &    $x_{p_1} = \overline{b_1}$         \\
-          $B^{-1}A_1$       &    $\cdots$    &  $B^{-1}A_n$      &    $\vdots$          \\
-            $\mid$          &       $\mid$ &  $\mid$             &   $ x_{p_m} = \overline{b_m}$         \\ \hline
-          $\overline{c_1}$  &    $\cdots$    & $\overline{c_n}$  &  $-c^T_B x_B$         \\ \hline
-    \end{tabular}
-    \caption{Simpleks tabela}
-    \label{tab:simplex_tabelau}
+	\centering
+	\begin{tabular}{c c c | c} \\ \hline
+		$\mid$          &       $\mid$ &  $\mid$             &    $x_{p_1} = \overline{b_1}$         \\
+		$B^{-1}A_1$       &    $\cdots$    &  $B^{-1}A_n$      &    $\vdots$          \\
+		$\mid$          &       $\mid$ &  $\mid$             &   $ x_{p_m} = \overline{b_m}$         \\ \hline
+		$\overline{c_1}$  &    $\cdots$    & $\overline{c_n}$  &  $-c^T_B x_B$         \\ \hline
+	\end{tabular}
+	\caption{Simpleks tabela}
+	\label{tab:simplex_tabelau}
 \end{table}
 
 Na osnovu generičke Tabele~\ref{tab:simplex_tabelau} i koraka simpleks metode opisanih u prethodnoj sekciji, izvršavaju se sljedeći koraci:
 \begin{itemize}
-    \item Konstruisati inicijalnu simpleks tabelu sa početnom bazom $B$ i odgovarajuće bazno dopustivo rješenje $x$.
-    \item Posmatrati koeficijente doprinosa $\overline{c_j}$ (posljednja vrsta tabele). Ako su svi $\overline{c_j} \geq 0$, rješenje se ne može dalje popraviti, pa je nađeno optimalno rješenje. U protivnom, odabrati neki indeks $j$ za koji je $\overline{c_j}<0$.
-    \item Posmatrati vektor (kolonu) $u = B^{-1}A_j$. Ako su sve koordinate vektora $u$ negativne, rješenje LP-a je $-\infty$ (funkcija cilja neograničena), algoritam završava sa radom.
-    \item Za svaki $u_i > 0$, računati $x_{p_i}/u_i$, i neka je   ovaj količnik najmanji za indeks $l$. Kolona $A_{j}$ se uključuje u bazu, dok se kolona $A_{p_l}$ isključuje iz baze. 
-    \item Svakom redu simpleks tabele dodati $l$--ti red (pivot red) kojeg množimo odgovarajućim
-         skalarom da bi pivot element (tj. element u presjeku $l$-te vrste i $j$-te kolone) postao 1, a svi ostali elementi u pivot koloni 0.
+	\item Konstruisati inicijalnu simpleks tabelu sa početnom bazom $B$ i odgovarajuće bazno dopustivo rješenje $x$.
+	\item Posmatrati koeficijente doprinosa $\overline{c_j}$ (posljednja vrsta tabele). Ako su svi $\overline{c_j} \geq 0$, rješenje se ne može dalje popraviti, pa je nađeno optimalno rješenje. U protivnom, odabrati neki indeks $j$ za koji je $\overline{c_j}<0$.
+	\item Posmatrati vektor (kolonu) $u = B^{-1}A_j$. Ako su sve koordinate vektora $u$ negativne, rješenje LP-a je $-\infty$ (funkcija cilja neograničena), algoritam završava sa radom.
+	\item Za svaki $u_i > 0$, računati $x_{p_i}/u_i$, i neka je   ovaj količnik najmanji za indeks $l$. Kolona $A_{j}$ se uključuje u bazu, dok se kolona $A_{p_l}$ isključuje iz baze. 
+	\item Svakom redu simpleks tabele dodati $l$--ti red (pivot red) kojeg množimo odgovarajućim
+	skalarom da bi pivot element (tj. element u presjeku $l$-te vrste i $j$-te kolone) postao 1, a svi ostali elementi u pivot koloni 0.
 \end{itemize}
 
 U ovom postupku  može se desiti situacija da postoje dva ili više redova koji su kandidati za uključivanje u bazu. Ako se odabere nepovoljan kandidat, postupak može da proizvede degenerativno BDR ili čak da dovede do ciklusa. 
@@ -1395,7 +1396,7 @@ Da bi se to spriječilo, Robert Bland (1977. godine) je uveo pravilo za pivotira
 nazivom \emph{Blandovo pravilo} koje glasi:
 \begin{enumerate}
 	\item   Među svim nebaznim promjenljivima koje su pogodne za uključivanje u bazu odaberemo onu najmanjeg indeksa. 
-    \item Među svim baznim promjenljivima koje su pogodne za isključivanje iz baze odaberemo onu sa najmanjim indeksom.
+	\item Među svim baznim promjenljivima koje su pogodne za isključivanje iz baze odaberemo onu sa najmanjim indeksom.
 \end{enumerate}
 Može se pokazati da se poštovanjem ovih pravila osigurava simpleks metoda  završava u konačno mnogo koraka. Treba napomenuti da Blandovo pravilo nije jedino pravilo za izbjegavanje ciklusa. Postoji i leksikografsko pravilo pivotiranja koje, zbog konciznosti, ne objašnjavamo ovdje.  
 
@@ -1406,137 +1407,137 @@ Prema tome, ako  problem maksimizacije rješavamo simpleks metodom, koraci metod
 \section{Primjena simpleks metoda}
 %Kako je standardni poliedar LP-a dat sa svim onim $x \in \mathbb{R}^n$ tako da $Ax \leq (\geq) b$, 
 Transformišimo standardni oblik problema LP-a
-  \begin{align*}
-    & \max c^T x  \\
-    & {t.d} \nonumber \\
-    & Ax \leq b \\
-    & x \geq 0\\
+\begin{align*}
+	& \max c^T x  \\
+	& {t.d} \nonumber \\
+	& Ax \leq b \\
+	& x \geq 0\\
 \end{align*}
 na kanonski oblik pogodan simpleks metodi $(A {x} = b)$ dodavanjem ,,izjednačavajućih'' promjenljivih $s$ na sljedeći način:
 \begin{align}
-    &  \max  c^T x   \\
-    & Ax + s =  b \\
-    & x \geq 0, s \geq 0. \\
+	&  \max  c^T x   \\
+	& Ax + s =  b \\
+	& x \geq 0, s \geq 0. \\
 \end{align}
 što u matričnom obliku odgovara zapisu
 \begin{align}
-    & \max c^T x  \\
-    & (A | I) \cdot \left (\begin{array}{c}
-         x  \\
-         s 
-    \end{array} \right ) =  b \\
-    & (x, s) \geq 0. \\
+	& \max c^T x  \\
+	& (A | I) \cdot \left (\begin{array}{c}
+		x  \\
+		s 
+	\end{array} \right ) =  b \\
+	& (x, s) \geq 0. \\
 \end{align} 
 
 \begin{primjer}\label{primjer:simpl1} Neka je dat problem LP-a:
-\begin{align*}
-    &\max f= x_1 + x_2  \nonumber \\
-    & x_1 + 3 x_2 \leq 9 \nonumber \\
-    & 2x_1 + x_2 \leq 8  \nonumber \\
-    & x_1, x_2 \geq 0. \nonumber \\
-\end{align*}
- \end{primjer}
+	\begin{align*}
+		&\max f= x_1 + x_2  \nonumber \\
+		& x_1 + 3 x_2 \leq 9 \nonumber \\
+		& 2x_1 + x_2 \leq 8  \nonumber \\
+		& x_1, x_2 \geq 0. \nonumber \\
+	\end{align*}
+\end{primjer}
 \emph{Rješenje.}
- Pretvorimo model u kanonski oblik dodavajući izjednačavajuće promjenljive $s = (s_1, s_2)>0$, pa dobijamo 
+Pretvorimo model u kanonski oblik dodavajući izjednačavajuće promjenljive $s = (s_1, s_2)>0$, pa dobijamo 
 \begin{center}
-\begin{tabular}{llllll}
-	\centering
-    & $x_1$    & + $3x_2$  &+ $s_1$ & &= 9 \\
-    & $2 x_1$ &   + $x_2$  & + $s_2$ & &= 8 \\
-    & $x_1$   &   + $x_2$  &\  & &= $f - 0$ \\
-\end{tabular} 
+	\begin{tabular}{llllll}
+		\centering
+		& $x_1$    & + $3x_2$  &+ $s_1$ & &= 9 \\
+		& $2 x_1$ &   + $x_2$  & + $s_2$ & &= 8 \\
+		& $x_1$   &   + $x_2$  &\  & &= $f - 0$ \\
+	\end{tabular} 
 \end{center}
-  
- Ovaj problem odgovara simpleks tabeli \\
- \begin{table}[H]
-     \centering
-     \begin{tabular}{c c c c | c}
-     	 $x_1$ & $x_2$ &  $s_1$ & $s_2$ & \\ \hline
-         1 &  3  & 1 & 0 & 9 \\
-         2 &  1  & 0 & 1 & 8 \\ \hline
-         1 &  1  & 0  & 0 & 0 \\ \hline
-     \end{tabular}
-     \caption{Inicijalna simpleks tabela.}
-     \label{tab:simpleks_tabela1}
- \end{table} 
- 
- Na početku konstruišimo bazu uzimajući vektore $s_1$ i $s_2$. U tom slučaju, bazno dopustivo rješenje je $x = (0, 0, 9, 8)$, za koje je $f =0$. Sada ažiriramo simpleks tabelu izvodeći pivotiranje. Izaberimo indeks $j$ tako da je  $\overline{c_j}>0$. Neka je $j=1$, odnosno, u razmatranje ćemo uzeti promjenljivu $x_1$, čijim doprinosom želimo da uvećamo funkciju cilja, jer rješavamo problem maksimizacije. Izaberimo pivot vrstu tako što posmatramo odnos $\overline{b_i}/\overline{a}_{1,j}$, za sve $\overline{a}_{1,j} > 0$,  $B^{-1} A_1 = \overline{a}_{1,j}$. Tražimo onaj indeks koji minimizuje datu vrijednost. Imamo dvije mogućnosti, $9/1$ i $8/2$, pa dobijamo da je $i = 2$ traženi indeks. Prema tome, pivot je  element $\overline{a}_{1,2}=2$. Sada izvršimo elementarne operacije pivotiranja oko ovog elementa. Primjenom Gausove metode eliminacije, elemente u koloni 1 simpleks tabele, osim elementa druge vrste,  svedemo na nule, dok element u drugoj vrsti prve kolone postavimo na 1. Vrsti 1 se dodaje druga vrsta pomnožena sa -$\frac{1}{2}$. Druga vrsta se dijeli sa $\frac{1}{2}$. Trećoj vrsti se dodaje druga vrsta pomnožena sa $-\frac{1}{2}$. 
- Primjenjujući ove transformacije, dobijamo simpleks tabelu:
- 
-  \begin{table}[H]
-     \centering
-     \begin{tabular}{c c c c | c}
-         0 &  $\frac{5}{2}$  & 1 & -$\frac{1}{2} $& 5 \\
-         1 &  $\frac{1}{2}$ & 0 & $\frac{1}{2}$ & 4 \\ \hline
-         0 &  $\frac{1}{2}$ & 0 & -$\frac{1}{2}$ & -4 \\ \hline
-     \end{tabular}
-     \caption{Simpleks tabela nakon prvog pivotiranja}
-     \label{tab:simpleks_tabela2}
- \end{table}
+
+Ovaj problem odgovara simpleks tabeli \\
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c c c c | c}
+		$x_1$ & $x_2$ &  $s_1$ & $s_2$ & \\ \hline
+		1 &  3  & 1 & 0 & 9 \\
+		2 &  1  & 0 & 1 & 8 \\ \hline
+		1 &  1  & 0  & 0 & 0 \\ \hline
+	\end{tabular}
+	\caption{Inicijalna simpleks tabela.}
+	\label{tab:simpleks_tabela1}
+\end{table} 
+
+Na početku konstruišimo bazu uzimajući vektore $s_1$ i $s_2$. U tom slučaju, bazno dopustivo rješenje je $x = (0, 0, 9, 8)$, za koje je $f =0$. Sada ažiriramo simpleks tabelu izvodeći pivotiranje. Izaberimo indeks $j$ tako da je  $\overline{c_j}>0$. Neka je $j=1$, odnosno, u razmatranje ćemo uzeti promjenljivu $x_1$, čijim doprinosom želimo da uvećamo funkciju cilja, jer rješavamo problem maksimizacije. Izaberimo pivot vrstu tako što posmatramo odnos $\overline{b_i}/\overline{a}_{1,j}$, za sve $\overline{a}_{1,j} > 0$,  $B^{-1} A_1 = \overline{a}_{1,j}$. Tražimo onaj indeks koji minimizuje datu vrijednost. Imamo dvije mogućnosti, $9/1$ i $8/2$, pa dobijamo da je $i = 2$ traženi indeks. Prema tome, pivot je  element $\overline{a}_{1,2}=2$. Sada izvršimo elementarne operacije pivotiranja oko ovog elementa. Primjenom Gausove metode eliminacije, elemente u koloni 1 simpleks tabele, osim elementa druge vrste,  svedemo na nule, dok element u drugoj vrsti prve kolone postavimo na 1. Vrsti 1 se dodaje druga vrsta pomnožena sa -$\frac{1}{2}$. Druga vrsta se dijeli sa $\frac{1}{2}$. Trećoj vrsti se dodaje druga vrsta pomnožena sa $-\frac{1}{2}$. 
+Primjenjujući ove transformacije, dobijamo simpleks tabelu:
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c c c c | c}
+		0 &  $\frac{5}{2}$  & 1 & -$\frac{1}{2} $& 5 \\
+		1 &  $\frac{1}{2}$ & 0 & $\frac{1}{2}$ & 4 \\ \hline
+		0 &  $\frac{1}{2}$ & 0 & -$\frac{1}{2}$ & -4 \\ \hline
+	\end{tabular}
+	\caption{Simpleks tabela nakon prvog pivotiranja}
+	\label{tab:simpleks_tabela2}
+\end{table}
 Bazne promjenljive sada lako prepoznajemo iz Tabele~\ref{tab:simpleks_tabela2}, jer odgovarajući vektori kolone zajedno formiraju jediničnu matricu. Prema tome, 
- nebazne promjenljive su $x_2$ i $s_2$, koje dobijaju vrijednost 0, dok ostale lako izračunavamo, odakle je $ x = (4, 0, 5, 0)$. Ponavljamo prethodne korake nad novom simpleks tabelom. Potrebno je pronaći novi pivot element. Lako se vidi da je jedino kolona 2 odgovarajuća. Pošto je $5 / (5/2) < 4 / (1/2)$, zaključujemo da  pivot element pronalazimo u prvoj vrsti. Dakle, pivot je 
- $\overline{a}_{1,2} = \frac{5}{2}$. Postupkom Gausove eliminacije oko prve vrste, dobija se simpleks Tabela~\ref{tab:simpleks_tabela3}.
- 
-   \begin{table}[!ht]
-     \centering
-     \begin{tabular}{c c c c | c}
-         0 &  $1$  & $\frac{2}{5}$             &  -$\frac{1}{5} $ & 2 \\
-         1 &  0    &      -$\frac{1}{5}$    & $\frac{3}{5}$    & 3 \\ \hline
-         0 &  0    &   -$\frac{1}{5}$       &   -$\frac{2}{5}$   & -5 \\ \hline
-     \end{tabular}
-     \caption{Simpleks tabela: korak 2.}
-     \label{tab:simpleks_tabela3}
- \end{table}
- Kako su sve vrijednosti doprinosa manje (ili jednake) 0, zaključujemo da smo pronašli optimum koji je jednak $x = (3, 2, 0, 0)$, a optimalna vrijednost je $f = 5$.
- 
- \begin{figure}[!ht]
-     \centering
-     \includegraphics[width=170pt, height=170pt]{simpleks-region-2.eps}
-     \caption{Region pretrage (bazna rješenja označena).}
-     \label{fig:simplex_region} 
- \end{figure}
- 
- Analizirajmo još neke aspekte u ovom primjeru. Na Slici~\ref{fig:simplex_region}, tačke $A, B, C$, i $D$ su bazna dopustva rješenja. Tačke $E$ i $F$ su takođe bazna rješenja, ali nisu dopustiva. Simpleks algoritam prvo kreće od tačke $D$ prema tački $C$, te posljednjom iteracijom završava u tački $B$ (optimum).
- 
- 
- Iz posljednje simpleks tabele (Tabela~\ref{tab:simpleks_tabela3}) se može uočiti i sljedeće:
- \begin{itemize}
-     \item Jedinična matrica $m \times m$   ugrađena u gornju lijevu podmatricu simpleks tabele (blok sa elementima $\overline{a}_{i,j}$) sadrži kolone koje čine vektore baznih promjenljivih.
-     \item U odgovarajućim kolonama u posljednjoj vrsti (ciljna vrsta) se nalaze nule.
- \end{itemize}
- Prema tome, vektori $x_i$, koji su bazni vektori (kolone baze $B$), su napisani preko nebaznih vektora $x_i \in N$. Kako je $x_i  = 0$, za sve $i \in N$, vrijednosti baznih vektora $x_i$, tj. kolona baze $B$, se trivijano izračunavaju.
+nebazne promjenljive su $x_2$ i $s_2$, koje dobijaju vrijednost 0, dok ostale lako izračunavamo, odakle je $ x = (4, 0, 5, 0)$. Ponavljamo prethodne korake nad novom simpleks tabelom. Potrebno je pronaći novi pivot element. Lako se vidi da je jedino kolona 2 odgovarajuća. Pošto je $5 / (5/2) < 4 / (1/2)$, zaključujemo da  pivot element pronalazimo u prvoj vrsti. Dakle, pivot je 
+$\overline{a}_{1,2} = \frac{5}{2}$. Postupkom Gausove eliminacije oko prve vrste, dobija se simpleks Tabela~\ref{tab:simpleks_tabela3}.
+
+\begin{table}[!ht]
+	\centering
+	\begin{tabular}{c c c c | c}
+		0 &  $1$  & $\frac{2}{5}$             &  -$\frac{1}{5} $ & 2 \\
+		1 &  0    &      -$\frac{1}{5}$    & $\frac{3}{5}$    & 3 \\ \hline
+		0 &  0    &   -$\frac{1}{5}$       &   -$\frac{2}{5}$   & -5 \\ \hline
+	\end{tabular}
+	\caption{Simpleks tabela: korak 2.}
+	\label{tab:simpleks_tabela3}
+\end{table}
+Kako su sve vrijednosti doprinosa manje (ili jednake) 0, zaključujemo da smo pronašli optimum koji je jednak $x = (3, 2, 0, 0)$, a optimalna vrijednost je $f = 5$.
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=170pt, height=170pt]{simpleks-region-2.eps}
+	\caption{Region pretrage (bazna rješenja označena).}
+	\label{fig:simplex_region} 
+\end{figure}
+
+Analizirajmo još neke aspekte u ovom primjeru. Na Slici~\ref{fig:simplex_region}, tačke $A, B, C$, i $D$ su bazna dopustva rješenja. Tačke $E$ i $F$ su takođe bazna rješenja, ali nisu dopustiva. Simpleks algoritam prvo kreće od tačke $D$ prema tački $C$, te posljednjom iteracijom završava u tački $B$ (optimum).
+
+
+Iz posljednje simpleks tabele (Tabela~\ref{tab:simpleks_tabela3}) se može uočiti i sljedeće:
+\begin{itemize}
+	\item Jedinična matrica $m \times m$   ugrađena u gornju lijevu podmatricu simpleks tabele (blok sa elementima $\overline{a}_{i,j}$) sadrži kolone koje čine vektore baznih promjenljivih.
+	\item U odgovarajućim kolonama u posljednjoj vrsti (ciljna vrsta) se nalaze nule.
+\end{itemize}
+Prema tome, vektori $x_i$, koji su bazni vektori (kolone baze $B$), su napisani preko nebaznih vektora $x_i \in N$. Kako je $x_i  = 0$, za sve $i \in N$, vrijednosti baznih vektora $x_i$, tj. kolona baze $B$, se trivijano izračunavaju.
 
 \begin{primjer} Navedimo i primjer jednog linearnog programa koji je neograničen, te ga riješimo simpleks metodom. 
 \end{primjer}
-  Neka je dat problem LP-a:
-  \begin{align*}
-  	  &\max -x + 3y \\
-  	  &  {t.d.} \nonumber \\
-  	  & -x + y \leq 3 \\
-  	  & x - 2y \leq 2 \\
-  	  & x,y \geq 0.
-  \end{align*}
- Prevedimo problem na kanonski oblik, dodavanjem izjednačavajućih promjenljivih. 
- \begin{align*}
-      &\max -x + 3y \\
-      &  {t.d.} \nonumber \\
-     & -x + y + s_1 = 3 \\
-     & x - 2y + s_2 = 2  \\
-     & (x,s) \geq 0.
- \end{align*}
+Neka je dat problem LP-a:
+\begin{align*}
+	&\max -x + 3y \\
+	&  {t.d.} \nonumber \\
+	& -x + y \leq 3 \\
+	& x - 2y \leq 2 \\
+	& x,y \geq 0.
+\end{align*}
+Prevedimo problem na kanonski oblik, dodavanjem izjednačavajućih promjenljivih. 
+\begin{align*}
+	&\max -x + 3y \\
+	&  {t.d.} \nonumber \\
+	& -x + y + s_1 = 3 \\
+	& x - 2y + s_2 = 2  \\
+	& (x,s) \geq 0.
+\end{align*}
 Ovom programu odgovara simpleks tabela:
 $$\begin{array}{cccc| c} 
-	   -1 & 1  & 1 & 0 & 3 \\
-	    1 & -2 & 0 & 1 & 2 \\ \hline
-	   -1 & 3  & 0 & 0 & 0  
+	-1 & 1  & 1 & 0 & 3 \\
+	1 & -2 & 0 & 1 & 2 \\ \hline
+	-1 & 3  & 0 & 0 & 0  
 \end{array}$$
- 
+
 Kako rješavamo problem minimizacije, tražićemo pivota u koloni 2. Jedini kandidat za pivota je element  $\overline{a}_{1, 2} = 1$. Pivotiranjem oko tog elementa dobijamo novu simpleks tabelu 
 
 $$\begin{array}{cccc| c} 
-		   -1 & 1  & 1  &  0 & 3 \\
-		   -1 & 0  & 2  &  1 & 8 \\ \hline
-		   2  & 0  & -3 &  0 & -9 \\
+	-1 & 1  & 1  &  0 & 3 \\
+	-1 & 0  & 2  &  1 & 8 \\ \hline
+	2  & 0  & -3 &  0 & -9 \\
 \end{array}$$
 Kandidata za pivota tražimo u prvoj koloni. Međutim, kako su svi elementi prve kolone negativni, to znači da se 
 vrijednost  promjenljive $x$  može povećavati proizvoljno, odakle slijedi da nije ograničena. 
@@ -1544,18 +1545,18 @@ Grafička reprezentacija dopustivog, neograničenog regiona, prikazana je na  Sl
 
 
 \begin{figure}[!ht]
-    \centering
-    \includegraphics[width=170pt,height=170pt]{unbounded-example-solve.eps}
-    \caption{Neograničen region.}
-    \label{fig:unbounded-example-solve}
+	\centering
+	\includegraphics[width=170pt,height=170pt]{unbounded-example-solve.eps}
+	\caption{Neograničen region.}
+	\label{fig:unbounded-example-solve}
 \end{figure}
 
 \begin{primjer} U nastavku dajemo primjer kada pivotiranje u simpleks metodi generiše degenerativno rješenje. 
 \end{primjer}
 Posmatrajmo sljedeći linearni program:
 \begin{align*}
-    &\max 2x + 3y \\
-    &  {t.d.} \\
+	&\max 2x + 3y \\
+	&  {t.d.} \\
 	& -x + y \leq 3 \\
 	& x - 2y \leq 2 \\
 	& x + 6y \leq 18 \\
@@ -1564,31 +1565,31 @@ Posmatrajmo sljedeći linearni program:
 Slično kao i u prethodnom primjeru, dodavanjem izjednačavajućih promjenljivih, dobijamo simpleks 
 tabelu 
 $$\begin{array}{ccccc|c}
-     -1 & 1 & 1 & 0 & 0 & 3 \\
-      1 &-2 & 0 & 1 & 0 & 2 \\
-      1 & 6 & 0 & 0 & 1 & 18 \\ \hline
-      2 & 3 & 0 & 0 & 0 & 0 \\
+	-1 & 1 & 1 & 0 & 0 & 3 \\
+	1 &-2 & 0 & 1 & 0 & 2 \\
+	1 & 6 & 0 & 0 & 1 & 18 \\ \hline
+	2 & 3 & 0 & 0 & 0 & 0 \\
 \end{array}$$
 Pretpostavimo smo  za baznu promjenljivu izabrali $y$, tj. pivotiramo oko nekog od elemenata u koloni 2 (zanemarimo ovdje pomenuto Blandovo pravilo odabira pivota). Za pivota odaberemo $\overline{a}_{1,2}=1$ element, te nakon pivotiranja dobijamo novu simpleks tabelu:
 $$\begin{array}{ccccc|c}
 	-1 & 1 & 1 & 0 & 0 & 3 \\
-    -1 & 0 & 2 & 1 & 0 & 8 \\
-    7 & 0 & -6 & 0 & 1 & 0 \\ \hline
-    5 & 0 & -3 & 0 & 0 & -9 \\
+	-1 & 0 & 2 & 1 & 0 & 8 \\
+	7 & 0 & -6 & 0 & 1 & 0 \\ \hline
+	5 & 0 & -3 & 0 & 0 & -9 \\
 \end{array}$$
- 
+
 
 Ovdje počinju problemi. Pivotiranje bi trebalo da ide oko nekog elementa u prvoj koloni. Kako tu imamo samo jedan element strogo veći od 0, a to je $\overline{a}_{3,1}=7$, on je ujedno i pivot. Izvršavajući operaciju pivotiranja, promjenljive $\overline{b}$ neće promijeniti svoje vrijednosti, tj. dobijamo sljedeću tabelu:
 $$\begin{array}{ccccc|c}
-     0 & 1 & \frac{1}{7}  & 0 & \frac{1}{7} & 3 \\
-     0 & 0 & \frac{8}{7}  & 1 & \frac{1}{7} & 8 \\
-     1 & 0 & -\frac{6}{7} & 0 & \frac{1}{7} & 0 \\ \hline
-     0 & 0 & \frac{9}{7}  & 0 & -\frac{5}{7} & -9 \\
+	0 & 1 & \frac{1}{7}  & 0 & \frac{1}{7} & 3 \\
+	0 & 0 & \frac{8}{7}  & 1 & \frac{1}{7} & 8 \\
+	1 & 0 & -\frac{6}{7} & 0 & \frac{1}{7} & 0 \\ \hline
+	0 & 0 & \frac{9}{7}  & 0 & -\frac{5}{7} & -9 \\
 \end{array}$$
 Geometrijski gledano, razlog za ovakvu situaciju su tri prave $x=0$, $-x+y=3$ i $x+6y=18$ koje se susreću u tački $(0,3)$ (Slika~\ref{fig:deg-sol}). U prošlom koraku, kada su $x$ i $s_1$ bile nebazne promjenljive, tačka (0,3) je posmatrana kao presjek $x=0$ i $-x +y =3$. Nakon sljedećeg koraka $s_1$ i $s_3$ postaju nebazne, pa se pomjeramo u tački presjeka pravih 
 $-x+y=3$ i $x+6y=18$, što je opet ista tačka (prema tome, nema ni poboljšanja vrijednosti funkcije cilja). 
- Ovo pivotiranje se naziva \emph{degenerativno pivotiranje}. U ovom primjeru, napustićemo vrh $(0,3)$ nakon sljedeće iteracije  pivotiranja. U komplikovanijim primjerima, kada se mnoga ograničenja mogu sresti u jednom vrhu, ostanak u istom vrhu u narednim simpleks koracima je velika opasnost. Ovaj slučaj se može izbjeći poštovanjem 
- Blandovog pravila. Primijetimo da koristeći Blandovo pravilo u prvom koraku simpleks metode -- uzimajući za pivota elemente iz kolone 1, a ne kolone 2 --  degenerativno pivotiranje se ne bi pojavilo.  
+Ovo pivotiranje se naziva \emph{degenerativno pivotiranje}. U ovom primjeru, napustićemo vrh $(0,3)$ nakon sljedeće iteracije  pivotiranja. U komplikovanijim primjerima, kada se mnoga ograničenja mogu sresti u jednom vrhu, ostanak u istom vrhu u narednim simpleks koracima je velika opasnost. Ovaj slučaj se može izbjeći poštovanjem 
+Blandovog pravila. Primijetimo da koristeći Blandovo pravilo u prvom koraku simpleks metode -- uzimajući za pivota elemente iz kolone 1, a ne kolone 2 --  degenerativno pivotiranje se ne bi pojavilo.  
 
 
 \begin{figure}[!ht]
@@ -1598,49 +1599,49 @@ $-x+y=3$ i $x+6y=18$, što je opet ista tačka (prema tome, nema ni poboljšanja
 	\label{fig:deg-sol}
 \end{figure}
 
- \section{Dvofazni simpleks metod}
- Postoje dva pitanja koja se nameću u primjeni simpleks algoritma:
- \begin{itemize}
-     \item Da li se uvijek (kao i koliko teško)   može naći bazno dopustivo rješenje za inicijalni korak 
-     simpleks algoritma?
-     \item Da li se simpleks algoritam uvijek prekida pronalaskom optimalnog rješenja ili je funkcija cilja neograničena?
- \end{itemize}
+\section{Dvofazni simpleks metod}
+Postoje dva pitanja koja se nameću u primjeni simpleks algoritma:
+\begin{itemize}
+	\item Da li se uvijek (kao i koliko teško)   može naći bazno dopustivo rješenje za inicijalni korak 
+	simpleks algoritma?
+	\item Da li se simpleks algoritam uvijek prekida pronalaskom optimalnog rješenja ili je funkcija cilja neograničena?
+\end{itemize}
 Ako postoji jedinična podmatrica $I_m$ u gornjoj lijevoj blok matrici simpleks tabele, onda je jasno da je odgovor na prvo pitanje pozitivan. U primjeru~\ref{primjer:simpl1} su linearnom programu, koji sadrži ograničenja $Ax \leq b, x\geq 0$ pridodate izjednačavajuće promjenljive, kako bi se uslovi nejednakosti u ograničenjima transformirasali u potrebne jednakosti.  Na taj način je formirana i jedinična matrica, pa je i bazu jednostavno odrediti.
- 
- 
- Međutim, šta ako je linearan program direktno dat u kanonskom obliku, tj. ograničenjima oblika $Ax = b, x \geq 0$? Bez smanjenja opštosti, pretpostavimo da je $b \geq 0$. Ako ne postoji očigledno bazno dopustivo rješenje ovog problema, onda uvodimo \emph{vještačke} promjenljive (eng. auxiliary variables) $s = (s_1,\ldots, s_m)$. Nakon toga, rješavamo sljedeći problem LP-a:
- \begin{align}
-      & \min_{x,s} \sum_{i=1}^m s_i  \nonumber \\
-      & {t.d.}\label{eq:artificial_lp_simplex}\\
-      & A x + s = b \nonumber \\
-      &  x, s \geq 0. \nonumber
- \end{align}
-  
+
+
+Međutim, šta ako je linearan program direktno dat u kanonskom obliku, tj. ograničenjima oblika $Ax = b, x \geq 0$? Bez smanjenja opštosti, pretpostavimo da je $b \geq 0$. Ako ne postoji očigledno bazno dopustivo rješenje ovog problema, onda uvodimo \emph{vještačke} promjenljive (eng. auxiliary variables) $s = (s_1,\ldots, s_m)$. Nakon toga, rješavamo sljedeći problem LP-a:
+\begin{align}
+	& \min_{x,s} \sum_{i=1}^m s_i  \nonumber \\
+	& {t.d.}\label{eq:artificial_lp_simplex}\\
+	& A x + s = b \nonumber \\
+	&  x, s \geq 0. \nonumber
+\end{align}
+
 Postoje dva moguća slučaja:
 \begin{enumerate}
-    \item Ako početni problem LP-a sa uslovima koji su jednakosti (\ref{eq:lp_equality_constraint}) 
-          ima optimalno rješenje, onda   rješenje LP-a (\ref{eq:artificial_lp_simplex}) ima (optimalno) rješenje $s = 0$. 
-    \item Ako  (\ref{eq:lp_equality_constraint}) nema dopustivo rješenje, onda je barem jedan $s_i > 0$.
+	\item Ako početni problem LP-a sa uslovima koji su jednakosti (\ref{eq:lp_equality_constraint}) 
+	ima optimalno rješenje, onda   rješenje LP-a (\ref{eq:artificial_lp_simplex}) ima (optimalno) rješenje $s = 0$. 
+	\item Ako  (\ref{eq:lp_equality_constraint}) nema dopustivo rješenje, onda je barem jedan $s_i > 0$.
 \end{enumerate}
- Prema tome, kada  prvo riješimo  problem LP-a  (\ref{eq:artificial_lp_simplex}) simpleks metodom, možemo da zaključimo:
- \begin{itemize}
-      \item Ako se desio slučaj 2, odustajemo od daljeg rješavanja problema.
-      \item Ako se desio slučaj 1, optimalno rješenje problema (\ref{eq:artificial_lp_simplex}) sa $s_i=0$ nam daje početno bazno dopustivo rješenje problema (\ref{eq:lp_equality_constraint}) u prvom simpleks koraku, a, prema tome, i bazne vektore. 
- \end{itemize} 
- Ovaj korak nas vodi ka \emph{dvofaznoj simpleks metodi}. U nastavku je prikazan primjer kako se problem linearnog programiranja rješava primjenom ove metode.      
-      
+Prema tome, kada  prvo riješimo  problem LP-a  (\ref{eq:artificial_lp_simplex}) simpleks metodom, možemo da zaključimo:
+\begin{itemize}
+	\item Ako se desio slučaj 2, odustajemo od daljeg rješavanja problema.
+	\item Ako se desio slučaj 1, optimalno rješenje problema (\ref{eq:artificial_lp_simplex}) sa $s_i=0$ nam daje početno bazno dopustivo rješenje problema (\ref{eq:lp_equality_constraint}) u prvom simpleks koraku, a, prema tome, i bazne vektore. 
+\end{itemize} 
+Ovaj korak nas vodi ka \emph{dvofaznoj simpleks metodi}. U nastavku je prikazan primjer kako se problem linearnog programiranja rješava primjenom ove metode.      
+
 % \section{Primjena dvofaznog simpleks metoda}     
-  
- 
+
+
 \begin{primjer} Primjenom dvofaznog simpleks metoda riješiti sljedeći problem LP-a:
-	\end{primjer} 
+\end{primjer} 
 
 \begin{align*}
-	 &\min x_1 + x_2 - x_3 - x_4 \\
-	 & {t.d.} \\
-	 &x_1 + 2x_2 + x_3 + x_4 = 7 \\
-	 & 2x_1 - x_2 - x_3 - 3x_4 = -1 \\
-	 & x_1,x_2,x_3,x_4 \geq 0.
+	&\min x_1 + x_2 - x_3 - x_4 \\
+	& {t.d.} \\
+	&x_1 + 2x_2 + x_3 + x_4 = 7 \\
+	& 2x_1 - x_2 - x_3 - 3x_4 = -1 \\
+	& x_1,x_2,x_3,x_4 \geq 0.
 \end{align*}
 
 Dodajmo vještačke promjenljive na početni problem, uz prethodno množenje ograničenja 2 sa (-1), odakle dobijamo:
@@ -1655,8 +1656,8 @@ Dodajmo vještačke promjenljive na početni problem, uz prethodno množenje ogr
 Prva faza metoda je rješavanje problema 
 \begin{align*}
 	&\min s_1 + s_2 \\
-		&  {t.d.}\\
-		& x_1 + 2x_2 + x_3 + x_4 + s_1 = 7 \\
+	&  {t.d.}\\
+	& x_1 + 2x_2 + x_3 + x_4 + s_1 = 7 \\
 	& -2x_1 + x_2 + x_3 + 3x_4 + s_2 = 1 \\
 	& x_1,x_2,x_3,x_4, s_1, s_2\geq 0.
 \end{align*}
@@ -1665,8 +1666,8 @@ Prva faza metoda je rješavanje problema
 Formirajmo početnu simpleks tabelu.
 $$\begin{array}{cccccc|c}
 	1 & 2 & 1 & 1 & 1 &  0 & 7  \\
-   -2 & 1 & 1 & 3 & 0 &  1 & 1  \\ \hline
-    0 & 0 & 0 & 0 & 1 & 1 &  0  \\
+	-2 & 1 & 1 & 3 & 0 &  1 & 1  \\ \hline
+	0 & 0 & 0 & 0 & 1 & 1 &  0  \\
 \end{array}
 $$
 Množeći prvu i drugu vrstu prethodne tabele sa (-1), te sabiranjem sa trećom vrstom, dobijamo tabelu
@@ -1675,32 +1676,32 @@ $$\begin{array}{cccccc|c}
 	-2&1  & 1 & 3 & 0 & 1 & 1 \\ \hline
 	1 & -3 & -2 & -4 & 0 & 0 & -8 \\ 
 \end{array}
- $$
- Pošto rješavamo problem minimizacije, u prethodnoj tabeli potražimo promjenljivu 
- sa negativnim koeficijentom doprinosa. Prva takva promjenljiva je u koloni 2, u kojoj 
- i tražimo pivota.  Kako je $\frac{7}{2} > \frac{1}{1}$, slijedi da je 
- pivot $\overline{a}_{2,2} = 1$. Izvršimo transformacije, tako što postavimo sve nule u datoj koloni. Dobijamo novu tabelu:
- 
+$$
+Pošto rješavamo problem minimizacije, u prethodnoj tabeli potražimo promjenljivu 
+sa negativnim koeficijentom doprinosa. Prva takva promjenljiva je u koloni 2, u kojoj 
+i tražimo pivota.  Kako je $\frac{7}{2} > \frac{1}{1}$, slijedi da je 
+pivot $\overline{a}_{2,2} = 1$. Izvršimo transformacije, tako što postavimo sve nule u datoj koloni. Dobijamo novu tabelu:
+
 $$ \begin{array}{cccccc|c}
- 	 5 & 0 & -1 & -5 & 1 & -2 & 5 \\
+	5 & 0 & -1 & -5 & 1 & -2 & 5 \\
 	-2&1  & 1 & 3 & 0 & 1 & 1 \\ \hline
-	 -5 & 0 & 1 & 5 & 0 & 3 & -5 \\
- \end{array}
- $$
- Jedini vektor sa negativnim doprinosom u prethodnoj simpleks tabeli je 
- onaj koji odgovara prvoj koloni, pa u njoj i tražimo pivota.  
- Kako se jedino u prvoj vrsti nalazi pozitivan element, koji odgovara vrijednosti pravca $\frac{5}{5}$, jasno je da je pivot $\overline{a}_{1,1}=5$. Pivotiranjem oko ovog elementa, dobijamo tabelu 
- $$ \begin{array}{cccccc|c}
-        1 & 0 & -\frac{1}{5}  & -1   &  \frac{1}{5}     & -\frac{2}{5}  & 1                    \\
-        0 & 1 & \frac{3}{5}   &  1   &   \frac{2}{5}  & \frac{1}{5}      & 3                   \\ \hline
-        0 & 0 & 0            &  0   &   1        & 1                     & 0                                 \\
-    \end{array}
+	-5 & 0 & 1 & 5 & 0 & 3 & -5 \\
+\end{array}
+$$
+Jedini vektor sa negativnim doprinosom u prethodnoj simpleks tabeli je 
+onaj koji odgovara prvoj koloni, pa u njoj i tražimo pivota.  
+Kako se jedino u prvoj vrsti nalazi pozitivan element, koji odgovara vrijednosti pravca $\frac{5}{5}$, jasno je da je pivot $\overline{a}_{1,1}=5$. Pivotiranjem oko ovog elementa, dobijamo tabelu 
+$$ \begin{array}{cccccc|c}
+	1 & 0 & -\frac{1}{5}  & -1   &  \frac{1}{5}     & -\frac{2}{5}  & 1                    \\
+	0 & 1 & \frac{3}{5}   &  1   &   \frac{2}{5}  & \frac{1}{5}      & 3                   \\ \hline
+	0 & 0 & 0            &  0   &   1        & 1                     & 0                                 \\
+\end{array}
 $$
 Kako su koeficijenti doprinosa svi veći ili jednaki 0, našli smo minimum. 
 Prema tome, bazno dopustivo rješenje je jednako $(x, s)= (1,3, 0, 0, 0, 0)$. 
 
 Sada nastavljamo dalje sa algoritmom, odnosno sa drugom fazom metoda.  Posljednja simpleks tabela prve faze dvofaznog simpleks metoda se lako transformiše za početni problem: 
- 
+
 \begin{itemize}
 	\item posljednja vrsta dobija koeficijente originalne funkcije cilja razmatranog LP-a;
 	\item kolone koje odgovaraju promjenljivima $s$ izbrišemo iz simpleks tabele;
@@ -1708,47 +1709,47 @@ Sada nastavljamo dalje sa algoritmom, odnosno sa drugom fazom metoda.  Posljednj
 \end{itemize}
 Iz ovih koraka, dobijamo simpleks tabelu 
 
- $$ \begin{array}{cccc|c}
- 	   1 & 0 & -\frac{1}{5}     & -1   & 1 \\
- 	   0 & 1 & \frac{3}{5}      & 1    & 3 \\ \hline
-       1 & 1 & -1               & -1   & 0 \\
-    \end{array}
+$$ \begin{array}{cccc|c}
+	1 & 0 & -\frac{1}{5}     & -1   & 1 \\
+	0 & 1 & \frac{3}{5}      & 1    & 3 \\ \hline
+	1 & 1 & -1               & -1   & 0 \\
+\end{array}
 $$
 Uradimo sada elementarne transformacije na ovoj tabeli; kandidata za pivota nađimo u 
 koloni 3. Jedini element sa pozitivnom vrijednošću je $\overline{a}_{2,3} = \frac{3}{5}$, koji je onda i traženi pivot. 
 Vršeći elementarne transformacije oko pivota, dobijamo tabelu 
 
 $$ \begin{array}{cccc|c}
-       1   & \frac{1}{3}       & 0             &   -\frac{4}{3}             &   2  \\
-       0   & \frac{5}{3}       & 1	           & \frac{5}{3}                 &   5 \\ \hline
-       1   & \frac{8}{3}       & 0             &  \frac{2}{3}               &   3  
-   \end{array}
- $$
+	1   & \frac{1}{3}       & 0             &   -\frac{4}{3}             &   2  \\
+	0   & \frac{5}{3}       & 1	           & \frac{5}{3}                 &   5 \\ \hline
+	1   & \frac{8}{3}       & 0             &  \frac{2}{3}               &   3  
+\end{array}
+$$
 Pošto su svi doprinosi svi veći od 0,  našli smo optimalnu simpleks tabelu.  Optimalna rješenja su 
- $x_1=2, x_3=5$, pa je  optimum jednak -3.
- 
- \section{Geometrija i simpleks metod}
- 
+$x_1=2, x_3=5$, pa je  optimum jednak -3.
+
+\section{Geometrija i simpleks metod}
+
 Sljedeći primjer demonstrira odgovarajuće geometrijske korake (,,šetanje'') po dopustivom regionu, u skladu sa iteracijama simpleks metode.   %pratiti https://faculty.math.illinois.edu/~mlavrov/docs/482-fall-2019/lecture5.pdf (strana 2 i 3) 
- Neka je dat problem:
- \begin{align*}
- 	&\max 2x + 3y \\
- 	&  {t.d.} \\
- 	& -x + y \leq 3 \\
- 	& x - 2y \leq 2 \\
- 	& 3x + 4y \leq 26 \\
- 	& x, y \geq 0.
- \end{align*}
- Dodajmo izjednačavajuće promjenljive u početni LP, odakle dobijamo 
-  \begin{align*}
- 	&\max 2x + 3y \\
- 	& t.d. \\
- 	& -x + y + s_1 = 3 \\
- 	& x - 2y + s_2 = 2 \\
- 	& 3x + 4y + s_3 =  26 \\
- 	& x, y, s_1, s_2, s_3 \geq 0.
- \end{align*}
- Inicijalna simpleks 
+Neka je dat problem:
+\begin{align*}
+	&\max 2x + 3y \\
+	&  {t.d.} \\
+	& -x + y \leq 3 \\
+	& x - 2y \leq 2 \\
+	& 3x + 4y \leq 26 \\
+	& x, y \geq 0.
+\end{align*}
+Dodajmo izjednačavajuće promjenljive u početni LP, odakle dobijamo 
+\begin{align*}
+	&\max 2x + 3y \\
+	& t.d. \\
+	& -x + y + s_1 = 3 \\
+	& x - 2y + s_2 = 2 \\
+	& 3x + 4y + s_3 =  26 \\
+	& x, y, s_1, s_2, s_3 \geq 0.
+\end{align*}
+Inicijalna simpleks 
 tabela je data sa
 $$\begin{array}{cccccc| c}
 	& x & y & s_1 & s_2 & s_3 & \\ \hline
@@ -1773,11 +1774,11 @@ tražimo one koeficijente dopirnosa koji su veći od 0. Biramo prvu kolonu, koja
 pivot element: kandidati su $s_2$ i $s_3$.
 Kako je $\frac{26}{3} > \frac{2}{1}$, onda je  pivot $\overline{a}_{2, 1} = 1$. Pivotiramo oko ovog elementa i dobijemo tabelu:
 $$\begin{array}{cccccc| c}
-       & s_2  & y  & s_1  & s_2 & s_3 &    \\ \hline
-   s_1 & 0    & -1  & 1  & 1 & 0  &  5     \\
-   x   & 1    & -2  & 0  & 1 & 0  &  2     \\
-   s_3 & 0    & 10   &  0  & -3 & 1 & 20   \\ \hline
-   -z  & 0    &  7   & 0   & -2 & 0 & -4   \\ 
+	& s_2  & y  & s_1  & s_2 & s_3 &    \\ \hline
+	s_1 & 0    & -1  & 1  & 1 & 0  &  5     \\
+	x   & 1    & -2  & 0  & 1 & 0  &  2     \\
+	s_3 & 0    & 10   &  0  & -3 & 1 & 20   \\ \hline
+	-z  & 0    &  7   & 0   & -2 & 0 & -4   \\ 
 \end{array}
 $$ 
 Ova tabela vizuelno odgovara Slici~\ref{fig:step-2}. Prelazi se u bazno rješenje $(x,y, s_1, s_2, s_3)=(2, 0, 5, 0 ,20)$, odnosno do tačke $E=(2, 0)$. 
@@ -1791,10 +1792,10 @@ Ova tabela vizuelno odgovara Slici~\ref{fig:step-2}. Prelazi se u bazno rješenj
 Dalje, narednog pivota nalazimo u drugoj koloni, koja odgovara promjenljivoj $y$. Jedini kandidat za pivota je element $\overline{a}_{3, 2}= 10$, pa nakon pivotiranja dobijamo tabelu 
 $$\begin{array}{cccccc| c}
 	& s_2  & s_3   & s_1  & s_2 & s_3 &     \\ \hline
-s_1 & 0    &  0    & 1    &  \frac{7}{10}  & \frac{1}{10} &   7  \\  
-x   & 1    &  0    & 0    &  \frac{2}{5}   & \frac{1}{5}  &   6  \\
-y   & 0    &  1    & 0    & - \frac{3}{10}  & \frac{1}{10} &   2  \\ \hline
--z  & 0    &  0    & 0    &   \frac{1}{10} &-\frac{7}{10}  &  -18 \\ 
+	s_1 & 0    &  0    & 1    &  \frac{7}{10}  & \frac{1}{10} &   7  \\  
+	x   & 1    &  0    & 0    &  \frac{2}{5}   & \frac{1}{5}  &   6  \\
+	y   & 0    &  1    & 0    & - \frac{3}{10}  & \frac{1}{10} &   2  \\ \hline
+	-z  & 0    &  0    & 0    &   \frac{1}{10} &-\frac{7}{10}  &  -18 \\ 
 \end{array}
 $$ 
 
@@ -1811,10 +1812,10 @@ Zaključujemo da je jedina koordinata koja odgovara pozitivnom doprinosu kolona
 
 $$\begin{array}{cccccc| c}
 	& s_2  & s_3   & s_1  & s_2 & s_3 &     \\ \hline
-s_2 &  0   &  0    & \frac{10}{7}    &  1   & \frac{1}{7}   & 10 \\
-x   &  1   &  0    &  \frac{4}{7}    &  0   & \frac{1}{7}  & 2 \\
-y   &  0   &  1    &  \frac{3}{7}    &  0   & \frac{1}{7}   & 5  \\ \hline
--z  &  0   &  0   &   -\frac{1}{10}  & 0    &  -\frac{5}{7} & -19 \\
+	s_2 &  0   &  0    & \frac{10}{7}    &  1   & \frac{1}{7}   & 10 \\
+	x   &  1   &  0    &  \frac{4}{7}    &  0   & \frac{1}{7}  & 2 \\
+	y   &  0   &  1    &  \frac{3}{7}    &  0   & \frac{1}{7}   & 5  \\ \hline
+	-z  &  0   &  0   &   -\frac{1}{10}  & 0    &  -\frac{5}{7} & -19 \\
 \end{array}
 $$ 
 
@@ -1832,187 +1833,187 @@ U slučaju da smo, u prvom koraku simpleks metode, umjesto promjenljive $x$ u ba
 \\
 \section{Zadaci}
 \begin{enumerate}
- \item Uz pomoć Simpleks metoda, riješiti sljedeći problem LP-a:%http://www.phpsimplex.com/en/simplex_method_example.htm (PHP simpleks: http://www.phpsimplex.com/simplex/simplex.htm?l=en)
- \begin{align*}
- 	 &\max  3x + 2y \\
- 	 & t.d. \\
- 	 & 2x + y \leq 18 \\
- 	 & 2x + 3y \leq 42 \\
- 	 & 3x + y \leq 24 \\
- 	 & x,y \geq 0.
- \end{align*} 
-Uporedite dobijeno rješenje sa rješenjem koje se dobije 
-koristeći grafičku metodu.
-\item %https://courses.lumenlearning.com/sanjacinto-finitemath1/chapter/reading-solving-standard-maximization-problems-using-the-simplex-method/
-  Koristeći simpleks metodu, riješiti sljedeći problem LP-a:
- \begin{align*}
- 	  &\max 2x + 3y + z \\
- 	  &   {t.d.} \\
- 	  & 3x + 5 y \leq 5 \\
- 	  & 2x + y - z \leq 13 \\
- 	  & z \leq 4 \\
- 	  & x,y,z \geq 0.
- \end{align*}
-\item Uz pomoć dvofaznog simpleks metoda, riješiti sljedeći problem LP-a:%http://sma.epfl.ch/~niemeier/opt09/opt09_ch06.pdf
-   \begin{align*}
-   	    &\min  x_1 + x_2 + x_3 \\
-   	    & {t.d.} \\
-   	    & x_1 + 2 x_2 + 3 x_3 = 3 \\
-   	    & -x_1 + 2 x_2 + 6 x_3 = 2 \\
-   	    & - 4x_2 - 9 x_3 = -5 \\
-   	    & 3 x_3 + x_4 = 1 \\
-   	    & x_1, x_2, x_3, x_4 \geq 0.
-   \end{align*}
-\item  Uz pomoć simpleks metoda, riješiti sljedeći problem LP-a:%http://myweb.usf.edu/~molla/2016_spring_math482/two_phase_pres-3up.pdf
-\begin{align*}
-    & \min -x_1 - x_2 - x_3 \\
-    &  {t.d.} \\
-    & 2 x_1 - x_2 + 2 x_3 + x_4 = 4 \\
-    & 2x_1 - 3x_2 + x_3 + x_5 =  -5 \\
-    & -x_1 + x_2 - 2x_3 + x_6 = -1 \\
-    & x_1, x_2, x_3, x_4, x_5, x_6 \geq 0.	
-\end{align*}
-\item Uz pomoć simpleks metoda, riješiti sljedeći problem LP-a:
- %https://personal.utdallas.edu/~scniu/OPRE-6201/documents/LP10-Special-Situations.pdf (Degeneracy in Simplex method):
-\begin{align*}
-	 &\max 2x_1 + x_2 \\
-	 &   {t.d.} \\
-	 &4 x_1 + 3 x_2 \leq 12 \\
-	 & 4 x_1 + x_2 \leq 8 \\
-	 & 4 x_1 + 2 x_2 \leq 8 \\
-	 & x_1, x_2 \geq 0.
-\end{align*}
-Da li se u nekom koraku simpleks metode javlja degenerativno bazno rješenje? Ako je to slučaj, diskutovati zašto je ono degenerativno. 
-\item Iako je simpleks metod u prosječnom slučaju efikasan metod za rješavanje LP problema, u najgorem slučaju, vrijeme izvršenja eksponencijalno zavisi od broja vrhova dopustivog skupa. Koristeći pouzdane internet izvore, pronađi i analiziraj primjer LP problema sa $D$ promjenljivih i $D$ ograničenja, kod koga simpleks metod obilazi svih $2^D$ vrhova politopa. Jedan od primjera takvog politopa je tzv. Kli-Mintijeva kocka (eng. Klee-Minty cube).
-
+	\item Uz pomoć Simpleks metoda, riješiti sljedeći problem LP-a:%http://www.phpsimplex.com/en/simplex_method_example.htm (PHP simpleks: http://www.phpsimplex.com/simplex/simplex.htm?l=en)
+	\begin{align*}
+		&\max  3x + 2y \\
+		& t.d. \\
+		& 2x + y \leq 18 \\
+		& 2x + 3y \leq 42 \\
+		& 3x + y \leq 24 \\
+		& x,y \geq 0.
+	\end{align*} 
+	Uporedite dobijeno rješenje sa rješenjem koje se dobije 
+	koristeći grafičku metodu.
+	\item %https://courses.lumenlearning.com/sanjacinto-finitemath1/chapter/reading-solving-standard-maximization-problems-using-the-simplex-method/
+	Koristeći simpleks metodu, riješiti sljedeći problem LP-a:
+	\begin{align*}
+		&\max 2x + 3y + z \\
+		&   {t.d.} \\
+		& 3x + 5 y \leq 5 \\
+		& 2x + y - z \leq 13 \\
+		& z \leq 4 \\
+		& x,y,z \geq 0.
+	\end{align*}
+	\item Uz pomoć dvofaznog simpleks metoda, riješiti sljedeći problem LP-a:%http://sma.epfl.ch/~niemeier/opt09/opt09_ch06.pdf
+	\begin{align*}
+		&\min  x_1 + x_2 + x_3 \\
+		& {t.d.} \\
+		& x_1 + 2 x_2 + 3 x_3 = 3 \\
+		& -x_1 + 2 x_2 + 6 x_3 = 2 \\
+		& - 4x_2 - 9 x_3 = -5 \\
+		& 3 x_3 + x_4 = 1 \\
+		& x_1, x_2, x_3, x_4 \geq 0.
+	\end{align*}
+	\item  Uz pomoć simpleks metoda, riješiti sljedeći problem LP-a:%http://myweb.usf.edu/~molla/2016_spring_math482/two_phase_pres-3up.pdf
+	\begin{align*}
+		& \min -x_1 - x_2 - x_3 \\
+		&  {t.d.} \\
+		& 2 x_1 - x_2 + 2 x_3 + x_4 = 4 \\
+		& 2x_1 - 3x_2 + x_3 + x_5 =  -5 \\
+		& -x_1 + x_2 - 2x_3 + x_6 = -1 \\
+		& x_1, x_2, x_3, x_4, x_5, x_6 \geq 0.	
+	\end{align*}
+	\item Uz pomoć simpleks metoda, riješiti sljedeći problem LP-a:
+	%https://personal.utdallas.edu/~scniu/OPRE-6201/documents/LP10-Special-Situations.pdf (Degeneracy in Simplex method):
+	\begin{align*}
+		&\max 2x_1 + x_2 \\
+		&   {t.d.} \\
+		&4 x_1 + 3 x_2 \leq 12 \\
+		& 4 x_1 + x_2 \leq 8 \\
+		& 4 x_1 + 2 x_2 \leq 8 \\
+		& x_1, x_2 \geq 0.
+	\end{align*}
+	Da li se u nekom koraku simpleks metode javlja degenerativno bazno rješenje? Ako je to slučaj, diskutovati zašto je ono degenerativno. 
+	\item Iako je simpleks metod u prosječnom slučaju efikasan metod za rješavanje LP problema, u najgorem slučaju, vrijeme izvršenja eksponencijalno zavisi od broja vrhova dopustivog skupa. Koristeći pouzdane internet izvore, pronađi i analiziraj primjer LP problema sa $D$ promjenljivih i $D$ ograničenja, kod koga simpleks metod obilazi svih $2^D$ vrhova politopa. Jedan od primjera takvog politopa je tzv. Kli-Mintijeva kocka (eng. Klee-Minty cube).
+	
 \end{enumerate}
 
 
 \begin{comment}
-$$\begin{array}{ccccc}
-     \max                & 3x_1     &          &   + x_3  &       \\           
-     {s.t. }   & x_1      &+ 2x_2    &   + x_3  & = 30  \\
-                         & x_1      &- 2x_2    &   + 2x_3 & = 18  \\
-                         & x \geq 0 &          &       &          \\
-\end{array}$$
-Dodavanjem umjetnih varijabli, dobijamo problem
-   
-$$\begin{array}{ccccccc}
-     \min                &          &          &            & \omega_1 & +\omega_2   &    \\           
-     {s.t. }  & x_1      &+ 2x_2    &   + x_3    &+ \omega_1  &  &= 30  \\
-                         & x_1      &- 2x_2    &   + 2x_3    & & \omega_2  &= 18  \\
-                         & x \geq 0 &  \omega \geq 0        &       &    &  &     \\
-\end{array}$$
-
-Problem minimizacije se može prebaciti na problem maksimizacije, tj. prvi uslov u prethodnom problemu prevedemo na $\max - \omega_1 - \omega_2$, što onda odgovara simpleks tabeli 
-
-$$\begin{array}{ccccc | c}
-    1 & 2   & 1 & 1 & 0   & 30 \\
-    1 & -2  & 2 & 0 & 1   & 18 \\ \hline
-    0 & 0   & 0 & -1 & -1 & 0 \\
-\end{array}$$
-Prvo što trebamo da izrazimo funkciju cilja preko nebaznih varijabli tako da ulazi ispod jedinične matice budu svi 0. To dobijamo elementarnim transformacijama na simpleks tabeli (matrici): vrsti 3 dodamo vrstu 1 i 2, te dobijamo tabelu 
-
-$$\begin{array}{ccccc | c}
-    1 & 2   & 1 & 1 & 0   & 30 \\
-    1 & -2  & 2 & 0 & 1   & 18 \\ \hline
-    2 & 0   & 3 & 1 & 1   & 48 \\
-\end{array}$$
-Krenimo sa simpleks koracima, tj. nađimo pivota. Kandidat je $\overline{a}_{2,3}$, pa pivotirajmo oko tog elementa, čime dobijamo tabelu 
-
-$$\begin{array}{ccccc | c}
-    \frac{1}{2} & 3   & 0 &  1 &  -\frac{1}{2} & 21 \\
-    \frac{1}{2} & -1  & 1 & 0 & \frac{1}{2}   & 9 \\ \hline
-    \frac{1}{2} & 3   & 0 & 0 &  -\frac{3}{2}  & 21 \\
-\end{array}$$
-Dakle, sljedeći pivot je $\overline{a}_{1,2}$, gdje nakon pivotiranja dobijamo sljedeću tabelu 
-
-$$\begin{array}{ccccc | c}  
-    \frac{1}{6} & 1   & 0 &  \frac{1}{3} &  -\frac{1}{6} & 7 \\
-    \frac{2}{3} & 0  & 1 & \frac{1}{3} & \frac{1}{3}   & 16 \\ \hline
-    0 & 0   & 0 & -1 &  -1  & 0 \\
-\end{array}$$
-Prema tome, našli smo tačku tako da je $-\omega_1 - \omega_2 = 0$, dakle slijedi 
-da je bazna dopustiva tačka početnog problema $x = (0, 7, 16)$. 
-
-Sljedeći korak sadrži primjenu simpleks metoda na originalni problem.
-Posljednja simpleks tabela prve faze dvofaznog simpleks metoda se lako transformiše za početni problem: 
-\begin{itemize}
-    \item posljednja vrsta dovija koeficijente originalne funkcije cilja razmatranog LP-a:
-    \item kolone koje odgovaraju varijablama $\omega$ izbrišemo iz simpleks tabele;
-    \item ostale elemente tabele ostavimo kakvi jesu.
-\end{itemize}
-Iz ovih koraka, dobijamo simpleks tabelu 
- $$
-   \begin{array}{ccc|c}
-       \frac{1}{6}       & 1   & 0  & 7   \\
-       \frac{2}{3}       &  0   & 1  & 16  \\ \hline
-       3                 & 0   & 1  & 0   \\
-   \end{array}
- $$
-Opet je potrebno ispod jedinične matrice u vrsti koja odgovara funkciji cilja napraviti nule. To uradimo primjenjujući elementarne transformacije na matrici, tj. vrsti 3 dodamo vrstu 2 koja je pomnožena sa -1. Tada dobijamo simpleks matricu 
-
-$$
-   \begin{array}{ccc|c}
-       \frac{1}{6}       & 1   & 0  & 7   \\
-       \frac{2}{3}       &  0   & 1  & 16  \\ \hline
-       \frac{7}{3}                 & 0   & 0  & -16  \\
-   \end{array}
- $$
-Za pivota uzmemo $\overline{a}_{2, 1}$, izvršimo transformacije i dobijemo tabelu 
-$$
-   \begin{array}{ccc|c}
-       0       & 1    & -\frac{1}{4}  & 3   \\
-       1       &  0   & \frac{3}{2} & 24  \\ \hline
-       0       &  0   & -\frac{7}{2}  & -72 \\
-   \end{array}
-$$
-Kako su svi koeficijenti doprinosa ($\overline{c}$ varijable) manje od 0, simpleks metod staje nalazeći optimum koji se dostiže u tački $x = (24, 3, 0)$, i jednak je vrijednosti  $f = 72$.
+	$$\begin{array}{ccccc}
+		\max                & 3x_1     &          &   + x_3  &       \\           
+		{s.t. }   & x_1      &+ 2x_2    &   + x_3  & = 30  \\
+		& x_1      &- 2x_2    &   + 2x_3 & = 18  \\
+		& x \geq 0 &          &       &          \\
+	\end{array}$$
+	Dodavanjem umjetnih varijabli, dobijamo problem
+	
+	$$\begin{array}{ccccccc}
+		\min                &          &          &            & \omega_1 & +\omega_2   &    \\           
+		{s.t. }  & x_1      &+ 2x_2    &   + x_3    &+ \omega_1  &  &= 30  \\
+		& x_1      &- 2x_2    &   + 2x_3    & & \omega_2  &= 18  \\
+		& x \geq 0 &  \omega \geq 0        &       &    &  &     \\
+	\end{array}$$
+	
+	Problem minimizacije se može prebaciti na problem maksimizacije, tj. prvi uslov u prethodnom problemu prevedemo na $\max - \omega_1 - \omega_2$, što onda odgovara simpleks tabeli 
+	
+	$$\begin{array}{ccccc | c}
+		1 & 2   & 1 & 1 & 0   & 30 \\
+		1 & -2  & 2 & 0 & 1   & 18 \\ \hline
+		0 & 0   & 0 & -1 & -1 & 0 \\
+	\end{array}$$
+	Prvo što trebamo da izrazimo funkciju cilja preko nebaznih varijabli tako da ulazi ispod jedinične matice budu svi 0. To dobijamo elementarnim transformacijama na simpleks tabeli (matrici): vrsti 3 dodamo vrstu 1 i 2, te dobijamo tabelu 
+	
+	$$\begin{array}{ccccc | c}
+		1 & 2   & 1 & 1 & 0   & 30 \\
+		1 & -2  & 2 & 0 & 1   & 18 \\ \hline
+		2 & 0   & 3 & 1 & 1   & 48 \\
+	\end{array}$$
+	Krenimo sa simpleks koracima, tj. nađimo pivota. Kandidat je $\overline{a}_{2,3}$, pa pivotirajmo oko tog elementa, čime dobijamo tabelu 
+	
+	$$\begin{array}{ccccc | c}
+		\frac{1}{2} & 3   & 0 &  1 &  -\frac{1}{2} & 21 \\
+		\frac{1}{2} & -1  & 1 & 0 & \frac{1}{2}   & 9 \\ \hline
+		\frac{1}{2} & 3   & 0 & 0 &  -\frac{3}{2}  & 21 \\
+	\end{array}$$
+	Dakle, sljedeći pivot je $\overline{a}_{1,2}$, gdje nakon pivotiranja dobijamo sljedeću tabelu 
+	
+	$$\begin{array}{ccccc | c}  
+		\frac{1}{6} & 1   & 0 &  \frac{1}{3} &  -\frac{1}{6} & 7 \\
+		\frac{2}{3} & 0  & 1 & \frac{1}{3} & \frac{1}{3}   & 16 \\ \hline
+		0 & 0   & 0 & -1 &  -1  & 0 \\
+	\end{array}$$
+	Prema tome, našli smo tačku tako da je $-\omega_1 - \omega_2 = 0$, dakle slijedi 
+	da je bazna dopustiva tačka početnog problema $x = (0, 7, 16)$. 
+	
+	Sljedeći korak sadrži primjenu simpleks metoda na originalni problem.
+	Posljednja simpleks tabela prve faze dvofaznog simpleks metoda se lako transformiše za početni problem: 
+	\begin{itemize}
+		\item posljednja vrsta dovija koeficijente originalne funkcije cilja razmatranog LP-a:
+		\item kolone koje odgovaraju varijablama $\omega$ izbrišemo iz simpleks tabele;
+		\item ostale elemente tabele ostavimo kakvi jesu.
+	\end{itemize}
+	Iz ovih koraka, dobijamo simpleks tabelu 
+	$$
+	\begin{array}{ccc|c}
+		\frac{1}{6}       & 1   & 0  & 7   \\
+		\frac{2}{3}       &  0   & 1  & 16  \\ \hline
+		3                 & 0   & 1  & 0   \\
+	\end{array}
+	$$
+	Opet je potrebno ispod jedinične matrice u vrsti koja odgovara funkciji cilja napraviti nule. To uradimo primjenjujući elementarne transformacije na matrici, tj. vrsti 3 dodamo vrstu 2 koja je pomnožena sa -1. Tada dobijamo simpleks matricu 
+	
+	$$
+	\begin{array}{ccc|c}
+		\frac{1}{6}       & 1   & 0  & 7   \\
+		\frac{2}{3}       &  0   & 1  & 16  \\ \hline
+		\frac{7}{3}                 & 0   & 0  & -16  \\
+	\end{array}
+	$$
+	Za pivota uzmemo $\overline{a}_{2, 1}$, izvršimo transformacije i dobijemo tabelu 
+	$$
+	\begin{array}{ccc|c}
+		0       & 1    & -\frac{1}{4}  & 3   \\
+		1       &  0   & \frac{3}{2} & 24  \\ \hline
+		0       &  0   & -\frac{7}{2}  & -72 \\
+	\end{array}
+	$$
+	Kako su svi koeficijenti doprinosa ($\overline{c}$ varijable) manje od 0, simpleks metod staje nalazeći optimum koji se dostiže u tački $x = (24, 3, 0)$, i jednak je vrijednosti  $f = 72$.
 \end{comment}
- % \newpage
- \chapter{Dualnost \& Dopustivost}\label{chp:dualnost}
- 
- %Dualnost je pojam koji je vezan za dobijanje gornjih granica optimalne vrijednosti funkcije cilja. 
- U teoriji linearnog programiranja, ali i teoriji optimizacije uopšte, pod dualnošću podrazumijevamo da se neki problem može posmatrati s dva različita aspekta: kao primalni i kao dualni problem. 
+% \newpage
+\chapter{Dualnost \& Dopustivost}\label{chp:dualnost}
+
+%Dualnost je pojam koji je vezan za dobijanje gornjih granica optimalne vrijednosti funkcije cilja. 
+U teoriji linearnog programiranja, ali i teoriji optimizacije uopšte, pod dualnošću podrazumijevamo da se neki problem može posmatrati s dva različita aspekta: kao primalni i kao dualni problem. 
 Preciznije, teorija dualnosti povezuje dva problema linearnog programiranja -- jedan od njih je problem linearnog programiranja koji maksimizuje funkciju cilja, dok je drugi linearan program  koji minimizuje (ne obavezno istu) funkciju cilja.  Na osnovu istih ulaznih podataka, svaki problem LP-a se može navesti u drugom, ekvivalentnom obliku. Ponekad rješavanje dualnog problema LP-a može da bude puno lakše nego rješavanje početnog problema.  Dualnost implicira da svaki problem linearnog programiranja možemo analizirati na dva potpuno različita načina, ali sa ekvivalentnim (optimalnim) rješenjima. 
 
 U ovom poglavlju ćemo najprije objasniti kako se od početnog, primarnog problema formira dualni problem. Nakon toga, biće navedene Teoreme o slaboj i jakoj dualnosti, koje daju vezu između rješenja i ograničenja primarnog i dualnog problema. U nastavku poglavlja su objašnjene još neke važne tehnike koje se koriste za rješavanje problema linearnog programiranja: metod unutrašnje tačke, Farkašova lema i Furije-Mockinova eliminacija.
- 
- Prije nego što uvedemo pojam dualnog problema, objasnimo motivaciju koja stoji iza nastanka teorije dualnosti.
- 
- \begin{primjer}
- 	Posmatrajmo jedan LP i probajmo naći što bolju gornju procjenu za optimalnu vrijednost  funkcije cilja na osnovu ograničenja u datom modelu.
- 	\end{primjer}
- 
+
+Prije nego što uvedemo pojam dualnog problema, objasnimo motivaciju koja stoji iza nastanka teorije dualnosti.
+
+\begin{primjer}
+	Posmatrajmo jedan LP i probajmo naći što bolju gornju procjenu za optimalnu vrijednost  funkcije cilja na osnovu ograničenja u datom modelu.
+\end{primjer}
+
 $$ 
 \begin{array}{lllll}
-    \max                f((x_1,x_2))=  &x_1 &+& x_2   &               \\
-    \mbox{t.d.}  &4x_1 & +&3 x_2 & \leq 9        \\
-                          &x_1 &+ &x_2   &  \leq 8       \\
-                          &x \geq 0  &  &     &      
- \end{array}
+	\max                f((x_1,x_2))=  &x_1 &+& x_2   &               \\
+	\mbox{t.d.}  &4x_1 & +&3 x_2 & \leq 9        \\
+	&x_1 &+ &x_2   &  \leq 8       \\
+	&x \geq 0  &  &     &      
+\end{array}
 $$
- Iz uslova je jasno da su gornje granice date sa $f(x_1,x_2) = x_1 + x_2 \leq 4 x_1 + 3 x_2 \leq 9$, kao i 
+Iz uslova je jasno da su gornje granice date sa $f(x_1,x_2) = x_1 + x_2 \leq 4 x_1 + 3 x_2 \leq 9$, kao i 
 $f(x_1,x_2) \leq x_1 + x_2 \leq 8$. Gornje granice se mogu i poboljšati na osnovu sljedećeg niza nejednakosti
 $$f(x_1,x_2) \leq \frac{1}{4}(  4 x_1 + 3 x_2  ) + \frac{1}{4}(    x_1 +   x_2 ) = \frac{5}{4}x_1 + x_2 \leq  \frac{9}{4} + 2 = \frac{17}{4},$$ 
 čime dobijamo bolju gornju granicu funkcije $f$. 
 
 Izvedimo sada ovakvu konstrukciju u opštijem obliku. Iskoristimo ograničenja data u modelu, i iskombinujmo ih sa koeficijentima funkcije cilja na sljedeći način. Neka su $y_1, y_2 \geq 0$ koeficijenti sa kojima množimo ograničenja u početnom modelu. Tada imamo 
 \begin{align*}
-    &y_1 \cdot (4x_1 + 3x_2) \leq 9 y_1 \\
-    &y_2 \cdot (x_1 + x_2 ) \leq 8 y_2 
+	&y_1 \cdot (4x_1 + 3x_2) \leq 9 y_1 \\
+	&y_2 \cdot (x_1 + x_2 ) \leq 8 y_2 
 \end{align*}
 Sabirajući ove dvije nejednakosti i grupišući sabirke dobijamo 
 \begin{equation}\label{eq:dual-1}
-     x_1 ( 4 y_1 + y_2 ) + x_2 ( 3 y_1 + y_2 ) \leq 9 y_1 + 8 y_2 
+	x_1 ( 4 y_1 + y_2 ) + x_2 ( 3 y_1 + y_2 ) \leq 9 y_1 + 8 y_2 
 \end{equation}
 Posmatrajući funkciju cilja i koeficijente uz promjenljive u (\ref{eq:dual-1}), jasno je da treba da vrijedi 
 $4 y_1 + y_2 \geq 1$ i $3 y_1 + y_2 \geq 1$. Da bi ocjena gornje granice   izraza sa lijeve strane nejednakosti (\ref{eq:dual-1}) bila što bolja,   potrebno je minimizovati izraz $9y_1 + 8 y_2$, prema prethodno pomenuta (dva) uslova. Prema tome, početnom problemu, koji označavamo sa ($P$), odgovara dualni problem ($D$)
 $$\begin{array}{ll}
-     \min                    &  9 y_1+ 8 y_2        \\
-       \mbox{t.d.}   &  4 y_1     +   y_2 \geq 1   \\
-                             &  3 y_1 + y_2 \geq 1 \\
-                  &            y=(y_1,y_2) \geq 0.
+	\min                    &  9 y_1+ 8 y_2        \\
+	\mbox{t.d.}   &  4 y_1     +   y_2 \geq 1   \\
+	&  3 y_1 + y_2 \geq 1 \\
+	&            y=(y_1,y_2) \geq 0.
 \end{array}$$
 U oštem slučaju,  za problem ($P$) %~(\ref{eq:LP-o1})--(\ref{eq:LP-c2}), 
 \begin{align*}
@@ -2023,24 +2024,24 @@ U oštem slučaju,  za problem ($P$) %~(\ref{eq:LP-o1})--(\ref{eq:LP-c2}),
 \end{align*}
 odgovorarajući dualni problem ($D$)  je dat sa 
 \begin{align*}
-     & \min b^T y  \\
-     & \mbox{t.d.} \nonumber \\
-     & A^T y \geq c \\
-     & y \geq 0.
+	& \min b^T y  \\
+	& \mbox{t.d.} \nonumber \\
+	& A^T y \geq c \\
+	& y \geq 0.
 \end{align*}
 
 \section{Teoreme dualnosti}
 U ovom odjeljku ćemo navesti najvažnije teoreme koje omogućavaju primjenu teorije dualnosti na rješavanje problema linearnog programiranja.
 
 \begin{thm}[Teorema slabe dualnosti]
-  Ako je x dopustivo rješenje za problem ($P$) i y dopustivo rješenje za problem  ($D$), onda je 
-  $$ c^T x \leq b^T y.$$
+	Ako je x dopustivo rješenje za problem ($P$) i y dopustivo rješenje za problem  ($D$), onda je 
+	$$ c^T x \leq b^T y.$$
 \end{thm}
 \begin{proof}
-         Kako je $A^T y \geq c $,  transponovanjem obje strane dobijemo 
-         $y^T A \geq c^T$. Množenjem obje strane posljednje nejednakosti sa $x \geq 0$, dobijamo 
-         $$y^TAx \geq c^T x.$$ Kako je $Ax \leq b$ i $y \geq 0$,  tada dobijamo 
-         $ y^T b = b^T y  \geq c^T x$
+	Kako je $A^T y \geq c $,  transponovanjem obje strane dobijemo 
+	$y^T A \geq c^T$. Množenjem obje strane posljednje nejednakosti sa $x \geq 0$, dobijamo 
+	$$y^TAx \geq c^T x.$$ Kako je $Ax \leq b$ i $y \geq 0$,  tada dobijamo 
+	$ y^T b = b^T y  \geq c^T x$
 \end{proof}
 Iz Teoreme  slabe dualnosti slijedi sljedeća važna posljedica.
 \begin{poslje}
@@ -2050,120 +2051,120 @@ Iz Teoreme  slabe dualnosti slijedi sljedeća važna posljedica.
 Pokažimo da važi i naredno tvrđenje, koje ćemo koristiti u dokazu Teoreme jake dualnosti.
 
 \begin{prop}  
-    Ako je $x^*$ dopustivo rješenje za  ($P$), $y^*$ dopustivo rješenje za ($D$) i ako vrijedi 
-    $c^T x^* = b^T y^*$, onda je $x^*$ optimalno rješenje za problem  ($P$), a $y^*$ optimalno rješenje za problem  ($D$).  
+	Ako je $x^*$ dopustivo rješenje za  ($P$), $y^*$ dopustivo rješenje za ($D$) i ako vrijedi 
+	$c^T x^* = b^T y^*$, onda je $x^*$ optimalno rješenje za problem  ($P$), a $y^*$ optimalno rješenje za problem  ($D$).  
 \end{prop}
 \begin{proof}
-        Neka je $x$ bilo koje dopustivo rješenje problema ($P$). Iz teoreme o slaboj dualnosti imamo $c^T x  \leq b^T y^* = c^T x^*$, odakle slijedi da je $x^*$ upravo optimalno rješenje problema  ($P$).
-         Slično vrijedi i za sva dopustiva rješenja problema ($D$): $b^T y^* = c^T x^* \geq b^T y$, odakle imamo da je $y^*$ optimalno rješenje problema  ($D$). 
+	Neka je $x$ bilo koje dopustivo rješenje problema ($P$). Iz teoreme o slaboj dualnosti imamo $c^T x  \leq b^T y^* = c^T x^*$, odakle slijedi da je $x^*$ upravo optimalno rješenje problema  ($P$).
+	Slično vrijedi i za sva dopustiva rješenja problema ($D$): $b^T y^* = c^T x^* \geq b^T y$, odakle imamo da je $y^*$ optimalno rješenje problema  ($D$). 
 \end{proof}
 
 \begin{thm}[Teorema jake dualnosti]
-     Ako problem ($P$) ima optimalno rješenje $x^*$, onda i problem ($D$) ima optimalno rješenje $y^*$ i pri tome je $c^T x^* = b^T y^*$.
+	Ako problem ($P$) ima optimalno rješenje $x^*$, onda i problem ($D$) ima optimalno rješenje $y^*$ i pri tome je $c^T x^* = b^T y^*$.
 \end{thm}
 \begin{proof}
-         Napišimo ograničenja probema ($P$) kao $Ax + s = b, x, s \geq 0$.
-         Primijenimo simpleks metod, pa posmatrajmo posljednju  simpleks tabelu, odnosno tabelu iz koje se dobija rješenje $x^*$.
-         
-         $$\begin{array}{c |c | c}
-         \overbrace{\ \ \ \ \ \hspace{1.5cm}}_{x \mbox{ promjenljive}}     &  \overbrace{\ \ \ \ \ \hspace{1.5cm}}_{s \mbox{ promjenljive}} &   \\
-                                                           & &   \\
-         \hline
-             c_1^*\ c_2^* \ldots c_n^*            & -y_1^* -y_2^* \ldots -y_m^*  & -f^*
-         \end{array}
-         $$
-   gdje je 
-   \begin{enumerate}
-       \item    $c^*_i \leq 0, i = 1,\ldots, n$ 
-       \item    $-y_i^* \leq 0$, $i = 1,\ldots, m$
-       \item  $c^T x - f^* = (c^*)^T x - (y^*)^T s$ (iz koeficijenata doprinosa simpleks metode)
-    \end{enumerate}
-    Prema tome, 
-    \begin{align*}
-           c^T x &=  f^* + (c^*)^T x - (y^*)^T s \\
-                 &=  f^* + (c^*)^T x - (y^*)^T (b - Ax) \\
-                 &= f^*  - (y^*)^T b +   ((c^*)^T + (y^*)^T A ) x
-    \end{align*}
-    koje vrijedi za sve $x$. Specijalno, za  $x = 0$,  dobijamo 
-    
-    \begin{equation}\label{eq:f_y_star}
-        f^* = (y^*)^T b.
-    \end{equation}
-
-Dalje, važi i $c^T x = ((c^*)^T + (y^*)^T A ) x$, odnosno     $ c = A^T y^* + c^*$. 
-    
-    Kako je $c^* \leq 0$, imamo  $A^T y^* \geq c$. Kako je $-y^* \leq 0$, slijedi da je $y^*$ dopustivo rješenje za  ($D$).  Iz (\ref{eq:f_y_star}) imamo da je vrijednost funkcije cilja u $y^*$ upravo $f^* = c^T x^* $. Iz Propozicije 5.1  slijedi da je $y^*$ optimalno rješenje problema  ($D$). 
- 
-    
+	Napišimo ograničenja probema ($P$) kao $Ax + s = b, x, s \geq 0$.
+	Primijenimo simpleks metod, pa posmatrajmo posljednju  simpleks tabelu, odnosno tabelu iz koje se dobija rješenje $x^*$.
+	
+	$$\begin{array}{c |c | c}
+		\overbrace{\ \ \ \ \ \hspace{1.5cm}}_{x \mbox{ promjenljive}}     &  \overbrace{\ \ \ \ \ \hspace{1.5cm}}_{s \mbox{ promjenljive}} &   \\
+		& &   \\
+		\hline
+		c_1^*\ c_2^* \ldots c_n^*            & -y_1^* -y_2^* \ldots -y_m^*  & -f^*
+	\end{array}
+	$$
+	gdje je 
+	\begin{enumerate}
+		\item    $c^*_i \leq 0, i = 1,\ldots, n$ 
+		\item    $-y_i^* \leq 0$, $i = 1,\ldots, m$
+		\item  $c^T x - f^* = (c^*)^T x - (y^*)^T s$ (iz koeficijenata doprinosa simpleks metode)
+	\end{enumerate}
+	Prema tome, 
+	\begin{align*}
+		c^T x &=  f^* + (c^*)^T x - (y^*)^T s \\
+		&=  f^* + (c^*)^T x - (y^*)^T (b - Ax) \\
+		&= f^*  - (y^*)^T b +   ((c^*)^T + (y^*)^T A ) x
+	\end{align*}
+	koje vrijedi za sve $x$. Specijalno, za  $x = 0$,  dobijamo 
+	
+	\begin{equation}\label{eq:f_y_star}
+		f^* = (y^*)^T b.
+	\end{equation}
+	
+	Dalje, važi i $c^T x = ((c^*)^T + (y^*)^T A ) x$, odnosno     $ c = A^T y^* + c^*$. 
+	
+	Kako je $c^* \leq 0$, imamo  $A^T y^* \geq c$. Kako je $-y^* \leq 0$, slijedi da je $y^*$ dopustivo rješenje za  ($D$).  Iz (\ref{eq:f_y_star}) imamo da je vrijednost funkcije cilja u $y^*$ upravo $f^* = c^T x^* $. Iz Propozicije 5.1  slijedi da je $y^*$ optimalno rješenje problema  ($D$). 
+	
+	
 \end{proof} 
 Primijetimo da koeficijenti $y^*$ posljednje vrste završne simpleks tabele odgovaraju  ,,izjednačavajućim''   promjenljivima i one nam daju rješenje problema  ($D$).  
 
-\begin{primjer} Moguće je da problem ($P$) i njegov   dual ($D$) nemaju dopustivo rješenje. Pogledajte sljedeći primjer:
-	\end{primjer}
+\begin{primjer} Moguće je da problem ($P$) i njegov   dual ($D$) nemaju dopustivo rješenje. Pogledajmo sljedeći primjer:
+\end{primjer}
 $$\begin{array}{cc}
-    \max          & 2 x_1 - x_2 \\
-     {t.d. }      & x_1 - x_2 \leq 1 \\
-                  & -x_1 + x_2 \leq -2 \\
-                  & x_1, x_2 \geq 0.
+	\max          & 2 x_1 - x_2 \\
+	{t.d. }      & x_1 - x_2 \leq 1 \\
+	& -x_1 + x_2 \leq -2 \\
+	& x_1, x_2 \geq 0.
 \end{array}$$
 %i pokažite da je to slučaj.
 \emph{Rješenje.} Množenjem drugog ograničenja sa -1, dobijamo $x_1 - x_2 \geq 2$, što u kombinaciji sa prvim ograničenjem jasno pokazuje da problem ($P$) nema dopustivih rješenja. Dualni problem ($D$) ovog LP-a je dat sa 
 $$\begin{array}{cc}
 	\min          &x_1 - 2x_2 \\
 	{t.d. }       & y_1 -y_2 \geq 2 \\
-				  & -y_1 + y_2 \geq -1 \\
-				  & y_1, y_2 \geq 0.
+	& -y_1 + y_2 \geq -1 \\
+	& y_1, y_2 \geq 0.
 \end{array}$$
 Množeći drugo ograničenje sa -1, dobijamo $y_1 -y_2 \leq 1$, što u kombinaciji sa prvim ograničenjem jasno pokazuje da problem ($D$) nema dopustivo rješenje. ~
 
 Analizirajmo sada i koncept  \emph{komplementarnosti} (eng. \emph{complementary slackness}), koji nam omogućava da uspostavimo još neke važne odnose između promjenljivih i ograničenja primarnog i dualnog problema. 
 \begin{thm}[Teorema komplementarnosti]
 	
-      Neka su $x$ i $y$ dopustiva rješenja problema ($P$) i  ($D$), redom. Vektori $x$ i $y$ su optimalna rješenja ova dva problema akko vrijedi 
-      
-            \begin{equation}\label{eq:slackness-2} 
-      	(Ax - b)_i y_i = (a_{i1}x_1 + \cdots + a_{in}x_n - b_i)y_i = 0, i=1,\ldots,m 
-      \end{equation} 
-   i 
-      \begin{equation}\label{eq:slackness-1} 
-           (A^Ty - c)_j x_j =  ( a_{1 j}y_1 + \cdots a_{m j}y_m - c_j  ) x_j =  
-           0, j=1,\ldots,n 
-      \end{equation}    
-
+	Neka su $x$ i $y$ dopustiva rješenja problema ($P$) i  ($D$), redom. Vektori $x$ i $y$ su optimalna rješenja ova dva problema akko vrijedi 
+	
+	\begin{equation}\label{eq:slackness-2} 
+		(Ax - b)_i y_i = (a_{i1}x_1 + \cdots + a_{in}x_n - b_i)y_i = 0, i=1,\ldots,m 
+	\end{equation} 
+	i 
+	\begin{equation}\label{eq:slackness-1} 
+		(A^Ty - c)_j x_j =  ( a_{1 j}y_1 + \cdots a_{m j}y_m - c_j  ) x_j =  
+		0, j=1,\ldots,n 
+	\end{equation}    
+	
 \end{thm} 
 Uslovi (\ref{eq:slackness-1}) i (\ref{eq:slackness-2}) se nazivaju \emph{uslovi komplementarnosti}. 
 
 \begin{proof}
-         Iz teoreme o slaboj dualnosti imamo:  
-         \begin{equation} 
-             c^Tx \leq ( A^T y)^T x = y^T A x \leq b^T y.  
-         \end{equation} 
-         Dalje, iz teoreme jake dualnosti imamo   
-         \begin{align*} 
-             &x \mbox{ i } y \mbox{ su oba optimalna } \Longleftrightarrow c^T x = b^T y  \Longleftrightarrow c^Tx = y^TA x = b^Ty \\ 
-             &\Longleftrightarrow (y^T A - c^T) x = 0 \wedge y^T(Ax - b )  = 0\\ 
-             & \Longleftrightarrow \sum_i (A^T y - c)_i x_i = 0 \wedge \sum_j (Ax - b)_j y_j = 0 
-         \end{align*} 
-         Kako je $A^Ty \geq c$, $\sum_i (A^T y - c)_i x_i$ je suma nenegativnih komponenti, odakle  slijedi da   $(A^T y - c)_i x_i= 0$ za sve $i$. Takođe, slično vrijedi i za drugu sumu, jer $Ax - b \leq 0$, pa je svaki  $(Ax - b)_j y_j$ negativan, odakle slijedi da je $(Ax - b)_j y_j = 0$ za sve $j$.
+	Iz teoreme o slaboj dualnosti imamo:  
+	\begin{equation} 
+		c^Tx \leq ( A^T y)^T x = y^T A x \leq b^T y.  
+	\end{equation} 
+	Dalje, iz teoreme jake dualnosti imamo   
+	\begin{align*} 
+		&x \mbox{ i } y \mbox{ su oba optimalna } \Longleftrightarrow c^T x = b^T y  \Longleftrightarrow c^Tx = y^TA x = b^Ty \\ 
+		&\Longleftrightarrow (y^T A - c^T) x = 0 \wedge y^T(Ax - b )  = 0\\ 
+		& \Longleftrightarrow \sum_i (A^T y - c)_i x_i = 0 \wedge \sum_j (Ax - b)_j y_j = 0 
+	\end{align*} 
+	Kako je $A^Ty \geq c$, $\sum_i (A^T y - c)_i x_i$ je suma nenegativnih komponenti, odakle  slijedi da   $(A^T y - c)_i x_i= 0$ za sve $i$. Takođe, slično vrijedi i za drugu sumu, jer $Ax - b \leq 0$, pa je svaki  $(Ax - b)_j y_j$ negativan, odakle slijedi da je $(Ax - b)_j y_j = 0$ za sve $j$.
 \end{proof} 
 
 \emph{Komentar}.  Nekada je lakse riješiti jedan od problema, ($P$)  ili  ($D$).  Npr. lakše je riješiti dualni problem sa dvije promjenljive i 4 ograničenja (grafički metod), nego primalni  ($P$)  problem sa 4 promjenljive i 2 ograničenja. 
 
 \begin{primjer} Posmatrajmo primarni  ($P$)  i dualni ($D$) problem, gdje su
-	\end{primjer}
- 
+\end{primjer}
+
 $$      A = \left(\begin{array}{ccc}
-          1 &  4 & 0 \\
-          3 & -1 & 1 \\
-      \end{array} \right ), b = \left (\begin{array}{c}
-           1 \\
-           3
-      \end{array}\right ), c =\left ( \begin{array}{c}
-           4  \\
-           1  \\
-           3
-      \end{array} \right )
- $$
+	1 &  4 & 0 \\
+	3 & -1 & 1 \\
+\end{array} \right ), b = \left (\begin{array}{c}
+	1 \\
+	3
+\end{array}\right ), c =\left ( \begin{array}{c}
+	4  \\
+	1  \\
+	3
+\end{array} \right )
+$$
 Posmatrajmo jedno dopustivo rješenje problema  ($P$), $x = (0, \frac{1}{4}, \frac{13}{4})$. Da li je ono optimalno? Ako bi bilo optimalno,  prema Teoremi komplementarnosti,vrijedilo bi sljedeće:
 
 $$x_2 \geq 0 \Rightarrow  (A^T y)_2  = c_2, \mbox{ tj. } 4 \cdot y_1 - y_2 = 1$$
@@ -2171,10 +2172,10 @@ $$x_3 \geq 0 \Rightarrow  (A^T y)_3  = c_3, \mbox{ tj. } 0 \cdot y_1 + y_2 = 3$$
 što nam daje  $y = (1, 3)$. Preostalo ograničenje $y_1 + 3 y_2 \geq 4$ takođe vrijedi za vektor $y$, odakle imamo da je $y$ dopustivo rješenje odgovarajućeg problema  ($D$).  Prema tome, zaključujemo da su $x$ i $y$ dopustiva rješenja koja zadovoljavaju svojstvo komplementarnosti, pa su to i optimalna rješenja. 
 
 \begin{figure}[!ht]
-    \centering
-     \includegraphics[width=180pt, height=180pt]{fig5.eps}
-    \caption{Dualni problem: dopustiv region}
-    \label{fig:fig5}
+	\centering
+	\includegraphics[width=180pt, height=180pt]{fig5.eps}
+	\caption{Dualni problem: dopustiv region}
+	\label{fig:fig5}
 \end{figure}
 Optimalno rješenje je u presjeku pravih $y_2 = 3$ i $4y_1 - y_2 = 1$, odnosno $y = (1, 3)$. Provjerimo, pomoću Teoreme komplementarnosti, šta je optimalno rješenje problema ($P$). Imamo 
 $$y_1 > 0 \Rightarrow (Ax - b)_1 y_1 = 0 \Rightarrow x_1 + 4 x_2 = 4 $$
@@ -2183,38 +2184,38 @@ i kako je $y_1 + 3 y_2 > 4$, onda $(A^Ty)_1 > c_1$ i prema tome $x_1 =0$,
 odakle $x =(0, \frac{1}{4}, \frac{13}{4})$. 
 
 \begin{primjer}\label{primjer:dual} Posmatrajmo problem LP-a
-	\end{primjer}
+\end{primjer}
 $$\begin{array}{llll}
-   &\max                     &10 x_1 + 10 x_2 + 20 x_3 + 20 x_4  & \\
-   &\mbox{t.d. }      &12 x_1 + 8 x_2  + 6 x_3  + 4 x_4   & \leq 210 \\
-    &                        &3 x_1 + 6 x_2   + 12 x_3 + 24 x_4 & \leq 210 \\
-     &                       & x_1,\ldots, x_4 \geq 0.                                 &
+	&\max                     &10 x_1 + 10 x_2 + 20 x_3 + 20 x_4  & \\
+	&\mbox{t.d. }      &12 x_1 + 8 x_2  + 6 x_3  + 4 x_4   & \leq 210 \\
+	&                        &3 x_1 + 6 x_2   + 12 x_3 + 24 x_4 & \leq 210 \\
+	&                       & x_1,\ldots, x_4 \geq 0.                                 &
 \end{array}
 $$
 Ovaj problem ima 4 promjenljive i 2 ograničenja. Prema tome, ima smisla razmatrati dualni problem  ($D$)  datog primala  ($P$),  jer u tom slučaju dobijamo linearni program od samo dvije promjenljive koji se može lako riješiti grafičkom metodom.  Odgovarajući problem ($D$) je dat sa:
 
 $$\begin{array}{lll}
-    &\min                    &  210 y_1 + 210 y_2      \\
-    &{s.t. }     &  \\
-    &            &  12 y_1  + 3   y_2 \geq 10 \\
-    &                        &  8  y_1 + 6    y_2 \geq 10 \\
-    &                        &  6 y_1 + 12 y_2  \geq 20 \\
-    &                        &  4 y_1 + 24 y_2  \geq 20 \\
-    &                        &  y_1, y_2 \geq 0.
+	&\min                    &  210 y_1 + 210 y_2      \\
+	&{s.t. }     &  \\
+	&            &  12 y_1  + 3   y_2 \geq 10 \\
+	&                        &  8  y_1 + 6    y_2 \geq 10 \\
+	&                        &  6 y_1 + 12 y_2  \geq 20 \\
+	&                        &  4 y_1 + 24 y_2  \geq 20 \\
+	&                        &  y_1, y_2 \geq 0.
 \end{array}$$
 Dopustiv region dualnog problema je dat na Slici~ \ref{fig:fig6-dual-region}. %gdje je dopustiv region označen plavom bojom. 
 Dalje, može se pokazati da je optimum duala u presjeku prave $12 y_1 + 3 y_2 = 10$ i prave $6y_1 + 12 y_2 = 20$. Na osnovu Slike \ref{fig:fig6-dual-region} vidimo da   prava koja odgovara drugom i četvrtom ograničenju LP-a mimoilazi tačku optimuma, jer vrijedi stroga nejednakost nakon uvrštavanja tačke optimuma u ograničenja. Dakle, iz uslova komplementarnosti slijedi da za optimum $x$ primala  ($P$)  vrijedi $x_2 = 0$ i $x_4 = 0$.  Kako je $y_1, y_2 > 0$, onda vrijedi 
 \begin{align}
-    &10 x_1 + 20 x_3 = 210 \nonumber \\
-    & 3x_1 + 12 x_3  = 210 \nonumber
+	&10 x_1 + 20 x_3 = 210 \nonumber \\
+	& 3x_1 + 12 x_3  = 210 \nonumber
 \end{align}
 odakle dobijamo rješenje $x_1 = 10, x_3 = 15$, pa je optimalno rješenje $x^* = (10, 0, 15, 0)$.
 
 \begin{figure}[H]
-    \centering
-    \includegraphics[width=190pt, height=190pt]{fig6.eps}
-    \caption{Dopustiv region duala.}
-    \label{fig:fig6-dual-region}
+	\centering
+	\includegraphics[width=190pt, height=190pt]{fig6.eps}
+	\caption{Dopustiv region duala.}
+	\label{fig:fig6-dual-region}
 \end{figure}
 
 Dualnost se najlakše opisuje kao odnos između problema maksimizacije i problema minimizacije, bez obzira koji od ta dva problema je primal, ($P$) a koji   dual ($D$). 
@@ -2222,17 +2223,17 @@ Kompletna lista mogućih odnosa između ograničenja
 jednog problema i promjenljivih u drugom problemu je data sljedećom tabelom.
 \begin{table}[!ht]
 	\centering
-    \begin{tabular}{l|l}
-      ($P$) & ($D$) \\ \hline
-      ograničenja $\leq$  & promjenljive $\geq 0$ \\
-      ograničenja $=$     & promjenljive (neograničene) \\
-      ograničenja $\geq$  & promjenljive $\leq 0$ \\
-      promjenljive $\geq 0$    & ograničenja $\geq$ \\
-      promjenljive (neograničene) & ograničenja $=$ \\
-      promjenljive $\leq 0$         & ograničenja $\leq$ \\ \hline
-    \end{tabular}
-  
-    \caption{Odnos promjenljivih i ograničenja problema ($P$) i odgovarajućeg problema ($D$).}  \label{tab:primal-dual-relation}
+	\begin{tabular}{l|l}
+		($P$) & ($D$) \\ \hline
+		ograničenja $\leq$  & promjenljive $\geq 0$ \\
+		ograničenja $=$     & promjenljive (neograničene) \\
+		ograničenja $\geq$  & promjenljive $\leq 0$ \\
+		promjenljive $\geq 0$    & ograničenja $\geq$ \\
+		promjenljive (neograničene) & ograničenja $=$ \\
+		promjenljive $\leq 0$         & ograničenja $\leq$ \\ \hline
+	\end{tabular}
+	
+	\caption{Odnos promjenljivih i ograničenja problema ($P$) i odgovarajućeg problema ($D$).}  \label{tab:primal-dual-relation}
 \end{table}
 \\
 \textit{Napomena}. Simpleks metod ne garantuje   rješavanje proizvoljnog problema LP u polinomijalnom broju koraka u odnosu na veličinu ulaza (pogledati zadatak 6, u prethodnoj glavi). % V. Klee and G. Minty constructed an example LP: simplex method needs 2^n iterations to solve it 
@@ -2250,32 +2251,32 @@ Još jedna primjena teorije dualnosti LP-a se ogleda u dokazivanju Farkašove te
 	\end{enumerate}
 \end{thm}
 \begin{proof}
-	  Pogledajmo prvi sistem. Uočimo sličnosti sa   LP-om:
-	  \begin{align*}
-	  	 &\min c^T x \\
-	  	 &\mbox{t.d.} \\
-	  	 & A x \geq 0.
-	  \end{align*}
- Ako pogledamo desnu stranu ograničenja, vidimo da je vektor $x = 0$ 
-  dopustivo rješenje problema, tako da problem ima barem jedno dopustivo rješenje. Zaključujemo da dati LP  ili ima optimalno rješenje ili je neograničen. Posmatrajmo njegov dual   dat sa 
-  \begin{align*}
-  	   &\max 0 \\
-  	   &\mbox{t.d.} \\
-  	   & A^T y  = c \\
-  	   & y \geq 0.
-  \end{align*}
-  Primijetimo da, ako postoji barem jedno dopustivo rješenje za dati dual, optimalno rješenje je 0. Ako ne postoji niti jedno dopustivo rješenje, problem je nedopustiv. 
-  
-Iz odnosa definisanog primala i njegovog duala zaključujemo:
-  \begin{itemize}
-  	\item primal ima optimalno rješenje akko  dual ima optimalno rješenje; 
-  	\item primal je neograničen  akko je njegov dual nedopustiv.  
-  \end{itemize}
-  Odgovorimo sada na pitanje kada primal ima optimalno rješenje. Ono što vidimo je da ako bi $x$ bio dopustiv tako da je $c^Tx < 0$,  to bi onda i bilo koje $kx$, za proizvoljno $k>0$ bilo takođe dopustivo. Iz toga bi slijedilo da vrijednost funkcije cilja nije ograničena odozdo, tj. teži ka -$\infty$. Dakle, u tom slučaju je problem neograničen. Zaključujemo da, kad god  primal ima optimalno rješenje, ta vrijednost mora biti 0 i dostiže se za $x =0$. Inače, problem je neograničen. Dalje, ako primal ima optimalno rješenje, to  je ekvivalentno sa tim da je sistem iz slučaja  \ref{case:1} ove teoreme nedopustiv (nema rješenja).  Ako sistem iz slučaja  \ref{case:1}  ima rješenje, primal je neograničen (vrijedi i obrnut smjer). Ako pogledamo   dualni problem, dual ima optimalno rješenje akko sistem iz  slučaja  \ref{case:2}   ima rješenje. Slično, dual nije dopustiv akko je sistem iz  slučaja   \ref{case:2}  nedopustiv (nema rješenje). Iz niza prethodnih ekvivalencija, zaključujemo da vrijedi: 
-  \begin{itemize}
-  	  \item Sistem iz  slučaja  \ref{case:1}  nema rješenje akko sistem iz  slučaja  \ref{case:2}   ima rješenje. 
-  	  \item Sistem iz  slučaja  \ref{case:1}  ima rješenje akko sistem iz  slučaja  \ref{case:2}  nema rješenje. 
-   \end{itemize}
+	Pogledajmo prvi sistem. Uočimo sličnosti sa   LP-om:
+	\begin{align*}
+		&\min c^T x \\
+		&\mbox{t.d.} \\
+		& A x \geq 0.
+	\end{align*}
+	Ako pogledamo desnu stranu ograničenja, vidimo da je vektor $x = 0$ 
+	dopustivo rješenje problema, tako da problem ima barem jedno dopustivo rješenje. Zaključujemo da dati LP  ili ima optimalno rješenje ili je neograničen. Posmatrajmo njegov dual   dat sa 
+	\begin{align*}
+		&\max 0 \\
+		&\mbox{t.d.} \\
+		& A^T y  = c \\
+		& y \geq 0.
+	\end{align*}
+	Primijetimo da, ako postoji barem jedno dopustivo rješenje za dati dual, optimalno rješenje je 0. Ako ne postoji niti jedno dopustivo rješenje, problem je nedopustiv. 
+	
+	Iz odnosa definisanog primala i njegovog duala zaključujemo:
+	\begin{itemize}
+		\item primal ima optimalno rješenje akko  dual ima optimalno rješenje; 
+		\item primal je neograničen  akko je njegov dual nedopustiv.  
+	\end{itemize}
+	Odgovorimo sada na pitanje kada primal ima optimalno rješenje. Ono što vidimo je da ako bi $x$ bio dopustiv tako da je $c^Tx < 0$,  to bi onda i bilo koje $kx$, za proizvoljno $k>0$ bilo takođe dopustivo. Iz toga bi slijedilo da vrijednost funkcije cilja nije ograničena odozdo, tj. teži ka -$\infty$. Dakle, u tom slučaju je problem neograničen. Zaključujemo da, kad god  primal ima optimalno rješenje, ta vrijednost mora biti 0 i dostiže se za $x =0$. Inače, problem je neograničen. Dalje, ako primal ima optimalno rješenje, to  je ekvivalentno sa tim da je sistem iz slučaja  \ref{case:1} ove teoreme nedopustiv (nema rješenja).  Ako sistem iz slučaja  \ref{case:1}  ima rješenje, primal je neograničen (vrijedi i obrnut smjer). Ako pogledamo   dualni problem, dual ima optimalno rješenje akko sistem iz  slučaja  \ref{case:2}   ima rješenje. Slično, dual nije dopustiv akko je sistem iz  slučaja   \ref{case:2}  nedopustiv (nema rješenje). Iz niza prethodnih ekvivalencija, zaključujemo da vrijedi: 
+	\begin{itemize}
+		\item Sistem iz  slučaja  \ref{case:1}  nema rješenje akko sistem iz  slučaja  \ref{case:2}   ima rješenje. 
+		\item Sistem iz  slučaja  \ref{case:1}  ima rješenje akko sistem iz  slučaja  \ref{case:2}  nema rješenje. 
+	\end{itemize}
 \end{proof}
 
 \begin{primjer}
@@ -2303,7 +2304,7 @@ Pogledajmo kako izgleda sistem iz slučaja \ref{case:2}. Taj sistem je dat sa:
 	\caption{Geometrijska interpretacija Farkašove leme.}
 	\label{fig:farkas-slika}
 \end{figure}
-Iz geometrijske interpretacije slijedi da se vektor $c =(1,4)^T$ može predstaviti kao linearna kombinacija vekotora vrsta matrice $A$, kao što vidimo na Slici~\ref{fig:farkas-slika}. Vektor $c =(1,4)^T$ se nalazi unutar linearnog pokrivača $S^A = span\{a_1, \ldots, a_n \} = \{\sum_{i=1}^n \lambda_i a_i \mid \lambda_i \in \mathbb{R}\}$. što implicira da početni sistem nema rješenje. 
+Iz geometrijske interpretacije slijedi da se vektor $c =(1,4)^T$ može predstaviti kao linearna kombinacija vektora vrsta matrice $A$, kao što vidimo na Slici~\ref{fig:farkas-slika}. Vektor $c =(1,4)^T$ se nalazi unutar linearnog pokrivača $S^A = span\{a_1, \ldots, a_n \} = \{\sum_{i=1}^n \lambda_i a_i \mid \lambda_i \in \mathbb{R}\}$. što implicira da početni sistem nema rješenje. 
 Kada bismo posmatrali $c=(5,0)^T$, zaključili bi da se on ne može izraziti kao linearna kombinacija vektora vrste matrice $A$, jer je van prostora  $S^A $. Prema tome, rješenje početnog problema za ovu konfiguraciju bi postojalo.  
 
 %Furije–Mockin elimination ==> Problem dopustivosti...
@@ -2314,66 +2315,66 @@ Jedno od važnih pitanja vezano za problem  LP-a je sljedeće.
 
 Problem dopustivosti može da služi i da odgovorimo na sljedeće pitanje: 
 \emph{Da li je optimalna vrijednost funkcije cilja problema LP-a veća od neke unaprijed zadate  vrijednosti k?}
- Na ovo pitanje možemo odgovoriti pomoću  \emph{Furije–Mockinove} eliminacije. Pored osnovne primjerne, ovaj algoritam može poslužiti za dokazivanje Farkašove leme. Jedna od praktičnih primjena  ove metode je u teoriji informacija, konkretno u informaciono-teorijskim dokazima ostvarivosti koji se opisuju uslovima pod kojima je zagarantovano postojanje šeme kodiranja sa dobrim performansama. Ovi uslovi se često opisuju linearnim sistemom nejednakosti, koji su upravo ulazne vrijednosti  \emph{Furije–Mockinove} eliminacije. 
- 
- Metoda  \emph{Furije–Mockinove} eliminacije strukturalno drugačija  od simpleks metode. Ideja algoritma je zasnovana na redukciji problema sa $n$ promjenljivih na ekvivalentan problem koji sadrži $n-1$ promjenljivih. Ekvivalentnost se posmatra u odnosu na svojstvo da početni problem ima rješenje akko ga ima i redukovani problem. Eliminacija promjenljivih se vrši iterativno, odnosno, u svakom koraku se redukuje broj promjenljivih za jedan. Na kraju se početni sistem svodi na sistem sa jednom promjenljivom, za koji se lako može provjeriti da li sadrži dopustivo rješenje.
- 
- Ponovimo, glavni korak ovog metoda je redukcija problema na ekvivalentan problem sa manjim brojem promjenljivih. Pretpostavimo da su ograničenja data sa promjenljivima $x_1,\ldots, x_n$ i da želimo da eliminišemo promjenljivu $x_n$. Za svako od ograničenja
- \begin{equation}\label{eq:inequality_i}
-      a_{i,1} x_1 + \cdots + a_{i,n} x_n \leq b_i
- \end{equation}
- vrijedi jedna od sljedećih alternativa 
- \begin{itemize}
- 	 \item  $x_n \geq \frac{b_i - a_{i,1}x_1- \cdots - a_{i, n-1} x_{n-1} }{a_{i,n}}=U_i$ ili 
- 	 \item   $x_n \leq \frac{b_i - a_{i,1}x_1- \cdots - a_{i, n-1} x_{n-1} }{a_{i,n}}=L_i$
- \end{itemize}
- $i=1,\ldots, m$, zavisno od toga da li je $a_{i,n} >0$ ili $a_{i,n} <0$. U slučaju da je $a_{i,n} = 0$,  ostavljamo  ograničenje (\ref{eq:inequality_i}) nepromijenjeno, jer   $x_n$  ne učestvuje u datom ograničenju. Na ovaj način ćemo dobiti najviše $m$ gornjih i donjih granica za $x_n$ koje se mogu izraziti preko $n-1$ promjenljivih, tj. 
- $$  x_n \geq L_1, \ldots, x_n\geq L_k \mbox{ te }  x_n \leq U_1, \ldots, x_n \leq U_l,$$
-  za neke $k,l \in \mathbb{N}$, $k+l \leq m$.
- Moguće je izabrati $x_n$ koje zadovoljava gornja ograničenja akko 
- \begin{equation}\label{eq:min_max_xi}
-     \max\{L_1,\ldots, L_k \} \leq x_n \leq \min \{ U_1, \ldots, U_l \},
-   \end{equation}
-   %https://faculty.math.illinois.edu/~mlavrov/docs/482-fall-2019/lecture19.pdf
- jer bi tada postojalo nešto između najveće donje granice i najmanje gornje granice za za vrijednost promjenljive $x_n$. Međutim, kako su sve donje i gornje granice izražene preko nepoznatih promjenljivih $x_1, \ldots, x_{n-1}$, ne može se ustanoviti koje od njih su veće, a koje manje. Kompromis postižemo dodavanjem  sljedećih nejednakosti 
- $$\begin{array}{cccc}
-       L_1 \leq U_1 & L_1 \leq U_2   &  \cdots   & L_1 \leq U_l \\
-       L_2 \leq U_1 & L_2  \leq U_2  &  \cdots   & L_2 \leq U_l \\
-       \vdots       &     \vdots     &   \ddots  & \vdots       \\
-       L_k \leq U_1 &  L_k \leq U_2  &   \cdots  & L_k \leq U_l \\
- \end{array}$$ 
+Na ovo pitanje možemo odgovoriti pomoću  \emph{Furije–Mockinove} eliminacije. Pored osnovne primjerne, ovaj algoritam može poslužiti za dokazivanje Farkašove leme. Jedna od praktičnih primjena  ove metode je u teoriji informacija, konkretno u informaciono-teorijskim dokazima ostvarivosti koji se opisuju uslovima pod kojima je zagarantovano postojanje šeme kodiranja sa dobrim performansama. Ovi uslovi se često opisuju linearnim sistemom nejednakosti, koji su upravo ulazne vrijednosti  \emph{Furije–Mockinove} eliminacije. 
+
+Metoda  \emph{Furije–Mockinove} eliminacije strukturalno drugačija  od simpleks metode. Ideja algoritma je zasnovana na redukciji problema sa $n$ promjenljivih na ekvivalentan problem koji sadrži $n-1$ promjenljivih. Ekvivalentnost se posmatra u odnosu na svojstvo da početni problem ima rješenje akko ga ima i redukovani problem. Eliminacija promjenljivih se vrši iterativno, odnosno, u svakom koraku se redukuje broj promjenljivih za jedan. Na kraju se početni sistem svodi na sistem sa jednom promjenljivom, za koji se lako može provjeriti da li sadrži dopustivo rješenje.
+
+Ponovimo, glavni korak ovog metoda je redukcija problema na ekvivalentan problem sa manjim brojem promjenljivih. Pretpostavimo da su ograničenja data sa promjenljivima $x_1,\ldots, x_n$ i da želimo da eliminišemo promjenljivu $x_n$. Za svako od ograničenja
+\begin{equation}\label{eq:inequality_i}
+	a_{i,1} x_1 + \cdots + a_{i,n} x_n \leq b_i
+\end{equation}
+vrijedi jedna od sljedećih alternativa 
+\begin{itemize}
+	\item  $x_n \geq \frac{b_i - a_{i,1}x_1- \cdots - a_{i, n-1} x_{n-1} }{a_{i,n}}=U_i$ ili 
+	\item   $x_n \leq \frac{b_i - a_{i,1}x_1- \cdots - a_{i, n-1} x_{n-1} }{a_{i,n}}=L_i$
+\end{itemize}
+$i=1,\ldots, m$, zavisno od toga da li je $a_{i,n} >0$ ili $a_{i,n} <0$. U slučaju da je $a_{i,n} = 0$,  ostavljamo  ograničenje (\ref{eq:inequality_i}) nepromijenjeno, jer   $x_n$  ne učestvuje u datom ograničenju. Na ovaj način ćemo dobiti najviše $m$ gornjih i donjih granica za $x_n$ koje se mogu izraziti preko $n-1$ promjenljivih, tj. 
+$$  x_n \geq L_1, \ldots, x_n\geq L_k \mbox{ te }  x_n \leq U_1, \ldots, x_n \leq U_l,$$
+za neke $k,l \in \mathbb{N}$, $k+l \leq m$.
+Moguće je izabrati $x_n$ koje zadovoljava gornja ograničenja akko 
+\begin{equation}\label{eq:min_max_xi}
+	\max\{L_1,\ldots, L_k \} \leq x_n \leq \min \{ U_1, \ldots, U_l \},
+\end{equation}
+%https://faculty.math.illinois.edu/~mlavrov/docs/482-fall-2019/lecture19.pdf
+jer bi tada postojalo nešto između najveće donje granice i najmanje gornje granice za vrijednost promjenljive $x_n$. Međutim, kako su sve donje i gornje granice izražene preko nepoznatih promjenljivih $x_1, \ldots, x_{n-1}$, ne može se ustanoviti koje od njih su veće, a koje manje. Kompromis postižemo dodavanjem  sljedećih nejednakosti 
+$$\begin{array}{cccc}
+	L_1 \leq U_1 & L_1 \leq U_2   &  \cdots   & L_1 \leq U_l \\
+	L_2 \leq U_1 & L_2  \leq U_2  &  \cdots   & L_2 \leq U_l \\
+	\vdots       &     \vdots     &   \ddots  & \vdots       \\
+	L_k \leq U_1 &  L_k \leq U_2  &   \cdots  & L_k \leq U_l \\
+\end{array}$$ 
 Ako postoji neka vrijednost  $x_n$ koja zadovoljava sva ograničenja (\ref{eq:min_max_xi}), onda je za sve $i,j$, 
 $L_i \leq x_n \leq U_j$. Obrnuto, ako svih $k \cdot l$ nejednakosti vrijede, onda vrijedi i (\ref{eq:min_max_xi}), pa se može izabrati neki $x_n$ između $\max$ i $\min$ gornje granice. 
 
 Prema tome, početni problem je redukovan na sistem od $n-1$ promjenljivih sa dodatnih  $k \cdot l$ nejednakosti izraženih gore, uz originalna ograničenja koja ne uključuju $x_n$. Ovaj proces nastavimo iterativno, dok ne dobijemo samo jednu promjenjivu sa dodatnim ograničenjima  i potom (trivijalno) riješimo sistem. 
 
 \begin{primjer} Pretpostavimo da nam je dat sistem nejednačina:
-	\end{primjer}
+\end{primjer}
 \begin{align*}
-	 &x - y \leq 1 \\
-	 &-x + 2y \geq 1 \\
-	 & 3x - 5y \geq 1 \\
-	 & x,y \geq 0.
+	&x - y \leq 1 \\
+	&-x + 2y \geq 1 \\
+	& 3x - 5y \geq 1 \\
+	& x,y \geq 0.
 \end{align*}
 Eliminišimo promjenljivu $y$ iz sistema. Kako je $x-y \geq 1 \Rightarrow y \leq x -1 $, 
 $-x + 2y \geq 1 \Rightarrow y \geq \frac{x+1}{2}$, te $ 3x - 5y \geq 1 \Rightarrow y \leq \frac{3x-1}{5}$, uparimo gornje i donje granice te dobijamo 
- $$
- \begin{cases}
- 	&\frac{x+1}{2} \leq x-1 \\
- 	& 0 \leq x-1 \\
- 	& \frac{x+1}{2} \leq \frac{3x-1}{5} \\
- 	& 0 \leq \frac{3x-1}{5} \\
- 	& x \geq 0, y \geq 0.  	
- \end{cases}
- $$
+$$
+\begin{cases}
+	&\frac{x+1}{2} \leq x-1 \\
+	& 0 \leq x-1 \\
+	& \frac{x+1}{2} \leq \frac{3x-1}{5} \\
+	& 0 \leq \frac{3x-1}{5} \\
+	& x \geq 0, y \geq 0.  	
+\end{cases}
+$$
 Ove nejednakosti se mogu pojednostaviti u donje i gornje granice za $x$, na sljedeći način:
 $$
 \begin{cases}
-    &x \geq 3 \\
-    & x \geq 1 \\
-    & x \geq 7 \\
-    & x \geq \frac{1}{3} \\
-    & x \geq 0.	
+	&x \geq 3 \\
+	& x \geq 1 \\
+	& x \geq 7 \\
+	& x \geq \frac{1}{3} \\
+	& x \geq 0.	
 \end{cases}
 $$
 Sve ove nejednakosti su donje granice. Vidimo da vrijednost $x=7$ zadovoljava sve navedene nejednakosti.
@@ -2386,100 +2387,100 @@ Tada, donje i gornje granice za $y$ postaju uslovi: $y \leq 6, y \geq 4, y \leq 
 	\item %http://www.nitjsr.ac.in/course_assignment/CA02CA3103%20RMTLPP:%20Duality.pdf
 	Napišite odgovarajući dual linearnog programa:
 	\begin{align*}
-		 &\max x_1 - x_2 + 3 x_3 \\
-		 & \mbox{t.d.} \\
-		 & x_1 + x_2 + x_3 \leq 10 \\
-		 & 2x_1 - x_2 - x_3 \leq 2 \\
-		 & 2x_1 - 2x_2 - 3 x_3 \leq 6 \\
-		 & x_1, x_2, x_3 \geq 0.
+		&\max x_1 - x_2 + 3 x_3 \\
+		& \mbox{t.d.} \\
+		& x_1 + x_2 + x_3 \leq 10 \\
+		& 2x_1 - x_2 - x_3 \leq 2 \\
+		& 2x_1 - 2x_2 - 3 x_3 \leq 6 \\
+		& x_1, x_2, x_3 \geq 0.
 	\end{align*}
- \item    	Napišite odgovarajući dual linearnog programa:
-      \begin{align*}
-      	  &\min 3 x_1 - 2 x_2 + 4 x_3 \\
-      	  & \mbox{t.d.} \\
-      	  & 3x_1 + 5 x_2 + 4 x_3 \geq 7 \\
-      	  & 6 x_1 + x_2 + 3 x_3 \geq 4 \\
-      	  & 7 x_1 - 2 x_2 - x_3 \leq 10 \\
-      	  & x_1 - 2 x_2 + 5 x_3 \geq 3 \\
-      	  & 4 x_1 + 7 x_2 - 2 x_3 \geq 2 \\
-      	  & x_1, x_2, x_3 \geq 0.
-      \end{align*}
-  \item Napišite dual sljedećeg linearnog programa:
-  \begin{align*}
-        &\min x_1 - 3 x_2 - 2 x_3 \\
-        &\mbox{t.d.} \\
-        & 3 x_1 - x_2 + 2 x_3 \leq 7 \\
-        & 2 x_1 - 4 x_2 \geq 12 \\
-        & -4x_1 + 3x_2 + 8 x_3 = 10 \\
-        & x_1, x_2\geq 0 \\
-        & x_3 \in \mathbb{R}. 
-  \end{align*}
-\item %http://www.nitjsr.ac.in/course_assignment/CA02CA3103%20RMTLPP:%20Duality.pdf
-Pokazati da je dual dualnog problema ponovo primalni problem ($P$).
-
-\item Vratite se na Primjer~\ref{primjer:dual}. Vrijednost 210 u drugom ograničenju primarnog problema  ($P$)  zamijenite sa 420 i diskutujte optimalna rješenja  ($P$)  i  ($D$)  na sličan način kako je urađeno  u samom primjeru.
-
-\item Ako je primalni problem ($P$) neograničen (ima neograničenu funkciju cilja), njegov dual nije dopustiv. Dokazati.
-\item Pokazati da vrijede odnosi dati u Tabeli~\ref{tab:primal-dual-relation}.
-\item Istražiti verziju simpleks metoda zvanu \emph{Dualni simpleks metod}.
-\item Koristeći Farkaš-ovu lemu, pokazati sljedeći rezultat. 
- 
+	\item    	Napišite odgovarajući dual linearnog programa:
+	\begin{align*}
+		&\min 3 x_1 - 2 x_2 + 4 x_3 \\
+		& \mbox{t.d.} \\
+		& 3x_1 + 5 x_2 + 4 x_3 \geq 7 \\
+		& 6 x_1 + x_2 + 3 x_3 \geq 4 \\
+		& 7 x_1 - 2 x_2 - x_3 \leq 10 \\
+		& x_1 - 2 x_2 + 5 x_3 \geq 3 \\
+		& 4 x_1 + 7 x_2 - 2 x_3 \geq 2 \\
+		& x_1, x_2, x_3 \geq 0.
+	\end{align*}
+	\item Napišite dual sljedećeg linearnog programa:
+	\begin{align*}
+		&\min x_1 - 3 x_2 - 2 x_3 \\
+		&\mbox{t.d.} \\
+		& 3 x_1 - x_2 + 2 x_3 \leq 7 \\
+		& 2 x_1 - 4 x_2 \geq 12 \\
+		& -4x_1 + 3x_2 + 8 x_3 = 10 \\
+		& x_1, x_2\geq 0 \\
+		& x_3 \in \mathbb{R}. 
+	\end{align*}
+	\item %http://www.nitjsr.ac.in/course_assignment/CA02CA3103%20RMTLPP:%20Duality.pdf
+	Pokazati da je dual dualnog problema ponovo primalni problem ($P$).
+	
+	\item Vratite se na Primjer~\ref{primjer:dual}. Vrijednost 210 u drugom ograničenju primarnog problema  ($P$)  zamijenite sa 420 i diskutujte optimalna rješenja  ($P$)  i  ($D$)  na sličan način kako je urađeno  u samom primjeru.
+	
+	\item Ako je primalni problem ($P$) neograničen (ima neograničenu funkciju cilja), njegov dual nije dopustiv. Dokazati.
+	\item Pokazati da vrijede odnosi dati u Tabeli~\ref{tab:primal-dual-relation}.
+	\item Istražiti verziju simpleks metoda zvanu \emph{Dualni simpleks metod}.
+	\item Koristeći Farkaš-ovu lemu, pokazati sljedeći rezultat. 
+	
 	Tačno jedan od sljedećih sistema ima rješenje:%https://web.stanford.edu/class/msande310/hw2sol.pdf
 	\begin{enumerate}
 		\item $Ax > 0$; 
 		\item $y^T A = 0, y \geq 0, y \neq 0.$
 	\end{enumerate}
- \item Koristeći Farkaš-ovu lemu, pokazati sljedeći rezultat. 	Tačno jedan od sljedećih sistema ima rješenje:%https://web.stanford.edu/class/msande310/hw2sol.pdf
- \begin{enumerate}
- 	\item $Ax \leq b$; 
- 	\item $y^T A = 0, y^T b < 0, y \geq 0.$
- \end{enumerate}
- \item  %https://www.cs.cmu.edu/~odonnell/toolkit13/lecture13-anonymous.pdf
- Koristeći Fourijer-Mockin-ovu eliminaciju, pokazati da postoji rješenje za sljedeći sistem nejednačina:
- \begin{align*} 
- 	&x - 5y + 2 z \geq 7 \\
- 	&3x - 2y - 6 z \geq -12 \\
- 	& -2x + 5y - 4z \geq -10 \\
- 	& -3x + 6y - 3z \geq -9 \\
- 	& -10 y + z \geq -15 \\  
- 	& x,y,z \geq 0.
- \end{align*}
-\item Pomoću Fourijer-Mockin-ovu eliminacije, pokazati sa je sistem 
-\begin{align*}
-	&x_1 \geq 0 \\
-	&x_2 \geq 0 \\
-	& x_1 + x_2 \leq -2 \\
-\end{align*}
-nedopustiv.%https://people.inf.ethz.ch/fukudak/lect/opt2011/aopt11note4.pdf
-
-\item Neka su $x^0$ i $y^0$ dopustive tačke za polazni (kanonski) LP i njegov dual. Dokazati da su te dvije tačke optimalne ako i samo ako važi 
-
-$$\langle Ax^0-b,y^0\rangle=\langle A^Ty^0-c,x^0\rangle=0$$
-
-\item Formirati dualan LP za problem
-$$\min -x_1+2x_2+3x_3$$
-t.d.
-\begin{align}
-	& x_1-x_2+2x_3=1\nonumber\\
-	& 2x_1+x_2\leqslant 3\nonumber \\
-	& x \geq 0\nonumber \\
-	& x_1\leqslant 0,\ x_2\geqslant 0, x_3\geqslant 0 \nonumber
-\end{align}
-pa riješiti oba problema.
-
-\item Koristeći teoriju dualnosti, riješiti problem linearnog programiranja
-
-$$\min x_1+x_2+\cdots nx_n$$
-
-pri uslovima
-$$
-\begin{aligned}
-	& x_1\geqslant 1\\
-	& x_1+x_2\geqslant 2 \\
-	& \cdots\\
-	& x_1+x_2+\cdots+x_n\geqslant n\\
-	&x_1\geqslant 0,\ x_2\geqslant 0,\cdots,x_n\geqslant 0.
-\end{aligned}$$
+	\item Koristeći Farkaš-ovu lemu, pokazati sljedeći rezultat. 	Tačno jedan od sljedećih sistema ima rješenje:%https://web.stanford.edu/class/msande310/hw2sol.pdf
+	\begin{enumerate}
+		\item $Ax \leq b$; 
+		\item $y^T A = 0, y^T b < 0, y \geq 0.$
+	\end{enumerate}
+	\item  %https://www.cs.cmu.edu/~odonnell/toolkit13/lecture13-anonymous.pdf
+	Koristeći Fourijer-Mockin-ovu eliminaciju, pokazati da postoji rješenje za sljedeći sistem nejednačina:
+	\begin{align*} 
+		&x - 5y + 2 z \geq 7 \\
+		&3x - 2y - 6 z \geq -12 \\
+		& -2x + 5y - 4z \geq -10 \\
+		& -3x + 6y - 3z \geq -9 \\
+		& -10 y + z \geq -15 \\  
+		& x,y,z \geq 0.
+	\end{align*}
+	\item Pomoću Fourijer-Mockin-ovu eliminacije, pokazati sa je sistem 
+	\begin{align*}
+		&x_1 \geq 0 \\
+		&x_2 \geq 0 \\
+		& x_1 + x_2 \leq -2 \\
+	\end{align*}
+	nedopustiv.%https://people.inf.ethz.ch/fukudak/lect/opt2011/aopt11note4.pdf
+	
+	\item Neka su $x^0$ i $y^0$ dopustive tačke za polazni (kanonski) LP i njegov dual. Dokazati da su te dvije tačke optimalne ako i samo ako važi 
+	
+	$$\langle Ax^0-b,y^0\rangle=\langle A^Ty^0-c,x^0\rangle=0$$
+	
+	\item Formirati dualan LP za problem
+	$$\min -x_1+2x_2+3x_3$$
+	t.d.
+	\begin{align}
+		& x_1-x_2+2x_3=1\nonumber\\
+		& 2x_1+x_2\leqslant 3\nonumber \\
+		& x \geq 0\nonumber \\
+		& x_1\leqslant 0,\ x_2\geqslant 0, x_3\geqslant 0 \nonumber
+	\end{align}
+	pa riješiti oba problema.
+	
+	\item Koristeći teoriju dualnosti, riješiti problem linearnog programiranja
+	
+	$$\min x_1+x_2+\cdots nx_n$$
+	
+	pri uslovima
+	$$
+	\begin{aligned}
+		& x_1\geqslant 1\\
+		& x_1+x_2\geqslant 2 \\
+		& \cdots\\
+		& x_1+x_2+\cdots+x_n\geqslant n\\
+		&x_1\geqslant 0,\ x_2\geqslant 0,\cdots,x_n\geqslant 0.
+	\end{aligned}$$
 \end{enumerate}
 %\newpage
 \chapter{Cjelobrojno linearno programiranje}\label{chp:ilp}
@@ -2488,10 +2489,10 @@ $$
 U mnogim realnim problemima, promjenljive odluke ne dobijaju neprekidne, već isključivo diskretne vrijednosti. Npr. kod problema dodjele poslova određenim mašinama, zahtijevaju se promjenljive koje su diskretnog tipa, kojima se definiše koji posao će biti dodijeljen kojoj mašini. U slučaju da su u nekom modelu sve promjenljive odluke cjelobrojne, tada kažemo da je riječ o problemu \emph{cjelobrojnog programiranja} (eng. \emph{Integer programming}). 
 U ovoj glavi ćemo analizirati koncepte   \emph{cjelobrojnog linearnog programiranja} (ILP), gdje se, pored integralnosti (cjelobrojnosti) promjenljivih, zahtijeva da funkcija cilja  i sva ograničenja u modelu budu linearni izrazi po promjenljivima. Prema tome, ILP ima opšti oblik:
 \begin{align}
-    & \max c^T x \nonumber\\
-    & A x \leq b \nonumber \\
-    & x \geq 0 \nonumber\\
-    & x_i \in \mathbb{Z}, \mbox{ za sve } i. \label{ilp-formulation}
+	& \max c^T x \nonumber\\
+	& A x \leq b \nonumber \\
+	& x \geq 0 \nonumber\\
+	& x_i \in \mathbb{Z}, \mbox{ za sve } i. \label{ilp-formulation}
 \end{align}
 
 Problemi cjelobrojnog linearnog programiranja se veoma često sreću i u teoriji i u praksi, te je, samim tim, važno poznavati i tehnike rješavanje ovih problema. Sa druge strane, pokazuje se da je rješavanje ovih problema u velikom broju slučajeva značajno teže nego rješavanje klasičnih problema linearnog programiranja. U narednom odjeljku ćemo modelovati nekoliko poznatih optimizationih problema pomoću koncepta cjelobrojnog linearnog programiranja. U Odjeljku~\ref{sec:transformILP} ćemo prikazati neke korisne tehnike transformacije nekih nelinearnih izraza u IP kako bi se dobio ekvivalentan ILP model. U Odjeljku~\ref{sec:kompleksnostILP} ćemo pokazati da je rješavanje ILP-a NP težak problem. Tehnike rješavanja ILP-a ćemo detaljnije razmatrati u Glavi~\ref{chap:rjesavanjeILP}.
@@ -2499,88 +2500,88 @@ Problemi cjelobrojnog linearnog programiranja se veoma često sreću i u teoriji
 
 
 \begin{primjer}
-\emph{Cjelobrojni problem jednodimenzionalnog ruksaka.} Neka je dato $n$ proizvoda i neka je težina $i$-tog proizvoda jednaka $w_i$, dok je vrijednost $i$-tog proizvoda jednaka $c_i$, $i=1,\ldots,n$. Koje od proizvoda treba da stavimo u ruksak , čija je maksimalna težina (kapacitet) $C>0$, tako da   vrijednost proizvoda u ruksaku bude maksimalna, poštujući  kapacitet  ruksaka? 
-
-\emph{Rješenje}. Definišimo promjenljive odluke $x_i$, koje dobijaju vrijednost 1 ako  $i$-ti proizvod uključujemo u ruksak, odnosno, vrijednost 0, ako $i$-ti proizvod nije uključen u ruksak, za $i=1,\ldots,n$. Ograničenje kapaciteta ruksaka se modeluje sa $\sum_{i=1}^n w_i x_i \leq C$. Funkcija cilja maksimizuje ukupnu vrijednost odabranih proizvoda i modeluje se uz pomoć linearne kombinacije $f(x) = \sum_{i=1}^n c_i x_i$. 
+	\emph{Cjelobrojni problem jednodimenzionalnog ruksaka.} Neka je dato $n$ proizvoda i neka je težina $i$-tog proizvoda jednaka $w_i$, dok je vrijednost $i$-tog proizvoda jednaka $c_i$, $i=1,\ldots,n$. Koje od proizvoda treba da stavimo u ruksak , čija je maksimalna težina (kapacitet) $C>0$, tako da   vrijednost proizvoda u ruksaku bude maksimalna, poštujući  kapacitet  ruksaka? 
+	
+	\emph{Rješenje}. Definišimo promjenljive odluke $x_i$, koje dobijaju vrijednost 1 ako  $i$-ti proizvod uključujemo u ruksak, odnosno, vrijednost 0, ako $i$-ti proizvod nije uključen u ruksak, za $i=1,\ldots,n$. Ograničenje kapaciteta ruksaka se modeluje sa $\sum_{i=1}^n w_i x_i \leq C$. Funkcija cilja maksimizuje ukupnu vrijednost odabranih proizvoda i modeluje se uz pomoć linearne kombinacije $f(x) = \sum_{i=1}^n c_i x_i$. 
 \end{primjer}
 \begin{primjer}
-\emph{Jedan problem rasporeda radnika u dežurstvu}. Uprava bolnice želi da napravi raspored dežurstva po sedmičnim noćnim smjenama za svoje medicinske sestre.  Potrebno je da broj medicinskih sestara u noćnoj smjeni za $j$--ti dan bude barem (cio broj) $d_j, j = 1,\ldots 7$. Svaka
-medicinska sestra radi pet dana zaredom u noćnoj smjeni. 
-
-\emph{Pronaći minimalan broj medicinskih sestara koje bolnica treba da zaposli, da bi se takve smjene mogle organizovati.}
-
-\emph{Rješenje}. Označimo sa $x_i$ broj medicinskih sestara koje svoju noćnu smjenu započinju na $i$-ti dan. Potrebno je minimizovati funkciju 
-$f = \sum_{i=1}^7 x_i$ pod uslovima da su ispunjeni zahtjevi za brojem medicinskih sestara, što je modelovano sa:
-\begin{itemize}
-	\item $x_1 + x_2 + x_3 + x_4 + x_5 \geq d_5 $
-	\item $x_2 + x_3 + x_4 + x_5 + x_6 \geq d_6$
-	\item $x_3 + x_4 + x_5 + x_6 + x_7 \geq d_7$
-	\item $x_4 + x_5 + x_6 + x_7 + x_1 \geq d_1 $
-	\item $x_5 + x_6 + x_7 + x_1 + x_2   \geq d_2$
-	\item $x_6 + x_7 + x_1 + x_2 + x_3  \geq d_3$
-	\item $  x_7 + x_1 + x_2 + x_3 + x_4 \geq d_4$
-\end{itemize}
-uz nenegativne uslove 
-\begin{itemize}
-	\item $x_i \geq 0, x_i \in \mathbb{Z}$, $j=1,\ldots,7.$
-\end{itemize}
-Primijetimo da su u ovom problemu promjenljive  cjelobrojne. Primijetimo da sve varijable figurišu u tačno pet ograničenja, što odgovara uslovu da svaka od sestara radi pet dana zaredom u noćnoj smjeni.
-%Ovaj model pripada paradigmi cjelobrojnog linearnog programiranja.
+	\emph{Jedan problem rasporeda radnika u dežurstvu}. Uprava bolnice želi da napravi raspored dežurstva po sedmičnim noćnim smjenama za svoje medicinske sestre.  Potrebno je da broj medicinskih sestara u noćnoj smjeni za $j$--ti dan bude barem (cio broj) $d_j, j = 1,\ldots 7$. Svaka
+	medicinska sestra radi pet dana zaredom u noćnoj smjeni. 
+	
+	\emph{Pronaći minimalan broj medicinskih sestara koje bolnica treba da zaposli, da bi se takve smjene mogle organizovati.}
+	
+	\emph{Rješenje}. Označimo sa $x_i$ broj medicinskih sestara koje svoju noćnu smjenu započinju na $i$-ti dan. Potrebno je minimizovati funkciju 
+	$f = \sum_{i=1}^7 x_i$ pod uslovima da su ispunjeni zahtjevi za brojem medicinskih sestara, što je modelovano sa:
+	\begin{itemize}
+		\item $x_1 + x_2 + x_3 + x_4 + x_5 \geq d_5 $
+		\item $x_2 + x_3 + x_4 + x_5 + x_6 \geq d_6$
+		\item $x_3 + x_4 + x_5 + x_6 + x_7 \geq d_7$
+		\item $x_4 + x_5 + x_6 + x_7 + x_1 \geq d_1 $
+		\item $x_5 + x_6 + x_7 + x_1 + x_2   \geq d_2$
+		\item $x_6 + x_7 + x_1 + x_2 + x_3  \geq d_3$
+		\item $  x_7 + x_1 + x_2 + x_3 + x_4 \geq d_4$
+	\end{itemize}
+	uz nenegativne uslove 
+	\begin{itemize}
+		\item $x_i \geq 0, x_i \in \mathbb{Z}$, $j=1,\ldots,7.$
+	\end{itemize}
+	Primijetimo da su u ovom problemu promjenljive  cjelobrojne. Primijetimo da sve varijable figurišu u tačno pet ograničenja, što odgovara uslovu da svaka od sestara radi pet dana zaredom u noćnoj smjeni.
+	%Ovaj model pripada paradigmi cjelobrojnog linearnog programiranja.
 \end{primjer}
 \begin{primjer}
-\emph{Problem oglašavanja}. Kompanija želi da se oglašava u medijima. Postoji nekoliko načina oglašavanja:  televizijsko, novinsko i radio oglašavanje. Cijena svakog medija sa pokrivenošću publike navedena je u Tabeli~\ref{tab:tab_model_advertising}.
-
-\begin{table}[!ht]
-	\centering
-	\begin{tabular}{l|c|c|c} \hline
-		\                  & Televizija & Novine & Radio  \\ \hline
-		Cijena po oglašavanju      & 2000       & 600    & 300    \\
-		Broj gledalaca/slušalaca/čitalaca      & 10000      & 4000  & 1800 \\ \hline
-	\end{tabular}
-	\caption{Cijene reklama sa brojem gledalaca/slušalaca/čitalaca.}
-	\label{tab:tab_model_advertising}
-\end{table}
-  
-
-Novine ograničavaju broj oglasa za kompanije na deset (po sedmici). Štaviše, kako bi se uravnotežilo oglašavanje između sve tri vrste medija, na radiju se ne smije pojaviti više od polovine ukupnog broja oglasa za kompaniju. Najmanje 10\% od svih oglasa bi se trebalo pojaviti na televiziji. Sedmični budžet za oglašavanje date kompanije iznosi 18200KM. 
-
-\emph{Koliko oglasa treba zakupiti za svaku od tri vrste medija sa ciljem povećanja ukupnog broja gledalaca?}
-
-\emph{Rješenje}.   Označimo sa $x_1$ broj oglasa na televiziji, sa $x_2$ broj oglasa u novinama i $x_3$ broj oglasa na radiju. Potrebno je maksimizovati   uspješnost oglašavanja, tj. funkciju 
-$f(x) = 10000 x_1 + 4000 x_2 + 18000 x_3.$ Uslovi pod kojima tražimo rješenja su modelovani na sljedeći način:
-\begin{itemize}
-	\item $2000 x_1 + 600 x_2 + 300 x_3 \leq 18200$ (uslov za cijenu);
-	\item  $ x_2 \leq 10$ (limit na broj reklama u novinama);
-	\item $x_1 + x_2 \geq x_3$ (uslov za maksimalno polovinu oglašavanja na radiju);
-	\item ${x_1}\geq 0.1\cdot (x_1 + x_2 + x_3)$ (uslov za broj reklama na televiziji);
-	\item $x_i \geq 0, x_i \in \mathbb{Z}, i=1,2,3$.
-\end{itemize}
-
-%U ovom problemu možemo još primijetiti da u funkciji cilja   
-%nisu korišteni egzaktni koeficijenti (za broj gledalaca) već brojevi koji su proporcionalni nekoj vrijednosti (1000). Takve transformacije su invarijantne i ne utiču na potragu za optimalnim rješenjem  problema, a doprinose većoj čitljivosti modela.
+	\emph{Problem oglašavanja}. Kompanija želi da se oglašava u medijima. Postoji nekoliko načina oglašavanja:  televizijsko, novinsko i radio oglašavanje. Cijena svakog medija sa pokrivenošću publike navedena je u Tabeli~\ref{tab:tab_model_advertising}.
+	
+	\begin{table}[!ht]
+		\centering
+		\begin{tabular}{l|c|c|c} \hline
+			\                  & Televizija & Novine & Radio  \\ \hline
+			Cijena po oglašavanju      & 2000       & 600    & 300    \\
+			Broj gledalaca/slušalaca/čitalaca      & 10000      & 4000  & 1800 \\ \hline
+		\end{tabular}
+		\caption{Cijene reklama sa brojem gledalaca/slušalaca/čitalaca.}
+		\label{tab:tab_model_advertising}
+	\end{table}
+	
+	
+	Novine ograničavaju broj oglasa za kompanije na deset (po sedmici). Štaviše, kako bi se uravnotežilo oglašavanje između sve tri vrste medija, na radiju se ne smije pojaviti više od polovine ukupnog broja oglasa za kompaniju. Najmanje 10\% od svih oglasa bi se trebalo pojaviti na televiziji. Sedmični budžet za oglašavanje date kompanije iznosi 18200KM. 
+	
+	\emph{Koliko oglasa treba zakupiti za svaku od tri vrste medija sa ciljem povećanja ukupnog broja gledalaca?}
+	
+	\emph{Rješenje}.   Označimo sa $x_1$ broj oglasa na televiziji, sa $x_2$ broj oglasa u novinama i $x_3$ broj oglasa na radiju. Potrebno je maksimizovati   uspješnost oglašavanja, tj. funkciju 
+	$f(x) = 10000 x_1 + 4000 x_2 + 18000 x_3.$ Uslovi pod kojima tražimo rješenja su modelovani na sljedeći način:
+	\begin{itemize}
+		\item $2000 x_1 + 600 x_2 + 300 x_3 \leq 18200$ (uslov za cijenu);
+		\item  $ x_2 \leq 10$ (limit na broj reklama u novinama);
+		\item $x_1 + x_2 \geq x_3$ (uslov za maksimalno polovinu oglašavanja na radiju);
+		\item ${x_1}\geq 0.1\cdot (x_1 + x_2 + x_3)$ (uslov za broj reklama na televiziji);
+		\item $x_i \geq 0, x_i \in \mathbb{Z}, i=1,2,3$.
+	\end{itemize}
+	
+	%U ovom problemu možemo još primijetiti da u funkciji cilja   
+	%nisu korišteni egzaktni koeficijenti (za broj gledalaca) već brojevi koji su proporcionalni nekoj vrijednosti (1000). Takve transformacije su invarijantne i ne utiču na potragu za optimalnim rješenjem  problema, a doprinose većoj čitljivosti modela.
 \end{primjer}
 \begin{primjer}
-
-%https://www.math.unipd.it/~luigi/courses/metmodoc1819/m01.modelli.00.en.pdf
-\emph{Problem pokrivanja}. Telefonska kompanija želi da instalira antene na neka mjesta kako bi pokrila šest oblasti. Postoji pet mogućih mjesta za instaliranje antena. Nakon urađenih simulacija, za svaku oblast utvrđen je intenzitet signala koji antena šalje, kad je postavljena na određenom mjestu. Tabela~\ref{tab:tb-3} daje   primjer jedne instance problema sa nivoima intenziteta signala.
-
-\begin{table}[!ht]
-	\centering
-	\begin{tabular}{c|cccccc} \hline
-		\              & oblast1 & oblast 2 & oblast 3 & oblast 4 & oblast 5 & oblast 6 \\ \hline
-		Mjesto $A$     & 10  & 20 & 16 & 25 & 0   & 10   \\
-		Mjesto $B$     & 0   & 12 & 18 &  23 & 11 & 6   \\
-		Mjesto $C$     & 21  &  8 & 5  &  6 & 23  &  19 \\
-		Mjesto $D$    &  16 &  15 & 15 &  8 & 14 & 18   \\
-		Mjesto $E $    &  21 & 13 & 13 & 17 & 18  & 22    \\ \hline
-	\end{tabular}
-	\caption{Intenziteti signala.}
-	\label{tab:tb-3}
-\end{table}
-
-Prijemnici prepoznaju samo signale čija je jačina najmanje   $d>0$. Nadalje, ne može da se desi da više od jednog signala  dostiže jačinu signala $d$ u istoj oblasti, inače bi to prouzrokovalo smetnje u prijemu. %Na kraju, antena se može postaviti na mjesto $E$ samo ako je antena instalirana i na mjestu $D$ (ova antena bi služila kao most). 
-
-\emph{Potrebno je odrediti gdje treba postaviti antene kako bi se signalom pokrio maksimalan broj oblasti.}
+	
+	%https://www.math.unipd.it/~luigi/courses/metmodoc1819/m01.modelli.00.en.pdf
+	\emph{Problem pokrivanja}. Telefonska kompanija želi da instalira antene na neka mjesta kako bi pokrila šest oblasti. Postoji pet mogućih mjesta za instaliranje antena. Nakon urađenih simulacija, za svaku oblast utvrđen je intenzitet signala koji antena šalje, kad je postavljena na određenom mjestu. Tabela~\ref{tab:tb-3} daje   primjer jedne instance problema sa nivoima intenziteta signala.
+	
+	\begin{table}[!ht]
+		\centering
+		\begin{tabular}{c|cccccc} \hline
+			\              & oblast1 & oblast 2 & oblast 3 & oblast 4 & oblast 5 & oblast 6 \\ \hline
+			Mjesto $A$     & 10  & 20 & 16 & 25 & 0   & 10   \\
+			Mjesto $B$     & 0   & 12 & 18 &  23 & 11 & 6   \\
+			Mjesto $C$     & 21  &  8 & 5  &  6 & 23  &  19 \\
+			Mjesto $D$    &  16 &  15 & 15 &  8 & 14 & 18   \\
+			Mjesto $E $    &  21 & 13 & 13 & 17 & 18  & 22    \\ \hline
+		\end{tabular}
+		\caption{Intenziteti signala.}
+		\label{tab:tb-3}
+	\end{table}
+	
+	Prijemnici prepoznaju samo signale čija je jačina najmanje   $d>0$. Nadalje, ne može da se desi da više od jednog signala  dostiže jačinu signala $d$ u istoj oblasti, inače bi to prouzrokovalo smetnje u prijemu. %Na kraju, antena se može postaviti na mjesto $E$ samo ako je antena instalirana i na mjestu $D$ (ova antena bi služila kao most). 
+	
+	\emph{Potrebno je odrediti gdje treba postaviti antene kako bi se signalom pokrio maksimalan broj oblasti.}
 \end{primjer}
 %https://www.math.unipd.it/~luigi/courses/metmodoc1920/m01.modelli.00.en.beamer.pdf
 \emph{Rješenje}. Posmatrajmo ovaj problem malo opštije i definišimo: 
@@ -2599,165 +2600,165 @@ Funkcija cilja je data sa:
 $$ f(x) = \min \sum_{j \in J} z_j $$
 tako da
 \begin{align}
-	   & \sum_{\{i \in I \mid \sigma_{ij} \geq d \}} x_i \geq z_j, \forall j \in J \label{const:ob-1}\\
-	   &\sum_{\{i \in I \mid \sigma_{ij} \geq d \}} x_i  \leq N + M_j( 1 - z_j), \forall j \in J \label{const:bound-2} \\ 
-	   & x_i, z_j \in\{0, 1\}, \forall i \in I, \forall j \in J   \label{const:vars-3}
+	& \sum_{\{i \in I \mid \sigma_{ij} \geq d \}} x_i \geq z_j, \forall j \in J \label{const:ob-1}\\
+	&\sum_{\{i \in I \mid \sigma_{ij} \geq d \}} x_i  \leq N + M_j( 1 - z_j), \forall j \in J \label{const:bound-2} \\ 
+	& x_i, z_j \in\{0, 1\}, \forall i \in I, \forall j \in J   \label{const:vars-3}
 \end{align}
 
-Ograničenje (\ref{const:ob-1}) zahtjeva da ukoliko je oblast pokrivena signalom, tj. ako je $z_j = 1$, tada mora postojati neko mjesto $i \in I$ koji ima antenu jačine barem $d$ koja pokriva tu oblast. U slučaju da je $z_j=0$, ovo ograničenje je redundantno. 
+Ograničenje (\ref{const:ob-1}) zahtijeva da, ukoliko je oblast pokrivena signalom, tj. ako je $z_j = 1$, tada mora postojati neko mjesto $i \in I$ koji ima antenu jačine barem $d$ koja pokriva tu oblast. U slučaju da je $z_j=0$, ovo ograničenje je redundantno. 
 
- Ograničenje~(\ref{const:bound-2}) ograničava maksimalnom broju signala koje prijemnici u oblasti $j\in J$ mogu obraditi. Opširnije, ako je objast $j\in J$ pokrivena, tj. $z_j=1$, onda     ne može više od $N$ (dovoljno jakih) signala da bude prihvaćeno predajnikom u oblasti $j \in J$. U slučaju da je $z_j = 0$, ovo ograničenje postaje redundantno, jer je ova oblast isključena iz rješenja, pa nas broj signala koji se šalje predajniku u toj oblasti ne tiče. Ovo je takozvano big-M ograničenje, i sa njim ćemo se pozabaviti u narednom sekcijama. 
+Ograničenje~(\ref{const:bound-2}) ograničava maksimalan broj signala koje prijemnici u oblasti $j\in J$ mogu obraditi. Preciznije, ako je oblast $j\in J$ pokrivena, tj. $z_j=1$, onda  predajnikom u oblasti $j \in J$ ne može da bude prihvaćeno više od $N$ (dovoljno jakih) signala. U slučaju da je $z_j = 0$, ovo ograničenje postaje redundantno, jer je ova oblast isključena iz rješenja, zbog čega i ukupan broj signala koji se šalje predajniku nije relevantan. Treba napomenuti da je ovo takozvano \emph{big-M} ograničenje, koje ćemo analizirati u narednim sekcijama.
 
- U (\ref{const:vars-3}) su date logičke varijable, čija je svrha  već prethodno objašnjena. 
- 
+Ograničenjima (\ref{const:vars-3}) definisana je binarna priroda promjenljivih. 
+
 %\printbibliography[heading=subbibliography,notkeyword=this]
 \begin{primjer}
-\emph{Jedan lokacijski problem}. Lokacijski problemi se često postavljaju na sljedeći način: pretpostavimo da postoji $n$ postrojenja (prodavnica)  i  $m$ kupaca. Dva pitanja koja treba da budu obuhvaćena rješenjem su:
-\begin{enumerate}
-	\item koja od $n$ postrojenja otvoriti i
-	\item koje  postrojenje koristiti za opsluživanje pojedinih kupaca, kako bi se zadovoljila fiksna potražnja svakog od kupaca uz minimalni trošak otvaranja postrojenja.
-\end{enumerate}
-Prije nego što modelujemo ovaj problem, uvedimo sljedeću notaciju.
-\begin{itemize}
-	\item  $f_{i}$: označava (fiksni) trošak otvaranja postrojenja $i$, za  $ i = 1,  \ldots, n$;
-	\item $c_{ij}$: označava troškove zadovoljenja potražnje  kupca $j$ od strane postrojenja $i$ (cijena dostave, cijena proizvoda,  itd.), $i = 1, \ldots, n$, $j = 1,  \ldots, m$;
-	\item $d_{j}$: označava ukupnu potražnju kupca $j$, $j = 1, \ldots, m$;
-	\item $u_{i}$: označava maksimalnu količinu proizvoda (kapacitet zadovoljenja) koji se mogu nabaviti u postrojenju $i$, tj. $u_{i}$ je kapacitet postrojenja $i$.
-\end{itemize}
-Definišimo sljedeće varijable odlučivanja:
-
-\begin{itemize}
-	\item $x_i \in \{0,1\}$, gdje je $x_i = 1$ ak je postrojenje $i$ otvoreno, a inače 0.
-	\item $y_{ij} \in \mathbb{R}^+$  označava dio ukupne potražnje $d_j$ kupca $j$ koja je ispunjena u prodavnici $i$.  
-\end{itemize}
-
-\emph{Rješenje}. Funkcija cilja problema je data sa:
-\begin{align}
- \min f = \sum_{i=1}^n f_i x_i  + \sum_{i,j} c_{ij} y_{ij} d_j, \label{const:location-objective}
- \end{align}
-pod uslovima
- 
-\begin{align}
-	  &\sum_{i} y_{ij} = 1, \forall j\in\{1,\ldots,m\}\label{const:location-1} \\
-	  &~\sum_{j} d_j y_{ij} \leq u_i x_i, \forall i \in \{1,\ldots,n\}\label{const:location-2}.
-\end{align}
-
-Funkcija cilja (\ref{const:location-objective}) minimizuje ukupnu cijenu zadovojenja  (dijela) potreba kupaca u postrojenjima i cijene otvaranja postrojenja. 
-
-Ograničenje (\ref{const:location-1}) daje da su potrebe svakog kupca zadovoljene.  
-Ograničenje (\ref{const:location-2}) ograničava da, ukoliko je postrojenje $i$ otovoreno, ono može da ponudi kupcima onoliko koliko mu njegov kapacitet dozvoljava.  
-
-
-Ovaj model pripada modelu \emph{mješovitnog linearnog programiranja}, gdje u istom modelu postoje i cjelobrojne i neprekidne promjenljive.
+	\emph{Jedan lokacijski problem}. Lokacijski problemi se često postavljaju na sljedeći način: pretpostavimo da postoji $n$ postrojenja (prodavnica)  i  $m$ kupaca. Dva pitanja koja treba da budu obuhvaćena rješenjem su:
+	\begin{enumerate}
+		\item koja od $n$ postrojenja otvoriti i
+		\item koje  postrojenje koristiti za opsluživanje pojedinih kupaca, kako bi se zadovoljila fiksna potražnja svakog od kupaca uz minimalni trošak otvaranja postrojenja.
+	\end{enumerate}
+	Prije nego što modelujemo ovaj problem, uvedimo sljedeću notaciju.
+	\begin{itemize}
+		\item  $f_{i}$: označava (fiksni) trošak otvaranja postrojenja $i$, za  $ i = 1,  \ldots, n$;
+		\item $c_{ij}$: označava troškove zadovoljenja potražnje  kupca $j$ od strane postrojenja $i$ (cijena dostave, cijena proizvoda,  itd.), $i = 1, \ldots, n$, $j = 1,  \ldots, m$;
+		\item $d_{j}$: označava ukupnu potražnju kupca $j$, $j = 1, \ldots, m$;
+		\item $u_{i}$: označava maksimalnu količinu proizvoda (kapacitet zadovoljenja) koji se mogu nabaviti u postrojenju $i$, tj. $u_{i}$ je kapacitet postrojenja $i$.
+	\end{itemize}
+	Definišimo sljedeće varijable odlučivanja:
+	
+	\begin{itemize}
+		\item $x_i \in \{0,1\}$, gdje je $x_i = 1$ ak je postrojenje $i$ otvoreno, a inače 0.
+		\item $y_{ij} \in \mathbb{R}^+$  označava dio ukupne potražnje $d_j$ kupca $j$ koja je ispunjena u prodavnici $i$.  
+	\end{itemize}
+	
+	\emph{Rješenje}. Funkcija cilja problema je data sa:
+	\begin{align}
+		\min f = \sum_{i=1}^n f_i x_i  + \sum_{i,j} c_{ij} y_{ij} d_j, \label{const:location-objective}
+	\end{align}
+	pod uslovima
+	
+	\begin{align}
+		&\sum_{i} y_{ij} = 1, \forall j\in\{1,\ldots,m\}\label{const:location-1} \\
+		&~\sum_{j} d_j y_{ij} \leq u_i x_i, \forall i \in \{1,\ldots,n\}\label{const:location-2}.
+	\end{align}
+	
+	Funkcija cilja (\ref{const:location-objective}) minimizuje ukupnu cijenu zadovojenja  (dijela) potreba kupaca u postrojenjima i cijene otvaranja postrojenja. 
+	
+	Ograničenje (\ref{const:location-1}) daje da su potrebe svakog kupca zadovoljene.  
+	Ograničenje (\ref{const:location-2}) ograničava da, ukoliko je postrojenje $i$ otovoreno, ono može da ponudi kupcima onoliko koliko mu njegov kapacitet dozvoljava.  
+	
+	
+	Ovaj model pripada modelu \emph{mješovitnog linearnog programiranja}, gdje u istom modelu postoje i cjelobrojne i neprekidne promjenljive.
 \end{primjer}
 
 Sljedeći primjer spada u modele \emph{binarnog linearnog programiranja}. 
 
 \begin{primjer}
 	
-\emph{Problem postrojenja sa neograničenim kapacitetom.}
-Čest slučaj je varijacija prethodnog problema lokacija gdje je $ u_{i} = + \infty,i=1\ldots,m$. U ovom slučaju optimalna strategija se sastoji u zadovoljenju kompletne (neparcijalne) potražnje kupca $j$ iz najbližeg otvorenog objekta. Zbog toga, neprekidne promjenljive  $y_{ij}$ možemo zamijeniti binarnim promjenljivima $z_{ij}$, $i=1,\ldots,n, j=1,\ldots,m$ pri čemu promjenljiva dobija vrijednost 1 ako je kupac $j$ snabdjeven od strane postrojenja $i$. Prema tome, model izgleda ovako:
-
-\begin{align*}
-	&\sum_{i=1}^n f_i x_i  + \sum_{i,j} c_{ij} z_{ij} d_j \rightarrow \min\\
-	& t.d. \nonumber \\
-	& \sum_{i} z_{ij} = 1, \forall j\in\{1,\ldots,m\} \\
-	& \sum_{j} d_j z_{ij} \leq M x_i, \forall i \in \{1,\ldots,n\} \\
-	& x_i, z_{ij} \in \{0,1\} \mbox{ za } i = 1, \ldots, n, j = 1,  \ldots, m.
-\end{align*}
-Vrijednost $M>0$ je konstanta koja uzima neku veliku vrijednost (npr. zbir količine potražnji svih kupaca). Međutim, u praksi se često  izbjegava upotreba $M$-konstante, te se tako 
- ovo ograničenje zamjenjuje sa $ z_{ij} \leq x_i$ 
-za $ i = 1, \ldots, n, j = 1,  \ldots, m$. % Ovakav pristup osigurava bolje performanse, jer se generišu preciznije linearne relaksacije o kojima će biti riječi u narednim sekcijama.
+	\emph{Problem postrojenja sa neograničenim kapacitetom.}
+	Čest slučaj je varijacija prethodnog problema lokacija gdje je $ u_{i} = + \infty,i=1\ldots,m$. U ovom slučaju optimalna strategija se sastoji u zadovoljenju kompletne (neparcijalne) potražnje kupca $j$ iz najbližeg otvorenog objekta. Zbog toga, neprekidne promjenljive  $y_{ij}$ možemo zamijeniti binarnim promjenljivima $z_{ij}$, $i=1,\ldots,n, j=1,\ldots,m$ pri čemu promjenljiva dobija vrijednost 1 ako je kupac $j$ snabdjeven od strane postrojenja $i$. Prema tome, model izgleda ovako:
+	
+	\begin{align*}
+		&\min \sum_{i=1}^n f_i x_i  + \sum_{i,j} c_{ij} z_{ij} d_j \\
+		& t.d. \nonumber \\
+		& \sum_{i} z_{ij} = 1, \forall j\in\{1,\ldots,m\} \\
+		& \sum_{j} d_j z_{ij} \leq M x_i, \forall i \in \{1,\ldots,n\} \\
+		& x_i, z_{ij} \in \{0,1\} \mbox{ za } i = 1, \ldots, n, j = 1,  \ldots, m.
+	\end{align*}
+	Vrijednost $M>0$ je konstanta koja uzima neku veliku vrijednost (npr. zbir količine potražnji svih kupaca). Međutim, u praksi se često  izbjegava upotreba $M$-konstante, te se tako 
+	ovo ograničenje zamjenjuje sa $ z_{ij} \leq x_i$ 
+	za $ i = 1, \ldots, n, j = 1,  \ldots, m$. % Ovakav pristup osigurava bolje performanse, jer se generišu preciznije linearne relaksacije o kojima će biti riječi u narednim sekcijama.
 \end{primjer}
 \begin{primjer}
-\emph{Problem rasporeda} (eng. scheduling problems). Čitava klasa problema koja se naziva sekvenciranje, raspoređivanje i usmjeravanje u osnovi su predstavljeni modelima cjelobrojnog programiranja. U ove probleme, na primjer, spadaju problemi rasporeda časova ili rasporeda ispita na fakultetima. Kod ovih problema postoje ograničenja u pogledu broja i kapaciteta učionica dostupnih u bilo kom trenutku, dostupnosti predavača na fakultetu u određeno vrijeme i preferencijama studenata za određene rasporede. Kriterijumi za određivanje funkcije cilja mogu da budu različiti. Kod rasporeda polaganja ispita, može se minimizovati broj potrebnih termina za održavanje ispita, uz osnovni uslov da dva ispita moraju biti u različitim terminima ako postoji barem jedan student koji planira da polaže oba ispita.  Kod jednog problema rasporeda časova, raspoređivanje studenata u  učionice se može vršiti na  način da se minimizuje broj učenika koji ne mogu pohađati nastavu iz predmeta koji je njihov prvi izbor, u odnosu na ostale izbore.
- U tom slučaju, jasno je da imamo promjenljivu $X_{i,j,n}$ za   $i$-tog učenika 
-koji pohađa $j$-to predavanje tokom $n$-tog vremenskog perioda (recimo, vr	ijeme je diskretizovano po 45 min/čas) -- koja je jednaka 1 ako se student uklapa u takav raspored, inače 0. 
+	\emph{Problem rasporeda} (eng. scheduling problems). Čitava klasa problema koja se naziva sekvenciranje, raspoređivanje i usmjeravanje u osnovi su predstavljeni modelima cjelobrojnog programiranja. U ove probleme, na primjer, spadaju problemi rasporeda časova ili rasporeda ispita na fakultetima. Kod ovih problema postoje ograničenja u pogledu broja i kapaciteta učionica dostupnih u bilo kom trenutku, dostupnosti predavača na fakultetu u određeno vrijeme i preferencijama studenata za određene rasporede. Kriterijumi za određivanje funkcije cilja mogu da budu različiti. Kod rasporeda polaganja ispita, može se minimizovati broj potrebnih termina za održavanje ispita, uz osnovni uslov da dva ispita moraju biti u različitim terminima ako postoji barem jedan student koji planira da polaže oba ispita.  Kod jednog problema rasporeda časova, raspoređivanje studenata u  učionice se može vršiti na  način da se minimizuje broj učenika koji ne mogu pohađati nastavu iz predmeta koji je njihov prvi izbor, u odnosu na ostale izbore.
+	U tom slučaju, jasno je da imamo promjenljivu $X_{i,j,n}$ za   $i$-tog učenika 
+	koji pohađa $j$-to predavanje tokom $n$-tog vremenskog perioda (recimo, vr	ijeme je diskretizovano po 45 min/čas) -- koja je jednaka 1 ako se student uklapa u takav raspored, inače 0. 
 \end{primjer}
 Posmatrajmo ipak malo specifičniji problem u odnosu na najopštiji (koji je dosta težak i za modeovanje, a kamoli za rješavanje). 
 Razmotrimo raspoređivanje osoblja zaduženog za upravljanje letom aviona. 
 Avionska kompanija treba da rasporedi svoje osoblje na rutama koje pokrivaju letove. Treba paziti, na primjer, da jedna posada treba da upravlja letom iz  Beograda u Zagreb (u 10:00), a zatim letom iz Zagreba u Cirih (u 14:00). Dakle, jedna posada bi trebalo da je uključena u rutu na kojoj upravlja različitim letovima. Prema tome, raspoređivanje posade na rutu $j$ se modeluje uz pomoć binarne promjenljive 
 $$x_j = \begin{cases}
-    1,& \mbox{ ako je barem jedna posada pridružena ruti } j \\
-    0,& \mbox{ inače}. 
+	1,& \mbox{ ako je barem jedna posada pridružena ruti } j \\
+	0,& \mbox{ inače}. 
 \end{cases}
 $$
 Dalje, definišimo 
 $$a_{ij}= \begin{cases}
-             1,& \mbox{ ako je let } i \mbox{ pridružen ruti } j \\
-             0,& \mbox{ inače}.
-        \end{cases}
+	1,& \mbox{ ako je let } i \mbox{ pridružen ruti } j \\
+	0,& \mbox{ inače}.
+\end{cases}
 $$
 Neka je $c_j$ cijena zaduživanja neke posade ruti $j$. Ovdje $a_{ij}$ definišu prihvatljive kombinacije letova sa rutama, uzimajući u obzir  karakteristike kao što su redoslijed krakova za uspostavljanje veza između letova sa uključenim vremenom  održavanja letova (iskrcavanje, istovar  kofera, utovar   novih kofera, ukrcavanje itd.) na istoj ruti leta posade.   
 
 Model ovakvog problema je dat sa 
 \begin{align}
-    &\min \sum_{j=1}^n c_j x_j \nonumber\\
-    &t.d. \nonumber \\
-    & \sum_{j=1}^n a_{ij} x_j \geq 1, \forall i \in \{1,\ldots, n\} \label{ineq:set_cover} \\
-    %&   a_{ij} \geq  x_j, \forall j \in \{1,\ldots, m\}  \\
-    & x_i \in \{0, 1 \}, \forall i \in \{1, \ldots, n\} \\
-    & a_{ij} \in \{0, 1\}, \forall i \in \{1, \ldots, n\}, j \in\{1,\ldots, m\} \nonumber
+	&\min \sum_{j=1}^n c_j x_j \nonumber\\
+	&t.d. \nonumber \\
+	& \sum_{j=1}^n a_{ij} x_j \geq 1, \forall i \in \{1,\ldots, n\} \label{ineq:set_cover} \\
+	%&   a_{ij} \geq  x_j, \forall j \in \{1,\ldots, m\}  \\
+	& x_i \in \{0, 1 \}, \forall i \in \{1, \ldots, n\} \\
+	& a_{ij} \in \{0, 1\}, \forall i \in \{1, \ldots, n\}, j \in\{1,\ldots, m\} \nonumber
 \end{align}
 
 Ograničenje (\ref{ineq:set_cover}) nam govori da za svaki let $i$ mora postojati barem jedna ruta $j$ za koju je barem jedna posada zadužena. Svakako,  više letova može da bude pridruženo jednoj ruti, pa je otuda suma na lijevoj strani veća ili jednaka 1. 
-  %Ograničenje (\ref{ineq:set_cover}) je poznato ograničenje koje se javlja u problemu pokrivanju  skupa (eng. \emph{set covering problem}).
+%Ograničenje (\ref{ineq:set_cover}) je poznato ograničenje koje se javlja u problemu pokrivanju  skupa (eng. \emph{set covering problem}).
 \begin{primjer}
-\emph{Problem trgovačkog putnika} (eng.  {Traveling Salesman Problem -- TSP)}. Neka je dato $n$ gradova. Krenuvši od svog mjesta, putnik želi da posjeti ostalih $n-1$ gradova pod minimalnim troškovima i da se na kraju vrati u početni grad. U suštini, ovo je problem grafovske prirode, gdje je ulaz (bez smanjenja opštosti) kompletan težinski graf, a potrebno je naći Hamiltonovu konturu minimalne težine u datom grafu. Pod težinom konture se podrazumijeva zbir težina njenih grana. 
+	\emph{Problem trgovačkog putnika} (eng.  {Traveling Salesman Problem -- TSP)}. Neka je dato $n$ gradova. Krenuvši od svog mjesta, putnik želi da posjeti ostalih $n-1$ gradova pod minimalnim troškovima i da se na kraju vrati u početni grad. U suštini, ovo je problem grafovske prirode, gdje je ulaz (bez smanjenja opštosti) kompletan težinski graf, a potrebno je naći Hamiltonovu konturu minimalne težine u datom grafu. Pod težinom konture se podrazumijeva zbir težina njenih grana. 
 \end{primjer}
 \emph{Rješenje}. Označimo težinu grane od grada $i$ do grada $j$ sa $c_{ij}$.  Definišimo (binarne) promjenljive 
 $$x_{ij} = \begin{cases}
-                1, \mbox{ ako putnik u svojoj ruti iz grada } i \mbox{ posjeti grad } j \\
-                0, \mbox{ inače}. 
-          \end{cases}$$ 
+	1, \mbox{ ako putnik u svojoj ruti iz grada } i \mbox{ posjeti grad } j \\
+	0, \mbox{ inače}. 
+\end{cases}$$ 
 Potrebno je nametnuti sljedeća ograničenja -- svaki grad se treba naći u ruti,  što možemo postići sa 
 $$  \sum_{i=1}^n x_{ij} = 1, \forall j =1,\ldots, n,$$ 
 što znači da se iz tačno jednog grada dolazi u svaki grad $j$, dok sličnim jednakostima nametnemo da se iz grada $j$ odlazi u tačno jedan drugi grad sa:
 
 $$  \sum_{j=1}^n x_{ij} = 1, \forall i =1,\ldots, n$$ 
- uz uslove $x_{ij}\geq 0$. Primijetimo sljedeće, ovakvi uslovi ne sprečavaju pojavu rješenja koja predstavljaju uniju disjunktnih podruta, što nije dopustivo rješenje za TSP. Ako pretpostavimo da je rješenje dato u obliku podruta $R_1, \ldots, R_k$, gdje je $R_i = \{ v_{i_1}, \ldots, v_{i_{p_i}} \}$, onda se pojava podruta  može izbjeći  dodavanjem dodatnih ograničenja u početni model problema. Tako problem sukcesivno rješavamo dodavanjem ograničenja, sve dok ne dobijemo rješenje koje je u stvari jedna ruta koja obuhvata sve gradove. Recimo, eliminacija pojave podrute $R_2$ (u odnosu na podrutu $R_1$) se vrši dodavanjem ograničenja
- $$ \sum_{l=1}^{ {p_1}}\sum_{t=1}^{ {p_2}} x_{1_l, 2_t} \geq 1.$$
- U najgorem slučaju, potrebno je dodati $2^n-1$ ovakvih ograničenja prije nego se dobije dopustivo rješenje. 
- Generalno ograničenje koje služi za eliminaciju podruta u modelu TSP-a se može dodati sa:
- \begin{align}
- 	  \sum_{i \in S} \sum_{j \notin S} x_{ij} \geq 2, \forall S \subset [n].
- \end{align}
-  %Postoje i druga ograničenja koja mogu da se dodaju za eliminaciju podruta, bez gore pomenutog iterativnog procesa, ali o njima će biti riječi u narednim sekcijama. 
- 
- \section{Tehnike transformacija nekih nelinearnih izraza u ILP-u}\label{sec:transformILP}
-  
- U prethodnom odjeljku je objašnjeno modelovanje nekih problema pomoću cjelobrojnog linearnog programiranja. Kao što se može vidjeti, modeli nekih problema pravolinijski slijede iz definicije samog problema, dok je za modelovanje nekih drugih, kompleksnijih problema, potrebno uključiti veći broj dodatnih promjenljivih i ograničenja. U ovom odjeljku ćemo prikazati neke standardne transformacije i tehnike, kojima različite (nelinearne) izraze transformišemo i modelujemo ih pomoću cjelobrojnih promjenljivih i linearnih ograničenja.
- %\emph{Binarne promjenljive.} 
- 
-  
- 
+uz uslove $x_{ij}\geq 0$. Primijetimo sljedeće, ovakvi uslovi ne sprečavaju pojavu rješenja koja predstavljaju uniju disjunktnih podruta, što nije dopustivo rješenje za TSP. Ako pretpostavimo da je rješenje dato u obliku podruta $R_1, \ldots, R_k$, gdje je $R_i = \{ v_{i_1}, \ldots, v_{i_{p_i}} \}$, onda se pojava podruta  može izbjeći  dodavanjem dodatnih ograničenja u početni model problema. Tako problem sukcesivno rješavamo dodavanjem ograničenja, sve dok ne dobijemo rješenje koje je u stvari jedna ruta koja obuhvata sve gradove. Recimo, eliminacija pojave podrute $R_2$ (u odnosu na podrutu $R_1$) se vrši dodavanjem ograničenja
+$$ \sum_{l=1}^{ {p_1}}\sum_{t=1}^{ {p_2}} x_{1_l, 2_t} \geq 1.$$
+U najgorem slučaju, potrebno je dodati $2^n-1$ ovakvih ograničenja prije nego se dobije dopustivo rješenje. 
+Generalno ograničenje koje služi za eliminaciju podruta u modelu TSP-a se može dodati sa:
+\begin{align}
+	\sum_{i \in S} \sum_{j \notin S} x_{ij} \geq 2, \forall S \subset [n].
+\end{align}
+%Postoje i druga ograničenja koja mogu da se dodaju za eliminaciju podruta, bez gore pomenutog iterativnog procesa, ali o njima će biti riječi u narednim sekcijama. 
+
+\section{Tehnike transformacija nekih nelinearnih izraza u ILP-u}\label{sec:transformILP}
+
+U prethodnom odjeljku je objašnjeno modelovanje nekih problema pomoću cjelobrojnog linearnog programiranja. Kao što se može vidjeti, modeli nekih problema pravolinijski slijede iz definicije samog problema, dok je za modelovanje nekih drugih, kompleksnijih problema, potrebno uključiti veći broj dodatnih promjenljivih i ograničenja. U ovom odjeljku ćemo prikazati neke standardne transformacije i tehnike, kojima različite (nelinearne) izraze transformišemo i modelujemo ih pomoću cjelobrojnih promjenljivih i linearnih ograničenja.
+%\emph{Binarne promjenljive.} 
+
+
+
 \subsection{Prepoznavanje binarnih promjenljivih}
- Pretpostavimo da je potrebno uključiti sljedeće aktivnosti: (1) izgraditi novo postrojenje ili
+Pretpostavimo da je potrebno uključiti sljedeće aktivnosti: (1) izgraditi novo postrojenje ili
 (2) pokrenuti reklamnu kampanju ili (3) razviti novi proizvod. Jasno je da su u pitanju logičke odluke, odnosno odluke tipa ,,da ili ne'', pa ih, prema tome, modelujemo   uvođenjem  binarnih promjenljivih $x_i \in \{0, 1 \}$, $i=1,2,3$. Često se nameće uslov da se najviše jedna od ovih odluka izvrši, što se modeluje izrazom $\sum_{i=1}^3 x_i \leq 1$. Ovo ograničenje se obično naziva \emph{ograničenjem sa višestrukim izborom} (eng. \emph{multiple choice constraint}), jer se njime ograničava izbor odluka na najviše jednu od, u ovom slučaju, tri dostupne alternative. Ukoliko se zahtijeva da se tačno jedna od ovih odluka izvrši, onda se znak nejednakosti u posljednjem izrazu mijenja znakom jednakosti, odnosno, ograničenje postaje $\sum_{i=1}^3 x_i = 1$.
 
 
 \begin{comment}
-\fxnote{marko, ovaj dio sa proizvodnjom lijekova nije bas jasan. Da li hoces da se umjesto y promjenljive koristi Kx ili obrnuto? Mozes ti ukljuciti jednu recenicu prije donjeg teksta, da se objasni motivacija sta se tu zapravo radi; Marko: ni ja vise nisam siguran u vezi ovoga, tako da sam ovo komentarisao.}
- 
-Pretpostavimo da proizvođač lijekova treba da odluči hoće li koristiti rezervoar za fermentaciju u proizvodnji. Ako bismo koristili rezervoar, tehnologija obrade zahtijeva da se napravi $K$ jedinica ljekova. Dakle, količina proizvodnje, koju označavamo sa $y$, može da dobije vrijednosti 0 ili $K$, a problem se može modelovati binarnom varijablom $x_j \in \{ 0, 1\}$, koje se potom zamjenjuju sa $y_j = Kx_j$. 
+	\fxnote{marko, ovaj dio sa proizvodnjom lijekova nije bas jasan. Da li hoces da se umjesto y promjenljive koristi Kx ili obrnuto? Mozes ti ukljuciti jednu recenicu prije donjeg teksta, da se objasni motivacija sta se tu zapravo radi; Marko: ni ja vise nisam siguran u vezi ovoga, tako da sam ovo komentarisao.}
+	
+	Pretpostavimo da proizvođač lijekova treba da odluči hoće li koristiti rezervoar za fermentaciju u proizvodnji. Ako bismo koristili rezervoar, tehnologija obrade zahtijeva da se napravi $K$ jedinica ljekova. Dakle, količina proizvodnje, koju označavamo sa $y$, može da dobije vrijednosti 0 ili $K$, a problem se može modelovati binarnom varijablom $x_j \in \{ 0, 1\}$, koje se potom zamjenjuju sa $y_j = Kx_j$. 
 \end{comment}
 %\emph{Logička ograničenja}. 
 \subsection{Logička ograničenja}
 Jedno od najjednostavnijih logičkih pitanja u matematičkom programiranju je da li dati izbor promjenljivih odlučivanja zadovoljava ograničenje
 
 \begin{equation}\label{eq:constr-ex-1-ilp}
-   f(x_1,\ldots, x_n )\leq b
+	f(x_1,\ldots, x_n )\leq b
 \end{equation}
- ili   ograničenje vrijedi u generalnom slučaju, tj. invarijantno je (vrijedi u svakom sučaju). 
- 
+ili   ograničenje vrijedi u generalnom slučaju, tj. invarijantno je (vrijedi u svakom sučaju). 
+
 Da bismo modelovali ograničenja koja odgovaraju prethodnoj alternativi, uvedimo binarnu promjenljivu $y$ na sljedeći način:
 $$y =\begin{cases}
-1, \mbox{ ako je poznato da je ograničenje uvijek zadovoljeno}, \\
-0, \mbox{ inače} 
+	1, \mbox{ ako je poznato da je ograničenje uvijek zadovoljeno}, \\
+	0, \mbox{ inače} 
 \end{cases}$$ 
 te napišimo  
 \begin{equation}\label{eq:constr-ex-1-ilp-big-B}
-   f(x) - M y \leq b,
+	f(x) - M y \leq b,
 \end{equation}
 
 gdje je $M$ dovoljno velika konstanta, takva da je 
@@ -2770,16 +2771,16 @@ ograničenje zadovoljeno za sve $x$, ako je $y =1$. Kad god je $y=0$ i ako je us
 
 Razmotrimo sljedeću situaciju sa alternativnim ograničenjima:
 \begin{align}
-     &f_1(x) \leq b_1 \vee \nonumber\\
-     &f_2(x) \leq b_2,\label{ineq:f_leq_b2}
+	&f_1(x) \leq b_1 \vee \nonumber\\
+	&f_2(x) \leq b_2,\label{ineq:f_leq_b2}
 \end{align}
 odnosno, u modelu se traži je barem jedno od alternativnih ograničenja zadovoljeno. 
 Ovakvo ograničenje se može modelovati kombinovanjem logičkih ograničenja i ograničenja sa višestrukim izborom. Dakle, imamo 
 \begin{align*}
-      &f_1(x) - M_1 y_1  \leq b_1 \\
-      &f_2(x) - M_2 y_2  \leq b_2 \\
-      & y_1 + y_2 \leq 1 \\
-      & y_1, y_2 \in \{0, 1\}.
+	&f_1(x) - M_1 y_1  \leq b_1 \\
+	&f_2(x) - M_2 y_2  \leq b_2 \\
+	& y_1 + y_2 \leq 1 \\
+	& y_1, y_2 \in \{0, 1\}.
 \end{align*}
 Konstante $M_1$ i $M_2$ se biraju tako da oba ograničenja iz (\ref{ineq:f_leq_b2})  budu trivijalno zadovoljena, te time postanu invarijante kada je $y=1$.
 
@@ -2787,20 +2788,20 @@ Ograničenje $y_1 + y_2 \leq 1$ implicira da barem jedna od $y$--promjenljivih m
 
 Pojednostavimo ovu formulaciju koristeći ograničenje $y_1 + y_2 = 1$ umjesto ograničenja nejednakosti, što povlači da je tačno jedna varijabla jednaka 1, a druga 0. Uvrštavanjem $y_2 =  1-y_1$,  dobijamo 
 \begin{align*}
-      & f_1(x) - M_1 y_1       \leq b_1 \\
-      & f_2(x) - M_2 (1-y_1)   \leq b_2  \\
-      & y_1 \in \{0,1 \}.
+	& f_1(x) - M_1 y_1       \leq b_1 \\
+	& f_2(x) - M_2 (1-y_1)   \leq b_2  \\
+	& y_1 \in \{0,1 \}.
 \end{align*}
 
 %\emph{Uslovna ograničenja}.
 \subsection{Uslovna ograničenja} 
 Pretpostavimo da želimo da modelujemo sljedeću situaciju, sa ograničenjima 
 \begin{align*}
-    f(x) > b_1 \Rightarrow f(x) \leq b_2 
+	f(x) > b_1 \Rightarrow f(x) \leq b_2 
 \end{align*}
 Kako je implikacija $p \Rightarrow q$ ekvivalentna sa $\neg p \vee q$, prethodno ograničenje je ekvivalentno sa
 \begin{align*}
-    f(x) \leq b_1 \vee f(x) \leq b_2 
+	f(x) \leq b_1 \vee f(x) \leq b_2 
 \end{align*}
 čime smo problem sveli na problem sa alternativnim ograničenjima. 
 
@@ -2812,45 +2813,45 @@ Pokušajmo da modelujemo situaciju zadatu sa $m$ ograničenja
 $$f_j(x) \leq  b_j, j=1,\ldots,m,$$
 od kojih barem $k$ ograničenja treba da bude zadovoljeno.
 
- Modelovanje ovakvog scenarija vršimo na način da prvo odredimo konstante, čijim uključivanjem u izraz dobijamo ograničenja koja su uvijek ispunjena. Dodijelimo tim konstantama oznake  $M_1, \ldots, M_m>0$, redom. U tom slučaju, opšti problem može biti definisan na sljedeći način
+Modelovanje ovakvog scenarija vršimo na način da prvo odredimo konstante, čijim uključivanjem u izraz dobijamo ograničenja koja su uvijek ispunjena. Dodijelimo tim konstantama oznake  $M_1, \ldots, M_m>0$, redom. U tom slučaju, opšti problem može biti definisan na sljedeći način
 \begin{align}
-     &f_j(x) + (1-y_j) M_j \leq b_j, j=1,\ldots,m\\
-     & \sum_{i=1}^m y_i \geq k \\
-     & y_j \in \{0,1\}, j=1,\ldots,m.
+	&f_j(x) + (1-y_j) M_j \leq b_j, j=1,\ldots,m\\
+	& \sum_{i=1}^m y_i \geq k \\
+	& y_j \in \{0,1\}, j=1,\ldots,m.
 \end{align}
 Primijetimo da ako je $y_j = 1$, tada je $j$-to ograničenje zadovoljeno (za dato $x$). Dakle, barem $k$ ograničenja treba da budu zadovoljena da bi $x$ bilo dopustivo rješenje. 
 
 %\emph{Složene alternative}.
 \subsection{Složene alternative}
- Pretpostavimo da se dopustiv region problema $LP$ sastoji od tri disjunktna regiona kao na Slici~\ref{fig:compound_regions}. Ovakav slučaj se može modelovati uz pomoć tzv. konstante veliko $M>0$ (eng. \emph{big M}), te  ograničenjem sa višestrukim izborom, odakle dobijamo:
- \begin{center}
+Pretpostavimo da se dopustiv region problema $LP$ sastoji od tri disjunktna regiona kao na Slici~\ref{fig:compound_regions}. Ovakav slučaj se može modelovati uz pomoć tzv. konstante veliko $M>0$ (eng. \emph{big M}), te  ograničenjem sa višestrukim izborom, odakle dobijamo:
+\begin{center}
 	\begin{tabular}{l }
-        $f_1(x) - M_1 y_1 \leq b_1$ \\
-       $f_2(x) - M_2 y_1 \leq b_2$\ (\mbox{region 1}) \\ \hline
-        $f_3(x) - M_3 y_2 \leq b_3$ \\ 
-        $f_4(x) - M_4 y_2 \leq b_4$\ (\mbox{region 2})\\  \hline 
-       $f_5(x) - M_5 y_3 \leq b_5$ \\
-        $f_6(x) - M_6 y_3 \leq b_6 $\\
-        $f_7(x) - M_7 y_3 \leq b_7$\  (\mbox{region 3}) \\ \hline
-        $y_1 + y_2 + y_3 \leq 2$ \\
-       $x=(x_1, x_2) \geq 0$ \\
-        $y_1, y_2, y_3 \in \{0, 1\}$.
+		$f_1(x) - M_1 y_1 \leq b_1$ \\
+		$f_2(x) - M_2 y_1 \leq b_2$\ (\mbox{region 1}) \\ \hline
+		$f_3(x) - M_3 y_2 \leq b_3$ \\ 
+		$f_4(x) - M_4 y_2 \leq b_4$\ (\mbox{region 2})\\  \hline 
+		$f_5(x) - M_5 y_3 \leq b_5$ \\
+		$f_6(x) - M_6 y_3 \leq b_6 $\\
+		$f_7(x) - M_7 y_3 \leq b_7$\  (\mbox{region 3}) \\ \hline
+		$y_1 + y_2 + y_3 \leq 2$ \\
+		$x=(x_1, x_2) \geq 0$ \\
+		$y_1, y_2, y_3 \in \{0, 1\}$.
 	\end{tabular}
 \end{center}
 \begin{figure}[!ht]
-    \centering
-    \includegraphics[width=200pt, height=180pt]{compound.eps}
-    \caption{Dopustiv region sa više disjunktnih regiona.}
-    \label{fig:compound_regions}
+	\centering
+	\includegraphics[width=200pt, height=180pt]{compound.eps}
+	\caption{Dopustiv region sa više disjunktnih regiona.}
+	\label{fig:compound_regions}
 \end{figure}
 Uslov $y_1 + y_2 + y_3 \leq 2$ nam upravo ograničava da rješenje $(x_1, x_2)$ pripada barem jednom od (disjunktnih) dopustivih regiona. Npr. ako je $y_3 = 0$, onda je svako od ograničenja $$f_5(x) \leq b_5, \ f_6(x) \leq b_6 \mbox{ i } f_7(x) \leq b_7$$
- ispunjeno. 
+ispunjeno. 
 
 %\emph{Predstavljanje nekih nelinearnih funkcija}.
 
 \subsection{Fiksne cijene u funkciji cilja}
 
- ($i$)    Kod nekih problema, funkcija cilja problema minimizacije može da sadrži i neke fiksne troškove, kao što su fiksni troškovi ulaganja ili fiksni troškovi postavljanja opreme. Npr. trošak proizvodnje $x$ jedinica određenog proizvoda može da se sastoji od fiksnih troškova postavljanja opreme i promjenjivih troškova koji se tiču proizvedene robe na opremi (mašinama). Pretpostavimo da oprema ima kapacitet proizvodnje od $B$ jedinica (nekog proizvoda). Neka je $y$ binarna promjenljiva koja ukazuje na to kada nastaje fiksni trošak, pri čemu  je $y=1$ ako je $x >0$, dok je $x=0$ ako je $y=0$. Tada se doprinos cijeni proizvodnje od $x$ jedinica proizvoda može predstaviti sa
+($i$)    Kod nekih problema, funkcija cilja problema minimizacije može da sadrži i neke fiksne troškove, kao što su fiksni troškovi ulaganja ili fiksni troškovi postavljanja opreme. Npr. trošak proizvodnje $x$ jedinica određenog proizvoda može da se sastoji od fiksnih troškova postavljanja opreme i promjenjivih troškova koji se tiču proizvedene robe na opremi (mašinama). Pretpostavimo da oprema ima kapacitet proizvodnje od $B$ jedinica (nekog proizvoda). Neka je $y$ binarna promjenljiva koja ukazuje na to kada nastaje fiksni trošak, pri čemu  je $y=1$ ako je $x >0$, dok je $x=0$ ako je $y=0$. Tada se doprinos cijeni proizvodnje od $x$ jedinica proizvoda može predstaviti sa
 $$ yB + c x $$ pod uslovima:
 \begin{align}
 	&x \leq By \\
@@ -2861,7 +2862,7 @@ Primijetimo da je ovaj model pripada \emph{Mješovitom-cjelobrojnom programiranj
 
 \subsection{Predstavljanje nekih nelinearnih funkcija} 
 
- U ovom odjeljku ćemo analizirati način na koji se neke nelinearne funkcije mogu predstaviti pomoću odgovarajućih linearnih funkcija, zajedno sa linearnim ograničenjima. 
+U ovom odjeljku ćemo analizirati način na koji se neke nelinearne funkcije mogu predstaviti pomoću odgovarajućih linearnih funkcija, zajedno sa linearnim ograničenjima. 
 
 
 
@@ -2869,10 +2870,10 @@ Primijetimo da je ovaj model pripada \emph{Mješovitom-cjelobrojnom programiranj
 
 Radi jednostavnosti, posmatrajmo primjer zadat u ravni. Pretpostavimo da je funkcija definisana preko tri linearne funkcije na sljedeći način.
 $$f(x) = \begin{cases}
-          c_1 x, \mbox{ za } x \in I_1 = [\delta^1_1, \delta^1_2] \\
-          c_2 x, \mbox{ za } x \in I_2 = [\delta^1_2 = \delta^2_1, \delta^2_2] \\
-          c_3 x, \mbox{ za } x \in I_3 = [\delta^2_2 = \delta^3_1, \delta^3_2].
-      \end{cases}
+	c_1 x, \mbox{ za } x \in I_1 = [\delta^1_1, \delta^1_2] \\
+	c_2 x, \mbox{ za } x \in I_2 = [\delta^1_2 = \delta^2_1, \delta^2_2] \\
+	c_3 x, \mbox{ za } x \in I_3 = [\delta^2_2 = \delta^3_1, \delta^3_2].
+\end{cases}
 $$
 gdje su $I_1, I_2$ i $I_3$  zatvoreni intervali u $\mathbb{R}$, koji se nadovezuju jedan na drugi.
 
@@ -2880,83 +2881,83 @@ Da bi se modelovala ovakva funkciju cilja, promjenljivu $x$ izrazimo preko tri n
 $$x = \beta_1 + \beta_2 + \beta_3$$
 pod uslovima 
 \begin{align}
-     &0   \leq \beta_1 \leq \delta^1_2 - \delta^1_1 = b_1 \nonumber \\
-     &0  \leq \beta_2 \leq \delta^2_2 - \delta^2_1 = b_2 \nonumber \\
-     &0  \leq \beta_3 \leq \delta^3_2- \delta^3_1 = b_3, \label{eq: piecewise-constraints}
+	&0   \leq \beta_1 \leq \delta^1_2 - \delta^1_1 = b_1 \nonumber \\
+	&0  \leq \beta_2 \leq \delta^2_2 - \delta^2_1 = b_2 \nonumber \\
+	&0  \leq \beta_3 \leq \delta^3_2- \delta^3_1 = b_3, \label{eq: piecewise-constraints}
 \end{align}
 odakle slijedi da je funkcija cilja   jednaka 
 $$ C = c_1 \beta_1 + c_2 \beta_2 + c_3 \beta_3.$$ 
 Primijetimo da se pojavljuju problemi na graničnim uslovima intervala, dakle u tačkama $I_1 \cap I_2 =\{\delta^1_2\}$ i $I_2 \cap I_3 =\{\delta^2_2\}$. Trebalo bi da vrijedi da $\beta_1 =  \delta^1_2 - \delta^1_1$ kad god je $\beta_2  > 0$ kao i $\beta_2 =  \delta^2_2 - \delta^2_1$ kad god je $\beta_3  > 0$.  S obzirom da su ovo uslovna ograničenja, ona se modeluju uvođenjem dodatnih binarnih promjenljivih 
 $$ \omega_1 = \begin{cases}
-                   1, \mbox{ ako } \beta_1 \mbox{ dostiže svoju gornju granicu} \\
-                   0, \mbox{ inače},
-              \end{cases}$$
+	1, \mbox{ ako } \beta_1 \mbox{ dostiže svoju gornju granicu} \\
+	0, \mbox{ inače},
+\end{cases}$$
 te 
 $$ \omega_2 = \begin{cases}
-                   1, \mbox{ ako } \beta_2 \mbox{ dostiže svoju gornju granicu} \\
-                   0, \mbox{ inače}, 
-              \end{cases}$$
+	1, \mbox{ ako } \beta_2 \mbox{ dostiže svoju gornju granicu} \\
+	0, \mbox{ inače}, 
+\end{cases}$$
 pa se ograničenja (\ref{eq: piecewise-constraints}) mogu napisati u obliku
 
 \begin{align}
-     & b_1 \omega_1 \leq \beta_1 \leq b_1   \nonumber \\
-     & b_2 \omega_2 \leq \beta_2 \leq \omega_1 b_2 \nonumber \\
-     & 0 \leq \beta_3  \omega_2 \leq b_3\nonumber \\
-     & \omega_1, \omega_2 \geq 0. \label{eq: piecewise-constraints-equivalent}
+	& b_1 \omega_1 \leq \beta_1 \leq b_1   \nonumber \\
+	& b_2 \omega_2 \leq \beta_2 \leq \omega_1 b_2 \nonumber \\
+	& 0 \leq \beta_3  \omega_2 \leq b_3\nonumber \\
+	& \omega_1, \omega_2 \geq 0. \label{eq: piecewise-constraints-equivalent}
 \end{align}
 
-      Primijetimo da, ako $\omega_1 = 0$, onda je $\omega_2= 0$ kako bi se održala dopustivost za ograničenja propisana  od strane $\beta_2$, pri čemu se uslovi u (\ref{eq: piecewise-constraints-equivalent}) prevode u
-      $$ 0 \leq \beta_1 \leq b_1, \beta_2 =0, \beta_3 =0.$$
-      Ako je $\omega_1 = 1, \omega_2 = 0$, onda se uslovi u (\ref{eq: piecewise-constraints-equivalent}) transformišu u
-            $$   \beta_1 = b_1, 0 \leq \beta_2 \leq b_2, \beta_3 =0.$$
-    Ako je $\omega_1 = \omega_2 = 1$, onda se  uslovi u (\ref{eq: piecewise-constraints-equivalent}) transformišu u
-    $$ \beta_1 = b_1, \beta_2 = b_2, 0 \leq \beta_3 \leq b_3.$$
-    Prema tome, postoje tri dopustive kombinacije parametara $\omega_1$ i $\omega_2$:
-    \begin{itemize}
-             \item  $\omega_1 = 0, \omega_2= 0$ za koje je $x \in I_1$ jer $\beta_2=\beta_3=0$;  
-             \item $\omega_1 = 1, \omega_2 = 0$ za koje je $x\in I_2$, jer je $\beta_1=b_1, \beta_3=0$;
-              \item $\omega_1 = 1, \omega_2 = 1$ za koje je $x\in I_3$, jer je $\beta_1=b_1, \beta_2=b_2$.
-    \end{itemize}
- %https://download.aimms.com/aimms/download/manuals/AIMMS3OM_LinearProgrammingTricks.pdf
- %https://download.aimms.com/aimms/download/manuals/AIMMS3OM_IntegerProgrammingTricks.pdf
- 
-% \emph{Eliminacija proizvoda varijabli}.
- 
- \subsection{Eliminacija proizvoda promjenljivih}
- 
- Jasno je da proizvod dvije ili više promjenljivih narušavaju linearnost modela, te je korisno poznavati mehanizam kako se takvi proizvodi mogu izbjeći, odnosno transformisati u odgovarajuće linearizovane relacije. U ovom odjeljku ćemo prezentovati kako se proizvod dvije promjenljive može zamijeniti jednom promjenljivom  sa dodatnim ograničenjima. Taj metod se, po potrebi, može proširiti i na proizvod više od dvije promjenljive. Razlikujemo nekoliko slučajeva:
- \begin{itemize}
- 	\item $x_1$ i $x_2$ su binarne promjenljive. Uvedemo smjenu $y=x_1 x_2$, uz sljedeće uslove za promjenljivu $y$:
- 	  \begin{align*}
- 		      &y \leq x_1 \\
- 		      &y \leq x_2 \\
- 		      & y \geq x_1 + x_2 - 1 \\
- 		      & y \in \{0, 1\}.
- 	  \end{align*}
-   
- Ova tehnika se može generalizovati na slučaj kada imamo proizvod $n$ binarnih promjenljivih. Definišimo promjenljivu  $y = x_1 \cdot \ldots \cdot x_n$, $x_i\in\{0,1\}, i=1,\ldots ,n$. Uključivanjem sljedećih ograničenja 
-   \begin{align*}
-   	&y \leq x_1 \\
-   	& \vdots \\
-   	&y \leq x_n \\
-   	& y \geq \sum_{i=1}^n x_i - (n-1) \\
-   	& y \in \{0, 1\}.
-   \end{align*}
-postiže se tražena transformacija.
+Primijetimo da, ako $\omega_1 = 0$, onda je $\omega_2= 0$ kako bi se održala dopustivost za ograničenja propisana  od strane $\beta_2$, pri čemu se uslovi u (\ref{eq: piecewise-constraints-equivalent}) prevode u
+$$ 0 \leq \beta_1 \leq b_1, \beta_2 =0, \beta_3 =0.$$
+Ako je $\omega_1 = 1, \omega_2 = 0$, onda se uslovi u (\ref{eq: piecewise-constraints-equivalent}) transformišu u
+$$   \beta_1 = b_1, 0 \leq \beta_2 \leq b_2, \beta_3 =0.$$
+Ako je $\omega_1 = \omega_2 = 1$, onda se  uslovi u (\ref{eq: piecewise-constraints-equivalent}) transformišu u
+$$ \beta_1 = b_1, \beta_2 = b_2, 0 \leq \beta_3 \leq b_3.$$
+Prema tome, postoje tri dopustive kombinacije parametara $\omega_1$ i $\omega_2$:
+\begin{itemize}
+	\item  $\omega_1 = 0, \omega_2= 0$ za koje je $x \in I_1$ jer $\beta_2=\beta_3=0$;  
+	\item $\omega_1 = 1, \omega_2 = 0$ za koje je $x\in I_2$, jer je $\beta_1=b_1, \beta_3=0$;
+	\item $\omega_1 = 1, \omega_2 = 1$ za koje je $x\in I_3$, jer je $\beta_1=b_1, \beta_2=b_2$.
+\end{itemize}
+%https://download.aimms.com/aimms/download/manuals/AIMMS3OM_LinearProgrammingTricks.pdf
+%https://download.aimms.com/aimms/download/manuals/AIMMS3OM_IntegerProgrammingTricks.pdf
 
-   \item $x_1$ je binarna, $x_2$ je realna (pozitivna) promjenljiva, $0 \leq x_2 \leq u$. Opet uvodimo istu smjenu $y= x_1 x_2$, gdje je $y$ neprekidna promjenljiva. Dodamo sljedeća ograničenja, kako bismo osigurali da $y$    dobije vrijednost proizvoda:
-    \begin{align*}
-    	 &y \leq u x_1 \\
-    	 &y \leq x_2 \\
-    	 & y \geq x_2 - u(1-x_1) \\
-    	 & y \geq 0.
-    \end{align*}
- 
-  \item $x_1, x_2$ su obje neprekidne promjenljive, $l_1 \leq x_1 \leq u_1$, $l_2 \leq x_2 \leq u_2$. Uvedemo promjenljive $y_1 = \frac{1}{2}( x_1 + x_2) $ i  $y_2 =\frac{1}{2}(x_1 - x_2)$. Tada se izraz $x_1x_2$ može predstaviti u separabilnoj formi $y_1^2 - y_2^2$ koja se zatim može aproksimirati po-dijelovima-linearnim funkcijama. Granice za vrijednosti novih promjenljivih su 
-  $$ \frac{1}{2}(l_1 + l_2) \leq y_1 \leq \frac{1}{2}(u_1 + u_2)$$ i 
-  $$ \frac{1}{2}(l_1 - u_2) \leq y_2 \leq \frac{1}{2}(u_1 - l_2) $$
-  
- \end{itemize} 
+% \emph{Eliminacija proizvoda varijabli}.
+
+\subsection{Eliminacija proizvoda promjenljivih}
+
+Jasno je da proizvod dvije ili više promjenljivih narušavaju linearnost modela, te je korisno poznavati mehanizam kako se takvi proizvodi mogu izbjeći, odnosno transformisati u odgovarajuće linearizovane relacije. U ovom odjeljku ćemo prezentovati kako se proizvod dvije promjenljive može zamijeniti jednom promjenljivom  sa dodatnim ograničenjima. Taj metod se, po potrebi, može proširiti i na proizvod više od dvije promjenljive. Razlikujemo nekoliko slučajeva:
+\begin{itemize}
+	\item $x_1$ i $x_2$ su binarne promjenljive. Uvedemo smjenu $y=x_1 x_2$, uz sljedeće uslove za promjenljivu $y$:
+	\begin{align*}
+		&y \leq x_1 \\
+		&y \leq x_2 \\
+		& y \geq x_1 + x_2 - 1 \\
+		& y \in \{0, 1\}.
+	\end{align*}
+	
+	Ova tehnika se može generalizovati na slučaj kada imamo proizvod $n$ binarnih promjenljivih. Definišimo promjenljivu  $y = x_1 \cdot \ldots \cdot x_n$, $x_i\in\{0,1\}, i=1,\ldots ,n$. Uključivanjem sljedećih ograničenja 
+	\begin{align*}
+		&y \leq x_1 \\
+		& \vdots \\
+		&y \leq x_n \\
+		& y \geq \sum_{i=1}^n x_i - (n-1) \\
+		& y \in \{0, 1\}.
+	\end{align*}
+	postiže se tražena transformacija.
+	
+	\item $x_1$ je binarna, $x_2$ je realna (pozitivna) promjenljiva, $0 \leq x_2 \leq u$. Opet uvodimo istu smjenu $y= x_1 x_2$, gdje je $y$ neprekidna promjenljiva. Dodamo sljedeća ograničenja, kako bismo osigurali da $y$    dobije vrijednost proizvoda:
+	\begin{align*}
+		&y \leq u x_1 \\
+		&y \leq x_2 \\
+		& y \geq x_2 - u(1-x_1) \\
+		& y \geq 0.
+	\end{align*}
+	
+	\item $x_1, x_2$ su obje neprekidne promjenljive, $l_1 \leq x_1 \leq u_1$, $l_2 \leq x_2 \leq u_2$. Uvedemo promjenljive $y_1 = \frac{1}{2}( x_1 + x_2) $ i  $y_2 =\frac{1}{2}(x_1 - x_2)$. Tada se izraz $x_1x_2$ može predstaviti u separabilnoj formi $y_1^2 - y_2^2$ koja se zatim može aproksimirati po-dijelovima-linearnim funkcijama. Granice za vrijednosti novih promjenljivih su 
+	$$ \frac{1}{2}(l_1 + l_2) \leq y_1 \leq \frac{1}{2}(u_1 + u_2)$$ i 
+	$$ \frac{1}{2}(l_1 - u_2) \leq y_2 \leq \frac{1}{2}(u_1 - l_2) $$
+	
+\end{itemize} 
 
 %\fixme{marko, ovaj donji paragraf mi je nejasan. U kojoj prethodnoj stavci je pomenuta aproksimacija pomocu niza po dijelovima linearnih funkcija? Marko: Izgleda obrisano, pomenuto sada u 6.2.7. stavka (ii) }
 
@@ -2971,107 +2972,107 @@ Zadatak: \emph{Potrebno je odabrati lokacije gdje će se podići vatrogasni domo
 
 Definišimo binarne promjenljive 
 $$y_j = \begin{cases}
-              1, \mbox{ ako je lokacija } j \mbox{ odabrana za izgradnju doma} \\
-              0, \mbox{ inače}
-        \end{cases}$$
+	1, \mbox{ ako je lokacija } j \mbox{ odabrana za izgradnju doma} \\
+	0, \mbox{ inače}
+\end{cases}$$
 i 
 $$
 x_{ij}= \begin{cases}
-             1, \mbox{ ako je lokacija za vatrogasni dom } j \mbox{ nadležna za okrug } i \\
-             0, \mbox{ inače}. 
-        \end{cases}
+	1, \mbox{ ako je lokacija za vatrogasni dom } j \mbox{ nadležna za okrug } i \\
+	0, \mbox{ inače}. 
+\end{cases}
 $$
 Svaki okrug treba da bude pridružen tačno jednom vatrogasnom domu, pa se to ograničenje modeluje sa
 \begin{equation}\label{eq:ex-constr-1}
-      \sum_{j \in J} x_{ij} = 1, \forall i \in I
+	\sum_{j \in J} x_{ij} = 1, \forall i \in I
 \end{equation}
 Takođe, ako lokacija za vatrogasni dom nije odabrana, onda nijedan okrug nije pridružen toj lokaciji. Odnosno, ako je $y_j = 0$, onda $ \sum_{i \in I} x_{ij} = 0$. Ovo je uslovno ograničenje, koje se modeluje sa
 \begin{equation}\label{eq:ex-constr-2}
-    \sum_{i \in I} x_{ij} \leq y_j |I|.
- \end{equation}
+	\sum_{i \in I} x_{ij} \leq y_j |I|.
+\end{equation}
 %gdje je $|I|$ broj mijesta. 
 
 Udaljenost okruga $i$ do nadležnog vatrogasnog doma je jednaka $d_i = \sum_{j \in J} d_{ij}x_{ij} $. Dalje, veličina populacije (broj ljudi) koja će biti pod nadzorom od strane doma na lokaciji $j$ je jednaka 
 \begin{equation}\label{eq:ex-constr-3}
-    s_j = \sum_{i \in I} p_i x_{ij}. 
+	s_j = \sum_{i \in I} p_i x_{ij}. 
 \end{equation}
 Pretpostavimo da je jedan okrug posebno osjetljiv na požar i da lokacije  1 i 2 ili lokacije 3 i 4 treba  da budu iskorištene da zaštite taj okrug. Ovakva situacija se modeluje sa ograničenjima
 \begin{equation*} 
-    y_1 + y_2 \geq 2 \mbox{ ili } y_3 + y_4 \geq 2
+	y_1 + y_2 \geq 2 \mbox{ ili } y_3 + y_4 \geq 2
 \end{equation*}
 što je ekvivalentno sa 
 \begin{align}
-    &y_1 + y_2 \geq 2 z \nonumber \\
-    &y_3 + y_4 \geq 2 (1-z) \nonumber \\
-    & z\in \{0, 1 \}.\label{eq:ex-constr-4}
+	&y_1 + y_2 \geq 2 z \nonumber \\
+	&y_3 + y_4 \geq 2 (1-z) \nonumber \\
+	& z\in \{0, 1 \}.\label{eq:ex-constr-4}
 \end{align}
 Pretpostavimo da cijena izgradnje vatrogasnog doma na mjestu $j$ koje može voditi brigu o $s_j$ ljudi košta $f_j(s_j)$. Pretpostavimo takođe da je budžet kojim raspolažemo jednak $B$. Prema tome, vrijedi ograničenje
 \begin{equation}\label{eq:ex-constr-5}
-     \sum_{j \in J} y_j f_j(s_j) \leq B.
+	\sum_{j \in J} y_j f_j(s_j) \leq B.
 \end{equation}
- Funkcija cilja koja bi se mogla optimizovati u ovoj varijanti problema je minimizacija udaljenosti 
- okruga koja je najudaljenija od svog nadležnog vatrogasnog doma (označeno sa $d_i$)
-      $$\min D $$
- gdje je $D= \max d_i$. Ova funkcija cilja se može napisati  u ekvivalentnom obliku kao:
- \begin{align*}
-      &\min D \\     
-      &  \mbox{t.d.} \\
-      & D \geq d_i,  \forall i \in I \\
-      &(\ref{eq:ex-constr-1})-(\ref{eq:ex-constr-5}) \\
-      & D \in \mathbb{R}^+. 
- \end{align*}
- Kako bismo završili modelovanje, ostalo je još da se svaka funkcija $f_j (s_j)$ zamijeni aproksimacijom cjelobrojnog programiranje. Detalje ostavljamo čitaocu kao zadatak. Ako bi funkcija $f_j (s_j)$ sadržala fiksne troškove, tada se ne bi trebale uvoditi nove promjenljive fiksnih troškova, jer u tu svrhu već služi ranije uvedena promjenljiva $y_j$. 
- % jos neki trikovi u modelovanju: https://download.aimms.com/aimms/download/manuals/AIMMS3OM_LinearProgrammingTricks.pdf
- 
- \section{Kompleksnost rješavanja cjelobrojnog programiranja}\label{sec:kompleksnostILP}
-   
-   Na početku ove glave smo pomenuli da je rješavanje problema cjelobrojnog programiranja NP--težak problem. Napomenimo da to nije slučaj sa problemom linearnog programiranja, za koji smo u Glavi~\ref{chp:dualnost} pokazali da je rješiv u polinomijalnom vremenu. U nastavku ove sekcije dajemo dokaz da je rješivost ILP-a zaista NP--težak problem. Ideja dokaza je da problem 3--SAT  polinomijalno svedemo na ILP.
-     %https://mediaspace.msu.edu/media/Proving+that+Integer+Programming+is+NP-Complete/1_0j1vkmvw
-   Podsjetimo se definicije 3--SAT problema. 
-   
-   Neka su dati literali $x_1, \ldots, x_n$. Svaki literal može da bude pozitivan ($x_1$) ili negativan  ($\neg x_1$). Kažemo da je formula napisana u \emph{konjunktivnoj normalnoj formi} (CNF) akko je napisana kao konjunkcija klauzula ili literala. Pod klauzulom podrazumijevamo formulu koja je sastavljen  od literala povezanih disjunkcijama. Npr. formula $\phi(x_1, x_2, x_3)= (x_1 \vee  \neg x_2) \wedge (x_1 \vee x_3)$ je napisana u CNF. Ona se sastoji od dvije klauzule sastavljena od po dva literala. CNF formula $\phi(x)$ je zadovoljiva akko postoji dodjela $\overline{x}$ literalima ($\overline{x}_i \in \{TRUE, FALSE\}$) tako da je $\phi(\overline{x})$ tačna, prema zakonima Bulove algebre.  
-   
+Funkcija cilja koja bi se mogla optimizovati u ovoj varijanti problema je minimizacija udaljenosti 
+okruga koja je najudaljenija od svog nadležnog vatrogasnog doma (označeno sa $d_i$)
+$$\min D $$
+gdje je $D= \max d_i$. Ova funkcija cilja se može napisati  u ekvivalentnom obliku kao:
+\begin{align*}
+	&\min D \\     
+	&  \mbox{t.d.} \\
+	& D \geq d_i,  \forall i \in I \\
+	&(\ref{eq:ex-constr-1})-(\ref{eq:ex-constr-5}) \\
+	& D \in \mathbb{R}^+. 
+\end{align*}
+Kako bismo završili modelovanje, ostalo je još da se svaka funkcija $f_j (s_j)$ zamijeni aproksimacijom cjelobrojnog programiranje. Detalje ostavljamo čitaocu kao zadatak. Ako bi funkcija $f_j (s_j)$ sadržala fiksne troškove, tada se ne bi trebale uvoditi nove promjenljive fiksnih troškova, jer u tu svrhu već služi ranije uvedena promjenljiva $y_j$. 
+% jos neki trikovi u modelovanju: https://download.aimms.com/aimms/download/manuals/AIMMS3OM_LinearProgrammingTricks.pdf
 
-   Kažemo da je konjunktivna formula $\phi(x)$  napisana u 3--CNF  akko se u svakoj klauzuli nalazi najviše 3 različita literala. Napomenimo da se, u smislu rješivosti, proizvoljna klauzula može redukovati u 3--CNF. Dakle, svaka klauzula 
-   $l_1 \vee l_2 \vee \cdots \vee l_n$ se može pretvoriti u 3--CNF na sljedeći način:
-   \begin{align*}
-       &(l_1 \vee l_2 \vee x_2) \wedge ( \neg x_2 \vee l_3 \vee x_3) \wedge ( \neg x_3 \vee l_4 \vee x_4 ) \wedge \cdots \wedge (\neg x_{n-3} \vee l_{n-3} \\
-       &\vee x_{n-2} ) \wedge ( \neg x_{n-2} \vee l_{n-1} \vee l_n ),  
-    \end{align*}    
+\section{Kompleksnost rješavanja cjelobrojnog programiranja}\label{sec:kompleksnostILP}
+
+Na početku ove glave smo pomenuli da je rješavanje problema cjelobrojnog programiranja NP--težak problem. Napomenimo da to nije slučaj sa problemom linearnog programiranja, za koji smo u Glavi~\ref{chp:dualnost} pokazali da je rješiv u polinomijalnom vremenu. U nastavku ove sekcije dajemo dokaz da je rješivost ILP-a zaista NP--težak problem. Ideja dokaza je da problem 3--SAT  polinomijalno svedemo na ILP.
+%https://mediaspace.msu.edu/media/Proving+that+Integer+Programming+is+NP-Complete/1_0j1vkmvw
+Podsjetimo se definicije 3--SAT problema. 
+
+Neka su dati literali $x_1, \ldots, x_n$. Svaki literal može da bude pozitivan ($x_1$) ili negativan  ($\neg x_1$). Kažemo da je formula napisana u \emph{konjunktivnoj normalnoj formi} (CNF) akko je napisana kao konjunkcija klauzula ili literala. Pod klauzulom podrazumijevamo formulu koja je sastavljen  od literala povezanih disjunkcijama. Npr. formula $\phi(x_1, x_2, x_3)= (x_1 \vee  \neg x_2) \wedge (x_1 \vee x_3)$ je napisana u CNF. Ona se sastoji od dvije klauzule sastavljena od po dva literala. CNF formula $\phi(x)$ je zadovoljiva akko postoji dodjela $\overline{x}$ literalima ($\overline{x}_i \in \{TRUE, FALSE\}$) tako da je $\phi(\overline{x})$ tačna, prema zakonima Bulove algebre.  
+
+
+Kažemo da je konjunktivna formula $\phi(x)$  napisana u 3--CNF  akko se u svakoj klauzuli nalazi najviše 3 različita literala. Napomenimo da se, u smislu rješivosti, proizvoljna klauzula može redukovati u 3--CNF. Dakle, svaka klauzula 
+$l_1 \vee l_2 \vee \cdots \vee l_n$ se može pretvoriti u 3--CNF na sljedeći način:
+\begin{align*}
+	&(l_1 \vee l_2 \vee x_2) \wedge ( \neg x_2 \vee l_3 \vee x_3) \wedge ( \neg x_3 \vee l_4 \vee x_4 ) \wedge \cdots \wedge (\neg x_{n-3} \vee l_{n-3} \\
+	&\vee x_{n-2} ) \wedge ( \neg x_{n-2} \vee l_{n-1} \vee l_n ),  
+\end{align*}    
 gdje su $x_2, \ldots, x_{n-2}$  proizvoljne bulove promjenjive (literali).  
- 
- Treba imati na umu da ove formule nisu logički ekvivalentne, ali su ekvivalentne u smislu zadovoljenja. Dakle, ako je jedna od formula zadovoljiva za neku dodjelu logičkih vrijednosti literalima, onda je to i druga, i obrnuto. 
-    Poznato je da je problem 3--SAT, gdje je ulaz 3--CNF formula,  u opštem slučaju NP-kompletan problem.  
-    
-   \begin{thm}
-   	  Problem ILP-a je NP-težak.
-   \end{thm}
-   \begin{proof}
-   	   Izvedimo polinomnu redukciju instance 3-SAT problema na instancu problema ILP-a. Neka je dat 3--SAT izraz sa literalima  
-   	   $x_1,\ldots, x_n$.  Konstruišimo ILP instancu sa promjenljivima $z_1, \ldots, z_n$.
-   	   Svaka klauzula $\phi_i(x)$ se pretvara u nejednakost (ograničenje)  $C_i$ na sljedeći način:
-   	   \begin{itemize}
-   	   	\item $z_i = x_i$, ako se literal $x_i$ pojavljuje u klauzuli $\phi_i$; 
-   	   	\item $z_i = 1 - x_i$ ako se $\neg x_i$ pojavljuje u klauzuli $\phi_i$;
-   	   	\item znak disjunkcije se mijenja znakom sabiranja ,,+'';
-   	   	\item vrijednost konstruisanog izraza treba da bude $\geq 1$. 
-   	   \end{itemize}
-   	   	       Primjera radi, ako je data instanca problema 3-SAT sa 
-   	   	      $\phi(x) = (x_1 \vee \neg x_2 \vee \neg x_3) \wedge ( x_2 \vee \neg x_4 \vee x_5 )$, transformišemo je (u polinomnom vremenu) na instancu ILP-a
-   	   	      \begin{align*}
-   	   	      	     & \min f \\
-   	   	         	 &C_1: z_1 + (1- z_2) + (1 - z_3 ) \geq 1 \\
-   	   	         	 & C_2: z_2 + (1-z_4)  + z_5 \geq 1 \\
-   	   	         	 & C_3: z_i \in \{0,1\}, i=1,\ldots,5.
-   	   	      \end{align*} 
-%%https://cims.nyu.edu/~regev/teaching/lattices_fall_2004/ln/integer_programming.pdf :Aco
-   	    Dakle, iz gornje redukcije,  provjera dopustivosti ILP instance odgovara provjeri zadovoljivosti 3--CNF izraza $\phi$.   Prema tome, problem rješavanja ILP-a je NP-težak, s obzirom da je 3--SAT problem NP-kompletan. 
- \end{proof} 
- Može se pokazati i sljedeća teorema.
- \begin{thm} Neka je $k\in \mathbb{Z}$.
- 	 Problem odlučivanja da li postoji cjelobrojno rješenje  ILP-a,  vrijednosti manje od $k$ je NP--kompletan, ako se posmatra problem minimizacije. 
- \end{thm}
- 
+
+Treba imati na umu da ove formule nisu logički ekvivalentne, ali su ekvivalentne u smislu zadovoljenja. Dakle, ako je jedna od formula zadovoljiva za neku dodjelu logičkih vrijednosti literalima, onda je to i druga, i obrnuto. 
+Poznato je da je problem 3--SAT, gdje je ulaz 3--CNF formula,  u opštem slučaju NP-kompletan problem.  
+
+\begin{thm}
+	Problem ILP-a je NP-težak.
+\end{thm}
+\begin{proof}
+	Izvedimo polinomnu redukciju instance 3-SAT problema na instancu problema ILP-a. Neka je dat 3--SAT izraz sa literalima  
+	$x_1,\ldots, x_n$.  Konstruišimo ILP instancu sa promjenljivima $z_1, \ldots, z_n$.
+	Svaka klauzula $\phi_i(x)$ se pretvara u nejednakost (ograničenje)  $C_i$ na sljedeći način:
+	\begin{itemize}
+		\item $z_i = x_i$, ako se literal $x_i$ pojavljuje u klauzuli $\phi_i$; 
+		\item $z_i = 1 - x_i$ ako se $\neg x_i$ pojavljuje u klauzuli $\phi_i$;
+		\item znak disjunkcije se mijenja znakom sabiranja ,,+'';
+		\item vrijednost konstruisanog izraza treba da bude $\geq 1$. 
+	\end{itemize}
+	Primjera radi, ako je data instanca problema 3-SAT sa 
+	$\phi(x) = (x_1 \vee \neg x_2 \vee \neg x_3) \wedge ( x_2 \vee \neg x_4 \vee x_5 )$, transformišemo je (u polinomnom vremenu) na instancu ILP-a
+	\begin{align*}
+		& \min f \\
+		&C_1: z_1 + (1- z_2) + (1 - z_3 ) \geq 1 \\
+		& C_2: z_2 + (1-z_4)  + z_5 \geq 1 \\
+		& C_3: z_i \in \{0,1\}, i=1,\ldots,5.
+	\end{align*} 
+	%%https://cims.nyu.edu/~regev/teaching/lattices_fall_2004/ln/integer_programming.pdf :Aco
+	Dakle, iz gornje redukcije,  provjera dopustivosti ILP instance odgovara provjeri zadovoljivosti 3--CNF izraza $\phi$.   Prema tome, problem rješavanja ILP-a je NP-težak, s obzirom da je 3--SAT problem NP-kompletan. 
+\end{proof} 
+Može se pokazati i sljedeća teorema.
+\begin{thm} Neka je $k\in \mathbb{Z}$.
+	Problem odlučivanja da li postoji cjelobrojno rješenje  ILP-a,  vrijednosti manje od $k$ je NP--kompletan, ako se posmatra problem minimizacije. 
+\end{thm}
+
 \section{Zadaci}
 \begin{enumerate}
 	
@@ -3089,20 +3090,20 @@ gdje su $x_2, \ldots, x_{n-2}$  proizvoljne bulove promjenjive (literali).
 	\begin{table}[H]
 		\centering
 		\scalebox{0.85}{
-		\begin{tabular}{|c|c|c|c|}
-			\hline
-			Namirnica & Masa (g) & Zapremina (L) & Kalorijska vrijednost (kcal) \\
-			\hline
-			Čokolada & 300 & 0,5 & 1500 \\
-			\hline
-			Kokos & 500 & 1,4 & 1300 \\
-			\hline
-			Mlijeko& 1000 & 1 & 660 \\
-			\hline
-			Pasulj u konzervi& 400 & 0,8 & 650 \\
-			\hline
-			Keks& 500 & 0,9 & 1800 \\
-			\hline
+			\begin{tabular}{|c|c|c|c|}
+				\hline
+				Namirnica & Masa (g) & Zapremina (L) & Kalorijska vrijednost (kcal) \\
+				\hline
+				Čokolada & 300 & 0,5 & 1500 \\
+				\hline
+				Kokos & 500 & 1,4 & 1300 \\
+				\hline
+				Mlijeko& 1000 & 1 & 660 \\
+				\hline
+				Pasulj u konzervi& 400 & 0,8 & 650 \\
+				\hline
+				Keks& 500 & 0,9 & 1800 \\
+				\hline
 		\end{tabular}}
 	\end{table}
 	Kako treba napuniti ruksak da ukupna kalorijska vrijednost ponesenih namirnica bude maksimalna?
@@ -3113,34 +3114,34 @@ gdje su $x_2, \ldots, x_{n-2}$  proizvoljne bulove promjenjive (literali).
 	\item Preduzeće  razmatra izvođenje 5 trogodišnjih projekata, ali u svakoj godini može uložiti najviše
 	25 000 KM. Procjena troškova, u hiljadama maraka, za svaki projekat u tri godine, kao i
 	očekivana dobit od projekta (čista dobit – troškovi su oduzeti)  dati su tabelom:
-%	\begin{table}
-%	\centering
-\begin{center}
-
-	\begin{tabular}{|c|c|c|c|c|}
-		\hline
-		Projekat & 1. godina & 2. godina & 3. godina & Dobit \\
-		\hline
-		1 & 5 & 1 & 8 & 20 \\
-		\hline
-		2 & 4 & 7 & 10 & 40 \\
-		\hline
-		3 & 3 & 9 & 2 & 20 \\
-		\hline
-		4 & 7 & 4 & 1 & 15 \\
-		\hline
-		5 & 8 & 6 & 10 & 30 \\
-		\hline
-	\end{tabular}  \\
-\end{center}
-%	\end{table}
+	%	\begin{table}
+		%	\centering
+		\begin{center}
+			
+			\begin{tabular}{|c|c|c|c|c|}
+				\hline
+				Projekat & 1. godina & 2. godina & 3. godina & Dobit \\
+				\hline
+				1 & 5 & 1 & 8 & 20 \\
+				\hline
+				2 & 4 & 7 & 10 & 40 \\
+				\hline
+				3 & 3 & 9 & 2 & 20 \\
+				\hline
+				4 & 7 & 4 & 1 & 15 \\
+				\hline
+				5 & 8 & 6 & 10 & 30 \\
+				\hline
+			\end{tabular}  \\
+		\end{center}
+		%	\end{table}
 	Odrediti koje od projekata treba realizovati da se maksimizuje ukupna dobit.
 	
 	\item Zadat je skup $S$ koji se sastoji od $n$ brojeva. Koristeći tehnike cjelobrojnog linearnog programiranja, podijeliti skup $S$ na dva podskupa, tako da se zbirovi elemenata u prvom i drugom podskupu što manje razlikuju.
 	
 	\item Riješiti prethodni zadatak uz dodatni uslov da nijedan podskup ne smije da sadrži više od $\frac {2n}3$ elemenata.
 	
-
+	
 	
 	%https://www.utc.fr/~dnace/dokuwiki/_media/fr/upt-cours-2012lp.pdf
 	\item U ovom zadatku je potrebno modelovati \emph{problem totalnog pokrivanja}. %Neka je dato $n$ mijesta, te $m$ zahtjeva koji treba da budu ispunjeni ($d_1,\ldots, d_m$).  
@@ -3148,98 +3149,97 @@ gdje su $x_2, \ldots, x_{n-2}$  proizvoljne bulove promjenjive (literali).
 	\item U ovom zadatku se modeluje  \emph{problem maksimalnog pokrivanja} (eng. \emph{maximum coverage problem}). Neka je na ulazu data kolekcija skupova  $S=\{ S_1, \ldots, S_m\}$ te broj $k \in \mathbb{N}$. Potrebno je naći podskup $S' \subseteq S$, tako da je $|S'|\leq k$, a broj pokrivenih elemenata $|\bigcup_{s' \in S'} s'|$ je maksimizovan. 
 	
 	\emph{Uputstvo}. Sa $x_j \in \{0, 1\}$ označimo promjenljivu koja dobija vrijednost 1 ako je skup $S_i$ odabran u rješenje $S'$, inače 0. Dodatno, sa $y_j \in \{0, 1 \}$ definišemo promjenljivu koja dobija vrijednost 1 ako je   element $e_j$ pokriven rješenjem.  
-%http://courses.ieor.berkeley.edu/ieor151/lecture_notes/ieor151_lec14.pdf
+	%http://courses.ieor.berkeley.edu/ieor151/lecture_notes/ieor151_lec14.pdf
 	\item Potrebno je modelovati \emph{$P$-center problem čvorova} (eng. \emph{vertex p-center problem}). Formulacija problema je sljedeća. Ulazni podaci su predstavljeni neusmjerenim grafom $G = (I, J, E)$, gdje su objekti potražnje predstavljeni  vrhovima $i\in I$, a moguće lokacije (servisnih) objekata su date   drugim skupom vrhova $j \in J$, Grane $e_{i,j} \in E$ postoje samo između čvorova $i \in  I$ i čvorova $j \in J$. Dalje, parovima čvorova su dodijeljene pozitivne težine $d_{i,j}\geq 0$, što predstavlja udaljenost između čvorova $i$ i $j$. Treba imati na umu da je moguće imati i udaljenost 0 između čvora potražnje i moguće lokacije objekta. Za svaki čvor $i \in I$ pridružena je težina zahtjeva $h_i>0$, koja predstavlja količinu zahtjeva koje taj čvor može da ispuni. 
 	
 	Zadatak je postaviti $p$ objekata kako bi se smanjila maksimalnu udaljenost između bilo kojeg čvora potražnje i	njegovog servisnog objekta. 
 	\item %https://personal.utdallas.edu/~metin/Or6302/Notes/integer.pdf
-	 Pretpostavimo da se selimo u novi stan i da imamo samo dva kofera u koje možemo spakovati svoje stvari. U prvi kofer može da se spakuje 22 kg, a drugi 28 kg. Težina i vrijednosti stvari
+	Pretpostavimo da se selimo u novi stan i da imamo samo dva kofera u koje možemo spakovati svoje stvari. U prvi kofer može da se spakuje 22 kg, a drugi 28 kg. Težina i vrijednosti stvari
 	su dati sa tabelom
- \begin{table}[H]
- 	\centering
-	\begin{tabular}{l|cccccccc}
-		Stavka & A & B & C & D & E & F & G & H \\ \hline
-		Težina & 10 & 9 & 15 & 3 & 11 & 6 & 3 & 4 \\
-		Vrijednost & 5 & 2 & 7 & 6 & 1 & 6 & 8 & 6 \\ \hline
-	\end{tabular} 
-    
- \end{table}
-Konstruišite model koji maksimizuje vrijednost  predmeta koji mogu biti ubačeni u ova dva kofera. 
-\item Višedimenzionalni više-direkcioni problem particionisanja brojeva (eng. \emph{multidimensional multi-way number partitioning problem}) se definiše na sljedeći način. Neka je dat skup vektora $S$. Vektori mogu da budu iz proizvoljneg prostora $\mathbb{R}^m, m \in \mathbb{N}$.   Zadatak je podijeliti skup $S$ na $p \geq 1$ particija tako da su sume vrijednosti  elemenata  po koordinatama po particijama što ujednačenije. 
-
-\item U ovom zadatku se razmatra  \emph{Problem maksimalnog nezavisnog skupa} (eng. \emph{independent set problem}). Dat je graf $G = (V, E)$. Potrebno je naći podskup $V' \subseteq V$ maksimalne kardinalnosti takav da  $V'$ ne sadrži ni jedan par susjednih čvorova. 
-\item Problem maksimalne klike (eng. \emph{maximum clique problem}) se definiše na sljedeći način.  Dat graf $G = (V, E)$. Potrebno je naći podskup $V' \subseteq V$ maksimalne kardinalnosti tako da je indukovani podgraf 
-$G[V']$ grafa $G$ kompletan graf. 
-\item % http://people.brunel.ac.uk/~mastjjb/jeb/or/moreip.html
-Proizvođač igračaka planira proizvodnju novih igračaka. Troškovi pripreme proizvodnih pogona i jedinični profit za svaku igračku dati su sljedećom tabelom: 
- \begin{table}[H]
-	\centering
-	\begin{tabular}{l|cc} 
-	  \hline
-	  Igračka &  Troškovi pripreme    & Profit \\ \hline
-	  1       &  45000     &  12     \\
-	  2       &  76000     &  16     \\	\hline
-	\end{tabular} 
-\end{table}
- Kompanija ima dvije fabrike koje mogu proizvoditi ove igračke. Kako bi se izbjeglo udvostručenje troškova pripreme za proizvodnju,  samo jedna fabrika se može koristiti u datom momentu. 
- 
- 
- Stope proizvodnje svake igračke date su tabelom (u jedinicama/satu): 
-  \begin{table}[H]
- 	\centering
- 	\begin{tabular}{l|cc} \hline
- 		  \        &  Igračka 1 & Igračka 2 \\ \hline
- 	Fabrika 1   &  52     &  38     \\
-    Fabrika 2   &  42     &  23     \\	\hline
- 	\end{tabular} 
- \end{table}
- Fabrika 1 i 2, imaju 480 i 720 sati radnog vremena za proizvodnju ovih igračaka, respektivno. Proizvođač želi znati koju će od novih igračaka proizvesti, u kojoj tvornici i koliko svake (ako uopšte) treba proizvesti kako bi se ukupna zarada maksimizovala. 
- \item %http://people.brunel.ac.uk/~mastjjb/jeb/or/moreip.html
- Hrana se proizvodi rafiniranjem sirovih ulja i njihovim miješanjem. Postoje dvije kategorije sirovog ulja: 
- \begin{itemize}
- 	\item vegansko ulje:
- 	\begin{enumerate}
- 		\item VEG1
- 		\item VEG2 
- 	\end{enumerate}
-   \item obično ulje:
-   \begin{enumerate}
-   	\item Ulje1
-   	\item Ulje2 
-   	\item Ulje3
-   \end{enumerate}
- \end{itemize}
-Cijene za kupovinu svakog ulja date su u nastavku (u KM/toni)
-\begin{table}[H]
- 	\centering
- 	\begin{tabular}{ccccc}
-            VEG1 & VEG2 & Ulje1 & Ulje2 & Ulje3 \\ \hline
-            115  & 128  & 132   & 109   & 114 \\ 	\hline	
-    \end{tabular} 
-\end{table}
-Finalni proizvod prodaje se po 180 KM po toni. Biljna ulja i ne-biljna ulja zahtijevaju različite proizvodne linije za rafinisanje. Nije moguće rafinisati više od 210 $t$ biljnih ulja i više od 260 $t$ nebiljnih ulja. Pretpostavimo da u procesu rafinisanja nema gubitka težine, a troškovi prerade mogu se zanemariti. 
-
-Postoji tehničko ograničenje koje se odnosi na tvrdoću konačnog proizvoda. U jedinicama u kojima se mjeri tvrdoća, dopušteno je da ona ima vrijednosti između 3.5 i 6.2. Pretpostavlja se da se tvrdoća mijenja %odnosi
- linearno sa miješanjem vrsta ulja. Tvrdoća sirovog ulja je data sljedećom tabelom
-\begin{table}[H]
-	\centering
-	\begin{tabular}{ccccc}
-		    VEG1 & VEG2 & Ulje1 & Ulje2 & Ulje3 \\ \hline
-		    8.8  & 6.2  & 1.9   & 4.3   & 5.1   \\
-    \end{tabular} 
-\end{table}
-
-Potrebno je odrediti koja ulja kupiti i kako ih miješati  tako da kompanija maksimizuje svoj profit. 
-
-U osnovni model uključiti i sljedeća ograničenja:
-\begin{itemize}
-	\item Hrana nikad ne smije biti  pravljena miješanjem više od 3 vrste ulja. 
-	\item Ako je neko ulje uključeno u upotrebu,  koristi se barem 30 $t$ tog ulja.
-	\item Ako su ulja VEG1 ili VEG2  korištena, onda i Ulje2 mora biti korišteno.  
-\end{itemize}
-
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{l|cccccccc}
+			Stavka & A & B & C & D & E & F & G & H \\ \hline
+			Težina & 10 & 9 & 15 & 3 & 11 & 6 & 3 & 4 \\
+			Vrijednost & 5 & 2 & 7 & 6 & 1 & 6 & 8 & 6 \\ \hline
+		\end{tabular} 
+		
+	\end{table}
+	Konstruišite model koji maksimizuje vrijednost  predmeta koji mogu biti ubačeni u ova dva kofera. 
+	\item Višedimenzionalni više-direkcioni problem particionisanja brojeva (eng. \emph{multidimensional multi-way number partitioning problem}) se definiše na sljedeći način. Neka je dat skup vektora $S$. Vektori mogu da budu iz proizvoljneg prostora $\mathbb{R}^m, m \in \mathbb{N}$.   Zadatak je podijeliti skup $S$ na $p \geq 1$ particija tako da su sume vrijednosti  elemenata  po koordinatama po particijama što ujednačenije. 
+	
+	\item U ovom zadatku se razmatra  \emph{Problem maksimalnog nezavisnog skupa} (eng. \emph{independent set problem}). Dat je graf $G = (V, E)$. Potrebno je naći podskup $V' \subseteq V$ maksimalne kardinalnosti takav da  $V'$ ne sadrži ni jedan par susjednih čvorova. 
+	\item Problem maksimalne klike (eng. \emph{maximum clique problem}) se definiše na sljedeći način.  Dat graf $G = (V, E)$. Potrebno je naći podskup $V' \subseteq V$ maksimalne kardinalnosti tako da je indukovani podgraf 
+	$G[V']$ grafa $G$ kompletan graf. 
+	\item % http://people.brunel.ac.uk/~mastjjb/jeb/or/moreip.html
+	Proizvođač igračaka planira proizvodnju novih igračaka. Troškovi pripreme proizvodnih pogona i jedinični profit za svaku igračku dati su sljedećom tabelom: 
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{l|cc} 
+			\hline
+			Igračka &  Troškovi pripreme    & Profit \\ \hline
+			1       &  45000     &  12     \\
+			2       &  76000     &  16     \\	\hline
+		\end{tabular} 
+	\end{table}
+	Kompanija ima dvije fabrike koje mogu proizvoditi ove igračke. Kako bi se izbjeglo udvostručenje troškova pripreme za proizvodnju,  samo jedna fabrika se može koristiti u datom momentu. 
+	
+	
+	Stope proizvodnje svake igračke date su tabelom (u jedinicama/satu): 
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{l|cc} \hline
+			\        &  Igračka 1 & Igračka 2 \\ \hline
+			Fabrika 1   &  52     &  38     \\
+			Fabrika 2   &  42     &  23     \\	\hline
+		\end{tabular} 
+	\end{table}
+	Fabrika 1 i 2, imaju 480 i 720 sati radnog vremena za proizvodnju ovih igračaka, respektivno. Proizvođač želi znati koju će od novih igračaka proizvesti, u kojoj tvornici i koliko svake (ako uopšte) treba proizvesti kako bi se ukupna zarada maksimizovala. 
+	\item %http://people.brunel.ac.uk/~mastjjb/jeb/or/moreip.html
+	Hrana se proizvodi rafiniranjem sirovih ulja i njihovim miješanjem. Postoje dvije kategorije sirovog ulja: 
+	\begin{itemize}
+		\item vegansko ulje:
+		\begin{enumerate}
+			\item VEG1
+			\item VEG2 
+		\end{enumerate}
+		\item obično ulje:
+		\begin{enumerate}
+			\item Ulje1
+			\item Ulje2 
+			\item Ulje3
+		\end{enumerate}
+	\end{itemize}
+	Cijene za kupovinu svakog ulja date su u nastavku (u KM/toni)
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{ccccc}
+			VEG1 & VEG2 & Ulje1 & Ulje2 & Ulje3 \\ \hline
+			115  & 128  & 132   & 109   & 114 \\ 	\hline	
+		\end{tabular} 
+	\end{table}
+	Finalni proizvod prodaje se po 180 KM po toni. Biljna ulja i ne-biljna ulja zahtijevaju različite proizvodne linije za rafinisanje. Nije moguće rafinisati više od 210 $t$ biljnih ulja i više od 260 $t$ nebiljnih ulja. Pretpostavimo da u procesu rafinisanja nema gubitka težine, a troškovi prerade mogu se zanemariti. 
+	
+	Postoji tehničko ograničenje koje se odnosi na tvrdoću konačnog proizvoda. U jedinicama u kojima se mjeri tvrdoća, dopušteno je da ona ima vrijednosti između 3.5 i 6.2. Pretpostavlja se da se tvrdoća mijenja %odnosi
+	linearno sa miješanjem vrsta ulja. Tvrdoća sirovog ulja je data sljedećom tabelom
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{ccccc}
+			VEG1 & VEG2 & Ulje1 & Ulje2 & Ulje3 \\ \hline
+			8.8  & 6.2  & 1.9   & 4.3   & 5.1   \\
+		\end{tabular} 
+	\end{table}
+	
+	Potrebno je odrediti koja ulja kupiti i kako ih miješati  tako da kompanija maksimizuje svoj profit. 
+	
+	U osnovni model uključiti i sljedeća ograničenja:
+	\begin{itemize}
+		\item Hrana nikad ne smije biti  pravljena miješanjem više od 3 vrste ulja. 
+		\item Ako je neko ulje uključeno u upotrebu,  koristi se barem 30 $t$ tog ulja.
+		\item Ako su ulja VEG1 ili VEG2  korištena, onda i Ulje2 mora biti korišteno.  
+	\end{itemize}
+	
 \end{enumerate}                                                       
-
 
  \chapter{Algoritamske tehnike za rješavanje Cjelobrojnog linearnog programiranja}\label{chap:rjesavanjeILP}
  
@@ -6439,7 +6439,7 @@ odakle slijedi da Algoritam~\ref{alg:ss} daje $2H_n$--aproksimaciju.
  			\STATE $RacunajFunkcijuPrilagodjenosti(P)$
  			\STATE $P' \gets PrebaciElitneJedinke(P)$
  			\STATE $R \gets IzvrsiSelekcijuRoditelja(P)$
- 			\STATE $P'' \gets IzvrsiUkrstanjeIMutaciju(P, )$		  
+ 			\STATE $P'' \gets IzvrsiUkrstanjeIMutaciju(P)$		  
  			\STATE $P\gets P' \cup P''$
  		\ENDWHILE
  	\end{algorithmic}
