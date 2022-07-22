@@ -6355,8 +6355,8 @@ odakle slijedi da Algoritam~\ref{alg:ss} daje $2H_n$--aproksimaciju.
  
  Svaka heuristička metoda mora da zadovolji dva pravila: da je rešenje ,,dovoljno
  dobro'' i da se algoritam pokrenut na ulazni problem izvršava u realnom, polinomijalnom vremenu. Treba napomenuti da se pod  ,,dovoljno
- dobrim'' rješenjem podrazumijevaju različite procjene, koje mogu biti subjektivne (npr. zasnovane na ličnoj ili profesionalnoj procjeni stručnjaka koji razvija ili koristi metodu), objektivne (npr.  rješenje je dobro ako od optimalnog rješenja odstupa u dozvoljenim granicama) ili zavisne od drugih uslova (na primjer, traži se rješenje problema takvo da je ono ekonomski prihvatljivo, bez obzira na to da li je blizu optimalnog rješenja ili ne). 
- Za neke metode, kvalitet dobijenog rješenja je moguće utvrditi samo eksperimentalno, na primjer, poređenjem sa rješenjima dobijenim uz pomoć drugih metoda. Nekada je cilj heurističke metode samo da se pronađe jedno dopustivo rješenje, dok se kvalitet samog rješenja ne razmatra.
+ dobrim'' rješenjem podrazumijevaju različite procjene, koje mogu biti subjektivne (npr. zasnovane na ličnoj ili profesionalnoj procjeni stručnjaka koji razvija ili koristi metodu), objektivne (npr.  rješenje je dobro ako od optimalnog rješenja odstupa u dozvoljenim granicama) ili zavisne od drugih uslova (npr. traži se rješenje problema takvo da je ono ekonomski prihvatljivo, bez obzira na to da li je blizu optimalnog rješenja ili ne). 
+ Za neke metode, kvalitet dobijenog rješenja je moguće utvrditi samo eksperimentalno, npr. poređenjem sa rješenjima dobijenim uz pomoć drugih metoda. Nekada je cilj heurističke metode samo da se pronađe jedno dopustivo rješenje, dok se kvalitet samog rješenja ne razmatra.
  
  Važna osobina dobro konstruisanih heurističkih metoda je mogućnost prevazilaženja lokalnog ekstrema (što nije slučaj sa pohlepnim algoritmima), u cilju dostizanja globalnog optimalnog rješenja. 
  
@@ -6364,9 +6364,9 @@ odakle slijedi da Algoritam~\ref{alg:ss} daje $2H_n$--aproksimaciju.
  
  \section{Metaheurističke metode}
  
- Široku klasu heurističkih metoda čine tzv. ``univerzalne'' heurističke metode, koje se, uz blage modifikacije i prilagođavanje, mogu koristiti za rješavanje više različitih problema. Takve metode nazivamo \emph{metaheurističkim} metodama, ili metaheuristikama.  
+ Široku klasu heurističkih metoda čine tzv. ,,univerzalne'' heurističke metode, koje se, uz blage modifikacije i prilagođavanje, mogu koristiti za rješavanje više različitih problema. Takve metode nazivamo \emph{metaheurističkim} metodama, ili metaheuristikama.  
  
- Metaheuristika se formalno definiše kao iterativni proces koji koristi približne metode, kombinujući na inteligentan način različite koncepte za pretraživanje prostora rješenja, da bi se u razumnom vremenu, odredilo rješenje što bliže optimalnom.
+ Metaheuristika se formalno definiše kao iterativni proces koji koristi približne metode, kombinujući na inteligentan način različite koncepte za pretraživanje prostora rješenja, da bi se u razumnom vremenu, ,,dohvatilo'' rješenje što bliže optimalnom.
  
  Sa praktičnog aspekta, cilj metaheuristika je pretraživanje skupa dopustivih rješenja, pri čemu je, ponekad, dozvoljeno i proširenje tog skupa elementima koji nisu dopustivi, prelazak u rješenja slabijeg kvali\-teta kako bi se izbjegli lokalni optimumi koji nisu i globalni, kombinovanje sa drugim heuristikama, itd.
  
@@ -6374,25 +6374,25 @@ odakle slijedi da Algoritam~\ref{alg:ss} daje $2H_n$--aproksimaciju.
  S obzirom na veliki broj raznih metaheuristika koje su razvijene u posljednje vrijeme, prirodno je očekivati da se za  njihov razvoj koriste vrlo različiti pristupi, počev od polazne motivacije, preko strategije pretraživanja, različitih namjena i klasa problema na kojima se primjenjuju.
  U savremenoj literaturi, sreće se nekoliko kriterijuma za klasifikaciju metaheuristika.
  
- Klasifikacija metaheuristika prema polaznoj motivaciji identifikuje tzv. metaheuristike zasnovane na simulaciji prirodnih pojava (eng. \emph{nature inspired metaheuristics}), kao što su na primjer genetski algoritmi, mravlje ili pčelinje kolonije ili elektromagnetizam. Nasuprot njima, veliki broj metaheuristika nije motivisan prirodnim procesima. na primjer, tabu pretraživanje, iterativna lokalna pretraga itd.
+ Klasifikacija metaheuristika prema polaznoj motivaciji identifikuje tzv. metaheuristike zasnovane na simulaciji prirodnih pojava (eng. \emph{nature inspired metaheuristics}), kao što su na primjer genetski algoritmi, mravlje ili pčelinje kolonije ili elektromagnetizam. Nasuprot njima, veliki broj metaheuristika nije motivisan prirodnim procesima, kao npr. tabu pretraživanje, iterativna lokalna pretraga itd.
  
  Prema broju tačaka kojima se raspolaže unutar jedne iteracije, metaheuristike se dijele na dvije klase: metaheuristike zasnovane na populaciji (eng. \emph{population based}) i metaheuristike koje rade sa jednom tačkom unutar jedne iteracije (eng. \emph{single point search}). U prvoj klasi, u datom trenutku algoritam raspolaže sa više tačaka -- različitih rješenja problema. Pretraživanje prostora je zasnovano na primjeni različitih operatora kombinovanja, pomjeranja, izmjena i odabira pojedinih tačaka, kako bi se u svakoj novoj iteraciji formirala nova populacija, sa potencijalno boljim rješenjima. Takve metaheuristike su: genetski algoritmi, mravlje kolonije, elektromagnetizam, jata ptica, itd.
- U metaheuristikama koje raspolažu jednom tačkom, primjenjuje se strategija zasnovana na praćenju trajektorije (eng. \emph{trajectory methods}), koji podrazumijeva da se kroz iteracije formira niz rješenja, od kojih je svako naredno (po pravilu, ali ne i obavezno) bolje od prethodnog. Ovi algoritmi najčešće, ali opet ne i obavezno, koriste i neke metode lokalnog pretraživanja, gdje se novo, potencijalno bolje rješenje bira unutar neke okoline trenutnog rješenja. Neke od metoda koje pripadaju ovoj klasi su metoda promjenljivih okolina, tabu pretraživanje, simulirano kaljenje, metoda promjenljivih okolina, itd.
+ U metaheuristikama koje raspolažu jednom tačkom, primjenjuje se strategija zasnovana na praćenju trajektorije (eng. \emph{trajectory methods}), koja podrazumijeva da se kroz iteracije formira niz rješenja, od kojih je svako naredno (po pravilu, ali ne i obavezno) bolje od prethodnog. Ovi algoritmi najčešće, ali opet ne i obavezno, koriste i neke metode lokalnog pretraživanja, gdje se novo, potencijalno bolje rješenje bira unutar neke okoline trenutnog rješenja. Neke od metoda koje pripadaju ovoj klasi su metoda promjenljivih okolina, tabu pretraživanje, simulirano kaljenje, metoda promjenljivih okolina, itd.
  
  Prema tipu funkcije cilja, metaheuristike se mogu klasifikovati na one koje koriste statičku, te one koje koriste dinamičku funkciju cilja. Kako i sam termin ukazuje, dinamičke funkcije cilja se ažuriraju prema trenutnim zahtjevima u toku samog izvršenja metaheuristike. Suprotno njima, statičke funkcije se ne mijenjaju za vrijeme izvršenja metaheuristike. 
  
  Neke od najčešće korištenih metaheuristika su:
  \begin{itemize}
- 	\item pohlepni algoritam sa prilagođenom slučajnom pretragom (eng. \emph{Greedy randomized adaptive search procedure}) -- GRASP;
+ 	\item pohlepni algoritam sa prilagođenom slučajnom pretragom (eng. \emph{greedy randomized adaptive search procedure}) -- GRASP;
  	\item tabu pretraživanje (eng. \emph{tabu search}) -- TS;
  	\item genetski algoritam (eng. \emph{genetic algorithm}) -- GA;
  	\item metod promjenljivih okolina (eng. \emph{variable neighborhood search}) -- VNS;
  	\item simulirano kaljenje (eng. \emph{simulated annealing}) -- SA;
  	\item mravlje kolonije (eng. \emph{ant colony optimization}) -- ACO;
- 	\item pčelinje kolonije (eng. \emph{artificial Bee Colony}) -- ABC;
+ 	\item pčelinje kolonije (eng. \emph{artificial  bee colony}) -- ABC;
  	\item elektromagnetizam (eng. \emph{electromagnetism}) -- EM;
- 	\item optimizacija rojem čestica (eng. \emph{particle Swarm optimization}) -- PSO;
- 	\item upravljano lokalno pretraživanje (eng. \emph{guided Local Search})  -- GLS.
+ 	\item optimizacija rojem čestica (eng. \emph{particle swarm optimization}) -- PSO;
+ 	\item upravljano lokalno pretraživanje (eng. \emph{guided local search})  -- GLS.
  \end{itemize}
  
  U nastavku ovog poglavlja, detaljnije će biti objašnjena po jedna metaheuristika iz grupe populacionih metoda (genetski algoritam) i iz grupe metoda koje u procesu pretrage raspolažu samo jednom tačkom (metoda promjenljivih okolina). Pored ove dvije metode, biće objašnjen i princip lokalnog pretraživanja. Čitaocu preporučujemo da se, koristeći se internet izvorima, manje ili više detaljno upozna i sa drugim metaheuristikama, koje su nabrojane u ovom odjeljku.
@@ -6401,14 +6401,14 @@ odakle slijedi da Algoritam~\ref{alg:ss} daje $2H_n$--aproksimaciju.
  \subsection{Genetski algoritmi}\label{intro:ga}
  
  
- Genetski algoritmi spadaju u klasu populacionih i evolucijskih algoritama, čije je ponašanje inspirisano procesom evolucije koji se odvija u prirodi.
+ Genetski algoritmi spadaju u klasu populacionih i evolucijskih algoritama, čije je ponašanje inspirisano procesom evolucije koja se odvija u prirodi.
  Kao što je već rečeno, u osnovi se podrazumijeva rad sa populacijom rješenja (jedinki), gdje svaka jedinka predstavlja potencijalno rješenje polaznog problema, dok je populacija  podskup ukupnog prostora pretraživanja. Populacija se u iterativnom postupku mijenja tako što se stare jedinke mijenjaju novim, potencijalno boljim jedinkama.
  
- Osnovni okvir za funkcionisanje genetskih algoritama je prezentovan još 1975. godine od strane Džona Holanda, u čuvenoj knjizi ``Adaptation in natural and artificial system''.
+ Osnovni okvir za funkcionisanje genetskih algoritama je prezentovan još 1975. godine od strane Džona Holanda, u čuvenoj knjizi ,,Adaptation in natural and artificial system''.
  
- Svakoj jedinki se dodjeljuje brojna vrijednost, tzv. prilagođenost (eng.  \emph{fitness}), koja ocjenjuje kvalitet posmatrane jedinke. Cilj genetskog algoritma je da se, iz iteracije u iteraciju, pronalaze jedinke sa sve boljom prilagođenošću, pod čime se smatra i pojedinačno poboljšanje nekih jedinki, ali i prosječna prilagođenost kompletne populacije, što se postiže standardnim genetskim operatorima: \textit{selekcijom}, \textit{ukrštanjem} i \textit{mutacijom}.
+ Svakoj jedinki se dodjeljuje brojna vrijednost, tzv. \textit{prilagođenost} (eng.   {fitness}), koja ocjenjuje kvalitet posmatrane jedinke. Cilj genetskog algoritma je da se, iz iteracije u iteraciju, pronalaze jedinke sa sve boljom prilagođenošću, pod čime se smatra i pojedinačno poboljšanje nekih jedinki, ali i prosječna prilagođenost kompletne populacije, što se postiže standardnim genetskim operatorima: \textit{selekcijom}, \textit{ukrštanjem} i \textit{mutacijom}.
  
- Populacija je centralna struktura kod genetskog algoritma i ona  obično broji od nekoliko, pa do nekoliko stotina jedinki (u rijetkim situacijama i do hiljadu). Svaka jedinka se predstavlja genetskim k\^odom, koji se zapisuje nad nekom konačnom azbukom (najčešće binarnom ili pak cjelobrojnom). Segmenti genetskog k\^oda se nazivaju \emph{geni}. 
+ Populacija je centralna struktura kod genetskog algoritma i ona  obično broji od nekoliko, pa do nekoliko stotina jedinki (u rijetkim situacijama i do hiljadu). Svaka jedinka se predstavlja genetskim kodom, koji se zapisuje nad nekom konačnom azbukom (najčešće binarnom ili pak cjelobrojnom). Segmenti genetskog koda se nazivaju \emph{geni}. 
  
  
  Početna populacija se obično kreira na slučajan način, čime se omogućava kreiranje raznovrsnog genetskog materijala, korisnog za kasnije faze algoritma i raznovrsnost samih jedinki. U nekim slučajevima se za generisanje polaznih jedinki koristi i neka druga heuristika, čime se pretraga od početka usmjerava ka onim oblastima pretraživanja za koje se pretpostavlja da sadrže kvalitetnija rješenja.
@@ -6417,14 +6417,14 @@ odakle slijedi da Algoritam~\ref{alg:ss} daje $2H_n$--aproksimaciju.
  
  \emph{Operator selekcije} bira jedinke na koje se dalje primjenjuju genetski operatori ukrštanja i mutacije. Po pravilu, boljim jedinkama, odnosno jedinkama sa boljom prilagođenošću, se operatorom selekcije daje veća vjerovatnoća da će biti izabrane, dok  slabije jedinke selekcijom dobijaju manju šansu. Postoji veći broj tehnika selekcije, a najpoznatije su: jednostavna (ili rulet) selekcija, turnirska, eliminacijska selekcija i elitizam. Rulet selekcija diktira da je vjerovatnoća da će jedinka biti izabrana proporcionalna prilagođenosti. Kod turnirske selekcije se iterativno formiraju skupovi jedinki, od kojih samo ona sa najboljom prilagođenošću opstaje i ulazi u dalji proces kombinovanja sa drugim jedinkama. Eliminacijska selekcija je primarno zasnovana na izbacivanju loših jedinki, prije nego na odabiru boljih za narednu generaciju. Značajan broj savremenih implementacija genetskog algoritma uključuje i koncept \emph{elitizma}. Elitizam podrazumijeva da će nekoliko najboljih (elitnih) jedinki direktno preći u narednu generaciju.
  
- \emph{Ukrštanjem} se kombinuju geni jedinki. Rezultat ukrštanja jedinki su nove jedinke, koje potencijalno sadrže ``dobre'' gene  roditelja od kojih su nastale. Ovim mehanizmom  i jedinke slabije prilagođenosti, ali koje sadrže dobre gene, dobijaju šansu da učestvuju u reprodukciji i prenesu ``dobar'' genetski materijal na sljedeću generaciju. Najčešće korišteni operatori ukrštanja su tzv. jednopoziciono, odnosno dvopoziciono ukrštanje, kod kojih se određuje jedna, odnosno dvije pozicije između kojih se odvija razmjena genetskih k\^odova roditelja, respektivno.
+ \emph{Ukrštanjem} se kombinuju geni jedinki. Rezultat ukrštanja jedinki su nove jedinke, koje potencijalno sadrže ,,dobre'' gene  roditelja od kojih su nastale. Ovim mehanizmom  i jedinke slabije prilagođenosti, ali koje sadrže dobre gene, dobijaju šansu da učestvuju u reprodukciji i prenesu ,,dobar'' genetski materijal na sljedeću generaciju. Najčešće korišteni operatori ukrštanja su tzv. jednopoziciono, odnosno dvopoziciono ukrštanje, kod kojih se određuje jedna, odnosno dvije pozicije između kojih se odvija razmjena genetskih k\^odova roditelja, respektivno.
  
- \emph{Mutacijom} se vrši slučajna promjena određenog gena (sa nekom malom vjerovatnoćom da će se mutacija desiti), čime se postiže mogućnost vraćanja dobrog genetskog materijala, ukoliko je on izgubljen primjenom operatora selekcije. Time se proces pretrage ``izvlači'' iz preuranjene konvergencije i usmjerava ka onim oblastima pretraživanja koje sadrže potencijalno bolje jedinke.
+ \emph{Mutacijom} se vrši slučajna promjena određenog gena (sa nekom malom vjerovatnoćom da će se mutacija desiti), čime se postiže mogućnost vraćanja dobrog genetskog materijala, ukoliko je on izgubljen primjenom operatora selekcije. Time se proces pretrage `,,izvlači'' iz preuranjene konvergencije i usmjerava ka onim oblastima pretraživanja koje sadrže potencijalno bolje jedinke.
  
  
  Nakon primjene genetskih operatora, formira se naredna generacija. Populacija se tako sastoji od potomaka i nekih starijih jedinki koje su preživjele, s obzirom na njihov kvalitet (elitne jedinke). Produkcija novih generacija se nastavlja sve dok ne budu ispunjeni uslovi za završetak algoritma. Najčešći kriterijumi za završetak algoritma su dostignuto maksimalno vrijeme izvršenja, dostignut  maksimalan ukupan broj iteracija, ili dostignut maksimalan broj iteracija bez poboljšanja najboljeg rješenja.
  
- Jedna od mogućih varijanti funkcionisanja genetskog algoritma je prikazana Algoritmom \ref{alg:gascheme}.
+ Jedna od mogućih varijanti genetskog algoritma je prikazana Algoritmom \ref{alg:gascheme}.
  
  %$N_{pop}$ označava ukupan broj jedinki u populaciji.  $N_{elite}$ je broj elitnih jedinki, dok su promjenljivima  $p_i$ i $obj_{i}$ predstavljene odgovarajuća jedinka sa njenom vrijednošću funkcije cilja.
  %\begin{figure}[htp]
@@ -6432,24 +6432,24 @@ odakle slijedi da Algoritam~\ref{alg:ss} daje $2H_n$--aproksimaciju.
  %	\includegraphics[width= 0.8\textwidth]{gasrp2.eps} \caption {Osnovna šema GA algoritma}\label{fig:gascheme}
  %\end{figure}
  
- \begin{algorithm}
+ \begin{algorithm}[!htb]
  	\begin{algorithmic}[1]
  		\STATE  $ P \gets GenerisiInicijalnuPopulaciju()$
  		\WHILE{!$IspunjenKriterijZaustavljanja()$}
- 		\STATE $RacunajFunkcijuPrilagodjenosti(P)$
- 		\STATE $PrebaciElitneJedinke(P,P')$
- 		\STATE $IzvrsiSelekcijuRoditelja(P,R)$
- 		\STATE $IzvrsiUkrstanjeIMutaciju(R,P')$		  
- 		\STATE $P\gets P'$
+ 			\STATE $RacunajFunkcijuPrilagodjenosti(P)$
+ 			\STATE $P' \gets PrebaciElitneJedinke(P)$
+ 			\STATE $R \gets IzvrsiSelekcijuRoditelja(P)$
+ 			\STATE $P'' \gets IzvrsiUkrstanjeIMutaciju(P, )$		  
+ 			\STATE $P\gets P' \cup P''$
  		\ENDWHILE
  	\end{algorithmic}
  	\caption{Osnovna šema GA.}
  	\label{alg:gascheme}
  \end{algorithm}
  
- Nakon što se generiše početna populacija $P$, pokreće se iterativni proces koji traje sve dok se ne ispuni kriterijum za zaustavljanje. Unutar iterativnog procesa, za svaku jedinku populacije $P$ se računa funkcija prilagođenosti. Nakon toga se, redom, formira skup $P'$, koji inicijalno sadrži elitne jedinke i skup $R$ koji je rezultat primjene operatora selekcije na populaciju $P$. Operatori ukrštanja i mutacije se primjenjuju na jedinke iz skupa $R$, a novodobijene jedinke se ubacuju u skup $P'$. Po izvršenju ovih operatora, populacija $P$ preuzima sve jedinke iz skupa $P'$ i iterativni proces se nastavlja.
+ Nakon što se generiše početna populacija $P$, pokreće se iterativni proces koji traje sve dok se ne ispuni kriterijum za zaustavljanje. Unutar iterativnog procesa, za svaku jedinku populacije $P$ se računa funkcija prilagođenosti. Nakon toga se, redom, formira skup $P'$, koji inicijalno sadrži elitne jedinke i skup $R$ koji je rezultat primjene operatora selekcije na populaciju $P$. Operatori ukrštanja i mutacije se primjenjuju na jedinke iz skupa $R$, a novodobijene jedinke se ubacuju u skup $P''$. Po izvršenju ovih operatora, populacija $P$ preuzima sve jedinke iz skupa $P'$ i $P''$ i iterativni proces se nastavlja.
 
-\begin{primjer}\label{primjer:01ruksak} U ovom primjeru posmatrajmo 0-1 problem ruksaka. Ponovimo da nam je, kod ovog problema, na raspolaganju određen broj proizvoda, od kojih svaki proizvod ima svoju vrijednost i težinu. Ruksak je ograničenog maksimalnog kapaciteta (težine) $C$. Podsjetimo se i da se u 0-1 problemu ruksaka svaki proizvod ili ne uzima nikako ili se uzima kompletan. Cilj je, kao i u drugim problemima ruksaka, odabrati onaj skup proizvoda, tako da je njihova ukupna vrijednost maksimalna, a da se ne naruši kapacitet ruksaka.
+\begin{primjer}\label{primjer:01ruksak} U ovom primjeru posmatrajmo 0-1 problem jednodimenzionalnog ruksaka. Ponovimo da nam je, kod ovog problema, na raspolaganju određen broj proizvoda, od kojih svaki proizvod ima svoju vrijednost i težinu. Ruksak je ograničenog maksimalnog kapaciteta (težine) $C$. Podsjetimo se i da se u 0-1 problemu ruksaka svaki proizvod ili ne uzima nikako ili se uzima kompletan. Cilj je, kao i u drugim problemima ruksaka, odabrati onaj skup proizvoda, tako da je njihova ukupna vrijednost maksimalna, a da se ne naruši kapacitet ruksaka.
 \end{primjer}
 Formalna matematička definicija 0-1 problema ruksaka će nam pomoći u konstrukciji genetskog algoritma, pa ćemo je ovdje navesti.
 
@@ -6466,7 +6466,7 @@ Konstrukciju elemenata genetskog algoritma ćemo prikazati služeći se konkretn
 
 \begin{table}\begin{center}
 	\begin{tabular}{lcc}\hline
-		Proizvod&Cijena&Težina\\
+		Proizvod&Cijena&Težina\\ \hline
 		p1&5&7\\
 		p2&8&8\\
 		p3&3&4\\
@@ -6478,8 +6478,8 @@ Konstrukciju elemenata genetskog algoritma ćemo prikazati služeći se konkretn
 	\end{center}\caption{Primjer instance za 0-1 problem ruksaka}\label{tbl:01ruksak}
 \end{table} 
 
-\emph{Kodiranje}. Genetski k\^od svake jedinke ćemo prikazati binarnim nizom dužine $n$ (u primjeru je $n=7$). Tako, na primjer, genetski k\^od 1100100 označava da su proizvodi pod rednim brojem 1, 2 i 5 uključeni u ruksak, dok ostali proizvodi nisu uključeni u ruksak. Vrijednost funkcije cilja za ovo rješenje je 5+8+7=20, dok je ukupna težina 7+8+4 = 19. 
-Primijetimo da ovakav sistem kodiranja može da dovede do nedopustivih rješenja. Npr. genetski k\^od 0101010 označava da su proizvodi pod rednim brojem 2, 4 i 6 uključeni u rješenje, čija je ukupna težina 8+10+6 = 24, što je više od maksimalno dozvoljenog kapaciteta za ruksaka.
+\emph{Kodiranje}. Genetski kod svake jedinke ćemo prikazati binarnim nizom dužine $n$ (u primjeru je $n=7$). Tako, na primjer, genetski k\^od 1100100 označava da su proizvodi pod rednim brojem 1, 2 i 5 uključeni u ruksak, dok ostali proizvodi nisu uključeni u ruksak. Vrijednost funkcije cilja za ovo rješenje je 5+8+7=20, dok je ukupna težina 7+8+4 = 19. 
+Primijetimo da ovakav sistem kodiranja može da dovede do nedopustivih rješenja. Npr. genetski kod 0101010 označava da su proizvodi pod rednim brojem 2, 4 i 6 uključeni u rješenje, čija je ukupna težina 8+10+6 = 24, što je više od maksimalno dozvoljenog kapaciteta ruksaka.
 
 Treba napomenuti da se u rješavanju velikog broja problema kombinatorne optimizacije pomoću genetskih algoritama, ali i drugih heurističkih metoda, često dozvoljava rad sa nedopustivim rješenjima. Razlog za to leži u činjenici da nisu sva nedopustiva rješenja ,,podjednako loša'', a nekada je lakše popraviti nedopustivo rješenje u dopustivo rješenje visokog kvaliteta, nego vršiti pretragu samo na prostoru dopustivih rješenja slabijeg kvaliteta.  Zbog toga se za prevazilaženje pojave nedopustivih rješenja najčešće koristi jedna od sljedeće dvije strategije: 
 \begin{itemize}
@@ -6524,7 +6524,7 @@ Treba napomenuti da, iako se rulet selekcija na prvi pogled čini pogodnom za od
 \end{tabular}
 	\caption{Primjer operatora ukrštanja: jednopoziciono ukrštanje.}
 \end{table}
-U ovom generičkom primjeru možemo vidjeti jednopoziciono ukrštanje u pozicijama $(3, 3).$  Specifičnije, pretpostavimo da imamo dva rješenja (jedinke) konstruisane u algoritamskom procesu: 1100100 i 0100011. Na osnovu jednopozicionog ukrštanja, one produkuju dva nova rješenja (dva potomka), tako što se lijevi dio genetskog k\^oda prvog roditelja spaja sa desnim dijelom genetskog k\^oda drugog roditelja i obrnuto, lijevi dio genetskog k\^oda drugog roditelja se spaja sa desnim dijelom prvog roditelja. 
+U ovom generičkom primjeru možemo vidjeti jednopoziciono ukrštanje u pozicijama $(3, 3).$  Specifičnije, pretpostavimo da imamo dva rješenja (jedinke) konstruisane u algoritamskom procesu: 1100100 i 0100011. Na osnovu jednopozicionog ukrštanja, one produkuju dva nova rješenja (dva potomka), tako što se lijevi dio genetskog k\^oda prvog roditelja spaja sa desnim dijelom genetskog koda drugog roditelja i obrnuto, lijevi dio genetskog koda drugog roditelja se spaja sa desnim dijelom prvog roditelja. 
 Treba napomenuti da se primjenom ovakvog operatora ukrštanja takođe mogu dobiti potomci koji su nedopustivi, bez obzira na to da li su jedinke roditelja dopustive ili ne. Njihova dalja egzistencija u populaciji ponovo zavisi od načina konstruisanja funkcije prilagođenosti. 
 
 Kod dvopozicionog ukrštanja postoje dvije pozicije u svakoj od jedinki na osnovu kojih se radi ukrštanje. Primjer ovakvog ukrštanja je data Tabelom~\ref{tbl:dvopozukr}
@@ -6555,11 +6555,11 @@ U ovom primjeru ukrštanje je izvedeno u pozicijama $(3,7)$ prve jedinke i pozic
 \end{table}
 
 
-Kod uniformnog ukrštanja, za svaki par jedinki koje se ukrštaju, prvo se generiše maska na slučajan način, tj. binarni niz dužine genetskog k\^oda jedinki. Ukoliko je na poziciji $i$ generisane maske vrijednost 1, onda prvi potomak za $i$-ti gen uzima vrijednosti prve jedinke, dok je $i$-ti gen drugog potomka vrijednost $i$-tog gena druge jedinke. Inače, vrijedi obrnuta situacija. Jedan primjer ovakvog ukrštanja je data Tabelom~\ref{tbl:uniukr}
+Kod uniformnog ukrštanja, za svaki par jedinki koje se ukrštaju, prvo se generiše maska na slučajan način, tj. binarni niz dužine genetskog koda jedinki. Ukoliko je na poziciji $i$ generisane maske vrijednost 1, onda prvi potomak za $i$-ti gen uzima vrijednosti prve jedinke, dok je $i$-ti gen drugog potomka vrijednost $i$-tog gena druge jedinke. Inače, vrijedi obrnuta situacija. Jedan primjer ovakvog ukrštanja je data Tabelom~\ref{tbl:uniukr}
 
 
 
-\emph{Mutacija}. Kao što je pomenuto, mutacije podrazumijevaju male promjene u genetskom k\^odu, čija je osnovna namjena izlazak iz lokalnih podoptimalnih rješenja i omogućavanje dalje pretrage u cilju pronalaženja boljih rješenja. Najčešće se mutacija realizuje kao promjena vrijednosti jednog gena. U slučaju  0-1 problemu ruksaka, predstavljenog u Primjeru~\ref{primjer:01ruksak}, u zavisnosti od drugih elemenata algoritma, mogao bi se konstruisati veći broj različitih operatora mutacije: 
+\emph{Mutacija}. Kao što je pomenuto, mutacije podrazumijevaju male promjene u genetskom kodu, čija je osnovna namjena izlazak iz lokalnih podoptimalnih rješenja i omogućavanje dalje pretrage u cilju pronalaženja boljih rješenja. Najčešće se mutacija realizuje kao promjena vrijednosti jednog gena. U slučaju  0-1 problemu ruksaka, predstavljenog u Primjeru~\ref{primjer:01ruksak}, u zavisnosti od drugih elemenata algoritma, mogao bi se konstruisati veći broj različitih operatora mutacije: 
 \begin{itemize}
 	\item Mutacija 1: prelazak neke nule u jedinicu. Ova mutacija bi modifikovala trenutnu jedinku na način da se neki proizvod, koji nije bio u rješenju, uključi u rješenje. Time bi se povećala ukupna vrijednost ruksaka, ali postoji opasnost da jedinka postane nedopustiva.
 	\item  Mutacija 2: prelazak neke jedinice u nulu. Ova mutacija bi modifikovala trenutnu jedinku na način da se neki proizvod, koji je bio u rješenju, isključi iz rješenja. Ovo bi dovelo do smanjenja ukupne vrijednosti ruksaka, ali bi, u slučaju rada sa nedopustivim jedinkama, postojala mogućnost da nedopustivo rješenje postane dopustivo (ili da se poboljša kvalitet nedopustivog rješenja).
@@ -6617,6 +6617,7 @@ Pseudokod lokalne pretrage je dat u Algoritmu~\ref{alg:ls}. Ulaz u algoritam je 
  	\end{primjer}
   
 \subsection{Metoda promjenljivih okolina}\label{intro:vns}
+\fxnote{Marko: došao ovdje!}
 Metoda promjenljivih okolina (VNS) je metaheuristika uvedena od strane Nenada Mladenovića i Pjera Hansena 1997. godine.
 Pretraga je zasnovana na sistematskoj promjeni okolina da bi se izbjegle situacije kada algoritam ,,upada'' u podoptimalna rješenja. Efikasnost VNS algoritma je zasnovana na razmatranju da u mnogim praktičnim optimizacionim problemima postoji povezanost između lokalnih optimuma. Stoga, metoda promjenljivih okolina i ne prati unaprijed zadatu putanju, već ,,skače'' na potencijalno bolja rješenja koja se nalaze u nekoj okolini trenutno najboljeg rješenja. Ovaj proces je poznat pod nazivom diversifikacija (eng. \emph{diversification}). Sistem je dodatno ojačan procedurom lokalnog pretraživanja, kojom se  iz trenutnog rješenja prelazi u najkvalitetnije rješenje u nekoj njegovoj okolini. Ovaj proces je poznat pod nazivom intenzifikacija (eng. \emph{intensification}).
 
