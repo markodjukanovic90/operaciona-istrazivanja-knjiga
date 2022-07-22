@@ -2625,7 +2625,7 @@ Ograničenjima (\ref{const:vars-3}) definisana je binarna priroda promjenljivih.
 		\item $d_{j}$: označava ukupnu potražnju kupca $j$, $j = 1, \ldots, m$;
 		\item $u_{i}$: označava maksimalnu količinu proizvoda (kapacitet zadovoljenja) koji se mogu nabaviti u postrojenju $i$, tj. $u_{i}$ je kapacitet postrojenja $i$.
 	\end{itemize}
-	Definišimo sljedeće varijable odlučivanja:
+	Definišimo sljedeće promjenljive odlučivanja:
 	
 	\begin{itemize}
 		\item $x_i \in \{0,1\}$, gdje je $x_i = 1$ ak je postrojenje $i$ otvoreno, a inače 0.
@@ -2645,8 +2645,8 @@ Ograničenjima (\ref{const:vars-3}) definisana je binarna priroda promjenljivih.
 	
 	Funkcija cilja (\ref{const:location-objective}) minimizuje ukupnu cijenu zadovojenja  (dijela) potreba kupaca u postrojenjima i cijene otvaranja postrojenja. 
 	
-	Ograničenje (\ref{const:location-1}) daje da su potrebe svakog kupca zadovoljene.  
-	Ograničenje (\ref{const:location-2}) ograničava da, ukoliko je postrojenje $i$ otovoreno, ono može da ponudi kupcima onoliko koliko mu njegov kapacitet dozvoljava.  
+	Ograničenje (\ref{const:location-1}) garantuje da su potrebe svakog kupca zadovoljene.  
+	Ograničenje (\ref{const:location-2}) ograničava da, ukoliko je postrojenje $i$ otvoreno, ono može da ponudi kupcima onoliko koliko mu njegov kapacitet dozvoljava.  
 	
 	
 	Ovaj model pripada modelu \emph{mješovitnog linearnog programiranja}, gdje u istom modelu postoje i cjelobrojne i neprekidne promjenljive.
@@ -2667,15 +2667,15 @@ Sljedeći primjer spada u modele \emph{binarnog linearnog programiranja}.
 		& x_i, z_{ij} \in \{0,1\} \mbox{ za } i = 1, \ldots, n, j = 1,  \ldots, m.
 	\end{align*}
 	Vrijednost $M>0$ je konstanta koja uzima neku veliku vrijednost (npr. zbir količine potražnji svih kupaca). Međutim, u praksi se često  izbjegava upotreba $M$-konstante, te se tako 
-	ovo ograničenje zamjenjuje sa $ z_{ij} \leq x_i$ 
+	ovo ograničenje mijenja sa $ z_{ij} \leq x_i$ 
 	za $ i = 1, \ldots, n, j = 1,  \ldots, m$. % Ovakav pristup osigurava bolje performanse, jer se generišu preciznije linearne relaksacije o kojima će biti riječi u narednim sekcijama.
 \end{primjer}
 \begin{primjer}
-	\emph{Problem rasporeda} (eng. scheduling problems). Čitava klasa problema koja se naziva sekvenciranje, raspoređivanje i usmjeravanje u osnovi su predstavljeni modelima cjelobrojnog programiranja. U ove probleme, na primjer, spadaju problemi rasporeda časova ili rasporeda ispita na fakultetima. Kod ovih problema postoje ograničenja u pogledu broja i kapaciteta učionica dostupnih u bilo kom trenutku, dostupnosti predavača na fakultetu u određeno vrijeme i preferencijama studenata za određene rasporede. Kriterijumi za određivanje funkcije cilja mogu da budu različiti. Kod rasporeda polaganja ispita, može se minimizovati broj potrebnih termina za održavanje ispita, uz osnovni uslov da dva ispita moraju biti u različitim terminima ako postoji barem jedan student koji planira da polaže oba ispita.  Kod jednog problema rasporeda časova, raspoređivanje studenata u  učionice se može vršiti na  način da se minimizuje broj učenika koji ne mogu pohađati nastavu iz predmeta koji je njihov prvi izbor, u odnosu na ostale izbore.
+	\emph{Problem rasporeda} (eng. scheduling problems). Čitava klasa problema koja se naziva sekvenciranje, raspoređivanje i usmjeravanje u osnovi su predstavljeni modelima cjelobrojnog programiranja. U ove probleme, na primjer, spadaju problemi rasporeda časova ili rasporeda ispita na fakultetima. Kod ovih problema postoje ograničenja u pogledu broja i kapaciteta učionica dostupnih u bilo kom trenutku, dostupnosti predavača na fakultetu u određeno vrijeme i preferencijama studenata ili nastavnika za određene rasporede. Kriterijumi za određivanje funkcije cilja mogu da budu različiti. Kod rasporeda polaganja ispita, može se minimizovati broj potrebnih termina za održavanje ispita, uz osnovni uslov da dva ispita moraju biti u različitim terminima ako postoji barem jedan student koji planira da polaže oba ispita.  Kod jednog problema rasporeda časova, raspoređivanje studenata u  učionice se može vršiti na  način da se minimizuje broj učenika koji ne mogu pohađati nastavu iz predmeta koji je njihov prvi izbor, u odnosu na ostale izbore.
 	U tom slučaju, jasno je da imamo promjenljivu $X_{i,j,n}$ za   $i$-tog učenika 
 	koji pohađa $j$-to predavanje tokom $n$-tog vremenskog perioda (recimo, vr	ijeme je diskretizovano po 45 min/čas) -- koja je jednaka 1 ako se student uklapa u takav raspored, inače 0. 
 \end{primjer}
-Posmatrajmo ipak malo specifičniji problem u odnosu na najopštiji (koji je dosta težak i za modeovanje, a kamoli za rješavanje). 
+Posmatrajmo, ipak, malo specifičniji problem u odnosu na najopštiji, koji je dosta težak i za modelovanje, a kamoli za rješavanje. 
 Razmotrimo raspoređivanje osoblja zaduženog za upravljanje letom aviona. 
 Avionska kompanija treba da rasporedi svoje osoblje na rutama koje pokrivaju letove. Treba paziti, na primjer, da jedna posada treba da upravlja letom iz  Beograda u Zagreb (u 10:00), a zatim letom iz Zagreba u Cirih (u 14:00). Dakle, jedna posada bi trebalo da je uključena u rutu na kojoj upravlja različitim letovima. Prema tome, raspoređivanje posade na rutu $j$ se modeluje uz pomoć binarne promjenljive 
 $$x_j = \begin{cases}
@@ -2701,7 +2701,7 @@ Model ovakvog problema je dat sa
 	& a_{ij} \in \{0, 1\}, \forall i \in \{1, \ldots, n\}, j \in\{1,\ldots, m\} \nonumber
 \end{align}
 
-Ograničenje (\ref{ineq:set_cover}) nam govori da za svaki let $i$ mora postojati barem jedna ruta $j$ za koju je barem jedna posada zadužena. Svakako,  više letova može da bude pridruženo jednoj ruti, pa je otuda suma na lijevoj strani veća ili jednaka 1. 
+Ograničenje (\ref{ineq:set_cover}) nam govori da, za svaki let $i$, mora postojati barem jedna ruta $j$ za koju je barem jedna posada zadužena. Svakako,  više letova može da bude pridruženo jednoj ruti, pa je otuda suma na lijevoj strani veća ili jednaka 1. 
 %Ograničenje (\ref{ineq:set_cover}) je poznato ograničenje koje se javlja u problemu pokrivanju  skupa (eng. \emph{set covering problem}).
 \begin{primjer}
 	\emph{Problem trgovačkog putnika} (eng.  {Traveling Salesman Problem -- TSP)}. Neka je dato $n$ gradova. Krenuvši od svog mjesta, putnik želi da posjeti ostalih $n-1$ gradova pod minimalnim troškovima i da se na kraju vrati u početni grad. U suštini, ovo je problem grafovske prirode, gdje je ulaz (bez smanjenja opštosti) kompletan težinski graf, a potrebno je naći Hamiltonovu konturu minimalne težine u datom grafu. Pod težinom konture se podrazumijeva zbir težina njenih grana. 
@@ -2786,7 +2786,7 @@ Konstante $M_1$ i $M_2$ se biraju tako da oba ograničenja iz (\ref{ineq:f_leq_b
 
 Ograničenje $y_1 + y_2 \leq 1$ implicira da barem jedna od $y$--promjenljivih mora da bude 0, odnosno, barem jedno alternativno ograničenje mora da bude zadovoljeno. 
 
-Pojednostavimo ovu formulaciju koristeći ograničenje $y_1 + y_2 = 1$ umjesto ograničenja nejednakosti, što povlači da je tačno jedna varijabla jednaka 1, a druga 0. Uvrštavanjem $y_2 =  1-y_1$,  dobijamo 
+Pojednostavimo ovu formulaciju koristeći ograničenje $y_1 + y_2 = 1$ umjesto ograničenja nejednakosti, što povlači da je tačno jedna promjenljiva jednaka 1, a druga 0. Uvrštavanjem $y_2 =  1-y_1$,  dobijamo 
 \begin{align*}
 	& f_1(x) - M_1 y_1       \leq b_1 \\
 	& f_2(x) - M_2 (1-y_1)   \leq b_2  \\
