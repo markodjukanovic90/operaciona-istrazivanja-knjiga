@@ -4538,8 +4538,6 @@ Sada rješavamo master problem
 	&1000-y\geqslant 0\\
 	&y\in\mathbb{Z}^+\\	
 \end{align*}
-
-
 Vidimo da, bez obzira na vrijednost $y$, vrijednost funkcije cilja nije ograničena.
 Drugim riječima, ako uzmemo bilo koju dopustivu vrijednost za $y$ (recimo $\overline{y}=1000$) dobijamo da je $\overline{z} = +\infty$. Sada možemo zaključiti da u prvoj iteraciji algoritma nismo uspjeli da smanjimo gornju granicu, te nam ostaje $UB = +\infty$.
 
@@ -6393,6 +6391,38 @@ odakle slijedi da Algoritam~\ref{alg:ss} daje $2H_n$--aproksimaciju.
  
  U nastavku ovog poglavlja, detaljnije će biti objašnjena po jedna metaheuristika iz grupe populacionih metoda (genetski algoritam) i iz grupe metoda koje u procesu pretrage raspolažu samo jednom tačkom (metoda promjenljivih okolina). Pored ove dvije metode, biće objašnjen i princip lokalnog pretraživanja. Čitaocu preporučujemo da se, koristeći se internet izvorima, manje ili više detaljno upozna i sa drugim metaheuristikama, koje su nabrojane u ovom odjeljku.
  
+  
+ \subsection{Metoda lokalne pretrage}\label{sec: local_search}
+ 
+ Metoda lokalne pretrage je tehnika čija se strategija sastoji u izvođenju niza poboljšanja  rješenja, počevši od nekog unaprijed zadanog, radeći ,,male'' promjene u strukturi trenutno najboljeg rješenja. Uvedimo prvo koncept okolina i lokalnih rješenja kao baznih pojmova u metodologiji lokalne pretrage. Za dato rješenje $x$, definišimo skup (ne obavezno dopustivih) rješenja koja su ,,blizu'' $x$ u odnosu na neku mjeru. Formalno, okolina predstavlja preslikavanje  $\mathcal{N}$ gdje svakom (dopustivom) rješenju pridružujemo skup rješenja, koje zovemo okolina od $x$.  Funkcija okoline se takođe može definisati preko operatora  $\Delta$, koji predstavlja kolekciju   funkcija $\Delta:\Phi \mapsto \Phi$,  gdje je $\Phi$ prostor pretrage (rješenja) razmatrane instance problema:
+ $$ x' \in \mathcal{N}(x) \Longleftrightarrow \exists \delta \in \Delta,\delta(x)=x'.$$
+ 
+ Prirodan izbor u mnogim aplikacijama je $k$-izmjenjena (eng. \emph{k-exchange}) okolina: $x$ i $x^{'}$ pripadaju istoj okolini akko se razlikuju na tačno $k$ komponenti rješenja. Npr. za TSP problem, 2-{izmijenjena} okolina je prirodan izbor gdje su komponente rješenja grane datog grafa.  
+ 
+ 
+ Rješenje $x$ je \emph{lokalni optimum} u odnosu na okolinu $\mathcal{N}$ akko
+ $f(x) \leq f(x')$ ($f(x) \geq f(x')$), za sve $x' \in \mathcal{N}(x)$, ako minimizujemo (maksimizujemo) ciljnu funkciju $f$.  \emph{Globalni optimum} je rješenje koje je lokalni optimum u odnosu na bilo koju okolinu.  Iako je to većini čitalaca jasno, nije zgoreg  još jednom pomenuti da nije svaki lokalni optimum ujedno i globalni. 
+ 
+ \begin{algorithm}[!t] 
+ 	\caption{Lokalna pretraga (maksimizacija)}\label{alg:ls}
+ 	\begin{algorithmic}[1]
+ 		\STATE \textbf{Ulaz:} instanca problema, okolina $\mathcal{N}$
+ 		\WHILE{$ \left\{ x' \ni \mathcal{N}(x) \mid f(x') > f(x)\right\} \neq \emptyset$}
+ 		\STATE $ x \gets  \text{ izaberi } x' \in \mathcal{N}(x) $ ako vrijedi  $f(x') > f(x)$ 
+ 		\ENDWHILE
+ 	\end{algorithmic}
+ \end{algorithm}
+ 
+ Pseudokod lokalne pretrage je dat u Algoritmu~\ref{alg:ls}. Ulaz u algoritam je instanca problema i jedna unaprijed definisana okolina $\mathcal{N}$. U svakoj iteraciji, lokalna pretraga poboljšava trenutno (najbolje) rješenje ako    rješenje u okolini  $\mathcal{N}(x)$ ima bolju vrijednost ciljne funkcije. Algoritam se prekida ako je trenutno rješenje lokalno najbolje u odnosu na definisanu okolinu.
+ Postoje dvije strategije za izbor rješenja koje će zamijeniti trenutno najbolje rješenje, pod pretpostavkom da postoji više od jednog rješenja sa boljom vrijednošću ciljne funkcije u posmatranoj okolini. Te strategije su:
+ \begin{itemize}
+ 	\item \emph{prvo poboljšanje} (eng. \emph{the first improvement strategy}) -- ova strategija prihvata prvo nađeno rješenje $x'$ u okolini $\mathcal{N}(x)$ sa boljom vrijednošću ciljne funkcije od $x$. Pretraga se  pomjera u tačku  $x = x'$, odakle se pokreće nova iteracija lokalne pretrage. Lokalna pretraga se zaustavlja kada nema više poboljšanja.
+ 	\item \emph{najbolje poboljšanje} (eng. \emph{the best improvement strategy}) --   ova strategija provjerava sva rješenja iz okoline $\mathcal{N}(x)$ i za novo najbolje rješenje bira ono koje je lokalno najbolje u toj okolini. Nalazak  najboljeg rješenja zahtijeva enumeraciju svih rješenja iz okoline. Stoga, upotreba ove strategije, u opštem slučaju, zahtijeva više procesorskog vremena, tako da ona nije uvijek primjenjiva. U ovom slučaju, lokalna pretraga se završava kada nema više poboljšanja. %Ipak, u praksi se pokazalo da strategija \emph{najboljeg poboljšanja} često vodi ka lokalnom optimumu problema u svega nekoliko iteracija lokalne pretrage. 
+ \end{itemize}
+ Okolina kod koje se formira direktnom razmjenom vrijednosti dvije promjenljive u rješenju se često naziva i \emph{1-razmjena} (eng. \emph{swap}) okolina.
+ \begin{primjer} U   problemu 0-1 ruksaka, za okolinu $\mathcal{N}$ bi mogli uzeti $1$-\emph{exchange} okolinu. Recimo, za $n=4$ i rješenje $x=1100$ imali  bismo $$\mathcal{N}(x)= \{ 0100, 1000, 1110, 1101 \}.$$ 
+ \end{primjer}
+ 
  
  \subsection{Genetski algoritmi}\label{intro:ga}
  
@@ -6580,47 +6610,17 @@ Kod uniformnog ukrštanja, za svaki par jedinki koje se ukrštaju, prvo se gener
 Na kraju ovog odjeljka treba pomenuti da je višedecenijska primjena genetskih algoritama u rješavanju velikog broja problema kombinatorne optimizacije dovela je do pojave velikog broja različitih varijanti algoritma, koje se, između ostalog, razlikuju po operatorima koji se primjenjuju, načinu formiranja početne populacije, primjenama različitih strategija lokalnog pretraživanja, tehnike keširanja međurezultata, itd. 
 
 
- 
-\subsection{Metoda lokalne pretrage}\label{sec: local_search}
 
-Metoda lokalne pretrage je tehnika čija se strategija sastoji u izvođenju niza poboljšanja  rješenja, počevši od nekog unaprijed zadanog, radeći ,,male'' promjene u strukturi trenutno najboljeg rješenja. Uvedimo prvo koncept okolina i lokalnih rješenja kao baznih pojmova u metodologiji lokalne pretrage. Za dato rješenje $x$, definišimo skup (ne obavezno dopustivih) rješenja koja su ,,blizu'' $x$ u odnosu na neku mjeru. Formalno, okolina predstavlja preslikavanje  $\mathcal{N}$ gdje svakom (dopustivom) rješenju pridružujemo skup rješenja, koje zovemo okolina od $x$.  Funkcija okoline se takođe može definisati preko operatora  $\Delta$, koji predstavlja kolekciju   funkcija $\Delta:\Phi \mapsto \Phi$,  gdje je $\Phi$ prostor pretrage (rješenja) razmatrane instance problema:
-$$ x' \in \mathcal{N}(x) \Longleftrightarrow \exists \delta \in \Delta,\delta(x)=x'.$$
- 
-Prirodan izbor u mnogim aplikacijama je $k$-izmjenjena (eng. \emph{k-exchange}) okolina: $x$ i $x^{'}$ pripadaju istoj okolini akko se razlikuju na tačno $k$ komponenti rješenja. Npr. za TSP problem, 2-{izmijenjena} okolina je prirodan izbor gdje su komponente rješenja grane datog grafa.  
-
-  
-Rješenje $x$ je \emph{lokalni optimum} u odnosu na okolinu $\mathcal{N}$ akko
-$f(x) \leq f(x')$ ($f(x) \geq f(x')$), za sve $x' \in \mathcal{N}(x)$, ako minimizujemo (maksimizujemo) ciljnu funkciju $f$.  \emph{Globalni optimum} je rješenje koje je lokalni optimum u odnosu na bilo koju okolinu.  Iako je to većini čitalaca jasno, nije zgoreg  još jednom pomenuti da nije svaki lokalni optimum ujedno i globalni. 
-
-\begin{algorithm}[!t] 
-	\caption{Lokalna pretraga (maksimizacija)}\label{alg:ls}
-	\begin{algorithmic}[1]
-		\STATE \textbf{Ulaz:} instanca problema, okolina $\mathcal{N}$
-		\WHILE{$ \left\{ x' \ni \mathcal{N}(x) \mid f(x') > f(x)\right\} \neq \emptyset$}
-		\STATE $ x \gets  \text{ izaberi } x' \in \mathcal{N}(x) $ ako vrijedi  $f(x') > f(x)$ 
-		\ENDWHILE
-	\end{algorithmic}
-\end{algorithm}
-
-Pseudokod lokalne pretrage je dat u Algoritmu~\ref{alg:ls}. Ulaz u algoritam je instanca problema i jedna definisana okolina $\mathcal{N}$. U svakoj iteraciji, lokalna pretraga poboljšava trenutno (najbolje) rješenje ako    rješenje u okolini  $\mathcal{N}(x)$ ima bolju vrijednost ciljne funkcije. Algoritam se prekida ako je trenutno rješenje lokalno najbolje u odnosu na definisanu okolinu.
- Postoje dvije strategije za izbor rješenja koje će zamijeniti trenutno najbolje rješenje, pod pretpostavkom da postoji više od jednog rješenja sa boljom vrijednošću ciljne funkcije u posmatranoj okolini. Te strategije su:
- \begin{itemize}
- 	\item \emph{prvo poboljšanje} (eng. \emph{the first improvement strategy}) -- ova strategija prihvata prvo nađeno rješenje $x'$ u okolini $\mathcal{N}(x)$ sa boljom vrijednošću ciljne funkcije od $x$. Pretraga se  pomjera u tačku  $x = x'$, odakle se pokreće nova iteracija lokalne pretrage. Lokalna pretraga se zaustavlja kada nema više poboljšanja.
- 	\item \emph{najbolje poboljšanje} (eng. \emph{the best improvement strategy}) --   ova strategija provjerava sva rješenja iz okoline $\mathcal{N}(x)$ i za novo najbolje rješenje bira ono koje je lokalno najbolje u toj okolini. Nalazak  najboljeg rješenja zahtijeva enumeraciju svih rješenja iz okoline. Stoga, upotreba ove strategije, u opštem slučaju, zahtijeva više procesorskog vremena, tako da ona nije uvijek primjenjiva. I u ovom slučaju, lokalna pretraga se završava kada nema više poboljšanja. %Ipak, u praksi se pokazalo da strategija \emph{najboljeg poboljšanja} često vodi ka lokalnom optimumu problema u svega nekoliko iteracija lokalne pretrage. 
- \end{itemize}
-  Okolina kod koje se formira direktnom razmjenom vrijednosti dvije promjenljive u rješenju se često naziva i \emph{1-razmjena} (eng. \emph{swap}) okolina.
- \begin{primjer} U   problemu 0-1 ruksaka, za okolinu $\mathcal{N}$ bi mogli uzeti $1$-\emph{exchange} okolinu. Recimo, za $n=4$ i rješenje $x=1100$ imali  bismo $$\mathcal{N}(x)= \{ 0100, 1000, 1110, 1101 \}.$$ 
- 	\end{primjer}
   
 \subsection{Metoda promjenljivih okolina}\label{intro:vns}
-\fxnote{Marko: došao ovdje!}
+  
 Metoda promjenljivih okolina (VNS) je metaheuristika uvedena od strane Nenada Mladenovića i Pjera Hansena 1997. godine.
-Pretraga je zasnovana na sistematskoj promjeni okolina da bi se izbjegle situacije kada algoritam ,,upada'' u podoptimalna rješenja. Efikasnost VNS algoritma je zasnovana na razmatranju da u mnogim praktičnim optimizacionim problemima postoji povezanost između lokalnih optimuma. Stoga, metoda promjenljivih okolina i ne prati unaprijed zadatu putanju, već ,,skače'' na potencijalno bolja rješenja koja se nalaze u nekoj okolini trenutno najboljeg rješenja. Ovaj proces je poznat pod nazivom diversifikacija (eng. \emph{diversification}). Sistem je dodatno ojačan procedurom lokalnog pretraživanja, kojom se  iz trenutnog rješenja prelazi u najkvalitetnije rješenje u nekoj njegovoj okolini. Ovaj proces je poznat pod nazivom intenzifikacija (eng. \emph{intensification}).
+Pretraga je zasnovana na sistematskoj promjeni okolina da bi se izbjegle situacije kada algoritam ,,upada'' u podoptimalna rješenja. Efikasnost VNS algoritma je zasnovana na razmatranju da u mnogim praktičnim optimizacionim problemima postoji povezanost između lokalnih optimuma. Stoga, metoda promjenljivih okolina i ne prati unaprijed zadatu putanju, već ,,skače'' na potencijalno bolja rješenja koja se nalaze u nekoj okolini trenutno najboljeg rješenja. Ovaj proces je poznat pod nazivom \textit{diversifikacija} (eng. \emph {diversification}). Sistem je dodatno ojačan procedurom lokalnog pretraživanja, kojom se  iz trenutnog rješenja prelazi u najkvalitetnije rješenje u nekoj njegovoj okolini. Ovaj proces je poznat pod nazivom \textit{intenzifikacija} (eng.  {intensification}).
 
 Ponovimo da algoritam zasnovan na metodi promjenljivih okolina raspolaže jednom tačkom u jednoj iteraciji, a ne populacijom tačaka kao što je to slučaj sa genetskim algoritmom.
 
 Tako, ideja da se pretraga usmjeri sa jednog na (moguće bolji) drugi lokalni optimum, koji je smješten u nekoj okolini polaznog lokalnog optimuma, predstavlja razuman  i, kao što je to slučaj u velikom broju raznih optimizacionih problema, opravdan pristup.
-Da bi se postigli pomenuti efekti ``iskakanja'' iz lokalnog (pod)optimuma, kao i detaljno pretraživanje nove okoline trenutnog najboljeg rješenja, metoda promjenljivih okolina se najčešće realizuje pomoću dvije važne procedure: procedure razmrdavanja (eng. \emph{shaking}) i procedure lokalnog pretraživanja (eng. \emph{local search}). Kao i što je to slučaj sa svim metaheurističkim metodama, dugogodišnja primjena metode promjenljivih okolina na rješavanje različitih problema dovela je do pojave velikog broja različitih varijanti, koje, pored osnovnih metoda razmrdavanja i lokalnog pretraživanja, uključuju i mnoge druge strategije.
+Da bi se postigli pomenuti efekti ,,iskakanja'' iz lokalnog (pod)optimuma, kao i detaljno pretraživanje nove okoline trenutnog najboljeg rješenja, metoda promjenljivih okolina se najčešće realizuje pomoću dvije važne procedure: procedure \textit{razmrdavanja} (eng.  {shaking}) i procedure \textit{lokalnog pretraživanja} (eng.  {local search}). Kao i što je to slučaj sa svim metaheurističkim metodama, dugogodišnja primjena metode promjenljivih okolina na rješavanje različitih problema dovela je do pojave velikog broja različitih varijanti, koje, pored osnovnih metoda razmrdavanja i lokalnog pretraživanja, uključuju i mnoge druge efektivne strategije.
 
 Da bi se proširila pretraga,  VNS u potrazi za boljim lokalnim optimumom, obično koristi okoline rastuće kardinalnosti. Da bi se definisao skup okolina, pretpostavimo da je $x$ proizvoljno rješenje i $N_k$, za $k=k_{min},\ldots,k_{max}$, konačan skup  okolina. Tada se  $N_k(x)$ definiše kao skup rješenja u $k$-toj okolini tačke $x$. 
 Jedna od implementacija VNS metode, kojom se rješava problem maksimizacije, prikazana je Algoritmom~\ref{alg:vns}. 
@@ -6660,7 +6660,7 @@ Najčešći kriterijumi za prekid   algoritma su: dostignuto maksimalno  vrijeme
 
 \emph{Reprezentacija rješenja}. Kao i u slučaju genetskog algoritma, rješenje problema se može predstaviti binarnim nizom. Ako $i$-ti element niza ima vrijednost 1, to znači da je $i$-ti proizvod uključen u rješenje, a u suprotnom je izostavljen.
 
-\emph{Vrijednost funkcije cilja}. Slično kao u primjeru genetskog algoritma, vrijednost funkcije prilago]enosti se najlakše može definisati kao zbir vrijednosti proizvoda uključenih u rješenje. Eventualno, ako se u algoritmu dozvoljava rad sa nedopustivim rješenjima, funkcija prilago može da sadrži i dio za ``kažnjavanje'' nedopustivih rješenja. Razmatranje o kažnjavanju nedopustivih rješenja je slično kao u slučaju genetskog algoritma.
+\emph{Vrijednost funkcije cilja}. Slično kao u primjeru genetskog algoritma, vrijednost funkcije prilago]enosti se najlakše može definisati kao zbir vrijednosti proizvoda uključenih u rješenje. Eventualno, ako se u algoritmu dozvoljava rad sa nedopustivim rješenjima, funkcija prilago može da sadrži i dio za ,,kažnjavanje'' nedopustivih rješenja. Razmatranje o kažnjavanju nedopustivih rješenja je slično kao u slučaju genetskog algoritma.
 
 \emph{Razmrdavanje}. Može se primijeniti više različitih tehnika razmrdavanja, a u ovom primjeru ćemo objasniti jedan pristup. 
 U okviru procedure razmrdavanja, kreira se novo rješenje $x'$, ($x' \in N_k(x)$) zasno\-vano na trenutno najboljem rješenju  $x$.
