@@ -221,7 +221,7 @@ Na kraju, želimo da se zahvalimo recenzentima, doc. dr Milani Grbić i doc. dr 
 
 \chapter*{Notacija}
 
-Yvedimo neke notacijske napomene i konvencije koje smo koristili u knjizi.
+Uvedimo neke notacijske napomene i konvencije koje smo koristili u knjizi.
 
 \begin{itemize}
 	\item Smatraćemo da je vektor uvijek dat u kolonskoj notaciji, tj. 
@@ -489,7 +489,7 @@ Treći faktor je taj da je novi sistem  uvođen postepeno, fazu po fazu, uz paž
 Ostatak ove knjige je fokusiran na  matematičke modele i odgovarajuće metode za njihovo rješavanje. Ovim poglavljem smo objasnili, a kroz neke primjere i ilustrovali, da konstrukcija modela složenih problema ne sadrži samo ova dva koraka, već su oni  dio cjelokupnog OR procesa. Treba imati na umu da su sve faze vrlo važne za provođenje uspješnog OR projekta. Predlažemo da se nakon izučavanja algoritama za rješavanja modela, čitalac vrati na ovo poglavlje u cilju što jasnije slike razvoja potpunog OR projekta zasnovanog na kompleksnim procesima u praksi.  OR zahtijeva značajnu količinu domišljatosti, saradnje i komunikacije, kreativnosti i inovativnosti, tako da u praksi i ne postoji jedan standardni postupak kojeg bi se timovi trebali pridržavati pri razvijaju sistema zasnovanih na operacionim istraživanjima. %Prethodni opis može da se promatra kao model koji otprilike pokazuje koliko je uspješan ILI se provode studije. 
 %\newpage
 
-\chapter{Linearno Programiranje} \label{chp:lp}
+\chapter{Osnove linearnog programiranja} \label{chp:lp}
   
   Razvoj linearnog programiranja počinje sredinom dvadesetog vijeka. Sovjetski matematičar i ekonomista Leonid Kantorovič je tokom Drugog svjetskog rata formulisao problem ekvivalentan problemu linearnog programiranja u cilju boljeg upravljanja resursima i smanjenja vojnih troškova. Neposredno nakon Drugog svjetskog rata, američki matematičar Džordž Dencig razvija čuveni simpleks algoritam, čime se otvara prostor za efikasno rješavanje problema linearnog programiranja. U periodu koji je uslijedio, pa sve do danas, linearno programiranje se koristi kao standardan alat za rješavanje raznih problema u industriji i ekonomiji uopšte, što je dovelo do   milionskih ušteda ogromnom broju kompanija širom svijeta. Stoga se razvoj linearnog programiranja  smatra jednim od najvažnijih naučnih dostignu\-ća XX vijeka.  Napisane su stotine udžbenika o linearnom programiranju kao i hiljade naučnih radova koji ovu paradigmu primjenjuju na probleme iz raznih naučnih i praktičnih domena. 
 
@@ -1270,7 +1270,7 @@ promjenljive $x_i$ označava broj proizvoda $i$ koji se proizvode na sedmičnom 
 \end{enumerate}
 
 \newpage 
-\chapter{Simpleks Metod}\label{chp:simpleks}
+\chapter{Simpleks metoda}\label{chp:simpleks}
 
 Simpleks metod je jedan od najpoznatijih i najefikasnijih algoritama za rješavanje problema linearnog programiranja. Ideja za pronalaženje optimalnog rješenja problema LP-a simpleks metodom je zasnovana na  obilasku vrhova dopustivog regiona problema. Vrhovi se sukcesivno obilaze tako da se, prelaskom u novi vrh, vrijednost funkcije cilja smanjuje (ako je dat zadatak minimizacije). Simpleks metod je razvio George Dantzig 1947. godine, a s obzirom na njegovu važnost u rješavanju problema linearnog programiranja, spada među najznačajnije matematičke algoritme XX vijeka.
 
@@ -3241,7 +3241,7 @@ U osnovni model uključiti i sljedeća ograničenja:
 \end{enumerate}                                                       
 
 
- \chapter{Algoritamske tehnike za rješavanje ILP-a}\label{chap:rjesavanjeILP}
+ \chapter{Algoritamske tehnike za rješavanje Cjelobrojnog linearnog programiranja}\label{chap:rjesavanjeILP}
  
  U ovom poglavlju će biti analizirane različite tehnike kojima se rješavaju problemi cjelobrojnog linearnog programiranja.
  Za razliku od problema LP-a, koji se efikasno rješava simpleks metodom, za rješavanje problema cjelobrojnog linearnog programiranja ne postoji generalno efikasna metoda. Drugim riječima, efikasnost metoda, kojima se rješava ovaj problem, u velikoj mjeri zavisi od karakteristika samog problema. 
@@ -4259,7 +4259,7 @@ $W = 20$, te postoje tri narudžbe za sječenje: 1. stavka: $b_1=60$ rolni duži
  
  %\newpage
  
- \chapter{Dekompozicioni Metodi}
+ \chapter{Dekompozicione metode}
  
 Dekompozicione metode u matematičkom programiranju su tehnike pomoću kojih se polazni problem  razbija u više manjih problema, te se, rješavanjem tih manjih problema, na kraju dolazi i do rješenja polaznog.
 
@@ -6634,8 +6634,8 @@ se na slučajan način bira rješenje  $x'$ iz okoline  $N_k(x)$. Zatim se na to
 
 Najčešći kriterijumi za prekid   algoritma su: dostignuto maksimalno  vrijeme, dostignut maksimalan broj iteracija, maksimalni broj iteracija između dva poboljšanja najboljeg rješenja. %ili maksimalan broj ponavljanja najboljeg rješenja.
 
-    \begin{algorithm}[!t] 
-	\caption{VNS metaheuristika}\label{alg:vns}
+   \begin{algorithm}[!t] 
+	 \caption{VNS metaheuristika}\label{alg:vns}
 	\begin{algorithmic}[1]
 		\STATE \textbf{Ulaz:} inicijalno rješenje $s$, okoline $\mathcal{N}_{k_{\min}},\ldots, \mathcal{N}_{k_{\max}}$ 
 		\STATE \textbf{Izlaz:} (poboljšano) rješenje $s$
@@ -6764,7 +6764,7 @@ Postoje različite strategije koliko dugo se izvršava lokalna pretraga. U opšt
 
 
 
- \chapter{Optimizacioni Rješavači}
+ \chapter{Optimizacioni rješavači}
  
  Kao što smo i pomenuli u uvodnom poglavlju, konstrukcija modela koji (najčešće) odgovara idealizivanoj verziji realnog problema je 
  dio koji uzima najveći dio vremena u operacionim istraživanjima. Kada dođemo do modela koji približno odgovara potrebama, rješavanje modela se svodi na pozivanje odgovarajućih rješavača. Neki od najpoznatijih su: 
