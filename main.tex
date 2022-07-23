@@ -647,7 +647,7 @@ programu postoji promjenljiva koja ne zadovoljava uslov nenegativnosti, ona se m
   \item \emph{Optimalno rješenje} je ono rješenje iz dopustivog regiona za koje je funkcija cilja najveća (pod pretpostavkom da maksimizujemo funkciju cilja), odnosno najmanja (pod pretpostavkom da minimizujemo funkciju cilja). Treba napomenuti da optimalno rješenje ne mora biti jedinstveno.  Npr. na Slici~\ref{fig:multi_solution} je prikazan dopustiv region sa ograničenjima $x_1, x_2 \geq 0, x_1 \leq 4 $ i $3 x_1 + 2 x_2 \leq 14$, dok je funkcija cilja, koja se maksimizuje, data sa $f = 3x_1 + 2 x_2$.  
  \end{itemize}
  
- \begin{figure}
+ \begin{figure}[!htb]
      \centering
      \includegraphics[width=160pt, height=160pt]{fig3.eps}
      \caption{LP sa više optimalnih rješenja.}
@@ -658,9 +658,9 @@ programu postoji promjenljiva koja ne zadovoljava uslov nenegativnosti, ona se m
  
  Primjer neograničenog problema možemo vidjeti na Slici~\ref{fig:unbounded_solution}, gdje je potrebno maksimizovati funkciju $f = 3 x_1 + x_2$, pod uslovima $0\leq x_1 \leq 4$, te $x_2 \geq 0$. Kao što se može vidjeti,  kako vrijednost promjenljive $x_2$ teži ka beskonačnosti, tako i vrijednost funkcije $f$ teži ka beskonačnosti.
  
-  \begin{figure}
+  \begin{figure}[H]
      \centering
-     \includegraphics[width=160pt, height=160pt]{fig4.eps}
+     \includegraphics[width=180pt, height=180pt]{fig4.eps}
      \caption{Primjer LP-a koji je neograničen.}
      \label{fig:unbounded_solution}
  \end{figure}
