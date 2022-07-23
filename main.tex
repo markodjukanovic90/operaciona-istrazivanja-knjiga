@@ -3242,7 +3242,7 @@ Može se pokazati i sljedeća teorema.
  U ovom poglavlju će biti analizirane različite tehnike kojima se rješavaju problemi cjelobrojnog linearnog programiranja.
  Za razliku od problema LP-a, koji se efikasno rješava simpleks metodom, za rješavanje problema cjelobrojnog linearnog programiranja ne postoji generalno efikasna metoda. Drugim riječima, efikasnost metoda, kojima se rješava ovaj problem, u velikoj mjeri zavisi od karakteristika samog problema. 
  
-Tehnike za rješavanje su uglavnom zasnovane na tzv. relaksaciji ILP-a u odgovarajući LP, koji se od polaznog problema (ili nekog od podproblema generisanog u toku rješavanja) dobija zanemarivanjem uslova o cjelobrojnosti promjenljivih.  Iako se dobijena  LP relaksacija može efikasno riješiti uz pomoć simpleks metoda, to ne znači da se iz rješenja relaksacije može lako doći do rješenja polaznog ILP-a. Npr. ako rješenje LP relaksacije označimo sa $x^*$, zaokruživanjem svake koordinate vektora $x^*$ na njenu najbližu cjelobrojnu vrijednost, dobijamo cjelobrojni vektor  $\overline{x}$.  U uvom slučaju, uslov cjelobrojnosti jeste zadovoljen, ali ne postoji nikakva garancija da će, u opštem slučaju,  ovakvo rješenje izvedeno iz LP relaksacije problema (\ref{ilp-formulation}), biti i  dopustivo za početni ILP. Međutim, skaliranjem desnih strana ILP-a, kao i koeficijenata funkcije cilja na odgovarajući način, moguće je konstruisati problem, čije je optimalno cjelobrojno rješenje proizvoljno udaljeno od zaokruženog rješenja LP relaksacije. 
+Tehnike za rješavanje su uglavnom zasnovane na tzv. relaksaciji ILP-a u odgovarajući LP, koji se od polaznog problema (ili nekog od podproblema generisanog u toku rješavanja) dobija zanemarivanjem uslova o cjelobrojnosti promjenljivih.  Iako se dobijena  LP relaksacija može efikasno riješiti uz pomoć simpleks metoda, to ne znači da se iz rješenja relaksacije može lako doći do rješenja polaznog ILP-a. Npr. ako rješenje LP relaksacije označimo sa $x^*$, zaokruživanjem svake koordinate vektora $x^*$ na njenu najbližu cjelobrojnu vrijednost, dobijamo cjelobrojni vektor  $\overline{x}$.  U uvom slučaju, uslov cjelobrojnosti jeste zadovoljen, ali ne postoji nikakva garancija da će, u opštem slučaju,  ovakvo rješenje izvedeno iz LP relaksacije problema (\ref{ilp-formulation}), biti i  dopustivo za početni ILP. Pored toga, skaliranjem desnih strana ILP-a, kao i koeficijenata funkcije cilja na odgovarajući način, moguće je konstruisati problem, čije je optimalno cjelobrojno rješenje proizvoljno udaljeno od zaokruženog rješenja LP relaksacije. 
  
  Razmatranje opisano u prethodnom paragrafu ukazuje na to da se, uz relaksaciju početnog ILP-a u LP, moraju koristiti suptilnije tehnike za određivanje optimalnog rješenja ILP-a. 
  
@@ -3787,7 +3787,7 @@ Ovaj problem se modeluje pomoću sljedećeg ILP-a:
 \end{align} 
 
 Binarna promjenljiva $x_{i,j}$ dobija vrijednost 1 ako je  na   putu odabrana grana $(i,j)$, a 0 inače. 
-Prvo ograničenje u modelu osigurava da je dopustivo rješenje upravo put od izvornog do terminalnog čvora. Drugo ograničenje nam modeluje uslov da vrijeme prelaska puta treba da bude u  granicama dopustivog. Ova ograničenja spadaju u ,,teška'', jer se njihovim dodavanjem u model, njegovo rješavanje značajno otežava (vrijeme potrebno za rješavanje se drastično povećava i/ili  kompleksnost problema se teorijski povećava -- npr. sa P na NP). Kao što znamo,  pronalazak najkraćeg puta u usmjerenim grafovima, sa unaprijed definisanim izvornim čvorom, je polinomijalno rješiv (na primjer, uz pomoć Dajkstrinog algoritma). Međutim,  dodavanjem ograničenja u vezi vremena, taj problem postaje NP-težak~\cite{cite_key31}. Stoga, ideja je  relaksirati ovaj problem uz prebacivanje ograničenja za vrijeme u funkciju cilja, koja se zatim kažnjava penalom. 
+Prvo ograničenje u modelu osigurava da je dopustivo rješenje upravo put od izvornog do terminalnog čvora. Drugo ograničenje nam modeluje uslov da vrijeme prelaska puta treba da bude u  granicama dopustivog. Ova ograničenja spadaju u ,,teška'', jer se njihovim dodavanjem u model, njegovo rješavanje značajno otežava (vrijeme potrebno za rješavanje se drastično povećava i/ili  kompleksnost problema se teorijski povećava -- npr. sa P na NP). Kao što znamo,  pronalazak najkraćeg puta u usmjerenim grafovima, sa unaprijed definisanim izvornim čvorom, je polinomijalno rješiv (na primjer, uz pomoć Dajkstrinog algoritma). Međutim,  dodavanjem ograničenja u vezi vremena, taj problem postaje NP-težak. Stoga, ideja je  relaksirati ovaj problem uz prebacivanje ograničenja za vrijeme u funkciju cilja, koja se zatim kažnjava penalom. 
 Dakle, Lagranžova relaksacija problema je data sa
 
 \begin{align*}
@@ -3868,7 +3868,7 @@ Dakle, ono što je potrebno da znamo su ograničenja, čije su odgovarajuće dua
     \item Riješimo restrikovani LP na podskupu kolona $S$.
     \item Procijenimo ostale kolone i dodajmo u $S$ one sa negativnim 
           cijenama doprinosa.
-    \item Itrerativno pozivamo perthodna dva koraka dok god postoje kolone   sa negativnim doprinosom koje nisu u $S$.
+    \item Iterativno pozivamo perthodna dva koraka dok god postoje kolone   sa negativnim doprinosom koje nisu u $S$.
 \end{itemize}
 Tehnički zapisano, krećemo od \emph{restrikovanog master problema} (RMP)
 \begin{align*}
@@ -3924,7 +3924,7 @@ Iterativni proces rješavanja RMP problema se može prekinuti i ranije, bez dost
  \end{figure}
  
  Primjera radi, na  Slici~\ref{fig:cuting_stock_solutions} indeks $1$ odgovara obrascu (dužine) $1820$, indeks $2$ obrascu (dužine) $1380$, indeks 3 obrascu $2150$, indeks 4 obrascu $1930$,   itd.  Nadalje, prvo sječenje sa slike odgovara 
- sljedećim vrijednostima: $a_{1,1}=3, a_{1,2}=a_{1,3}=\ldots =0$, i $x_1 = 2$. Ovo znači da u prvom sječenju visine 2, obrazac 1 (tj. dužina $1820$) se pojavljuje tri puta, dok se ostali obrasci ne pojavljuju ovdje. Drugo sječenje (narudžba) odgovara sljedećim vrijednostima: $a_{1,1}= 0, a_{1,2}=1, a_{1,3}=1, a_{1,4}=0=a_{1,5}=\ldots = 0$, dok je  $x_2 = 3$. Ovo znači da u drugom sječenju visine 3, obrazac $1820$ ne pojavljuje, obrazac $1380$ pojavljuje jednom, kao i obrasci $2150$  i $1930$, dok se ostali obrasci ne pojavljuju.  
+ sljedećim vrijednostima: $a_{1,1}=3, a_{1,2}=a_{1,3}=\ldots =0$, i $x_1 = 2$. Ovo znači da u prvom sječenju visine 2, obrazac 1 (tj. dužina $1820$) se pojavljuje tri puta, dok se ostali obrasci ne pojavljuju ovdje. Drugo sječenje (narudžba) odgovara sljedećim vrijednostima: $a_{1,1}= 0, a_{1,2}=1, a_{1,3}=1, a_{1,4}=0=a_{1,5}=\ldots = 0$, dok je  $x_2 = 3$. Ovo znači da se u drugom sječenju visine 3, obrazac $1820$ ne pojavljuje, obrazac $1380$ pojavljuje jednom, kao i obrasci $2150$  i $1930$, dok se ostali obrasci ne pojavljuju.  
 
  
  Ideja kojom se vodimo pri konstrukciji algoritma je da se obrasci ne formiraju na početku procedure, već da se generišu prema potrebi (po kolonama), koristeći \emph{metodu generisanja kolona}. Kolona $a$ odgovara dopustivom obrascu akko vrijedi 
@@ -4411,7 +4411,7 @@ Iako je Algoritmom~\ref{alg:bender} opisan postupak rješavanja problema minimiz
 \end{itemize}
 Postavlja se pitanje kako treba uložiti početnu količinu novca, tako da se ostvari maksimalna dobit.
 
-\emph{Napomena}. Prije nego krenemo na rješavanje zadatka, naglasimo da ovaj zadatak predstavlja pojednostavljenu, i ne previše realističnu verziju problema portfelja u ekonomiji, koji pripada oblasti optimizacije protfelja (eng. protfolio optimization). Inače, relani problem ulaganja novca pripada dvo-kriterijumskoj optimizaciji, gdje se pored maksimizacije profita, minimizuje i rizik ulaganja.  
+\emph{Napomena}. Prije nego što krenemo sa rješavanjem problema, naglasimo da ovako formulisan problem predstavlja pojednostavljenu, i ne previše realističnu verziju problema portfelja u ekonomiji, koji pripada oblasti optimizacije protfelja (eng. protfolio optimization). Inače, realni problem ulaganja novca pripada dvo-kriterijumskoj optimizaciji, gdje se pored maksimizacije profita, minimizuje i rizik ulaganja.  
 
 \emph{Rješenje}. S obzirom na postavku zadatka, jasno je da bi optimalno rješenje trebalo da podrazumijeva da se uloži u dionice $f_5,\ldots,f_{10}$ sa maksimalnim mogućim ulaganjem (po 100KM), dok se ostatak novca oročava sa kamatom od  4.5\%.
 
@@ -4486,7 +4486,7 @@ $c=\left(\begin{array}{c}
 
 Primijenimo sada Benderovu dokompoziciju. Najprije treba odrediti početnu vrijednost za $\overline{y}$, za koju, u ovom koraku, možemo uzeti bilo koju nenegativnu vrijednost. Neka je, na primjer, $\overline{y}=1500$. Dalje, neka su $LB=-\infty$ i $UB=+\infty$ i uzmimo da je $\epsilon = 0.1$.
 
- Nakon inicijalnih postavki, prvi korak je rješavanje dualnog problema (Benderovog podproblema). S obzirom da je početni problem problem maksimizacije, dualni problem će sada biti problem minimizacije. Obilježimo promjenljvie dualnog problema vektorom  $u$, koji ima 11 koordinata (polazni problem ima 11 oraničenja).
+ Nakon inicijalnih postavki, prvi korak je rješavanje dualnog problema (Benderovog podproblema). S obzirom da je početni problem problem maksimizacije, dualni problem će sada biti problem minimizacije. Obilježimo promjenljive dualnog problema vektorom  $u$, koji ima 11 koordinata (polazni problem ima 11 oraničenja).
  
  Računamo funkciju cilja dualnog problema
  $$
@@ -5144,7 +5144,7 @@ $x\in X$ i $Ax=b$, pa imamo da vrijedi %Za to rješenje $x$ važi
 	  \overline{z}\geqslant z^*\geqslant \overline{z}-\hat{z}.
 \end{equation}
  
- Izraz~(\ref{dw8}) se može koristiti za određivanje koliko daleko se optimalno rješenje polaznog problema razlikuje od rješenja koja se dobijaju u iterativnom procesu DW dekompozicije.
+ Izraz~(\ref{dw8}) se može koristiti za određivanje koliko  se optimalno rješenje polaznog problema razlikuje od rješenja koja se dobijaju u iterativnom procesu DW dekompozicije.
  
  U slučaju kada je $\hat{z}$ jednako nuli, iz~(\ref{dw8}) se vidi da je vrijednost $\overline{z}$ zapravo i optimalno rješenje polaznog problema.
  
@@ -5640,13 +5640,13 @@ Pohlepni algoritmi su programska paradigma zasnovana na pristupu da se  rješenj
  
  Zbog relativno jednostavne strategije na kojoj su zasnovani, ali i brzine izvršenja, ovi algoritmi se često koriste i u rješavanju teških optimizacionih problema i najčešće su prva strategija koja se primjenjuje, prije 
 upotrebe neke složenije paradigme. 
-U nekim situacijama se može pokazati da se optimalno rješenje uvijek može dobiti primjenom pohlepnog algoritma. Primjer takvog problema je \emph{razlomljeni problem jednodimenzionalnog ruksaka}, a u nastavku će biti prikazani još neki važni problemi koji se optimlalno rješavaju upravo paradigmom pohlepnih algoritama.
+U nekim situacijama se može pokazati da se optimalno rješenje uvijek može dobiti primjenom pohlepnog algoritma. Primjer takvog problema je \emph{razlomljeni problem jednodimenzionalnog ruksaka}, a u nastavku će biti prikazani još neki važni problemi koji se optimalno rješavaju upravo paradigmom pohlepnih algoritama.
 
 Sa druge strane, većina optimizacionih problema se ne može optimalno riješiti pomoću pohlepnih algoritama. U tim slučajevima, ova paradigma se koristi da bi se u kratkom vremenskom periodu obezbijedila dobra približna rješenja, ili da se konstruiše neko polazno dopustivo rješenje, koje će se kasnije unapređivati naprednijim i složenijim algoritamskim tehnikama. 
 
 U ovoj sekciji razmatramo nekoliko poznatih pohlepnih algoritama:
 \begin{itemize}
-	\item  \emph{Primov algoritam} za pronalaženje minimalnog pokrivajućeg tabla grafa ( eng. minimum spanning tree -- MST);
+	\item  \emph{Primov algoritam} za pronalaženje minimalnog pokrivajućeg stabla grafa ( eng. minimum spanning tree -- MST);
 	\item  \emph{Kruskalov algoritam} za pronalaženje MST;
 	\item  \emph{Dajkstrin algoritam} za pronalaženje najkraćih puteva u grafu;
 	\item  Pohlepni algoritam za rješavanje problema \emph{najdužeg zajedničkog podniza}, za proizvoljan skup stringova u ulazu.
@@ -5655,7 +5655,7 @@ U ovoj sekciji razmatramo nekoliko poznatih pohlepnih algoritama:
 
 \subsection{Algoritmi za pronalaženje MST}
 
-Definišimo prvo pojam pokrivajućeg drveta, pa potom i minimalnog pokrivajućeg drveta (eng. \emph{minimum spanning tree} -- MST).
+Definišimo prvo pojam pokrivajućeg stabla, pa potom i minimalnog pokrivajućeg stabla (eng. \emph{minimum spanning tree} -- MST).
 
 Neka je dat težinski graf $G=(V,E)$. Svaku težinu grane $(u,v) \in E $ u grafu $G$, označimo sa $w(uv)$. 
 \begin{definition}
@@ -5715,7 +5715,7 @@ se primjenjuje operacija nalaženja i dodavanja grane u skup \emph{mst}. Ove dvi
 
 \subsection{Dajkstrin algoritam}
 
-Ovaj algoritam se koristi za nalaženje najkraćih puteva u grafu i sličan je Primovom algoritmu. Generiše se tzv. SPT (eng. \emph{shortest path tree}) sa datim korjenim čvorom $s$, tako  što se formiraju dva disjunktna skupa čvorova, jedan koji sadrži čvorove uključene u SPT, dok su u drugom svi ostali čvorovi. 
+Ovaj algoritam se koristi za pronalaženje najkraćih puteva u grafu i sličan je Primovom algoritmu. Generiše se tzv. SPT (eng. \emph{shortest path tree}) sa datim korjenim čvorom $s$, tako  što se formiraju dva disjunktna skupa čvorova, jedan koji sadrži čvorove uključene u SPT, dok su u drugom svi ostali čvorovi. 
 
 
 Inicijalno, svim čvorovima, osim korjenog, je dodijeljena vrijednost beskonačno, tj. $dist[u]=\ +\infty, \forall u \in V\setminus \{s\}$, $dist[s]=0$. 
@@ -5762,7 +5762,7 @@ Napomenimo da Dajkstrin algoritam ne radi sa grafovima koji imaju negativne tež
   Neka je dato $n$ proizvoda sa svojim  težinama i vrijednostima, 
   te ruksak čiji je kapacitet $W>0$. \emph{Razlomljeni problem jednodimenzionalnog ruksaka} podrazumijeva odabir proizvoljnih dijelova proizvoda koji se stavljaju u ruksak, tako da vrijednost proizvoda u ruksaku bude što veća, ali da se pri tom ne naruši ograničenje vezano za ukupan kapacitet ruksaka.
 \end{definition}
-U 0-1 problemu ruksaka, koji će biti razmatran i u Primjeru~\ref{primjer:01ruksak},  ne dopušta se dijeljenje proizvoda. Dakle, ili se uzima cijeli proizvod (1) i stavlja u ruksak, ili se uopšte ne uzima (0). U  problemu frakcionog ruksaka, svaki proizvod posjeduje težinu i vrijednost, te se kao takav može podijeliti na dijelove (recimo dopušteno je da se uzme   pola od ukupne količine proizvoda). Primjeri takvih proizvoda bi bili mlijeko, so, šećer, itd. Efikasno rješavanje ovog problema se izvodi primjenom pohlepnog algoritma na sljedeći način.
+U 0-1 problemu ruksaka, koji će biti razmatran i u Primjeru~\ref{primjer:01ruksak},  ne dopušta se dijeljenje proizvoda. Dakle, ili se uzima cijeli proizvod (1) i stavlja u ruksak, ili se uopšte ne uzima (0). U  razlomljenom problemu ruksaka, svaki proizvod posjeduje težinu i vrijednost, te se kao takav može podijeliti na dijelove (recimo dopušteno je da se uzme   pola od ukupne količine proizvoda). Primjeri takvih proizvoda bi bili mlijeko, so, šećer, itd. Efikasno rješavanje ovog problema se izvodi primjenom pohlepnog algoritma na sljedeći način.
 \begin{enumerate}
 	\item Računaju se odnosi količina/vrijednost za svaki proizvod, te se proizvodi  sortiraju na osnovu tih vrijednosti, u opadajućem poretku. 
 	   \item Sve dok ruksak nije potpuno napunjen ponavljamo sljedeći postupak:
@@ -5776,7 +5776,7 @@ U 0-1 problemu ruksaka, koji će biti razmatran i u Primjeru~\ref{primjer:01ruks
 Može se pokazati sljedeća teorema. 
 
 \begin{thm}
-      Pohlepni algoritam opisan prethodno za frakcioni problem ruksaka uvijek nalazi optimalno rješenje.
+      Prethodno opisan pohlepni algoritam za razlomljeni problem ruksaka uvijek nalazi optimalno rješenje.
 \end{thm}
 \subsection{Pohlepni pristup za rješavanje LCS problema}
 
@@ -5841,7 +5841,7 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje, što 
   	%\item garantuje rješenje koje je blizu optimalnog rjesenja;
   	\item posjeduje garanciju da je pronađeno dopustivo rješenje približno optimalnom rješenju, odnosno garantuje se da je od optimalnog rješenja udaljeno unutar nekog faktora ($c$) gledajući kvalitet, bez ikakvog prethodnog znanja o optimumu.
   \end{enumerate}
-  Neka je dat algoritam $\mathcal{A}$, problem $P$ i instanca problema $I$. Sa $\mathcal{A}(I)$ označimo (dopustivo) rješenje koje se dobija kao izlaz algoritma $\mathcal{A}$, dok sa $\mathcal{A}^*(I)$ označimo optimalno rješenje za ulaz $I$. Pretpostavimo da je riječ o problemu maksimizacije. 
+  Neka je dat algoritam $\mathcal{A}$, problem $P$ i instanca problema $I$. Sa $\mathcal{A}(I)$ označimo (dopustivo) rješenje koje se dobija kao izlaz algoritma $\mathcal{A}$, dok sa $\mathcal{A}^*(I)$ označimo optimalno rješenje za ulaznu instancu $I$. Pretpostavimo da je riječ o problemu maksimizacije. 
   
   Algoritam $\mathcal{A}$ se naziva \emph{aproksimativni algoritam} problema $P$ ako 
   za bilo koji ulaz (instancu) $I$, $\mathcal{A}$ vraća aproksimativno rješenje $\mathcal{A}(I)$ za $A^*(I)$ u polinomijalnom vremenu. 
