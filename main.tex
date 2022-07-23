@@ -5848,7 +5848,7 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje, što 
   
   Postoji dvije vrste aproksimativnih algoritama:
   \begin{itemize}
-  	\item \emph{apsolutni apriksimativni algoritam} -- ako je za svaku instancu problema $P$ ispunjeno
+  	\item \emph{apsolutni aproksimativni algoritam} -- ako je za svaku instancu problema $P$ ispunjeno
   	$$ |\mathcal{A}(I) - \mathcal{A}^*(I)| \leq c,$$ za neko $c\in \mathbb{R}^+$;
   	\item \emph{relativni aproksimativni algoritam} -- ako je   za svaku instancu problema $P$ ispunjeno
   	$$\frac{\mathcal{A}(I)}{\mathcal{A}^*(I)} \geq c,$$ za neko $c\in (0, 1]$.
@@ -5878,8 +5878,9 @@ Definišimo problem minimalnog pokrivanja čvorova.
 \begin{definition}
   Neka je dat graf $G=(V,E)$. Potrebno je naći podskup $C\subseteq V$ minimalne kardinalnosti, takav da barem jedan čvor svake grane pripada skupu $C$. 
 \end{definition}  
-   Dopustivo rješenje je svaki podskup $C$ koji zadovoljava uslov problema. Takav skup se naziva minimalni \emph{pokrivač} čvorova grafa $G$. Primjer minimalnog pokrivača jednog grafa je dat na Slici~\ref{fig:vertex-cover} gdje pokrivač uključuje sve čvorove crne boje. 
+ Skup $C$, koji zadovoljava uslove iz prethodne definicije se naziva \emph{minimalni pokrivač} čvorova grafa $G$. Primjer minimalnog pokrivača jednog grafa je dat na Slici~\ref{fig:vertex-cover} gdje pokrivač uključuje sve čvorove crne boje. 
 
+   Dopustivo rješenje za problem minimalnog pokrivanja čvorova je svaki podskup $C'$, ne obavezno minimalne kardinalnosti, koji sadrži barem jedan čvor svake grane datog grafa.
   
   Posmatrajmo (pohlepni) algoritam za ovaj problem dat Algoritmom~\ref{alg:gridi-vc}. 
   
@@ -5920,7 +5921,7 @@ Definišimo problem minimalnog pokrivanja čvorova.
         \label{alg:gridi-vc-2}
   \end{algorithm}
   
-  \noindent Izračunajmo aproksimativni faktor Algoritma~\ref{alg:gridi-vc-2} posmatrajući specijalni bipartitan graf sa Slike~\ref{vertex-coverEx}. 
+  \noindent Izračunajmo aproksimativni faktor Algoritma~\ref{alg:gridi-vc-2} posmatrajući  graf sa Slike~\ref{vertex-coverEx}. 
   
   
   \begin{figure}
@@ -5997,7 +5998,7 @@ proširuje za čvor $t$ koji se ubacuje između čvorova  $u$ i $q$. Povećanje 
 Na osnovu nejednakosti trougla imamo $ w({t,q}) \leq w({t,u}) + w({u,q})$. Prema tome, porast cijene konture $T$ u svakoj iteraciji je najviše $ w({t, u}) + w({u,t}) = 2\cdot w({u,t})$. 
 Dakle, završna kontura ima cijenu koja dostiže cijenu barem dva puta veću od cijene MST. Prema tome, ovo je 2-aproksimativni algoritam. 
 
- \noindent Pokušajmo poboljšati 2--aproksimativni Algoritam~\ref{alg:tsp-a1} uz pomoć \emph{Double tree algoritma}, čije detalje objašnjavamo u nastavku. Prije toga ćemo uvesti nekoliko definicija i teorema od bitnog značaja u konstrukciji algoritma. 
+ \noindent Pokušajmo poboljšati 2--aproksimativni Algoritam~\ref{alg:tsp-a1} uz pomoć \emph{algoritma dvostrukog drveta} (eng. double tree algoritma), čije detalje objašnjavamo u nastavku. Prije toga ćemo uvesti nekoliko definicija i teorema od bitnog značaja u konstrukciji algoritma. 
  \begin{definition}
  	  Neka je dat graf $G=(V,E)$. Ojlerova kontura $T^o$ grafa $G$ je kontura $e_1e_2,...,e_me_1$ koja obilazi sve grane grafa $G$. 
  \end{definition}
@@ -6023,7 +6024,7 @@ Posmatrajmo sada  Algoritmom~\ref{alg:tsp-a2} i pokažimo da ovim algoritmom  do
    Jasno je da je algoritam polinomijalan i da je dobijeno rješenje dopustivo. 
    
   Neka je $C^*$ cijena optimalne Hamiltonove konture. Tada je cijena MST $\leq C^*$. 
-  Lako se vidi da je cijena Ojlerove konture  manja ili jednaka $ 2 \cdot C^*$. Na osnovu nejednakosti trougla skraćivanje Ojlerove konture (linija 6 u algoritmu) u svrhu dobijanja Hamiltonove kontura $T$ ne može da bude veća od 2$C^*$. Dakle, slijedi da je cijena Hamiltonove konture manja ili jednaka $2 C^*$, pa je ovaj algoritam 2--aprokimativni.
+  Lako se vidi da je cijena Ojlerove konture  manja ili jednaka $ 2 \cdot C^*$. Na osnovu nejednakosti trougla, skraćivanje Ojlerove konture (linija 6 u algoritmu) u svrhu dobijanja Hamiltonove konture $T$, ne može da bude veća od 2$C^*$. Dakle, slijedi da je cijena Hamiltonove konture manja ili jednaka $2 C^*$, pa je ovaj algoritam 2--aprokimativni.
   
  
    \begin{figure}[!ht]
@@ -6108,11 +6109,11 @@ Definišimo \emph{problem binarnog pakovanja}.
 \begin{figure}[H] 
 	\centering
 	\includegraphics[width=100mm]{maxresdefault.eps}% bin-packing
-	\caption{Primjer Binarnog Pakovanja.}
+	\caption{Primjer binarnog pakovanja.}
     \label{fig:bin-packing}
 \end{figure}
 
-Navedimo prvo pohlepni prvi odgovarajući (eng. {first-fit}) algoritam, koji se sastoji od sljedećih koraka.
+Navedimo   \emph{prvi odgovarajući} (eng. {first-fit}) pohlepni algoritam, koji se sastoji od sljedećih koraka.
 \begin{itemize}
 	\item Raspoređujemo proizvode u onom redu u kojem su poredani za pakovanje, tj. $a_i$ se pakuje prije $a_j$ akko $i < j$;
 	\item Stavljamo sljedeći proizvod u pakovanje sa najmanjim indeksom, u kojem je ostalo dovoljno prostora za taj proizvod.
@@ -6120,11 +6121,11 @@ Navedimo prvo pohlepni prvi odgovarajući (eng. {first-fit}) algoritam, koji se 
 \end{itemize}
 
 
-Lako se vidi da je ovaj algoritam polinimijalne složenosti i da vraća dopustivo rješenje.  Neka je $C^*$ optimalan broj pakovanja koji se treba otvoriti da bi se spakovalo svih $n$ stavki. Pretpostavimo da algoritam vraća rješenje $C$ (pakovanja). Sigurno vrijedi da je barem u $C-1$ pakovanja više od polovine prostora iskorišteno. Ako to ne bi bio slučaj, onda bi postojala dva pakovanja u kojima je najviše pola prostora iskorišteno. U tom slučaju, stavke u oba pakovanja bi mogle da idu u jedno od njih, dok bi se drugo oslobodilo. Prema tome, imamo
+Lako se vidi da je ovaj algoritam polinimijalne složenosti i da kao rezultat vraća dopustivo rješenje.  Neka je $C^*$ optimalan broj pakovanja koji se treba otvoriti da bi se spakovalo svih $n$ stavki. Pretpostavimo da algoritam vraća rješenje $C$ (pakovanja). Sigurno vrijedi da je barem u $C-1$ pakovanja  iskorišteno više od polovine prostora. Ako to ne bi bio slučaj, onda bi postojala dva pakovanja u kojima je najviše pola prostora iskorišteno. U tom slučaju, stavke u oba pakovanja bi mogle da idu u jedno od njih, dok bi se drugo oslobodilo. Prema tome, imamo
 $$C^* \geq \sum_{i=1}^n a_i > \frac{C-1}{2}\ \Rightarrow\  2 \cdot C^* > C-1 \Rightarrow 2 \cdot C^* \geq C,$$
 pa slijedi da je  algoritam  prvi-najbolji 2--aproksimacioni. 
 
-Pomenimo sada i tzv. najbolji-odgovarajući (eng. \emph{best-fit}) algoritam, koji radi po sljedećem principu. Sljedeći proizvod se stavlja u ono pakovanje u kojem  ostaje najmanji prazan prostor, u odnosu na sva ostala otvorena pakovanja. Ako takvo pakovanje ne postoji, otvoriti novo pakovanje. 
+Pomenimo sada i tzv. \emph{najbolji-odgovarajući} (eng. best-fit) algoritam, koji radi po sljedećem principu. Sljedeći proizvod se stavlja u ono pakovanje u kojem  ostaje najmanji prazan prostor, u odnosu na sva ostala otvorena pakovanja. Ako takvo pakovanje ne postoji, otvara se novo pakovanje. 
 Ovaj algoritam je takođe 2--aproksimacioni. 
 
 Interesantno je napomenuti da za problem binarnog pakovanja ne postoji aproksimativni algoritam čiji je faktor $c <\frac{3}{2}$ (osim ako je $P=NP$). 
@@ -6155,7 +6156,7 @@ Motivacija za razmatranje ovog problema se može pronaći i u svakodnevnom živo
 Skup $U$ predstavlja skup preostalih nepokrivenih elemenata, dok skup $\mathcal{C}$ predstavlja pokrivač koji se konstruiše kroz iteracije algoritma. Incijalno, $U = X$, te pokrivač $C = \emptyset$.
 U svakom koraku, algoritam nastoji da proširi pokrivač $\mathcal{C}$ na račun smanjenja skupa $U$. Kandidata za proširivanje pokrivača biramo na osnovu pohlepne funkcije date u liniji 6. U osnovi, biramo onaj  podskup $f \in \mathcal{F}$ koji ima maksimalan presjek sa skupom $U$. Dati skup ubacujemo u rješenje $C$, te izbacujemo elemente iz $U$ koji se nalaze u skupu $f$. Algoritam se izvršava dok god ne pokrijemo sve elemente iz $U$, tj. dok god $U \neq \emptyset$.
 
-Algoritam se izvodi u $O(|\mathcal{F}| \cdot |X|)$ vremenu, što znači da je polinomijalne kompleksnosti. Takođe, jasno je da je rješenje koje se vraća dopustivo, uz pretpostavku da instanca generiše dopustiv prostor, što je lako provjeriti prije pokretanja algoritma. 
+Algoritam se izvodi u $O(|\mathcal{F}| \cdot |X|)$ vremenu, što znači da je polinomijalne složenosti. Takođe, jasno je da je rješenje koje se vraća dopustivo, uz pretpostavku da instanca generiše dopustiv prostor, što je lako provjeriti prije pokretanja algoritma. 
 
 O aproksimativnom faktoru ovog pohlepnog algoritma nam govori naredna teorema, koju navodimo bez dokaza. %%Prije toga, označimo $d$-ti harmonijski broj $=H_d = \sum_{i=1}^d 1/i$ sa $H(d)$.
 
@@ -6483,7 +6484,7 @@ Neka je dato $n$ proizvoda, koji su opisani pomoću vektora $p$ i $w$. Neka $p_i
 
 Neka je $f(\cdot)$ funkcija koja se maksimizuje i neka je $x$ binarni niz dužine $n$ koji predstavlja jedno rješenje problema: ako je $i$-ti proizvod uključen u rješenje, tada je $x_i = 1$, u protivnom, $x_i =0$. Ovaj problem se definiše sa ILP modelom
 \begin{align*}
-& \max \{\sum_{i=1}^{n}x_ip_i\}\\
+& \max\ \sum_{i=1}^{n}x_ip_i\\
 &\mbox{t.d.}\\
 &\sum_{i=1}^{n}x_iw_i\leqslant C\\
 &x_i\in\{0,1\}, i = 1,2,\ldots,n
@@ -6785,7 +6786,7 @@ Postoje različite strategije koliko dugo se izvršava lokalna pretraga. U opšt
  \end{verbatim}
 ili umjesto prve linije uključiti (pomoću \#include) ilocplex.h fajl sa apsolutnom putanjom do date  datoteke. 
 
- Da bi se inicijalizovao LP model, neophodno je prvo inicijalizovati okruženje za modelovanje. Dakle, konstruišemo objekat klase \emph{IloEnv} sljedećim kodom
+ Da bi se inicijalizovao LP model, neophodno je prvo inicijalizovati okruženje za modelovanje. Dakle, konstruišemo objekat klase \emph{IloEnv} sljedećim k\^odom.
  \begin{verbatim}
  	IloEnv env;
  	try{
@@ -6807,7 +6808,7 @@ ili umjesto prve linije uključiti (pomoću \#include) ilocplex.h fajl sa apsolu
  	IloModel model(env); //def. modela
  	// potrebno deklarisati ciljnu funkciju, promjenljive i ograničenja
  	IloCplex cplex(model);
- 	if(!cplex.solve()){ // poziv cplex  solver-a
+ 	if(!cplex.solve()){ // poziv cplex  rjesavaca
  		    env.error() << " Problem nije optimizovan." << endl;
  		    throw(-1);
  	}
@@ -6925,7 +6926,7 @@ Ako je potrebno implementirati promjenljivu za koju je $x \geq 0$ to radimo kao 
   
 \end{itemize}
 
-Narednim kodom je ilustrovana upotreba nekih od navedenih metoda.
+Narednim k\^odom je ilustrovana upotreba nekih od navedenih metoda.
 	\begin{verbatim}
 	// prethodno: kreiranje modela i poziv metoda solve()
 	env.out << cplex.getStatus() << endl;
@@ -6950,9 +6951,9 @@ dok recimo podešavanje broja jezgara pri izvršavanju \textsc{Cplex}-a
 \begin{verbatim}
 	cplex.setParam(IloCplex::Param::Threads, 1);
 \end{verbatim}
-O ostalim parametrima kojima podešavamo rješavač može se pročitati iz \textrm{\textsc{Cplex}} manuala čiji je link dat  među referencama na kraju knjige.
+O ostalim parametrima kojima podešavamo rješavač može se pročitati iz \textrm{\textsc{Cplex}} uputstva čija je internet adresa data  među referencama na kraju ovog knjige.
 
-Za one koji koriste Linux sistem, za kompajliranje programa koji je baziran na pozivanju \textsc{Cplex} rješavanjča, bice neophodno ,,uvući'' ilocplex biblioteku, koja treba da se kompajlira sa galvnim programom, da bi program uspješno pozivao \textsc{Cplex} solver. U tu svrhu u apendiksu~\ref{appendix:makefile-cplex} dodali smo makefile, koji sadrži neophodna kod za uspješnu kompilaciju programa baziranih na pozivanju \textsc{Cplex} rješavača.  
+Ukoliko se za rad koristi Linux operativni sistem, za kompajliranje programa, koji je baziran na pozivanju \textsc{Cplex} rješavača, neophodno  je ,,uvući'' ilocplex biblioteku, koja treba da se kompajlira sa glavnim programom. Prikaz odgovarajućeg \emph{makefile}-a, koji sadrži neophodna kod za uspješnu kompilaciju programa baziranih na pozivanju \textsc{Cplex} rješavača je dat u Apendiksu~\ref{appendix:makefile-cplex}.
 
 %\url{https://www.tu-chemnitz.de/mathematik/discrete/manuals/cplex/doc/userman/html/cpxUserAppendixA.html}. 
  \section{PuLP alat}
@@ -7088,7 +7089,7 @@ koji kontroliše maksimalno vrijeme izvršavanja rješavača, poruke o napretku 
 Čitaocu se preporučuje da na linku \url{https://www.programcreek.com/python/example/96845/pulp.LpProblem}
 pronađe i analizira još nekoliko problema, koji su riješeni uz pomoć PuLp modula. 
  
- \section{Primjena \textsc{Cplex} rješavača na problem stringova}
+ \section{Primjena \textsc{Cplex} rješavača na problem najdužeg zajedničkog podniza bez ponavljanja}
  
  % opisati RFLCS problem, modelovati ga:
  U ovoj sekciji modelujemo problem \emph{najdužeg zajedničkog podniza bez ponavljanja}. Ovaj problem kao ulaz prihvata dva (proizvoljna) stringa $s_1$ i $s_2$ nad proizvoljnim alfabetom, a kao izlaz vraća string $s$ maksimalne dužine sa sljedećim karakteristikama:  
@@ -7744,12 +7745,12 @@ linku koji je dat pod referencom~\cite{cite_key25}. %\url{https://www.maths.ed.a
 	\includegraphics[width=420pt,height=300pt]{cplex_makefile.png}
 \end{center}
 
-Sljedeće se podazumijeva ukoliko želite pokrenuti progam uz pomoć makefile (komande make). 
+Za pokretanje progama uz pomoć $makefile$ datoteke (komande $make$), potrebno je pratiti sljedeće korake. 
 \begin{itemize}
-	\item Instaliran je C++, sa kompajlerom GCC (verzija 9, recimo).
-	\item Intaliran je \textsc{Cplex}. 
-	\item U varijablama CPLEXDIR i CONCERTDIR (linije 8 i 9), podešene su putanje ka cplex i concert direktorijumima, redom.
-	\item Napisan je program cplex\_rfrcs.cpp i dodatni .cpp za mjerenje vremena izvršavanja algoritma, nazvan Timer.cpp. (Pisanje Timer.cpp nije obavezno, u tom slučaju varijabla OBJS na liniji 3 je prazna.)
+	\item Instalirati  C++, sa kompajlerom GCC (verzija 9, recimo).
+	\item Intalirati je \textsc{Cplex}. 
+	\item U promjenljivim CPLEXDIR i CONCERTDIR (linije 8 i 9), poresiti putanje ka cplex i concert direktorijumima, redom.
+	\item Napisati program cplex\_rfrcs.cpp i dodatni .cpp za mjerenje vremena izvršavanja algoritma, nazvan Timer.cpp. (Pisanje Timer.cpp nije obavezno, u tom slučaju promjenljiva OBJS na liniji 3 je prazna.)
 \end{itemize}
 
 \begin{thebibliography}{widest entry}
