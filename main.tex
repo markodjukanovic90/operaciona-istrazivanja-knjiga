@@ -5707,11 +5707,11 @@ Koraci algoritma su sljedeći.
 	\item Postaviti $\emph{mstSkup} = \emptyset$. 
 	\item Odabrati najlakšu granu iz skupa $S$ (pohlepni korak). Provjeriti da li se formira ciklus pri dodavanju grane u skup grana koje su do sada ubačene u skup \emph{mstSkup}; Ako to nije slučaj, ubaciti granu u trenutni skup \emph{mstSkup}. 
 	\item Iz liste $S$ ukloniti odabranu granu;
-	\item Ponoviti korak 3, dok se ne doda tačno $|V|-1$ grana u \emph{mstSkup}.
+	\item Ponoviti korake 3 i 4, redom, dok se ne doda tačno $|V|-1$ grana u \emph{mstSkup}.
 \end{enumerate} 
 
  \emph{Vremenska složenost}. Kruskalov algoritam se izvršava u $O(|E|\log |E|)$ ili $O(|E|\log |V|)$ vremenu. Sortiranje grana uzima $O(|E| \log|E|)$ vremena. Potom, za svaku granu 
-se primjenjuje operacija nalaženja i dodavanja grane u skup \emph{mst}. Ove dvije operacije se izvršavaju u $O(\log |V|)$ vremenu. Dakle, za izvršavanje algoritma treba $O(|E|\log |E| + |E|\log |V|)$ vremena. Kako je $|E|=O(|V|^2)$, dobijamo složenost $O(|E| \cdot \mathrm{log}(|V|))$. 
+se primjenjuje operacija nalaženja i dodavanja grane u skup \emph{mst}. Ove dvije operacije se izvršavaju u $O(\log |V|)$ vremenu. Dakle, ukupno vrijeme izvršavanja algoritma je $O(|E|\log |E| + |E|\log |V|)$. Kako je $|E|=O(|V|^2)$, dobijamo složenost $O(|E| \cdot \mathrm{log}(|V|))$. 
 
 \subsection{Dajkstrin algoritam}
 
@@ -5753,7 +5753,7 @@ Svi koraci algoritma su dati u Algoritmu~\ref{alg:dijkstra-algorithm}. Nakon zav
 \emph{Vremenska složenost}.  Implementacija Algoritma~\ref{alg:dijkstra-algorithm} ima vremensku složenost $O(|V|^2)$. Ako je graf predstavljen listom susjedstva, i skup $Q$  je implementiran kao binarni hip, 
 složenost se redukuje na $O(|E| \cdot \log |V|)$.
 
-Napomenimo da Dajkstrin algoritam ne radi sa grafovima koji imaju negativne težine (pogledati  liniju 12).  Za ovakve grafove,  primjenjuje se Bellman–Ford-ov algoritam koji je baziran na dinamičkom programiranju. Njega ne pominjemo   u ovoj knjizi, ali čitaocu preporučujemo da se, koristeći se literaturom ili internetom, upozna i sa ovim važnim algoritmom.  %, o kojem ćemo nešto više reći u narednim sekcijama.
+Napomenimo da Dajkstrin algoritam ne radi sa grafovima koji imaju negativne težine (pogledati  liniju 12).  Za ovakve grafove,  primjenjuje se Bellman–Ford-ov algoritam koji je baziran na dinamičkom programiranju. Njega ne pominjemo   u ovoj knjizi, ali čitaocu preporučujemo da se, koristeći literaturu ili internet, upozna i sa ovim važnim algoritmom.  %, o kojem ćemo nešto više reći u narednim sekcijama.
 
 
 \subsection{Razlomljeni problem jednodimenzionalnog ruksaka}\label{sec:frkacruksak}
@@ -5762,7 +5762,7 @@ Napomenimo da Dajkstrin algoritam ne radi sa grafovima koji imaju negativne tež
   Neka je dato $n$ proizvoda sa svojim  težinama i vrijednostima, 
   te ruksak čiji je kapacitet $W>0$. \emph{Razlomljeni problem jednodimenzionalnog ruksaka} podrazumijeva odabir proizvoljnih dijelova proizvoda koji se stavljaju u ruksak, tako da vrijednost proizvoda u ruksaku bude što veća, ali da se pri tom ne naruši ograničenje vezano za ukupan kapacitet ruksaka.
 \end{definition}
-U 0-1 problemu ruksaka, koji će biti razmatran i u Primjeru~\ref{primjer:01ruksak},  ne dopušta se dijeljenje proizvoda. Dakle, ili se uzima cijeli proizvod (1) i stavlja u ruksak, ili se uopšte ne uzima (0). U  razlomljenom problemu ruksaka, svaki proizvod posjeduje težinu i vrijednost, te se kao takav može podijeliti na dijelove (recimo dopušteno je da se uzme   pola od ukupne količine proizvoda). Primjeri takvih proizvoda bi bili mlijeko, so, šećer, itd. Efikasno rješavanje ovog problema se izvodi primjenom pohlepnog algoritma na sljedeći način.
+U 0-1 problemu ruksaka, koji će biti razmatran i u Primjeru~\ref{primjer:01ruksak},  ne dopušta se dijeljenje proizvoda. Dakle, ili se uzima cijeli proizvod (1) i stavlja u ruksak, ili se uopšte ne uzima (0). U  razlomljenom problemu ruksaka, svaki proizvod pored svoje težine i vrijednosti,  može da se podijeliti na proizvoljne dijelove (recimo dopušteno je da se uzme   pola od ukupne količine proizvoda i ubaci u ruksak). Primjeri takvih proizvoda bi bili mlijeko, so, šećer, itd. Efikasno rješavanje ovog problema se izvodi primjenom pohlepnog algoritma na sljedeći način.
 \begin{enumerate}
 	\item Računaju se odnosi količina/vrijednost za svaki proizvod, te se proizvodi  sortiraju na osnovu tih vrijednosti, u opadajućem poretku. 
 	   \item Sve dok ruksak nije potpuno napunjen ponavljamo sljedeći postupak:
@@ -5776,7 +5776,7 @@ U 0-1 problemu ruksaka, koji će biti razmatran i u Primjeru~\ref{primjer:01ruks
 Može se pokazati sljedeća teorema. 
 
 \begin{thm}
-      Prethodno opisan pohlepni algoritam za razlomljeni problem ruksaka uvijek nalazi optimalno rješenje.
+      Prethodno opisan pohlepni algoritam za razlomljeni problem jednodimenzionalnog ruksaka uvijek nalazi optimalno rješenje.
 \end{thm}
 \subsection{Pohlepni pristup za rješavanje LCS problema}
 
@@ -5796,17 +5796,17 @@ Problem najdužeg podniza (eng. \emph{Longest common subsequence} -- LCS), je pr
 Jedan od najjednostavnijih pristupa za rješavanje ovog problema je  \emph{pohlepni pristup}, tzv. \emph{Best-Next} (BN) heuristika. Prije nego što navedemo detalje algoritma, uvedimo nekoliko definicija i oznaka koje će biti korištene u konstrukciji ovog algoritma. 
 
 Za cjelobrojni vektor $p^L = (p^L_1,\ldots, p^L_m)$, definišemo kolekciju stringova
-$S[p^L] = \{s_i[p^L_i, |s_i|] \mid i=1,\ldots,m\}$, gdje $|s|$ označava dužinu stringa $s$, a $s[x,y]$ podstring (sufiks) stringa $s$ koji počinje od karaktera na poziciji $x$, a završava sa karakterom na poziciji $y$. Konvencija je da se indeksi u stringu numerišu krenuvši od 1. Dakle, $s= [1, |s|]$ za svaki string $s$. Primjera radi, za (pozicioni) vektor $p^L=(2,3,4)$ i skup $S$ iz Primjera~\ref{primjer:lcs} imamo $S[ p^L] = \{ s_1[1, |s_1|], s_2[2, |s_2|], s_3[3, |s_3|]  \}= \{ \texttt{bbccb}, \texttt{ccab}, \texttt{bcb}\}$. 
+$S[p^L] = \{s_i[p^L_i, |s_i|] \mid i=1,\ldots,m\}$, gdje $|s|$ označava dužinu stringa $s$, a $s[x,y]$ podstring stringa $s$ koji počinje od karaktera na poziciji $x$, a završava sa karakterom na poziciji $y$. Konvencija je da se indeksi u stringu numerišu krenuvši od 1. Dakle, $s= [1, |s|]$ za svaki string $s$. Primjera radi, za (pozicioni) vektor $p^L=(2,3,4)$ i skup $S$ iz Primjera~\ref{primjer:lcs} imamo $S[ p^L] = \{ s_1[1, |s_1|], s_2[2, |s_2|], s_3[3, |s_3|]  \}= \{ \texttt{bbccb}, \texttt{ccab}, \texttt{bcb}\}$. 
 
  
 Dalje, sa $p^L_{i,a}$ definišemo poziciju prvog pojavljivanja karaktera $\texttt{a}\in \Sigma$ takav da je $p^L_{i,a} \geq p^L_i$ (ukoliko karakter ne postoji, dodijelimo vrijednost $n+1$). Skup karaktera $\Sigma_{p^L}$ koji se pojavljuju u svakom od stringova (u podproblemu) $S[p^L]$ se nazivaju dopustive ekstenzije u odnosu na pozicioni vektor $p^L$. 
 
 U konstrukciji pohlepnog algoritma, odredimo  skup dopustivih komponenti i (pohlepni) kriterijum odabira najbolje komponente u svakom koraku algoritma koja se dodaje u postojeće parcijalno rješenje. Inicijalno rješenje $s$ je prazan string, koji je, trivijalno, dopustivo za svaku instancu LCS problema. Ideja se sastoji u iterativnom proširivanju trenutnog rješenja za jedan karakter, spajajući taj karakter sa rješenjem sa desna, dok god je to moguće. Pri tome prošireno rješenje mora uvijek biti LCS, dakle, dopustivo. Za spajanje stringa i karaktera ćemo koristiti standardni operator ($\cdot$).
 
- Prema navedenom, krenemo sa pozicijom $p^L = (1, \ldots, 1)$ koja odgovara čitavom skupu $S=S[p^L]$ i praznim stringom $s =\varepsilon$ kao inicijalnim rješenjem. Dalje, da bismo očuvali dopustivost rješenja kada se rješenje proširi za jedan karakter, za komponente rješenja $\Sigma_{p^L}$ ćemo uzeti sve karaktere koji se nalaze u svim stringovima iz $S=S[p^L]$, dakle u sufiks stringovima u odnosu na odgovarajuće pozicije vektora $p^L$. Na taj način,  ekstenzija $s = s \cdot x$  će za bilo koji $x \in \Sigma_{p^L}$ dati dopustivo LCS rješenje. Među karakterima iz $\Sigma_{p^L}$ treba odabrati (lokalno) najboljeg kandidata za proširivanje rješenja. Treba imati na umu da se kandidat $x\in \Sigma_{p^L}$ može pojaviti na nekoliko pozicija u svakom stringu iz $S=S[p^L]$. Kako ne želimo ekstenzije koje vode ka podoptimalnim rješenjima, biramo karakter $x$ čije pozicije su najbliže početku svakog od stringova iz $S=S[p^L]$, dakle na pozicijama $p^L_{i,a},i=1,\ldots,m$. 
+ Prema navedenom, krenemo sa pozicijom $p^L = (1, \ldots, 1)$ koja odgovara čitavom skupu $S=S[p^L]$ i praznim stringom $s =\varepsilon$ kao inicijalnim rješenjem. Dalje, da bismo očuvali dopustivost rješenja kada se rješenje proširi za jedan karakter, za komponente rješenja $\Sigma_{p^L}$ ćemo uzeti sve karaktere koji se nalaze u svim stringovima iz $S=S[p^L]$, dakle u sufiks stringovima u odnosu na odgovarajuće pozicije vektora $p^L$. Na taj način,  ekstenzija $s = s \cdot x$  će za bilo koji $x \in \Sigma_{p^L}$ dati dopustivo LCS rješenje. Među karakterima iz $\Sigma_{p^L}$ treba odabrati (lokalno) najboljeg kandidata za proširivanje rješenja. Treba imati na umu da se kandidat $x\in \Sigma_{p^L}$ može pojaviti na nekoliko pozicija u svakom stringu iz $S=S[p^L]$. Kako ne želimo ekstenzije koje vode ka podoptimalnim rješenjima, za karakter $x$ biramo onaj sa pozicijama pojavljivanja koje su najbliže početku svakog od stringova iz $S=S[p^L]$, dakle na pozicijama $p^L_{i,a},i=1,\ldots,m$. 
 
  Ideja konstrukcije pohlepne funkcije $g()$ se sastoji u odabiru onog karaktera za proširivanje rješenja $s$ koji, na neki način, izbacuje najmanji broj karaktera iz dalje pretrage. U našem slučaju,  funkcija $g()$ procjenjuje relativan broj izbačenih karaktera u odnosu na veličinu sufiks stringova. 
- Sljedeći korak se sastoji u ažuriranju prostora pretrage za novi korak. Kako smo proširili rješenje za $x$, nove komponente rješenja koje su dopustive tražimo u skupu stringova $S[p^L_{1,x}+1,\ldots, p^L_{m, x}+1]$. Postupak nastavljamo dok god postoje komponente koje mogu proširiti trenutno rješenje $s$. 
+ Sljedeći korak se sastoji u ažuriranju prostora pretrage za novi korak. Kako smo proširili rješenje za $x$, nove komponente rješenja koje su dopustive ekstenzije trenutnog rješenja tražimo u skupu (sufiks) stringova $S[p^L_{1,x}+1,\ldots, p^L_{m, x}+1]$. Postupak nastavljamo dok god postoje komponente koje mogu proširiti trenutno rješenje $s$. 
 
 
  Da rezimiramo, pohlepni (BN) pristup za rješavanje LCS problema se sastoji od sljedećih koraka.
@@ -5827,7 +5827,7 @@ Algoritam vraća vrijednost $s$.
 Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje, što je ilustrovano sljedećim jednostavnim primjerom. 
 
 \begin{primjer} Neka su data dva stringa: $s_1 = \texttt{caba}, s_2 = \texttt{bacc}$. Prvo konstatujmo da su sva tri karaktera moguće opcije za proširenje (inicijalno praznog stringa $\varepsilon$). Izračunajmo za svakog od njih odgovarajući $g$-skor. Imamo: $g((1,1), \texttt{a}) = \frac{2}{4} + \frac{2}{4}= 1$, $g((1, 1), \texttt{b}) = \frac{3}{4} + \frac{1}{4}=1,$ $g((1,1), \texttt{c}) = \frac{1}{4} + \frac{3}{4} = 1$. Ovdje dolazi do situacije u kojoj, ukoliko ne postoji dodatni kriterij odlučivanja u slučaju jednakih vrijednosti minimalnog $g$-skora za više karaktera, algoritam nasumično donosi odluku o odabiru karaktera (u zavisnosti od internih koraka u algoritmu i korištenih struktura podataka). 
-	Ako bi izabrali $\texttt{c}$ kao karakter koji proširuje trenutno (prazno) rješenje u prvom koraku algoritma, u narednom koraku bi algoritam prekinuo sa radom, jer sufiksi koji preostaju za proširenje rješenja $\texttt{c}$ ne nude niti jedan karakter za proširenje. Dakle, u tom slučaju algoritam vraća rješenje $\texttt{c}$, koje očigledno nije optimalno. Ako bi izabrali recimo karakter \texttt{b} u prvom koraku, naredni (i jedini mogući) karakter koji proširuje rješenje je \texttt{a}, pa prema tome algoritam bi u tom slučaju vratio (optimalno) rješenje \texttt{ba}. 
+	Ako bi izabrali $\texttt{c}$ kao karakter koji proširuje trenutno (prazno) rješenje u prvom koraku algoritma, u narednom koraku bi algoritam prekinuo sa radom, jer sufiksi koji preostaju za proširenje rješenja $\texttt{c}$ neće dati niti jedan karakter za naredno proširenje.  Dakle, u tom slučaju algoritam vraća rješenje $\texttt{c}$, koje očigledno nije optimalno. Ako bi izabrali recimo karakter \texttt{b} u prvom koraku, naredni (i jedini mogući) karakter koji proširuje trenutno rješenje je \texttt{a}, pa bi algoritam  u tom slučaju vratio (optimalno) rješenje \texttt{ba}. 
 	\end{primjer}
 
 \section{Aproksimativni algoritmi} 
@@ -5839,7 +5839,7 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje, što 
   \begin{enumerate}
   	\item se izvršava u polinomijalnom vremenu;
   	%\item garantuje rješenje koje je blizu optimalnog rjesenja;
-  	\item posjeduje garanciju da je pronađeno dopustivo rješenje približno optimalnom rješenju, odnosno garantuje se da je od optimalnog rješenja udaljeno unutar nekog faktora ($c$) gledajući kvalitet, bez ikakvog prethodnog znanja o optimumu.
+  	\item posjeduje garanciju da je pronađeno dopustivo rješenje približno optimalnom rješenju, odnosno garantuje se da je od optimalnog rješenja unutar nekog faktora kvaliteta ($c$), bez ikakvog prethodnog znanja o optimumu.
   \end{enumerate}
   Neka je dat algoritam $\mathcal{A}$, problem $P$ i instanca problema $I$. Sa $\mathcal{A}(I)$ označimo (dopustivo) rješenje koje se dobija kao izlaz algoritma $\mathcal{A}$, dok sa $\mathcal{A}^*(I)$ označimo optimalno rješenje za ulaznu instancu $I$. Pretpostavimo da je riječ o problemu maksimizacije. 
   
@@ -5901,10 +5901,10 @@ Definišimo problem minimalnog pokrivanja čvorova.
   \end{algorithm}
   
   \noindent Pokazaćemo da je ovo aproksimativni algoritam. Izračunajmo koeficijent aproksimacije $c$ za Algoritam~\ref{alg:gridi-vc}.
-  Grane koje se biraju u ovom algoritmu su grane maksimalnog uparivanja ($M$), pa je prema tome, skup $C$ uistinu pokrivač čvorova, prema definiciji uparivanja. Dalje, jasno je da se algoritam izvodi u polinomijalnom vremenu. Neka je $C^*$ pokrivač koji je rješenje problema. Tada $C^*$ sadrži barem jedan kraj svake grane iz $M$, odakle slijedi $|C^*|\geq |M|$. Dalje, $|C|= 2 \cdot |M| \geq 2 \cdot |C^*|$. Prema tome, ovo je $2$--aproksimativni algoritam za problem pokrivanja čvorova grafa. Jednakost u prethodnoj aproksimaciji se postiže, recimo, za bipartitne grafove $K_{n,n}$. 
+  Grane koje se biraju u ovom algoritmu su grane maksimalnog uparivanja ($M$), pa je prema tome, skup $C$ uistinu pokrivač čvorova, prema definiciji uparivanja u grafu. Dalje, jasno je da se algoritam izvodi u polinomijalnom vremenu. Neka je $C^*$ pokrivač koji je rješenje problema. Tada $C^*$ sadrži barem jedan kraj svake grane iz $M$, odakle slijedi $|C^*|\geq |M|$. Dalje, $|C|= 2 \cdot |M| \geq 2 \cdot |C^*|$. Prema tome, ovo je $2$--aproksimativni algoritam za problem pokrivanja čvorova grafa. Jednakost u prethodnoj aproksimaciji se postiže, recimo, za bipartitne grafove $K_{n,n}$. 
  
   
-  Posmatrajmo sada i drugi pohlepni Algoritam ~\ref{alg:gridi-vc-2} za problem pokrivanja čvorova.  
+  Posmatrajmo sada i drugi pohlepni Algoritam~\ref{alg:gridi-vc-2} za problem pokrivanja čvorova.  
   
   %pseudokod algoritma 
   \begin{algorithm}[H] 
@@ -5998,7 +5998,7 @@ proširuje za čvor $t$ koji se ubacuje između čvorova  $u$ i $q$. Povećanje 
 Na osnovu nejednakosti trougla imamo $ w({t,q}) \leq w({t,u}) + w({u,q})$. Prema tome, porast cijene konture $T$ u svakoj iteraciji je najviše $ w({t, u}) + w({u,t}) = 2\cdot w({u,t})$. 
 Dakle, završna kontura ima cijenu koja dostiže cijenu barem dva puta veću od cijene MST. Prema tome, ovo je 2-aproksimativni algoritam. 
 
- \noindent Pokušajmo poboljšati 2--aproksimativni Algoritam~\ref{alg:tsp-a1} uz pomoć \emph{algoritma dvostrukog drveta} (eng. double tree algoritma), čije detalje objašnjavamo u nastavku. Prije toga ćemo uvesti nekoliko definicija i teorema od bitnog značaja u konstrukciji algoritma. 
+ \noindent Pokušajmo poboljšati aproksimativni faktor Algoritma~\ref{alg:tsp-a1} uz pomoć \emph{algoritma dvostrukog drveta} (eng. double tree algoritma), čije detalje objašnjavamo u nastavku. Prije toga ćemo uvesti nekoliko definicija i teorema od bitnog značaja u konstrukciji algoritma. 
  \begin{definition}
  	  Neka je dat graf $G=(V,E)$. Ojlerova kontura $T^o$ grafa $G$ je kontura $e_1e_2,...,e_me_1$ koja obilazi sve grane grafa $G$. 
  \end{definition}
@@ -6024,7 +6024,7 @@ Posmatrajmo sada  Algoritmom~\ref{alg:tsp-a2} i pokažimo da ovim algoritmom  do
    Jasno je da je algoritam polinomijalan i da je dobijeno rješenje dopustivo. 
    
   Neka je $C^*$ cijena optimalne Hamiltonove konture. Tada je cijena MST $\leq C^*$. 
-  Lako se vidi da je cijena Ojlerove konture  manja ili jednaka $ 2 \cdot C^*$. Na osnovu nejednakosti trougla, skraćivanje Ojlerove konture (linija 6 u algoritmu) u svrhu dobijanja Hamiltonove konture $T$, ne može da bude veća od 2$C^*$. Dakle, slijedi da je cijena Hamiltonove konture manja ili jednaka $2 C^*$, pa je ovaj algoritam 2--aprokimativni.
+  Lako se vidi da je cijena Ojlerove konture  manja ili jednaka $ 2 \cdot C^*$. Na osnovu nejednakosti trougla, skraćivanje Ojlerove konture (linija 6 u algoritmu) u svrhu dobijanja Hamiltonove konture $T$, ne može da bude veća od 2$C^*$. Dakle, slijedi da je cijena Hamiltonove konture manja ili jednaka $2 C^*$, pa je ovaj algoritam 2--aproksimativni.
   
  
    \begin{figure}[!ht]
@@ -6063,7 +6063,7 @@ Posmatrajmo sada  Algoritmom~\ref{alg:tsp-a2} i pokažimo da ovim algoritmom  do
 
 
 
-Posmatrajmo još jedan aproksimativni algoritam za TSP koji spušta aproksimativni faktor sa $2$ na 1.5. Algoritam je poznat pod nazivom \emph{Kristofidesov} algoritam.
+Posmatrajmo još jedan aproksimativni algoritam za TSP koji garantuje aproksimativni faktor od 1.5. Algoritam je poznat pod nazivom \emph{Kristofidesov} algoritam.
 Koraci su prikazani Algoritmom~\ref{alg:tsp-a3}.
 
 %pseudokod algoritma 
@@ -6100,7 +6100,7 @@ U literaturi je pokazano da ne postoji  aproksimacioni algoritam sa faktorom  $c
 
 Definišimo \emph{problem binarnog pakovanja}.  
 \begin{definition}
-    Neka je dato $n$ proizvoda veličine $a_1,a_2,\ldots,a_n$ ($0<a_i \leq 1$). Potrebno je spakovati sve proizvode u pakovanja koja su sva jediničnog kapaciteta, tako da je ukupan broj korištenih pakovanja  minimalan.  
+    Neka je dato $n$ proizvoda veličine $a_1,a_2,\ldots,a_n$ ($0<a_i \leq 1$). Potrebno je spakovati sve proizvode u pakovanja  jediničnog kapaciteta, tako da je ukupan broj korištenih pakovanja  minimalan.  
 \end{definition}
 
   Primjer jedne instance problema pakovanja je dat na Slici~\ref{fig:bin-packing}.
@@ -6123,7 +6123,7 @@ Navedimo   \emph{prvi odgovarajući} (eng. {first-fit}) pohlepni algoritam, koji
 
 Lako se vidi da je ovaj algoritam polinimijalne složenosti i da kao rezultat vraća dopustivo rješenje.  Neka je $C^*$ optimalan broj pakovanja koji se treba otvoriti da bi se spakovalo svih $n$ stavki. Pretpostavimo da algoritam vraća rješenje $C$ (pakovanja). Sigurno vrijedi da je barem u $C-1$ pakovanja  iskorišteno više od polovine prostora. Ako to ne bi bio slučaj, onda bi postojala dva pakovanja u kojima je najviše pola prostora iskorišteno. U tom slučaju, stavke u oba pakovanja bi mogle da idu u jedno od njih, dok bi se drugo oslobodilo. Prema tome, imamo
 $$C^* \geq \sum_{i=1}^n a_i > \frac{C-1}{2}\ \Rightarrow\  2 \cdot C^* > C-1 \Rightarrow 2 \cdot C^* \geq C,$$
-pa slijedi da je  algoritam  prvi-najbolji 2--aproksimacioni. 
+pa slijedi da je  algoritam  prvi-odgovarajući 2--aproksimacioni. 
 
 Pomenimo sada i tzv. \emph{najbolji-odgovarajući} (eng. best-fit) algoritam, koji radi po sljedećem principu. Sljedeći proizvod se stavlja u ono pakovanje u kojem  ostaje najmanji prazan prostor, u odnosu na sva ostala otvorena pakovanja. Ako takvo pakovanje ne postoji, otvara se novo pakovanje. 
 Ovaj algoritam je takođe 2--aproksimacioni. 
@@ -6131,7 +6131,7 @@ Ovaj algoritam je takođe 2--aproksimacioni.
 Interesantno je napomenuti da za problem binarnog pakovanja ne postoji aproksimativni algoritam čiji je faktor $c <\frac{3}{2}$ (osim ako je $P=NP$). 
 
  \subsection{Aproksimativni algoritmi za problem pokrivanja skupa}
-Problem pokrivnja skupova (eng. set cover problem) predstavlja uopštenje problema pokrivanja čvorova, i definisan je na sljedeći način.
+\textit{Problem pokrivnja skupova} (eng. set cover problem) predstavlja uopštenje problema pokrivanja čvorova, i definisan je na sljedeći način.
 \begin{definition}
     Neka je dat skup elemenata $X$ te familija podskupova $\mathcal{F}$ skupa $X$ takva da je za svaki $f\in \mathcal{F}$, $|f \cap X| \geq 1$ i $\bigcup_{f \in \mathcal{F}} f = X$. 
 	    Potrebno je naći pokrivač $C \subseteq \mathcal{F}$ minimalne kardinalnosti takav da je 
@@ -6154,7 +6154,7 @@ Motivacija za razmatranje ovog problema se može pronaći i u svakodnevnom živo
 
  Pohlepni metod za problem pokrivanja skupa je prikazan Algoritmom~\ref{alg:set-cover-gridi}.  %objasnjenje algoritma.
 Skup $U$ predstavlja skup preostalih nepokrivenih elemenata, dok skup $\mathcal{C}$ predstavlja pokrivač koji se konstruiše kroz iteracije algoritma. Incijalno, $U = X$, te pokrivač $C = \emptyset$.
-U svakom koraku, algoritam nastoji da proširi pokrivač $\mathcal{C}$ na račun smanjenja skupa $U$. Kandidata za proširivanje pokrivača biramo na osnovu pohlepne funkcije date u liniji 6. U osnovi, biramo onaj  podskup $f \in \mathcal{F}$ koji ima maksimalan presjek sa skupom $U$. Dati skup ubacujemo u rješenje $C$, te izbacujemo elemente iz $U$ koji se nalaze u skupu $f$. Algoritam se izvršava dok god ne pokrijemo sve elemente iz $U$, tj. dok god $U \neq \emptyset$.
+U svakom koraku, algoritam nastoji da proširi pokrivač $\mathcal{C}$ na račun smanjenja skupa $U$. Kandidata za proširivanje pokrivača biramo na osnovu pohlepne funkcije date u liniji 6. U osnovi, biramo onaj  podskup $f \in \mathcal{F}$ koji ima maksimalan presjek sa trenutnim skupom $U$. Dati skup potom ubacujemo u rješenje $C$, te izbacujemo elemente iz $U$ koji se nalaze u skupu $f$. Algoritam se izvršava dok god ne pokrijemo sve elemente iz $U$, tj. dok god $U \neq \emptyset$.
 
 Algoritam se izvodi u $O(|\mathcal{F}| \cdot |X|)$ vremenu, što znači da je polinomijalne složenosti. Takođe, jasno je da je rješenje koje se vraća dopustivo, uz pretpostavku da instanca generiše dopustiv prostor, što je lako provjeriti prije pokretanja algoritma. 
 
@@ -6181,8 +6181,8 @@ O aproksimativnom faktoru ovog pohlepnog algoritma nam govori naredna teorema, k
 
 \begin{thm}
 	  \mbox{GREEDY-SET-COVER} algoritam ima aproksimativni faktor 
-	$$ H(\max\{|f| \mid f \in \mathcal{F}\}).$$
-	
+	$$ H(\max\{|f| \mid f \in \mathcal{F}\}),$$
+	gdje je $H(n) =\sum_{i=1}^n \frac{1}{i}$. 
 \end{thm}
 
 \begin{comment}
