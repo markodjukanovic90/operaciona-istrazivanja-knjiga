@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.4.18)  23 JUL 2022 22:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.4.18)  24 JUL 2022 11:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -905,7 +905,7 @@ Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))
 \verbatim@out=\write3
-runsystem(echo 'write18-test-20227231365'>"main.w18")...disabled (restricted).
+runsystem(echo 'write18-test-2022724692'>"main.w18")...disabled (restricted).
 
 
 
@@ -1786,20 +1786,15 @@ input line 1549.
 (pdftex.def)             Requested size: 170.00392pt x 170.00426pt.
  [52] [53 <./unbounded-example-solve-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <deg-sol.eps>
-(epstopdf)                    date: 2022-07-23 22:45:04
-(epstopdf)                    size: 1650564 bytes
+(epstopdf)                    date: 2022-07-24 10:23:58
+(epstopdf)                    size: 1654428 bytes
 (epstopdf)             Output file: <deg-sol-eps-converted-to.pdf>
-(epstopdf)                    date: 2022-07-23 22:43:44
-(epstopdf)                    size: 440412 bytes
+(epstopdf)                    date: 2022-07-24 10:24:11
+(epstopdf)                    size: 441397 bytes
 (epstopdf)             Command: <repstopdf --outfile=deg-sol-eps-converted-to.p
 df deg-sol.eps>
 (epstopdf)             \includegraphics on input line 1597.
-runsystem(repstopdf --outfile=deg-sol-eps-converted-to.pdf deg-sol.eps)...execu
-ted safely (allowed).
-
-Package epstopdf Info: Result file: <deg-sol-eps-converted-to.pdf>
-(epstopdf)                    date: 2022-07-23 22:45:08
-(epstopdf)                    size: 440202 bytes.
+Package epstopdf Info: Output file is already uptodate.
 <deg-sol-eps-converted-to.pdf, id=266, 203.76125pt x 135.50626pt>
 File: deg-sol-eps-converted-to.pdf Graphic file (type pdf)
 <use deg-sol-eps-converted-to.pdf>
@@ -1809,21 +1804,16 @@ Package pdftex.def Info: deg-sol-eps-converted-to.pdf  used on input line 1597.
  [54 <./deg-sol-eps-converted-to.pdf>] [55] [56]
 [57]
 Package epstopdf Info: Source file: <simpleks-primjer-2-sl1.eps>
-(epstopdf)                    date: 2021-08-11 10:51:22
-(epstopdf)                    size: 318664 bytes
+(epstopdf)                    date: 2022-07-24 10:36:10
+(epstopdf)                    size: 315353 bytes
 (epstopdf)             Output file: <simpleks-primjer-2-sl1-eps-converted-to.pd
 f>
-(epstopdf)                    date: 2021-08-11 10:51:30
-(epstopdf)                    size: 64333 bytes
+(epstopdf)                    date: 2022-07-24 10:36:35
+(epstopdf)                    size: 63413 bytes
 (epstopdf)             Command: <repstopdf --outfile=simpleks-primjer-2-sl1-eps
 -converted-to.pdf simpleks-primjer-2-sl1.eps>
 (epstopdf)             \includegraphics on input line 1768.
 Package epstopdf Info: Output file is already uptodate.
-
-
-pdfTeX warning: /usr/bin/pdflatex (file ./simpleks-primjer-2-sl1-eps-converted-
-to.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allo
-wed
 <simpleks-primjer-2-sl1-eps-converted-to.pdf, id=287, 250.9375pt x 152.57pt>
 File: simpleks-primjer-2-sl1-eps-converted-to.pdf Graphic file (type pdf)
 <use simpleks-primjer-2-sl1-eps-converted-to.pdf>
@@ -1920,58 +1910,55 @@ Underfull \vbox (badness 4467) has occurred while \output is active []
 Glava 5.
 [65] [66] [67] [68] [69]
 Package epstopdf Info: Source file: <fig5.eps>
-(epstopdf)                    date: 2022-07-20 11:36:25
-(epstopdf)                    size: 445617 bytes
+(epstopdf)                    date: 2022-07-24 10:39:24
+(epstopdf)                    size: 445179 bytes
 (epstopdf)             Output file: <fig5-eps-converted-to.pdf>
-(epstopdf)                    date: 2022-07-20 11:36:30
-(epstopdf)                    size: 116226 bytes
+(epstopdf)                    date: 2022-07-24 10:39:31
+(epstopdf)                    size: 115811 bytes
 (epstopdf)             Command: <repstopdf --outfile=fig5-eps-converted-to.pdf 
 fig5.eps>
 (epstopdf)             \includegraphics on input line 2176.
 Package epstopdf Info: Output file is already uptodate.
-<fig5-eps-converted-to.pdf, id=357, 248.93pt x 199.74625pt>
+<fig5-eps-converted-to.pdf, id=357, 249.93375pt x 200.75pt>
 File: fig5-eps-converted-to.pdf Graphic file (type pdf)
 <use fig5-eps-converted-to.pdf>
 Package pdftex.def Info: fig5-eps-converted-to.pdf  used on input line 2176.
-(pdftex.def)             Requested size: 180.00432pt x 180.00769pt.
+(pdftex.def)             Requested size: 180.00555pt x 180.01166pt.
  [70 <./fig5-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <fig6.eps>
-(epstopdf)                    date: 2022-07-20 11:42:14
-(epstopdf)                    size: 1352568 bytes
+(epstopdf)                    date: 2022-07-24 11:14:18
+(epstopdf)                    size: 455223 bytes
 (epstopdf)             Output file: <fig6-eps-converted-to.pdf>
-(epstopdf)                    date: 2022-07-20 11:42:18
-(epstopdf)                    size: 196902 bytes
+(epstopdf)                    date: 2022-07-24 11:14:22
+(epstopdf)                    size: 81778 bytes
 (epstopdf)             Command: <repstopdf --outfile=fig6-eps-converted-to.pdf 
 fig6.eps>
 (epstopdf)             \includegraphics on input line 2216.
 Package epstopdf Info: Output file is already uptodate.
-<fig6-eps-converted-to.pdf, id=364, 303.1325pt x 201.75375pt>
+<fig6-eps-converted-to.pdf, id=364, 188.705pt x 157.58875pt>
 File: fig6-eps-converted-to.pdf Graphic file (type pdf)
 <use fig6-eps-converted-to.pdf>
 Package pdftex.def Info: fig6-eps-converted-to.pdf  used on input line 2216.
-(pdftex.def)             Requested size: 190.00314pt x 190.00256pt.
+(pdftex.def)             Requested size: 190.00026pt x 190.01207pt.
  [71 <./fig6-eps-converted-to.pdf>] [72] [73]
 Package epstopdf Info: Source file: <farkas-geometry.eps>
-(epstopdf)                    date: 2021-09-05 15:51:12
-(epstopdf)                    size: 144454 bytes
+(epstopdf)                    date: 2022-07-24 11:15:56
+(epstopdf)                    size: 160808 bytes
 (epstopdf)             Output file: <farkas-geometry-eps-converted-to.pdf>
-(epstopdf)                    date: 2021-09-05 15:51:42
-(epstopdf)                    size: 46057 bytes
+(epstopdf)                    date: 2022-07-24 11:16:00
+(epstopdf)                    size: 53170 bytes
 (epstopdf)             Command: <repstopdf --outfile=farkas-geometry-eps-conver
 ted-to.pdf farkas-geometry.eps>
 (epstopdf)             \includegraphics on input line 2302.
 Package epstopdf Info: Output file is already uptodate.
-
-
-pdfTeX warning: /usr/bin/pdflatex (file ./farkas-geometry-eps-converted-to.pdf)
-: PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
 <farkas-geometry-eps-converted-to.pdf, id=379, 248.93pt x 150.5625pt>
 File: farkas-geometry-eps-converted-to.pdf Graphic file (type pdf)
 <use farkas-geometry-eps-converted-to.pdf>
 Package pdftex.def Info: farkas-geometry-eps-converted-to.pdf  used on input li
 ne 2302.
 (pdftex.def)             Requested size: 350.03035pt x 260.05139pt.
-[74 <./farkas-geometry-eps-converted-to.pdf>] [75] [76] [77] [78] [79] [80
+ [74 <./farkas-geometry-eps-converted-to.pdf>]
+[75] [76] [77] [78] [79] [80
 
 ]
 Glava 6.
@@ -1985,26 +1972,22 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [87]
 [88] [89] [90] [91]
 Package epstopdf Info: Source file: <compound.eps>
-(epstopdf)                    date: 2021-08-05 11:08:30
-(epstopdf)                    size: 619262 bytes
+(epstopdf)                    date: 2022-07-24 11:32:03
+(epstopdf)                    size: 1750465 bytes
 (epstopdf)             Output file: <compound-eps-converted-to.pdf>
-(epstopdf)                    date: 2021-08-05 11:08:38
-(epstopdf)                    size: 104743 bytes
+(epstopdf)                    date: 2022-07-24 11:32:11
+(epstopdf)                    size: 176144 bytes
 (epstopdf)             Command: <repstopdf --outfile=compound-eps-converted-to.
 pdf compound.eps>
 (epstopdf)             \includegraphics on input line 2843.
 Package epstopdf Info: Output file is already uptodate.
-
-
-pdfTeX warning: /usr/bin/pdflatex (file ./compound-eps-converted-to.pdf): PDF i
-nclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<compound-eps-converted-to.pdf, id=441, 196.735pt x 146.5475pt>
+<compound-eps-converted-to.pdf, id=441, 197.73875pt x 146.5475pt>
 File: compound-eps-converted-to.pdf Graphic file (type pdf)
 <use compound-eps-converted-to.pdf>
 Package pdftex.def Info: compound-eps-converted-to.pdf  used on input line 2843
 .
-(pdftex.def)             Requested size: 199.99759pt x 179.99963pt.
-[92 <./compound-eps-converted-to.pdf>] [93] [94] [95]
+(pdftex.def)             Requested size: 200.00119pt x 179.99963pt.
+ [92 <./compound-eps-converted-to.pdf>] [93] [94] [95]
 Overfull \hbox (4.04762pt too wide) in paragraph at lines 2962--2963
 []\T1/cmr/m/n/10.95 U slje-de-¢em pri-mje-ru pri-mi-je-ni-mo ne-ko-li-ko na-ve-
 de-nih trans-for-ma-ci-ja ogra-
@@ -2057,7 +2040,7 @@ Package epstopdf Info: Output file is already uptodate.
 pdfTeX warning: /usr/bin/pdflatex (file ./region_ilp_primjer_2-eps-converted-to
 .pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowe
 d
-<region_ilp_primjer_2-eps-converted-to.pdf, id=522, 277.035pt x 323.2075pt>
+<region_ilp_primjer_2-eps-converted-to.pdf, id=526, 277.035pt x 323.2075pt>
 File: region_ilp_primjer_2-eps-converted-to.pdf Graphic file (type pdf)
 <use region_ilp_primjer_2-eps-converted-to.pdf>
 Package pdftex.def Info: region_ilp_primjer_2-eps-converted-to.pdf  used on inp
@@ -2108,7 +2091,7 @@ Package epstopdf Info: Output file is already uptodate.
 
 pdfTeX warning: /usr/bin/pdflatex (file ./cutting_stock-eps-converted-to.pdf): 
 PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<cutting_stock-eps-converted-to.pdf, id=558, 411.5375pt x 295.1025pt>
+<cutting_stock-eps-converted-to.pdf, id=562, 411.5375pt x 295.1025pt>
 File: cutting_stock-eps-converted-to.pdf Graphic file (type pdf)
 <use cutting_stock-eps-converted-to.pdf>
 Package pdftex.def Info: cutting_stock-eps-converted-to.pdf  used on input line
@@ -2166,7 +2149,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [151]
 [152] [153]
-<dw2.png, id=651, 72.62332pt x 37.19496pt>
+<dw2.png, id=655, 72.62332pt x 37.19496pt>
 File: dw2.png Graphic file (type png)
 <use dw2.png>
 Package pdftex.def Info: dw2.png  used on input line 5170.
@@ -2195,7 +2178,7 @@ Package epstopdf Info: Source file: <vertex-cover.eps>
 -to.pdf vertex-cover.eps>
 (epstopdf)             \includegraphics on input line 5872.
 Package epstopdf Info: Output file is already uptodate.
-<vertex-cover-eps-converted-to.pdf, id=709, 352.31625pt x 328.22626pt>
+<vertex-cover-eps-converted-to.pdf, id=713, 352.31625pt x 328.22626pt>
 File: vertex-cover-eps-converted-to.pdf Graphic file (type pdf)
 <use vertex-cover-eps-converted-to.pdf>
 Package pdftex.def Info: vertex-cover-eps-converted-to.pdf  used on input line 
@@ -2219,7 +2202,7 @@ Package epstopdf Info: Output file is already uptodate.
 
 pdfTeX warning: /usr/bin/pdflatex (file ./vc-2-example-eps-converted-to.pdf): P
 DF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<vc-2-example-eps-converted-to.pdf, id=718, 496.85625pt x 276.03125pt>
+<vc-2-example-eps-converted-to.pdf, id=722, 496.85625pt x 276.03125pt>
 File: vc-2-example-eps-converted-to.pdf Graphic file (type pdf)
 <use vc-2-example-eps-converted-to.pdf>
 Package pdftex.def Info: vc-2-example-eps-converted-to.pdf  used on input line 
@@ -2245,7 +2228,7 @@ Package epstopdf Info: Output file is already uptodate.
 
 pdfTeX warning: /usr/bin/pdflatex (file ./tsp-1-eps-converted-to.pdf): PDF incl
 usion: found PDF version <1.7>, but at most version <1.5> allowed
-<tsp-1-eps-converted-to.pdf, id=732, 370.38374pt x 314.17375pt>
+<tsp-1-eps-converted-to.pdf, id=736, 370.38374pt x 314.17375pt>
 File: tsp-1-eps-converted-to.pdf Graphic file (type pdf)
 <use tsp-1-eps-converted-to.pdf>
 Package pdftex.def Info: tsp-1-eps-converted-to.pdf  used on input line 6034.
@@ -2264,7 +2247,7 @@ Package epstopdf Info: Output file is already uptodate.
 
 pdfTeX warning: /usr/bin/pdflatex (file ./tsp-1a-eps-converted-to.pdf): PDF inc
 lusion: found PDF version <1.7>, but at most version <1.5> allowed
-<tsp-1a-eps-converted-to.pdf, id=733, 286.06876pt x 280.04625pt>
+<tsp-1a-eps-converted-to.pdf, id=737, 286.06876pt x 280.04625pt>
 File: tsp-1a-eps-converted-to.pdf Graphic file (type pdf)
 <use tsp-1a-eps-converted-to.pdf>
 Package pdftex.def Info: tsp-1a-eps-converted-to.pdf  used on input line 6041.
@@ -2283,7 +2266,7 @@ Package epstopdf Info: Output file is already uptodate.
 
 pdfTeX warning: /usr/bin/pdflatex (file ./tsp-2a-eps-converted-to.pdf): PDF inc
 lusion: found PDF version <1.7>, but at most version <1.5> allowed
-<tsp-2a-eps-converted-to.pdf, id=734, 310.15875pt x 283.0575pt>
+<tsp-2a-eps-converted-to.pdf, id=738, 310.15875pt x 283.0575pt>
 File: tsp-2a-eps-converted-to.pdf Graphic file (type pdf)
 <use tsp-2a-eps-converted-to.pdf>
 Package pdftex.def Info: tsp-2a-eps-converted-to.pdf  used on input line 6049.
@@ -2307,7 +2290,7 @@ Package epstopdf Info: Output file is already uptodate.
 
 pdfTeX warning: /usr/bin/pdflatex (file ./tsp-3a-eps-converted-to.pdf): PDF inc
 lusion: found PDF version <1.7>, but at most version <1.5> allowed
-<tsp-3a-eps-converted-to.pdf, id=735, 287.0725pt x 277.035pt>
+<tsp-3a-eps-converted-to.pdf, id=739, 287.0725pt x 277.035pt>
 File: tsp-3a-eps-converted-to.pdf Graphic file (type pdf)
 <use tsp-3a-eps-converted-to.pdf>
 Package pdftex.def Info: tsp-3a-eps-converted-to.pdf  used on input line 6056.
@@ -2329,7 +2312,7 @@ Package epstopdf Info: Source file: <maxresdefault.eps>
 d-to.pdf maxresdefault.eps>
 (epstopdf)             \includegraphics on input line 6111.
 Package epstopdf Info: Output file is already uptodate.
-<maxresdefault-eps-converted-to.pdf, id=753, 523.9575pt x 268.00125pt>
+<maxresdefault-eps-converted-to.pdf, id=757, 523.9575pt x 268.00125pt>
 File: maxresdefault-eps-converted-to.pdf Graphic file (type pdf)
 <use maxresdefault-eps-converted-to.pdf>
 Package pdftex.def Info: maxresdefault-eps-converted-to.pdf  used on input line
@@ -2350,7 +2333,7 @@ Package epstopdf Info: Output file is already uptodate.
 
 pdfTeX warning: /usr/bin/pdflatex (file ./set-cover-1-eps-converted-to.pdf): PD
 F inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<set-cover-1-eps-converted-to.pdf, id=763, 594.22pt x 333.245pt>
+<set-cover-1-eps-converted-to.pdf, id=767, 594.22pt x 333.245pt>
 File: set-cover-1-eps-converted-to.pdf Graphic file (type pdf)
 <use set-cover-1-eps-converted-to.pdf>
 Package pdftex.def Info: set-cover-1-eps-converted-to.pdf  used on input line 6
@@ -2521,12 +2504,12 @@ nje nu-le funk-ci-je $\OML/cmm/m/it/10.95 F\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10
  []
 
 [221] [222]
-<interior-1.png, id=918, 399.28177pt x 274.97205pt>
+<interior-1.png, id=922, 399.28177pt x 274.97205pt>
 File: interior-1.png Graphic file (type png)
 <use interior-1.png>
 Package pdftex.def Info: interior-1.png  used on input line 7675.
 (pdftex.def)             Requested size: 145.79802pt x 100.408pt.
-<interior-2.png, id=919, 495.0pt x 340.89pt>
+<interior-2.png, id=923, 495.0pt x 340.89pt>
 File: interior-2.png Graphic file (type png)
 <use interior-2.png>
 Package pdftex.def Info: interior-2.png  used on input line 7680.
@@ -2545,13 +2528,13 @@ Package epstopdf Info: Output file is already uptodate.
 
 pdfTeX warning: /usr/bin/pdflatex (file ./interior-3-eps-converted-to.pdf): PDF
  inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<interior-3-eps-converted-to.pdf, id=920, 483.8075pt x 333.245pt>
+<interior-3-eps-converted-to.pdf, id=924, 483.8075pt x 333.245pt>
 File: interior-3-eps-converted-to.pdf Graphic file (type pdf)
 <use interior-3-eps-converted-to.pdf>
 Package pdftex.def Info: interior-3-eps-converted-to.pdf  used on input line 76
 92.
 (pdftex.def)             Requested size: 145.79802pt x 100.42682pt.
-<interior-4.png, id=921, 214.45103pt x 147.68529pt>
+<interior-4.png, id=925, 214.45103pt x 147.68529pt>
 File: interior-4.png Graphic file (type png)
 <use interior-4.png>
 Package pdftex.def Info: interior-4.png  used on input line 7697.
@@ -2561,7 +2544,7 @@ Package pdftex.def Info: interior-4.png  used on input line 7697.
 
 ]
 Dodatak B.
-<cplex_makefile.png, id=939, 858.20625pt x 546.04pt>
+<cplex_makefile.png, id=943, 858.20625pt x 546.04pt>
 File: cplex_makefile.png Graphic file (type png)
 <use cplex_makefile.png>
 Package pdftex.def Info: cplex_makefile.png  used on input line 7745.
@@ -2646,7 +2629,7 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  29019 strings out of 482584
  710668 string characters out of 5956256
- 1049624 words of memory out of 5000000
+ 1049622 words of memory out of 5000000
  43472 multiletter control sequences out of 15000+600000
  563920 words of font info for 102 fonts, out of 8000000 for 9000
  475 hyphenation exceptions out of 8191
@@ -2688,10 +2671,10 @@ cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.p
 fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pf
 b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb
 >
-Output written on main.pdf (235 pages, 5312451 bytes).
+Output written on main.pdf (235 pages, 5274792 bytes).
 PDF statistics:
- 1691 PDF objects out of 1728 (max. 8388607)
- 734 compressed objects within 8 object streams
+ 1695 PDF objects out of 1728 (max. 8388607)
+ 736 compressed objects within 8 object streams
  0 named destinations out of 1000 (max. 500000)
  183 words of extra memory for PDF output out of 10000 (max. 10000000)
 
