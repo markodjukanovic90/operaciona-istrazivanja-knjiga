@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.4.18)  24 JUL 2022 18:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.4.18)  24 JUL 2022 18:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -905,7 +905,7 @@ Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))
 \verbatim@out=\write3
-runsystem(echo 'write18-test-20227241108'>"main.w18")...disabled (restricted).
+runsystem(echo 'write18-test-20227241110'>"main.w18")...disabled (restricted).
 
 
 
@@ -1808,18 +1808,12 @@ Package epstopdf Info: Source file: <simpleks-primjer-2-sl1.eps>
 (epstopdf)                    size: 955065 bytes
 (epstopdf)             Output file: <simpleks-primjer-2-sl1-eps-converted-to.pd
 f>
-(epstopdf)                    date: 2022-07-24 18:28:03
-(epstopdf)                    size: 238301 bytes
+(epstopdf)                    date: 2022-07-24 18:28:17
+(epstopdf)                    size: 238298 bytes
 (epstopdf)             Command: <repstopdf --outfile=simpleks-primjer-2-sl1-eps
 -converted-to.pdf simpleks-primjer-2-sl1.eps>
 (epstopdf)             \includegraphics on input line 1768.
-runsystem(repstopdf --outfile=simpleks-primjer-2-sl1-eps-converted-to.pdf simpl
-eks-primjer-2-sl1.eps)...executed safely (allowed).
-
-Package epstopdf Info: Result file: <simpleks-primjer-2-sl1-eps-converted-to.pd
-f>
-(epstopdf)                    date: 2022-07-24 18:28:17
-(epstopdf)                    size: 238298 bytes.
+Package epstopdf Info: Output file is already uptodate.
 <simpleks-primjer-2-sl1-eps-converted-to.pdf, id=287, 250.9375pt x 152.57pt>
 File: simpleks-primjer-2-sl1-eps-converted-to.pdf Graphic file (type pdf)
 <use simpleks-primjer-2-sl1-eps-converted-to.pdf>
@@ -1875,16 +1869,22 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [59 <./simpleks-primjer-2-sl1-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <simpleks-primjer-2-sl4.eps>
-(epstopdf)                    date: 2022-07-24 17:31:26
-(epstopdf)                    size: 636668 bytes
+(epstopdf)                    date: 2022-07-24 18:30:15
+(epstopdf)                    size: 636792 bytes
 (epstopdf)             Output file: <simpleks-primjer-2-sl4-eps-converted-to.pd
 f>
-(epstopdf)                    date: 2022-07-24 17:31:32
-(epstopdf)                    size: 162767 bytes
+(epstopdf)                    date: 2022-07-24 18:29:58
+(epstopdf)                    size: 162785 bytes
 (epstopdf)             Command: <repstopdf --outfile=simpleks-primjer-2-sl4-eps
 -converted-to.pdf simpleks-primjer-2-sl4.eps>
 (epstopdf)             \includegraphics on input line 1826.
-Package epstopdf Info: Output file is already uptodate.
+runsystem(repstopdf --outfile=simpleks-primjer-2-sl4-eps-converted-to.pdf simpl
+eks-primjer-2-sl4.eps)...executed safely (allowed).
+
+Package epstopdf Info: Result file: <simpleks-primjer-2-sl4-eps-converted-to.pd
+f>
+(epstopdf)                    date: 2022-07-24 18:30:19
+(epstopdf)                    size: 162796 bytes.
 <simpleks-primjer-2-sl4-eps-converted-to.pdf, id=303, 266.9975pt x 162.6075pt>
 File: simpleks-primjer-2-sl4-eps-converted-to.pdf Graphic file (type pdf)
 <use simpleks-primjer-2-sl4-eps-converted-to.pdf>
@@ -2668,7 +2668,7 @@ cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.p
 fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pf
 b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb
 >
-Output written on main.pdf (235 pages, 5936435 bytes).
+Output written on main.pdf (235 pages, 5936466 bytes).
 PDF statistics:
  1695 PDF objects out of 1728 (max. 8388607)
  736 compressed objects within 8 object streams
