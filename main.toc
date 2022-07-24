@@ -1,82 +1,82 @@
 \babel@toc {serbian}{}
 \contentsline {chapter}{\numberline {1}Predmet izučavanja Operacionih istraživanja}{5}%
-\contentsline {chapter}{\numberline {2}Principi modelovanja u Operacionim istraživanjima}{9}%
-\contentsline {section}{\numberline {2.1}Definisanje problema i sakupljanje relevantnih podataka}{9}%
-\contentsline {section}{\numberline {2.2}Proces formulisanja matematičkog modela}{11}%
-\contentsline {section}{\numberline {2.3}Izvođenje rješenja iz modela}{14}%
-\contentsline {section}{\numberline {2.4}Testiranje modela}{16}%
-\contentsline {section}{\numberline {2.5}Pripremanje modela za primjenu}{17}%
-\contentsline {section}{\numberline {2.6}Implementacija}{18}%
-\contentsline {chapter}{\numberline {3}Osnove linearnog programiranja}{21}%
-\contentsline {section}{\numberline {3.1}Grafički metod}{24}%
-\contentsline {section}{\numberline {3.2}Standardna forma linearnog programiranja}{25}%
-\contentsline {section}{\numberline {3.3}Teorija linearnog programiranja}{30}%
-\contentsline {section}{\numberline {3.4}Neke tehnike u modelovanju problema linearnog programiranja}{37}%
-\contentsline {section}{\numberline {3.5}Zadaci}{41}%
-\contentsline {chapter}{\numberline {4}Simpleks metoda}{45}%
-\contentsline {section}{\numberline {4.1}Konstrukcija simpleks metode}{45}%
-\contentsline {section}{\numberline {4.2}Tabelarni oblik simpleks metoda}{48}%
-\contentsline {section}{\numberline {4.3}Primjena simpleks metoda}{49}%
-\contentsline {section}{\numberline {4.4}Dvofazni simpleks metod}{54}%
-\contentsline {section}{\numberline {4.5}Geometrija i simpleks metod}{58}%
-\contentsline {section}{\numberline {4.6}Zadaci}{61}%
-\contentsline {chapter}{\numberline {5}Dualnost \& Dopustivost}{65}%
-\contentsline {section}{\numberline {5.1}Teoreme dualnosti}{67}%
-\contentsline {section}{\numberline {5.2}Farkašova lema}{72}%
-\contentsline {section}{\numberline {5.3}Furije–Mockinova eliminacija}{74}%
-\contentsline {section}{\numberline {5.4}Zadaci}{77}%
-\contentsline {chapter}{\numberline {6}Cjelobrojno linearno programiranje}{81}%
-\contentsline {section}{\numberline {6.1}Modelovanje nekih problema cjelobrojnog linearnog programiranja}{82}%
-\contentsline {section}{\numberline {6.2}Tehnike transformacija nekih nelinearnih izraza u ILP-u}{89}%
-\contentsline {subsection}{\numberline {6.2.1}Prepoznavanje binarnih promjenljivih}{89}%
-\contentsline {subsection}{\numberline {6.2.2}Logička ograničenja}{90}%
-\contentsline {subsection}{\numberline {6.2.3}Alternativna ograničenja}{90}%
-\contentsline {subsection}{\numberline {6.2.4}Uslovna ograničenja}{91}%
-\contentsline {subsection}{\numberline {6.2.5}K-alternative}{91}%
-\contentsline {subsection}{\numberline {6.2.6}Složene alternative}{92}%
-\contentsline {subsection}{\numberline {6.2.7}Fiksne cijene u funkciji cilja}{92}%
-\contentsline {subsection}{\numberline {6.2.8}Po-dijelovima-linearna funkcija}{93}%
-\contentsline {subsection}{\numberline {6.2.9}Eliminacija proizvoda promjenljivih}{94}%
-\contentsline {section}{\numberline {6.3}Kompleksnost rješavanja cjelobrojnog programiranja}{97}%
-\contentsline {section}{\numberline {6.4}Zadaci}{99}%
-\contentsline {chapter}{\numberline {7}Algoritamske tehnike za rješavanje Cjelobrojnog linearnog programiranja}{105}%
-\contentsline {section}{\numberline {7.1}Metoda grananja i ograničavanja (B\&B)}{106}%
-\contentsline {subsection}{\numberline {7.1.1}Bazni B\&B za rješavanje problema ILP-a}{106}%
-\contentsline {section}{\numberline {7.2}Implicitna enumeracija}{108}%
-\contentsline {section}{\numberline {7.3}Metoda odsjecajućih ravni}{112}%
-\contentsline {section}{\numberline {7.4}B\&C algoritam za rješavanje ILP-a}{119}%
-\contentsline {section}{\numberline {7.5}Lagranžova relaksacija}{121}%
-\contentsline {section}{\numberline {7.6}Metod generisanja kolona}{124}%
-\contentsline {section}{\numberline {7.7}Zadaci}{131}%
-\contentsline {chapter}{\numberline {8}Dekompozicione metode}{135}%
-\contentsline {section}{\numberline {8.1}Benderova dekompozicija}{135}%
-\contentsline {section}{\numberline {8.2}Dantzig--Wolfe dekompozicija}{149}%
-\contentsline {section}{\numberline {8.3}Zadaci}{161}%
-\contentsline {chapter}{\numberline {9}Metode za pronalaženje dopustivih rješenja}{163}%
-\contentsline {section}{\numberline {9.1}Pohlepni algoritmi}{163}%
-\contentsline {subsection}{\numberline {9.1.1}Algoritmi za pronalaženje MST}{164}%
-\contentsline {subsubsection}{Primov algoritam}{165}%
-\contentsline {subsubsection}{Kruskalov algoritam}{166}%
-\contentsline {subsection}{\numberline {9.1.2}Dajkstrin algoritam}{166}%
-\contentsline {subsection}{\numberline {9.1.3}Razlomljeni problem jednodimenzionalnog ruksaka}{167}%
-\contentsline {subsection}{\numberline {9.1.4}Pohlepni pristup za rješavanje LCS problema}{168}%
-\contentsline {section}{\numberline {9.2}Aproksimativni algoritmi}{170}%
-\contentsline {subsection}{\numberline {9.2.1}Aproksimativni algoritmi za problem minimalnog pokrivanja čvorova}{171}%
-\contentsline {subsection}{\numberline {9.2.2}Aproksimativni algoritmi za problem trgovačkog putnika}{174}%
-\contentsline {subsection}{\numberline {9.2.3}Aproksimativni algoritmi za problem binarnog pakovanja}{177}%
-\contentsline {subsection}{\numberline {9.2.4}Aproksimativni algoritmi za problem pokrivanja skupa}{178}%
-\contentsline {section}{\numberline {9.3}Heurističke metode}{180}%
-\contentsline {section}{\numberline {9.4}Metaheurističke metode}{181}%
-\contentsline {subsection}{\numberline {9.4.1}Klasifikacija metaheuristika}{182}%
-\contentsline {subsection}{\numberline {9.4.2}Metoda lokalne pretrage}{183}%
-\contentsline {subsection}{\numberline {9.4.3}Genetski algoritmi}{184}%
-\contentsline {subsection}{\numberline {9.4.4}Metoda promjenljivih okolina}{191}%
-\contentsline {section}{\numberline {9.5}Zadaci}{194}%
-\contentsline {chapter}{\numberline {10}Optimizacioni rješavači}{199}%
-\contentsline {section}{\numberline {10.1}Optimizacioni rješavač \textsc {Cplex}}{199}%
-\contentsline {section}{\numberline {10.2}PuLP alat}{204}%
-\contentsline {section}{\numberline {10.3}Primjena alata PuLP na rješavanje jednog problema lokacija sa ograničenim kapacitetima}{206}%
-\contentsline {section}{\numberline {10.4}Primjena \textsc {Cplex} rješavača na problem najdužeg zajedničkog podniza bez ponavljanja}{208}%
-\contentsline {section}{\numberline {10.5}Zadaci}{213}%
-\contentsline {chapter}{\numberline {A}Metod unutrašnje tačke}{217}%
-\contentsline {chapter}{\numberline {B}Makefile za kompajliranje \textsc {Cplex} programa}{225}%
+\contentsline {chapter}{\numberline {2}Principi modelovanja u Operacionim istraživanjima}{11}%
+\contentsline {section}{\numberline {2.1}Definisanje problema i sakupljanje relevantnih podataka}{11}%
+\contentsline {section}{\numberline {2.2}Proces formulisanja matematičkog modela}{13}%
+\contentsline {section}{\numberline {2.3}Izvođenje rješenja iz modela}{16}%
+\contentsline {section}{\numberline {2.4}Testiranje modela}{18}%
+\contentsline {section}{\numberline {2.5}Pripremanje modela za primjenu}{19}%
+\contentsline {section}{\numberline {2.6}Implementacija}{20}%
+\contentsline {chapter}{\numberline {3}Osnove linearnog programiranja}{23}%
+\contentsline {section}{\numberline {3.1}Grafički metod}{26}%
+\contentsline {section}{\numberline {3.2}Standardna forma linearnog programiranja}{27}%
+\contentsline {section}{\numberline {3.3}Teorija linearnog programiranja}{32}%
+\contentsline {section}{\numberline {3.4}Neke tehnike u modelovanju problema linearnog programiranja}{39}%
+\contentsline {section}{\numberline {3.5}Zadaci}{43}%
+\contentsline {chapter}{\numberline {4}Simpleks metoda}{47}%
+\contentsline {section}{\numberline {4.1}Konstrukcija simpleks metode}{47}%
+\contentsline {section}{\numberline {4.2}Tabelarni oblik simpleks metoda}{50}%
+\contentsline {section}{\numberline {4.3}Primjena simpleks metoda}{51}%
+\contentsline {section}{\numberline {4.4}Dvofazni simpleks metod}{56}%
+\contentsline {section}{\numberline {4.5}Geometrijska interpretacija simpleks metoda}{60}%
+\contentsline {section}{\numberline {4.6}Zadaci}{63}%
+\contentsline {chapter}{\numberline {5}Dualnost \& Dopustivost}{67}%
+\contentsline {section}{\numberline {5.1}Teoreme dualnosti}{69}%
+\contentsline {section}{\numberline {5.2}Farkašova lema}{74}%
+\contentsline {section}{\numberline {5.3}Furije–Mockinov metod eliminacije}{76}%
+\contentsline {section}{\numberline {5.4}Zadaci}{79}%
+\contentsline {chapter}{\numberline {6}Cjelobrojno linearno programiranje}{83}%
+\contentsline {section}{\numberline {6.1}Modelovanje nekih problema cjelobrojnog linearnog programiranja}{84}%
+\contentsline {section}{\numberline {6.2}Tehnike transformacija nekih nelinearnih izraza u ILP-u}{91}%
+\contentsline {subsection}{\numberline {6.2.1}Prepoznavanje binarnih promjenljivih}{91}%
+\contentsline {subsection}{\numberline {6.2.2}Logička ograničenja}{92}%
+\contentsline {subsection}{\numberline {6.2.3}Alternativna ograničenja}{92}%
+\contentsline {subsection}{\numberline {6.2.4}Uslovna ograničenja}{93}%
+\contentsline {subsection}{\numberline {6.2.5}K-alternative}{93}%
+\contentsline {subsection}{\numberline {6.2.6}Složene alternative}{94}%
+\contentsline {subsection}{\numberline {6.2.7}Fiksne cijene u funkciji cilja}{94}%
+\contentsline {subsection}{\numberline {6.2.8}Po-dijelovima-linearna funkcija}{95}%
+\contentsline {subsection}{\numberline {6.2.9}Eliminacija proizvoda promjenljivih}{96}%
+\contentsline {section}{\numberline {6.3}Kompleksnost rješavanja cjelobrojnog programiranja}{99}%
+\contentsline {section}{\numberline {6.4}Zadaci}{101}%
+\contentsline {chapter}{\numberline {7}Algoritamske tehnike za rješavanje Cjelobrojnog linearnog programiranja}{107}%
+\contentsline {section}{\numberline {7.1}Metoda grananja i ograničavanja (B\&B)}{108}%
+\contentsline {subsection}{\numberline {7.1.1}Bazni B\&B za rješavanje problema ILP-a}{108}%
+\contentsline {section}{\numberline {7.2}Implicitna enumeracija}{110}%
+\contentsline {section}{\numberline {7.3}Metoda odsjecajućih ravni}{114}%
+\contentsline {section}{\numberline {7.4}B\&C algoritam za rješavanje ILP-a}{121}%
+\contentsline {section}{\numberline {7.5}Lagranžova relaksacija}{123}%
+\contentsline {section}{\numberline {7.6}Metod generisanja kolona}{126}%
+\contentsline {section}{\numberline {7.7}Zadaci}{133}%
+\contentsline {chapter}{\numberline {8}Dekompozicione metode}{137}%
+\contentsline {section}{\numberline {8.1}Benderova dekompozicija}{137}%
+\contentsline {section}{\numberline {8.2}Dantzig--Wolfe dekompozicija}{151}%
+\contentsline {section}{\numberline {8.3}Zadaci}{163}%
+\contentsline {chapter}{\numberline {9}Metode za pronalaženje dopustivih rješenja}{165}%
+\contentsline {section}{\numberline {9.1}Pohlepni algoritmi}{165}%
+\contentsline {subsection}{\numberline {9.1.1}Algoritmi za pronalaženje MST}{166}%
+\contentsline {subsubsection}{Primov algoritam}{167}%
+\contentsline {subsubsection}{Kruskalov algoritam}{168}%
+\contentsline {subsection}{\numberline {9.1.2}Dajkstrin algoritam}{168}%
+\contentsline {subsection}{\numberline {9.1.3}Razlomljeni problem jednodimenzionalnog ruksaka}{169}%
+\contentsline {subsection}{\numberline {9.1.4}Pohlepni pristup za rješavanje LCS problema}{170}%
+\contentsline {section}{\numberline {9.2}Aproksimativni algoritmi}{172}%
+\contentsline {subsection}{\numberline {9.2.1}Aproksimativni algoritmi za problem minimalnog pokrivanja čvorova}{173}%
+\contentsline {subsection}{\numberline {9.2.2}Aproksimativni algoritmi za problem trgovačkog putnika}{176}%
+\contentsline {subsection}{\numberline {9.2.3}Aproksimativni algoritmi za problem binarnog pakovanja}{179}%
+\contentsline {subsection}{\numberline {9.2.4}Aproksimativni algoritmi za problem pokrivanja skupa}{180}%
+\contentsline {section}{\numberline {9.3}Heurističke metode}{182}%
+\contentsline {section}{\numberline {9.4}Metaheurističke metode}{183}%
+\contentsline {subsection}{\numberline {9.4.1}Klasifikacija metaheuristika}{184}%
+\contentsline {subsection}{\numberline {9.4.2}Metoda lokalne pretrage}{185}%
+\contentsline {subsection}{\numberline {9.4.3}Genetski algoritmi}{186}%
+\contentsline {subsection}{\numberline {9.4.4}Metoda promjenljivih okolina}{193}%
+\contentsline {section}{\numberline {9.5}Zadaci}{196}%
+\contentsline {chapter}{\numberline {10}Optimizacioni rješavači}{201}%
+\contentsline {section}{\numberline {10.1}Optimizacioni rješavač \textsc {Cplex}}{201}%
+\contentsline {section}{\numberline {10.2}PuLP alat}{206}%
+\contentsline {section}{\numberline {10.3}Primjena alata PuLP na rješavanje jednog problema lokacija sa ograničenim kapacitetima}{208}%
+\contentsline {section}{\numberline {10.4}Primjena \textsc {Cplex} rješavača na problem najdužeg zajedničkog podniza bez ponavljanja}{210}%
+\contentsline {section}{\numberline {10.5}Zadaci}{215}%
+\contentsline {chapter}{\numberline {A}Metod unutrašnje tačke}{219}%
+\contentsline {chapter}{\numberline {B}Makefile za kompajliranje \textsc {Cplex} programa}{227}%

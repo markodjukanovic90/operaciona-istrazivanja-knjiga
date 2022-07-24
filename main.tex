@@ -231,8 +231,8 @@ Uvedimo neke notacijske napomene i konvencije koje smo koristili u knjizi.
 		     \vdots\\
 		     x_n
 	\end{matrix} \right ) \in \mathbb{R}^n,$ dok je njegov odgovarajući transponovani vektor $x^T=(x_1,\ldots, x_n) \in \mathbb{R}^{1\times n}$. 
-   \item Što se tiče skalara i vektora, nećemo koristiti drugačije oznake da bismo ih razlikovali. Jednostavno, biće jasno iz konteksta da li je riječ o jednom ili drugom. Dakle, nula vektor ćemo takođe označavati sa $x = (0, \ldots, 0)^T := 0$, dok je $x^T=(1,\ldots, 1):=1$.  
-   \item   Ako je $x \in \mathbb{R}^n$, notacija  $x \geq 0$ podrazumijeva da je svaka koordinatna vrijednost vektora $x$ veća ili jednaka 0, tj. $x_i \geq 0$, za sve $i=1,\ldots,n$. 
+   \item Što se tiče skalara i vektora, nećemo koristiti drugačije oznake da bismo ih razlikovali. Jednostavno, biće jasno iz konteksta da li je riječ o jednom ili drugom. Dakle, nula vektor ćemo takođe označavati sa $x = (0, \ldots, 0)^T := 0$, dok je $x=(1,\ldots, 1)^T:=1$.  
+   \item   Ako je $x \in \mathbb{R}^n$, notacija  $x \geq 0$ podrazumijeva da je vrijednost svake od koordinatna vektora $x$ veća ili jednaka 0, tj. $x_i \geq 0$, za sve $i=1,\ldots,n$. 
 \end{itemize} 
 
 \chapter{Predmet izučavanja Operacionih istraživanja}
@@ -295,7 +295,7 @@ da garantuju optimalnost, ali su   po svojoj prirodi jako brzi u nalaženju dovo
 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{overview.eps}
+    \includegraphics[width=\textwidth,height=250pt]{overview.eps}
     \caption{Četiri nivoa apstrakcije pri rješavanu problema operacionih istraživanja.}
     \label{fig:OR_four_levels}
 \end{figure}
@@ -713,6 +713,7 @@ $f(x) = c^T w = z_1 + z_2 + \ldots + z_n + 0\cdot k + 0 \cdot l$, pod uslovima
 \begin{itemize}
     \item $ -z_i \leq k x_i + l - y_i$ 
     \item $ k x_i + l - y_i \leq z_i $, $i=1, \ldots, n$
+    \item $k,l \in \mathbb{R}$. 
 \end{itemize}
 %% gdje je 
 % $w_i = z_i, i=1,\ldots,n$, $w_{n+1} = k, w_{n+2} = l$, dok 
@@ -1431,14 +1432,14 @@ na kanonski oblik pogodan simpleks metodi $(A {x} = b)$ dodavanjem ,,izjednačav
 
 \begin{primjer}\label{primjer:simpl1} Neka je dat problem LP-a:
 	\begin{align*}
-		&\max f= x_1 + x_2  \nonumber \\
+		&f= \max x_1 + x_2  \nonumber \\
 		& x_1 + 3 x_2 \leq 9 \nonumber \\
 		& 2x_1 + x_2 \leq 8  \nonumber \\
 		& x_1, x_2 \geq 0. \nonumber \\
 	\end{align*}
 \end{primjer}
 \emph{Rješenje.}
-Pretvorimo model u kanonski oblik dodavajući izjednačavajuće promjenljive $s = (s_1, s_2)>0$, pa dobijamo 
+Pretvorimo model u kanonski oblik dodavajući izjednačavajuće promjenljive $s = (s_1, s_2)\geq 0$, pa dobijamo 
 \begin{center}
 	\begin{tabular}{llllll}
 		\centering
@@ -1728,7 +1729,7 @@ $$
 Pošto su svi doprinosi svi veći od 0,  našli smo optimalnu simpleks tabelu.  Optimalna rješenja su 
 $x_1=2, x_3=5$, pa je  optimum jednak -3.
 
-\section{Geometrija i simpleks metod}
+\section{Geometrijska interpretacija simpleks metoda}
 
 Sljedeći primjer demonstrira odgovarajuće geometrijske korake (,,šetanje'') po dopustivom regionu, u skladu sa iteracijama simpleks metode.   %pratiti https://faculty.math.illinois.edu/~mlavrov/docs/482-fall-2019/lecture5.pdf (strana 2 i 3) 
 Neka je dat problem:
@@ -1977,7 +1978,7 @@ U slučaju da smo, u prvom koraku simpleks metode, umjesto promjenljive $x$ u ba
 U teoriji linearnog programiranja, ali i teoriji optimizacije uopšte, pod dualnošću podrazumijevamo da se neki problem može posmatrati s dva različita aspekta: kao primalni i kao dualni problem. 
 Preciznije, teorija dualnosti povezuje dva problema linearnog programiranja -- jedan od njih je problem linearnog programiranja koji maksimizuje funkciju cilja, dok je drugi linearan program  koji minimizuje (ne obavezno istu) funkciju cilja.  Na osnovu istih ulaznih podataka, svaki problem LP-a se može navesti u drugom, ekvivalentnom obliku. Ponekad rješavanje dualnog problema LP-a može da bude puno lakše nego rješavanje početnog problema.  Dualnost implicira da svaki problem linearnog programiranja možemo analizirati na dva potpuno različita načina, ali sa ekvivalentnim (optimalnim) rješenjima. 
 
-U ovom poglavlju ćemo najprije objasniti kako se od početnog, primarnog problema formira dualni problem. Nakon toga, biće navedene Teoreme o slaboj i jakoj dualnosti, koje daju vezu između rješenja i ograničenja primarnog i dualnog problema. U nastavku poglavlja su objašnjene još neke važne tehnike koje se koriste za rješavanje problema linearnog programiranja: metod unutrašnje tačke, Farkašova lema i Furije-Mockinova eliminacija.
+U ovom poglavlju ćemo najprije objasniti kako se od početnog, primarnog problema formira dualni problem. Nakon toga, biće navedene Teoreme o slaboj i jakoj dualnosti, koje daju vezu između rješenja i ograničenja primarnog i dualnog problema. U nastavku poglavlja su objašnjene još neke važne tehnike koje se koriste za rješavanje problema linearnog programiranja: Farkašova lema i Furije-Mockinova eliminacija. Dodatno, metod unutrašnje tačke će biti dat u apendiksu. 
 
 Prije nego što uvedemo pojam dualnog problema, objasnimo motivaciju koja stoji iza nastanka teorije dualnosti.
 
@@ -2165,7 +2166,7 @@ $$      A = \left(\begin{array}{ccc}
 	3
 \end{array} \right )
 $$
-Posmatrajmo jedno dopustivo rješenje problema  ($P$), $x = (0, \frac{1}{4}, \frac{13}{4})$. Da li je ono optimalno? Ako bi bilo optimalno,  prema Teoremi komplementarnosti,vrijedilo bi sljedeće:
+Posmatrajmo jedno dopustivo rješenje problema  ($P$), $x = (0, \frac{1}{4}, \frac{13}{4})$. Da li je ono optimalno? Ako bi bilo optimalno,  prema Teoremi komplementarnosti, vrijedilo bi sljedeće:
 
 $$x_2 \geq 0 \Rightarrow  (A^T y)_2  = c_2, \mbox{ tj. } 4 \cdot y_1 - y_2 = 1$$
 $$x_3 \geq 0 \Rightarrow  (A^T y)_3  = c_3, \mbox{ tj. } 0 \cdot y_1 + y_2 = 3$$
@@ -2177,7 +2178,7 @@ $$x_3 \geq 0 \Rightarrow  (A^T y)_3  = c_3, \mbox{ tj. } 0 \cdot y_1 + y_2 = 3$$
 	\caption{Dualni problem: dopustiv region}
 	\label{fig:fig5}
 \end{figure}
-Optimalno rješenje je u presjeku pravih $y_2 = 3$ i $4y_1 - y_2 = 1$, odnosno $y = (1, 3)$. Provjerimo, pomoću Teoreme komplementarnosti, šta je optimalno rješenje problema ($P$). Imamo 
+Optimalno rješenje je u presjeku pravih $y_2 = 3$ i $4y_1 - y_2 = 1$, odnosno $y = (1, 3)$. Provjerimo, pomoću Teoreme komplementarnosti, potencijalne tačke za optimalno rješenje problema ($P$). Imamo 
 $$y_1 > 0 \Rightarrow (Ax - b)_1 y_1 = 0 \Rightarrow x_1 + 4 x_2 = 4 $$
 $$y_2 > 0 \Rightarrow (Ax - b)_2 y_2 = 0 \Rightarrow 3x_1 - x_2 + x_3 = 3 $$
 i kako je $y_1 + 3 y_2 > 4$, onda $(A^Ty)_1 > c_1$ i prema tome $x_1 =0$, 
@@ -2233,12 +2234,12 @@ jednog problema i promjenljivih u drugom problemu je data sljedećom tabelom.
 		promjenljive $\leq 0$         & ograničenja $\leq$ \\ \hline
 	\end{tabular}
 	
-	\caption{Odnos promjenljivih i ograničenja problema ($P$) i odgovarajućeg problema ($D$).}  \label{tab:primal-dual-relation}
+	\caption{Odnos promjenljivih i ograničenja problema ($P$) i odgovarajućeg duala ($D$).}  \label{tab:primal-dual-relation}
 \end{table}
 \\
 \textit{Napomena}. Simpleks metod ne garantuje   rješavanje proizvoljnog problema LP u polinomijalnom broju koraka u odnosu na veličinu ulaza (pogledati zadatak 6, u prethodnoj glavi). % V. Klee and G. Minty constructed an example LP: simplex method needs 2^n iterations to solve it 
 %Dakle, iz njega se ne može zaključiti da je problem rješavanja generalnog LP problema   polinomijalno rješiv. 
-Međutim, rješavanje problema LP-a je moguće u polinomijalnom vremenu, uz pomoć metoda \emph{unutrašnje tačke} (eng. interior point method), konstruisan od strane N. Karmakar-a sredinom 80ih godina prošlog vijeka. Radi kompleksnosti samog algoritma i njegovog izvođenja, mi ga ne prikazujemo u glavnom dijelu knjige, već u apendiksu~\ref{appendix:interior_point} gdje čitalac kojeg interesuje ovaj metod može da vidi i prouči ideju i glavne korake konstrukcije ovog značajnog algoritma. 
+Međutim, rješavanje problema LP-a je moguće u polinomijalnom vremenu, uz pomoć metoda \emph{unutrašnje tačke} (eng. interior point method), konstruisan od strane N. Karmakar-a sredinom 80ih godina prošlog vijeka. Radi kompleksnosti samog algoritma i njegovog izvođenja, mi ga ne prikazujemo u glavnom dijelu knjige, već u Apendiksu~\ref{appendix:interior_point} gdje čitalac kojeg interesuje ovaj metod može da vidi i prouči ideju i glavne korake konstrukcije ovog značajnog algoritma. 
 
 \section{Farkašova lema}
 Još jedna primjena teorije dualnosti LP-a se ogleda u dokazivanju Farkašove teoreme alternative. U suštini, njena geometirijska interpretacija kaže sljedeće: svaki vektor pripada datom zatvorenom konveksnom konusu (specijalan slučaj je ograničeni konveksni skup), ili postoji hiperravan koja razdvaja vektor od konusa; druge mogućnosti ne postoje. 
@@ -2308,14 +2309,14 @@ Iz geometrijske interpretacije slijedi da se vektor $c =(1,4)^T$ može predstavi
 Kada bismo posmatrali $c=(5,0)^T$, zaključili bi da se on ne može izraziti kao linearna kombinacija vektora vrste matrice $A$, jer je van prostora  $S^A $. Prema tome, rješenje početnog problema za ovu konfiguraciju bi postojalo.  
 
 %Furije–Mockin elimination ==> Problem dopustivosti...
-\section{Furije–Mockinova eliminacija}
+\section{Furije–Mockinov metod eliminacije}
 %https://faculty.math.illinois.edu/~mlavrov/docs/482-fall-2019/lecture19.pdf
 Jedno od važnih pitanja vezano za problem  LP-a je sljedeće. 
 \emph{Neka su date matrica $A \in \mathbb{R}^{m \times n}$ i vektor $b \in \mathbb{R}^m$, da li je skup $P = \{x \in \mathbb{R}^n \colon A x \leq b\}$ neprazan?} Dakle, da li postoji barem jedno dopustivo rješenje linearnog programa? 	
 
 Problem dopustivosti može da služi i da odgovorimo na sljedeće pitanje: 
 \emph{Da li je optimalna vrijednost funkcije cilja problema LP-a veća od neke unaprijed zadate  vrijednosti k?}
-Na ovo pitanje možemo odgovoriti pomoću  \emph{Furije–Mockinove} eliminacije. Pored osnovne primjerne, ovaj algoritam može poslužiti za dokazivanje Farkašove leme. Jedna od praktičnih primjena  ove metode je u teoriji informacija, konkretno u informaciono-teorijskim dokazima ostvarivosti koji se opisuju uslovima pod kojima je zagarantovano postojanje šeme kodiranja sa dobrim performansama. Ovi uslovi se često opisuju linearnim sistemom nejednakosti, koji su upravo ulazne vrijednosti  \emph{Furije–Mockinove} eliminacije. 
+Na ovo pitanje možemo odgovoriti pomoću  \emph{Furije–Mockinovog} metoda eliminacije. Pored osnovne primjerne, ovaj algoritam može poslužiti za dokazivanje Farkašove leme. Jedna od praktičnih primjena  ove metode je u teoriji informacija, konkretno u informaciono-teorijskim dokazima ostvarivosti koji se opisuju uslovima pod kojima je zagarantovano postojanje šeme kodiranja sa dobrim performansama. Ovi uslovi se često opisuju linearnim sistemom nejednakosti, koji su upravo ulazne vrijednosti  \emph{Furije–Mockinove} eliminacije. 
 
 Metoda  \emph{Furije–Mockinove} eliminacije strukturalno drugačija  od simpleks metode. Ideja algoritma je zasnovana na redukciji problema sa $n$ promjenljivih na ekvivalentan problem koji sadrži $n-1$ promjenljivih. Ekvivalentnost se posmatra u odnosu na svojstvo da početni problem ima rješenje akko ga ima i redukovani problem. Eliminacija promjenljivih se vrši iterativno, odnosno, u svakom koraku se redukuje broj promjenljivih za jedan. Na kraju se početni sistem svodi na sistem sa jednom promjenljivom, za koji se lako može provjeriti da li sadrži dopustivo rješenje.
 
@@ -2436,7 +2437,7 @@ Tada, donje i gornje granice za $y$ postaju uslovi: $y \leq 6, y \geq 4, y \leq 
 		\item $y^T A = 0, y^T b < 0, y \geq 0.$
 	\end{enumerate}
 	\item  %https://www.cs.cmu.edu/~odonnell/toolkit13/lecture13-anonymous.pdf
-	Koristeći Fourijer-Mockin-ovu eliminaciju, pokazati da postoji rješenje za sljedeći sistem nejednačina:
+	Koristeći Furije-Mockin-ov metod eliminacije, pokazati da postoji rješenje za sljedeći sistem nejednačina:
 	\begin{align*} 
 		&x - 5y + 2 z \geq 7 \\
 		&3x - 2y - 6 z \geq -12 \\
@@ -2445,11 +2446,11 @@ Tada, donje i gornje granice za $y$ postaju uslovi: $y \leq 6, y \geq 4, y \leq 
 		& -10 y + z \geq -15 \\  
 		& x,y,z \geq 0.
 	\end{align*}
-	\item Pomoću Fourijer-Mockin-ovu eliminacije, pokazati sa je sistem 
+	\item Pomoću Furije-Mockin-ovog metoda eliminacije, pokazati da je sistem 
 	\begin{align*}
 		&x_1 \geq 0 \\
 		&x_2 \geq 0 \\
-		& x_1 + x_2 \leq -2 \\
+		& x_1 + x_2 \leq -2 
 	\end{align*}
 	nedopustiv.%https://people.inf.ethz.ch/fukudak/lect/opt2011/aopt11note4.pdf
 	
@@ -2459,36 +2460,37 @@ Tada, donje i gornje granice za $y$ postaju uslovi: $y \leq 6, y \geq 4, y \leq 
 	
 	\item Formirati dualan LP za problem
  
-	\begin{align}
-		\min &-x_1+2x_2+3x_3\nonumber\\
-		\mbox{t.d.}&\nonumber\\
-		& x_1-x_2+2x_3=1\nonumber\\
-		& 2x_1+x_2\leqslant 3\nonumber \\
-		& x \geq 0\nonumber \\
-		& x_1\leqslant 0,\ x_2\geqslant 0, x_3\geqslant 0 \nonumber
+	 \begin{align}
+		&\min  -x_1+2x_2+3x_3\nonumber \\
+		&\mbox{t.d.} \nonumber \\
+		 & x_1-x_2+2x_3=1\nonumber\\
+		 & 2x_1+x_2\leqslant 3\nonumber \\
+		 & x \geq 0\nonumber \\
+		 & x_1\leqslant 0,\ x_2\geqslant 0, x_3\geqslant 0 \nonumber
 	\end{align}
 	pa riješiti oba problema.
 	
 	\item Koristeći teoriju dualnosti, riješiti problem linearnog programiranja
 	
 	\begin{align}
-		\min\ &x_1+x_2+\cdots nx_n\nonumber\\
-			\mbox{t.d.}&\nonumber\\
+		&\min\  x_1+2x_2+\cdots +nx_n\nonumber\\
+			&\mbox{t.d.}\nonumber\\
 		& x_1\geqslant 1\nonumber\\
 		& x_1+x_2\geqslant 2 \nonumber\\
-		& \cdots\nonumber\\
+		& \vdots\nonumber\\
 		& x_1+x_2+\cdots+x_n\geqslant n\nonumber\\
-		&x_1\geqslant 0,\ x_2\geqslant 0,\cdots,x_n\geqslant 0.
+		&x_1\geqslant 0,\ x_2\geqslant 0,\ldots,x_n\geqslant 0.
 	\end{align}
 \end{enumerate}
 %\newpage
 \chapter{Cjelobrojno linearno programiranje}\label{chp:ilp}
 
 %https://www.google.com/url?sa=t&source=web&rct=j&url=https://web.mit.edu/15.053/www/AMP-Chapter-09.pdf&ved=2ahUKEwiN0cef_f7xAhU0CRAIHWLqCw0QFjAfegQILBAC&usg=AOvVaw1cQCbZJQbc55Z0VLPue2ul
-U mnogim realnim problemima, promjenljive odluke ne dobijaju neprekidne, već isključivo diskretne vrijednosti. Npr. kod problema dodjele poslova određenim mašinama, zahtijevaju se promjenljive koje su diskretnog tipa, kojima se definiše koji posao će biti dodijeljen kojoj mašini. U slučaju da su u nekom modelu sve promjenljive odluke cjelobrojne, tada kažemo da je riječ o problemu \emph{cjelobrojnog programiranja} (eng. \emph{Integer programming}). 
+U mnogim realnim problemima, promjenljive odluke ne dobijaju neprekidne, već isključivo diskretne vrijednosti. Npr. kod problema dodjele poslova određenim mašinama, zahtijevaju se promjenljive koje su diskretnog tipa, kojima se definiše koji posao će biti dodijeljen kojoj mašini. U slučaju da su u nekom modelu sve promjenljive odluke cjelobrojne, tada kažemo da je riječ o problemu \emph{cjelobrojnog programiranja} (eng. \emph{integer programming}). 
 U ovoj glavi ćemo analizirati koncepte   \emph{cjelobrojnog linearnog programiranja} (ILP), gdje se, pored integralnosti (cjelobrojnosti) promjenljivih, zahtijeva da funkcija cilja  i sva ograničenja u modelu budu linearni izrazi po promjenljivima. Prema tome, ILP ima opšti oblik:
 \begin{align}
 	& \max c^T x \nonumber\\
+	& t.d. \\
 	& A x \leq b \nonumber \\
 	& x \geq 0 \nonumber\\
 	& x_i \in \mathbb{Z}, \mbox{ za sve } i. \label{ilp-formulation}

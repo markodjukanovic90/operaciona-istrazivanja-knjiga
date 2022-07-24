@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.4.18)  24 JUL 2022 18:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.4.18)  24 JUL 2022 21:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -905,7 +905,7 @@ Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))
 \verbatim@out=\write3
-runsystem(echo 'write18-test-20227241110'>"main.w18")...disabled (restricted).
+runsystem(echo 'write18-test-20227241284'>"main.w18")...disabled (restricted).
 
 
 
@@ -1590,30 +1590,26 @@ This may cause the page layout to be inconsistent, however.
 Glava 1.
 [5] [6] [7]
 Package epstopdf Info: Source file: <overview.eps>
-(epstopdf)                    date: 2021-08-05 13:56:48
-(epstopdf)                    size: 386486 bytes
+(epstopdf)                    date: 2022-07-24 20:49:05
+(epstopdf)                    size: 491206 bytes
 (epstopdf)             Output file: <overview-eps-converted-to.pdf>
-(epstopdf)                    date: 2021-08-05 13:57:06
-(epstopdf)                    size: 354504 bytes
+(epstopdf)                    date: 2022-07-24 20:49:08
+(epstopdf)                    size: 430220 bytes
 (epstopdf)             Command: <repstopdf --outfile=overview-eps-converted-to.
 pdf overview.eps>
 (epstopdf)             \includegraphics on input line 298.
 Package epstopdf Info: Output file is already uptodate.
-
-
-pdfTeX warning: /usr/bin/pdflatex (file ./overview-eps-converted-to.pdf): PDF i
-nclusion: found PDF version <1.7>, but at most version <1.5> allowed
 <overview-eps-converted-to.pdf, id=66, 525.965pt x 270.00874pt>
 File: overview-eps-converted-to.pdf Graphic file (type pdf)
 <use overview-eps-converted-to.pdf>
 Package pdftex.def Info: overview-eps-converted-to.pdf  used on input line 298.
 
-(pdftex.def)             Requested size: 360.0pt x 184.81479pt.
-[8 <./overview-eps-converted-to.pdf>]
-Glava 2.
-[9
+(pdftex.def)             Requested size: 360.01097pt x 250.00548pt.
+ [8 <./overview-eps-converted-to.pdf>] [9] [10
 
-] [10] [11] [12] [13] [14] [15] [16] [17] [18] [19] [20
+]
+Glava 2.
+[11] [12] [13] [14] [15] [16] [17] [18] [19] [20] [21] [22
 
 ]
 Glava 3.
@@ -1627,23 +1623,23 @@ Overfull \hbox (3.14781pt too wide) in paragraph at lines 502--504
 o-i-zvo-di vi-so-ko-kva-li-tet-ne sta-kle-ne pro-i-zvo-de, uklju-
  []
 
-[21] [22]
+[23] [24]
 Overfull \hbox (1.95381pt too wide) in paragraph at lines 549--550
  [][] 
  []
 
-[23]
+[25]
 Package epstopdf Info: Source file: <fig1.eps>
-(epstopdf)                    date: 2022-07-24 18:23:28
-(epstopdf)                    size: 603370 bytes
+(epstopdf)                    date: 2022-07-24 20:55:25
+(epstopdf)                    size: 610953 bytes
 (epstopdf)             Output file: <fig1-eps-converted-to.pdf>
-(epstopdf)                    date: 2022-07-24 18:23:31
-(epstopdf)                    size: 146770 bytes
+(epstopdf)                    date: 2022-07-24 20:55:35
+(epstopdf)                    size: 148836 bytes
 (epstopdf)             Command: <repstopdf --outfile=fig1-eps-converted-to.pdf 
 fig1.eps>
 (epstopdf)             \includegraphics on input line 572.
 Package epstopdf Info: Output file is already uptodate.
-<fig1-eps-converted-to.pdf, id=121, 204.765pt x 244.915pt>
+<fig1-eps-converted-to.pdf, id=129, 204.765pt x 244.915pt>
 File: fig1-eps-converted-to.pdf Graphic file (type pdf)
 <use fig1-eps-converted-to.pdf>
 Package pdftex.def Info: fig1-eps-converted-to.pdf  used on input line 572.
@@ -1658,7 +1654,7 @@ T1/cmr/m/n/10.95 20\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 36\OMS/cmsy/m/n/10.
 95 g$\T1/cmr/m/n/10.95 ,
  []
 
-[24 <./fig1-eps-converted-to.pdf>]
+[26 <./fig1-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <fig2.eps>
 (epstopdf)                    date: 2022-07-23 22:07:24
 (epstopdf)                    size: 767437 bytes
@@ -1669,12 +1665,12 @@ Package epstopdf Info: Source file: <fig2.eps>
 fig2.eps>
 (epstopdf)             \includegraphics on input line 584.
 Package epstopdf Info: Output file is already uptodate.
-<fig2-eps-converted-to.pdf, id=132, 360.34625pt x 284.06125pt>
+<fig2-eps-converted-to.pdf, id=140, 360.34625pt x 284.06125pt>
 File: fig2-eps-converted-to.pdf Graphic file (type pdf)
 <use fig2-eps-converted-to.pdf>
 Package pdftex.def Info: fig2-eps-converted-to.pdf  used on input line 584.
 (pdftex.def)             Requested size: 179.99672pt x 180.00844pt.
- [25 <./fig2-eps-converted-to.pdf>] [26]
+ [27 <./fig2-eps-converted-to.pdf>] [28]
 Overfull \hbox (6.22449pt too wide) in paragraph at lines 639--640
 []\T1/cmr/m/n/10.95 U na-stav-ku ko-ri-sti-mo slje-de-¢u ter-mi-no-lo-gi-ju li-
 ne-ar-nog pro-gra-mi-ra-nja (LP): 
@@ -1690,7 +1686,7 @@ Package epstopdf Info: Source file: <fig3.eps>
 fig3.eps>
 (epstopdf)             \includegraphics on input line 652.
 Package epstopdf Info: Output file is already uptodate.
-<fig3-eps-converted-to.pdf, id=144, 325.215pt x 269.005pt>
+<fig3-eps-converted-to.pdf, id=151, 325.215pt x 269.005pt>
 File: fig3-eps-converted-to.pdf Graphic file (type pdf)
 <use fig3-eps-converted-to.pdf>
 Package pdftex.def Info: fig3-eps-converted-to.pdf  used on input line 652.
@@ -1705,13 +1701,13 @@ Package epstopdf Info: Source file: <fig4.eps>
 fig4.eps>
 (epstopdf)             \includegraphics on input line 663.
 Package epstopdf Info: Output file is already uptodate.
-<fig4-eps-converted-to.pdf, id=145, 271.0125pt x 234.8775pt>
+<fig4-eps-converted-to.pdf, id=152, 271.0125pt x 234.8775pt>
 File: fig4-eps-converted-to.pdf Graphic file (type pdf)
 <use fig4-eps-converted-to.pdf>
 Package pdftex.def Info: fig4-eps-converted-to.pdf  used on input line 663.
 (pdftex.def)             Requested size: 180.006pt x 179.99966pt.
-[27] [28 <./fig3-eps-converted-to.pdf> <./fig4-eps-converted-to.pdf>] [29]
-[30] [31] [32] [33] [34] [35]
+[29] [30 <./fig3-eps-converted-to.pdf> <./fig4-eps-converted-to.pdf>] [31]
+[32] [33] [34] [35] [36] [37]
 Package epstopdf Info: Source file: <extremerays.eps>
 (epstopdf)                    date: 2022-07-19 16:08:17
 (epstopdf)                    size: 22103 bytes
@@ -1720,29 +1716,29 @@ Package epstopdf Info: Source file: <extremerays.eps>
 (epstopdf)                    size: 19451 bytes
 (epstopdf)             Command: <repstopdf --outfile=extremerays-eps-converted-
 to.pdf extremerays.eps>
-(epstopdf)             \includegraphics on input line 1020.
+(epstopdf)             \includegraphics on input line 1021.
 Package epstopdf Info: Output file is already uptodate.
-<extremerays-eps-converted-to.pdf, id=183, 389.455pt x 367.3725pt>
+<extremerays-eps-converted-to.pdf, id=191, 389.455pt x 367.3725pt>
 File: extremerays-eps-converted-to.pdf Graphic file (type pdf)
 <use extremerays-eps-converted-to.pdf>
 Package pdftex.def Info: extremerays-eps-converted-to.pdf  used on input line 1
-020.
+021.
 (pdftex.def)             Requested size: 199.9981pt x 200.00381pt.
- [36 <./extremerays-eps-converted-to.pdf>]
-[37] [38] [39]
+ [38 <./extremerays-eps-converted-to.pdf>]
+[39] [40] [41]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [40]
-[41] [42] [43] [44]
+ [42]
+[43] [44] [45] [46]
 Glava 4.
-[45
+[47
 
-] [46] [47] [48] [49]
-Underfull \hbox (badness 10000) in paragraph at lines 1451--1462
+] [48] [49] [50] [51]
+Underfull \hbox (badness 10000) in paragraph at lines 1452--1463
 
  []
 
-[50]
+[52]
 Package epstopdf Info: Source file: <simpleks-region-2.eps>
 (epstopdf)                    date: 2022-07-23 22:29:01
 (epstopdf)                    size: 1075773 bytes
@@ -1751,21 +1747,21 @@ Package epstopdf Info: Source file: <simpleks-region-2.eps>
 (epstopdf)                    size: 366331 bytes
 (epstopdf)             Command: <repstopdf --outfile=simpleks-region-2-eps-conv
 erted-to.pdf simpleks-region-2.eps>
-(epstopdf)             \includegraphics on input line 1495.
+(epstopdf)             \includegraphics on input line 1496.
 Package epstopdf Info: Output file is already uptodate.
-<simpleks-region-2-eps-converted-to.pdf, id=241, 392.46625pt x 339.2675pt>
+<simpleks-region-2-eps-converted-to.pdf, id=248, 392.46625pt x 339.2675pt>
 File: simpleks-region-2-eps-converted-to.pdf Graphic file (type pdf)
 <use simpleks-region-2-eps-converted-to.pdf>
 Package pdftex.def Info: simpleks-region-2-eps-converted-to.pdf  used on input 
-line 1495.
+line 1496.
 (pdftex.def)             Requested size: 170.0028pt x 169.9957pt.
 
-Overfull \hbox (3.78607pt too wide) in paragraph at lines 1500--1501
+Overfull \hbox (3.78607pt too wide) in paragraph at lines 1501--1502
 []\T1/cmr/m/n/10.95 Analizirajmo jo² ne-ke aspek-te u ovom pri-mje-ru. Na Sli-c
 i 4.1[], ta£-ke $\OML/cmm/m/it/10.95 A; B; C$\T1/cmr/m/n/10.95 ,
  []
 
-[51 <./simpleks-region-2-eps-converted-to.pdf>]
+[53 <./simpleks-region-2-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <unbounded-example-solve.eps>
 (epstopdf)                    date: 2022-07-24 18:17:03
 (epstopdf)                    size: 1389055 bytes
@@ -1775,16 +1771,16 @@ df>
 (epstopdf)                    size: 188274 bytes
 (epstopdf)             Command: <repstopdf --outfile=unbounded-example-solve-ep
 s-converted-to.pdf unbounded-example-solve.eps>
-(epstopdf)             \includegraphics on input line 1549.
+(epstopdf)             \includegraphics on input line 1550.
 Package epstopdf Info: Output file is already uptodate.
-<unbounded-example-solve-eps-converted-to.pdf, id=252, 231.86626pt x 143.53625p
+<unbounded-example-solve-eps-converted-to.pdf, id=259, 231.86626pt x 143.53625p
 t>
 File: unbounded-example-solve-eps-converted-to.pdf Graphic file (type pdf)
 <use unbounded-example-solve-eps-converted-to.pdf>
 Package pdftex.def Info: unbounded-example-solve-eps-converted-to.pdf  used on 
-input line 1549.
+input line 1550.
 (pdftex.def)             Requested size: 170.00392pt x 170.00426pt.
- [52] [53 <./unbounded-example-solve-eps-converted-to.pdf>]
+ [54] [55 <./unbounded-example-solve-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <deg-sol.eps>
 (epstopdf)                    date: 2022-07-24 18:15:27
 (epstopdf)                    size: 1655004 bytes
@@ -1793,16 +1789,16 @@ Package epstopdf Info: Source file: <deg-sol.eps>
 (epstopdf)                    size: 441343 bytes
 (epstopdf)             Command: <repstopdf --outfile=deg-sol-eps-converted-to.p
 df deg-sol.eps>
-(epstopdf)             \includegraphics on input line 1597.
+(epstopdf)             \includegraphics on input line 1598.
 Package epstopdf Info: Output file is already uptodate.
-<deg-sol-eps-converted-to.pdf, id=266, 203.76125pt x 135.50626pt>
+<deg-sol-eps-converted-to.pdf, id=274, 203.76125pt x 135.50626pt>
 File: deg-sol-eps-converted-to.pdf Graphic file (type pdf)
 <use deg-sol-eps-converted-to.pdf>
-Package pdftex.def Info: deg-sol-eps-converted-to.pdf  used on input line 1597.
+Package pdftex.def Info: deg-sol-eps-converted-to.pdf  used on input line 1598.
 
 (pdftex.def)             Requested size: 170.00789pt x 170.0068pt.
- [54 <./deg-sol-eps-converted-to.pdf>] [55] [56]
-[57]
+ [56 <./deg-sol-eps-converted-to.pdf>] [57] [58]
+[59]
 Package epstopdf Info: Source file: <simpleks-primjer-2-sl1.eps>
 (epstopdf)                    date: 2022-07-24 18:28:13
 (epstopdf)                    size: 955065 bytes
@@ -1812,19 +1808,19 @@ f>
 (epstopdf)                    size: 238298 bytes
 (epstopdf)             Command: <repstopdf --outfile=simpleks-primjer-2-sl1-eps
 -converted-to.pdf simpleks-primjer-2-sl1.eps>
-(epstopdf)             \includegraphics on input line 1768.
+(epstopdf)             \includegraphics on input line 1769.
 Package epstopdf Info: Output file is already uptodate.
-<simpleks-primjer-2-sl1-eps-converted-to.pdf, id=287, 250.9375pt x 152.57pt>
+<simpleks-primjer-2-sl1-eps-converted-to.pdf, id=294, 250.9375pt x 152.57pt>
 File: simpleks-primjer-2-sl1-eps-converted-to.pdf Graphic file (type pdf)
 <use simpleks-primjer-2-sl1-eps-converted-to.pdf>
 Package pdftex.def Info: simpleks-primjer-2-sl1-eps-converted-to.pdf  used on i
-nput line 1768.
+nput line 1769.
 (pdftex.def)             Requested size: 170.00728pt x 170.00655pt.
 
 Underfull \vbox (badness 7649) has occurred while \output is active []
 
- [58]
-Overfull \hbox (26.39319pt too wide) in paragraph at lines 1783--1785
+ [60]
+Overfull \hbox (26.39319pt too wide) in paragraph at lines 1784--1786
 \T1/cmr/m/n/10.95 Ova ta-be-la vi-zu-el-no od-go-va-ra Sli-ci 4.5[]. Pre-la-zi 
 se u ba-zno rje-²e-nje $\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 x; y; s[]; s[];
  s[]\OT1/cmr/m/n/10.95 ) =
@@ -1839,13 +1835,13 @@ f>
 (epstopdf)                    size: 68375 bytes
 (epstopdf)             Command: <repstopdf --outfile=simpleks-primjer-2-sl2-eps
 -converted-to.pdf simpleks-primjer-2-sl2.eps>
-(epstopdf)             \includegraphics on input line 1788.
+(epstopdf)             \includegraphics on input line 1789.
 Package epstopdf Info: Output file is already uptodate.
-<simpleks-primjer-2-sl2-eps-converted-to.pdf, id=291, 250.9375pt x 152.57pt>
+<simpleks-primjer-2-sl2-eps-converted-to.pdf, id=298, 250.9375pt x 152.57pt>
 File: simpleks-primjer-2-sl2-eps-converted-to.pdf Graphic file (type pdf)
 <use simpleks-primjer-2-sl2-eps-converted-to.pdf>
 Package pdftex.def Info: simpleks-primjer-2-sl2-eps-converted-to.pdf  used on i
-nput line 1788.
+nput line 1789.
 (pdftex.def)             Requested size: 170.00728pt x 170.00655pt.
 Package epstopdf Info: Source file: <simpleks-primjer-2-sl3.eps>
 (epstopdf)                    date: 2022-07-24 17:41:21
@@ -1856,55 +1852,49 @@ f>
 (epstopdf)                    size: 299335 bytes
 (epstopdf)             Command: <repstopdf --outfile=simpleks-primjer-2-sl3-eps
 -converted-to.pdf simpleks-primjer-2-sl3.eps>
-(epstopdf)             \includegraphics on input line 1804.
+(epstopdf)             \includegraphics on input line 1805.
 Package epstopdf Info: Output file is already uptodate.
-<simpleks-primjer-2-sl3-eps-converted-to.pdf, id=292, 251.94125pt x 152.57pt>
+<simpleks-primjer-2-sl3-eps-converted-to.pdf, id=299, 251.94125pt x 152.57pt>
 File: simpleks-primjer-2-sl3-eps-converted-to.pdf Graphic file (type pdf)
 <use simpleks-primjer-2-sl3-eps-converted-to.pdf>
 Package pdftex.def Info: simpleks-primjer-2-sl3-eps-converted-to.pdf  used on i
-nput line 1804.
+nput line 1805.
 (pdftex.def)             Requested size: 169.99918pt x 170.00655pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [59 <./simpleks-primjer-2-sl1-eps-converted-to.pdf>]
+ [61 <./simpleks-primjer-2-sl1-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <simpleks-primjer-2-sl4.eps>
 (epstopdf)                    date: 2022-07-24 18:30:15
 (epstopdf)                    size: 636792 bytes
 (epstopdf)             Output file: <simpleks-primjer-2-sl4-eps-converted-to.pd
 f>
-(epstopdf)                    date: 2022-07-24 18:29:58
-(epstopdf)                    size: 162785 bytes
+(epstopdf)                    date: 2022-07-24 18:30:19
+(epstopdf)                    size: 162796 bytes
 (epstopdf)             Command: <repstopdf --outfile=simpleks-primjer-2-sl4-eps
 -converted-to.pdf simpleks-primjer-2-sl4.eps>
-(epstopdf)             \includegraphics on input line 1826.
-runsystem(repstopdf --outfile=simpleks-primjer-2-sl4-eps-converted-to.pdf simpl
-eks-primjer-2-sl4.eps)...executed safely (allowed).
-
-Package epstopdf Info: Result file: <simpleks-primjer-2-sl4-eps-converted-to.pd
-f>
-(epstopdf)                    date: 2022-07-24 18:30:19
-(epstopdf)                    size: 162796 bytes.
-<simpleks-primjer-2-sl4-eps-converted-to.pdf, id=303, 266.9975pt x 162.6075pt>
+(epstopdf)             \includegraphics on input line 1827.
+Package epstopdf Info: Output file is already uptodate.
+<simpleks-primjer-2-sl4-eps-converted-to.pdf, id=311, 266.9975pt x 162.6075pt>
 File: simpleks-primjer-2-sl4-eps-converted-to.pdf Graphic file (type pdf)
 <use simpleks-primjer-2-sl4-eps-converted-to.pdf>
 Package pdftex.def Info: simpleks-primjer-2-sl4-eps-converted-to.pdf  used on i
-nput line 1826.
+nput line 1827.
 (pdftex.def)             Requested size: 170.00595pt x 170.01344pt.
- [60 <./simpleks-primjer-2-sl2-eps-converted-to.pdf> <./simpleks-primjer-2-sl3-
+ [62 <./simpleks-primjer-2-sl2-eps-converted-to.pdf> <./simpleks-primjer-2-sl3-
 eps-converted-to.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 1832--1834
+Underfull \hbox (badness 10000) in paragraph at lines 1833--1835
 
  []
 
 
 Underfull \vbox (badness 4467) has occurred while \output is active []
 
- [61 <./simpleks-primjer-2-sl4-eps-converted-to.pdf>] [62] [63] [64
+ [63 <./simpleks-primjer-2-sl4-eps-converted-to.pdf>] [64] [65] [66
 
 ]
 Glava 5.
-[65] [66] [67] [68] [69]
+[67] [68] [69] [70] [71]
 Package epstopdf Info: Source file: <fig5.eps>
 (epstopdf)                    date: 2022-07-24 10:39:24
 (epstopdf)                    size: 445179 bytes
@@ -1913,14 +1903,14 @@ Package epstopdf Info: Source file: <fig5.eps>
 (epstopdf)                    size: 115811 bytes
 (epstopdf)             Command: <repstopdf --outfile=fig5-eps-converted-to.pdf 
 fig5.eps>
-(epstopdf)             \includegraphics on input line 2176.
+(epstopdf)             \includegraphics on input line 2177.
 Package epstopdf Info: Output file is already uptodate.
-<fig5-eps-converted-to.pdf, id=357, 249.93375pt x 200.75pt>
+<fig5-eps-converted-to.pdf, id=364, 249.93375pt x 200.75pt>
 File: fig5-eps-converted-to.pdf Graphic file (type pdf)
 <use fig5-eps-converted-to.pdf>
-Package pdftex.def Info: fig5-eps-converted-to.pdf  used on input line 2176.
+Package pdftex.def Info: fig5-eps-converted-to.pdf  used on input line 2177.
 (pdftex.def)             Requested size: 180.00555pt x 180.01166pt.
- [70 <./fig5-eps-converted-to.pdf>]
+ [72 <./fig5-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <fig6.eps>
 (epstopdf)                    date: 2022-07-24 11:14:18
 (epstopdf)                    size: 455223 bytes
@@ -1929,14 +1919,14 @@ Package epstopdf Info: Source file: <fig6.eps>
 (epstopdf)                    size: 81778 bytes
 (epstopdf)             Command: <repstopdf --outfile=fig6-eps-converted-to.pdf 
 fig6.eps>
-(epstopdf)             \includegraphics on input line 2216.
+(epstopdf)             \includegraphics on input line 2217.
 Package epstopdf Info: Output file is already uptodate.
-<fig6-eps-converted-to.pdf, id=364, 188.705pt x 157.58875pt>
+<fig6-eps-converted-to.pdf, id=372, 188.705pt x 157.58875pt>
 File: fig6-eps-converted-to.pdf Graphic file (type pdf)
 <use fig6-eps-converted-to.pdf>
-Package pdftex.def Info: fig6-eps-converted-to.pdf  used on input line 2216.
+Package pdftex.def Info: fig6-eps-converted-to.pdf  used on input line 2217.
 (pdftex.def)             Requested size: 190.00026pt x 190.01207pt.
- [71 <./fig6-eps-converted-to.pdf>] [72] [73]
+ [73 <./fig6-eps-converted-to.pdf>] [74] [75]
 Package epstopdf Info: Source file: <farkas-geometry.eps>
 (epstopdf)                    date: 2022-07-24 11:15:56
 (epstopdf)                    size: 160808 bytes
@@ -1945,28 +1935,24 @@ Package epstopdf Info: Source file: <farkas-geometry.eps>
 (epstopdf)                    size: 53170 bytes
 (epstopdf)             Command: <repstopdf --outfile=farkas-geometry-eps-conver
 ted-to.pdf farkas-geometry.eps>
-(epstopdf)             \includegraphics on input line 2302.
+(epstopdf)             \includegraphics on input line 2303.
 Package epstopdf Info: Output file is already uptodate.
-<farkas-geometry-eps-converted-to.pdf, id=379, 248.93pt x 150.5625pt>
+<farkas-geometry-eps-converted-to.pdf, id=386, 248.93pt x 150.5625pt>
 File: farkas-geometry-eps-converted-to.pdf Graphic file (type pdf)
 <use farkas-geometry-eps-converted-to.pdf>
 Package pdftex.def Info: farkas-geometry-eps-converted-to.pdf  used on input li
-ne 2302.
+ne 2303.
 (pdftex.def)             Requested size: 350.03035pt x 260.05139pt.
- [74 <./farkas-geometry-eps-converted-to.pdf>]
-[75] [76] [77] [78] [79] [80
+ [76 <./farkas-geometry-eps-converted-to.pdf>]
+[77] [78] [79] [80] [81] [82
 
 ]
 Glava 6.
-
-Underfull \vbox (badness 3396) has occurred while \output is active []
-
- [81]
-[82] [83] [84] [85] [86]
+[83] [84] [85] [86] [87] [88]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [87]
-[88] [89] [90] [91]
+ [89]
+[90] [91] [92] [93]
 Package epstopdf Info: Source file: <compound.eps>
 (epstopdf)                    date: 2022-07-24 11:32:03
 (epstopdf)                    size: 1750465 bytes
@@ -1975,51 +1961,51 @@ Package epstopdf Info: Source file: <compound.eps>
 (epstopdf)                    size: 176144 bytes
 (epstopdf)             Command: <repstopdf --outfile=compound-eps-converted-to.
 pdf compound.eps>
-(epstopdf)             \includegraphics on input line 2842.
+(epstopdf)             \includegraphics on input line 2844.
 Package epstopdf Info: Output file is already uptodate.
-<compound-eps-converted-to.pdf, id=441, 197.73875pt x 146.5475pt>
+<compound-eps-converted-to.pdf, id=448, 197.73875pt x 146.5475pt>
 File: compound-eps-converted-to.pdf Graphic file (type pdf)
 <use compound-eps-converted-to.pdf>
-Package pdftex.def Info: compound-eps-converted-to.pdf  used on input line 2842
+Package pdftex.def Info: compound-eps-converted-to.pdf  used on input line 2844
 .
 (pdftex.def)             Requested size: 200.00119pt x 179.99963pt.
- [92 <./compound-eps-converted-to.pdf>] [93] [94] [95]
-Overfull \hbox (4.04762pt too wide) in paragraph at lines 2961--2962
+ [94 <./compound-eps-converted-to.pdf>] [95] [96] [97]
+Overfull \hbox (4.04762pt too wide) in paragraph at lines 2963--2964
 []\T1/cmr/m/n/10.95 U slje-de-¢em pri-mje-ru pri-mi-je-ni-mo ne-ko-li-ko na-ve-
 de-nih trans-for-ma-ci-ja ogra-
  []
 
-[96] [97] [98] [99] [100]
-Overfull \hbox (0.57793pt too wide) in paragraph at lines 3164--3165
+[98] [99] [100] [101] [102]
+Overfull \hbox (0.57793pt too wide) in paragraph at lines 3166--3167
 []\T1/cmr/m/n/10.95 Vi²edimenzionalni vi²e-direkcioni pro-blem par-ti-ci-o-ni-s
 a-nja bro-je-va (eng.
  []
 
-[101] [102] [103] [104
+[103] [104] [105] [106
 
 ]
 Glava 7.
-[105]
-Overfull \hbox (0.32199pt too wide) in paragraph at lines 3272--3273
+[107]
+Overfull \hbox (0.32199pt too wide) in paragraph at lines 3274--3275
 \T1/cmr/m/n/10.95 Ako je rje-²e-nje cje-lo-broj-no, pre-ki-da-mo da-lje iz-vr-²
 a-va-nje i sta-vi-mo $\OML/cmm/m/it/10.95 LB \OT1/cmr/m/n/10.95 =
  []
 
-[106] [107]
-Overfull \hbox (20.60002pt too wide) in paragraph at lines 3357--3358
+[108] [109]
+Overfull \hbox (20.60002pt too wide) in paragraph at lines 3359--3360
  [][] 
  []
 
-[108]
+[110]
 Underfull \vbox (badness 5878) has occurred while \output is active []
 
- [109]
-[110] [111] [112]
-Underfull \hbox (badness 10000) in paragraph at lines 3512--3514
+ [111]
+[112] [113] [114]
+Underfull \hbox (badness 10000) in paragraph at lines 3514--3516
 
  []
 
-[113] [114] [115]
+[115] [116] [117]
 Package epstopdf Info: Source file: <region_ilp_primjer_2.eps>
 (epstopdf)                    date: 2022-07-24 16:51:11
 (epstopdf)                    size: 1114465 bytes
@@ -2029,17 +2015,17 @@ Package epstopdf Info: Source file: <region_ilp_primjer_2.eps>
 (epstopdf)                    size: 289661 bytes
 (epstopdf)             Command: <repstopdf --outfile=region_ilp_primjer_2-eps-c
 onverted-to.pdf region_ilp_primjer_2.eps>
-(epstopdf)             \includegraphics on input line 3635.
+(epstopdf)             \includegraphics on input line 3637.
 Package epstopdf Info: Output file is already uptodate.
-<region_ilp_primjer_2-eps-converted-to.pdf, id=526, 277.035pt x 323.2075pt>
+<region_ilp_primjer_2-eps-converted-to.pdf, id=533, 277.035pt x 323.2075pt>
 File: region_ilp_primjer_2-eps-converted-to.pdf Graphic file (type pdf)
 <use region_ilp_primjer_2-eps-converted-to.pdf>
 Package pdftex.def Info: region_ilp_primjer_2-eps-converted-to.pdf  used on inp
-ut line 3635.
+ut line 3637.
 (pdftex.def)             Requested size: 170.0014pt x 169.99718pt.
- [116] [117 <./region_ilp_primjer_2-eps-converted-to.pdf>]
-[118]
-Overfull \hbox (15.30725pt too wide) in paragraph at lines 3712--3714
+ [118] [119 <./region_ilp_primjer_2-eps-converted-to.pdf>]
+[120]
+Overfull \hbox (15.30725pt too wide) in paragraph at lines 3714--3716
 \T1/cmr/m/n/10.95 gdje je la-ko uo-£i-ti da je op-ti-mal-no ba-zno do-pu-sti-vo
  rje-²e-nje $\OML/cmm/m/it/10.95 x \OT1/cmr/m/n/10.95 = (5\OML/cmm/m/it/10.95 ;
  \OT1/cmr/m/n/10.95 4\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 1\OML/cmm/m/it/10
@@ -2051,24 +2037,24 @@ cmr/m/n/10.95 ,
 
 Underfull \vbox (badness 1348) has occurred while \output is active []
 
- [119]
-Overfull \hbox (1.33528pt too wide) in paragraph at lines 3765--3766
+ [121]
+Overfull \hbox (1.33528pt too wide) in paragraph at lines 3767--3768
 []\T1/cmr/m/n/10.95 Rje²avaju¢i LP re-lak-sa-ci-ju pro-ble-ma ($\OML/cmm/m/it/1
 0.95 P\OT1/cmr/m/n/10.95 3$\T1/cmr/m/n/10.95 ), do-bi-ja-mo rje-²e-nje $\OML/cm
 m/m/it/10.95 x[] \OT1/cmr/m/n/10.95 = ([]\OML/cmm/m/it/10.95 ; []\OT1/cmr/m/n/1
 0.95 )$\T1/cmr/m/n/10.95 ,
  []
 
-[120] [121]
-Overfull \hbox (22.60173pt too wide) detected at line 3801
+[122] [123]
+Overfull \hbox (22.60173pt too wide) detected at line 3803
 []
  []
 
 
 Underfull \vbox (badness 2600) has occurred while \output is active []
 
- [122]
-[123] [124] [125]
+ [124]
+[125] [126] [127]
 Package epstopdf Info: Source file: <cutting_stock.eps>
 (epstopdf)                    date: 2021-08-20 18:17:52
 (epstopdf)                    size: 328249 bytes
@@ -2077,29 +2063,29 @@ Package epstopdf Info: Source file: <cutting_stock.eps>
 (epstopdf)                    size: 248682 bytes
 (epstopdf)             Command: <repstopdf --outfile=cutting_stock-eps-converte
 d-to.pdf cutting_stock.eps>
-(epstopdf)             \includegraphics on input line 3920.
+(epstopdf)             \includegraphics on input line 3922.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: /usr/bin/pdflatex (file ./cutting_stock-eps-converted-to.pdf): 
 PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<cutting_stock-eps-converted-to.pdf, id=562, 411.5375pt x 295.1025pt>
+<cutting_stock-eps-converted-to.pdf, id=570, 411.5375pt x 295.1025pt>
 File: cutting_stock-eps-converted-to.pdf Graphic file (type pdf)
 <use cutting_stock-eps-converted-to.pdf>
 Package pdftex.def Info: cutting_stock-eps-converted-to.pdf  used on input line
- 3920.
+ 3922.
 (pdftex.def)             Requested size: 230.00102pt x 230.00339pt.
-[126] [127 <./cutting_stock-eps-converted-to.pdf>] [128] [129] [130] [131]
-[132] [133] [134]
+[128] [129 <./cutting_stock-eps-converted-to.pdf>] [130] [131] [132] [133]
+[134] [135] [136]
 Glava 8.
-[135
+[137
 
-] [136]
+] [138]
 Underfull \vbox (badness 4279) has occurred while \output is active []
 
- [137]
-[138] [139]
-Overfull \hbox (40.84943pt too wide) detected at line 4503
+ [139]
+[140] [141]
+Overfull \hbox (40.84943pt too wide) detected at line 4505
 \OML/cmm/m/it/10.95 u[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 c \OMS/cmsy/m/n/
 10.95 ^^@ \OML/cmm/m/it/10.95 B[]\OT1/cmr/m/n/10.95 ) = (\OML/cmm/m/it/10.95 u[
 ] [] u[]\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10.95 ^^A [] \OT1/cmr/m/n/10.95 = \O
@@ -2108,8 +2094,8 @@ MS/cmsy/m/n/10.95 ^^@\OT1/cmr/m/n/10.95 500\OML/cmm/m/it/10.95 u[] \OT1/cmr/m/n
 10.95 u[]
  []
 
-[140] [141]
-Overfull \hbox (24.4244pt too wide) detected at line 4641
+[142] [143]
+Overfull \hbox (24.4244pt too wide) detected at line 4643
 \OML/cmm/m/it/10.95 u[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 c \OMS/cmsy/m/n/
 10.95 ^^@ \OML/cmm/m/it/10.95 B[]\OT1/cmr/m/n/10.95 ) = (\OML/cmm/m/it/10.95 u[
 ] [] u[]\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10.95 ^^A [] \OT1/cmr/m/n/10.95 = 10
@@ -2117,12 +2103,12 @@ Overfull \hbox (24.4244pt too wide) detected at line 4641
 cmr/m/n/10.95 + [] + 100\OML/cmm/m/it/10.95 u[]:
  []
 
-[142] [143] [144] [145] [146]
+[144] [145] [146] [147] [148]
 Underfull \vbox (badness 1584) has occurred while \output is active []
 
- [147]
-[148] [149]
-Overfull \hbox (28.66959pt too wide) in paragraph at lines 5025--5027
+ [149]
+[150] [151]
+Overfull \hbox (28.66959pt too wide) in paragraph at lines 5027--5029
 \T1/cmr/m/n/10.95 mo-ºe pred-sta-vi-ti kao kon-vek-sna kom-bi-na-ci-ja (ek-stre
 m-nih) ta-£a-ka $\OML/cmm/m/it/10.95 x[]; x[]; [] ; x[]$\T1/cmr/m/n/10.95 . 
  []
@@ -2130,8 +2116,8 @@ m-nih) ta-£a-ka $\OML/cmm/m/it/10.95 x[]; x[]; [] ; x[]$\T1/cmr/m/n/10.95 .
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [150]
-Overfull \hbox (3.15831pt too wide) in paragraph at lines 5067--5068
+ [152]
+Overfull \hbox (3.15831pt too wide) in paragraph at lines 5069--5070
 []\T1/cmr/m/n/10.95 Samom re-for-mu-la-ci-jom po-la-znog pro-ble-ma (8.12[]) u 
 DW for-mu-la-ci-ju (8.15[])
  []
@@ -2139,27 +2125,27 @@ DW for-mu-la-ci-ju (8.15[])
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [151]
-[152] [153]
-<dw2.png, id=655, 72.62332pt x 37.19496pt>
+ [153]
+[154] [155]
+<dw2.png, id=662, 72.62332pt x 37.19496pt>
 File: dw2.png Graphic file (type png)
 <use dw2.png>
-Package pdftex.def Info: dw2.png  used on input line 5169.
+Package pdftex.def Info: dw2.png  used on input line 5171.
 (pdftex.def)             Requested size: 290.49255pt x 148.77942pt.
- [154 <./dw2.png>]
+ [156 <./dw2.png>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [155]
-[156] [157] [158] [159]
-Underfull \hbox (badness 10000) in paragraph at lines 5553--5555
+ [157]
+[158] [159] [160] [161]
+Underfull \hbox (badness 10000) in paragraph at lines 5555--5557
 
  []
 
-[160] [161] [162]
+[162] [163] [164]
 Glava 9.
-[163
+[165
 
-] [164] [165] [166] [167] [168] [169] [170]
+] [166] [167] [168] [169] [170] [171] [172]
 Package epstopdf Info: Source file: <vertex-cover.eps>
 (epstopdf)                    date: 2022-06-13 12:51:30
 (epstopdf)                    size: 4901 bytes
@@ -2168,18 +2154,18 @@ Package epstopdf Info: Source file: <vertex-cover.eps>
 (epstopdf)                    size: 3427 bytes
 (epstopdf)             Command: <repstopdf --outfile=vertex-cover-eps-converted
 -to.pdf vertex-cover.eps>
-(epstopdf)             \includegraphics on input line 5871.
+(epstopdf)             \includegraphics on input line 5873.
 Package epstopdf Info: Output file is already uptodate.
-<vertex-cover-eps-converted-to.pdf, id=713, 352.31625pt x 328.22626pt>
+<vertex-cover-eps-converted-to.pdf, id=720, 352.31625pt x 328.22626pt>
 File: vertex-cover-eps-converted-to.pdf Graphic file (type pdf)
 <use vertex-cover-eps-converted-to.pdf>
 Package pdftex.def Info: vertex-cover-eps-converted-to.pdf  used on input line 
-5871.
+5873.
 (pdftex.def)             Requested size: 142.26378pt x 132.53525pt.
- [171]
+ [173]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [172 <./vertex-cover-eps-converted-to.pdf>]
+ [174 <./vertex-cover-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <vc-2-example.eps>
 (epstopdf)                    date: 2021-08-15 13:28:16
 (epstopdf)                    size: 198779 bytes
@@ -2188,24 +2174,24 @@ Package epstopdf Info: Source file: <vc-2-example.eps>
 (epstopdf)                    size: 202721 bytes
 (epstopdf)             Command: <repstopdf --outfile=vc-2-example-eps-converted
 -to.pdf vc-2-example.eps>
-(epstopdf)             \includegraphics on input line 5928.
+(epstopdf)             \includegraphics on input line 5930.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: /usr/bin/pdflatex (file ./vc-2-example-eps-converted-to.pdf): P
 DF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<vc-2-example-eps-converted-to.pdf, id=722, 496.85625pt x 276.03125pt>
+<vc-2-example-eps-converted-to.pdf, id=729, 496.85625pt x 276.03125pt>
 File: vc-2-example-eps-converted-to.pdf Graphic file (type pdf)
 <use vc-2-example-eps-converted-to.pdf>
 Package pdftex.def Info: vc-2-example-eps-converted-to.pdf  used on input line 
-5928.
+5930.
 (pdftex.def)             Requested size: 398.34222pt x 256.09988pt.
 
-Overfull \hbox (38.34222pt too wide) in paragraph at lines 5928--5929
+Overfull \hbox (38.34222pt too wide) in paragraph at lines 5930--5931
  [][] 
  []
 
-[173 <./vc-2-example-eps-converted-to.pdf>] [174] [175]
+[175 <./vc-2-example-eps-converted-to.pdf>] [176] [177]
 Package epstopdf Info: Source file: <tsp-1.eps>
 (epstopdf)                    date: 2021-08-15 12:06:20
 (epstopdf)                    size: 707726 bytes
@@ -2214,16 +2200,16 @@ Package epstopdf Info: Source file: <tsp-1.eps>
 (epstopdf)                    size: 17169 bytes
 (epstopdf)             Command: <repstopdf --outfile=tsp-1-eps-converted-to.pdf
  tsp-1.eps>
-(epstopdf)             \includegraphics on input line 6033.
+(epstopdf)             \includegraphics on input line 6035.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: /usr/bin/pdflatex (file ./tsp-1-eps-converted-to.pdf): PDF incl
 usion: found PDF version <1.7>, but at most version <1.5> allowed
-<tsp-1-eps-converted-to.pdf, id=736, 370.38374pt x 314.17375pt>
+<tsp-1-eps-converted-to.pdf, id=743, 370.38374pt x 314.17375pt>
 File: tsp-1-eps-converted-to.pdf Graphic file (type pdf)
 <use tsp-1-eps-converted-to.pdf>
-Package pdftex.def Info: tsp-1-eps-converted-to.pdf  used on input line 6033.
+Package pdftex.def Info: tsp-1-eps-converted-to.pdf  used on input line 6035.
 (pdftex.def)             Requested size: 113.39873pt x 96.18478pt.
 Package epstopdf Info: Source file: <tsp-1a.eps>
 (epstopdf)                    date: 2021-08-15 12:06:02
@@ -2233,16 +2219,16 @@ Package epstopdf Info: Source file: <tsp-1a.eps>
 (epstopdf)                    size: 12336 bytes
 (epstopdf)             Command: <repstopdf --outfile=tsp-1a-eps-converted-to.pd
 f tsp-1a.eps>
-(epstopdf)             \includegraphics on input line 6040.
+(epstopdf)             \includegraphics on input line 6042.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: /usr/bin/pdflatex (file ./tsp-1a-eps-converted-to.pdf): PDF inc
 lusion: found PDF version <1.7>, but at most version <1.5> allowed
-<tsp-1a-eps-converted-to.pdf, id=737, 286.06876pt x 280.04625pt>
+<tsp-1a-eps-converted-to.pdf, id=744, 286.06876pt x 280.04625pt>
 File: tsp-1a-eps-converted-to.pdf Graphic file (type pdf)
 <use tsp-1a-eps-converted-to.pdf>
-Package pdftex.def Info: tsp-1a-eps-converted-to.pdf  used on input line 6040.
+Package pdftex.def Info: tsp-1a-eps-converted-to.pdf  used on input line 6042.
 (pdftex.def)             Requested size: 113.39873pt x 111.01231pt.
 Package epstopdf Info: Source file: <tsp-2a.eps>
 (epstopdf)                    date: 2021-08-15 12:06:14
@@ -2252,19 +2238,19 @@ Package epstopdf Info: Source file: <tsp-2a.eps>
 (epstopdf)                    size: 15606 bytes
 (epstopdf)             Command: <repstopdf --outfile=tsp-2a-eps-converted-to.pd
 f tsp-2a.eps>
-(epstopdf)             \includegraphics on input line 6048.
+(epstopdf)             \includegraphics on input line 6050.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: /usr/bin/pdflatex (file ./tsp-2a-eps-converted-to.pdf): PDF inc
 lusion: found PDF version <1.7>, but at most version <1.5> allowed
-<tsp-2a-eps-converted-to.pdf, id=738, 310.15875pt x 283.0575pt>
+<tsp-2a-eps-converted-to.pdf, id=745, 310.15875pt x 283.0575pt>
 File: tsp-2a-eps-converted-to.pdf Graphic file (type pdf)
 <use tsp-2a-eps-converted-to.pdf>
-Package pdftex.def Info: tsp-2a-eps-converted-to.pdf  used on input line 6048.
+Package pdftex.def Info: tsp-2a-eps-converted-to.pdf  used on input line 6050.
 (pdftex.def)             Requested size: 113.39873pt x 103.49004pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 6049--6049
+Underfull \hbox (badness 10000) in paragraph at lines 6051--6051
 []\T1/cmr/m/n/10 (c) |Oj-le-ro-va kon-tu-ra:
  []
 
@@ -2276,23 +2262,23 @@ Package epstopdf Info: Source file: <tsp-3a.eps>
 (epstopdf)                    size: 13277 bytes
 (epstopdf)             Command: <repstopdf --outfile=tsp-3a-eps-converted-to.pd
 f tsp-3a.eps>
-(epstopdf)             \includegraphics on input line 6055.
+(epstopdf)             \includegraphics on input line 6057.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: /usr/bin/pdflatex (file ./tsp-3a-eps-converted-to.pdf): PDF inc
 lusion: found PDF version <1.7>, but at most version <1.5> allowed
-<tsp-3a-eps-converted-to.pdf, id=739, 287.0725pt x 277.035pt>
+<tsp-3a-eps-converted-to.pdf, id=746, 287.0725pt x 277.035pt>
 File: tsp-3a-eps-converted-to.pdf Graphic file (type pdf)
 <use tsp-3a-eps-converted-to.pdf>
-Package pdftex.def Info: tsp-3a-eps-converted-to.pdf  used on input line 6055.
+Package pdftex.def Info: tsp-3a-eps-converted-to.pdf  used on input line 6057.
 (pdftex.def)             Requested size: 113.39873pt x 109.43396pt.
 
-Underfull \hbox (badness 2409) in paragraph at lines 6056--6056
+Underfull \hbox (badness 2409) in paragraph at lines 6058--6058
 []\T1/cmr/m/n/10 (d) |Ha-mil-to-no-va kon-tu-ra (ci-klus):
  []
 
-[176 <./tsp-1-eps-converted-to.pdf> <./tsp-1a-eps-converted-to.pdf> <./tsp-2a-e
+[178 <./tsp-1-eps-converted-to.pdf> <./tsp-1a-eps-converted-to.pdf> <./tsp-2a-e
 ps-converted-to.pdf> <./tsp-3a-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <maxresdefault.eps>
 (epstopdf)                    date: 2022-06-13 11:11:09
@@ -2302,15 +2288,15 @@ Package epstopdf Info: Source file: <maxresdefault.eps>
 (epstopdf)                    size: 6996 bytes
 (epstopdf)             Command: <repstopdf --outfile=maxresdefault-eps-converte
 d-to.pdf maxresdefault.eps>
-(epstopdf)             \includegraphics on input line 6110.
+(epstopdf)             \includegraphics on input line 6112.
 Package epstopdf Info: Output file is already uptodate.
-<maxresdefault-eps-converted-to.pdf, id=757, 523.9575pt x 268.00125pt>
+<maxresdefault-eps-converted-to.pdf, id=764, 523.9575pt x 268.00125pt>
 File: maxresdefault-eps-converted-to.pdf Graphic file (type pdf)
 <use maxresdefault-eps-converted-to.pdf>
 Package pdftex.def Info: maxresdefault-eps-converted-to.pdf  used on input line
- 6110.
+ 6112.
 (pdftex.def)             Requested size: 284.52756pt x 145.53638pt.
- [177 <./maxresdefault-eps-converted-to.pdf>]
+ [179 <./maxresdefault-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <set-cover-1.eps>
 (epstopdf)                    date: 2021-09-04 12:52:06
 (epstopdf)                    size: 104208 bytes
@@ -2319,154 +2305,154 @@ Package epstopdf Info: Source file: <set-cover-1.eps>
 (epstopdf)                    size: 109729 bytes
 (epstopdf)             Command: <repstopdf --outfile=set-cover-1-eps-converted-
 to.pdf set-cover-1.eps>
-(epstopdf)             \includegraphics on input line 6148.
+(epstopdf)             \includegraphics on input line 6150.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: /usr/bin/pdflatex (file ./set-cover-1-eps-converted-to.pdf): PD
 F inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<set-cover-1-eps-converted-to.pdf, id=767, 594.22pt x 333.245pt>
+<set-cover-1-eps-converted-to.pdf, id=774, 594.22pt x 333.245pt>
 File: set-cover-1-eps-converted-to.pdf Graphic file (type pdf)
 <use set-cover-1-eps-converted-to.pdf>
 Package pdftex.def Info: set-cover-1-eps-converted-to.pdf  used on input line 6
-148.
+150.
 (pdftex.def)             Requested size: 341.44717pt x 227.62566pt.
-[178] [179 <./set-cover-1-eps-converted-to.pdf>] [180] [181] [182]
-Overfull \hbox (0.468pt too wide) in paragraph at lines 6383--6384
+[180] [181 <./set-cover-1-eps-converted-to.pdf>] [182] [183] [184]
+Overfull \hbox (0.468pt too wide) in paragraph at lines 6385--6386
 []\T1/cmr/m/n/10.95 metod pro-mjen-lji-vih oko-li-na (eng. \T1/cmr/m/it/10.95 v
 a-ri-a-ble ne-igh-bor-ho-od se-arch\T1/cmr/m/n/10.95 ) -- VNS; 
  []
 
-[183] [184] [185] [186] [187] [188] [189] [190] [191]
-Overfull \hbox (6.29893pt too wide) in paragraph at lines 6625--6627
+[185] [186] [187] [188] [189] [190] [191] [192] [193]
+Overfull \hbox (6.29893pt too wide) in paragraph at lines 6627--6629
 \T1/cmr/m/n/10.95 oko-li-na, pret-po-sta-vi-mo da je $\OML/cmm/m/it/10.95 x$ \T
 1/cmr/m/n/10.95 pro-i-zvolj-no rje-²e-nje i $\OML/cmm/m/it/10.95 N[]$\T1/cmr/m/
 n/10.95 , za $\OML/cmm/m/it/10.95 k \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 k[
 ]; [] ; k[]$\T1/cmr/m/n/10.95 ,
  []
 
-[192] [193] [194] [195]
-Overfull \hbox (39.64574pt too wide) in paragraph at lines 6730--6733
+[194] [195] [196] [197]
+Overfull \hbox (39.64574pt too wide) in paragraph at lines 6732--6735
 \T1/cmr/m/n/10.95 Konstruisati 2--aproksimativni al-go-ri-tam za pro-blem me-tr
 i£-kog $\OML/cmm/m/it/10.95 k$\T1/cmr/m/n/10.95 --klasterovanja. 
  []
 
-[196]
-Overfull \hbox (10.44681pt too wide) in paragraph at lines 6755--6758
+[198]
+Overfull \hbox (10.44681pt too wide) in paragraph at lines 6757--6760
 \T1/cmr/m/n/10.95 multi-skupom $\OML/cmm/m/it/10.95 T \OT1/cmr/m/n/10.95 = \OMS
 /cmsy/m/n/10.95 f\OML/cmm/m/it/10.95 t[]; [] ; t[]\OMS/cmsy/m/n/10.95 g$ \T1/cm
 r/m/n/10.95 vre-me-na (pro-ce-si-ra-nja po-slo-va/zadataka),
  []
 
-[197] [198
+[199] [200
 
 ]
 Glava 10.
-[199]
-Overfull \hbox (30.4276pt too wide) in paragraph at lines 6808--6808
+[201]
+Overfull \hbox (30.4276pt too wide) in paragraph at lines 6810--6810
 []  \T1/cmtt/m/n/10.95 // potrebno deklarisati ciljnu funkciju, promjenljive i 
 ograni£enja[] 
  []
 
-[200]
-Overfull \hbox (13.45248pt too wide) in paragraph at lines 6842--6842
+[202]
+Overfull \hbox (13.45248pt too wide) in paragraph at lines 6844--6844
 []  \T1/cmtt/m/n/10.95 typedef IloArray<FloatMatrix> Float3Matrix; // 3D niz va
 r: x_ijk[] 
  []
 
-[201]
+[203]
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 6880.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 6882.
 
 
-Overfull \hbox (36.08597pt too wide) in paragraph at lines 6900--6900
+Overfull \hbox (36.08597pt too wide) in paragraph at lines 6902--6902
 []       \T1/cmtt/m/n/10.95 // neka su prethodno definisane promjenljive x (Ilo
 NumVarArray)[] 
  []
 
-[202]
-Overfull \hbox (64.37782pt too wide) in paragraph at lines 6938--6938
+[204]
+Overfull \hbox (64.37782pt too wide) in paragraph at lines 6940--6940
 []\T1/cmtt/m/n/10.95 env.out() << "gap vrijednost: " << cplex.getMIPRelativeGap
 () * 100 << endl;[] 
  []
 
-[203] [204]
+[205] [206]
 
-LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 6991.
+LaTeX Warning: Characters dropped after `\end{verbatim}' on input line 6993.
 
-[205]
-Overfull \hbox (1.98557pt too wide) in paragraph at lines 7020--7020
+[207]
+Overfull \hbox (1.98557pt too wide) in paragraph at lines 7022--7022
 []\T1/cmr/bx/n/14.4 Primjena ala-ta PuLP na rje-²a-va-nje jed-nog pro-
  []
 
-[206]
-Overfull \hbox (2.13574pt too wide) in paragraph at lines 7059--7059
+[208]
+Overfull \hbox (2.13574pt too wide) in paragraph at lines 7061--7061
 []    \T1/cmtt/m/n/10.95 y = LpVariable.dicts("y_vars", [ (i, j) for i in locat
 ions \[] 
  []
 
 
-Overfull \hbox (13.45248pt too wide) in paragraph at lines 7060--7060
+Overfull \hbox (13.45248pt too wide) in paragraph at lines 7062--7062
 []                                            \T1/cmtt/m/n/10.95 for j in custo
 mers ],\[] 
  []
 
 
-Overfull \hbox (13.45248pt too wide) in paragraph at lines 7061--7061
+Overfull \hbox (13.45248pt too wide) in paragraph at lines 7063--7063
 []                                            \T1/cmtt/m/n/10.95 0, None, LpCon
 tinuous)[] 
  []
 
 
-Overfull \hbox (19.11086pt too wide) in paragraph at lines 7071--7071
+Overfull \hbox (19.11086pt too wide) in paragraph at lines 7073--7073
 []        \T1/cmtt/m/n/10.95 model += lpSum( y[ (i, j) ] * d[ j ] for j in cust
 omers ) \[] 
  []
 
 
-Overfull \hbox (2.13574pt too wide) in paragraph at lines 7074--7074
+Overfull \hbox (2.13574pt too wide) in paragraph at lines 7076--7076
 []    \T1/cmtt/m/n/10.95 model.solve(PULP_CBC_CMD(maxSeconds=1000, msg=1, fracG
 ap=0))[] 
  []
 
-[207] [208]
-Overfull \hbox (41.74434pt too wide) in paragraph at lines 7140--7140
+[209] [210]
+Overfull \hbox (41.74434pt too wide) in paragraph at lines 7142--7142
 []\T1/cmtt/m/n/10.95 #include "path-to-ilocplex.h" // Ovdje ide staza fo ilocpl
 ex.h datoteke[] 
  []
 
-[209] [210]
-Overfull \hbox (30.4276pt too wide) in paragraph at lines 7205--7205
+[211] [212]
+Overfull \hbox (30.4276pt too wide) in paragraph at lines 7207--7207
 []           \T1/cmtt/m/n/10.95 obj.setLinearCoef(Z[p], 1.0); // define objecti
 ve function[] 
  []
 
 
-Overfull \hbox (7.79411pt too wide) in paragraph at lines 7212--7212
+Overfull \hbox (7.79411pt too wide) in paragraph at lines 7214--7214
 []     \T1/cmtt/m/n/10.95 for(unordered_map<Point2d, IloNumVar, Hash2d >::itera
 tor itx[] 
  []
 
 
-Overfull \hbox (19.11086pt too wide) in paragraph at lines 7225--7225
+Overfull \hbox (19.11086pt too wide) in paragraph at lines 7227--7227
 []       \T1/cmtt/m/n/10.95 for(unordered_map<Point2d, IloNumVar, Hash2d >::ite
 rator it1[] 
  []
 
 
-Overfull \hbox (30.4276pt too wide) in paragraph at lines 7228--7228
+Overfull \hbox (30.4276pt too wide) in paragraph at lines 7230--7230
 []         \T1/cmtt/m/n/10.95 for(unordered_map<Point2d, IloNumVar, Hash2d >::i
 terator it2[] 
  []
 
 
-Overfull \hbox (58.71945pt too wide) in paragraph at lines 7232--7232
+Overfull \hbox (58.71945pt too wide) in paragraph at lines 7234--7234
 []             \T1/cmtt/m/n/10.95 ! ((*it1).first == (*it2).first) ){   // conf
 lict constraints[] 
  []
 
-[211]
-Overfull \hbox (7.79411pt too wide) in paragraph at lines 7251--7251
+[213]
+Overfull \hbox (7.79411pt too wide) in paragraph at lines 7253--7253
 []             \T1/cmtt/m/n/10.95 cout << "Cplex je na²ao dopustivo rje²enje" <
 < endl;[] 
  []
@@ -2474,37 +2460,37 @@ Overfull \hbox (7.79411pt too wide) in paragraph at lines 7251--7251
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [212]
+ [214]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [213]
-[214] [215] [216
+ [215]
+[216] [217] [218
 
 ]
 Dodatak A.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [217]
-[218] [219] [220]
+ [219]
+[220] [221] [222]
 Missing character: There is no ; in font nullfont!
 
-Overfull \hbox (3.74223pt too wide) in paragraph at lines 7561--7562
+Overfull \hbox (3.74223pt too wide) in paragraph at lines 7563--7564
 \T1/cmr/m/n/10.95 pro-mje-nji-vih.[] nPri-mi-je-ni-mo ovu me-to-du na na-la-ºe-
 nje nu-le funk-ci-je $\OML/cmm/m/it/10.95 F\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10
 .95 x; y; s\OT1/cmr/m/n/10.95 )$\T1/cmr/m/n/10.95 .
  []
 
-[221] [222]
-<interior-1.png, id=922, 399.28177pt x 274.97205pt>
+[223] [224]
+<interior-1.png, id=930, 399.28177pt x 274.97205pt>
 File: interior-1.png Graphic file (type png)
 <use interior-1.png>
-Package pdftex.def Info: interior-1.png  used on input line 7674.
+Package pdftex.def Info: interior-1.png  used on input line 7676.
 (pdftex.def)             Requested size: 145.79802pt x 100.408pt.
-<interior-2.png, id=923, 495.0pt x 340.89pt>
+<interior-2.png, id=931, 495.0pt x 340.89pt>
 File: interior-2.png Graphic file (type png)
 <use interior-2.png>
-Package pdftex.def Info: interior-2.png  used on input line 7679.
+Package pdftex.def Info: interior-2.png  used on input line 7681.
 (pdftex.def)             Requested size: 145.79802pt x 100.40562pt.
 Package epstopdf Info: Source file: <interior-3.eps>
 (epstopdf)                    date: 2021-11-12 21:07:18
@@ -2514,100 +2500,100 @@ Package epstopdf Info: Source file: <interior-3.eps>
 (epstopdf)                    size: 108947 bytes
 (epstopdf)             Command: <repstopdf --outfile=interior-3-eps-converted-t
 o.pdf interior-3.eps>
-(epstopdf)             \includegraphics on input line 7691.
+(epstopdf)             \includegraphics on input line 7693.
 Package epstopdf Info: Output file is already uptodate.
 
 
 pdfTeX warning: /usr/bin/pdflatex (file ./interior-3-eps-converted-to.pdf): PDF
  inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<interior-3-eps-converted-to.pdf, id=924, 483.8075pt x 333.245pt>
+<interior-3-eps-converted-to.pdf, id=932, 483.8075pt x 333.245pt>
 File: interior-3-eps-converted-to.pdf Graphic file (type pdf)
 <use interior-3-eps-converted-to.pdf>
 Package pdftex.def Info: interior-3-eps-converted-to.pdf  used on input line 76
-91.
+93.
 (pdftex.def)             Requested size: 145.79802pt x 100.42682pt.
-<interior-4.png, id=925, 214.45103pt x 147.68529pt>
+<interior-4.png, id=933, 214.45103pt x 147.68529pt>
 File: interior-4.png Graphic file (type png)
 <use interior-4.png>
-Package pdftex.def Info: interior-4.png  used on input line 7696.
+Package pdftex.def Info: interior-4.png  used on input line 7698.
 (pdftex.def)             Requested size: 145.79802pt x 100.41113pt.
-[223 <./interior-1.png> <./interior-2.png> <./interior-3-eps-converted-to.pdf> 
-<./interior-4.png>] [224
+[225 <./interior-1.png> <./interior-2.png> <./interior-3-eps-converted-to.pdf> 
+<./interior-4.png>] [226
 
 ]
 Dodatak B.
-<cplex_makefile.png, id=943, 858.20625pt x 546.04pt>
+<cplex_makefile.png, id=950, 858.20625pt x 546.04pt>
 File: cplex_makefile.png Graphic file (type png)
 <use cplex_makefile.png>
-Package pdftex.def Info: cplex_makefile.png  used on input line 7744.
+Package pdftex.def Info: cplex_makefile.png  used on input line 7746.
 (pdftex.def)             Requested size: 420.00095pt x 299.99799pt.
 
-Overfull \hbox (60.00095pt too wide) in paragraph at lines 7744--7745
+Overfull \hbox (60.00095pt too wide) in paragraph at lines 7746--7747
  [] 
  []
 
-[225 <./cplex_makefile.png>] [226]
-Underfull \hbox (badness 10000) in paragraph at lines 7756--7757
+[227 <./cplex_makefile.png>] [228]
+Underfull \hbox (badness 10000) in paragraph at lines 7758--7759
 \T1/cmr/m/n/10.95 u-ze-to 24.7.2022. $\T1/cmtt/m/n/10.95 https : / / towardsdat
 ascience . com /
  []
 
 
-Overfull \hbox (1.8427pt too wide) in paragraph at lines 7756--7757
+Overfull \hbox (1.8427pt too wide) in paragraph at lines 7758--7759
 \T1/cmtt/m/n/10.95 the-[]big-[]picture-[]of-[]operations-[]research-[]8652d5153
 aad$ 
  []
 
 
-Underfull \hbox (badness 1478) in paragraph at lines 7763--7764
+Underfull \hbox (badness 1478) in paragraph at lines 7765--7766
 []\T1/cmr/m/n/10.95 Mitchell, Stu-art, Mic-ha-el OSul-li-van, and Ia-in Dun-nin
 g.
  []
 
-[227
+[229
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 7772--7773
+Underfull \hbox (badness 10000) in paragraph at lines 7774--7775
 []\T1/cmr/m/n/10.95 CPLEX User Ma-nu-al, pre-u-ze-to 24.7.2022. $\T1/cmtt/m/n/1
 0.95 https :
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 7772--7773
+Underfull \hbox (badness 10000) in paragraph at lines 7774--7775
 \T1/cmtt/m/n/10.95 / / www . tu-[]chemnitz . de / mathematik / discrete / manua
 ls /
  []
 
 
-Underfull \hbox (badness 1701) in paragraph at lines 7774--7775
+Underfull \hbox (badness 1701) in paragraph at lines 7776--7777
 []\T1/cmr/m/n/10.95 S. A. Mitc-hell and J.S. Roy. PuLP. PuLP Ca-se Stu-
  []
 
 
-Underfull \hbox (badness 2591) in paragraph at lines 7777--7778
+Underfull \hbox (badness 2591) in paragraph at lines 7779--7780
 \T1/cmr/m/n/10.95 10, 2020. Yo-u-Tu-be $\T1/cmtt/m/n/10.95 https : / / www . yo
 utube . com / watch ? v =
  []
 
 
-Underfull \hbox (badness 1389) in paragraph at lines 7779--7780
+Underfull \hbox (badness 1389) in paragraph at lines 7781--7782
 []\T1/cmr/m/n/10.95 S.Sankaranarayanan, In-te-ger Li-ne-ar Pro-gram-ming, skrip
 -
  []
 
 
-Underfull \hbox (badness 1824) in paragraph at lines 7779--7780
+Underfull \hbox (badness 1824) in paragraph at lines 7781--7782
 \T1/cmr/m/n/10.95 ta, pre-u-ze-to 24.7.2022. $\T1/cmtt/m/n/10.95 https : / / ho
 me . cs . colorado . edu /
  []
 
-[228]
-Underfull \hbox (badness 8094) in paragraph at lines 7784--7785
+[230]
+Underfull \hbox (badness 8094) in paragraph at lines 7786--7787
 []\T1/cmr/m/n/10.95 John E. Mitc-hell, Go-mo-ry Cut-ting Pla-nes, skrip-ta,
  []
 
 
-Underfull \hbox (badness 4492) in paragraph at lines 7790--7791
+Underfull \hbox (badness 4492) in paragraph at lines 7792--7793
 []\T1/cmr/m/n/10.95 Jovanovi¢, M. (2013): Kon-vek-sne funk-ci-je i ek-stre-mi,
  []
 
@@ -2618,7 +2604,7 @@ FiXme Summary: Number of notes: 0,
 (FiXme)        Number of fatal errors: 0,
 (FiXme)        Total: 0.
 
-[229] (./main.aux)
+[231] (./main.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -2626,7 +2612,7 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  29022 strings out of 482584
  710710 string characters out of 5956256
- 1049629 words of memory out of 5000000
+ 1049644 words of memory out of 5000000
  43475 multiletter control sequences out of 15000+600000
  563920 words of font info for 102 fonts, out of 8000000 for 9000
  475 hyphenation exceptions out of 8191
@@ -2668,10 +2654,10 @@ cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.p
 fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pf
 b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb
 >
-Output written on main.pdf (235 pages, 5936466 bytes).
+Output written on main.pdf (237 pages, 6014645 bytes).
 PDF statistics:
- 1695 PDF objects out of 1728 (max. 8388607)
- 736 compressed objects within 8 object streams
+ 1702 PDF objects out of 1728 (max. 8388607)
+ 740 compressed objects within 8 object streams
  0 named destinations out of 1000 (max. 500000)
  183 words of extra memory for PDF output out of 10000 (max. 10000000)
 
