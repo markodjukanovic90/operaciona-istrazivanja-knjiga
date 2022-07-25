@@ -3272,24 +3272,24 @@ U rješavanju problema  ILP-a uz pomoć B\&B procedure, sljedeće jednostavne č
 Na osnovu ove dvije činjenice, uvedimo sada sistematičnu podjelu dopustivog regiona na niz podregiona:
 \begin{enumerate}
     \item U korjenom čvoru B\&B stabla rješavamo LP relaksaciju početnog problema     (npr. simpleks metodom) i dobijamo rješenje $x^*=(x^*_1, \ldots, x^*_n)$.   Ako je rješenje cjelobrojno, prekidamo dalje izvršavanje i stavimo $LB=f(x^*)$, koje je optimalno. %U protivnom, postavimo $f(x^*)=UB$.
-    \item Za sve koordinate $i$ za koje je $x^*_i \not \in \mathbb{Z}$, dopustiv region se može podijeliti na dva (disjunktna) podskupa uvođenjem ograničenja: $z_i \geq \lfloor x^*_i \rfloor + 1$ ili $z_i \leq \lfloor x^*_i \rfloor$ i to je upravo mjesto podjele dopustivog regiona. Ako ima više takvih koordinata, biramo onu koordinatu $i$ gdje je decimalni dio najveći.  Recimo da je to koordinata $k$.
+    \item Za sve koordinate $i$ za koje je $x^*_i \not \in \mathbb{Z}$, dopustiv region se može podijeliti na dva (disjunktna) podskupa uvođenjem ograničenja: $z_i \geq \lfloor x^*_i \rfloor + 1$ ili $z_i \leq \lfloor x^*_i \rfloor$ i to je upravo mjesto podjele dopustivog regiona. Ako ima više takvih koordinata, biramo onu koordinatu $i$ kojoj je decimalni dio najveći.  Recimo da je to koordinata $k$.
     \item Sada dijelimo region problema na dva podregiona (lijevi i desni potomak čvor u B\&B drvetu), dodavajući 
           ograničenja $x_k \geq \lfloor x^*_k \rfloor + 1$ i $x_k \leq \lfloor x^*_k \rfloor$, redom.
-    \item Rješavamo relaksaciju oba (pot)problema i razmatramo sljedeće slučajeve. 
+    \item Rješavamo relaksaciju oba (pod)problema i razmatramo sljedeće slučajeve. 
     \begin{itemize}
     	\item  Ako je neko od rješenja cjelobrojno, popravljamo $LB$ (ako smo dobili bolje dopustivo rješenje) i odgovarajući podproblem (njegov region) se dalje ne dijeli. 
-    	\item Ako rješenje $x$ nije cjelobrojno i pri tome je vrijednost optimuma manja od $LB$, taj podproblem se dalje više ne dijeli (\emph{bound} procedura). 
+    	\item Ako rješenje $x$ nije cjelobrojno i pri tome je vrijednost optimuma manja od trenutne $LB$, taj podproblem se dalje više ne dijeli (\emph{bound} procedura). 
     	\item Dalje, ako je podproblem nedopustiv, problem se ne dijeli (i ne razmatra više). 
     	\item Inače, idemo na korak 2 dijeljeći podregion   na nove (manje) podregione nekog od podproblema za koje to nije urađeno.    
     \end{itemize}
 
 \end{enumerate}
 
-Primijetimo da ovom metodom formiramo drvo enumeracije koje nam garantuje nalazak optimalnog rješenja početnog ILP-a. Takođe, primijetimo da ovo drvo raste eksponencijalno u odnosu na veličinu ulaznog problema.  
+Primijetimo da ovom metodom formiramo drvo enumeracije koje nam garantuje nalazak optimalnog rješenja početnog ILP-a. Takođe, primijetimo da ovo drvo u generalnom slučaju raste eksponencijalno u odnosu na veličinu ulaznog problema.  
 
   Ovo je bila okvirna shema B\&B procedure. Ono što je ostalo nerazjašnjeno je koji od neriješenih podproblema prvo rješavati. Kažemo da se čvorovi čiji je odgovarajući problem podijeljen na podregione naziva \emph{neaktivan}, a inače \emph{aktivan}. Generalni B\&B metod za rješavanje problema ILP-a je dat   Algoritmom~\ref{bnb_algorithm_ilp}.  Neki od kriterijuma za izbor čvora (podproblema) koji se rješava su sljedeći:
   \begin{itemize}
-  	\item Izabrati one aktivne čvorove koji su najdublje u drvetu, da bi se što prije stiglo do listova i potencijalnih dopustivih rješenja.
+  	\item Izabrati one aktivne čvorove koji su najdublje u drvetu, da bi se što prije stiglo do listova B\&B stabla i potencijalnih dopustivih rješenja.
   	\item Birati aktivne čvorove nivo po nivo. Dakle, sve aktivne čvorove (tj. odgovarajuće podprobleme) jednog nivoa   rješavati, pa onda preći na čvorove narednog nivoa. 
   	\item Koristiti heurističku funkciju pri odlučivanju koji aktivni čvor (tj. odgovarajući podproblem) prvo rješavati. 
   \end{itemize}
@@ -3486,7 +3486,7 @@ Za sljedeći problem ILP-a
     & 5x_1 + 8x_2\leq 24 \\
     & x_1, x_2 \geq 0, x_1,x_2\in \mathbb{Z},
  \end{align*}
-jedna njegova validna nejednakost bi bila  $2z - x_1 = (6x_1 + 8x_1 ) - x_1 = 5x_1 + 8 x_2  \leq 24$, dakle $2z - x_1 \leq 24,$ a kako sigurno vrijedi $x_1 \leq 4$, dobijamo $2z \leq 24 + 5$, pa imamo $z \leq 14.5$, ili (zbog cjelobrojnosti funkcije cilja) $z \leq 14$.
+jedna njegova validna nejednakost bi bila  $2z - x_1 = (6x_1 + 8x_1 ) - x_1 = 5x_1 + 8 x_2  \leq 24$, dakle $2z - x_1 \leq 24,$ a kako sigurno vrijedi $x_1 \leq 4$, dobijamo $2z \leq 24 + 5$. Iz prethodnog imamo $z \leq 14.5$, što zbog cjelobrojnosti funkcije cilja daje $z \leq 14$.
 
 
 \begin{definition}
@@ -3767,12 +3767,12 @@ Rješavanjem relaksacije problema ($P1$) dobijamo rješenje $x^*=(3,2)$, koje je
 Rješavajući LP relaksaciju problema ($P3$), dobijamo rješenje $x^*=(\frac{9}{5}, \frac{17}{5})$, a  optimalna vrijednost funkcije cilja je $27.8$. Kako je $LB \geq 28.8$, niti jedno cjelobrojno rješenje problema ($P3$) ne može biti bolje od trenutno najbolje donje granice ($LB=28$), pa zaključujemo da je optimalo rješenje početnog problema dato sa $x^*=(3,2)$. 
 
 \section{Lagranžova relaksacija}
-U rješavanju problema optimizacije, pronalazak optimalnog rješenja je osnovni cilj. Međutim, za mnoge probleme nije realno očekivati da će se razumnom vremenu može doći do optimalnog rješenja. Umjesto toga, najbolje što se može učiniti je da se ponudi dobra  granica za optimalnu vrijednost. Ako je ta granica blizu optimuma, u mnogo slučajeva ona može da zamijeni optimum, čime štedimo resurse kojima raspolažemo, a dobijamo rješenje koje je prihvatljivo.  
+U rješavanju problema optimizacije, pronalazak optimalnog rješenja je osnovni cilj. Međutim, za mnoge probleme nije realno očekivati da će se razumnom vremenu može doći do optimalnog rješenja za instance velikih dimenzija. Umjesto toga, najbolje što se može učiniti je da se ponudi dobra  granica za optimalnu vrijednost. Ako je ta granica blizu optimuma, u mnogo slučajeva ona može da zamijeni optimum, čime štedimo resurse kojima raspolažemo, a dobijamo rješenje koje je prihvatljivo.  
 
 Ideja \emph{Lagranžove relaksacije} se sastoji u tome da u modelu ILP-a  koji ima  ograničenja koja problem čine teškim (ova procjena najčešće dolazi uz praktičnog iskustva),  posmatramo kao dio ciljne funkcije koji se penalizuje nekim parametrom.  %parametrom $\lambda>0$. 
 Ovo ograničenje potom brišemo iz skupa ograničenja modela, a zatim rješavamo ovakav (parametrizovan) problem. Fiksirajući parametar penalizacije, rješenje takvog problema predstavlja donju granicu (za problem minimizacije)  optimalnog rješenja inicijalnog problema. Dobijena granica je često dovoljno blizu vrijednosti optimuma, što ovu metodu čini upotrebljivom u rješavanju praktičnih problema. 
 
-\begin{primjer} Posmatrajmo problem \emph{najkraćeg puta sa ograničenjem} (eng. \emph{Constrained Shortest Path Problem}). Neka je dat usmjeren neciklični graf $G=(V,E)$. Za svaku granu $(i,j) \in E$ dodijelimo cijenu puta $c_{i,j}$ i vrijeme putovanja $t_{i,j}$. Pretpostavimo da je čvor $i=1$ početni (izvorni) čvor, a čvor $n = |V|$   završni čvor (terminalni čvor). Zadatak je da se nađe najjeftiniji put  od izvornog do terminalnog čvora, ali tako da se čitav put pređe u vremenskom periodu $T$.
+\begin{primjer} Posmatrajmo problem \emph{najkraćeg puta sa ograničenjem} (eng.  {Constrained shortest path problem}). Neka je dat usmjeren neciklični graf $G=(V,E)$. Za svaku granu $(i,j) \in E$ dodijelimo cijenu puta $c_{i,j}$ i vrijeme putovanja $t_{i,j}$. Pretpostavimo da je čvor $i=1$ početni (izvorni) čvor, a čvor $n = |V|$   završni čvor (terminalni čvor). Zadatak je da se nađe najjeftiniji put  od izvornog do terminalnog čvora, ali tako da se čitav put pređe u vremenskom periodu $T$.
 \end{primjer}
 Ovaj problem se modeluje pomoću sljedećeg ILP-a:
  \begin{align}
@@ -3915,7 +3915,7 @@ Iterativni proces rješavanja RMP problema se može prekinuti i ranije, bez dost
       & \sum_{ij} a_{i,j }x_j \geq b_i, \forall i \hspace{2cm} (CSILP)\\
       &  x_j \geq 0, x_{j} \in \mathbb{Z} 
  \end{align*}
- Parametar $a_{i,j}$ predstavlja onaj broj, koliko se puta u narudžbi $i$ (određena širina -- visina --  sječenja rolne) pojavljuje obrazac $j$ (odgovara vrsti na Slici ~\ref{fig:cuting_stock_solutions}). Promjenljivom $x_j$ se određuje širina j-tog sječenja rolne. 
+ Parametar $a_{i,j}$ predstavlja broj  koliko se puta u narudžbi $i$ (određena širina -- visina --  sječenja rolne) pojavljuje obrazac $j$ (odgovara vrsti na Slici ~\ref{fig:cuting_stock_solutions}). Promjenljivom $x_j$ se određuje širina j-tog sječenja rolne. 
  
    \begin{figure}[!hbt]
  	\centering
@@ -3946,11 +3946,11 @@ $$ \begin{array}{lll}
   gdje su $y_i$ vrijednosti optimuma duala. 
   
  
- Ovaj problem je poznat pod nazivom \emph{cjelobrojni problem ruksaka} (eng. integer knapsack problem). Iako je NP-težak, on se u praksi relativno efikasno rješava  uz pomoć dinamičkog programiranja. 
+ Ovaj problem je poznat pod nazivom \emph{cjelobrojni problem jednodimenzionalnog ruksaka}. Iako je NP-težak, on se u praksi relativno efikasno rješava  uz pomoć dinamičkog programiranja. 
  
 
  Za ovaj problem je lako naći inicijalno bazno dopustivo rješenje.
- Za $i$-tu baznu kolonu uzimamo $i$-ti jedinični vektor, tj. obrazac dobijen rezanjem jedne rolne dužine $w_i$. Ovakav skup kolona formira inicijalnu dopustivu bazu. Svakako, malo je vjerovatno da će ove kolone biti korištene u optimalnom rješenju, ali to nije ni očekivano od inicijalnog rješenja. 
+ Za $i$-tu baznu kolonu uzimamo $i$-ti jedinični vektor, tj. obrazac dobijen rezanjem jedne rolne dužine $w_i$. Ovakav skup kolona zaista formira inicijalnu dopustivu bazu. Svakako, malo je vjerovatno da će ove kolone biti korištene u optimalnom rješenju, ali to nije ni očekivano od inicijalnog rješenja. 
  Algoritam za rješavanje ovog problema je sljedeći.
  \begin{enumerate}
      \item Konstruišimo inicijalno bazno dopustivo rješenje (jedinični vektori) i kolone ubacimo u skup $S$.
@@ -5167,7 +5167,7 @@ $x\in X$ i $Ax=b$, pa imamo da vrijedi %Za to rješenje $x$ važi
  $2x_1-3x_2\leqslant 0$). Dalje, vidimo da je skup $X$ definisan kao jedinični kvadrat, što u našem slučaju to znači da je riječ o ,,jednostavnom'' ograničenju. 
  
  \begin{figure}\label{fig:dw1}
- 	
+ 	\centering
  	\includegraphics[scale=4]{dw2.png}
  	\caption{Grafička interpretacija problema. Optimalno rješenje je označeno sa $x^*$. }
  	\label{fig:dw1}
