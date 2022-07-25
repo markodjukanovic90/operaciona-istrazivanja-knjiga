@@ -5647,7 +5647,7 @@ Sa druge strane, većina optimizacionih problema se ne može optimalno riješiti
 
 U ovoj sekciji razmatramo nekoliko poznatih pohlepnih algoritama:
 \begin{itemize}
-	\item  \emph{Primov algoritam} za pronalaženje minimalnog pokrivajućeg stabla grafa ( eng. minimum spanning tree -- MST);
+	\item  \emph{Primov algoritam} za pronalaženje minimalnog pokrivajućeg stabla grafa (eng. minimum spanning tree -- MST);
 	\item  \emph{Kruskalov algoritam} za pronalaženje MST;
 	\item  \emph{Dajkstrin algoritam} za pronalaženje najkraćih puteva u grafu;
 	\item  Pohlepni algoritam za rješavanje problema \emph{najdužeg zajedničkog podniza}, za proizvoljan skup stringova u ulazu.
@@ -5656,7 +5656,7 @@ U ovoj sekciji razmatramo nekoliko poznatih pohlepnih algoritama:
 
 \subsection{Algoritmi za pronalaženje MST}
 
-Definišimo prvo pojam pokrivajućeg stabla, pa potom i minimalnog pokrivajućeg stabla (eng. \emph{minimum spanning tree} -- MST).
+Definišimo prvo pojam pokrivajućeg stabla, pa potom i minimalnog pokrivajućeg stabla.
 
 Neka je dat težinski graf $G=(V,E)$. Svaku težinu grane $(u,v) \in E $ u grafu $G$, označimo sa $w(uv)$. 
 \begin{definition}
@@ -5665,10 +5665,10 @@ Neka je dat težinski graf $G=(V,E)$. Svaku težinu grane $(u,v) \in E $ u grafu
   $\sum_{e \in E_1} w(e)$, se naziva minimalno pokrivajuće stablo (MST) grafa $G$. 
 \end{definition}
 
-MST ima primjene u različitim oblastime teorije i prakse. Izdvajamo neke od njih.
+MST ima primjene u različitim oblastima teorije i prakse. Izdvajamo neke od njih.
 \begin{enumerate}
  \item[($i$)] Dizajniranje mreža (npr. telefonske mreže), gdje je do svakog domaćinstva, koje je predstavljeno čvorom grafa, potrebno obezbijediti liniju, tako da se, na kraju, u mrežu povežu sva domaćinstva, uz minimalnu potrošnju materijala potrebnog za kreiranje infrastrukture mreže;
- \item[($ii$)] Aproksimacija drugih teških optimizacionih problema, kao što je problem trgovačkog putnika (TSP), gdje je potrebno naći najkraću konturu koja posjećuje sve čvorove tačno jednom u (težinskom) grafu. Primijetimo da su putevi generisani iz ovakvih kontura (brisanjem jedne od grana) takođe MST. Težina ovakvog rješenja MST je manja nego težina rješenja TSP posmatranog grafa, jer je riječ o minimizaciji nad većim skupom rješenja. Na ovaj način  se može pokazati da nalazak MST-a u težinskom grafu aproksimira nalazak TSP-a (nad euklidskim težinskim grafovima).
+ \item[($ii$)] Aproksimacija drugih teških optimizacionih problema, kao što je problem trgovačkog putnika (TSP), gdje je potrebno naći najkraću konturu koja posjećuje sve čvorove tačno jednom u (težinskom) grafu. Primijetimo da su putevi generisani iz ovakvih kontura (brisanjem jedne od grana konture) takođe MST. Težina ovako dobijenog rješenja MST je manja nego težina rješenja TSP posmatranog grafa, jer je riječ o minimizaciji nad većim skupom rješenja. Na ovaj način  se može pokazati da nalazak MST-a u težinskom grafu aproksimira nalazak TSP-a (nad euklidskim težinskim grafovima).
  \item[($iii$)] Klaster analiza, konkretno za $k$-klaster problem, se može posmatrati kao problem nalaženja MST-a, a potom brisanja $k-1$ najskupljih grana iz MST rješenja. 
  \end{enumerate}
 
@@ -5712,7 +5712,7 @@ Koraci algoritma su sljedeći.
 \end{enumerate} 
 
  \emph{Vremenska složenost}. Kruskalov algoritam se izvršava u $O(|E|\log |E|)$ ili $O(|E|\log |V|)$ vremenu. Sortiranje grana uzima $O(|E| \log|E|)$ vremena. Potom, za svaku granu 
-se primjenjuje operacija nalaženja i dodavanja grane u skup \emph{mst}. Ove dvije operacije se izvršavaju u $O(\log |V|)$ vremenu. Dakle, ukupno vrijeme izvršavanja algoritma je $O(|E|\log |E| + |E|\log |V|)$. Kako je $|E|=O(|V|^2)$, dobijamo složenost $O(|E| \cdot \mathrm{log}(|V|))$. 
+se primjenjuje operacija nalaženja i dodavanja grane u skup \emph{mst}. Ove dvije operacije se izvršavaju u $O(\log |V|)$ vremenu. Dakle, ukupno vrijeme izvršavanja algoritma je $O(|E|\log |E| + |E|\log |V|)$. Kako je $|E|=O(|V|^2)$, dobijamo složenost $O(|E| \mathrm{log}(|V|))$. 
 
 \subsection{Dajkstrin algoritam}
 
@@ -5765,12 +5765,12 @@ Napomenimo da Dajkstrin algoritam ne radi sa grafovima koji imaju negativne tež
 \end{definition}
 U 0-1 problemu ruksaka, koji će biti razmatran i u Primjeru~\ref{primjer:01ruksak},  ne dopušta se dijeljenje proizvoda. Dakle, ili se uzima cijeli proizvod (1) i stavlja u ruksak, ili se uopšte ne uzima (0). U  razlomljenom problemu ruksaka, svaki proizvod pored svoje težine i vrijednosti,  može da se podijeliti na proizvoljne dijelove (recimo dopušteno je da se uzme   pola od ukupne količine proizvoda i ubaci u ruksak). Primjeri takvih proizvoda bi bili mlijeko, so, šećer, itd. Efikasno rješavanje ovog problema se izvodi primjenom pohlepnog algoritma na sljedeći način.
 \begin{enumerate}
-	\item Računaju se odnosi količina/vrijednost za svaki proizvod, te se proizvodi  sortiraju na osnovu tih vrijednosti, u opadajućem poretku. 
+	\item Računaju se odnosi vrijednost/težina za svaki proizvod, te se proizvodi  sortiraju na osnovu tih vrijednosti, u opadajućem poretku. 
 	   \item Sve dok ruksak nije potpuno napunjen ponavljamo sljedeći postupak:
 	   	\begin{itemize}
-	   		\item  Iz liste sortiranih proizvoda, uzmemo onaj proizvod kod koga je izračunati odnos najveći;
-	   		\item  dodamo  ga u ruksak u maksimalnoj količini, vodeći računa da ne narušimo kapacitet ruksaka;
-	   		\item uklonimo taj proizvod iz liste.
+	   		\item  Iz liste sortiranih proizvoda, uzmemo onaj proizvod kod koga je izračunati odnos najveći;.
+	   		\item  Dodamo  ga u ruksak u maksimalnoj količini, vodeći računa da ne narušimo kapacitet ruksaka.
+	   		\item Uklonimo taj proizvod iz liste.
 	   	\end{itemize} 
 	   
 \end{enumerate}
@@ -5864,7 +5864,7 @@ Primijetimo da ovakav algoritam ne može da garantuje optimalno rješenje, što 
   \end{comment}
   
   
-   U nastavku navodimo  aproksimativne algoritme za nekoliko poznatih problema kombinatorne optimizacije (eng. combinatorial optimization), podoblasti matematičke optimizacije, u kojoj se  optimalno rješenje traži na diskretnom skupu rješenja. 
+   U nastavku navodimo  (relativne) aproksimativne algoritme za nekoliko poznatih problema kombinatorne optimizacije (eng. combinatorial optimization), podoblasti matematičke optimizacije, u kojoj se  optimalno rješenje traži na diskretnom skupu rješenja. 
   
   \subsection{Aproksimativni algoritmi za problem  minimalnog pokrivanja čvorova}\label{sec:aprokspokrivanjecvorova}
   
@@ -6467,7 +6467,7 @@ odakle slijedi da Algoritam~\ref{alg:ss} daje $2H_n$--aproksimaciju.
  			\STATE $RacunajFunkcijuPrilagodjenosti(P)$
  			\STATE $P' \gets PrebaciElitneJedinke(P)$
  			\STATE $R \gets IzvrsiSelekcijuRoditelja(P)$
- 			\STATE $P'' \gets IzvrsiUkrstanjeIMutaciju(P)$		  
+ 			\STATE $P'' \gets IzvrsiUkrstanjeIMutaciju(R)$		  
  			\STATE $P\gets P' \cup P''$
  		\ENDWHILE
  	\end{algorithmic}
@@ -6514,7 +6514,7 @@ Treba napomenuti da se u rješavanju velikog broja problema kombinatorne optimiz
 	\item
 	nedopustiva rješenja, po automatizmu, dobijaju minimimalnu vrijednost funkcije prilagođenosti, čime se omogućava da sam genetski algoritam odbaci takva rješenja u procesu selekcije. 
 	
-	\item uvodi se tzv. kaznena funkcija, (eng. penalty function), kojom se ,,kažnjavaju'' nedopustiva rješenja (najčešće smanjenjem vrijednosti funkcije prilagođenosti), ali se ona ne izbacuju iz razmatranja, u nadi da perspektivnija nedopustiva rješenja mogu prerasti u kvalitetna dopustiva rješenja.
+	\item uvodi se tzv. \textit{kaznena funkcija}  (eng. penalty function), kojom se ,,kažnjavaju'' nedopustiva rješenja (najčešće smanjenjem vrijednosti funkcije prilagođenosti), ali se ona ne izbacuju iz razmatranja, u nadi da perspektivnija nedopustiva rješenja mogu prerasti u kvalitetna dopustiva rješenja.
 \end{itemize}
 
 U našem primjeru, pojavu nedopustivih rješenja, dakle, možemo riješiti automatskom dodjelom minimalne vrijednosti funkcije prilagođenosti, ili ,,kažnjavanjem'' takvih rješenja smanjenjem vrijednosti funkcije prilagođenosti. Neke od strategije za ,,kažnjavanje'' nedopustivih jedinki bi mogle biti zasnovane na procjeni broja proizvoda koje treba zamijeniti (ili izbaciti) iz datog rješenja, a da rješenje postane dopustivo. Na taj način bi se ona nedopustiva rješenja, koja se teže mogu popraviti u dopustiva, više kažnjavala (i samim tim češće i odbacivala), dok bi se perspektivnija nedopustiva rješenja zadržavala u populaciji, u nadi da će, primjenom nekog od genetskih operatora, prerasti u kvalitetna dopustiva rješenja. Uopšte, vrijednost kaznene funkcije bi trebalo da bude malo veća od minimalne cijene potrebne da se odgovarajuće nedopustivo rješenje ,,popravi'' na dopustivo. Suprotno, ako bi vrijednost kaznene funkcije bila manja od cijene minimalne korekcije, nedopustiva rješenja se mogu javiti kao konačno rješenje, što naravno nije dopušteno. Sa druge strane, ako je vrijednost kaznene funkcije značajno veća od cijene minimalne popravke, nedopustiva rješenja su totalno diskriminisana i algoritam ih odmah odbacuje. 
@@ -6954,7 +6954,7 @@ dok recimo podešavanje broja jezgara pri izvršavanju \textsc{Cplex}-a
 \end{verbatim}
 O ostalim parametrima kojima podešavamo rješavač može se pročitati iz \textrm{\textsc{Cplex}} uputstva čija je internet adresa data  među referencama na kraju ovog knjige.
 
-Ukoliko se za rad koristi Linux operativni sistem, za kompajliranje programa, koji je baziran na pozivanju \textsc{Cplex} rješavača, neophodno  je ,,uvući'' ilocplex biblioteku, koja treba da se kompajlira sa glavnim programom. Prikaz odgovarajućeg \emph{makefile}-a, koji sadrži neophodan k\^od za uspješnu kompilaciju programa baziranih na pozivanju \textsc{Cplex} rješavača je dat u Apendiksu~\ref{appendix:makefile-cplex}.
+Ukoliko za rad koristite Linux operativni sistem, za kompajliranje programa, koji je baziran na pozivanju \textsc{Cplex} rješavača, neophodno  je ,,uvući'' ilocplex biblioteku, koja treba da se kompajlira sa glavnim programom. Prikaz odgovarajućeg \emph{makefile}-a, koji sadrži neophodan k\^od za uspješnu kompilaciju programa baziranih na pozivanju \textsc{Cplex} rješavača, je dat u Apendiksu~\ref{appendix:makefile-cplex}.
 
 %\url{https://www.tu-chemnitz.de/mathematik/discrete/manuals/cplex/doc/userman/html/cpxUserAppendixA.html}. 
  \section{PuLP alat}
@@ -7751,7 +7751,7 @@ Za pokretanje progama uz pomoć $makefile$ datoteke (komande $make$), potrebno j
 	\item Instalirati  C++, sa kompajlerom GCC (verzija 9, recimo).
 	\item Intalirati je \textsc{Cplex}. 
 	\item U promjenljivim CPLEXDIR i CONCERTDIR (linije 8 i 9), poresiti putanje ka cplex i concert direktorijumima, redom.
-	\item Napisati program cplex\_rfrcs.cpp i dodatni .cpp za mjerenje vremena izvršavanja algoritma, nazvan Timer.cpp. (Pisanje Timer.cpp nije obavezno, u tom slučaju promjenljiva OBJS na liniji 3 je prazna.)
+	\item Napisati program cplex\_rfrcs.cpp i dodatni .cpp za mjerenje vremena izvršavanja algoritma, nazvan Timer.cpp. (Pisanje Timer.cpp nije obavezno. U tom slučaju sadržaj promjenljive OBJS na liniji 3 je prazan.)
 \end{itemize}
 
 \begin{thebibliography}{widest entry}
