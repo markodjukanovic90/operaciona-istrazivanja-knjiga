@@ -464,74 +464,75 @@ Ovom studijom je dobijen  novi inventarni sistem koji je poboljšao korisničku 
 
 \section{Pripremanje modela za primjenu}
  
-Ako želimo da model bude upotrijebljen više puta u praksi, sljedeći  korak je instaliranje dobro dokumentovanog sistema za primjenu modela po propisima naručioca (uprave). Ovaj sistem uključuje implementaciju samog modela, postupak dobijanja rješenja (uključujući analizu postoptimalnosti), operativne postupke za izvođenje, itd. %Tada, čak i kad se osoblje mijenja, sistem se može pozvati na regularnoj bazi da se ponudi određeno numeričko rješenje
-Svaki put pri korištenju sistema, baze podataka i informacioni sistem za upravljanje treba da omoguće unos podataka u model, te je zbog toga potrebno obezbijediti i odgovarajući interfejs. Nakon što se na model primijeni postupak rješavanja, dodatni  programi mogu automatski pokrenuti implementaciju rezultata kako bi ih korisnici mogli odmah primijeniti u realnoj situaciji. U drugim slučajevima, može se instalirati i interaktivni računarski sistem  za podršku odlučivanju, koji pomaže poslodavcu da koristi podatke i modele kako bi, po potrebi, podržao (ali ne i zamijenio)   donošenje odluka. Dodatna programska rješenja mogu generisati menadžerske izvještaje, koji pomažu pri tumačenju izlaznih podataka modela, kao i implikacije na primjenu u realnom okruženju.  U velikim OR studijama potrebno je nekoliko mjeseci (a nekada čak i duže) za razvoj, testiranje i instaliranje ovakvog računarskog sistema. Pri tome, treba uzeti u obzir da ove aktivnosti uključuju i razvoj i izvođenje postupka održavanja sistema  tokom njegove buduće upotrebe. Kako se uslovi mijenjaju tokom vremena, potrebno je obezbijediti i mogućnost za  izmjene sistema, uključujući i izmjene samog modela, u skladu sa tim uslovima.  
+ Ako želimo da model bude upotrijebljen više puta u praksi, sljedeći  korak je instaliranje dobro dokumentovanog sistema za primjenu modela po propisima naručioca (uprave). Ovaj sistem uključuje implementaciju samog modela, postupak dobijanja rješenja (uključujući analizu postoptimalnosti), operativne postupke za izvođenje, itd. %Tada, čak i kad se osoblje mijenja, sistem se može pozvati na regularnoj bazi da se ponudi određeno numeričko rješenje
+ Svaki put pri korištenju sistema, baze podataka i informacioni sistem za upravljanje treba da omoguće unos podataka u model, te je zbog toga potrebno obezbijediti i odgovarajući interfejs. Nakon što se na model primijeni postupak rješavanja, dodatni  programi mogu automatski pokrenuti implementaciju rezultata kako bi ih korisnici mogli odmah primijeniti u realnoj situaciji. U drugim slučajevima, može se instalirati i interaktivni računarski sistem  za podršku odlučivanju, koji pomaže poslodavcu da koristi podatke i modele kako bi, po potrebi, podržao (ali ne i zamijenio)   donošenje odluka. Dodatna programska rješenja mogu generisati menadžerske izvještaje, koji pomažu pri tumačenju izlaznih podataka modela, kao i implikacije na primjenu u realnom okruženju.  U velikim OR studijama potrebno je nekoliko mjeseci (a nekada čak i duže) za razvoj, testiranje i instaliranje ovakvog računarskog sistema. Pri tome, treba uzeti u obzir da ove aktivnosti uključuju i razvoj i izvođenje postupka održavanja sistema  tokom njegove buduće upotrebe. Kako se uslovi obično mijenjaju tokom vremena, potrebno je obezbijediti i mogućnost za  izmjene sistema, uključujući i izmjene samog modela, u skladu sa tim uslovima.  
 
-Sljedeći primjer nam opisuje sistem u IBM-u za kontrolu usluga i zaliha rezervi da bi se dobio osjećaj o kompleksnosti ovakvih sistema zasnovaom na OR studiju. 
+ Sljedeći primjer nam opisuje sistem u IBM-u za kontrolu usluga i zaliha rezervi da bi se dobio osjećaj o kompleksnosti ovakvih sistema zasnovaom na OR studiju. 
 
-\begin{primjer}\label{primjer:IMBOptimizer}
-%OR studija  za IBM predstavljena na kraju prošle sekcije je primjer   velikog sistema koji integriše model.
-Sistem nazvan \emph{Optimizer} pruža optimalnu kontrolu usluga i zaliha rezervnih dijelova u cijeloj IBM-ovoj mreži za distribuciju dijelova u SAD-u. Ona uključuje dva središnja
-automatizovana skladišta, desetine terenskih distribucijskih centara i stanica za dijelove, te nekoliko hiljada vanjskih (povezanih) lokacija. Vrijednost inventara dijelova koji se održava u ovoj mreži se procijenjuje u milijardama dolara. \emph{Optimizer} se sastoji od četiri glavna modula. Modul sistema predviđanja sadrži nekoliko programa za procjenu stope kvara pojedinih vrsta dijelova. Modul sistema za dostavljanje podataka sastoji se od otprilike 100 programa koji    obrađuju
-preko 15 GB podataka kako bi se osigurali ulazni podaci za model. Sistem odlučivanja potom rješava model kako bi se optimizovala kontrola zaliha. Rješavanje ovog modela može da traje i po sedmicu dana. Četvrti modul uključuje šest programa koji integrišu \emph{Optimizer} u IBM-ov sistem upravljanja zalihama dijelova. %PIMS je sofisticirani informacijski i kontrolni sustav koji sadrži milijune redaka koda
-\end{primjer} 
+ \begin{primjer}\label{primjer:IMBOptimizer}
+ %OR studija  za IBM predstavljena na kraju prošle sekcije je primjer   velikog sistema koji integriše model.
+ Sistem nazvan \emph{Optimizer} pruža optimalnu kontrolu usluga i zaliha rezervnih dijelova u cijeloj IBM-ovoj mreži za distribuciju dijelova u SAD-u. Ona uključuje dva središnja
+ automatizovana skladišta, desetine terenskih distribucijskih centara i stanica za dijelove, te nekoliko hiljada vanjskih (povezanih) lokacija. Vrijednost inventara dijelova koji se održava u ovoj mreži se procijenjuje u milijardama dolara. \emph{Optimizer} se sastoji od četiri glavna modula. Modul sistema predviđanja sadrži nekoliko programa za procjenu stope kvara pojedinih vrsta dijelova. Modul sistema za dostavljanje podataka sastoji se od otprilike 100 programa koji    obrađuju
+ preko 15 GB podataka kako bi se osigurali ulazni podaci za model. Sistem odlučivanja potom rješava model kako bi se optimizovala kontrola zaliha. Rješavanje ovog modela može da traje i po sedmicu dana. Četvrti modul uključuje šest programa koji integrišu \emph{Optimizer} u IBM-ov sistem upravljanja zalihama dijelova. %PIMS je sofisticirani informacijski i kontrolni sustav koji sadrži milijune redaka koda
+  \end{primjer} 
 
-\section{Implementacija}
+ \section{Implementacija}
 
-Nakon što se razvije sistem za primjenu modela, posljednja faza  podrazumijeva upotrebu ovog sistema  na način kako je to propisao poslodavac, kao naručilac ovakvog sistema. Ova faza je ključna jer se ovdje ,,ubiru plodovi rada'' na obje strane. Stoga je važno da osobe zadužene za izradu sistema  učestvuju u  realizaciji ove faze, kako bi se osiguralo da se rješenja modela precizno prevedu u operativni postupak, ali i da bi se otkrili i ispravili svi nedostaci dobijenih rješenja. Uspjeh faze implementacije uveliko zavisi i od podrške poslodavca i uprave. Više je vjerovatno da će osobe uključene u razvoj sistema dobiti podršku ako su dobro informisli poslodavca i podsticli njegovo aktivno učestvovanje tokom razvoja rješenja; dobra komunikacija pomaže da istraživanje postigne ono što je poslodavac i željeo.  Faza implementacije uključuje nekoliko koraka. Prvo,  operativnom rukovodstvu se daje opis novog sistema koji treba da bude usvojen. Dalje, obje strane, i poslodavac i razvojni tim, dijele odgovornost za razvijanje koraka potrebnih za pokretanje sistema. Operativno rukovodstvo zatim nadgleda  osoblje koje je uključeno u proces implementacije, te mu daje detaljna uputstva za korištenje sistema. Time počinje proces primjene sistema u realnim uslovima. Nakon uspješnog uvođenja sistema, očekuje se njegovo aktivno korištenje u narednom periodu. Imajući to na umu, određene osobe iz razvojnog tima treba da nadgledaju iskustva korisnika sistema radi utvrđivanja koje izmjene u budućnosti bi trebalo uraditi u sklopu  sistema u cilju njegovog lakšeg korištenja.  Tokom vremenskog perioda u kojem se koristi novi sistem, važno je i dalje dobijati povratne informacije o funkcionisanju sistema, te provjeravati da li su pretpostavke o modelu i dalje zadovoljene. Kada se pojave značajna odstupanja od originalnih pretpostavki modela, model treba ponovno pregledati i eventualno izvršiti korekcije. Nakon završetka projekta, potrebno je   dovoljno jasno i precizno dokumentovati  metodologiju izrade cjelokupnog sistema, kako bi se čitav posao mogao ponoviti. Repliciranje bi trebalo
-biti dio profesionalnog i etičkog kodeksa projektovanja (informacionih) sistema. %Ovo je stanje osobito važno kada se proučavaju kontroverzna pitanja javne politike. 
+ Nakon što se razvije sistem za primjenu modela, posljednja faza  podrazumijeva upotrebu ovog sistema  na način kako je to propisao poslodavac, kao naručilac ovakvog sistema. Ova faza je ključna jer se ovdje ,,ubiru plodovi rada'' sa obje strane. Stoga je važno da osobe zadužene za izradu sistema  učestvuju u  realizaciji ove faze, kako bi se osiguralo da se rješenja modela precizno prevedu u operativni postupak, ali i da bi se otkrili i ispravili svi nedostaci dobijenih rješenja. Uspjeh faze implementacije uveliko zavisi i od podrške poslodavca i uprave. Više je vjerovatno da će osobe uključene u razvoj sistema dobiti podršku ako su dobro informisli poslodavca i podsticli njegovo aktivno učestvovanje tokom razvoja rješenja; dobra komunikacija pomaže da istraživanje postigne ono što je poslodavac i želieo.  Faza implementacije uključuje nekoliko koraka. Prvo,  operativnom rukovodstvu se daje opis novog sistema koji treba da bude usvojen za korištenje. Dalje, obje strane, i poslodavac i razvojni tim, dijele odgovornost za razvijanje koraka potrebnih za pokretanje sistema. Operativno rukovodstvo zatim nadgleda  osoblje koje je uključeno u proces implementacije, te mu daje detaljna uputstva za korištenje sistema. Time počinje proces primjene sistema u realnim uslovima. Nakon uspješnog uvođenja sistema, očekuje se njegovo aktivno korištenje u narednom periodu. Imajući to na umu, određene osobe iz razvojnog tima treba da nadgledaju iskustva korisnika sistema radi utvrđivanja koje izmjene u budućnosti bi trebalo uraditi u sklopu  sistema u cilju njegovog lakšeg korištenja.  Tokom vremenskog perioda u kojem se koristi novi sistem, važno je i dalje dobijati povratne informacije o funkcionisanju sistema, te provjeravati da li su pretpostavke o modelu i dalje zadovoljene. Kada se pojave značajna odstupanja od originalnih pretpostavki modela, model treba ponovno pregledati i eventualno izvršiti korekcije. Nakon završetka projekta, potrebno je   dovoljno jasno i precizno dokumentovati  metodologiju izrade cjelokupnog sistema, kako bi se čitav posao mogao ponoviti. Repliciranje bi trebalo
+ biti dio profesionalnog i etičkog kodeksa projektovanja (informacionih) sistema.  %Ovo je stanje osobito važno kada se proučavaju kontroverzna pitanja javne politike. 
 
-\begin{primjer} Vratimo se na realni  IBM projekat pomenut u Primjeru~\ref{primjer:IMBOptimizer}.  Tri su se glavna faktora pokazala posebno važnim za uspješan završetak projekta. Prvi je   uključivanje korisničkog tima i (operativnog) rukovodstva koji su savjetovali razvojni tim tokom trajanja   projekta. U vrijeme faze implementacije, operativno rukovodstvo imalo je snažan  uticaj i naglašavana je važnost instaliranja \emph{Optimizer}-a u  funkcionalna područja poslovanja IBM-a. Drugi faktor uspjeha je dobijanje povratne informacije  većeg broja korisnika sistema. To je pomoglo u identifikovanju problematičnih tačaka u sistemu, koje su ispravljene prije potpune implementacije. 
-Treći faktor je taj da je novi sistem  uvođen postepeno, fazu po fazu, uz pažljivo testiranje u svakoj fazi, kako bi se uklonile veće greške, prije nego što  je sistem   pušten za upotrebu na  globalnom nivou.  
-\end{primjer}
-\vspace{0.5cm}
+ \begin{primjer} Vratimo se na realni  IBM projekat pomenut u Primjeru~\ref{primjer:IMBOptimizer}.  Tri su se glavna faktora pokazala posebno važnim za uspješan završetak projekta. Prvi je   uključivanje korisničkog tima i (operativnog) rukovodstva koji su savjetovali razvojni tim tokom trajanja   projekta. U vrijeme faze implementacije, operativno rukovodstvo imalo je snažan  uticaj i naglašavana je važnost instaliranja \emph{Optimizer}-a u  funkcionalna područja poslovanja IBM-a. Drugi faktor uspjeha je dobijanje povratne informacije  većeg broja korisnika sistema. To je pomoglo u identifikovanju problematičnih tačaka u sistemu, koje su ispravljene prije potpune implementacije. 
+ Treći faktor je taj da je novi sistem  uvođen postepeno, fazu po fazu, uz pažljivo testiranje u svakoj fazi, kako bi se uklonile veće greške, prije nego što  je sistem   pušten za upotrebu na  globalnom nivou.  
+ \end{primjer}
+ \vspace{0.5cm}
 
-Ostatak ove knjige je fokusiran na  matematičke modele i odgovarajuće metode za njihovo rješavanje. Ovim poglavljem smo objasnili, a kroz neke primjere i ilustrovali, da konstrukcija modela složenih problema ne sadrži samo ova dva koraka, već su oni  dio cjelokupnog OR procesa. Treba imati na umu da su sve faze vrlo važne za provođenje uspješnog OR projekta. Predlažemo da se nakon izučavanja algoritama za rješavanja modela, čitalac vrati na ovo poglavlje u cilju što jasnije slike razvoja potpunog OR projekta zasnovanog na kompleksnim procesima u praksi.  OR zahtijeva značajnu količinu domišljatosti, saradnje i komunikacije, kreativnosti i inovativnosti, tako da u praksi i ne postoji jedan standardni postupak kojeg bi se timovi trebali pridržavati pri razvijaju sistema zasnovanih na operacionim istraživanjima. %Prethodni opis može da se promatra kao model koji otprilike pokazuje koliko je uspješan ILI se provode studije. 
+ Ostatak ove knjige je fokusiran na  matematičke modele i odgovarajuće metode za njihovo rješavanje. Ovim poglavljem smo objasnili, a kroz neke primjere i ilustrovali, da konstrukcija modela složenih problema ne sadrži samo ova dva koraka, već su oni  dio cjelokupnog OR procesa. Treba imati na umu da su sve faze vrlo važne za provođenje uspješnog OR projekta. Predlažemo da se nakon izučavanja algoritama za rješavanja modela, čitalac vrati na ovo poglavlje u cilju što jasnije slike razvoja potpunog OR projekta zasnovanog na kompleksnim procesima u praksi.  OR zahtijeva značajnu količinu domišljatosti, saradnje i komunikacije, kreativnosti i inovativnosti, tako da u praksi i ne postoji jedan standardni postupak kojeg bi se timovi trebali pridržavati pri razvijaju sistema zasnovanih na operacionim istraživanjima. %Prethodni opis može da se promatra kao model koji otprilike pokazuje koliko je uspješan ILI se provode studije. 
 %\newpage
 
-\chapter{Osnove linearnog programiranja} \label{chp:lp}
+ \chapter{Osnove linearnog programiranja} \label{chp:lp}
   
-  Razvoj linearnog programiranja počinje sredinom dvadesetog vijeka. Sovjetski matematičar i ekonomista Leonid Kantorovič je tokom Drugog svjetskog rata formulisao problem ekvivalentan problemu linearnog programiranja u cilju boljeg upravljanja resursima i smanjenja vojnih troškova. Neposredno nakon Drugog svjetskog rata, američki matematičar Džordž Dencig razvija čuveni simpleks algoritam, čime se otvara prostor za efikasno rješavanje problema linearnog programiranja. U periodu koji je uslijedio, pa sve do danas, linearno programiranje se koristi kao standardan alat za rješavanje raznih problema u industriji i ekonomiji uopšte, što je dovelo do   milionskih ušteda ogromnom broju kompanija širom svijeta. Stoga se razvoj linearnog programiranja  smatra jednim od najvažnijih naučnih dostignu\-ća XX vijeka.  Napisane su stotine udžbenika o linearnom programiranju kao i hiljade naučnih radova koji ovu paradigmu primjenjuju na probleme iz raznih naučnih i praktičnih domena. 
+   Razvoj linearnog programiranja počinje sredinom dvadesetog vijeka. Sovjetski matematičar i ekonomista Leonid Kantorovič je tokom Drugog svjetskog rata formulisao problem ekvivalentan problemu linearnog programiranja u cilju boljeg upravljanja resursima i smanjenja vojnih troškova. Neposredno nakon Drugog svjetskog rata, američki matematičar Džordž Dencig razvija čuveni simpleks algoritam, čime se otvara prostor za efikasno rješavanje problema linearnog programiranja. U periodu koji je uslijedio, pa sve do danas, linearno programiranje se koristi kao standardan alat za rješavanje raznih problema u industriji i ekonomiji uopšte, što je dovelo do   milionskih ušteda ogromnom broju kompanija širom svijeta. Stoga se razvoj linearnog programiranja  smatra jednim od najvažnijih naučnih dostignu\-ća XX vijeka.  Napisane su stotine udžbenika o linearnom programiranju kao i hiljade naučnih radova koji ovu paradigmu primjenjuju na probleme iz raznih naučnih i praktičnih domena. 
 
 
 Linearno programiranje koristi matematički model za opisivanje problema. Pridjev ,,linearno'' podrazumijeva da su  matematičke funkcije korištene u modelu linearne funkcije. Riječ ,,programiranje'' se ne odnosi na računarsko programiranje, već je to sinonim za planiranje i optimizaciju. Dakle, linearno programiranje uključuje planiranje aktivnosti u cilju postizanja optimalnog rezultata, tj. rezultata koji najbolje postiže navedeni cilj (prema matematičkom modelu) među svim mogućim alternativama.  Za rješavanje problema linearnog programiranja razvijeno je dosta efikasnih metoda. Iako jedan od nastarijih,  \emph{simpleks metod} se i danas koristi za rješavanje problema velikih dimenzija te je zaslužan za ogroman uticaj linearnog  programiranja u raznim oblastima nauke i privrede.
 
-\begin{primjer}\label{primjer:graficki} U ovom primjeru opisujemo jedan industrijski projekat 
-naziva {WYNDOR--GLASS CO projekat}, ilustrujući kako OR  može da, upotrebom linearnog programiranja, riješi ozbiljne probleme u industriji.
- \end{primjer}
-Firma \texttt{WYNDOR--GLASS} proizvodi visokokvalitetne staklene proizvode, uključujući prozore i staklena vrata. Postoje tri pogona. Aluminijski okviri i okovi izrađuju se u pogonu 1, drveni okviri izrađuju se u pogonu 2, a pogon 3 proizvodi staklo i sastavlja proizvode.
-Zbog pada zarade, rukovodstvo firme   odlučilo je da izmijeni liniju proizvoda koje nudi. Neprofitabilni proizvodi se ukidaju, oslobađajući proizvodne kapacitete za lansiranje dva nova proizvoda sa velikim prodajnim potencijalom:
-\begin{itemize}
-    \item Proizvod 1: Staklena vrata od 2$m$ sa aluminijskim okvirom;
-    \item Proizvod 2: Dvostruka drvena vrata sa okvirom visine 1.5$m$.
-\end{itemize}
-Uslovi i zahtjevi proizvodnje su sljedeći:
-\begin{itemize}
-    \item Proizvod 1 zahtijeva   korištenje proizvodnih kapaciteta u pogonima 1 i 3, ali ne koristi postrojenje 2; 
-    \item Proizvod 2 za proizvodnju koristi  pogone 2 i 3. 
-\end{itemize}
+ \begin{primjer}\label{primjer:graficki} U ovom primjeru opisujemo jedan industrijski projekat 
+ naziva {WYNDOR--GLASS CO projekat}, ilustrujući kako OR  može da, upotrebom linearnog programiranja, riješi ozbiljne probleme u industriji.
+  \end{primjer}
+ Firma \texttt{WYNDOR--GLASS} proizvodi visokokvalitetne staklene proizvode, uključujući prozore i staklena vrata. Postoje tri pogona. Aluminijski okviri i okovi izrađuju se u pogonu 1, drveni okviri izrađuju se u pogonu 2, a pogon 3 proizvodi staklo i sastavlja proizvode.
+ Zbog pada zarade, rukovodstvo firme   odlučilo je da izmijeni liniju proizvoda koje nudi. Neprofitabilni proizvodi se ukidaju, oslobađajući proizvodne kapacitete za lansiranje dva nova proizvoda sa velikim prodajnim potencijalom:
+ \begin{itemize}
+     \item Proizvod 1: Staklena vrata od 2$m$ sa aluminijskim okvirom;
+     \item Proizvod 2: Dvostruka drvena vrata sa okvirom visine 1.5$m$.
+ \end{itemize}
+ Uslovi i zahtjevi proizvodnje su sljedeći:
+ \begin{itemize}
+     \item Proizvod 1 zahtijeva   korištenje proizvodnih kapaciteta u pogonima 1 i 3, ali ne koristi postrojenje 2; 
+     \item Proizvod 2 za proizvodnju koristi  pogone 2 i 3. 
+ \end{itemize}
     
-    Rukovodstvo kompanije je došlo do zaključka da bi kompanija mogla prodati sve proizvode koje je u mogućnosti da proizvede u svojim pogonima. Međutim, budući da   oba proizvoda koriste proizvodni kapacitet u postrojenju 3, nije očigledno jasno koja bi kombinacija proizvodnje dva proizvoda bila najisplativija. %Stoga je formiran tim za proučavanje ovog pitanja, te davanja adekvatnog odgovora.
+     Rukovodstvo kompanije je došlo do zaključka da bi kompanija mogla prodati sve proizvode koje je u mogućnosti da proizvede u svojim pogonima. Međutim, budući da   oba proizvoda koriste proizvodni kapacitet u postrojenju 3, nije očigledno jasno koja bi kombinacija proizvodnje dva proizvoda bila najisplativija. %Stoga je formiran tim za proučavanje ovog pitanja, te davanja adekvatnog odgovora.
 
-Nakon razgovora sa upravom, utvrđeni su glavni ciljevi istraživanja. Definicija  (idealizovanog) problema koji treba da se riješi je sljedeća:
-\begin{itemize}
-    \item Utvrditi  stope proizvodnje  ova dva proizvoda kako bi se maksimizovala ukupna dobit, koja je podložna ograničenjima u  proizvodnim kapacitetima koji su dostupni u sva tri pogona. 
-    \item Svaki proizvod se proizvodi u serijama od po 20 komada, tako da se stopa proizvodnje definiše kao broj serija proizvedenih na nivou jedne sedmice. 
-    \item Dopuštena je bilo koja kombinacija stope proizvodnje koja zadovoljava ograničenja, uključujući i slučaj da se ne proizvede niti jedan od (dva) proizvoda kao i slučaj da se proizvede maksimalan broj jednog (od dva) proizvoda na osnovu utvrđenih kapaciteta.
-\end{itemize}
+ Nakon razgovora sa upravom, utvrđeni su glavni ciljevi istraživanja. Definicija  (idealizovanog) problema koji treba da se riješi je sljedeća:
+ \begin{itemize}
+     \item Utvrditi  stope proizvodnje  ova dva proizvoda kako bi se maksimizovala ukupna dobit, koja je podložna ograničenjima u  proizvodnim kapacitetima koji su dostupni u sva tri pogona. 
+     \item Svaki proizvod se proizvodi u serijama od po 20 komada, tako da se stopa proizvodnje definiše kao broj serija proizvedenih na nivou jedne sedmice. 
+     \item Dopuštena je bilo koja kombinacija stope proizvodnje koja zadovoljava ograničenja, uključujući i slučaj da se ne proizvede niti jedan od (dva) proizvoda kao i slučaj da se proizvede maksimalan broj jednog (od dva) proizvoda na osnovu utvrđenih kapaciteta.
+ \end{itemize}
 
-U cilju razvijanja modela, neophodno je prikupiti sljedeće informacije:
-\begin{itemize}
-		\item[($i$)]   Broj radnih sati u sedmici dostupan u svakom pogonu za proizvodnju proizvoda.  
-	\item[($ii$)]   Broj radnih sati koji je neophodno utrošiti  za proizvodnju jedne serije proizvoda u svakom pogonu.	\item[($iii$)] Dobit po proizvedenoj seriji svakog novog proizvoda. Odlučeno je da je dobit svake dodatne proizvedene serije približno konstantna, bez ozbira na ukupan broj proizvedenih serija.
+ U cilju razvijanja modela, neophodno je prikupiti sljedeće informacije:
+ \begin{itemize}
+	 	\item[($i$)]   Broj radnih sati u sedmici dostupan u svakom pogonu za proizvodnju proizvoda.  
+ 	\item[($ii$)]   Broj radnih sati koji je neophodno utrošiti  za proizvodnju jedne serije proizvoda u svakom pogonu.
+ 		\item[($iii$)] Dobit po proizvedenoj seriji svakog novog proizvoda. Odlučeno je da je dobit svake dodatne proizvedene serije približno konstantna, bez ozbira na ukupan broj proizvedenih serija.
 	
-\end{itemize} 
+ \end{itemize} 
 
-Budući da značajniji troškovi za pokretanje proizvodnje i promovisanje novih proizvoda nisu postojali, ukupna dobit je aproksimirana dobiti po proizvedenoj seriji koja je pomnožena sa brojem serija proizvodnje.  
+ Budući da značajniji troškovi za pokretanje proizvodnje i promovisanje novih proizvoda nisu postojali, ukupna dobit je aproksimirana dobiti po proizvedenoj seriji koja je pomnožena sa brojem serija proizvodnje.  
 
 
-Dalje, trebalo je procijeniti konstante (parametre)  u modelu; ovo je ostvareno u komunikaciji između uprave firme i tima zaduženog za rješavanje problema. Pomoć stručnog osoblja iz raznih odjela firme je odigrala ključnu ulogu u dobijanju razumnih procjena za konstante. 
- Osoblje u proizvodnom odjelu   je obezbijedilo informacije o podacima za stavku ($i$). Za procjenu slučaja ($ii$), ključna je bila analiza proizvodnih inženjera koji su uključeni u dizajniranje proizvodnih procesa novih proizvoda. Analizirajući podatke o resursima i uključivanjem  marketinškog odjela firme,  data je procjena za slučaj ($iii$). Tabela~\ref{tab:procjene-1} pokazuje sve ove procjene. 
+ Dalje, trebalo je procijeniti konstante (parametre)  u modelu; ovo je ostvareno u komunikaciji između uprave firme i tima zaduženog za rješavanje problema. Pomoć stručnog osoblja iz raznih odjela firme je odigrala ključnu ulogu u dobijanju razumnih procjena za konstante. 
+  Osoblje u proizvodnom odjelu   je obezbijedilo informacije o podacima za stavku ($i$). Za procjenu slučaja ($ii$), ključna je bila analiza proizvodnih inženjera koji su uključeni u dizajniranje proizvodnih procesa novih proizvoda. Analizirajući podatke o resursima i uključivanjem  marketinškog odjela firme,  data je procjena za slučaj ($iii$). Tabela~\ref{tab:procjene-1} pokazuje sve ove procjene. 
 
 
 \begin{table}[!ht]
@@ -553,8 +554,8 @@ Dalje, trebalo je procijeniti konstante (parametre)  u modelu; ovo je ostvareno 
 
 U nastavku konstruišemo model problema. Uvedimo promjenljivu $x_1$ za broj serija proizvoda 1 proizvedenog na sedmičnom nivou, te $x_2$ broj serija proizvoda 2 koji je proizveden na sedmičnom nivou. Funkcija cilja je jednaka $f(x_1, x_2) = 3000 x_1 + 5000 x_2$, dok se rješenja traže pod ograničenjima
 \begin{itemize}
-    \item $x_1, x_2 \geq 0$
-    \item  $x_1 \leq 4, 2 x_2 \leq 12$
+     \item $x_1, x_2 \geq 0$ 
+     \item  $x_1 \leq 4, 2 x_2 \leq 12$
     \item $3 x_1 + 2 x_2 \leq 18$
 \end{itemize}
 
@@ -584,77 +585,77 @@ Ovaj se postupak često naziva \emph{grafičkom metodom za linearno programiranj
     \includegraphics[width=180pt, height=180pt]{fig2.eps}
     \caption{Dodavanje $f = c$ i nalazak optimuma transliranjem po dopustivom regionu.}
     \label{fig:fig2}
-\end{figure}
+ \end{figure}
 
-U ovoj sekciji govorimo o standardnoj formi modela linearnog programiranja. Uvedimo neke ključne pojmove koji se obično koriste u modelovanju i rješavanju problema linearnog programiranja. 
+ U ovoj sekciji govorimo o standardnoj formi modela linearnog programiranja. Uvedimo neke ključne pojmove koji se obično koriste u modelovanju i rješavanju problema linearnog programiranja. 
 
-Pođimo od pojmova \textit{resursi} i \textit{aktivnosti}. Pretpostavimo da u našem razmatranju imamo $m$ resursa i $n$ aktivnosti. Neki standardni resursi su vrijeme, novac, oprema, mašine, radnici itd. Aktivnosti uključuju ulaganje novca u određene projekte, dodjelu posla nekoj mašini ili radniku,  dostavljanje robe iz jednog u drugo mjesto, itd. 
- Najčešći tip primjene linearnog programiranja uključuje povezivanje resursa i aktivnosti, odnosno dodjelu resursa određenim aktivnostima. Dostupna količina svakog resursa je najčešće ograničena, pa aktivnosti trebaju biti pažljivo raspoređene u odnosu na odgovarajuće resurse.  Utvrđivanje ove raspodjele uključuje odabir vrsta i nivoa aktivnosti za koje se postiže najbolja moguća vrijednost  funkcije cilja. Funkcija cilja može da predstavlja mjeru dobiti (profita), mjeru vremena realizacije aktivnosti, mjeru broja proizvedenih proizvoda, itd.
+ Pođimo od pojmova \textit{resursi} i \textit{aktivnosti}. Pretpostavimo da u našem razmatranju imamo $m$ resursa i $n$ aktivnosti. Neki standardni resursi su vrijeme, novac, oprema, mašine, radnici itd. Aktivnosti uključuju ulaganje novca u određene projekte, dodjelu posla nekoj mašini ili radniku,  dostavljanje robe iz jednog u drugo mjesto, itd. 
+  Najčešći tip primjene linearnog programiranja uključuje povezivanje resursa i aktivnosti, odnosno dodjelu resursa određenim aktivnostima. Dostupna količina svakog resursa je najčešće ograničena, pa aktivnosti trebaju biti pažljivo raspoređene u odnosu na odgovarajuće resurse.  Utvrđivanje ove raspodjele uključuje odabir vrsta i nivoa aktivnosti za koje se postiže najbolja moguća vrijednost  funkcije cilja. Funkcija cilja može da predstavlja mjeru dobiti (profita), mjeru vremena realizacije aktivnosti, mjeru broja proizvedenih proizvoda, itd.
 
-U nastavku navodimo notaciju koja se najčešće koriste u formiranju opšteg oblika modela linearnog programiranja (LP):
+ U nastavku navodimo notaciju koja se najčešće koriste u formiranju opšteg oblika modela linearnog programiranja (LP):
 
-\begin{itemize}
-    \item $f$: funkcija cilja (dobiti) 
-    \item $x_j$: količina aktivnosti $j$ ($j = 1,\ldots,n$);
-    \item $c_j$: povećanje u profitu ako se količna aktivnosti $j$ poveća za jedan; %jediničnu vrijednost;
-    \item $b_i$: ukupna količina resursa $i$ ($i=1,\ldots,m$) koja je dozvoljena za pridruživanje aktivnostima;
-    \item $a_{ij}$: količina resursa $i$ koja se uzima od strane aktivnosti $j$.
-\end{itemize}
-Prema ovoj notaciji, matematički model problema linearnog programiranja ima sljedeću postavku:
+ \begin{itemize}
+     \item $f$: funkcija cilja (dobiti) 
+     \item $x_j$: količina aktivnosti $j$ ($j = 1,\ldots,n$);
+     \item $c_j$: povećanje u profitu ako se količna aktivnosti $j$ poveća za jedan; %jediničnu vrijednost;
+     \item $b_i$: ukupna količina resursa $i$ ($i=1,\ldots,m$) koja je dozvoljena za pridruživanje aktivnostima;
+     \item $a_{ij}$: količina resursa $i$ koja se uzima za aktivnost $j$.
+ \end{itemize}
+ Prema ovoj notaciji, matematički model problema linearnog programiranja ima sljedeću postavku:
   
-\begin{align} 
-      &\max  c_1 x_1 + \cdots + c_n x_n  \label{form:LP-1}\\
-      & \mbox{t.d.} \nonumber \\
-      & a_{i1}x_1 + a_{i2} x_{2} + \cdots + a_{in}x_n \leq b_i,\ i=1,\ldots,m \label{form:LP-2} \\
-      %&\vdots \nonumber \\
-      %& a_{m1}x_1 + a_{12} x_{m2} + \cdots + a_{mn}x_n \leq b_m \label{form:LP-3} \\
-      & x_i \geq 0,\ i=1,\ldots,n.\label{form:LP-4}
-\end{align}
+ \begin{align} 
+       &\max  c_1 x_1 + \cdots + c_n x_n  \label{form:LP-1}\\
+       & \mbox{t.d.} \nonumber \\
+       & a_{i1}x_1 + a_{i2} x_{2} + \cdots + a_{in}x_n \leq b_i,\ i=1,\ldots,m \label{form:LP-2} \\
+       %&\vdots \nonumber \\
+       %& a_{m1}x_1 + a_{12} x_{m2} + \cdots + a_{mn}x_n \leq b_m \label{form:LP-3} \\
+       & x_i \geq 0,\ i=1,\ldots,n.\label{form:LP-4}
+ \end{align}
 
 Postavka (\ref{form:LP-1})--(\ref{form:LP-4}) se još naziva i \emph{standardna forma} problema linearnog programiranja. Funkcija (\ref{form:LP-1}) se naziva funkcija cilja koju je potrebno maksimizovati pod uslovima (\ref{form:LP-2}), koji se nazivaju \emph{funkcionalna ograničenja}. Ograničenja (\ref{form:LP-4}) se nazivaju \emph{nenegativna ograničenja}. 
 
-Kompaktiniji oblik standardne forme LP-a je dat sa:
-\begin{align}
-    & \max c^T x  \label{eq:LP-o1}\\
-    & \mbox{t.d.} \nonumber \\
-    &  A x \leq b \label{eq:LP-c1} \\
-    & x \geq 0 \label{eq:LP-c2},
-\end{align}
+ Kompaktiniji oblik standardne forme LP-a je dat sa:
+ \begin{align}
+     & \max c^T x  \label{eq:LP-o1}\\
+     & \mbox{t.d.} \nonumber \\
+     &  A x \leq b \label{eq:LP-c1} \\
+     & x \geq 0 \label{eq:LP-c2},
+ \end{align}
 
-gdje je matrica $A \in \mathbb{R}^{m \times n}$, vektori  $x,c \in \mathbb{R}^n$ i vektor $b \in \mathbb{R}^{m}$.
+ gdje je matrica $A \in \mathbb{R}^{m \times n}$, vektori  $x,c \in \mathbb{R}^n$ i vektor $b \in \mathbb{R}^{m}$.
 
-Treba imati na umu da se ograničenja (\ref{eq:LP-c1}) mogu zapisati i na sljedeći način:
-\begin{itemize}
-    \item $Ax \geq b$;
-    \item $Ax = b$;
-    \item neke od promjenljivih $x_i\leqslant 0$.
-\end{itemize}
-Bilo koji problem koji koristi neke od prethodna tri ograničenja predstavlja i dalje problem linearnog programiranja. Dodavajući tzv. \emph{izravnavajuće promjenljive} (eng. slack variables) $s \in \mathbb{R}^m$ u linearni program sa ograničenjima $Ax \leq b$, dobijamo linearni program sa ograničenjima $Ax + s = b, s \geq 0$. Isto tako, linearni program sa ograničenja $Ax \geq b$ se može transformisati u ograničenja sa jednakostima dodavanjem izravnavajućih promjenljivih kao $Ax - s = b, s\geq 0$.
-
- Forma linearnog programa sa ograničenjima $Ax = b$ se naziva \emph{kanonska forma} linearnog programiranja. 
- 
- Takođe, ako u linearnom
-programu postoji promjenljiva koja ne zadovoljava uslov nenegativnosti, ona se može zamijeniti razlikom dve nove nenegativne promenljive. Kanonski oblik linearnog programiranja je pogodan za efikasno izvođenje Gausovih transformacija  nad matricom problema, što se, na primjer, koristi u glavnim iteracijama simpleks metoda.   %, jer je svaki broj razlika dva nenegativna broja.
-
- U nastavku koristimo sljedeću terminologiju linearnog programiranja (LP):
-\begin{itemize}
-    \item \emph{Rješenje} u standardnom matematičkom značenju najčešće označava rezultat izračunavanja, odnosno krajnje rješenje posmatranog problema. Međutim, u rješavanju problema LP-a to  nije slučaj. Bilo koja specifikacija vrijednosti promjenljivih  $(x_1,\ldots, x_n)$ se smatra rješenjem, bez obzira da li je riječ o željenom krajnjem rješenju ili čak o nekom rješenju koje i ne zadovoljava sva ograničenja. U zavisnosti od toga, rješenja  možemo podijeliti na:
-    \begin{itemize}
-        \item \emph{dopustiva rješenja} (eng. \emph{feasible solution}) -- podrazumijevaju ona rješenja koja zadovoljavaju sva ograničenja u modelu;
-        \item \emph{nedopustiva rješenja} (eng. \emph{infreasible solution}) -- ona rješenja koja ne zadovoljavaju barem jedno od ograničenja u modelu. 
-    \end{itemize}
-  \item \emph{Dopustivi region}: označava skup svih rješenja koja su dopustiva. Ovo je prostor koji pretražujemo u svrhu pronalaska najboljeg rješenja modela. Takođe, može se desiti da problem nema niti jedno dopustivo rješenje. Za takav problem se kaže da je \emph{nedopustiv} (eng. infeasible). 
-  \item \emph{Optimalno rješenje} je ono rješenje iz dopustivog regiona za koje je funkcija cilja najveća (pod pretpostavkom da maksimizujemo funkciju cilja), odnosno najmanja (pod pretpostavkom da minimizujemo funkciju cilja). Treba napomenuti da optimalno rješenje ne mora biti jedinstveno.  Npr. na Slici~\ref{fig:multi_solution} je prikazan dopustiv region sa ograničenjima $x_1, x_2 \geq 0, x_1 \leq 4 $ i $3 x_1 + 2 x_2 \leq 14$, dok je funkcija cilja, koja se maksimizuje, data sa $f = 3x_1 + 2 x_2$.  
+ Treba imati na umu da se ograničenja (\ref{eq:LP-c1}) mogu zapisati i na sljedeći način:
+ \begin{itemize}
+     \item $Ax \geq b$;
+     \item $Ax = b$;
+     \item neke od promjenljivih $x_i\leqslant 0$.
  \end{itemize}
+ Bilo koji problem koji koristi neke od prethodna tri ograničenja predstavlja i dalje problem linearnog programiranja. Dodavajući tzv. \emph{izravnavajuće promjenljive} (eng. slack variables) $s \in \mathbb{R}^m$ u linearni program sa ograničenjima $Ax \leq b$, dobijamo linearni program sa ograničenjima $Ax + s = b, s \geq 0$. Isto tako, linearni program sa ograničenja $Ax \geq b$ se može transformisati u ograničenja sa jednakostima dodavanjem izravnavajućih promjenljivih sa $Ax - s = b, s\geq 0$.
+
+  Forma linearnog programa sa ograničenjima $Ax = b$ se naziva \emph{kanonska forma} linearnog programiranja. 
  
- \begin{figure}[!htb]
+  Takođe, ako u linearnom
+ programu postoji promjenljiva koja ne zadovoljava uslov nenegativnosti, ona se može zamijeniti razlikom dve nove nenegativne promenljive. Kanonski oblik linearnog programiranja je pogodan za efikasno izvođenje Gausovih transformacija  nad matricom problema, što se, na primjer, koristi u glavnim iteracijama simpleks metoda.   %, jer je svaki broj razlika dva nenegativna broja.
+
+  U nastavku koristimo sljedeću terminologiju linearnog programiranja (LP):
+ \begin{itemize}
+     \item \emph{Rješenje} u standardnom matematičkom značenju najčešće označava rezultat izračunavanja, odnosno krajnje rješenje posmatranog problema. Međutim, u rješavanju problema LP-a to  nije slučaj. Bilo koja specifikacija vrijednosti promjenljivih  $(x_1,\ldots, x_n)$ se smatra rješenjem, bez obzira da li je riječ o željenom krajnjem rješenju ili čak o nekom rješenju koje i ne zadovoljava sva ograničenja. U zavisnosti od toga, rješenja  možemo podijeliti na:
+     \begin{itemize}
+         \item \emph{dopustiva rješenja} (eng. \emph{feasible solution}) -- podrazumijevaju ona rješenja koja zadovoljavaju sva ograničenja u modelu;
+         \item \emph{nedopustiva rješenja} (eng. \emph{infreasible solution}) -- ona rješenja koja ne zadovoljavaju barem jedno od ograničenja u modelu. 
+     \end{itemize}
+   \item \emph{Dopustivi region}: označava skup svih rješenja koja su dopustiva. Ovo je prostor koji pretražujemo u svrhu pronalaska najboljeg rješenja modela. Takođe, može se desiti da problem nema niti jedno dopustivo rješenje. Za takav problem se kaže da je \emph{nedopustiv} (eng. infeasible). 
+   \item \emph{Optimalno rješenje} je ono rješenje iz dopustivog regiona za koje je funkcija cilja najveća (pod pretpostavkom da maksimizujemo funkciju cilja), odnosno najmanja (pod pretpostavkom da minimizujemo funkciju cilja). Treba napomenuti da optimalno rješenje ne mora biti jedinstveno.  Npr. na Slici~\ref{fig:multi_solution} je prikazan dopustiv region sa ograničenjima $x_1, x_2 \geq 0, x_1 \leq 4 $ i $3 x_1 + 2 x_2 \leq 14$, dok je funkcija cilja, koja se maksimizuje, data sa $f = 3x_1 + 2 x_2$.  
+  \end{itemize}
+ 
+  \begin{figure}[!htb]
      \centering
      \includegraphics[width=160pt, height=160pt]{fig3.eps}
      \caption{LP sa više optimalnih rješenja.}
      \label{fig:multi_solution}
- \end{figure}
+   \end{figure}
  
- Za razliku od nedopustivog problema, može se desiti i sasvim druga situacija, da je problem \emph{neograničen} (eng. unbounded). U tom slučaju vrijednosti neke od promjenljivih se mogu povećavati tako da funkcija cilja (u problemu maksimizacije) teži ka beskonačno, tj. nije ograničena odozgo nekom vrijednošću. %Za takav problem kažemo da je \emph{neograničen}.
+ Za razliku od nedopustivog problema, može se desiti i sasvim druga situacija, da je problem \emph{neograničen} (eng. unbounded). U tom slučaju vrijednosti neke od promjenljivih se mogu povećavati, da se ne naruši dopustivost, a tako da funkcija cilja (u problemu maksimizacije) teži ka beskonačno, tj. nije ograničena odozgo nekom vrijednošću. %Za takav problem kažemo da je \emph{neograničen}.
  
  Primjer neograničenog problema možemo vidjeti na Slici~\ref{fig:unbounded_solution}, gdje je potrebno maksimizovati funkciju $f = 3 x_1 + x_2$, pod uslovima $0\leq x_1 \leq 4$, te $x_2 \geq 0$. Kao što se može vidjeti,  kako vrijednost promjenljive $x_2$ teži ka beskonačnosti, tako i vrijednost funkcije $f$ teži ka beskonačnosti.
  
