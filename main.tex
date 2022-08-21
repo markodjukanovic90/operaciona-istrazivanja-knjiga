@@ -293,65 +293,65 @@ Na početku razvoja operacionih istraživanja kao naučne discipline nije bilo s
 U praksi, problemi iz oblasti operacionih istraživanja mogu biti prilično teški za egzaktno rješavanje, što podrazumijeva da je za dobijanje optimalnog rješenja potrebno jako puno vremenskih i memorijskih resursa. Za potrebe dobijanja brzog (ne obavezno optimalnog) rješenja  koriste se \emph{pohlepni algoritmi}. Oni obično ne mogu 
 da garantuju optimalnost, ali su   po svojoj prirodi jako brzi u nalaženju dovoljno dobrog rješenja. Jedan od najpoznatijih pohlepnih algoritama je \emph{Dajkstrin} algoritam za problem pronalaska najkraćeg puta koji, pri određenim uslovima, nalazi i optimalno rješenje. 
 
-\begin{figure}
-    \centering
+ \begin{figure}
+    \centering 
     \includegraphics[width=\textwidth,height=250pt]{overview.eps}
     \caption{Četiri nivoa apstrakcije pri rješavanu problema operacionih istraživanja.}
     \label{fig:OR_four_levels}
-\end{figure}
+\end{figure} 
 %https://towardsdatascience.com/the-big-picture-of-operations-research-8652d5153aad
 
 
 U nastavku ćemo detaljno objasniti svaki od nivoa apstrakcije u operacionim istraživanjima, najvažnije paradigme modelovanja i najznačajnije algoritme za rješavanje navedenih problema. Odnosi između sva četiri nivoa apstrakcije su dati na Slici~\ref{fig:OR_four_levels}. 
  Na kraju knjige će biti riječi o opštem rješavaču, koji je u savremenoj parksi jedan od standardnih alata za rješavanje problema iz oblasti operacionih istraživanja.
  
- 
+  
 \chapter{Principi modelovanja u Operacionim istraživanjima}
 Uobičajeno je izraz Operaciona istraživanja zapisivati akronimom OR (eng. \emph{operations research}). 
 U ovoj glavi ćemo objasniti   glavne faze tipičnog OR-a, koje se realizuje u  komercijalne svrhe. Faze OR-a možemo sumirati u sljedeće (preklapajuće) faze: 
-\begin{itemize}
-    \item Definisanje problema i sakupljanje relevantnih podataka.
-    \item Formulisanje matematičkog modela datog problema.
-    \item Razvoj računarske procedure koja će pronaći rješenja datog problema na osnovu modela.
-    \item Testiranje modela i, po potrebi, rad na njegovom poboljšanju.
-    \item Pripremu za primjenu modela, kako je definisano od strane uprave koja naručuje/finansira sistem baziran na OR.
-    \item Implementaciju i upotrebu rješenja.
-\end{itemize}
- U nastavku ćemo opisati svaku od ovih faza.
+ \begin{itemize}
+     \item Definisanje problema i sakupljanje relevantnih podataka.
+     \item Formulisanje matematičkog modela datog problema.
+     \item Razvoj računarske procedure koja će pronaći rješenja datog problema na osnovu modela.
+     \item Testiranje modela i, po potrebi, rad na njegovom poboljšanju.
+     \item Pripremu za primjenu modela, kako je definisano od strane korisnika koji naručuje/finansira sistem baziran na OR.
+     \item Implementaciju i upotrebu rješenja.
+ \end{itemize}
+  U nastavku ćemo opisati svaku od ovih faza.
  
- \section{Definisanje problema i sakupljanje relevantnih podataka}
+  \section{Definisanje problema i sakupljanje relevantnih podataka}
  
-Većina praktičnih problema, sa kojima se susrećemo  su u početku opisani na neprecizan način. Stoga, prvi zadatak podrazumijeva dobro definisanje  cilja/namjene  (eng. \emph{objectives}) samog zadatka koji treba riješiti, uslova pod kojim je rješenje problema validno,  vremenskih ograničenja za donošenje odluka i moguće alternativne scenarije.  Definisanje problema na dovoljno dobar način je značajan korak, jer uveliko utiče na relevantnost zaključaka istraživanja. Izvlačenje odgovora ili dobijanje rezultata iz pogrešne postavke polaznog problema gotovo sigurno neće dovesti do ispravnog rješenja.  
+ Većina praktičnih problema, sa kojima se susrećemo  su u početku opisani na neprecizan način. Stoga, prvi zadatak podrazumijeva dobro definisanje  cilja/namjene  (eng. \emph{objectives}) samog zadatka koji treba riješiti, uslova pod kojim je rješenje problema validno,  vremenskih ograničenja za donošenje odluka i moguće alternativne scenarije.  Definisanje problema na dovoljno dobar način je značajan korak, jer uveliko utiče na relevantnost zaključaka istraživanja. Izvlačenje odgovora ili dobijanje rezultata iz pogrešne postavke polaznog problema gotovo sigurno neće dovesti do ispravnog rješenja.  
 
-Zbog toga je važno da osoba (ili više osoba) koja modeluje problem,  ne radi samostalno, već blisko sarađuje sa poslodavcem. Osoba koja je zadužena za formulisanje problema, savjetuje se sa poslodavcem za koga se razvija sistem, poslije čega se izrađuje detaljna tehnička analiza u vezi problema i izlažu preporuke za rješenje  poslodavcu, koji je ključan u donošenju odluka.   
-
-
-Izvještaj koji se predaje poslodavcu, najčešće sadrži osnovno rješenje, ali i brojne alternative koje odgovaraju različitim uslovima ili  vrijednostima parametara problema  (npr. balansiranje između cijene i dobiti, stabilnosti poslovanja i dobiti, itd.). Na poslodavcu je da vrednuje prijedloge, uzimajući u obzir  niz faktora, nakon čega se donosi odluka zasnovanu na najboljoj procjeni. Važno je da osoba zadužena za izradu rješenja bude sličnog mišljenja kao i naručilac. %Utvrđivanje odgovarajućih ciljeva je  neophodno za ispravno definisanje problema.  Zato je potrebna neprestana komunikacija sa poslodavcem, koja je donosilac odluka u vezi sistema koji se razvija, da bi se što prije pristupilo  realizaciji svakog od ciljeva.
+ Zbog toga je važno da osoba (ili više osoba) koja modeluje problem,  ne radi samostalno, već blisko sarađuje sa poslodavcem. Osoba koja je zadužena za formulisanje problema, savjetuje se sa poslodavcem za koga se razvija sistem, poslije čega se izrađuje detaljna tehnička analiza u vezi problema i izlažu preporuke za rješenje  poslodavcu, koji je ključan u donošenju odluka.   
 
 
-OR istraživanje podrazumijevano traži ona rješenja koja su optimalna, ali se optimalnost može odnositi samo za određenu komponentu procesa za koji se sistem razvija. Prema tome, ciljevi koji su formulisani bi trebali da traže optimalna rješenja čitavog procesa koji se optimizuje.  U praksi, ovakav zahtjev nije trivijalan, te se problem svodi na razmatranje dijela inicijalno definisanog problema (ili njegove pojednostavljene varijante). Drugim riječima, analiza bi mogla postati pretjerano glomazna ako bi zadani ciljevi bili previše uopšteni. Umjesto toga, ciljevi bi trebalo da budu specifični, koliko god je to moguće, ali da se pri tome obuhvate glavni ciljevi donosilaca odluka. 
+ Izvještaj koji se predaje poslodavcu, najčešće sadrži osnovno rješenje, ali i brojne alternative koje odgovaraju različitim uslovima ili  vrijednostima parametara problema  (npr. balansiranje između cijene i dobiti, stabilnosti poslovanja i dobiti, itd.). Na poslodavcu je da vrednuje prijedloge, uzimajući u obzir  niz faktora, nakon čega se donosi odluka zasnovanu na najboljoj procjeni. Važno je da osoba zadužena za izradu rješenja bude sličnog mišljenja kao i naručilac. %Utvrđivanje odgovarajućih ciljeva je  neophodno za ispravno   definisanje problema.   Zato je potrebna neprestana komunikacija sa poslodavcem, koja je donosilac odluka u vezi sistema koji se razvija, da bi se što prije pristupilo  realizaciji svakog od ciljeva.
 
 
-Jedan od mogućih pristupa zaobilaženja problema pod-optimizacije je korištenje dugoročne maksimizacije profita. Riječ ,,dugoročno'' ukazuje da cilj pruža fleksibilnost u razmatranju aktivnosti koje ne donose momentalnu dobit, ali omogućuju krajnji profit. Ovakav cilj je dovoljno specifičan, a ipak i dovoljno širok da obuhvati osnovni cilj   organizacija, dolazak do (zadovoljavajuće) zarade. Zapravo, svi drugi legitimni ciljevi ovakvih organizacija mogu se podvesti u prethodno pomenuti. Međutim, u praksi   organizacije rijetko koriste ovaj pristup. Velik broj   organizacija prilagođava zadovoljavajući profit sa drugim ciljevima, umjesto fokusiranja na maksimizovanje dugoročne zarade. Neki od takvih ciljeva su: izgradnja stabilnog profita, povećanje udjela na tržištu, zadržavanje stabilnosti cijena, povećanje uticaja kompanije, povećanje ponude proizvoda, itd. 
-Dalje, treba napomenuti i dodatna razmatranja, poput društvenih odgovornosti, koje nisu direktno motivisane profitom.  
+ OR istraživanje podrazumijevano tražid ona rješenja koja su optimalna, ali se optimalnost može odnositi samo za određenu komponentu procesa za koji se sistem razvija. Prema tome, ciljevi koji su formulisani bi trebali da traže optimalna rješenja čitavog procesa koji se optimizuje.  U praksi, ovakav zahtjev nije trivijalan, te se problem svodi na razmatranje dijela inicijalno definisanog problema (ili njegove pojednostavljene varijante). Drugim riječima, analiza bi mogla postati pretjerano glomazna ako bi zadani ciljevi bili previše uopšteni. Umjesto toga, ciljevi bi trebalo da budu specifični, koliko god je to moguće, ali da se pri tome obuhvate glavni ciljevi donosilaca odluka. 
 
-Postoji nekoliko strana kojih se direktno tiču poslovi firme: (1) vlasnici (dioničari, itd.), koji žele profit;   (2) zaposlenici koji žele stalno zaposlenje, stabilan posao, te razumne plate; (3) kupci koji žele proizvod zadovoljavajućeg kvaliteta po razumnoj cijeni;
-(4) dobavljači, koji žele integritet i razumnu prodajnu cijenu proizvoda; i
-(5) vlada, koja želi plaćanje poreza i razmjenu dobara. Sve ove strane na određeni način utiču na poslovanje firme, ali i obrnuto.  Stoga, dok je glavna odgovornost uprave profit (što, na kraju krajeva, koristi svim stranama), napomenimo da se treba sagledati i širi društveni uticaj ovakvog procesa. 
+
+ Jedan od mogućih pristupa zaobilaženja problema pod-optimizacije je korištenje dugoročne maksimizacije profita. Riječ ,,dugoročno'' ukazuje da cilj pruža fleksibilnost u razmatranju aktivnosti koje ne donose momentalnu dobit, ali   omogućuju krajnji profit. Ovakav cilj je dovoljno specifičan, a ipak i dovoljno širok da obuhvati osnovni cilj   organizacija, dolazak do (zadovoljavajuće) zarade. Zapravo, svi drugi legitimni ciljevi ovakvih organizacija mogu se podvesti u prethodno pomenuti. Međutim, u praksi   organizacije rijetko koriste ovaj pristup. Velik broj   organizacija prilagođava zadovoljavajući profit sa drugim ciljevima, umjesto fokusiranja na maksimizovanje dugoročne zarade. Neki od takvih ciljeva su: izgradnja stabilnog profita, povećanje udjela na tržištu, zadržavanje stabilnosti cijena, povećanje uticaja kompanije, povećanje ponude proizvoda, itd. 
+ Dalje, treba napomenuti i dodatna razmatranja, poput društvenih odgovornosti, koje nisu direktno motivisane profitom.  
+
+ Postoji nekoliko strana kojih se direktno tiču poslovi firme: (1) vlasnici (dioničari, itd.), koji žele profit;   (2) zaposlenici koji žele stalno zaposlenje, stabilan posao, te razumne plate; (3) kupci koji žele proizvod zadovoljavajućeg kvaliteta po razumnoj cijeni;
+ (4) dobavljači, koji žele integritet i razumnu prodajnu cijenu proizvoda; i
+ (5) vlada, koja želi plaćanje poreza i razmjenu dobara. Sve ove strane na određeni način utiču na poslovanje firme, ali i obrnuto.  Stoga, dok je glavna odgovornost uprave profit (što, na kraju krajeva, koristi svim stranama), napomenimo da se treba sagledati i širi društveni uticaj ovakvog procesa. 
  
- Osobe zadužene za modelovanje obično provode dosta vremena prikupljajući relevantne podatke o problemu. Mnoge podatke je potrebno prikupiti kako bi se došlo do razumijevanja problema i dolaska do potrebnih ulaznih podataka matematičkog modela, koji se konstruiše u narednoj fazi.  Mnogo  podataka često nije dostupni, bilo zbog toga što informacije nikada nisu sačuvane ili su zastarjele ili su pak sačuvane u neočekivanim formatima. Potrebno je komunicirati sa poslodavcem, kako bi pronašli sve podatke značajne za projekat. Međutim, dio podataka mogu biti prilično ,,neprecizan'', tj. to su grube procjene zasnovane na iskustvenim pretpostavkama. Tada je neophodno izdvojiti značajnu količinu vremena za poboljšanje  
-preciznosti podataka, da bi se proces nastavio sa najboljim mogućim resursima i smanjila mogućnost pravljenja grešaka. 
+  Osobe zadužene za modelovanje obično provode dosta vremena prikupljajući relevantne podatke o problemu. Mnoge podatke je potrebno prikupiti kako bi se došlo do razumijevanja problema i dolaska do potrebnih ulaznih podataka matematičkog modela, koji se konstruiše u narednoj fazi.  Mnogi  podataci često nisu dostupni, bilo zbog toga što informacije nikada nisu sačuvane ili su zastarjele ili su pak sačuvane u neočekivanim formatima. Potrebno je komunicirati sa poslodavcem, kako bi pronašli sve podatke značajne za projekat. Međutim, dio podataka mogu biti prilično ,,neprecizan'', tj. to su grube procjene zasnovane na iskustvenim pretpostavkama. Tada je neophodno izdvojiti značajnu količinu vremena za poboljšanje  
+ preciznosti podataka, da bi se proces nastavio sa najboljim mogućim resursima i smanjila mogućnost pravljenja grešaka. 
 
-\begin{primjer}
- OR studija je urađena za policijsku upravu jednog grada %San Francisca 
-za razvoj računarskog sistema za optimalno raspoređivanje i postavljanje patrolnih službenika. U procjeni   ove studije, identifikovani su sljedeći glavni ciljevi:
-\begin{enumerate}
-    \item  Održavati visok nivo sigurnosti građana.
-    \item  Održavati visok nivo zadovoljstva u policiji.
-     \item Minimizovati troškove operacija.
-\end{enumerate}
-Da bi se postigao prvi cilj, policijska uprava i gradska vlada  su zajednički radili na uspostavljanju željenog nivoa zaštite.  Matematički model je razvijen na način da se postizanje potrebnog nivoa zaštite realizuje pomoću funkcije cilja.  Da bi se postigao drugi cilj, u samom modelu je uključen i uslov o ravnomjerno raspoređenim radnim satima među policajcima. Treći cilj je ugrađen u model usvajanjem dugoročnog cilja smanjenja broja policajaca potrebnih za postizanje prva dva cilja. 
-\end{primjer}
+  \begin{primjer}
+  OR studija je urađena za policijsku upravu jednog grada %San Francisca 
+ za razvoj računarskog sistema za optimalno raspoređivanje i postavljanje patrolnih službenika. U procjeni   ove studije, identifikovani su sljedeći glavni ciljevi:
+ \begin{enumerate}
+     \item  Održavati visok nivo sigurnosti građana.
+     \item  Održavati visok nivo zadovoljstva u policiji.
+      \item Minimizovati troškove operacija.
+ \end{enumerate}
+ Da bi se postigao prvi cilj, policijska uprava i gradska vlada  su zajednički radili na uspostavljanju željenog nivoa zaštite.  Matematički model je razvijen na način da se postizanje potrebnog nivoa zaštite realizuje pomoću funkcije cilja.  Da bi se postigao drugi cilj, u samom modelu je uključen i uslov o ravnomjerno raspoređenim radnim satima među policajcima. Treći cilj je ugrađen u model usvajanjem dugoročnog cilja smanjenja broja policajaca potrebnih za postizanje prva dva cilja. 
+ \end{primjer}
 \section{Proces formulisanja matematičkog modela}
 
 Nakon što se definiše problem odlučivanja, sljedeća faza je formulisanje tog problema u obliku koji je odgovarajući za dalju analizu. Uobičajeni OR pristup se sastoji od konstrukcije matematičkog modela koji na najbolji način odgovara realnom problemu. Prije nego što objasnimo opšti proces konstruisanja takvog modela, recimo nešto o modelima uopšte, a posebno o matematičkim modelima.
@@ -5672,24 +5672,24 @@ MST ima primjene u različitim oblastima teorije i prakse. Izdvajamo neke od nji
  \item[($iii$)] Klaster analiza, konkretno za $k$-klaster problem, se može posmatrati kao problem nalaženja MST-a, a potom brisanja $k-1$ najskupljih grana iz MST rješenja. 
  \end{enumerate}
 
-\subsubsection{Primov algoritam}
+\subsubsection{Primov algoritam} 
 
-Primov algoritam je jedan od osnovnih algoritama koji se, zbog svoje važnosti, ali i jednostavnosti, izučava u teoriji algoritama. Navešćemo ključne korake algoritma, bez detaljnije analize validnosti algoritma. Algoritam se sastoji od sljedećih koraka:
+Primov algoritam je jedan od osnovnih algoritama koji se, zbog svoje važnosti, ali i jednostavnosti, izučava u teoriji algoritama.  Navešćemo ključne korake algoritma, bez detaljnije analize validnosti algoritma. Algoritam se sastoji od sljedećih koraka:
 
-\begin{enumerate}
-	\item Kreirati skup \emph{mstSkup}=$\emptyset$ da bi se pratili svi čvorovi koji su već uključeni u MST.
-	\item Dodijeliti vrijednost svakom čvoru u ulaznom grafu: inicijalizovati vrijednosti na +$\infty$.   Dodijeli vrijednost  0 za čvor koji se prvi ubacuje u MST. 
-	Ideja dodjele vrijednosti čvorovima koji još nisu prisutni u skupu MST je u efikasnom odabiru grane minimalne težine, koja treba da se doda u trenutno parcijalno rješenje. %Dakle, ažurirane vrijednosti težina grana pomažu da se u razmatranje uključe upravo one grane spajaju jedan čvor koji je već uključen u MST i jedan čvor koji nije uključen u MST.
-	\item Dok god \emph{mstSkup} ne uključi sve čvorove iz $V$, ponavljamo sljedeće korake:
-	\begin{itemize}
-		\item Izabrati čvor $u\notin\emph{mstSkup} $ sa minimalnom vrijednošću (pohlepni korak);
-		\item \emph{mstSkup} = \emph{mstSkup}$\cup \{u\}$ (proširivanje parcijalnog rješenja);
-		\item Ažurirati vrijednosti svih susjeda čvora $u$ na sljedeći način:
-		     Za svaki susjed $v$, ako je težina grane $uv$ manja od
-		             trenutne vrijednosti za $v$, dodijeliti  čvoru $v$ vrijednost $w(uv)$. 		    
+\begin{enumerate} 
+	\item Kreirati skup \emph{mstSkup}=$\emptyset$ da bi se pratili svi čvorovi koji su već uključeni u MST. 
+	 \item Dodijeliti vrijednost svakom čvoru u ulaznom grafu: inicijalizovati vrijednosti na +$\infty$.   Dodijeli vrijednost  0 za čvor koji se prvi ubacuje u MST. 
+	Ideja dodjele vrijednosti čvorovima koji još nisu prisutni u skupu MST je u efikasnom odabiru grane minimalne težine, koja treba da se doda u trenutno parcijalno rješenje. %Dakle, ažurirane vrijednosti težina grana pomažu da se u razmatranje uključe upravo one  grane spajaju jedan čvor koji je već uključen u MST i jedan čvor koji nije uključen u MST.  
+	\item Dok god \emph{mstSkup} ne uključi sve čvorove iz $V$, ponavljamo sljedeće korake: 
+	\begin{itemize} 
+		\item Izabrati čvor $u\notin\emph{mstSkup} $ sa minimalnom vrijednošću (pohlepni korak); 
+		 \item \emph{mstSkup} = \emph{mstSkup}$\cup \{u\}$ (proširivanje parcijalnog rješenja);
+		 \item Ažurirati vrijednosti svih susjeda čvora $u$ na sljedeći način:
+		      Za svaki susjed $v$, ako je težina grane $uv$ manja od
+		              trenutne vrijednosti za $v$, dodijeliti  čvoru $v$ vrijednost $w(uv)$. 		    
 	        
-	\end{itemize}
-\end{enumerate}
+	 \end{itemize}
+ \end{enumerate}
 
 
  \emph{Vremenska složenost}. Ako se za predstavljanje grafa koristi lista susjedstva, složenost algoritma je $O(|V|^2)$. Ako  koristimo prioritetni red za nalaženje grane minimalne težine, dobijamo složenost od $O( |E| \log(|V|))$. 
@@ -5697,12 +5697,12 @@ Primov algoritam je jedan od osnovnih algoritama koji se, zbog svoje važnosti, 
 
 
 \subsubsection{Kruskalov algoritam}
-
+ 
 Kruskalov algoritam radi po principu izbora grana na osnovu njihove težine, gdje se u svakom koraku koristi pohlepna strategija da se bira odgovarajuća grana najmanje težine.
-Koraci algoritma su sljedeći.
+Koraci algoritma su sljedeći. 
  
 
-\begin{enumerate}
+\begin{enumerate} 
 	
 	\item Sortirati sve grane polaznog grafa u neopadajućem poretku; neka je tako formirana lista $S$ svih grana u grafu.
 	\item Postaviti $\emph{mstSkup} = \emptyset$. 
@@ -5712,7 +5712,7 @@ Koraci algoritma su sljedeći.
 \end{enumerate} 
 
  \emph{Vremenska složenost}. Kruskalov algoritam se izvršava u $O(|E|\log |E|)$ ili $O(|E|\log |V|)$ vremenu. Sortiranje grana uzima $O(|E| \log|E|)$ vremena. Potom, za svaku granu 
-se primjenjuje operacija nalaženja i dodavanja grane u skup \emph{mst}. Ove dvije operacije se izvršavaju u $O(\log |V|)$ vremenu. Dakle, ukupno vrijeme izvršavanja algoritma je $O(|E|\log |E| + |E|\log |V|)$. Kako je $|E|=O(|V|^2)$, dobijamo složenost $O(|E| \mathrm{log}(|V|))$. 
+se primjenjuje operacija nalaženja i dodavanja grane u skup \emph{mst}. Ove dvije operacije se izvršavaju u $O(\log |V|)$ vremenu. Dakle, ukupno vrijeme izvršavanja algoritma je $O(|E|\log |E| + |E|\log |V|)$.   Kako je $|E|=O(|V|^2)$, dobijamo složenost $O(|E| \mathrm{log}(|V|))$. 
 
 \subsection{Dajkstrin algoritam}
 
