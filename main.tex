@@ -804,6 +804,7 @@ Konveksne funkcije imaju lijepa svojstva sa stanovišta teorije i u kombinaciji 
 \end{thm}
 
 \begin{comment}
+	
 \begin{proof}  
  Neka je $x^* \in S$ tačka lokalnog minimuma funkcije $f$. Prema tome, postoji $r >0$ za što vrijedi $f(x^*) \leq f(x)$, za sve $x \in S \cap K(x^*, r)$. Odaberimo vektor $x \neq x^* \in S$ i definišimo vektor 
  $z(\lambda) = \lambda x + (1 - \lambda) x^*$ za neki $\lambda \in [0, 1]$. Kako je $S$ konveksan, slijedi da je $z \in S$.  Definišimo $\lambda_0 <  \min\{1, r ||x - x^*||^{-1}\}$, $\lambda_0 \in (0, 1]$. Tada za svaki $\lambda \in (0, \lambda_0)$ vrijedi 
@@ -824,28 +825,29 @@ Konveksne funkcije imaju lijepa svojstva sa stanovišta teorije i u kombinaciji 
 % (Assumptions of Linear Programming)
 \\ 
 U sljedeće dvije definicije definišimo pojmove poliedra, hiperravni i poluprostora. 
-\end{comment}
 
-\begin{definition}
+\end{comment} 
+
+ \begin{definition}
    Neka je $a\in \mathbb{R}^n $ i $b \in \mathbb{R}$. Skup $\{ x \in \mathbb{R}^n \mid a^T x = b \}$ se naziva hiperravan u $\mathbb{R}^n$ čiji je vektor normale $a$, dok se $\{ x \in \mathbb{R}^n \mid a^T x \geq b \}$ naziva poluprostor.  
 \end{definition}
 
 
-Pokažimo sada da je poliedar svakog LP-a konveksan skup. To je važna karakteristika, jer se uslovima problema LP-a formira upravo poliedar kao skup dopustivih rješenja.
+ Pokažimo sada da je poliedar svakog LP-a konveksan skup. To je važna karakteristika, jer se uslovima problema LP-a formira upravo poliedar kao skup dopustivih rješenja.
 
 
-\begin{prop} Vrijede sljedeće tvrdnje: \\
+ \begin{prop} Vrijede sljedeće tvrdnje: \\
   ($i$)  Poluprostor u $\mathbb{R}^n$ je konveksan skup.  \\
   ($ii$) Presjek konačno mnogo konveksnih skupova je konveksan skup. 
 \end{prop}
 
-\begin{proof}
+ \begin{proof}
   ($i$) Neka je dat poluprostor $P = \{ x \in \mathbb{R}^n \mid a^T x \geq b \}$. Uzmimo $x, y \in P$, te neko $\lambda \in [0, 1]$. Treba da pokažemo da konveksna kombinacija ova dva vektora   pripada $P$. Iz $x \in P$, slijedi  $a^T x \geq b$. Takođe, kako je $y \in P$, onda  je  $a^T y \geq b$. 
   Sada  imamo sljedeće:
-  \begin{align}
+   \begin{align}
       a^T (\lambda x) \geq \lambda b \\
       a^T ((1-\lambda) y) \geq (1-\lambda) b 
-  \end{align}
+   \end{align}
   Sabirajući posljednje dvije nejednakosti, dobijamo 
   \begin{equation}
       a^T( \lambda x + (1 - \lambda) y ) \geq b,
@@ -856,19 +858,19 @@ Pokažimo sada da je poliedar svakog LP-a konveksan skup. To je važna karakteri
   $\lambda x + (1 - \lambda) y \in S_i$, za svaki $i=1,\ldots,n$. Prema tome, vrijedi $ \lambda x + (1-\lambda) y \in \cap_{i=1}^n S_i$, odakle slijedi da je $\cap_{i=1}^n S_i$ konveksan. 
 \end{proof}
 
-Iz prethodne propozicije vrijedi sljedeća posljedica.
+ Iz prethodne propozicije vrijedi sljedeća posljedica.
 
-\begin{poslje}
-Poliedar $P$ nekog problema LP-a je konveksan skup.	
-\end{poslje}
+ \begin{poslje}
+    Poliedar $P$ nekog problema LP-a je konveksan skup.	
+ \end{poslje}
  
  \begin{proof}
-   Definišimo $S_i:= \{(x_1,\ldots, x_n) \in \mathbb{R}^n \mid c^T x \geq b_i \}$, gdje je  $c = (a_{i,1}, \ldots, a_{i, n}),$  $ i=1,\ldots, m$. Kako je $\cap_{i=1}^m S_i$ poliedar koji odgovara problemu LP-a, na osnovu prethodne propozicije ($ii$), slijedi tvrdnja. 
+   Definišimo $S_i:= \{(x_1,\ldots, x_n) \in \mathbb{R}^n \mid C_i^T x \geq b_i \}$, gdje je  $C_i = (a_{i,1}, \ldots, a_{i, n}),$  $ i=1,\ldots, m$. Kako je $\cap_{i=1}^m S_i$ poliedar koji odgovara problemu LP-a, na osnovu prethodne propozicije ($ii$), slijedi tvrdnja. 
  \end{proof}
 
  Kako je poliedar konveksan skup, Teorema~\ref{thm:globalopt} nam garantuje da, uz pretpostavku da postoji lokalni minimum (maksimum), onda postoji  i globalni minimum (maksimum), odnosno optimalno rješenje zadanog problema LP-a. 
  
- Nadalje, formalno definišimo pojmove ekstremne tačke (eng. extreme point), vrha (eng. vertex) i baznog dopustivog rješenja koji igraju bitnu ulogu u teoriji linearnog programiranja. 
+  Nadalje, formalno definišimo pojmove ekstremne tačke (eng. extreme point), vrha (eng. vertex) i baznog dopustivog rješenja koji igraju bitnu ulogu u teoriji linearnog programiranja. 
 
 
 \begin{definition}
@@ -957,7 +959,7 @@ Pokažimo sada da  vrhovi, ekstremne tačke poliedra i bazna dopustiva rješenja
           c^T x = \sum_{i \in I} a_i^T x \geq c^T x^*  
        \end{equation}
      Iz toga vidimo da je $x^*$ rješenje LP problema minimizacije. Jednakost u (\ref{eq:3_impl_1}) vrijedi ako i samo ako je $a_i^T x = b_i$ za sve $i \in I$. Kako je $x^*$ BDR, broj linearno nezavisnih vektora $a_i, i \in I$ koji su  aktivni u $x^*$ je jednak $n$, pa sistem $a_i^T x = b_i, i \in I$ ima jedinstveno rješenje koje je upravo $x^*$. Prema tome, pokazano je da postoji vektor $c \in \mathbb{R}^n$ za koji vrijedi $c^T x > c^T x^*$ za sve $x \neq x^*$, $x \in P$, odake, na osnovu definicije vrha poliedra, slijedi tvrdnja. 
-\end{proof}
+\end{proof} 
 U nastavku ćemo dati potrebne uslove za postojanje BDR-a, tj. 
  ekstremne tačke poliedra. Takođe, daćemo i postupak za konstrukciju BDR-a, te ćemo uvesti pojam degenerativnog rješenja.
 
@@ -980,7 +982,7 @@ Iz prethodne teoreme možemo zaključiti sljedeće.  Da bismo  konstruisali bazn
     	          (x_B)_i, j \in \{ p_i \mid i=1,\ldots, m\}
     \end{cases},$$  čime dobijamo bazno rješenje. 
 
-\end{enumerate}
+\end{enumerate} 
  
 Promjenljive $x_{p_1},\ldots, x_{p_m}$ se nazivaju \emph{bazne promjenljive}, dok vektore $A_{p_1}, \ldots, A_{p_m}$ nazivamo \emph{baznim vektorima}. Indekse $p_1,\ldots, p_m$ nazivamo \emph{bazni indeksi}, a matricu $B$ matricom baze. 
 
@@ -1016,13 +1018,13 @@ U nastavku govorimo o egzistenciji optimalnog rješenja problema LP-a. Definiši
  \begin{definition}
        Poliedar $P$ sadrži pravac akko postoji $x \in P$ i $d \in \mathbb{R}^n \setminus \{0\}$ tako da je $x + \lambda d \in P$, za sve $\lambda \in \mathbb{R}$. 
  \end{definition}
-Primejer pravca koji se pojavljuje u poliedru je dat na Slici~\ref{fig:extreme-ray}. 
-\begin{figure}[!htb]
+Primjer pravca koji postoji u poliedru je dat na Slici~\ref{fig:extreme-ray}. 
+  \begin{figure}[!htb]
 	\centering
 	\includegraphics[width=200pt,height=200pt]{extremerays.eps}
 	\caption{Pravac u poliedru}
 		\label{fig:extreme-ray}
-\end{figure}
+   \end{figure}  
 
 Sljedeću teoremu, koja daje vezu između ekstremnih tačaka poliedra i dopustivih pravaca, navodimo bez dokaza.
 
