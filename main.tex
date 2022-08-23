@@ -1092,33 +1092,33 @@ svaku   promjenljivu ćemo zapisati kao razliku dvije pozitivne promjenljive, tj
 
 \emph{Min-max problem}. Neka je dat sljedeći model: 
 \begin{align*}
-	&\min_{x} \max_{k \in K} \sum_{j \in J} c_{kj} x_j \\
-	&{\mbox{t.d.}} \nonumber \\
-	& \sum_{j \in J} a_{ij} x_j \leq b_i\  \forall i \in I \\
-	& x_j \geq 0\ \forall j \in J.
-\end{align*}
-Ovaj  model se transformiše u model LP-a uvođenjem promjenljive 
- $$z=\max_{k \in K} \sum_{j \in J} c_{kj}x_j,$$
-  koja označava maksimalnu cijenu. Da bi se, nakon uvedene smjene, ograničila vrijednost promjenljive $z$, u početni model potrebno je uključiti sljedeća ograničenja: 
-\begin{eqnarray}
-	\sum_{j \in J} c_{kj} x_j \leq z\ \forall k \in K.
-\end{eqnarray}
-Kada se $z$ minimizuje, ova ograničenja osiguravaju da je $z$ veće ili jednako  $\sum_{j \in J} c_{kj}x_j$, za sve $k$. Optimalna vrijednost $z$ neće biti veća od maksimuma svih $\sum_{j \in J} c_{kj}x_j$, jer  $z$ minimizujemo. Prema tome, optimalna vrijednost promjenljive $z$ će težiti da bude što manja moguća i jednaka maksimalnoj cijeni nad skupom $K$. Dakle, početni model se transformiše u:
+	 &\min_{x} \max_{k \in K} \sum_{j \in J} c_{kj} x_j \\
+	 &{\mbox{t.d.}} \nonumber \\
+	 & \sum_{j \in J} a_{ij} x_j \leq b_i\  \forall i \in I \\
+	 & x_j \geq 0\ \forall j \in J.
+ \end{align*}
+ Ovaj  model se transformiše u model LP-a uvođenjem promjenljive 
+  $$z=\max_{k \in K} \sum_{j \in J} c_{kj}x_j,$$
+   koja označava maksimalnu cijenu. Da bi se, nakon uvedene smjene, ograničila vrijednost promjenljive $z$, u početni model potrebno je uključiti sljedeća ograničenja: 
+ \begin{eqnarray}
+ 	\sum_{j \in J} c_{kj} x_j \leq z\ \forall k \in K.
+ \end{eqnarray}
+ Kada se $z$ minimizuje, ova ograničenja osiguravaju da je $z$ veće ili jednako  $\sum_{j \in J} c_{kj}x_j$, za sve $k$. Optimalna vrijednost $z$ neće biti veća od maksimuma svih $\sum_{j \in J} c_{kj}x_j$, jer  $z$ minimizujemo. Prema tome, optimalna vrijednost promjenljive $z$ će težiti da bude što manja moguća i jednaka maksimalnoj cijeni nad skupom $K$. Dakle, početni model se transformiše u:
 \begin{align*}
-	&\max z \\
-    &{\mbox{t.d.}} \nonumber \\
-	&\sum_{j \in J} a_{ij} x_j \leq b_i\  \forall i \in I \\ 
-	& 	 \sum_{j \in J} a_{kj} x_j \leq z\ \forall k \in K \\
-	& x \geq 0.
-\end{align*}
+	&\min z \\
+     &{\mbox{t.d.}} \nonumber \\
+ 	&\sum_{j \in J} a_{ij} x_j \leq b_i\  \forall i \in I \\ 
+ 	& 	 \sum_{j \in J} a_{kj} x_j \leq z\ \forall k \in K \\
+ 	& x \geq 0.
+ \end{align*}
 
 \emph{Razlomljena funkcija cilja}. Neka je dat sljedeći model:
-\begin{align*}
-	& \min \frac{\sum_{j \in J} c_j x_j + \alpha}{ \sum_{j \in J} d_j x_j + \beta} \\
-		& \mbox{t.d.} \nonumber \\
-	& \sum_{j \in J} a_{ij} x_j \leq b_i,  \forall i \in I \\
-	& x_j \geq 0, \forall j \in J.
-\end{align*}
+ \begin{align*}
+ 	& \min \frac{\sum_{j \in J} c_j x_j + \alpha}{ \sum_{j \in J} d_j x_j + \beta} \\
+ 		& \mbox{t.d.} \nonumber \\
+ 	& \sum_{j \in J} a_{ij} x_j \leq b_i,  \forall i \in I \\
+ 	& x_j \geq 0, \forall j \in J.
+ \end{align*}
 Ovdje je funkcija cilja data kao količnik dvije linearne funkcije. Ovakvi modeli su česta pojava u modelovanju finansijskog planiranja. Objasnimo postupak transformacije frakcione funkcije cilja u linearnu. Pretpostavimo da je $\sum_{j \in J}d_j x_j + \beta \neq 0$ za sve tačke iz dopustivog regiona. Glavni trik u transformaciji je uvođenje nove promjenljive $y_j$ i parametra $t$, tako da je $y_j = t x_j$. U nastavku, pretpostavljamo da je imenilac u funkciji cilja pozitivan. Slično je izvođenje i sa negativnim imeniocem, s tim da imamo znak ,,-'' ispred, što će promijeniti znak nejednakosti u ograničenjima krajnjeg modela. Dakle, uvedemo $t = \frac{1}{\sum_{j \in J} d_j x_j + \beta }$. Time dobijamo model
 \begin{align*}
 	&\min \sum_{j \in J} c_j x_j t + \alpha t \\
@@ -1335,15 +1335,15 @@ Za indeks $l$ za koji se postiže ovaj minimum, vrijedi $x_{p_l} + \lambda^* d_{
 
 Može se pokazati sljedeća teorema, koja slijedi iz konstrukcije simpleks metode.
 
-%\fxnote{Marko, ako ja dobro razumijem, ovo je sve tvrdjenje na osnovu prethodne konstrukcije. Milana je pitala da li je prva recenica pretpostavka, ili tvrdnja teoreme}
-\begin{thm}
-	Kolone $A_{p_i}, i\not = l$, $i=1,\ldots,m$ i $A_{j}$ su linearno nezavisne, pa je matrica 
-	$[A_{p_1},\ldots, A_{p_{l-1}}, A_j, A_{p_{l+1}}, \ldots, A_{p_m}]$
-	regularna. Vektor $x + \lambda^* d$ predstavlja bazno dopustivo rješenje problema (\ref{eq:lp_equality_constraint}). 
-\end{thm}
+ 
+ \begin{thm}
+ 	Kolone $A_{p_i}, i\not = l$, $i=1,\ldots,m$ i $A_{j}$ su linearno nezavisne, pa je matrica 
+ 	$[A_{p_1},\ldots, A_{p_{l-1}}, A_j, A_{p_{l+1}}, \ldots, A_{p_m}]$
+ 	regularna. Vektor $x + \lambda^* d$ predstavlja bazno dopustivo rješenje problema (\ref{eq:lp_equality_constraint}). 
+ \end{thm}
 
-Navedimo sada osnovne korake jedne iteracije simpleks metoda:
-\begin{enumerate}
+ Navedimo sada osnovne korake jedne iteracije simpleks metoda:
+ \begin{enumerate}
 	\item Inicijalizacija: za bazne indekse $p_1,\ldots,p_m \in [n]$, riješiti sistem i dobiti bazno dopustivo rješenje $x$. 
 	\item Izračunati doprinos za sve $\overline{c_j} = c_j - c_B^T B^{-1}A_j $
 	$j \in N$. Ako za sve $j$, $\overline{c_j} \geq 0$, optimum je pronađen, pa algoritam prestaje sa radom. Inače, odabrati neki $j$  td. $\overline{c_j}<0$.
@@ -1366,12 +1366,12 @@ Naredna iteracija metode koristi novu bazu i bazno rješenje $y$ i izvodi (po po
 %\end{figure}
 %\fxnote{i ja se slazem da nam je ova slika malo bez veze}
 
-\section{Tabelarni oblik simpleks metoda}
+ \section{Tabelarni oblik simpleks metoda}
 
 
-Simpleks algoritam podrazumijeva stalnu zamjenu jedne kolone baze $B$ nekim nebaznim vektorom u iterativnoj šemi, u cilju smanjenja trenutne vrijednosti ciljne funkcije, dok god je to moguće. 
-U praktičnom računanju, za simpleks metodu se zbog kompaktnosti zapisa,  umjesto transformisanja standardnog oblika LP-a, obično koristi tabelarni prikaz.
-Generički tabelarni  prikaz simpleks metode se može vidjeti u Tabeli~\ref{tab:simplex_tabelau}. Ovakva tabela se naziva  simpleks tabela.
+ Simpleks algoritam podrazumijeva stalnu zamjenu jedne kolone baze $B$ nekim nebaznim vektorom u iterativnoj šemi, u cilju smanjenja trenutne vrijednosti ciljne funkcije, dok god je to moguće. 
+ U praktičnom računanju, za simpleks metodu se zbog kompaktnosti zapisa,  umjesto transformisanja standardnog oblika LP-a, obično koristi tabelarni prikaz.
+ Generički tabelarni  prikaz simpleks metode se može vidjeti u Tabeli~\ref{tab:simplex_tabelau}. Ovakva tabela se naziva  simpleks tabela.
 
 \begin{table}[!ht]
 	\centering
@@ -1386,56 +1386,57 @@ Generički tabelarni  prikaz simpleks metode se može vidjeti u Tabeli~\ref{tab:
 \end{table}
 
 Na osnovu generičke Tabele~\ref{tab:simplex_tabelau} i koraka simpleks metode opisanih u prethodnoj sekciji, izvršavaju se sljedeći koraci:
-\begin{itemize}
-	\item Konstruisati inicijalnu simpleks tabelu sa početnom bazom $B$ i odgovarajuće bazno dopustivo rješenje $x$.
-	\item Posmatrati koeficijente doprinosa $\overline{c_j}$ (posljednja vrsta tabele). Ako su svi $\overline{c_j} \geq 0$, rješenje se ne može dalje popraviti, pa je nađeno optimalno rješenje. U protivnom, odabrati neki indeks $j$ za koji je $\overline{c_j}<0$.
-	\item Posmatrati vektor (kolonu) $u = B^{-1}A_j$. Ako su sve koordinate vektora $u$ negativne, rješenje LP-a je $-\infty$ (funkcija cilja neograničena), algoritam završava sa radom.
-	\item Za svaki $u_i > 0$, računati $x_{p_i}/u_i$, i neka je   ovaj količnik najmanji za indeks $l$. Kolona $A_{j}$ se uključuje u bazu, dok se kolona $A_{p_l}$ isključuje iz baze. 
-	\item Svakom redu simpleks tabele dodati $l$--ti red (pivot red) kojeg množimo odgovarajućim
-	skalarom da bi pivot element (tj. element u presjeku $l$-te vrste i $j$-te kolone) postao 1, a svi ostali elementi u pivot koloni 0.
-\end{itemize}
+ \begin{itemize}
+	\item Konstruisati inicijalnu simpleks tabelu sa početnom bazom $B$ i  odgovarajuće bazno dopustivo rješenje $x$.
+	 \item Posmatrati koeficijente doprinosa $\overline{c_j}$ (posljednja vrsta tabele). Ako su svi $\overline{c_j} \geq 0$, rješenje se ne može dalje popraviti, pa je nađeno optimalno rješenje. U protivnom, odabrati neki indeks $j$ za koji je $\overline{c_j}<0$.
+	 \item Posmatrati vektor (kolonu) $u = B^{-1}A_j$. Ako su sve koordinate vektora $u$ negativne, rješenje LP-a je $-\infty$ (funkcija cilja neograničena), algoritam završava sa radom.
+	 \item Za svaki $u_i > 0$, računati $x_{p_i}/u_i$, i neka je   ovaj količnik najmanji za indeks $l$. Kolona $A_{j}$ se uključuje u bazu, dok se kolona $A_{p_l}$ isključuje iz baze. 
+	 \item Svakom redu simpleks tabele dodati $l$--ti red (pivot red) kojeg množimo odgovarajućim
+	 skalarom da bi pivot element (tj. element u presjeku $l$-te vrste i $j$-te kolone) postao 1, a svi ostali elementi u pivot koloni 0.
+ \end{itemize}
 
-U ovom postupku  može se desiti situacija da postoje dva ili više redova koji su kandidati za uključivanje u bazu. Ako se odabere nepovoljan kandidat, postupak može da proizvede degenerativno BDR ili čak da dovede do ciklusa. 
-Da bi se to spriječilo, Robert Bland (1977. godine) je uveo pravilo za pivotiranje danas poznato pod
-nazivom \emph{Blandovo pravilo} koje glasi:
-\begin{enumerate}
-	\item   Među svim nebaznim promjenljivima koje su pogodne za uključivanje u bazu odaberemo onu najmanjeg indeksa. 
-	\item Među svim baznim promjenljivima koje su pogodne za isključivanje iz baze odaberemo onu sa najmanjim indeksom.
-\end{enumerate}
-Može se pokazati da se poštovanjem ovih pravila osigurava simpleks metoda  završava u konačno mnogo koraka. Treba napomenuti da Blandovo pravilo nije jedino pravilo za izbjegavanje ciklusa. Postoji i leksikografsko pravilo pivotiranja koje, zbog konciznosti, ne objašnjavamo ovdje.  
+ U ovom postupku  može se desiti situacija da postoje dva ili više redova koji su kandidati za uključivanje u bazu. Ako se odabere nepovoljan kandidat, postupak može da proizvede degenerativno BDR ili čak da dovede do ciklusa. 
+ Da bi se to spriječilo, Robert Bland (1977. godine) je uveo pravilo za pivotiranje danas poznato pod
+ nazivom \emph{Blandovo pravilo} koje glasi:
+ \begin{enumerate}
+ 	\item   Među svim nebaznim promjenljivima koje su pogodne za uključivanje u bazu odaberemo onu najmanjeg indeksa. 
+ 	\item Među svim baznim promjenljivima koje su pogodne za isključivanje iz baze odaberemo onu sa najmanjim indeksom.
+ \end{enumerate}
+ Može se pokazati da se poštovanjem ovih pravila   simpleks metoda sigurno završava u konačno mnogo koraka. Treba napomenuti da Blandovo pravilo nije jedino pravilo za izbjegavanje ciklusa. Postoji i leksikografsko pravilo pivotiranja koje, zbog konciznosti, ne objašnjavamo ovdje.  
 
-Obratimo pažnju da se problem minimizacije vrlo lako prevodi u problem maksimizacije sljedećom transformacijom
-$$ \min_{ x \in P} f(x) = - \max_{x \in P}(-f(x)).$$ 
-Prema tome, ako  problem maksimizacije rješavamo simpleks metodom, koraci metoda ostaju isti. Jedina izmjena je u koraku 2, gdje se mijenja znak nejednakosti, jer se mijenja znak koeficijenata u funkciji cilja.  Dakle, posmatraju se indeksi $j$ za koje je $\overline{c_j} > 0$.
+ Obratimo pažnju da se problem minimizacije vrlo lako prevodi u problem maksimizacije sljedećom transformacijom
+ $$ \min_{ x \in P} f(x) = - \max_{x \in P}(-f(x)).$$ 
+ Prema tome, ako  problem maksimizacije rješavamo simpleks metodom, koraci metoda ostaju isti. Jedina izmjena je u koraku 2, gdje se mijenja znak nejednakosti, jer se mijenja znak koeficijenata u funkciji cilja.  Dakle, posmatraju se indeksi $j$ za koje je $\overline{c_j} > 0$.
 
 \section{Primjena simpleks metoda}
 %Kako je standardni poliedar LP-a dat sa svim onim $x \in \mathbb{R}^n$ tako da $Ax \leq (\geq) b$, 
-Transformišimo standardni oblik problema LP-a
+ Transformišimo standardni oblik problema LP-a
 \begin{align*}
-	& \max c^T x  \\
-	& {t.d} \nonumber \\
-	& Ax \leq b \\
-	& x \geq 0\\
-\end{align*}
-na kanonski oblik pogodan simpleks metodi $(A {x} = b)$ dodavanjem ,,izjednačavajućih'' promjenljivih $s$ na sljedeći način:
-\begin{align}
-	&  \max  c^T x   \\
-	& Ax + s =  b \\
-	& x \geq 0, s \geq 0. \\
-\end{align}
-što u matričnom obliku odgovara zapisu
-\begin{align}
-	& \max c^T x  \\
-	& (A | I) \cdot \left (\begin{array}{c}
-		x  \\
-		s 
-	\end{array} \right ) =  b \\
-	& (x, s) \geq 0. \\
-\end{align} 
+ 	& \max c^T x  \\
+ 	& {t.d} \nonumber \\
+ 	& Ax \leq b \\
+ 	& x \geq 0\\
+ \end{align*}
+ na kanonski oblik pogodan simpleks metodi $(A {x} = b)$ dodavanjem ,,izjednačavajućih'' promjenljivih $s$ na sljedeći način:
+ \begin{align}
+ 	&  \max  c^T x   \\
+ 	& Ax + s =  b \\
+ 	& x \geq 0, s \geq 0. \\
+  \end{align}
+  što u matričnom obliku odgovara zapisu
+ \begin{align}
+ 	& \max c^T x  \\
+ 	& (A | I) \cdot \left (\begin{array}{c}
+  		x  \\
+ 		s 
+ 	\end{array} \right ) =  b \\
+ 	& (x, s) \geq 0. \\
+ \end{align} 
 
 \begin{primjer}\label{primjer:simpl1} Neka je dat problem LP-a:
 	\begin{align*}
 		&f= \max x_1 + x_2  \nonumber \\
+		& t.d. \\
 		& x_1 + 3 x_2 \leq 9 \nonumber \\
 		& 2x_1 + x_2 \leq 8  \nonumber \\
 		& x_1, x_2 \geq 0. \nonumber \\
@@ -1509,7 +1510,7 @@ Iz posljednje simpleks tabele (Tabela~\ref{tab:simpleks_tabela3}) se može uoči
 	\item Jedinična matrica $m \times m$   ugrađena u gornju lijevu podmatricu simpleks tabele (blok sa elementima $\overline{a}_{i,j}$) sadrži kolone koje čine vektore baznih promjenljivih.
 	\item U odgovarajućim kolonama u posljednjoj vrsti (ciljna vrsta) se nalaze nule.
 \end{itemize}
-Prema tome, vektori $x_i$, koji su bazni vektori (kolone baze $B$), su napisani preko nebaznih vektora $x_i \in N$. Kako je $x_i  = 0$, za sve $i \in N$, vrijednosti baznih vektora $x_i$, tj. kolona baze $B$, se trivijano izračunavaju.
+Prema tome, vektori $x_i$, koji su bazni (kolone baze $B$), su napisani preko nebaznih vektora $x_i \in N$. Kako je $x_i  = 0$, za sve $i \in N$, vrijednosti baznih vektora $x_i$, tj. kolona baze $B$, se trivijano izračunavaju.
 
 \begin{primjer} Navedimo i primjer jednog linearnog programa koji je neograničen, te ga riješimo simpleks metodom. 
 \end{primjer}
@@ -1691,7 +1692,7 @@ $$ \begin{array}{cccccc|c}
 	-2&1  & 1 & 3 & 0 & 1 & 1 \\ \hline
 	-5 & 0 & 1 & 5 & 0 & 3 & -5 \\
 \end{array}
-$$
+$$  
 Jedini vektor sa negativnim doprinosom u prethodnoj simpleks tabeli je 
 onaj koji odgovara prvoj koloni, pa u njoj i tražimo pivota.  
 Kako se jedino u prvoj vrsti nalazi pozitivan element, koji odgovara vrijednosti pravca $\frac{5}{5}$, jasno je da je pivot $\overline{a}_{1,1}=5$. Pivotiranjem oko ovog elementa, dobijamo tabelu 
@@ -1719,7 +1720,7 @@ $$ \begin{array}{cccc|c}
 	1 & 1 & -1               & -1   & 0 \\
 \end{array}
 $$
-Uradimo sada elementarne transformacije na ovoj tabeli; kandidata za pivota nađimo u 
+Načinimo sada elementarne transformacije na ovoj tabeli; kandidata za pivota nađimo u 
 koloni 3. Jedini element sa pozitivnom vrijednošću je $\overline{a}_{2,3} = \frac{3}{5}$, koji je onda i traženi pivot. 
 Vršeći elementarne transformacije oko pivota, dobijamo tabelu 
 
@@ -1732,7 +1733,7 @@ $$
 Pošto su svi doprinosi svi veći od 0,  našli smo optimalnu simpleks tabelu.  Optimalna rješenja su 
 $x_1=2, x_3=5$, pa je  optimum jednak -3.
 
-\section{Geometrijska interpretacija simpleks metoda}
+\section{= geometrijskoj interpretaciji simpleks metoda}
 
 Sljedeći primjer demonstrira odgovarajuće geometrijske korake (,,šetanje'') po dopustivom regionu, u skladu sa iteracijama simpleks metode.   %pratiti https://faculty.math.illinois.edu/~mlavrov/docs/482-fall-2019/lecture5.pdf (strana 2 i 3) 
 Neka je dat problem:
@@ -1762,7 +1763,7 @@ $$\begin{array}{cccccc| c}
 	s_3  & 3 & 4 & 0 & 0 & 1 & 26 \\ \hline
 	-z  & 2 & 3 & 0 & 0 & 0 & 0 \\
 \end{array}
-$$ 
+$$  
 Kao što je već pomenuto, izjednačavajuće promjenljive čine pogodne bazne promjenljive za početak simpleks metode, jer one formiraju jediničnu podmatricu u gornjoj blok matrici 
 simpleks tabele. Prema tome, bazno rješenje je
 $(x, y, s_1, s_2, s_3) = (0, 0, 3, 2, 26)$, koje je ujedno i dopustivo.
@@ -1975,6 +1976,7 @@ U slučaju da smo, u prvom koraku simpleks metode, umjesto promjenljive $x$ u ba
 	Kako su svi koeficijenti doprinosa ($\overline{c}$ varijable) manje od 0, simpleks metod staje nalazeći optimum koji se dostiže u tački $x = (24, 3, 0)$, i jednak je vrijednosti  $f = 72$.
 \end{comment}
 % \newpage
+
 \chapter{Dualnost \& Dopustivost}\label{chp:dualnost}
 
 %Dualnost je pojam koji je vezan za dobijanje gornjih granica optimalne vrijednosti funkcije cilja. 
