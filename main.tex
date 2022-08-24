@@ -1129,48 +1129,49 @@ Ovdje je funkcija cilja data kao količnik dvije linearne funkcije. Ovakvi model
 	& x \geq 0.
 \end{align*}
 Množeći prvo ograničenje sa $t>0$ te uvodeći smjenu $y_j = t x_j$, dobijamo (ekvivalentan)  model:
-\begin{align*}
-	&\min \sum_{j \in J} c_j y_j + \alpha t \\
-		& \mbox{t.d.} \nonumber \\
-	& \sum_{j \in J} a_{ij} y_j \leq b_i t,  \forall i \in I \\
-	& \sum_{j \in J} d_j y_j + \beta t = 1 \\
-	& t > 0 \\
-	& x \geq 0.
+ \begin{align*}
+ 	&\min \sum_{j \in J} c_j y_j + \alpha t \\
+	 	& \mbox{t.d.} \nonumber \\
+ 	& \sum_{j \in J} a_{ij} y_j \leq b_i t,  \forall i \in I \\
+	 & \sum_{j \in J} d_j y_j + \beta t = 1 \\
+	 & t > 0 \\
+	& y \geq 0.
 \end{align*}
+
 Da bi LP model bio validan, potrebno je staviti $t \geq 0$ i na kraju provjeriti optimalnu vrijednost promjenljive $t$, odnosno, da li je $t>0$.   \\
-\emph{Domenske granice u ograničenjima}. Neka je dat model
+ \emph{Domenske granice u ograničenjima}. Neka je dat model
 \begin{align*}
 	&\min_{j \in J } c_j x_j \\
 	& \mbox{t.d.} \nonumber \\
 	& l_i \leq \sum_{j \in J} a_{ij} x_j \leq u_i, \forall i\in I \\
 	& x_j \geq 0, \forall j \in J.
 \end{align*} 
-Direktnom transformacijom dobijamo sljedeći LP (konjunkcija ograničenja): 
-\begin{align*}
-	& \min_{j \in J } c_j x_j \\
-    & \mbox{t.d.} \nonumber \\
-	&  l_i \leq \sum_{j \in J} a_{ij} x_j, \forall i\in I \\
-	&  \sum_{j \in J} a_{ij} x_j \leq u_i, \forall i\in I \\
-	&  x_j \geq 0, \forall j \in J.
-\end{align*}
-Kako    se $\sum_{j \in J} a_{ij} x_j$ javlja u dva ograničenja (što utiče na performanse rješavača), prethodni model se dalje transformiše u (efikasniji) LP model:
-\begin{align*}
-	&s_i + \sum_{j \in J} a_{ij} x_j = u_i, \forall i \in I \\
-	& 0 \leq s_i \leq  u_i - l_i, \forall i \in I.
-\end{align*}
-Dakle, ako je $s_i = 0$, onda je  $\sum_{j \in J} a_{ij} x_j = u_i$, dok ako je  $s_i = u_i - l_i$, imamo da je $\sum_{j \in J} a_{ij} x_j = l_i$, $i\in I$. 
+ Direktnom transformacijom dobijamo sljedeći LP (konjunkcija ograničenja): 
+ \begin{align*}
+ 	& \min_{j \in J } c_j x_j \\
+     & \mbox{t.d.} \nonumber \\
+  	&  l_i \leq \sum_{j \in J} a_{ij} x_j, \forall i\in I \\
+ 	&  \sum_{j \in J} a_{ij} x_j \leq u_i, \forall i\in I \\
+ 	&  x_j \geq 0, \forall j \in J.
+ \end{align*}
+ Kako    se $\sum_{j \in J} a_{ij} x_j$ javlja u dva ograničenja (što utiče na performanse rješavača), prethodni model se dalje transformiše u (efikasniji) LP model:
+ \begin{align*}
+ 	&s_i + \sum_{j \in J} a_{ij} x_j = u_i, \forall i \in I \\
+ 	& 0 \leq s_i \leq  u_i - l_i, \forall i \in I.
+ \end{align*}
+  Dakle, ako je $s_i = 0$, onda je  $\sum_{j \in J} a_{ij} x_j = u_i$, dok ako je  $s_i = u_i - l_i$, imamo da je $\sum_{j \in J} a_{ij} x_j = l_i$, $i\in I$. 
 
-Konačno, dobijamo ekvivalentan LP model
-\begin{align*}
-	&\min_{j \in J } c_j x_j \\
-	& \mbox{t.d.} \nonumber \\
-	&s_i + \sum_{j \in J} a_{ij} x_j = u_i, \forall i \in I \\ 
-	&  0 \leq s_i \leq  u_i - l_i, \forall i \in I \\
-	& x_j \geq 0, \forall j \in J.
-\end{align*}
+ Konačno, dobijamo ekvivalentan LP model
+ \begin{align*}
+ 	&\min_{j \in J } c_j x_j \\
+ 	& \mbox{t.d.} \nonumber \\
+ 	&s_i + \sum_{j \in J} a_{ij} x_j = u_i, \forall i \in I \\ 
+ 	&  0 \leq s_i \leq  u_i - l_i, \forall i \in I \\
+ 	& x_j \geq 0, \forall j \in J.
+ \end{align*}
 
-\section{Zadaci}
-\begin{enumerate}
+ \section{Zadaci}
+ \begin{enumerate}
 	\item  Kompanija ,,Zdrav ljubimac'' proizvodi dvije vrste hrane za pse: Gricko i NjamNjam. Svako pakovanje Gricko hrane sadrži 2 kg žitarica i 3 kg mesa; svako pakovanje NjamNjam-a sadrži 3 kg žitarica i 1,5 kg mesa. Kompanija vjeruje da može prodati onoliko hrane za pse koliko može napraviti. Gricko se prodaje za   2,80 KM po paketu, a NjamNjam  za 2,00 KM po paketu. Proizvodnja kompanije je ograničena na nekoliko načina. Prvo, kompanija može kupiti samo do 400.000 kg žitarica svakog mjeseca za 0,20 KM po kg. Dalje, kompanija može
 	kupiti samo do 300.000 kg mesa mjesečno za 0,50 KM po kg. Osim toga, za proizvodnju hrane Gricko  potrebna je posebna mašina, a proizvodni kapacitet ove mašine je 90.000 paketa mjesečno. Varijabilni troškovi miješanja i pakovanja hrane za pse iznose 0,25 KM po pakovanju za hranu Gricko i 0,20 KM po paketu za hranu NjamNjam.  
 	Pretpostavimo da ste vođa odjela hrane za pse  ove kompanije. Na koji način biste  upravljali odjelom proizvodnje kako bi maksimizovali profit? 
@@ -1977,22 +1978,22 @@ U slučaju da smo, u prvom koraku simpleks metode, umjesto promjenljive $x$ u ba
 \end{comment}
 % \newpage
 
-\chapter{Dualnost \& Dopustivost}\label{chp:dualnost}
+ \chapter{Dualnost \& Dopustivost}\label{chp:dualnost}
 
 %Dualnost je pojam koji je vezan za dobijanje gornjih granica optimalne vrijednosti funkcije cilja. 
-U teoriji linearnog programiranja, ali i teoriji optimizacije uopšte, pod dualnošću podrazumijevamo da se neki problem može posmatrati s dva različita aspekta: kao primalni i kao dualni problem. 
-Preciznije, teorija dualnosti povezuje dva problema linearnog programiranja -- jedan od njih je problem linearnog programiranja koji maksimizuje funkciju cilja, dok je drugi linearan program  koji minimizuje (ne obavezno istu) funkciju cilja.  Na osnovu istih ulaznih podataka, svaki problem LP-a se može navesti u drugom, ekvivalentnom obliku. Ponekad rješavanje dualnog problema LP-a može da bude puno lakše nego rješavanje početnog problema.  Dualnost implicira da svaki problem linearnog programiranja možemo analizirati na dva potpuno različita načina, ali sa ekvivalentnim (optimalnim) rješenjima. 
+ U teoriji linearnog programiranja, ali i teoriji optimizacije uopšte, pod dualnošću podrazumijevamo da se neki problem može posmatrati s dva različita aspekta: kao primalni i kao dualni problem. 
+ Preciznije, teorija dualnosti povezuje dva problema linearnog programiranja -- jedan od njih je problem linearnog programiranja koji maksimizuje funkciju cilja, dok je drugi linearan program  koji minimizuje (ne obavezno istu) funkciju cilja.  Na osnovu istih ulaznih podataka, svaki problem LP-a se može navesti u drugom, ekvivalentnom obliku. Ponekad rješavanje dualnog problema LP-a može da bude puno lakše nego rješavanje početnog problema.  Dualnost implicira da svaki problem linearnog programiranja možemo analizirati na dva potpuno različita načina, ali sa ekvivalentnim (optimalnim) rješenjima. 
 
-U ovom poglavlju ćemo najprije objasniti kako se od početnog, primarnog problema formira dualni problem. Nakon toga, biće navedene Teoreme o slaboj i jakoj dualnosti, koje daju vezu između rješenja i ograničenja primarnog i dualnog problema. U nastavku poglavlja su objašnjene još neke važne tehnike koje se koriste za rješavanje problema linearnog programiranja: Farkašova lema i Furije-Mockinova eliminacija. Dodatno, metod unutrašnje tačke će biti dat u apendiksu. 
+U ovom poglavlju ćemo najprije objasniti kako se od početnog, primarnog problema formira dualni problem. Nakon toga, biće navedene Teoreme o slaboj i jakoj dualnosti, koje daju vezu između rješenja i ograničenja primarnog i dualnog problema. U nastavku poglavlja su objašnjene još neke važne tehnike koje se koriste za rješavanje problema linearnog programiranja: Farkašova lema i Furije-Mockinova eliminacija. Dodatno, metod unutrašnje tačke će biti dat u Dodatku. 
 
 Prije nego što uvedemo pojam dualnog problema, objasnimo motivaciju koja stoji iza nastanka teorije dualnosti.
 
-\begin{primjer}
+\begin{primjer}  
 	Posmatrajmo jedan LP i probajmo naći što bolju gornju procjenu za optimalnu vrijednost  funkcije cilja na osnovu ograničenja u datom modelu.
 \end{primjer}
 
 $$ 
-\begin{array}{lllll}
+\begin{array}{lllll}  
 	\max                f((x_1,x_2))=  &x_1 &+& x_2   &               \\
 	\mbox{t.d.}  &4x_1 & +&3 x_2 & \leq 9        \\
 	&x_1 &+ &x_2   &  \leq 8       \\
@@ -2002,7 +2003,7 @@ $$
 Iz uslova je jasno da su gornje granice date sa $f(x_1,x_2) = x_1 + x_2 \leq 4 x_1 + 3 x_2 \leq 9$, kao i 
 $f(x_1,x_2) \leq x_1 + x_2 \leq 8$. Gornje granice se mogu i poboljšati na osnovu sljedećeg niza nejednakosti
 $$f(x_1,x_2) \leq \frac{1}{4}(  4 x_1 + 3 x_2  ) + \frac{1}{4}(    x_1 +   x_2 ) = \frac{5}{4}x_1 + x_2 \leq  \frac{9}{4} + 2 = \frac{17}{4},$$ 
-čime dobijamo bolju gornju granicu funkcije $f$. 
+čime dobijamo bolju gornju granicu vrijednosti funkcije $f$. 
 
 Izvedimo sada ovakvu konstrukciju u opštijem obliku. Iskoristimo ograničenja data u modelu, i iskombinujmo ih sa koeficijentima funkcije cilja na sljedeći način. Neka su $y_1, y_2 \geq 0$ koeficijenti sa kojima množimo ograničenja u početnom modelu. Tada imamo 
 \begin{align*}
@@ -2015,13 +2016,13 @@ Sabirajući ove dvije nejednakosti i grupišući sabirke dobijamo
 \end{equation}
 Posmatrajući funkciju cilja i koeficijente uz promjenljive u (\ref{eq:dual-1}), jasno je da treba da vrijedi 
 $4 y_1 + y_2 \geq 1$ i $3 y_1 + y_2 \geq 1$. Da bi ocjena gornje granice   izraza sa lijeve strane nejednakosti (\ref{eq:dual-1}) bila što bolja,   potrebno je minimizovati izraz $9y_1 + 8 y_2$, prema prethodno pomenuta (dva) uslova. Prema tome, početnom problemu, koji označavamo sa ($P$), odgovara dualni problem ($D$)
-$$\begin{array}{ll}
+ $$\begin{array}{ll}
 	\min                    &  9 y_1+ 8 y_2        \\
 	\mbox{t.d.}   &  4 y_1     +   y_2 \geq 1   \\
 	&  3 y_1 + y_2 \geq 1 \\
 	&            y=(y_1,y_2) \geq 0.
-\end{array}$$
-U oštem slučaju,  za problem ($P$) %~(\ref{eq:LP-o1})--(\ref{eq:LP-c2}), 
+ \end{array}$$
+U opštem slučaju,  za problem ($P$) %~(\ref{eq:LP-o1})--(\ref{eq:LP-c2}), 
 \begin{align*}
 	& \max c^T x  \\
 	& \mbox{t.d.} \nonumber \\
@@ -2049,7 +2050,7 @@ U ovom odjeljku ćemo navesti najvažnije teoreme koje omogućavaju primjenu teo
 	$$y^TAx \geq c^T x.$$ Kako je $Ax \leq b$ i $y \geq 0$,  tada dobijamo 
 	$ y^T b = b^T y  \geq c^T x$
 \end{proof}
-Iz Teoreme  slabe dualnosti slijedi sljedeća važna posljedica.
+Iz Teoreme slabe dualnosti slijedi sljedeća važna posljedica.
 \begin{poslje}
 	Ako je $y$ dopustivo rješenje problema  ($D$),  onda bilo koje dopustivo rješenje $x$ problema ($P$) je ograničeno odozgo sa $b^T y$. Prema tome, ako je problem ($D$) dopustiv, onda je ($P$) ograničen. Slično se može pokazati da vrijedi i obrnuto,  kada problemi ($P$) i ($D$) zamijene uloge.
 \end{poslje}
@@ -2057,8 +2058,7 @@ Iz Teoreme  slabe dualnosti slijedi sljedeća važna posljedica.
 Pokažimo da važi i naredno tvrđenje, koje ćemo koristiti u dokazu Teoreme jake dualnosti.
 
 \begin{prop}  
-	Ako je $x^*$ dopustivo rješenje za  ($P$), $y^*$ dopustivo rješenje za ($D$) i ako vrijedi 
-	$c^T x^* = b^T y^*$, onda je $x^*$ optimalno rješenje za problem  ($P$), a $y^*$ optimalno rješenje za problem  ($D$).  
+	Ako je $x^*$ dopustivo rješenje za  ($P$), $y^*$ dopustivo rješenje za ($D$) i ako vrijedi   	$c^T x^* = b^T y^*$, onda je $x^*$ optimalno rješenje za problem  ($P$), a $y^*$ optimalno rješenje za problem  ($D$).  
 \end{prop}
 \begin{proof}
 	Neka je $x$ bilo koje dopustivo rješenje problema ($P$). Iz teoreme o slaboj dualnosti imamo $c^T x  \leq b^T y^* = c^T x^*$, odakle slijedi da je $x^*$ upravo optimalno rješenje problema  ($P$).
@@ -2081,7 +2081,7 @@ Pokažimo da važi i naredno tvrđenje, koje ćemo koristiti u dokazu Teoreme ja
 	$$
 	gdje je 
 	\begin{enumerate}
-		\item    $c^*_i \leq 0, i = 1,\ldots, n$ 
+		\item    $c^*_i \leq   0, i = 1,\ldots, n$ 
 		\item    $-y_i^* \leq 0$, $i = 1,\ldots, m$
 		\item  $c^T x - f^* = (c^*)^T x - (y^*)^T s$ (iz koeficijenata doprinosa simpleks metode)
 	\end{enumerate}
@@ -2103,6 +2103,7 @@ Pokažimo da važi i naredno tvrđenje, koje ćemo koristiti u dokazu Teoreme ja
 	
 	
 \end{proof} 
+
 Primijetimo da koeficijenti $y^*$ posljednje vrste završne simpleks tabele odgovaraju  ,,izjednačavajućim''   promjenljivima i one nam daju rješenje problema  ($D$).  
 
 \begin{primjer} Moguće je da problem ($P$) i njegov   dual ($D$) nemaju dopustivo rješenje. Pogledajmo sljedeći primjer:
@@ -2183,6 +2184,7 @@ $$x_3 \geq 0 \Rightarrow  (A^T y)_3  = c_3, \mbox{ tj. } 0 \cdot y_1 + y_2 = 3$$
 	\caption{Dualni problem: dopustiv region}
 	\label{fig:fig5}
 \end{figure}
+
 Optimalno rješenje je u presjeku pravih $y_2 = 3$ i $4y_1 - y_2 = 1$, odnosno $y = (1, 3)$. Provjerimo, pomoću Teoreme komplementarnosti, potencijalne tačke za optimalno rješenje problema ($P$). Imamo 
 $$y_1 > 0 \Rightarrow (Ax - b)_1 y_1 = 0 \Rightarrow x_1 + 4 x_2 = 4 $$
 $$y_2 > 0 \Rightarrow (Ax - b)_2 y_2 = 0 \Rightarrow 3x_1 - x_2 + x_3 = 3 $$
@@ -2247,7 +2249,7 @@ jednog problema i promjenljivih u drugom problemu je data sljedećom tabelom.
 Međutim, rješavanje problema LP-a je moguće u polinomijalnom vremenu, uz pomoć metoda \emph{unutrašnje tačke} (eng. interior point method), konstruisan od strane N. Karmakar-a sredinom 80ih godina prošlog vijeka. Radi kompleksnosti samog algoritma i njegovog izvođenja, mi ga ne prikazujemo u glavnom dijelu knjige, već u Apendiksu~\ref{appendix:interior_point} gdje čitalac kojeg interesuje ovaj metod može da vidi i prouči ideju i glavne korake konstrukcije ovog značajnog algoritma. 
 
 \section{Farkašova lema}
-Još jedna primjena teorije dualnosti LP-a se ogleda u dokazivanju Farkašove teoreme alternative. U suštini, njena geometirijska interpretacija kaže sljedeće: svaki vektor pripada datom zatvorenom konveksnom konusu (specijalan slučaj je ograničeni konveksni skup), ili postoji hiperravan koja razdvaja vektor od konusa; druge mogućnosti ne postoje. 
+Još jedna primjena teorije dualnosti LP-a se ogleda u dokazivanju Farkašove teoreme alternative. U suštini, njena geometirijska interpretacija kaže sljedeće: svaki vektor pripada ili datom zatvorenom konveksnom konusu (specijalan slučaj je ograničeni konveksni skup), ili postoji hiperravan koja razdvaja vektor od konusa; druge mogućnosti ne postoje. 
 
 \begin{thm}
 	Neka je $A\in \mathbb{R}^{m \times n}$ matrica i $c\in \mathbb{R}^n$. Onda jedan i samo jedan od  sljedeća dva sistema ima rješenje:
@@ -2256,6 +2258,7 @@ Još jedna primjena teorije dualnosti LP-a se ogleda u dokazivanju Farkašove te
 		\item $A^T y = c$ i $y \geq 0$. \label{case:2}
 	\end{enumerate}
 \end{thm}
+
 \begin{proof}
 	Pogledajmo prvi sistem. Uočimo sličnosti sa   LP-om:
 	\begin{align*}
@@ -2331,8 +2334,8 @@ Ponovimo, glavni korak ovog metoda je redukcija problema na ekvivalentan problem
 \end{equation}
 vrijedi jedna od sljedećih alternativa 
 \begin{itemize}
-	\item  $x_n \geq \frac{b_i - a_{i,1}x_1- \cdots - a_{i, n-1} x_{n-1} }{a_{i,n}}=U_i$ ili 
-	\item   $x_n \leq \frac{b_i - a_{i,1}x_1- \cdots - a_{i, n-1} x_{n-1} }{a_{i,n}}=L_i$
+	\item  $x_n \geq \frac{b_i - a_{i,1}x_1- \cdots - a_{i, n-1} x_{n-1} }{a_{i,n}}=L_i$ ili 
+	\item   $x_n \leq \frac{b_i - a_{i,1}x_1- \cdots - a_{i, n-1} x_{n-1} }{a_{i,n}}=U_i$
 \end{itemize}
 $i=1,\ldots, m$, zavisno od toga da li je $a_{i,n} >0$ ili $a_{i,n} <0$. U slučaju da je $a_{i,n} = 0$,  ostavljamo  ograničenje (\ref{eq:inequality_i}) nepromijenjeno, jer   $x_n$  ne učestvuje u datom ograničenju. Na ovaj način ćemo dobiti najviše $m$ gornjih i donjih granica za $x_n$ koje se mogu izraziti preko $n-1$ promjenljivih, tj. 
 $$  x_n \geq L_1, \ldots, x_n\geq L_k \mbox{ te }  x_n \leq U_1, \ldots, x_n \leq U_l,$$
@@ -2363,7 +2366,7 @@ Prema tome, početni problem je redukovan na sistem od $n-1$ promjenljivih sa do
 	& x,y \geq 0.
 \end{align*}
 Eliminišimo promjenljivu $y$ iz sistema. Kako je $x-y \geq 1 \Rightarrow y \leq x -1 $, 
-$-x + 2y \geq 1 \Rightarrow y \geq \frac{x+1}{2}$, te $ 3x - 5y \geq 1 \Rightarrow y \leq \frac{3x-1}{5}$, uparimo gornje i donje granice te dobijamo 
+$-x + 2y \geq 1 \Rightarrow y \geq \frac{x+1}{2}$, te $ 3x - 5y \geq 1 \Rightarrow y \leq \frac{3x-1}{5}$, uparivanjem gornjih i donjih granica dobijamo
 $$
 \begin{cases}
 	&\frac{x+1}{2} \leq x-1 \\
@@ -2495,7 +2498,7 @@ U mnogim realnim problemima, promjenljive odluke ne dobijaju neprekidne, već is
 U ovoj glavi ćemo analizirati koncepte   \emph{cjelobrojnog linearnog programiranja} (ILP), gdje se, pored integralnosti (cjelobrojnosti) promjenljivih, zahtijeva da funkcija cilja  i sva ograničenja u modelu budu linearni izrazi po promjenljivima. Prema tome, ILP ima opšti oblik:
 \begin{align}
 	& \max c^T x \nonumber\\
-	& t.d. \\
+	& t.d. \nonumber \\
 	& A x \leq b \nonumber \\
 	& x \geq 0 \nonumber\\
 	& x_i \in \mathbb{Z}, \mbox{ za sve } i. \label{ilp-formulation}
@@ -2506,9 +2509,9 @@ Problemi cjelobrojnog linearnog programiranja se veoma često sreću i u teoriji
 
 
 \begin{primjer}
-	\emph{Cjelobrojni problem jednodimenzionalnog ruksaka.} Neka je dato $n$ proizvoda i neka je težina $i$-tog proizvoda jednaka $w_i$, dok je vrijednost $i$-tog proizvoda jednaka $c_i$, $i=1,\ldots,n$. Koje od proizvoda treba da stavimo u ruksak , čija je maksimalna težina (kapacitet) $C>0$, tako da   vrijednost proizvoda u ruksaku bude maksimalna, poštujući  kapacitet  ruksaka? 
+	\emph{Cjelobrojni problem jednodimenzionalnog ruksaka.} Neka je dato $n$ proizvoda i neka je težina $i$-tog proizvoda jednaka $w_i$, dok je vrijednost $i$-tog proizvoda jednaka $c_i$, $i=1,\ldots,n$. Koje od proizvoda treba da stavimo u ruksa, čija je maksimalna težina (kapacitet) $C>0$, tako da   vrijednost proizvoda u ruksaku bude maksimalna, poštujući  kapacitet  ruksaka? 
 	
-	\emph{Rješenje}. Definišimo promjenljive odluke $x_i$, koje dobijaju vrijednost 1 ako  $i$-ti proizvod uključujemo u ruksak, odnosno, vrijednost 0, ako $i$-ti proizvod nije uključen u ruksak, za $i=1,\ldots,n$. Ograničenje kapaciteta ruksaka se modeluje sa $\sum_{i=1}^n w_i x_i \leq C$. Funkcija cilja maksimizuje ukupnu vrijednost odabranih proizvoda i modeluje se uz pomoć linearne kombinacije $f(x) = \sum_{i=1}^n c_i x_i$. 
+	\emph{Rješenje}. Definišimo promjenljive $x_i$, koje dobijaju vrijednost 1 ako  $i$-ti proizvod uključujemo u ruksak, odnosno, vrijednost 0, ako $i$-ti proizvod nije uključen u ruksak, za $i=1,\ldots,n$. Ograničenje kapaciteta ruksaka se modeluje sa $\sum_{i=1}^n w_i x_i \leq C$. Funkcija cilja maksimizuje ukupnu vrijednost odabranih proizvoda i modeluje se uz pomoć linearne kombinacije $f(x) = \sum_{i=1}^n c_i x_i$. 
 \end{primjer}
 \begin{primjer}
 	\emph{Jedan problem rasporeda radnika u dežurstvu}. Uprava bolnice želi da napravi raspored dežurstva po sedmičnim noćnim smjenama za svoje medicinske sestre.  Potrebno je da broj medicinskih sestara u noćnoj smjeni za $j$--ti dan bude barem (cio broj) $d_j, j = 1,\ldots 7$. Svaka
@@ -2563,12 +2566,12 @@ Problemi cjelobrojnog linearnog programiranja se veoma često sreću i u teoriji
 		\item $x_i \geq 0, x_i \in \mathbb{Z}, i=1,2,3$.
 	\end{itemize}
 	
-	%U ovom problemu možemo još primijetiti da u funkciji cilja   
+	%U ovom problemu možemo još   primijetiti da u funkciji cilja   
 	%nisu korišteni egzaktni koeficijenti (za broj gledalaca) već brojevi koji su proporcionalni nekoj vrijednosti (1000). Takve transformacije su invarijantne i ne utiču na potragu za optimalnim rješenjem  problema, a doprinose većoj čitljivosti modela.
 \end{primjer}
 \begin{primjer}
 	
-	%https://www.math.unipd.it/~luigi/courses/metmodoc1819/m01.modelli.00.en.pdf
+  	%https://www.math.unipd.it/~luigi/courses/metmodoc1819/m01.modelli.00.en.pdf
 	\emph{Problem pokrivanja}. Telefonska kompanija želi da instalira antene na neka mjesta kako bi pokrila šest oblasti. Postoji pet mogućih mjesta za instaliranje antena. Nakon urađenih simulacija, za svaku oblast utvrđen je intenzitet signala koji antena šalje, kad je postavljena na određenom mjestu. Tabela~\ref{tab:tb-3} daje   primjer jedne instance problema sa nivoima intenziteta signala.
 	
 	\begin{table}[!ht]
@@ -2634,7 +2637,7 @@ Ograničenjima (\ref{const:vars-3}) definisana je binarna priroda promjenljivih.
 	Definišimo sljedeće promjenljive odlučivanja:
 	
 	\begin{itemize}
-		\item $x_i \in \{0,1\}$, gdje je $x_i = 1$ ak je postrojenje $i$ otvoreno, a inače 0.
+		\item $x_i \in \{0,1\}$, gdje je $x_i = 1$ ako je postrojenje $i$ otvoreno, a inače 0.
 		\item $y_{ij} \in \mathbb{R}^+$  označava dio ukupne potražnje $d_j$ kupca $j$ koja je ispunjena u prodavnici $i$.  
 	\end{itemize}
 	
@@ -2755,7 +2758,7 @@ Jedno od najjednostavnijih logičkih pitanja u matematičkom programiranju je da
 \begin{equation}\label{eq:constr-ex-1-ilp}
 	f(x_1,\ldots, x_n )\leq b
 \end{equation}
-ili   ograničenje vrijedi u generalnom slučaju, tj. invarijantno je (vrijedi u svakom sučaju). 
+ili   ograničenje vrijedi u generalnom slučaju, tj. invarijantno je (vrijedi u svakom slučaju). 
 
 Da bismo modelovali ograničenja koja odgovaraju prethodnoj alternativi, uvedimo binarnu promjenljivu $y$ na sljedeći način:
 $$y =\begin{cases}
