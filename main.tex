@@ -3071,7 +3071,7 @@ Poznato je da je problem 3--SAT, gdje je ulaz 3--CNF formula,  u opštem slučaj
 		& C_3: z_i \in \{0,1\}, i=1,\ldots,5.
 	\end{align*} 
 	%%https://cims.nyu.edu/~regev/teaching/lattices_fall_2004/ln/integer_programming.pdf :Aco
-	Dakle, iz gornje redukcije,  provjera dopustivosti ILP instance odgovara provjeri zadovoljivosti 3--CNF izraza $\phi$.   Prema tome, problem rješavanja ILP-a je NP-težak, s obzirom da je 3--SAT problem NP-kompletan. 
+	Dakle, iz gornje redukcije,  provjera dopustivosti ILP instance odgovara provjeri zadovoljivosti 3--CNF izraza $\phi$.   Prema tome, problem rješivosti ILP-a je NP-težak, s obzirom da je 3--SAT problem NP-kompletan. 
 \end{proof} 
 Može se pokazati i sljedeća teorema.
 \begin{thm} Neka je $k\in \mathbb{Z}$.
@@ -3251,7 +3251,7 @@ Može se pokazati i sljedeća teorema.
  U ovom poglavlju će biti analizirane različite tehnike kojima se rješavaju problemi cjelobrojnog linearnog programiranja.
  Za razliku od problema LP-a, koji se efikasno rješava simpleks metodom, za rješavanje problema cjelobrojnog linearnog programiranja ne postoji generalno efikasna metoda. Drugim riječima, efikasnost metoda, kojima se rješava ovaj problem, u velikoj mjeri zavisi od karakteristika samog problema. 
  
-Tehnike za rješavanje su uglavnom zasnovane na tzv. relaksaciji ILP-a u odgovarajući LP, koji se od polaznog problema (ili nekog od podproblema generisanog u toku rješavanja) dobija zanemarivanjem uslova o cjelobrojnosti promjenljivih.  Iako se dobijena  LP relaksacija može efikasno riješiti uz pomoć simpleks metoda, to ne znači da se iz rješenja relaksacije može lako doći do rješenja polaznog ILP-a. Npr. ako rješenje LP relaksacije označimo sa $x^*$, zaokruživanjem svake koordinate vektora $x^*$ na njenu najbližu cjelobrojnu vrijednost, dobijamo cjelobrojni vektor  $\overline{x}$.  U uvom slučaju, uslov cjelobrojnosti jeste zadovoljen, ali ne postoji nikakva garancija da će, u opštem slučaju,  ovakvo rješenje izvedeno iz LP relaksacije problema (\ref{ilp-formulation}), biti i  dopustivo za početni ILP. Pored toga, skaliranjem desnih strana ILP-a, kao i koeficijenata funkcije cilja na odgovarajući način, moguće je konstruisati problem, čije je optimalno cjelobrojno rješenje proizvoljno udaljeno od zaokruženog rješenja LP relaksacije. 
+Tehnike za rješavanje su uglavnom zasnovane na tzv. relaksaciji ILP-a u odgovarajući LP, koji se od polaznog problema (ili nekog od podproblema generisanog u toku rješavanja) dobija zanemarivanjem uslova o cjelobrojnosti promjenljivih.  Iako se dobijena  LP relaksacija može efikasno riješiti uz pomoć simpleks metoda, to ne znači da se iz rješenja relaksacije može lako doći do rješenja polaznog ILP-a. Npr. ako rješenje LP relaksacije označimo sa $x^*$, zaokruživanjem svake koordinate vektora $x^*$ na njenu najbližu cjelobrojnu vrijednost, dobijamo cjelobrojni vektor  $\overline{x}$.  U uvom slučaju, uslov cjelobrojnosti jeste zadovoljen, ali ne postoji nikakva garancija da će, u opštem slučaju,  ovakvo rješenje izvedeno iz LP relaksacije problema (\ref{ilp-formulation}), biti i  dopustivo za početni ILP. Pored toga, skaliranjem desnih strana ograničenja ILP-a, kao i koeficijenata funkcije cilja na odgovarajući način, moguće je konstruisati problem, čije je optimalno cjelobrojno rješenje proizvoljno udaljeno od zaokruženog rješenja LP relaksacije. 
  
  Razmatranje opisano u prethodnom paragrafu ukazuje na to da se, uz relaksaciju početnog ILP-a u LP, moraju koristiti suptilnije tehnike za određivanje optimalnog rješenja ILP-a. 
  
@@ -3280,7 +3280,7 @@ U rješavanju problema  ILP-a uz pomoć B\&B procedure, sljedeće jednostavne č
 Na osnovu ove dvije činjenice, uvedimo sada sistematičnu podjelu dopustivog regiona na niz podregiona:
 \begin{enumerate}
     \item U korjenom čvoru B\&B stabla rješavamo LP relaksaciju početnog problema     (npr. simpleks metodom) i dobijamo rješenje $x^*=(x^*_1, \ldots, x^*_n)$.   Ako je rješenje cjelobrojno, prekidamo dalje izvršavanje i stavimo $LB=f(x^*)$, koje je optimalno. %U protivnom, postavimo $f(x^*)=UB$.
-    \item Za sve koordinate $i$ za koje je $x^*_i \not \in \mathbb{Z}$, dopustiv region se može podijeliti na dva (disjunktna) podskupa uvođenjem ograničenja: $z_i \geq \lfloor x^*_i \rfloor + 1$ ili $z_i \leq \lfloor x^*_i \rfloor$ i to je upravo mjesto podjele dopustivog regiona. Ako ima više takvih koordinata, biramo onu koordinatu $i$ kojoj je decimalni dio najveći.  Recimo da je to koordinata $k$.
+    \item Za sve koordinate $i$ za koje je $x^*_i \not \in \mathbb{Z}$, dopustiv region se može podijeliti na dva (disjunktna) podskupa uvođenjem ograničenja: $z_i \geq \lfloor x^*_i \rfloor + 1$ ili $z_i \leq \lfloor x^*_i \rfloor$ i to je upravo mjesto podjele dopustivog regiona. Ako ima više takvih koordinata, biramo onu koordinatu kojoj je decimalni dio najveći.  Recimo da je to koordinata $k$.
     \item Sada dijelimo region problema na dva podregiona (lijevi i desni potomak čvor u B\&B drvetu), dodavajući 
           ograničenja $x_k \geq \lfloor x^*_k \rfloor + 1$ i $x_k \leq \lfloor x^*_k \rfloor$, redom.
     \item Rješavamo relaksaciju oba (pod)problema i razmatramo sljedeće slučajeve. 
@@ -3305,10 +3305,11 @@ Primijetimo da ovom metodom formiramo drvo enumeracije koje nam garantuje nalaza
 \begin{algorithm}[!htb] 
 	\begin{algorithmic}[1] 
 		\STATE $LB \gets$ $-\infty$
+		\STATE Početni problem je aktivan (korjeni čvor)
 		\WHILE{postoji neki aktivni čvor}
 		\STATE  $v_j \gets$ Odabrati neki od aktivnih čvorova; // strategija
 		\STATE  Označiti $v_j$ kao neaktivan;
-		\STATE  $x^j \gets$ Riješiti podproblem koji odgovara čvoru $v_j$
+		\STATE  $x^j \gets$ Riješiti relaksaciju podproblema koji odgovara čvoru $v_j$
 		\STATE $z^*_j \gets f(x^j)$;
 		\IF{ $z^*_j  \leq LB$} 
 		\STATE Čvor $j$ nije relevantan za dalje razmaranje; 
@@ -3522,7 +3523,7 @@ Pokušajmo dodati odsjecajuće ravni u prethodni ILP. Za svaku tačku $c$, enume
 \end{equation}
 Ovim postupkom smo formirali odsjecajuće ravni, koje će ubrzati rješavanje posmatranog problema za   red veličine. \\
 
-Razmotrimo sada \emph{Gomorijeve odsjecajuće ravni}, kao generalnu metodu za dodavanje odsjecajućih ravni u rješavanju  ILP-a.  Ideja se sastoji u generisanju ravni iz nekog od ograničenja dobijene optimalnom tabelom simpleks metode, koja predstavlja LP relaksaciju problema. Neka simpleks metod generiše sljedeći skup jednakosti u formi:
+Razmotrimo sada \emph{Gomorijeve odsjecajuće ravni}, kao generalnu metodu za dodavanje odsjecajućih ravni u rješavanju  ILP-a.  Ideja se sastoji u generisanju ravni iz nekog od ograničenja dobijenim optimalnom tabelom simpleks metode, koja predstavlja LP relaksaciju problema. Neka simpleks metod generiše sljedeći skup jednakosti u formi:
  
 
 $$x_i + \sum_{ j} \overline{a}_{i,j} s_j= \overline{b}_i, i=1, \ldots,m$$
@@ -3628,7 +3629,7 @@ $x=(2,2, \frac{1}{5}, 1)$, a optimalno $x^* = (2, 2)$, odakle dobijamo i optimal
 
 
 %https://www.math10.com/en/geometry/geogebra/geogebra.html
-\begin{primjer} U ovom primjeru ćemo prikazati ILP problem u kojem su svi koeficijenti u ograničenjima cjelobrojni.
+\begin{primjer}  U ovom primjeru ćemo prikazati ILP problem u kojem su svi koeficijenti u ograničenjima cjelobrojni.
 	\end{primjer}
 \begin{align*}
     &\max 3 x_1 + 4 x_2 \\
@@ -3639,8 +3640,8 @@ $x=(2,2, \frac{1}{5}, 1)$, a optimalno $x^* = (2, 2)$, odakle dobijamo i optimal
     & x_1, x_2 \in \mathbb{Z}
 \end{align*}
 \emph{Rješenje. }
-Na Slici~ \ref{fig:region_ilp_primjer_2} dat je skup tačaka koje su dopustive za problem, Funkcija cilja dostiže optimum u tački $x^*=(5,4)$.
-\begin{figure}
+ Na Slici~ \ref{fig:region_ilp_primjer_2} dat je skup tačaka koje su dopustive za problem. Funkcija cilja dostiže optimum u tački $x^*=(5,4)$.
+ \begin{figure}
     \centering
     \includegraphics[width=170pt,height=170pt]{region_ilp_primjer_2.eps}
     \caption{Dopustiv skup tačaka problema.}
@@ -3725,7 +3726,7 @@ gdje je lako uočiti da je optimalno bazno dopustivo rješenje $x=(5, 4, 1, 7, 0
 \section{B\&C algoritam za rješavanje ILP-a}
 %https://homepages.rpi.edu/~mitchj/handouts/bc_algo/
 % http://www.mi.fu-berlin.de/wiki/pub/Main/GunnarKlauP1winter0708/discMath_klau_ILP_I.pdf
-U ovom odjeljku analiziramo metodu granjanja i odsijecanja (eng. branch and cut, skraćeno B\&C). U odnosu na B\&B metodu, koja je opisana u Odjeljku~\ref{sec:bb}, B\&C dodaje  i metod odsjecajućih ravni u rješavanju  podproblema koji odgovaraju čvorovima drveta. Dakle, ako  uzimamo trenutno aktivni čvor i rješavamo njegov podproblem, dijelimo ga na nekoliko podproblema (podjelom dopustivog regiona na više disjunktnih -- dodavanjem ograničenja) ili ga rješavamo rekurzivnim dodavanjem (Gomorijevih) odsjecajućih ravni. Ilustrujmo ovu ideju na primjeru rješavanja jednog ILP-a.
+U ovom odjeljku analiziramo metodu granjanja i odsijecanja (eng. branch and cut, skraćeno B\&C). U odnosu na B\&B metodu, koja je opisana u Odjeljku~\ref{sec:bb}, B\&C dodaje  i metod odsjecajućih ravni u rješavanju  podproblema koji odgovaraju čvorovima drveta. Dakle, ako  uzimamo trenutno aktivni čvor i rješavamo odgovarajući podproblem, dijelimo ga na nekoliko podproblema (podjelom dopustivog regiona na više disjunktnih -- dodavanjem ograničenja) ili ga rješavamo rekurzivnim dodavanjem (Gomorijevih) odsjecajućih ravni. Ilustrujmo ovu ideju na primjeru rješavanja jednog ILP-a.
 \begin{primjer} 
 	Riješimo sljedeći ILP
 \end{primjer}
@@ -3772,7 +3773,7 @@ Rješavanjem relaksacije problema ($P1$) dobijamo rješenje $x^*=(3,2)$, koje je
     & x_1, x_2 \in \mathbb{Z}
 \end{align*}
 
-Rješavajući LP relaksaciju problema ($P3$), dobijamo rješenje $x^*=(\frac{9}{5}, \frac{17}{5})$, a  optimalna vrijednost funkcije cilja je $27.8$. Kako je $LB \geq 28.8$, niti jedno cjelobrojno rješenje problema ($P3$) ne može biti bolje od trenutno najbolje donje granice ($LB=28$), pa zaključujemo da je optimalo rješenje početnog problema dato sa $x^*=(3,2)$. 
+Rješavajući LP relaksaciju problema ($P3$), dobijamo rješenje $x^*=(\frac{9}{5}, \frac{17}{5})$, a  optimalna vrijednost funkcije cilja je $27.8$. Kako je $LB \geq 27.8$, niti jedno cjelobrojno rješenje problema ($P3$) ne može biti bolje od trenutno najbolje donje granice ($LB=28$), pa zaključujemo da je optimalo rješenje početnog problema dato sa $x^*=(3,2)$. 
 
 \section{Lagranžova relaksacija}
 U rješavanju problema optimizacije, pronalazak optimalnog rješenja je osnovni cilj. Međutim, za mnoge probleme nije realno očekivati da će se razumnom vremenu može doći do optimalnog rješenja za instance velikih dimenzija. Umjesto toga, najbolje što se može učiniti je da se ponudi dobra  granica za optimalnu vrijednost. Ako je ta granica blizu optimuma, u mnogo slučajeva ona može da zamijeni optimum, čime štedimo resurse kojima raspolažemo, a dobijamo rješenje koje je prihvatljivo.  
@@ -5808,9 +5809,9 @@ Za cjelobrojni vektor $p^L = (p^L_1,\ldots, p^L_m)$, definišemo kolekciju strin
 $S[p^L] = \{s_i[p^L_i, |s_i|] \mid i=1,\ldots,m\}$, gdje $|s|$ označava dužinu stringa $s$, a $s[x,y]$ podstring stringa $s$ koji počinje od karaktera na poziciji $x$, a završava sa karakterom na poziciji $y$. Konvencija je da se indeksi u stringu numerišu krenuvši od 1. Dakle, $s= [1, |s|]$ za svaki string $s$. Primjera radi, za (pozicioni) vektor $p^L=(2,3,4)$ i skup $S$ iz Primjera~\ref{primjer:lcs} imamo $S[ p^L] = \{ s_1[1, |s_1|], s_2[2, |s_2|], s_3[3, |s_3|]  \}= \{ \texttt{bbccb}, \texttt{ccab}, \texttt{bcb}\}$. 
 
  
-Dalje, sa $p^L_{i,a}$ definišemo poziciju prvog pojavljivanja karaktera $\texttt{a}\in \Sigma$ takav da je $p^L_{i,a} \geq p^L_i$ (ukoliko karakter ne postoji, dodijelimo vrijednost $n+1$). Skup karaktera $\Sigma_{p^L}$ koji se pojavljuju u svakom od stringova (u podproblemu) $S[p^L]$ se nazivaju dopustive ekstenzije u odnosu na pozicioni vektor $p^L$. 
+Dalje, sa $p^L_{i,a}$ definišemo poziciju prvog pojavljivanja karaktera $\texttt{a}\in \Sigma$ takav da je $p^L_{i,a} \geq p^L_i$ (ukoliko karakter ne postoji, dodijelimo vrijednost $n+1$). Skup karaktera $\Sigma_{p^L}$ koji se pojavljuju u svakom od stringova (u podproblemu) $S[p^L]$ su dopustive ekstenzije u odnosu na pozicioni vektor $p^L$. 
 
-U konstrukciji pohlepnog algoritma, odredimo  skup dopustivih komponenti i (pohlepni) kriterijum odabira najbolje komponente u svakom koraku algoritma koja se dodaje u postojeće parcijalno rješenje. Inicijalno rješenje $s$ je prazan string, koji je, trivijalno, dopustivo za svaku instancu LCS problema. Ideja se sastoji u iterativnom proširivanju trenutnog rješenja za jedan karakter, spajajući taj karakter sa rješenjem sa desna, dok god je to moguće. Pri tome prošireno rješenje mora uvijek biti LCS, dakle, dopustivo. Za spajanje stringa i karaktera ćemo koristiti standardni operator ($\cdot$).
+U konstrukciji pohlepnog algoritma, odredimo  skup dopustivih komponenti i (pohlepni) kriterijum odabira najbolje komponente u svakom koraku algoritma koja se dodaje u postojeće parcijalno rješenje. Inicijalno rješenje $s$ je prazan string, koje je, trivijalno, dopustivo za svaku instancu LCS problema. Ideja se sastoji u iterativnom proširivanju trenutnog rješenja za jedan karakter, spajajući taj karakter sa rješenjem sa desna, dok god je to moguće. Pri tome prošireno rješenje mora uvijek biti zajenički podniz, dakle, dopustivo. Za spajanje stringa i karaktera ćemo koristiti standardni operator ($\cdot$).
 
  Prema navedenom, krenemo sa pozicijom $p^L = (1, \ldots, 1)$ koja odgovara čitavom skupu $S=S[p^L]$ i praznim stringom $s =\varepsilon$ kao inicijalnim rješenjem. Dalje, da bismo očuvali dopustivost rješenja kada se rješenje proširi za jedan karakter, za komponente rješenja $\Sigma_{p^L}$ ćemo uzeti sve karaktere koji se nalaze u svim stringovima iz $S=S[p^L]$, dakle u sufiks stringovima u odnosu na odgovarajuće pozicije vektora $p^L$. Na taj način,  ekstenzija $s = s \cdot x$  će za bilo koji $x \in \Sigma_{p^L}$ dati dopustivo LCS rješenje. Među karakterima iz $\Sigma_{p^L}$ treba odabrati (lokalno) najboljeg kandidata za proširivanje rješenja. Treba imati na umu da se kandidat $x\in \Sigma_{p^L}$ može pojaviti na nekoliko pozicija u svakom stringu iz $S=S[p^L]$. Kako ne želimo ekstenzije koje vode ka podoptimalnim rješenjima, za karakter $x$ biramo onaj sa pozicijama pojavljivanja koje su najbliže početku svakog od stringova iz $S=S[p^L]$, dakle na pozicijama $p^L_{i,a},i=1,\ldots,m$. 
 
