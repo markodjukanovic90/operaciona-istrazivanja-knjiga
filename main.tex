@@ -5811,7 +5811,7 @@ $S[p^L] = \{s_i[p^L_i, |s_i|] \mid i=1,\ldots,m\}$, gdje $|s|$ označava dužinu
  
 Dalje, sa $p^L_{i,a}$ definišemo poziciju prvog pojavljivanja karaktera $\texttt{a}\in \Sigma$ takav da je $p^L_{i,a} \geq p^L_i$ (ukoliko karakter ne postoji, dodijelimo vrijednost $n+1$). Skup karaktera $\Sigma_{p^L}$ koji se pojavljuju u svakom od stringova (u podproblemu) $S[p^L]$ su dopustive ekstenzije u odnosu na pozicioni vektor $p^L$. 
 
-U konstrukciji pohlepnog algoritma, odredimo  skup dopustivih komponenti i (pohlepni) kriterijum odabira najbolje komponente u svakom koraku algoritma koja se dodaje u postojeće parcijalno rješenje. Inicijalno rješenje $s$ je prazan string, koje je, trivijalno, dopustivo za svaku instancu LCS problema. Ideja se sastoji u iterativnom proširivanju trenutnog rješenja za jedan karakter, spajajući taj karakter sa rješenjem sa desna, dok god je to moguće. Pri tome prošireno rješenje mora uvijek biti zajenički podniz, dakle, dopustivo. Za spajanje stringa i karaktera ćemo koristiti standardni operator ($\cdot$).
+U konstrukciji pohlepnog algoritma, odredimo  skup dopustivih komponenti i (pohlepni) kriterijum odabira najbolje komponente u svakom koraku algoritma koja se dodaje u postojeće parcijalno rješenje. Inicijalno rješenje $s$ je prazan string, koje je, trivijalno, dopustivo za svaku instancu LCS problema. Ideja se sastoji u iterativnom proširivanju trenutnog rješenja za jedan karakter, spajajući taj karakter sa rješenjem sa desna, dok god je to moguće. Pri tome prošireno rješenje mora uvijek biti zajednički podniz, dakle, dopustivo. Za spajanje stringa i karaktera ćemo koristiti standardni operator ($\cdot$).
 
  Prema navedenom, krenemo sa pozicijom $p^L = (1, \ldots, 1)$ koja odgovara čitavom skupu $S=S[p^L]$ i praznim stringom $s =\varepsilon$ kao inicijalnim rješenjem. Dalje, da bismo očuvali dopustivost rješenja kada se rješenje proširi za jedan karakter, za komponente rješenja $\Sigma_{p^L}$ ćemo uzeti sve karaktere koji se nalaze u svim stringovima iz $S=S[p^L]$, dakle u sufiks stringovima u odnosu na odgovarajuće pozicije vektora $p^L$. Na taj način,  ekstenzija $s = s \cdot x$  će za bilo koji $x \in \Sigma_{p^L}$ dati dopustivo LCS rješenje. Među karakterima iz $\Sigma_{p^L}$ treba odabrati (lokalno) najboljeg kandidata za proširivanje rješenja. Treba imati na umu da se kandidat $x\in \Sigma_{p^L}$ može pojaviti na nekoliko pozicija u svakom stringu iz $S=S[p^L]$. Kako ne želimo ekstenzije koje vode ka podoptimalnim rješenjima, za karakter $x$ biramo onaj sa pozicijama pojavljivanja koje su najbliže početku svakog od stringova iz $S=S[p^L]$, dakle na pozicijama $p^L_{i,a},i=1,\ldots,m$. 
 
@@ -6456,7 +6456,7 @@ odakle slijedi da Algoritam~\ref{alg:ss} daje $2H_n$--aproksimaciju.
  
  \emph{Ukrštanjem} se kombinuju geni jedinki. Rezultat ukrštanja jedinki su nove jedinke, koje potencijalno sadrže ,,dobre'' gene  roditelja od kojih su nastale. Ovim mehanizmom  i jedinke slabije prilagođenosti, ali koje sadrže dobre gene, dobijaju šansu da učestvuju u reprodukciji i prenesu ,,dobar'' genetski materijal na sljedeću generaciju. Najčešće korišteni operatori ukrštanja su tzv. jednopoziciono, odnosno dvopoziciono ukrštanje, kod kojih se određuje jedna, odnosno dvije pozicije između kojih se odvija razmjena genetskih k\^odova roditelja, respektivno.
  
- \emph{Mutacijom} se vrši slučajna promjena određenog gena (sa nekom malom vjerovatnoćom da će se mutacija desiti), čime se postiže mogućnost vraćanja dobrog genetskog materijala, ukoliko je on izgubljen primjenom operatora selekcije. Time se proces pretrage `,,izvlači'' iz preuranjene konvergencije i usmjerava ka onim oblastima pretraživanja koje sadrže potencijalno bolje jedinke.
+ \emph{Mutacijom} se vrši slučajna promjena određenog gena (sa nekom malom vjerovatnoćom da će se mutacija desiti), čime se postiže mogućnost vraćanja dobrog genetskog materijala, ukoliko je on izgubljen primjenom operatora selekcije. Time se proces pretrage  ,,izvlači'' iz preuranjene konvergencije i usmjerava ka onim oblastima pretraživanja koje sadrže potencijalno bolje jedinke.
  
  
  Nakon primjene genetskih operatora, formira se naredna generacija. Populacija se tako sastoji od potomaka i nekih starijih jedinki koje su preživjele, s obzirom na njihov kvalitet (elitne jedinke). Produkcija novih generacija se nastavlja sve dok ne budu ispunjeni uslovi za završetak algoritma. Najčešći kriterijumi za završetak algoritma su dostignuto maksimalno vrijeme izvršenja, dostignut  maksimalan ukupan broj iteracija, ili dostignut maksimalan broj iteracija bez poboljšanja najboljeg rješenja.
@@ -6634,18 +6634,18 @@ Tako, ideja da se pretraga usmjeri sa jednog na (moguće bolji) drugi lokalni op
 Da bi se postigli pomenuti efekti ,,iskakanja'' iz lokalnog (pod)optimuma, kao i detaljno pretraživanje nove okoline trenutnog najboljeg rješenja, metoda promjenljivih okolina se najčešće realizuje pomoću dvije važne procedure: procedure \textit{razmrdavanja} (eng.  {shaking}) i procedure \textit{lokalnog pretraživanja} (eng.  {local search}). Kao i što je to slučaj sa svim metaheurističkim metodama, dugogodišnja primjena metode promjenljivih okolina na rješavanje različitih problema dovela je do pojave velikog broja različitih varijanti, koje, pored osnovnih metoda razmrdavanja i lokalnog pretraživanja, uključuju i mnoge druge efektivne strategije.
 
 Da bi se proširila pretraga,  VNS u potrazi za boljim lokalnim optimumom, obično koristi okoline rastuće kardinalnosti. Da bi se definisao skup okolina, pretpostavimo da je $x$ proizvoljno rješenje i $N_k$, za $k=k_{min},\ldots,k_{max}$, konačan skup  okolina. Tada se  $N_k(x)$ definiše kao skup rješenja u $k$-toj okolini tačke $x$. 
-Jedna od implementacija VNS metode, kojom se rješava problem maksimizacije, prikazana je Algoritmom~\ref{alg:vns}. 
+ Jedna od implementacija VNS metode, kojom se rješava problem maksimizacije, prikazana je Algoritmom~\ref{alg:vns}. 
 
 
-U svakom koraku algoritma, VNS započinje od nekog rješenja $x$ i cijelog broja $k$, $k_{min}\leqslant k\leqslant k_{max}$, koji označava trenutnu okolinu $N_k$. U proceduri razmrdavanja
-se na slučajan način bira rješenje  $x'$ iz okoline  $N_k(x)$. Zatim se na to rješenje primjenjuje procedura lokalnog pretraživanja. Najbolje rješenje koje se dobije u lokalnom pretraživanju se dalje poredi sa trenutno najboljim rješenjem i ukoliko je ono bolje od trenutno najboljeg rješenja, ono se proglašava novim najboljim rješenjem i algoritam nastavlja sa daljim izvršavanjem. Postoje različite strategije kada algoritam prelazi u narednu okolinu (u proceduri razmrdavanja), kao i kada se okoline ,,resetuju'', tj. kada se algoritam vraća na razmatranje najmanje okoline. 
+ U svakom koraku algoritma, VNS započinje od nekog rješenja $x$ i cijelog broja $k$, $k_{min}\leqslant k\leqslant k_{max}$, koji označava trenutnu okolinu $N_k$. U proceduri razmrdavanja
+ se na slučajan način bira rješenje  $x'$ iz okoline  $N_k(x)$. Zatim se na to rješenje primjenjuje procedura lokalnog pretraživanja. Najbolje rješenje koje se dobije u lokalnom pretraživanju se dalje poredi sa trenutno najboljim rješenjem i ukoliko je ono bolje od trenutno najboljeg rješenja, ono se proglašava novim najboljim rješenjem i algoritam nastavlja sa daljim izvršavanjem. Postoje različite strategije kada algoritam prelazi u narednu okolinu (u proceduri razmrdavanja), kao i kada se okoline ,,resetuju'', tj. kada se algoritam vraća na razmatranje najmanje okoline. 
 
-Najčešći kriterijumi za prekid   algoritma su: dostignuto maksimalno  vrijeme, dostignut maksimalan broj iteracija, maksimalni broj iteracija između dva poboljšanja najboljeg rješenja. %ili maksimalan broj ponavljanja najboljeg rješenja.
+ Najčešći kriterijumi za prekid   algoritma su: dostignuto maksimalno  vrijeme, dostignut maksimalan broj iteracija, maksimalni broj iteracija između dva poboljšanja najboljeg rješenja. %ili maksimalan broj ponavljanja najboljeg rješenja.
 
-   \begin{algorithm}[!t] 
-	 \caption{VNS metaheuristika}\label{alg:vns}
-	\begin{algorithmic}[1]
-		\STATE \textbf{Ulaz:} inicijalno rješenje $s$, okoline $\mathcal{N}_{k_{\min}},\ldots, \mathcal{N}_{k_{\max}}$ 
+    \begin{algorithm}[!t] 
+ 	 \caption{VNS metaheuristika}\label{alg:vns}
+  	\begin{algorithmic}[1]
+		\STATE \textbf{Ulaz:} inicijalno rješenje $s$, okoline  $\mathcal{N}_{k_{\min}},\ldots, \mathcal{N}_{k_{\max}}$ 
 		\STATE \textbf{Izlaz:} (poboljšano) rješenje $s$
 		\STATE $k \gets  k_{\min}$
 		\WHILE{!(\emph{IspunjenKriterijZaustavljanja()})}
@@ -6661,37 +6661,37 @@ Najčešći kriterijumi za prekid   algoritma su: dostignuto maksimalno  vrijeme
 		\ENDIF
 		\ENDIF
 		\ENDWHILE
-		\STATE \textbf{return} $s$
-	\end{algorithmic}
-\end{algorithm}
+	 	\STATE \textbf{return} $s$
+ 	\end{algorithmic}
+ \end{algorithm}
 
 
-\begin{primjer} Da bismo ilustrovali način funkcionisanja metode promjenljivih okolina, možemo posmatrati isti primjer kao i u slučaju genetskog algoritma: 0-1 problem ruksaka. 
-\end{primjer}
+ \begin{primjer} Da bismo ilustrovali način funkcionisanja metode promjenljivih okolina, možemo posmatrati isti primjer kao i u slučaju genetskog algoritma: 0-1 problem ruksaka. 
+ \end{primjer}
 
-\emph{Reprezentacija rješenja}. Kao i u slučaju genetskog algoritma, rješenje problema se može predstaviti binarnim nizom. Ako $i$-ti element niza ima vrijednost 1, to znači da je $i$-ti proizvod uključen u rješenje, a u suprotnom je izostavljen.
+ \emph{Reprezentacija rješenja}. Kao i u slučaju genetskog algoritma, rješenje problema se može predstaviti binarnim nizom. Ako $i$-ti element niza ima vrijednost 1, to znači da je $i$-ti proizvod uključen u rješenje, a u suprotnom je izostavljen.
 
-\emph{Vrijednost funkcije cilja}. Slično kao u primjeru genetskog algoritma, vrijednost funkcije prilago]enosti se najlakše može definisati kao zbir vrijednosti proizvoda uključenih u rješenje. Eventualno, ako se u algoritmu dozvoljava rad sa nedopustivim rješenjima, funkcija prilago može da sadrži i dio za ,,kažnjavanje'' nedopustivih rješenja. Razmatranje o kažnjavanju nedopustivih rješenja je slično kao u slučaju genetskog algoritma.
+ \emph{Vrijednost funkcije cilja}. Slično kao u primjeru genetskog algoritma, vrijednost funkcije prilagođenosti se najlakše može definisati kao zbir vrijednosti proizvoda uključenih u rješenje. Eventualno, ako se u algoritmu dozvoljava rad sa nedopustivim rješenjima, funkcija prilagođenosti može da sadrži i dio za ,,kažnjavanje'' nedopustivih rješenja. Razmatranje o kažnjavanju nedopustivih rješenja je slično kao u slučaju genetskog algoritma.
 
-\emph{Razmrdavanje}. Može se primijeniti više različitih tehnika razmrdavanja, a u ovom primjeru ćemo objasniti jedan pristup. 
-U okviru procedure razmrdavanja, kreira se novo rješenje $x'$, ($x' \in N_k(x)$) zasno\-vano na trenutno najboljem rješenju  $x$.
-$k$-ta okolina se definiše na sljedeći način: Nekih $k$ proizvoda se bira na slučajan način. Svakom izabranom proizvodu mijenja se status: Ako je izabran proizvod koji je uključen u ruksak, on se izbacuje iz ruksaka i obrnuto. 
+ \emph{Razmrdavanje}. Može se primijeniti više različitih tehnika razmrdavanja, a u ovom primjeru ćemo objasniti jedan pristup. 
+ U okviru procedure razmrdavanja, kreira se novo rješenje $x'$, ($x' \in N_k(x)$) zasno\-vano na trenutno najboljem rješenju  $x$.
+ $k$-ta okolina se definiše na sljedeći način: Nekih $k$ proizvoda se bira na slučajan način. Svakom izabranom proizvodu mijenja se status: Ako je izabran proizvod koji je uključen u ruksak, on se izbacuje iz ruksaka i obrnuto. 
 
-Za pravilno funkcionisanje procedure razmrdavanja, potrebno je definisati kardinalnost najmanje i najveće okoline, koja zavisi od $k$. Obično se okolina najmanje kardinalnosti zasniva na malim vijednostima $k$, (na primjer $k_{min}=1$ ili $k_{min}=2$), dok se za maksimalnu vrijednost $k_{max}$  uzimaju vrijednosti 20, 30, ili čak i više, u zavisnosti od prirode i dimenzije problema.
+ Za pravilno funkcionisanje procedure razmrdavanja, potrebno je definisati kardinalnost najmanje i najveće okoline, koja zavisi od $k$. Obično se okolina najmanje kardinalnosti zasniva na malim vijednostima $k$, (na primjer $k_{min}=1$ ili $k_{min}=2$), dok se za maksimalnu vrijednost $k_{max}$  uzimaju vrijednosti 20, 30, ili čak i više, u zavisnosti od prirode i dimenzije problema.
 
-Praktično gledano, u našem primjeru u $k$-tom koraku izvršenja procedure razmrdavanja, naš algoritam bi generisao jedno novo rješenje (označimo ga sa $x'$), koje se od trenutno najboljeg rješenja razlikuje u tačno $k$ koordinata, odnosno u tačno $k$ proizvoda. Npr. u slučaju da je rješenje $x$ predstavljeno nizom 1100100 i ako je $k=3$, tada bi rješenje    $x'$ moglo da  (između ostalog) izgleda
-1000111. Odnosno, vidimo da se ova dva rješenja razlikuju na tačno tri indeksa (indeksima 2, 6 i 7).
+  Praktično gledano, u našem primjeru u $k$-tom koraku izvršenja procedure razmrdavanja, naš algoritam bi generisao jedno novo rješenje (označimo ga sa $x'$), koje se od trenutno najboljeg rješenja razlikuje u tačno $k$ koordinata, odnosno u tačno $k$ proizvoda. Npr. u slučaju da je rješenje $x$ predstavljeno nizom 1100100 i ako je $k=3$, tada bi rješenje    $x'$ moglo da  (između ostalog) izgleda
+ 1000111. Odnosno, vidimo da se ova dva rješenja razlikuju na tačno tri indeksa (indeksima 2, 6 i 7).
 
-\emph{Lokalno pretraživanje}. 
-Za rješenje  $x'$ dobijeno u  proceduri razmrdavanja poziva se lokalno pretraživanje. Ova procedura podrazumijeva temeljno (ispcrpno) pretraživanje svih (ili skoro svih) rješenja, koja se blago razlikuju od rješenja  $x'$. Lokalno pretraživanje u ovom problemu bi moglo biti zasnovano na sličnim razmatranjima kao mutacije kod genetskog algoritma. Npr. jedno lokalno pretraživanje bi moglo da bude zasnovano na tzv. 1-\emph{zamjena} principu (eng. 1-swap, odnosno razmjeni vrijednosti parova koordinata. Preciznije, lokalno pretraživanje razmatra sva rješenja nastala od rješenja $x'$ na način da je jedan proizvod koji je bio uključen u ruksak sada izbačen, a neki drugi proizvod, koji prvobitno nije bio u ruksaku, sada jeste.
+ \emph{Lokalno pretraživanje}. 
+ Za rješenje  $x'$ dobijeno u  proceduri razmrdavanja poziva se lokalno pretraživanje. Ova procedura podrazumijeva temeljno (ispcrpno) pretraživanje svih (ili skoro svih) rješenja, koja se blago razlikuju od rješenja  $x'$. Lokalno pretraživanje u ovom problemu bi moglo biti zasnovano na sličnim razmatranjima kao mutacije kod genetskog algoritma. Npr. jedno lokalno pretraživanje bi moglo da bude zasnovano na tzv. 1-\emph{zamjena} principu (eng. 1-swap, odnosno razmjeni vrijednosti parova koordinata. Preciznije, lokalno pretraživanje razmatra sva rješenja nastala od rješenja $x'$ na način da je jedan proizvod koji je bio uključen u ruksak sada izbačen, a neki drugi proizvod, koji prvobitno nije bio u ruksaku, sada jeste.
 
-Postoje različite strategije koliko dugo se izvršava lokalna pretraga. U opštem slučaju, potrebno je napraviti balans između utrošenog vremena pretraživanja i potrebe za lokalnim poboljšanjem rješenja. Stoga je generalno dobar pristup konstrukcija  procedura lokalnog pretraživanja koje se brzo izvršavaju, kako bi se, zbog velike brzine izvršavanja jedne iteracije lokalne pretrage, omogućilo što iscrpnije pretraživanje okoline datog rješenja u razumnom vremenu. Takođe, nekada se kombinuje više metoda lokalnog pretraživanja (ovo važi za većinu heurističkih metoda), koje, manje ili više temeljno, pretražuju okoline datog rješenja, u zavisnosti od brzine ili drugih parametara.
+   Postoje različite strategije koliko dugo se izvršava lokalna pretraga. U opštem slučaju, potrebno je napraviti balans između utrošenog vremena pretraživanja i potrebe za lokalnim poboljšanjem rješenja. Stoga je generalno dobar pristup konstrukcija  procedura lokalnog pretraživanja koje se brzo izvršavaju, kako bi se, zbog velike brzine izvršavanja jedne iteracije lokalne pretrage, omogućilo što iscrpnije pretraživanje okoline datog rješenja u razumnom vremenu. Takođe, nekada se kombinuje više metoda lokalnog pretraživanja (ovo važi za većinu heurističkih metoda), koje, manje ili više temeljno, pretražuju okoline datog rješenja, u zavisnosti od brzine ili drugih parametara.
 
 
 
-\section{Zadaci}
+ \section{Zadaci}
 
-\begin{enumerate}
+ \begin{enumerate}
 	\item Na šahovskoj tabli dimenzije 8x8 je postavljeno nekoliko topova, tako da se nikoja dva topa međusobno ne napadaju. Dodati na tu tablu još topova, tako da ih bude maksimalno 8, a da se i dalje nikoja dva topa ne napadaju.
 	\item Istražiti na internetu problem vraćanja kusura pomoću minimalnog broja novčanica (kovanica). Koristi google pretragu \textit{change-making problem} ili \textit{coin change problem}. Napisati pohlepni algoritam koji rješava ovaj problem. Ispitati pod kojim uslovima pohlepni algoritam uvijek daje optimalno rješenje i pronaći kontraprimjer, kada pohlepni algoritam neće dati optimalno rješenje.
 
@@ -6772,24 +6772,24 @@ Postoje različite strategije koliko dugo se izvršava lokalna pretraga. U opšt
 
 
 
- \chapter{Optimizacioni rješavači}
+   \chapter{Optimizacioni rješavači}
  
- Kao što smo i pomenuli u uvodnom poglavlju, konstrukcija modela koji (najčešće) odgovara idealizivanoj verziji realnog problema je 
- dio koji uzima najveći dio vremena u operacionim istraživanjima. Kada dođemo do modela koji približno odgovara potrebama, rješavanje modela se svodi na pozivanje odgovarajućih rješavača. Neki od najpoznatijih su: 
- \textsc{Cplex} koji može biti pozivan u Javi, $C$++ i Python-u uz pomoć odgovarajućih API-ja, zatim Lindo, Gurobi, te modul PuLP u Python-u.
+  Kao što smo i pomenuli u uvodnom poglavlju, konstrukcija modela koji (najčešće) odgovara idealizivanoj verziji realnog problema je 
+  dio koji uzima najveći dio vremena u operacionim istraživanjima. Kada dođemo do modela koji približno odgovara potrebama, rješavanje modela se svodi na pozivanje odgovarajućih rješavača. Neki od najpoznatijih su: 
+  \textsc{Cplex} koji može biti pozivan u Javi, $C$++ i Python-u uz pomoć odgovarajućih API-ja, zatim Lindo, Gurobi, te modul PuLP u Python-u.
  
- U nastavku opisujemo korištenje \textsc{Cplex} i PuLP rješavača za implementaciju (M)ILP modela i njihovog rješavanja. 
+  U nastavku opisujemo korištenje \textsc{Cplex} i PuLP rješavača za implementaciju (M)ILP modela i njihovog rješavanja. 
  %https://realpython.com/linear-programming-python/
  %https://www.ibm.com/products/ilog-cplex-optimization-studio
  %https://www.youtube.com/watch?v=J7tNzCsYgy8
  
- \section{Optimizacioni rješavač \textsc{Cplex}}
- \textsc{Cplex} alat je opšti rješavač   koji se koristi za rješavanje optimizacionih problema. Iako se \textsc{Cplex} može koristiti i za rješavanje nekih drugih klasa problema, u ovom poglavlju ćemo razmatrati  LP, ILP i MILP probleme.  Različite verzije ovog programa, uključujući i besplatnu verziju koja sadrži određena ograničenja u mogućnostima, mogu se preuzeti preko adrese koja je prikazana u Literaturi.
+  \section{Optimizacioni rješavač \textsc{Cplex}}
+  \textsc{Cplex} alat je opšti rješavač   koji se koristi za rješavanje optimizacionih problema. Iako se \textsc{Cplex} može koristiti i za rješavanje nekih drugih klasa problema, u ovom poglavlju ćemo razmatrati  LP, ILP i MILP probleme.  Različite verzije ovog programa, uključujući i besplatnu verziju koja sadrži određena ograničenja u mogućnostima, mogu se preuzeti preko adrese koja je prikazana u Literaturi.
  
 %\emph{IBM ILOG \textsc{Cplex} Optimization Studio} uključuje i druge opcije poput \emph{Constraint Programming} (CP) solver.
  
- U nastavku opisujemo proces same implementacije modela u \textsc{Cplex}-u kroz programski jezik $C$++ u Linux okruženju (Ubuntu 20).
- Da bismo uključili \textsc{Cplex} u $C$++ k\^od, nepohodno je koristiti sljedeći zapis
+  U nastavku opisujemo proces same implementacije modela u \textsc{Cplex}-u kroz programski jezik $C$++ u Linux okruženju (Ubuntu 20).
+  Da bismo uključili \textsc{Cplex} u $C$++ k\^od, nepohodno je koristiti sljedeći zapis
  \begin{verbatim}
  	#include<ilcplex/ilocplex.h>
  	ILOSTLBEGIN
@@ -6969,15 +6969,15 @@ Ukoliko za rad koristite Linux operativni sistem, za kompajliranje programa, koj
  \section{PuLP alat}
  % http://www.optimization-online.org/DB_FILE/2011/09/3178.pdf
  % https://coin-or.github.io/pulp/main/the_optimisation_process.html
- PuLP je Python-ova biblioteka visokog nivoa za implementaciju i rješavanje modela, sa fokusom na LP i MILP modele.   Podržava veći broj komercijalnih i nekomercijalnih rješavača, a može se proširiti i na dodatne rješavače. Interesantno je i da PuLP  ne zavisi od  drugih softverskih paketa. 
+ PuLP je Python-ova biblioteka visokog nivoa za implementaciju i rješavanje modela, sa fokusom na LP, ILP i MILP modele.   Podržava veći broj komercijalnih i nekomercijalnih rješavača, a može se proširiti i na dodatne rješavače. Interesantno je i da PuLP  ne zavisi od  drugih softverskih paketa. 
  
- PuLP radi na principu modularnog pristupa prevođenja modela, napisanog prema definisanim pravilima, na njegovu vektorsku reprezentaciju (koja koristi vektore, rijetke matrice itd.). Konvertovani model se prosljeđuje u interfejs klase nekog od rješavača. Kako je šablon mnogih rješavača sličan, ili se sa njima rukuje tako što se model predstavlja u standardnim .$lp$ ili .$mps$  formatima  datoteka, pored specifičnih interfejsa popularnih rješavača, u PuLP biblioteku su uključene i  generičke klase rješavača. %popularnih rješavača. 
-  Ove generičke klase se, uz minimalan trud, mogu korisnički proširiti u cilju pozivanja novih rješavača.    
+   PuLP radi na principu modularnog pristupa prevođenja modela, napisanog prema definisanim pravilima, na njegovu vektorsku reprezentaciju (koja koristi vektore, rijetke matrice itd.). Konvertovani model se prosljeđuje u interfejs klase nekog od rješavača. Kako je šablon mnogih rješavača sličan, ili se sa njima rukuje tako što se model predstavlja u standardnim .$lp$ ili .$mps$  formatima  datoteka, pored specifičnih interfejsa popularnih rješavača, u PuLP biblioteku su uključene i  generičke klase rješavača. %popularnih rješavača. 
+    Ove generičke klase se, uz minimalan trud, mogu korisnički proširiti u cilju pozivanja novih rješavača.    
  
- Da bismo koristili PuLP biblioteku, treba da je uvezemo na sljedeći način:
- \begin{verbatim}
- 	  from pulp import *
- \end{verbatim}
+  Da bismo koristili PuLP biblioteku, treba da je uvezemo na sljedeći način:
+  \begin{verbatim}
+  	  from pulp import *
+  \end{verbatim}
  Konkretno, ovaj paket se (u Linux-u) može instalirati pozivom: \emph{sudo pip install pulp} ili \emph{sudo apt-get install glpk-utils}. 
  % https://www.coin-or.org/PuLP/CaseStudies/index.html (za primjere) 
  Kreiranje jedne instance problema se izvodi sljedećim k\^odom:
@@ -7206,7 +7206,7 @@ int main( int argc, char **argv )
  	    // definisanje Z varijabli
       unordered_map<Point2d, IloNumVar, Hash2d> Z;
  	    for (int i = 0; i < s1.size(); ++i){
- 		    for (int j = 0; j < s2.size(); ++j)
+ 		    for (int j = i+1; j < s2.size(); ++j)
  		    {
  		  	   if( s1[i] == s2[j] )
  		  	   {   
