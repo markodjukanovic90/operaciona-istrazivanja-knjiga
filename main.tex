@@ -256,7 +256,7 @@ Proces u operacionom istraživanju se ugrubo može predstaviti sljedećim koraci
 Detaljima ovih koraka ćemo se baviti  u narednoj sekciji.
  
 
-Glavne karakteristike operacionih istraživanja su:
+Glavne teme izučavanja operacionih istraživanja su:
 \begin{itemize}
      \item \emph{Optimizacija:} %Uloga operacionih istraživanja je   dohvatiti najbolje performanse pod unaprijed zadanim resursima (limit u vremenu, memoriji, itd.). 
        uključuje poređenja i navođenje pretrage prema potencijalno boljim opcijama u okviru zadanih resursa.
@@ -267,7 +267,7 @@ Glavne karakteristike operacionih istraživanja su:
  Operaciona istraživanja imaju nezamjenjivu ulogu u nizu obasti kao što su problemi raspoređivanja, urbanog planiranja, optimizacije na mrežama i inženjeringu, rutiranja paketa, upravljanja rizicima, upravljanja lancem snabdjevanja i mnogim drugim. 
 
  Operaciona istraživanja rješavaju probleme iz prakse (nazovimo ih poslovni problemi), koji ljudima štede novac i vrijeme. Ovi problemi mogu biti raznoliki i po pravilu ne izgledaju naročito povezani jedni sa drugim. Gledajući šire, osnov  im je uvijek isti, donošenje niza odluka da bi se došlo do cilja na što efikasniji način.
-Jedna od najmoćnijih tehnika koje se mogu koristiti u operacionim istraživanjima je \emph{matematičko programiranje}. Treba imati na umu da riječ  ,,programiranje'' nema standardno značenje na koje smo i navikli, već ono u ovom kontekstu označava optimizaciju.   %Diskretna optimizacija 
+Jedna od najmoćnijih tehnika koje se mogu koristiti u operacionim istraživanjima je \emph{matematičko programiranje}. Treba imati na umu da riječ  ,,programiranje'' nema standardno značenje na koje smo i navikli -- imperativno, vec ono u ovom kontekstu oznacava programiranje optimizacionih modela, koje je u osnovi deklarativno. 
 
   Put od učenja o problemu kojeg klijent predstavi do pronalaska rješenja može biti jako izazovan. Ovaj proces rješavanja se  dijeli u četiri osnovna nivoa apstrakcije:
   \begin{enumerate}
@@ -277,15 +277,15 @@ Jedna od najmoćnijih tehnika koje se mogu koristiti u operacionim istraživanji
       \item algoritamska rješenja. 
   \end{enumerate}
   
- Pod \emph{poslovnim problemima}  se ne podrazumijevaju samo problemi iz domena ekonomije, što samo ime možda nameće, već svi problemi koji imaju primjenu u stvarnom svijetu. Pojam ,,poslovni'' više odgovara tome da problem nema svoju preciznu matematičku formulaciju, nego je neformalno definisan kroz jezički (deskriptivan) opis.  Najčešće, ovi problemi proizilaze iz problema u ekonomiji ili industriji i kao takvi se i opisuju. Npr. u neformalnom opisu problema raspoređivanja medicinskog osoblja u (tri) smjene, navode se uslovi poput toga da svaki radnik mora da odradi 40 sati sedmično ili da niti jedan radnik ne smije da radi više od dvije noćne smjene u toku sedmice. Nakon opisnog, neformalnog definisanja, naredni korak 
- je formalno definisanje problema, odnosno, spuštanje (opisa) problema na niži nivo apstrakcije. U praksi se ovaj proces odvija iterativno i povezuje se sa terminom \emph{generički problemi}. Npr. problem pravljenja rasporeda časova, koji je poslovni problem, se može prevesti u generički OR problem bojenja grafa.
+ Pod \emph{poslovnim problemima}  se ne podrazumijevaju samo problemi iz domena ekonomije, što samo ime možda nameće, već svi problemi koji imaju primjenu u stvarnom svijetu. Pojam ,,poslovni'' više odgovara tome da problem nema svoju preciznu matematičku formulaciju, već je neformalno definisan kroz jezički (deskriptivan) opis.  Najčešće, ovi problemi proizilaze iz problema u ekonomiji ili industriji i kao takvi se i opisuju. Npr. u neformalnom opisu problema raspoređivanja medicinskog osoblja u (tri) smjene, navode se uslovi poput toga da svaki radnik mora da odradi 40 sati sedmično ili da niti jedan radnik ne smije da radi više od dvije noćne smjene u toku sedmice. Nakon opisnog, neformalnog definisanja, naredni korak 
+ je formalno definisanje problema, odnosno, ,,spuštanje'' (opisa) problema na niži nivo apstrakcije. U praksi se ovaj proces odvija iterativno i povezuje se sa terminom \emph{generički problemi}. Npr. problem pravljenja rasporeda časova, koji je poslovni problem, se može prevesti u generički OR problem bojenja grafa.
 
 Na početku razvoja operacionih istraživanja kao naučne discipline nije bilo strogog matematičkog formalizma. Matematičari su prepoznali da se većina poslovnih problema može  preslikati u generičke familije problema nižeg nivoa. Na kraju se završilo sa nekoliko opšteprihvaćenih generičkih klasa na koje se preslikava gotovo svaki poslovni problem. U praksi, najveći dio vremena se provodi u prevođenju poslovnog problema u jedan od tipova generičkih problema. Nakon toga, rješavanje problema je manje-više standardna procedura. Generički problemi operacionih istraživanja su dovoljno koncizni da se mogu predstaviti  matematičkom notacijom. Međutim, u svrhu boljeg razumijevanja, u praksi se koristi jezik modelovanja koji je na višem nivou apstrakcije. Npr. problemi raspoređivanja se obično opisuju upotrebom ,,stvarnih'' termina, kao što su resursi, aktivnosti, prioriteti, uslovi raspoređivanja i sl.  
 
  \emph{Paradigma modelovanja}. Kod generičkih problema koji su definisani jezikom višeg nivoa, notacija je najčešće vezana za problem koji se razmatra.
- Npr. resursi i aktivnosti nisu nešto što se može definisati u poznatom problemu trgovačkog putnika. U osnovi, svaki od ovih generičkih problema se može opisati nekom od paradigmi modelovanja. Paradigma modelovanja predstavlja skup pravila koja omogućuju da predstavimo probleme višeg nivoa, koristeći strukture nižeg nivoa, kao što su, na primjer, matrice. Kada se primjenjuje ova paradigma, problem se izražava upotrebom matematičke notacije ili algebarskog jezika modelovanja (eng. \emph{Algebraic Modelling Language} (AML)), koji konvertuje matematičku notaciju u matrice koje su proslijeđene sljedećem nivou (\emph{algoritamska rješenja}), koji generiše rješenja. Najpoznatije paradigme modelovanja su sljedeće: \textit{linearno}, \textit{cjelobrojno} i \textit{mješovito-cjelobrojno programiranje}. Postoje i druge paradigme poput modelovanja ograničenjima (eng. \emph{Constraint Programming}) i mrežnog modelovanja (eng. \emph{Network models}). 
+ Npr. resursi i aktivnosti nisu nešto što se može definisati u poznatom problemu trgovačkog putnika. U osnovi, svaki od ovih generičkih problema se može opisati nekom od paradigmi modelovanja. Paradigma modelovanja predstavlja skup pravila koja omogućuju da predstavimo probleme višeg nivoa, koristeći strukture nižeg nivoa, kao što su, na primjer, matrice. Kada se primjenjuje ova paradigma, problem se izražava upotrebom matematičke notacije ili algebarskog jezika modelovanja (eng. \emph{Algebraic Modelling Language} (AML)), koji konvertuje matematičku notaciju u matrice koje su proslijeđene sljedećem nivou (\emph{algoritamska rješenja}), koji generiše rješenja. Najpoznatije paradigme modelovanja su sljedeće: \textit{linearno}, \textit{cjelobrojno} i \textit{mješovito-cjelobrojno programiranje}. Postoje i druge paradigme poput modelovanja ograničenjima (eng. \emph{constraint programming}) i mrežnog modelovanja (eng. \emph{network models}). 
 
- \emph{Algoritamska rješenja}.   Algoritam je konačan niz instrukcija čijim izvršavanjem možemo riješiti problem ili njegov dio. Neki algoritmi su opšti, kao, na primjer, sortiranje ili pretraživanje,  dok su drugi vezani uz specifične probleme. Algoritmi pretrage su izuzetno važni u rješavanju problema operacionih istraživanja. Među njima se izdvajaju ,,Branch \& X''-tip algoritama koji rješavaju Cjelobrojne, Mješovito-cjelobrojne probleme kao i probleme zasnovane na modelovanju ograničenjima. Specifično, među ove algoritme spadaju Branch \& Bound (za rješavanje problema cjelobrojnog programiranja), Branch \& Cut, Branch \& Price (tj. metod generisanja kolona), itd.
+ \emph{Algoritamska rješenja}.   Algoritam je konačan niz instrukcija čijim izvršavanjem možemo riješiti problem ili njegov dio. Neki algoritmi su opšti, kao, na primjer, sortiranje ili pretraživanje,  dok su drugi vezani uz specifične probleme. Algoritmi pretrage su izuzetno važni u rješavanju problema operacionih istraživanja. Među njima se izdvajaju ,,Branch \& X''-tip algoritama koji rješavaju Cjelobrojne, Mješovito-cjelobrojne probleme kao i probleme zasnovane na modelovanju ograničenjima. Među ove algoritme spadaju Branch \& Bound (za rješavanje problema cjelobrojnog programiranja), Branch \& Cut, Branch \& Price (tj. metod generisanja kolona), itd.
 
 \emph{Dinamičko programiranje} je još jedna značajna programska paradigma  koja se primjenjuje za rješavanje problema u oblasti operacionih istraživanja. Ova familija algoritama rješava probleme tako što eksploatiše optimalnu pod-strukturu problema. Drugim riječima, polazni problem razbijemo na manje podprobleme, koje rješavamo rekurzivno. U rješavanju glavnog problema, koristimo pronađena optimalna rješenja podproblema, izbjegavajući ponovno rješavanje podproblema koji su već jednom bili rješavani. Ova programska paradigma ima značajnu ulogu u rješavanju grafovskih problema. 
 %Jedan od najpoznatijih takvih algoritama je \emph{Bellman-Ford}-ov algoritam, nazvan po izumitelju  paradigme dinamičkog programiranja, Ričardu Belmanu. 
@@ -326,13 +326,13 @@ U ovoj glavi ćemo objasniti   glavne faze tipičnog OR-a, koje se realizuje u  
  Zbog toga je važno da osoba (ili više osoba) koja modeluje problem,  ne radi samostalno, već blisko sarađuje sa poslodavcem. Osoba koja je zadužena za formulisanje problema, savjetuje se sa poslodavcem za koga se razvija sistem, poslije čega se izrađuje detaljna tehnička analiza u vezi problema i izlažu preporuke za rješenje  poslodavcu, koji je ključan u donošenju odluka.   
 
 
- Izvještaj koji se predaje poslodavcu, najčešće sadrži osnovno rješenje, ali i brojne alternative koje odgovaraju različitim uslovima ili  vrijednostima parametara problema  (npr. balansiranje između cijene i dobiti, stabilnosti poslovanja i dobiti, itd.). Na poslodavcu je da vrednuje prijedloge, uzimajući u obzir  niz faktora, nakon čega se donosi odluka zasnovanu na najboljoj procjeni. Važno je da osoba zadužena za izradu rješenja bude sličnog mišljenja kao i naručilac. %Utvrđivanje odgovarajućih ciljeva je  neophodno za ispravno   definisanje problema.   Zato je potrebna neprestana komunikacija sa poslodavcem, koja je donosilac odluka u vezi sistema koji se razvija, da bi se što prije pristupilo  realizaciji svakog od ciljeva.
+ Izvještaj koji se predaje poslodavcu, najčešće sadrži osnovno rješenje, ali i brojne alternative koje odgovaraju različitim uslovima ili  vrijednostima parametara problema  (npr. balansiranje između cijene i dobiti, stabilnosti poslovanja i dobiti/profita, itd.). Na poslodavcu je da vrednuje prijedloge, uzimajući u obzir  niz faktora, nakon čega se donosi odluka zasnovanu na najboljoj procjeni. %Važno je da osoba zadužena za izradu rješenja bude sličnog mišljenja kao i naručilac. %Utvrđivanje odgovarajućih ciljeva je  neophodno za ispravno   definisanje problema.   Zato je potrebna neprestana komunikacija sa poslodavcem, koja je donosilac odluka u vezi sistema koji se razvija, da bi se što prije pristupilo  realizaciji svakog od ciljeva.
 
 
- OR istraživanje podrazumijevano tražid ona rješenja koja su optimalna, ali se optimalnost može odnositi samo za određenu komponentu procesa za koji se sistem razvija. Prema tome, ciljevi koji su formulisani bi trebali da traže optimalna rješenja čitavog procesa koji se optimizuje.  U praksi, ovakav zahtjev nije trivijalan, te se problem svodi na razmatranje dijela inicijalno definisanog problema (ili njegove pojednostavljene varijante). Drugim riječima, analiza bi mogla postati pretjerano glomazna ako bi zadani ciljevi bili previše uopšteni. Umjesto toga, ciljevi bi trebalo da budu specifični, koliko god je to moguće, ali da se pri tome obuhvate glavni ciljevi donosilaca odluka. 
+  OR istraživanje podrazumijevano traži  ona rješenja koja su optimalna, ali se optimalnost može odnositi samo za određenu komponentu procesa za koji se sistem razvija. Prema tome, ciljevi koji su formulisani bi trebali da traže optimalna rješenja čitavog procesa koji se optimizuje.  U praksi, ovakav zahtjev nije trivijalan, te se problem svodi na razmatranje dijela inicijalno definisanog problema (ili njegove pojednostavljene varijante). Drugim riječima, analiza bi mogla postati pretjerano glomazna ako bi zadani ciljevi bili previše uopšteni. Umjesto toga, ciljevi bi trebalo da budu specifični, koliko god je to moguće, ali da se pri tome obuhvate glavni ciljevi donosilaca odluka. 
 
 
- Jedan od mogućih pristupa zaobilaženja problema pod-optimizacije je korištenje dugoročne maksimizacije profita. Riječ ,,dugoročno'' ukazuje da cilj pruža fleksibilnost u razmatranju aktivnosti koje ne donose momentalnu dobit, ali   omogućuju krajnji profit. Ovakav cilj je dovoljno specifičan, a ipak i dovoljno širok da obuhvati osnovni cilj   organizacija, dolazak do (zadovoljavajuće) zarade. Zapravo, svi drugi legitimni ciljevi ovakvih organizacija mogu se podvesti u prethodno pomenuti. Međutim, u praksi   organizacije rijetko koriste ovaj pristup. Velik broj   organizacija prilagođava zadovoljavajući profit sa drugim ciljevima, umjesto fokusiranja na maksimizovanje dugoročne zarade. Neki od takvih ciljeva su: izgradnja stabilnog profita, povećanje udjela na tržištu, zadržavanje stabilnosti cijena, povećanje uticaja kompanije, povećanje ponude proizvoda, itd. 
+ Jedan od mogućih pristupa zaobilaženja problema pod-optimizacije je korištenje dugoročne maksimizacije nekog cilja, npr. profita. Riječ ,,dugoročno'' ukazuje da cilj pruža fleksibilnost u razmatranju aktivnosti koje ne donose momentalnu dobit, ali   omogućuju krajnji profit. Ovakav cilj je dovoljno specifičan, a ipak i dovoljno širok da obuhvati osnovni cilj   organizacija, dolazak do (zadovoljavajuće) zarade. Zapravo, svi drugi legitimni ciljevi ovakvih organizacija mogu se podvesti u prethodno pomenuti. Međutim, u praksi   organizacije rijetko koriste ovaj pristup. Velik broj   organizacija prilagođava zadovoljavajući profit sa drugim ciljevima, umjesto fokusiranja na maksimizovanje dugoročne zarade. Neki od takvih ciljeva su: izgradnja stabilnog profita, povećanje udjela na tržištu, zadržavanje stabilnosti cijena, povećanje uticaja kompanije, povećanje ponude proizvoda, itd. 
  Dalje, treba napomenuti i dodatna razmatranja, poput društvenih odgovornosti, koje nisu direktno motivisane profitom.  
 
  Postoji nekoliko strana kojih se direktno tiču poslovi firme: (1) vlasnici (dioničari, itd.), koji žele profit;   (2) zaposlenici koji žele stalno zaposlenje, stabilan posao, te razumne plate; (3) kupci koji žele proizvod zadovoljavajućeg kvaliteta po razumnoj cijeni;
@@ -387,7 +387,7 @@ U ovoj glavi ćemo objasniti   glavne faze tipičnog OR-a, koje se realizuje u  
   Preporučljiv pristup u razvoju modela je da se započne sa pojednostavljenom verzijom, a  evolucionim načinom ići prema složenijim modelima, koji će bolje odražavati  stvarni problem. Ovaj proces obogaćivanja modela se nastavlja dok god je model rješiv. Kompromis, kojeg se pridržavamo, je odnos između preciznosti modela i mogućnosti njegovog rješavanja. Ključni korak u razvoju modela je konstrukcija funkcije cilja.
  On podrazumijeva razvijanje kvantitativne mjere uspješnosti u odnosu na svaki krajnji cilj, koji je identifikovan tokom definisanja problema.
  Ako postoji više ciljeva, njihove se mjere obično transformišu
-i kombinuju u jednu složenu mjeru.   Ukupna mjera može biti nešto opipljivo (npr. dobit), što odgovara višem cilju
+i kombinuju u jednu složenu mjeru -- ali postoje i pristupi koji nezavisno analiziraju funkcije cija, tzv. visekriterijumska optimizacija.    Ukupna mjera može biti nešto opipljivo (npr. dobit), što odgovara višem cilju
  organizacije.  Nakon što se razvije cjelokupna mjera,  ciljna funkcija se izražava kao matematička funkcija čiji su argumenti promjenljive odlučivanja. 
 
 % primjer preuzet iz: http://www.mathos.unios.hr/~mdjumic/uploads/diplomski/ČOR03.pdf
@@ -452,7 +452,7 @@ problema i poređenje sa modelom mogu pomoći u otkrivanju nekih  grešaka.  Pon
 mijenjanjem vrijednosti parametara i/ili promjenljivih odlučivanja, kao i provjerom da li se  izlaz iz modela ponaša na očekivan način. To se često može otkriti kada se parametrima ili promjenljivima dodjeljuju ekstremne vrijednosti u blizini njihovih maksimuma ili minimuma (takozvani ,,korner slučajevi'' -- eng. \textit{corner cases}). 
 
 Sistematski pristup u ispitivanju modela podrazumijeva upotrebu retrospektivnog testa. Ovaj test uključuje upotrebu istorijskih podataka koji prate konstrukciju modela, a zatim procjenjuje koliko bi dobro  model i rezultujuće rješenje funkcionisali, ako bi ono  bilo korišteno u praksi.  Ovaj pristup može da ukaže na dijelove modela koji sadrži određene nedostatatke, što bi dalje zahtijevalo dodatne izmjene i poboljšanja. 
-Sa druge strane, nedostatak retrospektivnog test je taj što koristi iste podatke kao i oni koji su korišteni za formulaciju modela. %Ključno je pitanje da li prošlost zaista reprezentuje budućnost. %Da bi se zaobišao   nedostatak retrospektivnog testiranja, ponekad je korisno privremeno nastaviti sa statusom quo. To će dati nove podatke koji nisu bili dostupni kada  je
+Sa druge strane, nedostatak retrospektivnog testa je taj što koristi iste podatke kao i oni koji su korišteni za formulaciju modela. %Ključno je pitanje da li prošlost zaista reprezentuje budućnost. %Da bi se zaobišao   nedostatak retrospektivnog testiranja, ponekad je korisno privremeno nastaviti sa statusom quo. To će dati nove podatke koji nisu bili dostupni kada  je
 %model konstruiran. 
 Važno je još dokumentovati postupke testiranja valjanosti modela. Ovo može  povećati povjerenje budućih klijenata u model. Takođe, ako se u budućem vremenu pojave pitanja u vezi sa modelom, ova dokumentacija će  biti korisna prilikom otkrivanja potencijalnih problema. 
 
@@ -464,7 +464,7 @@ Ovom studijom je dobijen  novi inventarni sistem koji je poboljšao korisničku 
 
 \section{Pripremanje modela za primjenu}
  
- Ako želimo da model bude upotrijebljen više puta u praksi, sljedeći  korak je instaliranje dobro dokumentovanog sistema za primjenu modela po propisima naručioca (uprave). Ovaj sistem uključuje implementaciju samog modela, postupak dobijanja rješenja (uključujući analizu postoptimalnosti), operativne postupke za izvođenje, itd. %Tada, čak i kad se osoblje mijenja, sistem se može pozvati na regularnoj bazi da se ponudi određeno numeričko rješenje
+ Ako želimo da model bude upotrijebljen više puta u praksi, sljedeći  korak je instaliranje dobro dokumentovanog sistema za primjenu modela po propisima poslodavca. Ovaj sistem uključuje implementaciju samog modela, postupak dobijanja rješenja (uključujući analizu postoptimalnosti), operativne postupke za izvođenje, itd. %Tada, čak i kad se osoblje mijenja, sistem se može pozvati na regularnoj bazi da se ponudi određeno numeričko rješenje
  Svaki put pri korištenju sistema, baze podataka i informacioni sistem za upravljanje treba da omoguće unos podataka u model, te je zbog toga potrebno obezbijediti i odgovarajući interfejs. Nakon što se na model primijeni postupak rješavanja, dodatni  programi mogu automatski pokrenuti implementaciju rezultata kako bi ih korisnici mogli odmah primijeniti u realnoj situaciji. U drugim slučajevima, može se instalirati i interaktivni računarski sistem  za podršku odlučivanju, koji pomaže poslodavcu da koristi podatke i modele kako bi, po potrebi, podržao (ali ne i zamijenio)   donošenje odluka. Dodatna programska rješenja mogu generisati menadžerske izvještaje, koji pomažu pri tumačenju izlaznih podataka modela, kao i implikacije na primjenu u realnom okruženju.  U velikim OR studijama potrebno je nekoliko mjeseci (a nekada čak i duže) za razvoj, testiranje i instaliranje ovakvog računarskog sistema. Pri tome, treba uzeti u obzir da ove aktivnosti uključuju i razvoj i izvođenje postupka održavanja sistema  tokom njegove buduće upotrebe. Kako se uslovi obično mijenjaju tokom vremena, potrebno je obezbijediti i mogućnost za  izmjene sistema, uključujući i izmjene samog modela, u skladu sa tim uslovima.  
 
  Sljedeći primjer nam opisuje sistem u IBM-u za kontrolu usluga i zaliha rezervi da bi se dobio osjećaj o kompleksnosti ovakvih sistema zasnovaom na OR studiju. 
@@ -1978,13 +1978,13 @@ U slučaju da smo, u prvom koraku simpleks metode, umjesto promjenljive $x$ u ba
 \end{comment}
 % \newpage
 
- \chapter{Dualnost \& Dopustivost}\label{chp:dualnost}
+ \chapter{Dualnost i Dopustivost}\label{chp:dualnost}
 
 %Dualnost je pojam koji je vezan za dobijanje gornjih granica optimalne vrijednosti funkcije cilja. 
  U teoriji linearnog programiranja, ali i teoriji optimizacije uopšte, pod dualnošću podrazumijevamo da se neki problem može posmatrati s dva različita aspekta: kao primalni i kao dualni problem. 
  Preciznije, teorija dualnosti povezuje dva problema linearnog programiranja -- jedan od njih je problem linearnog programiranja koji maksimizuje funkciju cilja, dok je drugi linearan program  koji minimizuje (ne obavezno istu) funkciju cilja.  Na osnovu istih ulaznih podataka, svaki problem LP-a se može navesti u drugom, ekvivalentnom obliku. Ponekad rješavanje dualnog problema LP-a može da bude puno lakše nego rješavanje početnog problema.  Dualnost implicira da svaki problem linearnog programiranja možemo analizirati na dva potpuno različita načina, ali sa ekvivalentnim (optimalnim) rješenjima. 
 
-U ovom poglavlju ćemo najprije objasniti kako se od početnog, primarnog problema formira dualni problem. Nakon toga, biće navedene Teoreme o slaboj i jakoj dualnosti, koje daju vezu između rješenja i ograničenja primarnog i dualnog problema. U nastavku poglavlja su objašnjene još neke važne tehnike koje se koriste za rješavanje problema linearnog programiranja: Farkašova lema i Furije-Mockinova eliminacija. Dodatno, metod unutrašnje tačke će biti dat u Dodatku. 
+U ovom poglavlju ćemo najprije objasniti kako se od početnog, primarnog problema formira dualni problem. Nakon toga, biće navedene Teoreme o slaboj i jakoj dualnosti, koje daju vezu između rješenja i ograničenja primarnog i dualnog problema. U nastavku poglavlja su objašnjene još neke važne tehnike koje se koriste za rješavanje problema linearnog programiranja: Farkašova lema i Furije-Mockinova eliminacija. Dodatno, metod unutrašnje tačke će biti dat u Dodatku A. 
 
 Prije nego što uvedemo pojam dualnog problema, objasnimo motivaciju koja stoji iza nastanka teorije dualnosti.
 
@@ -2501,7 +2501,7 @@ U ovoj glavi ćemo analizirati koncepte   \emph{cjelobrojnog linearnog programir
 	& t.d. \nonumber \\
 	& A x \leq b \nonumber \\
 	& x \geq 0 \nonumber\\
-	& x_i \in \mathbb{Z}, \mbox{ za sve } i. \label{ilp-formulation}
+	& x_i \in \mathbb{Z}, \forall i. \label{ilp-formulation}
 \end{align}
 
 Problemi cjelobrojnog linearnog programiranja se veoma često sreću i u teoriji i u praksi, te je, samim tim, važno poznavati i tehnike rješavanje ovih problema. Sa druge strane, pokazuje se da je rješavanje ovih problema u velikom broju slučajeva značajno teže nego rješavanje klasičnih problema linearnog programiranja. U narednom odjeljku ćemo modelovati nekoliko poznatih optimizationih problema pomoću koncepta cjelobrojnog linearnog programiranja. U Odjeljku~\ref{sec:transformILP} ćemo prikazati neke korisne tehnike transformacije nekih nelinearnih izraza u IP kako bi se dobio ekvivalentan ILP model. U Odjeljku~\ref{sec:kompleksnostILP} ćemo pokazati da je rješavanje ILP-a NP težak problem. Tehnike rješavanja ILP-a ćemo detaljnije razmatrati u Glavi~\ref{chap:rjesavanjeILP}.
@@ -3075,7 +3075,7 @@ Poznato je da je problem 3--SAT, gdje je ulaz 3--CNF formula,  u opštem slučaj
 \end{proof} 
 Može se pokazati i sljedeća teorema.
 \begin{thm} Neka je $k\in \mathbb{Z}$.
-	Problem odlučivanja da li postoji cjelobrojno rješenje  ILP-a,  vrijednosti manje od $k$ je NP--kompletan, ako se posmatra problem minimizacije. 
+	Problem odlučivanja da li postoji cjelobrojno dopustivo rješenje  ILP-a  vrijednosti manje od $k$ je NP--kompletan.
 \end{thm}
 
 \section{Zadaci}
@@ -3257,14 +3257,14 @@ Tehnike za rješavanje su uglavnom zasnovane na tzv. relaksaciji ILP-a u odgovar
  
 Metode za egzaktno rješavanje ILP-a se mogu klasifikovati na sljedeći način:
  \begin{enumerate}
-     \item \emph{Enumerativne tehnike} -- Dinamičko programiranje, metoda granjanja i ograničavanja (eng. \emph{branch-and-bound} -- B\&B), metoda implicitne enumeracije i druge;
+     \item \emph{Enumerativne tehnike} -- dinamičko programiranje, metoda granjanja i ograničavanja (eng. \emph{branch-and-bound} -- B\&B), metoda implicitne enumeracije i druge;
      \item \emph{Tehnike odsjecajućih ravni}.
      %\item Grupne-teoretske tehnike. 
  \end{enumerate}
 
 
 \section{Metoda grananja i ograničavanja (B\&B)}\label{sec:bb}
-Metoda grananja i ograničavanja (eng. branch and bound, skraćeno B\&B) je zasnovana na poznatom principu ,,zavadi pa vladaj'' (eng. divide and conquer) gdje se problem, rekurzivno, rastavlja na manje dijelove. Kasnije se (optimalna rješenja) manjih problema kombinuju na odgovarajući način za dobijanje optimalnog rješenja početnog problema.  U B\&B metodi važan dodatak je upotreba strategije da se 
+Metoda grananja i ograničavanja  je zasnovana na poznatom principu ,,zavadi pa vladaj'' (eng. divide and conquer) gdje se problem, rekurzivno, rastavlja na manje dijelove. Kasnije se (optimalna rješenja) manjih problema kombinuju na odgovarajući način za dobijanje optimalnog rješenja početnog problema.  U B\&B metodi važan dodatak je upotreba strategije da se 
 problem nikada ne rastavlja na manje podprobleme ako se može procijeniti da će rješenje podproblema biti suboptimalno (ograničavanje). Drugim riječima, algoritam ,,ne ulazi'' u one grane, za koje se unaprijed može pokazati da sadrže samo  rješenja koja su lošija od trenutno najboljeg dopustivog rješenja. Očigledno, na taj način dolazi do uštede u broju operacija koje je potrebno izvršiti u toku izvođenja algoritma, a, samim tim, dolazi i do uštede memorije i vremena izvršenja. U rješavanju ILP-a, dopustiv skup se dijeli na manje skupove, dodavanjem specijalnih ograničenja u model. Rekurzivni postupak se izvršava sve  dok se ne dobiju podproblemi, čije relaksacije obezbjeđuju cjelobrojno rješenje ili se zaključi da podproblemi nisu dopustivi. Ovakvi pristupi se razlikuju u načinu podjele dopustivog skupa i zbog toga  u literaturi  postoji nekoliko različitih B\&B procedura. 
 
 \subsection{Bazni B\&B za rješavanje problema ILP-a}
@@ -3366,7 +3366,7 @@ Na Slici~\ref{fig:bnb_ilp} je prikazano B\&B drvo sljedećeg ILP-a:
 		\draw[->](E.south)--+(0,-0.5)-|(G)node[left,midway]{\scriptsize $x_2\leq 4$};
 	    \draw[->](E.south)--+(0,-0.5)-|(H)node[left,midway]{\scriptsize $x_2 \geq 5$};
 	\end{tikzpicture}
-	\caption{Primjer Branch \& Bound  Metoda za ILP.}
+	\caption{Primjer B\&B   metoda za rješavanje problema ILP-a.}
 	\label{fig:bnb_ilp}
 \end{figure}
 
@@ -5114,7 +5114,7 @@ Da bi se odredili   koeficijenti doprinosa za $\lambda_j$, odredimo šta se dobi
  	1 
  \end{array}\right)$$
  
- Sada rješavamo \emph{Column generation podproblem} (CG), čiji je cilj da se pronađe najmanji koeficijent doprinosa. Ukoliko je koeficijent manji od nule, dobija se nova kolona koja treba da se doda u podproblem RMP.  U slučaju da je nenegativan, tada  optimalno rješenje RMP predstavlja ujedno i optimalno rješenje MP.
+ Sada rješavamo   podproblem generisanja kolona (skraćeno CG podproblem), čiji je cilj da se pronađe najmanji koeficijent doprinosa. Ukoliko je koeficijent manji od nule, dobija se nova kolona koja treba da se doda u podproblem RMP.  U slučaju da je nenegativan, tada  optimalno rješenje RMP predstavlja ujedno i optimalno rješenje MP.
  
  CG podproblem se definiše kao
  
@@ -6350,7 +6350,7 @@ odakle slijedi da Algoritam~\ref{alg:ss} daje $2H_n$--aproksimaciju.
  Drugim riječima, za rješenja dobijena aproksimativnim algoritmima se zna koliko njihov kvalitet maksimalno može da odstupa od kvaliteta optimalnog rješenja. 
  %, a to odstupanje je određeno faktorom kvaliteta.
  
- Posebna vrsta neegzaktnih metoda, odnosno metoda koje ne daju i/ili ne garantuju pronalazak optimalnog rješenja pri smo završetku su tzv. heurističke metode. 
+ Posebna vrsta neegzaktnih metoda, odnosno metoda koje ne daju i/ili ne garantuju pronalazak optimalnog rješenja pri završetku su tzv. heurističke metode. 
  
  Za razliku od aproksimativnih algoritama, kod heurističkih metoda, u opštem slučaju, ne propisuje se faktor kvaliteta rješenja, već je primarni cilj razviti i primijeniti tehniku pomoću koje se u razumnom vremenu može doći do dovoljno dobrog (zadovoljavajućeg) rješenja. Heurističke metode mogu biti izvedene iz teorijskih razmatranja, ali i iz eksperimentalnih rezultata. Npr. u praksi je čest slučaj da se heurističke metode razvijaju na osnovu rješavanja problema manjih dimenzija ili uopštavanjem tehnika uspješno primijenjenih na uzorcima. 
  
@@ -6643,7 +6643,7 @@ Da bi se proširila pretraga,  VNS u potrazi za boljim lokalnim optimumom, obič
  Najčešći kriterijumi za prekid   algoritma su: dostignuto maksimalno  vrijeme, dostignut maksimalan broj iteracija, maksimalni broj iteracija između dva poboljšanja najboljeg rješenja. %ili maksimalan broj ponavljanja najboljeg rješenja.
 
     \begin{algorithm}[!t] 
- 	 \caption{VNS metaheuristika}\label{alg:vns}
+ 	 \caption{VNS metaheuristika (maksimizacija)}\label{alg:vns}
   	\begin{algorithmic}[1]
 		\STATE \textbf{Ulaz:} inicijalno rješenje $s$, okoline  $\mathcal{N}_{k_{\min}},\ldots, \mathcal{N}_{k_{\max}}$ 
 		\STATE \textbf{Izlaz:} (poboljšano) rješenje $s$
@@ -7799,6 +7799,8 @@ Za pokretanje progama uz pomoć $makefile$ datoteke (komande $make$), potrebno j
     \bibitem[30]{cite_key30} Asghari, M., Fathollahi-Fard, A. M., Mirzapour Al-e-hashem, S. M. J., \& Dulebenets, M. A. (2022). Transformation and Linearization Techniques in Optimization: A State-of-the-Art Survey. Mathematics, 10(2), 283.
     \bibitem[31]{cite_key31} Lozano, L., Medaglia, A. L. (2013). On an exact method for the constrained shortest path problem. Computers \& Operations Research, 40(1), 378-384.
     \bibitem[32]{cite_key32} Jovanović, M. (2013): Konveksne funkcije i ekstremi, Prirodno-matematički fakultet, Univerzitet u Banjoj Luci.
+    \bibitem[33]{cite_key33} Dugošija, Đ., Savić, A. (2018). Operaciona istraživanja: linearno i celobrojno programiranje, grafovi i algoritmi (1. izd.). Matematički fakultet.
+    \bibitem[34]{cite_key34} Čangalović, M., Dugošija, Đ., Kovačević-Vujčić, V., Simić, S., \& Vuleta, J. (1996). Kombinatorna optimizacija: matematička teorija i algoritmi.
 \end{thebibliography}
 
 \end{document}
