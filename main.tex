@@ -493,10 +493,10 @@ Ovom studijom je dobijen  novi inventarni sistem koji je poboljšao korisničku 
 
  \chapter{Osnove linearnog programiranja} \label{chp:lp}
   
-   Razvoj linearnog programiranja počinje sredinom dvadesetog vijeka. Sovjetski matematičar i ekonomista Leonid Kantorovič je tokom Drugog svjetskog rata formulisao problem ekvivalentan problemu linearnog programiranja u cilju boljeg upravljanja resursima i smanjenja vojnih troškova. Neposredno nakon Drugog svjetskog rata, američki matematičar Džordž Dencig razvija čuveni simpleks algoritam, čime se otvara prostor za efikasno rješavanje problema linearnog programiranja. U periodu koji je uslijedio, pa sve do danas, linearno programiranje se koristi kao standardan alat za rješavanje raznih problema u industriji i ekonomiji uopšte, što je dovelo do   milionskih ušteda ogromnom broju kompanija širom svijeta. Stoga se razvoj linearnog programiranja  smatra jednim od najvažnijih naučnih dostignu\-ća XX vijeka.  Napisane su stotine udžbenika o linearnom programiranju kao i hiljade naučnih radova koji ovu paradigmu primjenjuju na probleme iz raznih naučnih i praktičnih domena. 
+   Razvoj linearnog programiranja počinje sredinom dvadesetog vijeka. Sovjetski matematičar i ekonomista Leonid Kantorovič je tokom Drugog svjetskog rata formulisao problem ekvivalentan problemu linearnog programiranja u cilju boljeg upravljanja resursima i smanjenja vojnih troškova. Neposredno nakon Drugog svjetskog rata, američki matematičar Džordž Dencig razvija čuveni simpleks algoritam, čime se otvara prostor za efikasno rješavanje problema linearnog programiranja. U periodu koji je uslijedio, pa sve do danas, linearno programiranje se koristi kao standardan alat za rješavanje raznih problema u industriji i ekonomiji uopšte, što je dovelo do   milionskih ušteda ogromnom broju kompanija širom svijeta. Stoga se razvoj linearnog programiranja  smatra jednim od najvažnijih naučnih dostignu\-ća XX vijeka.  Napisane su stotine udžbenika o linearnom programiranju, kao i hiljade naučnih radova, koji ovu paradigmu primjenjuju na probleme iz raznih naučnih i praktičnih domena. 
 
 
-Linearno programiranje koristi matematički model za opisivanje problema. Pridjev ,,linearno'' podrazumijeva da su  matematičke funkcije korištene u modelu linearne funkcije. Riječ ,,programiranje'' se ne odnosi na računarsko programiranje, već je to sinonim za planiranje i optimizaciju. Dakle, linearno programiranje uključuje planiranje aktivnosti u cilju postizanja optimalnog rezultata, tj. rezultata koji najbolje postiže navedeni cilj (prema matematičkom modelu) među svim mogućim alternativama.  Za rješavanje problema linearnog programiranja razvijeno je dosta efikasnih metoda. Iako jedan od nastarijih,  \emph{simpleks metod} se i danas koristi za rješavanje problema velikih dimenzija te je zaslužan za ogroman uticaj linearnog  programiranja u raznim oblastima nauke i privrede.
+Linearno programiranje koristi matematički model za opisivanje problema. Pridjev ,,linearno'' podrazumijeva da su  matematičke funkcije korištene u modelu linearne funkcije. Riječ ,,programiranje'' se ne odnosi na računarsko programiranje, već je to sinonim za planiranje i optimizaciju. Dakle, linearno programiranje uključuje planiranje aktivnosti u cilju postizanja optimalnog rezultata, tj. rezultata koji najbolje postiže navedeni cilj (prema matematičkom modelu) među svim mogućim alternativama.  Za rješavanje problema linearnog programiranja razvijeno je dosta efikasnih metoda. Iako jedan od nastarijih,  \emph{simpleks metod} se i danas koristi za rješavanje problema velikih dimenzija, te je zaslužan za ogroman uticaj linearnog  programiranja u raznim oblastima nauke i privrede.
 
  \begin{primjer}\label{primjer:graficki} U ovom primjeru opisujemo jedan industrijski projekat 
  naziva {WYNDOR--GLASS CO projekat}, ilustrujući kako OR  može da, upotrebom linearnog programiranja, riješi ozbiljne probleme u industriji.
@@ -674,7 +674,7 @@ Postavka (\ref{form:LP-1})--(\ref{form:LP-4}) se još naziva i \emph{standardna 
 %Postoji važna povezanost između ovih tačaka i optimalnog rješenja LP-a, o čemu će biti riječi u nastavku ove knjige.
 %Prije toga, za početak, razmotrimo bilo koji problem LP-a sa dopustivim rješenjima i ograničenim dopustivim regionom. Kao što će uskoro biti i pokazano, u tom slučaju ćemo da raspolažemo barem jednom tačkom vrh tog regiona i barem jednim optimalnim rješenjem. Nadalje, jedan od vrhova mora biti optimalno rješenje. Dakle, ako problem ima tačno jedno optimalno rješenje, to rješenje je tačka koja je vrh regiona. Ako problem ima više optimalnih rješenja, barem dva moraju biti rješenja koja su tačke  vrhova dopustivog regiona.
 
-Treba imati na umu da (optimalno) rješenje LP-a ne mora da bude cjelobrojno. Budući da svaka promjenljiva odluke predstavlja nivo odgovarajuće aktivnosti, pretpostavlja se da se aktivnosti mogu izvoditi i na razlomljenim nivoima, odnosno, aktivnost  se ne dijeli samo na diskretne dijelove. 
+Treba imati na umu da (optimalno) rješenje LP-a ne mora da bude cjelobrojno. Budući da svaka promjenljiva odlučivanja predstavlja nivo odgovarajuće aktivnosti, pretpostavlja se da se aktivnosti mogu izvoditi i na razlomljenim nivoima, odnosno, aktivnost  se ne dijeli samo na diskretne dijelove. 
 
 Ako su domeni svih promjenljivih LP-a cjelobrojne vrijednosti, riječ je o modelu \emph{cjelobrojnog programiranja}. Ako pored cjelobrojnih, postoje i neke promjenljive koje uzimaju neprekidne vrijednosti, riječ je o modelima \emph{mješovitog--cjelobrojnog linearnog programiranja}. Veliki broj realnih problema koji dolaze iz prakse su upravo problemi mješovitog--cjelobrojnog linearnog programiranja.
  
@@ -1252,7 +1252,7 @@ Fabrika je  mala i proizvodni prostor je vrlo ograničen. Proizvodnja na nivou s
 Zahtjevi kupaca su specifični. Količina proizvoda 3 je povezana sa količinom  proizvoda 2. Preciznije, tokom sedmice trebalo bi se proizvesti približno dvostruko više  proizvoda 2 nego proizvoda 3. Mašina $X$ je van pogona (zbog održavanja/kvara) 5\% vremena, a mašina $Y$ ukupno 7\% vremena.
 Pretpostaviti da radna sedmica ima ukupno 35 sati. Formulisati model proizvodnje ovih proizvoda preko linearnog programa, u cilju maksimizovanja profita. 
 
-Uputstvo. Promjenljive odluke se vezuju za količinu proizvoda koji se proizvode na svakoj od mašina.  Dakle, 
+Uputstvo. Promjenljive odlučivanja se vezuju za količinu proizvoda koji se proizvode na svakoj od mašina.  Dakle, 
 promjenljive $x_i$ označava broj proizvoda $i$ koji se proizvode na sedmičnom nivou na mašini $X$, dok je $y_j$ označava  broj proizvoda $j$ koji se proizvode na sedmičnom nivou na mašini $Y$, $i \in \{1,2,3,4\}$, $j \in \{2,3,4\}$. Promjenljivu $y_1$ ne definišemo jer se proizvod 1 izvršava na obje mašine.  
 
 	\item Grafičkom metodom riješiti sljedeći problem
@@ -2326,7 +2326,7 @@ Jedno od važnih pitanja vezano za problem  LP-a je sljedeće.
 
 Problem dopustivosti može da služi i da odgovorimo na sljedeće pitanje: 
 \emph{Da li je optimalna vrijednost funkcije cilja problema LP-a veća od neke unaprijed zadate  vrijednosti k?}
-Na ovo pitanje možemo odgovoriti pomoću  \emph{Furije–Mockinovog} metoda eliminacije. Pored osnovne primjerne, ovaj algoritam može poslužiti za dokazivanje Farkašove leme. Jedna od praktičnih primjena  ove metode je u teoriji informacija, konkretno u informaciono-teorijskim dokazima ostvarivosti koji se opisuju uslovima pod kojima je zagarantovano postojanje šeme kodiranja sa dobrim performansama. Ovi uslovi se često opisuju linearnim sistemom nejednakosti, koji su upravo ulazne vrijednosti  \emph{Furije–Mockinove} eliminacije. 
+Na ovo pitanje možemo odgovoriti pomoću  \emph{Furije–Mockinovog} metoda eliminacije. Pored osnovne primjene, ovaj algoritam može poslužiti za dokazivanje Farkašove leme. Jedna od praktičnih primjena  ove metode je u teoriji informacija, konkretno u informaciono-teorijskim dokazima ostvarivosti koji se opisuju uslovima pod kojima je zagarantovano postojanje šeme kodiranja sa dobrim performansama. Ovi uslovi se često opisuju linearnim sistemom nejednakosti, koji su upravo ulazne vrijednosti  \emph{Furije–Mockinove} eliminacije. 
 
 Metoda  \emph{Furije–Mockinove} eliminacije strukturalno drugačija  od simpleks metode. Ideja algoritma je zasnovana na redukciji problema sa $n$ promjenljivih na ekvivalentan problem koji sadrži $n-1$ promjenljivih. Ekvivalentnost se posmatra u odnosu na svojstvo da početni problem ima rješenje akko ga ima i redukovani problem. Eliminacija promjenljivih se vrši iterativno, odnosno, u svakom koraku se redukuje broj promjenljivih za jedan. Na kraju se početni sistem svodi na sistem sa jednom promjenljivom, za koji se lako može provjeriti da li sadrži dopustivo rješenje.
 
@@ -2496,7 +2496,7 @@ Tada, donje i gornje granice za $y$ postaju uslovi: $y \leq 6, y \geq 4, y \leq 
 \chapter{Cjelobrojno linearno programiranje}\label{chp:ilp}
 
 %https://www.google.com/url?sa=t&source=web&rct=j&url=https://web.mit.edu/15.053/www/AMP-Chapter-09.pdf&ved=2ahUKEwiN0cef_f7xAhU0CRAIHWLqCw0QFjAfegQILBAC&usg=AOvVaw1cQCbZJQbc55Z0VLPue2ul
-U mnogim realnim problemima, promjenljive odluke ne dobijaju neprekidne, već isključivo diskretne vrijednosti. Npr. kod problema dodjele poslova određenim mašinama, zahtijevaju se promjenljive koje su diskretnog tipa, kojima se definiše koji posao će biti dodijeljen kojoj mašini. U slučaju da su u nekom modelu sve promjenljive odluke cjelobrojne, tada kažemo da je riječ o problemu \emph{cjelobrojnog programiranja} (eng. \emph{integer programming}). 
+U mnogim realnim problemima, promjenljive odlučivanja ne dobijaju neprekidne, već isključivo diskretne vrijednosti. Npr. kod problema dodjele poslova određenim mašinama, zahtijevaju se promjenljive koje su diskretnog tipa, kojima se definiše koji posao će biti dodijeljen kojoj mašini. U slučaju da su u nekom modelu sve promjenljive odlučivanja cjelobrojne, tada kažemo da je riječ o problemu \emph{cjelobrojnog programiranja} (eng. \emph{integer programming}). 
 U ovoj glavi ćemo analizirati koncepte   \emph{cjelobrojnog linearnog programiranja} (ILP), gdje se, pored integralnosti (cjelobrojnosti) promjenljivih, zahtijeva da funkcija cilja  i sva ograničenja u modelu budu linearni izrazi po promjenljivima. Prema tome, ILP ima opšti oblik:
 \begin{align}
 	& \max c^T x \nonumber\\
@@ -2536,7 +2536,7 @@ Problemi cjelobrojnog linearnog programiranja se veoma često sreću i u teoriji
 	\begin{itemize}
 		\item $x_i \geq 0, x_i \in \mathbb{Z}$, $j=1,\ldots,7.$
 	\end{itemize}
-	Primijetimo da su u ovom problemu promjenljive  cjelobrojne. Primijetimo da sve varijable figurišu u tačno pet ograničenja, što odgovara uslovu da svaka od sestara radi pet dana zaredom u noćnoj smjeni.
+	Primijetimo da su u ovom problemu promjenljive  cjelobrojne. Primijetimo da sve promjenljive figurišu u tačno pet ograničenja, što odgovara uslovu da svaka od sestara radi pet dana zaredom u noćnoj smjeni.
 	%Ovaj model pripada paradigmi cjelobrojnog linearnog programiranja.
 \end{primjer}
 \begin{primjer}
@@ -2574,7 +2574,7 @@ Problemi cjelobrojnog linearnog programiranja se veoma često sreću i u teoriji
 \begin{primjer}
 	
   	%https://www.math.unipd.it/~luigi/courses/metmodoc1819/m01.modelli.00.en.pdf
-	\emph{Problem pokrivanja}. Telefonska kompanija želi da instalira antene na neka mjesta kako bi pokrila šest oblasti. Postoji pet mogućih mjesta za instaliranje antena. Nakon urađenih simulacija, za svaku oblast utvrđen je intenzitet signala koji antena šalje, kad je postavljena na određenom mjestu. Tabela~\ref{tab:tb-3} daje   primjer jedne instance problema sa nivoima intenziteta signala.
+	\emph{Problem pokrivanja}. Telefonska kompanija želi da instalira antene na neka mjesta kako bi pokrila šest oblasti. Postoji pet mogućih mjesta za instaliranje antena. Nakon urađenih simulacija, za svaku oblast utvrđen je intenzitet signala koji antena šalje, kad je postavljena na određenom mjestu. Tabela~\ref{tab:tb-3} sadrži   primjer jedne instance problema sa nivoima intenziteta signala.
 	
 	\begin{table}[!ht]
 		\centering
@@ -2727,7 +2727,7 @@ $$  \sum_{i=1}^n x_{ij} = 1, \forall j =1,\ldots, n,$$
 što znači da se iz tačno jednog grada dolazi u svaki grad $j$, dok sličnim jednakostima nametnemo da se iz grada $j$ odlazi u tačno jedan drugi grad sa:
 
 $$  \sum_{j=1}^n x_{ij} = 1, \forall i =1,\ldots, n$$ 
-uz uslove $x_{ij}\geq 0$. Primijetimo sljedeće, ovakvi uslovi ne sprečavaju pojavu rješenja koja predstavljaju uniju disjunktnih podruta, što nije dopustivo rješenje za TSP. Ako pretpostavimo da je rješenje dato u obliku podruta $R_1, \ldots, R_k$, gdje je $R_i = \{ v_{i_1}, \ldots, v_{i_{p_i}} \}$, onda se pojava podruta  može izbjeći  dodavanjem dodatnih ograničenja u početni model problema. Tako problem sukcesivno rješavamo dodavanjem ograničenja, sve dok ne dobijemo rješenje koje je u stvari jedna ruta koja obuhvata sve gradove. Recimo, eliminacija pojave podrute $R_2$ (u odnosu na podrutu $R_1$) se vrši dodavanjem ograničenja
+uz uslove $x_{ij}\geq 0$. Primijetimo sljedeće. Ovakvi uslovi ne sprečavaju pojavu rješenja koja predstavljaju uniju disjunktnih podruta, što nije dopustivo rješenje za TSP. Ako pretpostavimo da je rješenje dato u obliku podruta $R_1, \ldots, R_k$, gdje je $R_i = \{ v_{i_1}, \ldots, v_{i_{p_i}} \}$, onda se pojava podruta  može izbjeći  dodavanjem dodatnih ograničenja u početni model problema. Tako problem sukcesivno rješavamo dodavanjem ograničenja, sve dok ne dobijemo rješenje koje je u stvari jedna ruta koja obuhvata sve gradove. Recimo, eliminacija pojave podrute $R_2$ (u odnosu na podrutu $R_1$) se vrši dodavanjem ograničenja
 $$ \sum_{l=1}^{ {p_1}}\sum_{t=1}^{ {p_2}} x_{1_l, 2_t} \geq 1.$$
 U najgorem slučaju, potrebno je dodati $2^n-1$ ovakvih ograničenja prije nego se dobije dopustivo rješenje. 
 Generalno ograničenje koje služi za eliminaciju podruta u modelu TSP-a se može dodati sa:
@@ -3253,7 +3253,7 @@ Može se pokazati i sljedeća teorema.
  U ovom poglavlju će biti analizirane različite tehnike kojima se rješavaju problemi cjelobrojnog linearnog programiranja.
  Za razliku od problema LP-a, koji se efikasno rješava simpleks metodom, za rješavanje problema cjelobrojnog linearnog programiranja ne postoji generalno efikasna metoda. Drugim riječima, efikasnost metoda, kojima se rješava ovaj problem, u velikoj mjeri zavisi od karakteristika samog problema. 
  
-Tehnike za rješavanje su uglavnom zasnovane na tzv. relaksaciji ILP-a u odgovarajući LP, koji se od polaznog problema (ili nekog od podproblema generisanog u toku rješavanja) dobija zanemarivanjem uslova o cjelobrojnosti promjenljivih.  Iako se dobijena  LP relaksacija može efikasno riješiti uz pomoć simpleks metoda, to ne znači da se iz rješenja relaksacije može lako doći do rješenja polaznog ILP-a. Npr. ako rješenje LP relaksacije označimo sa $x^*$, zaokruživanjem svake koordinate vektora $x^*$ na njenu najbližu cjelobrojnu vrijednost, dobijamo cjelobrojni vektor  $\overline{x}$.  U uvom slučaju, uslov cjelobrojnosti jeste zadovoljen, ali ne postoji nikakva garancija da će, u opštem slučaju,  ovakvo rješenje izvedeno iz LP relaksacije problema (\ref{ilp-formulation}), biti i  dopustivo za početni ILP. Pored toga, skaliranjem desnih strana ograničenja ILP-a, kao i koeficijenata funkcije cilja na odgovarajući način, moguće je konstruisati problem, čije je optimalno cjelobrojno rješenje proizvoljno udaljeno od zaokruženog rješenja LP relaksacije. 
+Tehnike za rješavanje su uglavnom zasnovane na tzv. relaksaciji ILP-a u odgovarajući LP, koji se od polaznog problema (ili nekog od podproblema generisanog u toku rješavanja) dobija zanemarivanjem uslova o cjelobrojnosti promjenljivih.  Iako se dobijena  LP relaksacija može efikasno riješiti uz pomoć simpleks metoda, to ne znači da se iz rješenja relaksacije može lako doći do rješenja polaznog ILP-a. Npr. ako rješenje LP relaksacije označimo sa $x^*$, zaokruživanjem svake koordinate vektora $x^*$ na njenu najbližu cjelobrojnu vrijednost, dobijamo cjelobrojni vektor  $\overline{x}$.  U ovom slučaju, uslov cjelobrojnosti jeste zadovoljen, ali ne postoji nikakva garancija da će, u opštem slučaju,  ovakvo rješenje izvedeno iz LP relaksacije problema (\ref{ilp-formulation}), biti i  dopustivo za početni ILP. Pored toga, skaliranjem desnih strana ograničenja ILP-a, kao i koeficijenata funkcije cilja na odgovarajući način, moguće je konstruisati problem, čije je optimalno cjelobrojno rješenje proizvoljno udaljeno od zaokruženog rješenja LP relaksacije. 
  
  Razmatranje opisano u prethodnom paragrafu ukazuje na to da se, uz relaksaciju početnog ILP-a u LP, moraju koristiti suptilnije tehnike za određivanje optimalnog rješenja ILP-a. 
  
@@ -3404,7 +3404,7 @@ Fiksiramo $i=1$ i $LB=-\infty$.
      %Inače, idemo na korak 4. Primijetimo da  podproblem sa fiksnim $x_i=0$ ne mora da provjeravamo, jer je on isti kao i korjeni (korjeni) problem.
     \item U suprotnom, ažuriramo $i = i+1$ i idemo na korak 3 sa podproblemima koji mogu dalje da se dijele, dok god je $i \leq n$. Inače, izlazimo iz petlje sa optimalnim rješenjem ($LB$). 
 \end{enumerate}
- Primijetimo da i u ovom slučaju dobijamo drvo odluke (binarno drvo) gdje su na granama koje spajaju čvor na dubini $i$ sa čvorom na dubini $i+1$  ugrađene odluke o tome da li je promjenljiva $x_i$ fiksirana na 0 ili 1.
+ Primijetimo da i u ovom slučaju dobijamo drvo odlučivanja (binarno drvo) gdje su na granama koje spajaju čvor na dubini $i$ sa čvorom na dubini $i+1$  ugrađene odluke o tome da li je promjenljiva $x_i$ fiksirana na 0 ili 1.
 
 \begin{primjer}Na Slici~\ref{fig:bnb_binary} je dato drvo odlučivanja za problem 
 \end{primjer}
@@ -3464,7 +3464,7 @@ Fiksiramo $i=1$ i $LB=-\infty$.
 	%add text (info) x1=x4=x5=0; x2=x3=1 je optimum:
 	
 \end{tikzpicture}
-    \caption{Drvo odluke za rješavanje problema binarnog programiranja.}
+    \caption{Drvo odlučivanja za rješavanje problema binarnog programiranja.}
     \label{fig:bnb_binary}
 \end{figure}
 
@@ -3778,7 +3778,7 @@ Rješavanjem relaksacije problema ($P1$) dobijamo rješenje $x^*=(3,2)$, koje je
 Rješavajući LP relaksaciju problema ($P3$), dobijamo rješenje $x^*=(\frac{9}{5}, \frac{17}{5})$, a  optimalna vrijednost funkcije cilja je $27.8$. Kako je $LB \geq 27.8$, niti jedno cjelobrojno rješenje problema ($P3$) ne može biti bolje od trenutno najbolje donje granice ($LB=28$), pa zaključujemo da je optimalo rješenje početnog problema dato sa $x^*=(3,2)$. 
 
 \section{Lagranžova relaksacija}
-U rješavanju problema optimizacije, pronalazak optimalnog rješenja je osnovni cilj. Međutim, za mnoge probleme nije realno očekivati da će se razumnom vremenu može doći do optimalnog rješenja za instance velikih dimenzija. Umjesto toga, najbolje što se može učiniti je da se ponudi dobra  granica za optimalnu vrijednost. Ako je ta granica blizu optimuma, u mnogo slučajeva ona može da zamijeni optimum, čime štedimo resurse kojima raspolažemo, a dobijamo rješenje koje je prihvatljivo.  
+U rješavanju problema optimizacije, pronalazak optimalnog rješenja je osnovni cilj. Međutim, za mnoge probleme nije realno očekivati da se, u razumnom vremenu, može doći do optimalnog rješenja za instance velikih dimenzija. Umjesto toga, najbolje što se može učiniti je da se ponudi dobra  granica za optimalnu vrijednost. Ako je ta granica blizu optimuma, u mnogo slučajeva ona može da zamijeni optimum, čime štedimo resurse kojima raspolažemo, a dobijamo rješenje koje je prihvatljivo.  
 
 Ideja \emph{Lagranžove relaksacije} se sastoji u tome da u modelu ILP-a  koji ima  ograničenja koja problem čine teškim (ova procjena najčešće dolazi uz praktičnog iskustva),  posmatramo kao dio ciljne funkcije koji se penalizuje nekim parametrom.  %parametrom $\lambda>0$. 
 Ovo ograničenje potom brišemo iz skupa ograničenja modela, a zatim rješavamo ovakav (parametrizovan) problem. Fiksirajući parametar penalizacije, rješenje takvog problema predstavlja donju granicu (za problem minimizacije)  optimalnog rješenja inicijalnog problema. Dobijena granica je često dovoljno blizu vrijednosti optimuma, što ovu metodu čini upotrebljivom u rješavanju praktičnih problema. 
@@ -3820,7 +3820,7 @@ $$ L(\lambda) \leq L^* \leq z^*.$$
 U praksi se pokazalo da je Lagranžova relaksacija dobra tehnika za dobijanje granica optimalne vrijednosti problema. 
  
 \begin{primjer}
-Primijenimo ovu tehniku na \emph{problem trgovačkog putnika} sa ulaznim težinskim grafom $G=(V,E)$, gdje je $V=\{1, \ldots, n\}$.  Razmotrimo  problem sa grafovske strane i pokušajmo da izvedemo njegovu relaksaciju. %Neka je data kolekcija grana $T. Kolekcija grana $T$ formira konturu ako su svaka dva čvora grafa $G$ pokrivena sa tačno dvije grane iz te kolekcije. Kada obrišemo grane incidentne sa čvorom 1 (ili nekim drugim), ostatak rute će činiti stablo koje pokriva graf  $G\setminus \{1\}$.  
+Primijenimo ovu tehniku na \emph{Problem trgovačkog putnika} sa ulaznim težinskim grafom $G=(V,E)$, gdje je $V=\{1, \ldots, n\}$.  Razmotrimo  problem sa grafovske strane i pokušajmo da izvedemo njegovu relaksaciju. %Neka je data kolekcija grana $T. Kolekcija grana $T$ formira konturu ako su svaka dva čvora grafa $G$ pokrivena sa tačno dvije grane iz te kolekcije. Kada obrišemo grane incidentne sa čvorom 1 (ili nekim drugim), ostatak rute će činiti stablo koje pokriva graf  $G\setminus \{1\}$.  
 % Definišimo sa $A(j)$ skup svih čvorova koji su incidentni sa čvorom $j$. 
 \end{primjer}
 Relaksacija: definišimo sa $T_1$ skup svih ruta  u $G$  koje nakon brisanja grana koje pokrivaju čvor $1$ formiraju (pokrivajuće) stablo.  Dakle, prije samog rješavanja problema, enumerišimo sve ovakve rute u grafu $G$. 
@@ -3866,7 +3866,7 @@ gdje je $\lambda=(\lambda_1, \ldots, \lambda_n)$ i $c^\lambda_{i,j} = c_{i,j} + 
 \section{Metod generisanja kolona}% ovo je za LP probleme sa velikim brojem kolona, pogledati u https://coral.ise.lehigh.edu/~ted/files/ie418/lectures/Lecture18.pdf file:///C:/Users/PC/Downloads/ColumnGenerationTutorial.pdf
 
 %video: https://www.youtube.com/watch?v=O918V86Grhc
-U praksi se često nailazi  na situaciju da je u LP-u (ili ILP-u) broj promjenljivih značajno (eksponencijalno) veći  u odnosu na broj ograničenja. Kod takvih ekstremno velikih modela, matrica modela je izuzetno velikih dimenzija. Sa druge strane, veliki dio matrice (tj. njene kolone) nam obično nikada i neće biti relevantan za rješavanje. Da bi se riješila specifična instanca problema, ono što nam je potrebno su:
+U praksi se često nailazi  na situaciju da je u LP-u (ili ILP-u) broj promjenljivih značajno (eksponencijalno) veći  u odnosu na broj ograničenja. Kod takvih ekstremno velikih modela, matrica modela je izuzetno velikih dimenzija. Sa druge strane, veliki dio matrice (tj. njene kolone) nam obično nikada i neće biti relevantan za rješavanje. Da bi se riješila specifična instanca problema, ono što nam je potrebno su
 \begin{itemize}
     \item Ograničenja koja se vezuju uz optimalnost.
     \item Promjenljive koje su bazne u optimalnom rješenju.
@@ -3876,7 +3876,7 @@ Dakle, ono što je potrebno da znamo su ograničenja, čije su odgovarajuće dua
 
 \begin{itemize}
    % \item ¸Krenimo sa ,,obećavajućim'' podskupom $S$ kolona matrice $A$; 
-   \item Izaberimo podskup $S$ kolona matrice $A$ u cilju određivanja potencijalno dobrog inicijalnog baznog dopustivog rješenja
+   \item Izaberimo podskup $S$ kolona matrice $A$ u cilju određivanja potencijalno dobrog inicijalnog baznog dopustivog rješenja.
     \item Riješimo restrikovani LP na podskupu kolona $S$.
     \item Procijenimo ostale kolone i dodajmo u $S$ one sa negativnim 
           cijenama doprinosa.
@@ -6896,7 +6896,7 @@ Ako je potrebno implementirati promjenljivu za koju je $x \geq 0$ to radimo kao 
  Implementacija koja odgovara ovim ograničenjima data je k\^odom
  \begin{verbatim}
  	// neka je prethodno definisan i popunjen niz s[]
- 	// neka su prethodno deklarisane varijable x_ij
+ 	// neka su prethodno deklarisane promjenljive x[i][j]
  	for (j = 0; j < N; j++) {
  		    IloExpr expr(env);
  		    for (t = 1; t <= n; t++)
@@ -7205,7 +7205,7 @@ int main( int argc, char **argv )
  	    IloModel model(env);
  	    int vars_num = 0;
  	    IloObjective obj = IloMaximize(env);
- 	    // definisanje Z varijabli
+ 	    // definisanje Z promjenljivih
       unordered_map<Point2d, IloNumVar, Hash2d> Z;
  	    for (int i = 0; i < s1.size(); ++i){
  		    for (int j = i+1; j < s2.size(); ++j)
