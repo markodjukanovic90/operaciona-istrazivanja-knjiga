@@ -1,5 +1,5 @@
  
-\documentclass[a4paper, utf8, 11pt, colorlinks]{book} 
+\documentclass[b5paper, utf8, 11pt, colorlinks]{book} 
 \bibliography{localbibliography}
 \usepackage{verbatim}
 \usepackage{amsmath}
@@ -189,13 +189,41 @@
 	\end{comment}
 
 %\maketitle
+
+ Marko Đukanović, Dragan Matić
  
-\newpage
+Uvod u operaciona istraživanja
  
-\tableofcontents
+ \vspace{1cm}
+ 
+ Izdavavač
+ 
+ Prirodno-matematički fakultet
+ 
+ Univerzitet u Banjoj Luci
+ 
+ \vspace{1cm}
+ 
+ Recenzenti
+ 
+ doc. dr Milana Grbić,
+ 
+ Prirodno-matematički fakultet, Univerzitet u Banjoj Luci
+ 
+ doc. dr Aleksandar Kartelj
+ 
+ Matematički fakultet, Univerzitet u Beogradu
+ \vspace{1cm}
+ 
+ Slika na naslovnoj strani
+ 
+ Which boxes to choose to maximize the amount of money while still fullfilling the 15 kg constraint? (autor slike: Dake)
+ 
+ \begin{figure}[h]
+\includegraphics[scale=0.5]{proba.png}
+\end{figure}
 
 
-\newpage
 \chapter*{Predgovor}
 Ovaj udžbenik je namijenjen studentima koji slušaju uvodni kurs iz Opera\-cionih istraživanja. Po svojoj strukturi i sadržaju udžbenik najviše prati nastavni plan i program za Operaciona istraživanja, za studente treće godine informatičkog smjera Prirodno-matematičkog fakulteta Univerziteta u Banjoj Luci.
 
@@ -212,9 +240,6 @@ Na kraju svakog poglavlja dat je veći broj pitanja i zadataka. Cilj ovih zadata
 
 Mnogi koncepti u operacionim istraživanjima se međusobno prepliću i nadopunjuju. Npr. teorija dualnosti se koristi u dekompozicionim metodama, simpleks metoda se može kombinovati sa drugim metodama za rješavanje problema linearnog i cjelobrojnog linarnog programiranja, a egzaktne i heurističke metode za rješavanje problema često se međusobno kombinuju i objedinjuju u tzv. hibridne metode.
 Stoga je preporuka da se ovaj udžbenik ne čita isključivo redom, već da se, čak i mnogo češće nego što je to u tekstu sugerisano, sadržaj više poglavlja izučava u isto vrijeme, vraća na prethodna poglavlja ili prelazi na neka naredna.
-
-
-Za uspješno savladavanje gradiva iznesenog u udžbeniku potreban je strpljiv i studiozan rad. Čitaocu se preporučuje i da sve prezentovane primjere detaljno razradi i po potrebi testira na svom računaru, da dodatno analizira ponuđena rješenja, formira svoje mišljenje o rješenjima u udžbeniku i predloži svoja rješenja. Neki zadaci podrazumijevaju i dodatni angažman, koji uključuje prikupljanje potrebnih informacija i iz drugih izvora (na primjer iz pouzdanih internet izvora),  što je u praksi standardan i uobičajen metod za učenje i napredovanje u struci.
 
 Na kraju, želimo da se zahvalimo recenzentima, doc. dr Milani Grbić i doc. dr Aleksandru Kartelju, koji su svojim sugestijama i komentarima poboljšali kvalitet ovog udžbenika. Takođe, zahvaljujemo se na podršci i kolegama sa Katedre za računarske i informatičke nauke Prirodno-matematičkog fakulteta Univerziteta u Banjoj Luci.
 
@@ -235,7 +260,7 @@ Uvedimo neke notacijske napomene i konvencije koje smo koristili u knjizi.
    \item Što se tiče skalara i vektora, nećemo koristiti drugačije oznake da bismo ih razlikovali. Jednostavno, biće jasno iz konteksta da li je riječ o jednom ili drugom. Dakle, nula vektor ćemo takođe označavati sa $x = (0, \ldots, 0)^T := 0$, dok je $x=(1,\ldots, 1)^T:=1$.  
    \item   Ako je $x \in \mathbb{R}^n$, notacija  $x \geq 0$ podrazumijeva da je vrijednost svake od koordinatna vektora $x$ veća ili jednaka 0, tj. $x_i \geq 0$, za sve $i=1,\ldots,n$. 
 \end{itemize} 
-
+\tableofcontents
 
 \chapter{Predmet izučavanja Operacionih istraživanja}
 \pagenumbering{arabic}
@@ -291,16 +316,16 @@ Na početku razvoja operacionih istraživanja kao naučne discipline nije bilo s
 
 \emph{Dinamičko programiranje} je još jedna značajna programska paradigma  koja se primjenjuje za rješavanje problema u oblasti operacionih istraživanja. Ova familija algoritama rješava probleme tako što eksploatiše optimalnu pod-strukturu problema. Drugim riječima, polazni problem razbijemo na manje podprobleme, koje rješavamo rekurzivno. U rješavanju glavnog problema, koristimo pronađena optimalna rješenja podproblema, izbjegavajući ponovno rješavanje podproblema koji su već jednom bili rješavani. Ova programska paradigma ima značajnu ulogu u rješavanju grafovskih problema. 
 %Jedan od najpoznatijih takvih algoritama je \emph{Bellman-Ford}-ov algoritam, nazvan po izumitelju  paradigme dinamičkog programiranja, Ričardu Belmanu. 
-
+ \begin{figure}
+	\centering 
+	\includegraphics[width=\textwidth,height=250pt]{overview.eps}
+	\caption{Četiri nivoa apstrakcije pri rješavanu problema operacionih istraživanja.}
+	\label{fig:OR_four_levels}
+\end{figure}
 U praksi, problemi iz oblasti operacionih istraživanja mogu biti prilično teški za egzaktno rješavanje, što podrazumijeva da je za dobijanje optimalnog rješenja potrebno jako puno vremenskih i memorijskih resursa. Za potrebe dobijanja brzog (ne obavezno optimalnog) rješenja  koriste se \emph{pohlepni algoritmi}. Oni obično ne mogu 
 da garantuju optimalnost, ali su   po svojoj prirodi jako brzi u nalaženju dovoljno dobrog rješenja. Jedan od najpoznatijih pohlepnih algoritama je \emph{Dajkstrin} algoritam za problem pronalaska najkraćeg puta koji, pri određenim uslovima, nalazi i optimalno rješenje. 
 
- \begin{figure}
-    \centering 
-    \includegraphics[width=\textwidth,height=250pt]{overview.eps}
-    \caption{Četiri nivoa apstrakcije pri rješavanu problema operacionih istraživanja.}
-    \label{fig:OR_four_levels}
-\end{figure} 
+ 
 %https://towardsdatascience.com/the-big-picture-of-operations-research-8652d5153aad
 
 
@@ -1767,16 +1792,17 @@ $$\begin{array}{cccccc| c}
 	-z  & 2 & 3 & 0 & 0 & 0 & 0 \\
 \end{array}
 $$  
-Kao što je već pomenuto, izjednačavajuće promjenljive čine pogodne bazne promjenljive za početak simpleks metode, jer one formiraju jediničnu podmatricu u gornjoj blok matrici 
-simpleks tabele. Prema tome, bazno rješenje je
-$(x, y, s_1, s_2, s_3) = (0, 0, 3, 2, 26)$, koje je ujedno i dopustivo.
-Na Slici~\ref{fig:step-1} je prikazan dopustivi region problema. Nakon prvog koraka, nalazimo se u tački $A=(0,0)$, koja je dopustiva. Trenutna najbolja vrijednost je jednaka 0. 
+ 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=170pt, height=170pt]{simpleks-primjer-2-sl1.eps}
 	\caption{Korak 1}
 	\label{fig:step-1}
 \end{figure}
+Kao što je već pomenuto, izjednačavajuće promjenljive čine pogodne bazne promjenljive za početak simpleks metode, jer one formiraju jediničnu podmatricu u gornjoj blok matrici 
+simpleks tabele. Prema tome, bazno rješenje je
+$(x, y, s_1, s_2, s_3) = (0, 0, 3, 2, 26)$, koje je ujedno i dopustivo.
+Na Slici~\ref{fig:step-1} je prikazan dopustivi region problema. Nakon prvog koraka, nalazimo se u tački $A=(0,0)$, koja je dopustiva. Trenutna najbolja vrijednost je jednaka 0.
 Izvršimo sada promjenu baznih vektora na osnovu  koraka simpleks metoda. Pošto maksimizujemo, 
 tražimo one koeficijente dopirnosa koji su veći od 0. Biramo prvu kolonu, koja odgovara promjenljivoj $x$. Pronađimo 
 pivot element: kandidati su $s_2$ i $s_3$.
@@ -1789,7 +1815,9 @@ $$\begin{array}{cccccc| c}
 	-z  & 0    &  7   & 0   & -2 & 0 & -4   \\ 
 \end{array}
 $$ 
-Ova tabela vizuelno odgovara Slici~\ref{fig:step-2}. Prelazi se u bazno rješenje $(x,y, s_1, s_2, s_3)=(2, 0, 5, 0 ,20)$, odnosno do tačke $E=(2, 0)$. 
+Ova tabela vizuelno odgovara Slici~\ref{fig:step-2}. Prelazi se u bazno rješenje 
+
+\noindent $(x,y, s_1, s_2, s_3)=(2, 0, 5, 0 ,20)$, odnosno do tačke $E=(2, 0)$. 
 
 \begin{figure}[!ht]
 	\centering
@@ -2110,7 +2138,7 @@ Primijetimo da koeficijenti $y^*$ posljednje vrste završne simpleks tabele odgo
 
 \begin{primjer} Moguće je da problem ($P$) i njegov   dual ($D$) nemaju dopustivo rješenje. Pogledajmo sljedeći primjer:
 \end{primjer}
-$$\begin{array}{cc}
+$$\begin{array}{cl}
 	\max          & 2 x_1 - x_2 \\
 	{\mbox{t.d.} }      & x_1 - x_2 \leq 1 \\
 	& -x_1 + x_2 \leq -2 \\
@@ -2118,7 +2146,7 @@ $$\begin{array}{cc}
 \end{array}$$
 %i pokažite da je to slučaj.
 \emph{Rješenje.} Množenjem drugog ograničenja sa -1, dobijamo $x_1 - x_2 \geq 2$, što u kombinaciji sa prvim ograničenjem jasno pokazuje da problem ($P$) nema dopustivih rješenja. Dualni problem ($D$) ovog LP-a je dat sa 
-$$\begin{array}{cc}
+$$\begin{array}{cl}
 	\min          &x_1 - 2x_2 \\
 	{\mbox{t.d.} }       & y_1 -y_2 \geq 2 \\
 	& -y_1 + y_2 \geq -1 \\
@@ -3351,7 +3379,7 @@ Na Slici~\ref{fig:bnb_ilp} je prikazano B\&B drvo sljedećeg ILP-a:
 
 \begin{figure}[!ht]
 	\centering
-	\begin{tikzpicture}
+	\begin{tikzpicture}[thick,scale=0.9, every node/.style={scale=0.9}]
 		\node[parent node,rectangle split parts=1](A){\textA};
 		%\node[parent node,below =of A](B){\textB};
 		\node[parent node,below left =of A](B){\textC};
@@ -3366,7 +3394,7 @@ Na Slici~\ref{fig:bnb_ilp} je prikazano B\&B drvo sljedećeg ILP-a:
 		\draw[->](B.south)--+(0,-0.5)-|(D)node[left,near end]{\scriptsize $x_1 \geq 2$};
 		\draw[->](B.south)--+(0,-0.5)-|(E)node[right,near end]{\scriptsize $x_1 \leq 1$};
 		\draw[->](E.south)--+(0,-0.5)-|(G)node[left,midway]{\scriptsize $x_2\leq 4$};
-	    \draw[->](E.south)--+(0,-0.5)-|(H)node[left,midway]{\scriptsize $x_2 \geq 5$};
+	    \draw[->](E.south)--+(0,-0.5)-|(H)node[left,near end]{\scriptsize $x_2 \geq 5$};
 	\end{tikzpicture}
 	\caption{Primjer B\&B   metoda za rješavanje problema ILP-a.}
 	\label{fig:bnb_ilp}
@@ -3784,8 +3812,9 @@ Ideja \emph{Lagranžove relaksacije} se sastoji u tome da u modelu ILP-a  koji i
 Ovo ograničenje potom brišemo iz skupa ograničenja modela, a zatim rješavamo ovakav (parametrizovan) problem. Fiksirajući parametar penalizacije, rješenje takvog problema predstavlja donju granicu (za problem minimizacije)  optimalnog rješenja inicijalnog problema. Dobijena granica je često dovoljno blizu vrijednosti optimuma, što ovu metodu čini upotrebljivom u rješavanju praktičnih problema. 
 
 \begin{primjer} Posmatrajmo problem \emph{najkraćeg puta sa ograničenjem} (eng.  {Constrained shortest path problem}). Neka je dat usmjeren neciklični graf $G=(V,E)$. Za svaku granu $(i,j) \in E$ dodijelimo cijenu puta $c_{i,j}$ i vrijeme putovanja $t_{i,j}$. Pretpostavimo da je čvor $i=1$ početni (izvorni) čvor, a čvor $n = |V|$   završni čvor (terminalni čvor). Zadatak je da se nađe najjeftiniji put  od izvornog do terminalnog čvora, ali tako da se čitav put pređe u vremenskom periodu $T$.
+
+Ovaj problem se modeluje pomoću sljedećeg ILP-a.
 \end{primjer}
-Ovaj problem se modeluje pomoću sljedećeg ILP-a:
  \begin{align}
     &z^*=\min\sum_{(i,j) \in E }c_{i,j}x_{i,j} \\
     &\mbox{t.d. }\\
@@ -3803,7 +3832,10 @@ Prvo ograničenje u modelu osigurava da je dopustivo rješenje upravo put od izv
 Dakle, Lagranžova relaksacija problema je data sa
 
 \begin{align*}
-       &L(\lambda)= \min\sum_{(i,j) \in E }c_{i,j}x_{i,j}  + \lambda(\sum_{(i,j) \in E} t_{i,j} x_{i,j} - T ) = \min \sum_{(i,j) \in E} (c_{i,j} + t_{i,j} )x_{i,j} - \lambda T \\
+       L(\lambda) &=\min\sum_{(i,j) \in E }c_{i,j}x_{i,j}  + \lambda(\sum_{(i,j) \in E} t_{i,j} x_{i,j} - T ) \\
+       &= \min \sum_{(i,j) \in E} (c_{i,j} + t_{i,j} )x_{i,j} - \lambda T 
+    \end{align*}
+\begin{align*}
         &{\mbox{t.d.} }\\
     & \sum_{i} x_{i,j} - \sum_{i} x_{j,i} = \begin{cases}  
                                                1, \mbox{ ako } i=1 \\
@@ -4132,11 +4164,11 @@ $(a_4^*, a_6^*, a_7^*)^T =  (2, 0, 1)^T=A_4$, optimalne vrijednosti $\frac{7}{6}
     1
 \end{pmatrix}$
 na bazu koja je generisana vektorima baze $x_1$, $x_2$ i $x_3$.  Iz toga slijedi da se vektor 
-$$ B^{-1}A_4 = \begin{pmatrix}
+$ B^{-1}A_4 = \begin{pmatrix}
 	  \frac{2}{3} \\
 	  0           \\
 	  \frac{1}{3}
-\end{pmatrix}$$ uključuje u novu simpleks tabelu (uz redukovanu cijenu doprinosa od -(1- $\frac{7}{6}$)= $\frac{1}{6}$):
+\end{pmatrix}$ uključuje u novu simpleks tabelu (uz redukovanu cijenu doprinosa od -(1- $\frac{7}{6}$)= $\frac{1}{6}$):
 
 \begin{center}
 	
@@ -4162,7 +4194,7 @@ Dalje, generišimo novi CG podproblem čitajući vrijednost dualnih promjenjivih
 	 \frac{1}{4} a_4 + \frac{1}{2} a_6 + \frac{1}{2} a_7
 \end{align*}
 uz uslove nenegativnosti i kapaciteta i integralnosti (cjelobrojnosti). Rješavajući problem dinamičkim programiranjem, dobijamo optimalno rješenje $A_5 = (2,1,0)^T$. Vrijednost optimuma za CG podproblem je jednaka 1, odakle slijedi da je optimum početnog problema pronađen sa prethodnim rješenjem (ne postoji ulazna kolona koje se dodaju u RMP). Rješenje je jednako 95 i dato je sa $x_1^* = 0, x_2^* = 25, x_3^*=30, x_4^*= 40$. Dakle, koristimo samo 3 različita obrasca za sječenje. 
-\\ \vspace{1cm}
+%\\ \vspace{1cm}
  %Za uraditi:  https://ocw.mit.edu/courses/sloan-school-of-management/15-083j-integer-programming-and-combinatorial-optimization-fall-2009/lecture-notes/ (Lekcija 19-25)
  \section{Zadaci}
  \begin{enumerate}
@@ -4501,8 +4533,8 @@ Primijenimo sada Benderovu dokompoziciju. Najprije treba odrediti početnu vrije
  Nakon inicijalnih postavki, prvi korak je rješavanje dualnog problema (Benderovog podproblema). S obzirom da je početni problem problem maksimizacije, dualni problem će sada biti problem minimizacije. Obilježimo promjenljive dualnog problema vektorom  $u$, koji ima 11 koordinata (polazni problem ima 11 oraničenja).
  
  Računamo funkciju cilja dualnog problema
- $$
-u^T (c-B\overline{y})=(u_1\ldots u_{11})\cdot \left(\left(\begin{array}{c}
+ \begin{align*}
+u^T (c-B\overline{y})&=(u_1\ldots u_{11})\cdot \left(\left(\begin{array}{c}
 	1000 \\
 	100 \\
 	\vdots \\
@@ -4512,8 +4544,9 @@ u^T (c-B\overline{y})=(u_1\ldots u_{11})\cdot \left(\left(\begin{array}{c}
 0 \\
 \vdots \\
 0
-\end{array}\right)\right) = -500u_1+100u_2+\ldots+100u_{11}
-$$
+\end{array}\right)\right)=\\
+& = -500u_1+100u_2+\ldots+100u_{11}
+\end{align*}
 dok su ograničenja dualnog problema
 
 $$
@@ -4639,8 +4672,8 @@ Uzimamo $\overline{y}=0$ i ponovo rješavamo dualni problem.
 
 Funkcija cilja dualnog problema sada izgleda 
 
- $$
-u^T (c-B\overline{y})=(u_1\ldots u_{11})\cdot \left(\left(\begin{array}{c}
+ \begin{align*}
+u^T (c-B\overline{y})&=(u_1\ldots u_{11})\cdot \left(\left(\begin{array}{c}
 	1000 \\
 	100 \\
 	\vdots \\
@@ -4650,8 +4683,9 @@ u^T (c-B\overline{y})=(u_1\ldots u_{11})\cdot \left(\left(\begin{array}{c}
 	0 \\
 	\vdots \\
 	0
-\end{array}\right)\right) =1000u_1+ 100u_2+\ldots+100u_{11}.
-$$
+\end{array}\right)\right)=\\
+& =1000u_1+ 100u_2+\ldots+100u_{11}.
+\end{align*}
 
 S obzirom na ograničenja u dualnom problemu, funkcija ima minimalnu vrijednost 1055 za vektor $$u=\left(\begin{array}{c}
 	0\\
@@ -5564,7 +5598,7 @@ Iz prethodne tabele pročitamo vrijednost dualnih promjenljivih: $y_1 =  \frac{1
          \frac{1}{2}
   \end{pmatrix}
 \end{align*}
-\vspace{1cm} \\
+%\vspace{1cm} \\
 
 \section{Zadaci}
 \begin{enumerate}
@@ -5936,7 +5970,7 @@ Definišimo problem minimalnog pokrivanja čvorova.
   \noindent Izračunajmo aproksimativni faktor Algoritma~\ref{alg:gridi-vc-2} posmatrajući  graf sa Slike~\ref{vertex-coverEx}. 
   
   
-  \begin{figure}
+  \begin{figure}[h]
   	\centering
   	\includegraphics[width=140mm,height=90mm]{vc-2-example.eps}
   	\caption{Specijalan bipartitan graf.} 
@@ -6741,7 +6775,7 @@ Da bi se proširila pretraga,  VNS u potrazi za boljim lokalnim optimumom, obič
 		   \item %https://massivedatasets.files.wordpress.com/2011/04/approx1-exercisesf114.pdf
 		   Neka je dat kompletan neusmjeren graf $G = (V, E)$ u kojem težine grana zadovoljavaju nejednakost trougla i neka je $k$ pozitivan prirodan broj. Problem metričkog $k$-klasterovanja (eng. Metric $k$-clustering)  se sastoji od particionisanja skupa $V$ na $k$ disjunktnih skupova $V_1, \ldots, V_k$, na način da se  minimizuje najveća cijena grane  između dva čvora u istom skupu, simbolički zapisano
 		   $$ \min\max_{1 \leq i \leq k, u,v \in V_i} c(uv).$$
-		   Konstruisati 2--aproksimativni algoritam za problem metričkog $k$--klasterovanja. 
+		   Konstruisati 2--aproksimativni algoritam za problem metričkog $k$--kla\-sterovanja. 
 		\item %https://www.ibr.cs.tu-bs.de/courses/ws1920/aa/exercises/exercise_03.pdf
 		 Neka je dat   graf $G=(V,E)$. Naći particiju $V$ na $k$ skupova $V_1,\ldots, V_k$ tako da je broj grana koje su između dvije različite particije minimizovan. Konstruisati (pohlepni) algoritam koji je ($1-\frac{1}{k}$)--~aproksimativni. 
 		 
@@ -6766,7 +6800,7 @@ Da bi se proširila pretraga,  VNS u potrazi za boljim lokalnim optimumom, obič
 		  
 		 \item  %https://www.cs.cornell.edu/gomes/MYPAPERS/gomes-williams05.pdf
 		 Neka je data instanca problema sa pozitivnim prirodnim  brojem $k$ i multi-skupom 
-		 $T = \{t_1,\ldots, t_n\}$ vremena (procesiranja poslova/zadataka), $t_i \in \mathbb{Q}$ za sve $i=1,\ldots, n$. 
+		 $T = \{t_1,\ldots, t_n\}$ vremena (procesiranja poslova/zada\-taka), $t_i \in \mathbb{Q}$ za sve $i=1,\ldots, n$. 
 		 Potrebno je dodijeliti zadatke svakoj od $k$ mašina (dakle, funkcija $f:\{1,\ldots, n\} \mapsto \{1,\ldots, k\}$) tako da je vrijeme završetka svih zadataka na mašinama minimizovano, pod uslovom da one mogu izvršavati zadatke paralelno. Simbolički zapisano, funkcija cilja koja se minimizuje je data sa 
 		 $$\max \{\sum_{i: f(i) = j } t_i \mid j=1,\ldots, k \}$$
 		 Konstruisati 2--aproksimativni algoritam.
@@ -6818,7 +6852,8 @@ ili umjesto prve linije uključiti (pomoću \#include) ilocplex.h fajl sa apsolu
 
  \begin{verbatim}
  	IloModel model(env); //def. modela
- 	// potrebno deklarisati ciljnu funkciju, promjenljive i ograničenja
+ 	// potrebno deklarisati ciljnu funkciju,
+ 	// promjenljive i ograničenja
  	IloCplex cplex(model);
  	if(!cplex.solve()){ // poziv cplex  rjesavaca
  		    env.error() << " Problem nije optimizovan." << endl;
@@ -6852,7 +6887,8 @@ Ako je potrebno implementirati promjenljivu za koju je $x \geq 0$ to radimo kao 
  
  \begin{verbatim}
  	typedef IloArray<IloNumVarArray> FloatMatrix; // x_ij 
- 	typedef IloArray<FloatMatrix> Float3Matrix; // 3D niz var: x_ijk
+ 	// 3D niz var: x_ijk
+ 	typedef IloArray<FloatMatrix> Float3Matrix; 
  	
  	FloatMatrix x(env, n);
  	for(int i = 0; i < n; i++){
@@ -6910,7 +6946,8 @@ Ako je potrebno implementirati promjenljivu za koju je $x \geq 0$ to radimo kao 
  
  \begin{verbatim}
  	     IloRangeArray constr(env);
- 	     // neka su prethodno definisane promjenljive x (IloNumVarArray) 
+ 	     // neka su prethodno definisane
+ 	     // promjenljive x (IloNumVarArray) 
  	     for (i = 0; i < n-1; ++i)
  	          for(j = i+1; i < n; ++j)
  	               constr.add( x[i] + x[j] <= 1)     
@@ -6948,7 +6985,7 @@ Narednim k\^odom je ilustrovana upotreba nekih od navedenih metoda.
 	env.out() << "Vrijeme = " << timer.getTime() << endl;
 	cplex.getValues(xval, x);
 	env.out() << "x vrijednosti = " << xval << endl;
-	env.out() << "gap vrijednost: " << cplex.getMIPRelativeGap() * 100 << endl; 
+	env.out() << "gap vrijednost: " << cplex.getMIPRelativeGap() * 100 
 	// vraca gap (ako nije rijeseno do optimalnosti, onda > 0)
 \end{verbatim}
 
@@ -7016,13 +7053,8 @@ Upisivanje modela u .$lp$ format se vrši pozivom funkcije \emph{writeLP()}, či
 koji kontroliše maksimalno vrijeme izvršavanja rješavača, poruke o napretku rješavača prilikom pronalaženja novih najboljih rješenja, te maksimalni željeni \emph{gap} -- nakon čijeg dostizanja rješavač prekida izvršavanje.
 
  Napomenimo da je rješavač \emph{COIN Branch and Cut} (CBC) difoltni (podrazumijevani)  rješavač u PuLP modulu. 
- 
- 
- 
- %Više o podešavanju rješavača se može pročitati na linku \cite{cite_key19}.   %https://coin-or.github.io/pulp/technical/solvers.html
- %which controls the maximum time (in seconds), the level of messaging (to see the progress CBC makes) and the max GAP you desire to have (another stop condition in addition to maxSeconds).
+
  Čitanje svih promjenljivih iz modela se postiže pomoću funkcije \emph{variables()}. Svaka promjenljiva za atribute ima svoj naziv (atribut \emph{name}), te vrijednost, koju je dobila pri rješavanju modela nekim od rješavača (atribut \emph{varValue}). Atribut \emph{objective} instance modela čuva (najbolju) vrijednost funkcije cilja dobijene rješavanjem modela. Status rješavanja se dobija na osnovu atributa \emph{status} objekta modela. 
- 
  \begin{verbatim}
  	print "Status:", LpStatus[prob.status]
  	for v in prob.variables():
@@ -7069,9 +7101,10 @@ koji kontroliše maksimalno vrijeme izvršavanja rješavača, poruke o napretku 
     model = LpProblem("Lokacijski problem", LpMinimize) 
     # promjenljive:
     x = LpVariable.dicts("x_vars", locations, 0, 1, LpBinary)
-    y = LpVariable.dicts("y_vars", [ (i, j) for i in locations \ 
-                                            for j in customers ],\  
-                                            0, None, LpContinuous)
+    y = LpVariable.dicts("y_vars", \
+                                   [ (i, j) for i in locations \ 
+                                   for j in customers ],\  
+                                   0, None, LpContinuous)
     #funkcija cilja: 
     model += lpSum( f[i] * x[i] for i in locations )\ 
           + lpSum(  y[ (i, j) ] * c[ i ][ j ] * d[ j ] \ 
@@ -7150,7 +7183,7 @@ Dakle, uz funkciju cilja (\ref{eq:rflcs-objective}), ograničenja (\ref{eq:rflcs
 #include <unordered_map>
 #include <map>
 
-#include "path-to-ilocplex.h" // Ovdje ide staza fo ilocplex.h datoteke
+#include "path-to-ilocplex.h" // Ovdje ide staza do ilocplex.h 
 
 ILOSTLBEGIN	
 struct Point2d // point for structure
@@ -7215,7 +7248,7 @@ int main( int argc, char **argv )
  		  	      Point2d p(i, j);
  		  	      IloNumVar myIntVar(env, 0, 1, ILOINT);
  		  	      Z[p] = myIntVar;
- 		  	      obj.setLinearCoef(Z[p], 1.0); // define objective function
+ 		  	      obj.setLinearCoef(Z[p], 1.0); // funkcija cilja
  		  	      ++vars_num;
  		    } 
  	    }
@@ -7235,14 +7268,15 @@ int main( int argc, char **argv )
            if(cs.find(i) != cs.end())
               model.add(cs[i] <= 1); 
           
-       for(unordered_map<Point2d, IloNumVar, Hash2d >::iterator it1 
-       = Z.begin(); it1 != Z.end(); ++it1)
+       for(unordered_map<Point2d, IloNumVar, Hash2d >
+       ::iterator it1 = Z.begin(); it1 != Z.end(); ++it1)
        {
-	         for(unordered_map<Point2d, IloNumVar, Hash2d >::iterator it2 
-	         = Z.begin(); it2 != Z.end(); ++it2)
+	         for(unordered_map<Point2d, IloNumVar, Hash2d >
+	         ::iterator it2 = Z.begin(); it2 != Z.end(); ++it2)
 	         {
 		           if(conflict( (*it1).first, (*it2).first ) and  
-		             ! ((*it1).first == (*it2).first) ){   // conflict constraints
+		             ! ((*it1).first == (*it2).first) ){   
+		             	// conflict constraints
 			             model.add( (*it1).second + (*it2).second <= 1);
 		           }
 	         }
@@ -7670,14 +7704,12 @@ Primijetimo da $\mu \rightarrow 0$, kako $k \rightarrow \infty$. U praksi se če
 Sljedeća teorema   karakteriše \emph{metod unutrašnje tačke}.
 
 \begin{thm} Za metod unutrašnje tačke vrijedi sljedeće:
-	\begin{itemize}
+	\begin{itemize} \setlength\itemsep{0.1em}
 		\item Algoritam unutrašnje tačke konvergira ka optimalnom rješenju problema (\ref{eq:lp_equality_constraint}). %Dualna granica se smanjuje $1 - \frac{\beta}{n}$ pri svakom koraku.
 		\item U svim iteracijama, algoritam generiše dopustive tačke.
 		\item Kompleksnost algoritma je $O(\sqrt{n})$. %Dakle,  broj iteracija  proporcionalan $\sqrt{n}$ je neophodan  algoritmu unutrašnje tačke riješi problem. 
 	\end{itemize}
 \end{thm}
-
-Da bi se uvidjele sličnosti i razlike između Simpleks metode i Metode unutrašnje tačke, pogledajte Slike \ref{fig:optimality-approaching-simplex} i  \ref{fig:optimality-approaching-interior}. U njima možete vidjeti kako ova dva metoda pristupaju pretrazi optimalnih rješenja. 
 
 \begin{figure}
 	\centering
@@ -7711,51 +7743,14 @@ Da bi se uvidjele sličnosti i razlike između Simpleks metode i Metode unutraš
 	\caption{Prilazak optimalnosti kod Metoda unutrašnje tačke.}
 	\label{fig:optimality-approaching-interior}
 \end{figure}
-Paralelizovani objektno orjentisani optimizacioni siftver baziran na metodi unutrašnje tačke se može naći na 
-linku koji je dat pod referencom~\cite{cite_key25}. %\url{https://www.maths.ed.ac.uk/~gondzio/parallel/solver.html}.  \\
+Da bi se uvidjele sličnosti i razlike između Simpleks metode i Metode unutrašnje tačke, potrebno je analizirati Slike \ref{fig:optimality-approaching-simplex} i  \ref{fig:optimality-approaching-interior}. U njima se mogu vidjeti kako ova dva metoda pristupaju pretrazi optimalnih rješenja. 
 
-%https://optimization.cbe.cornell.edu/index.php?title=Interior-point_method_for_LP
-\begin{comment}
-	
-	\emph{\textbf{Primjer.}} Riješimo sljedeći primjer LP-a pomoću metoda unutrašnje tačke:
-	\begin{align*}
-		&\max 3 x_1 + 3 x_2 \\
-		&\mbox{s.t.} \\
-		& x_1 + x_2 \leq 4 \\
-		& x_1, x_2 \geq 0.
-	\end{align*}
-	
-	\emph{Rješenje.}  Formirajmo Lagranžovu funkciju početnog problema koristeći ciljnu funkciju barijernog problema sa:  
-	\begin{align*}
-		L(x, y, \mu) = 	  3 x_1 + 3 x_2 -\mu ln x_1 - \mu ln x_2 + y_1(4- x_1 - x_2 - s_1).  
-	\end{align*}
-	Barijerna funkcija je uvijek konkavna, a kako maksimizujemo,  tako da posjeduje tačno rješenje.  Sada nađimo maksimum date funkcije što radimo derivirajući funkciju $L$ (nalaženje parcijalnih derivacija):
-	\begin{align*}
-		&\triangledown_{x_1} L   =  3 - \frac{\mu}{x_1}  - y_1 = 0 \\
-		&\triangledown_{x_2} L   =  3 - \frac{\mu}{x_2} - y_1 = 0 \\
-		&\triangledown_{y} L   = {4-x_1-x_2 - s_1} = 0 \\
-		&\triangledown_{s} L   = { y_1} = 0 
-	\end{align*}
-	Odakle imamo zbog simetrije prve i druge jednakosti, da je  $x_1 = x_2$, dok je $y(\mu) = 0$. pa prema tome je 
-	%$$  3 - \frac{\mu}{x_1}  = 0$$
-	%što je ekvivalentno   sa:
-	%\begin{align} \label{eq:example-interior-point}
-	%   3x_1 - \mu = 0 \Rightarrow x_1 = x_2 = \frac{\mu}{3}.
-	%\end{align} 
-	Iz trečeg uslova   $x_1(\mu)=x_2(\mu)=2$, što je i optimum. Primijetimo da ovdje nije bilo potrebe za iterativnim postupkom i računanja Njutnovog koraka (koji je konstantan u svim iteracijama). 
-	%Kako je ovo kvadratna jednačina, koja je može eksplicitno riješiti, ne treba primjenjivati Njutnov iteracioni postupak (iako bi rješavanje ovakve jednačine takođe bilo moguće pomoću takvog metoda). Dakle, rješenje jednačine (\ref{eq:example-interior-point}) je:
-	%\begin{align}
-	%	x_1 = \frac{3(4-\mu) \pm \sqrt{9(4-\mu)^2 - 96 \mu}} { 12} = x_2
-	%\end{align}
-	% dualni simpleks metod ==> 4.7 PRIMAL-DUAL ALGORITHMS
-	% Ako bi uzeli $\mu = 1$, rješenje koje se dobije je 
-\end{comment}
+Paralelizovani objektno orjentisani optimizacioni siftver baziran na metodi unutrašnje tačke se može naći na 
+linku koji je dat pod referencom~\cite{cite_key25}. 
 
 \chapter{Makefile za kompajliranje \textsc{Cplex} programa}\label{appendix:makefile-cplex}
 
-\begin{center}
-	\includegraphics[width=420pt,height=300pt]{cplex_makefile.png}
-\end{center}
+
 
 Za pokretanje progama uz pomoć $makefile$ datoteke (komande $make$), potrebno je pratiti sljedeće korake. 
 \begin{itemize}
@@ -7764,6 +7759,9 @@ Za pokretanje progama uz pomoć $makefile$ datoteke (komande $make$), potrebno j
 	\item U promjenljivim CPLEXDIR i CONCERTDIR (linije 8 i 9), poresiti putanje ka cplex i concert direktorijumima, redom.
 	\item Napisati program cplex\_rfrcs.cpp i dodatni .cpp za mjerenje vremena izvršavanja algoritma, nazvan Timer.cpp. (Pisanje Timer.cpp nije obavezno. U tom slučaju sadržaj promjenljive OBJS na liniji 3 je prazan.)
 \end{itemize}
+\begin{figure}
+	\includegraphics[width=378pt,height=270pt]{cplex_makefile.png}\caption{Prikaz makefile-a za kompajliranje  \textsc{Cplex} programa}
+\end{figure}
 
 \begin{thebibliography}{widest entry}
 	\bibitem[1]{cite_key1} M. Leila, The big picture of Operations Research, preuzeto 24.7.2022. \url{https://towardsdatascience.com/the-big-picture-of-operations-research-8652d5153aad}
