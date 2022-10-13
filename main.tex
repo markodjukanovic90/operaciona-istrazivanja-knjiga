@@ -133,12 +133,13 @@
 \nodeDist=25mm
 % \ChapterDOI{} %will be filled in at production
 \begin{document}
+	
+
+\clearpage
 \title{Uvod u Operaciona Istraživanja}
 \author{
  Marko Đukanović i Dragan Matić \\ \vspace{1cm} \\ {Univerzitet u Banjoj Luci}}
-% Noam Chimpsky\affiliation{University of Pluto}\lastand 
-% Jane Wilson\affiliation{National Institute for Language}
-\clearpage
+
 
 %\department{Prirodno-matematički fakultet}
 \pagestyle{empty}
@@ -148,7 +149,7 @@
  				Uvod u operaciona istraživanja}\\
  		       \vskip 1.5cm
  			\Large Marko Đukanović i Dragan Matić   \\  
- 			\vskip 14cm
+ 			\vskip 11.5cm
  			{Univerzitet u Banjoj Luci} \\  
  			Prirodno-matematički fakultet \\
  		%	\vskip 9cm
@@ -156,7 +157,11 @@
  		}
 };
  \end{tikzpicture}
+
+
 \newpage
+
+
 \pagestyle{fancy}
 \fancyhead{}
 \fancyfoot[C]{\thepage}
@@ -167,11 +172,7 @@
 	\fancyfoot{}
 	\fancyhead[R]{\thepage}
 }
-
-\pagenumbering{roman}
-	\let\cleardoublepage\clearpage
 \begin{comment}
-	
 \begin{titlepage}
 	\centering
 	\vfill
@@ -188,11 +189,10 @@
  
 
 	\vfill
-	
-\end{comment}
+	\end{comment}
 
 %\maketitle
-
+\thispagestyle{empty}
 
  Marko Đukanović, Dragan Matić
  
@@ -224,12 +224,11 @@ Uvod u operaciona istraživanja
  Which boxes to choose to maximize the amount of money while still fullfilling the 15 kg constraint? (autor slike: Dake)
  
  \begin{figure}[h]
-\includegraphics[scale=0.5]{proba.png}
+     %\includegraphics[scale=0.5]{proba.png}
 \end{figure}
-
-
+\clearpage
+\pagenumbering{roman}
 \chapter*{Predgovor}
-
 Ovaj udžbenik je namijenjen studentima koji slušaju uvodni kurs iz Opera\-cionih istraživanja. Po svojoj strukturi i sadržaju udžbenik najviše prati nastavni plan i program za Operaciona istraživanja, za studente treće godine informatičkog smjera Prirodno-matematičkog fakulteta Univerziteta u Banjoj Luci.
 
 Pretpostavljamo da čitaoci ovog udžbenika u dovoljnoj mjeri vladaju solidnim znanjem iz matematike i programiranja, koje uključuje osnovne linearne algebre (manipulacija vektorima i matricama), teorije grafova, kombinatorike, kalkulusa, teorije algoritama i struktura podataka. Za implementaciju programa linearnog programiranja, podrazumijeva se posjedovanje osnovnih programerskih vještina, koje se stiču na uvodnim kursevima iz programiranja, te poznavanje rada u  programskim jezicima C/C++ i/ili Python. 
@@ -248,6 +247,8 @@ Stoga je preporuka da se ovaj udžbenik ne čita isključivo redom, već da se, 
 
 Na kraju, želimo da se zahvalimo recenzentima, doc. dr Milani Grbić i doc. dr Aleksandru Kartelju, koji su svojim sugestijama i komentarima poboljšali kvalitet ovog udžbenika. Takođe, zahvaljujemo se na podršci i kolegama sa Katedre za računarske i informatičke nauke Prirodno-matematičkog fakulteta Univerziteta u Banjoj Luci.
 
+
+
 \chapter*{Notacija}
 
 Uvedimo neke notacijske napomene i konvencije koje smo koristili u knjizi.
@@ -263,11 +264,11 @@ Uvedimo neke notacijske napomene i konvencije koje smo koristili u knjizi.
    \item Što se tiče skalara i vektora, nećemo koristiti drugačije oznake da bismo ih razlikovali. Jednostavno, biće jasno iz konteksta da li je riječ o jednom ili drugom. Dakle, nula vektor ćemo takođe označavati sa $x = (0, \ldots, 0)^T := 0$, dok je $x=(1,\ldots, 1)^T:=1$.  
    \item   Ako je $x \in \mathbb{R}^n$, notacija  $x \geq 0$ podrazumijeva da je vrijednost svake od koordinatna vektora $x$ veća ili jednaka 0, tj. $x_i \geq 0$, za sve $i=1,\ldots,n$. 
 \end{itemize} 
+\newpage \phantom{abc} \\ \newpage
 
-\newpage
-\phantom{ empty}\\      \newpage
 \tableofcontents
 
+ 
 \chapter{Predmet izučavanja Operacionih istraživanja}
 \pagenumbering{arabic}
 
@@ -1308,7 +1309,7 @@ promjenljive $x_i$ označava broj proizvoda $i$ koji se proizvode na sedmičnom 
 \end{enumerate}
 
 \newpage 
-\phantom{ empty}\\      \newpage
+\newpage 
 \chapter{Simpleks metoda}\label{chp:simpleks}
 
 Simpleks metod je jedan od najpoznatijih i najefikasnijih algoritama za rješavanje problema linearnog programiranja. Ideja za pronalaženje optimalnog rješenja problema LP-a simpleks metodom je zasnovana na  obilasku vrhova dopustivog regiona problema. Vrhovi se sukcesivno obilaze tako da se, prelaskom u novi vrh, vrijednost funkcije cilja smanjuje (ako je dat zadatak minimizacije). Simpleks metod je razvio George Dantzig 1947. godine, a s obzirom na njegovu važnost u rješavanju problema linearnog programiranja, spada među najznačajnije matematičke algoritme XX vijeka.
@@ -3282,9 +3283,6 @@ Može se pokazati i sljedeća teorema.
 	
 \end{enumerate}                                                       
 
-\newpage
-\phantom{ empty}\\      \newpage
-
  \chapter{Algoritamske tehnike za rješavanje Cjelobrojnog linearnog programiranja}\label{chap:rjesavanjeILP}
  
  U ovom poglavlju će biti analizirane različite tehnike kojima se rješavaju problemi cjelobrojnog linearnog programiranja.
@@ -4305,10 +4303,8 @@ Definisati Lagranžovu relaksaciju za ovaj problem (npr. uzeti prvo ograničenje
 $W = 20$, te postoje tri narudžbe za sječenje: 1. stavka: $b_1=60$ rolni dužine 7; 2. stavka: $b_2=40$ rolni dužine 8; 3. stavka: $b_3=70$ rolni dužine 10. 
 
  \end{enumerate}
-
  
- \newpage
- \phantom{ empty}\\      \newpage
+ %\newpage
  
  \chapter{Dekompozicione metode}
  
